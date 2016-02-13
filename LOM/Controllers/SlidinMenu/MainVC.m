@@ -75,21 +75,30 @@ static MainVC *sharedMainVC = nil;
             identifier = @"";
             break;
         case 1:
-            identifier = SPECIES_MENU_SEGUE;
+            identifier = INTRODUCTION_MENU_SEGUE;
             break;
         case 2:
-            identifier = FAMILIES_MENU_SEGUE;
+            identifier = ORIGINOFLEMURS_MENU_SEGUE;
             break;
-        case 3 :
-            identifier = WATCHINSITE_MENU_SEGUE;
+        case 3:
+            identifier = BIOS_MENU_SEGUE;
             break;
-        case 4 :
-            identifier = WATCHINLIST_MENU_SEGUE;
+        case 4:
+            identifier = SPECIES_MENU_SEGUE;
             break;
         case 5:
+            identifier = FAMILIES_MENU_SEGUE;
+            break;
+        case 6 :
+            identifier = WATCHINGSITE_MENU_SEGUE;
+            break;
+        case 7 :
+            identifier = WATCHINGLIST_MENU_SEGUE;
+            break;
+        case 8:
             identifier = POSTS_MENU_SEGUE;
             break;
-        case 6:
+        case 9:
             identifier = ABOUT_MENU_SEGUE;
             break;
     }

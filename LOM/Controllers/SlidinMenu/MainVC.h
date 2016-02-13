@@ -8,13 +8,16 @@
 
 #import "AMSlideMenuMainViewController.h"
 
+#define INTRODUCTION_MENU_SEGUE @"firstSegue"
+#define ORIGINOFLEMURS_MENU_SEGUE @"secondSegue"
+#define BIOS_MENU_SEGUE @"thirdSegue"
+#define SPECIES_MENU_SEGUE @"forthSegue"
+#define FAMILIES_MENU_SEGUE @"fifthSegue"
+#define WATCHINGSITE_MENU_SEGUE @"sixthhSegue"
+#define WATCHINGLIST_MENU_SEGUE @"seventhSegue"
+#define POSTS_MENU_SEGUE @"eigthSegue"
+#define ABOUT_MENU_SEGUE @"ninethSegue"
 
-#define SPECIES_MENU_SEGUE @"firstSegue"
-#define FAMILIES_MENU_SEGUE @"secondSegue"
-#define WATCHINSITE_MENU_SEGUE @"thirdSegue"
-#define WATCHINLIST_MENU_SEGUE @"fourthSegue"
-#define POSTS_MENU_SEGUE @"fifthSegue"
-#define ABOUT_MENU_SEGUE @"sixthSegue"
 
 
 @interface MainVC : AMSlideMenuMainViewController {

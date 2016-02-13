@@ -417,17 +417,18 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="JjW-ae-GrF" kind="custom" identifier="firstSegue" customClass="AMSlideMenuContentSegue" id="mWb-um-tXd"/>
-                        <segue destination="OeS-CT-Cgh" kind="custom" identifier="secondSegue" customClass="AMSlideMenuContentSegue" id="vPI-wC-kml"/>
-                        <segue destination="FHg-vw-HMz" kind="custom" identifier="thirdSegue" customClass="AMSlideMenuContentSegue" id="5fH-u8-srp"/>
-                        <segue destination="vS7-R7-YWK" kind="custom" identifier="fourthSegue" customClass="AMSlideMenuContentSegue" id="sEi-st-rhG"/>
-                        <segue destination="PoG-iY-jQO" kind="custom" identifier="fifthSegue" customClass="AMSlideMenuContentSegue" id="KLM-tI-P0H"/>
-                        <segue destination="4B5-O0-xs1" kind="custom" identifier="sixthSegue" customClass="AMSlideMenuContentSegue" id="Mhn-r3-F2q"/>
+                        <segue destination="JjW-ae-GrF" kind="custom" identifier="secondSegue" customClass="AMSlideMenuContentSegue" id="mWb-um-tXd"/>
+                        <segue destination="OeS-CT-Cgh" kind="custom" identifier="thirdSegue" customClass="AMSlideMenuContentSegue" id="vPI-wC-kml"/>
+                        <segue destination="FHg-vw-HMz" kind="custom" identifier="forthSegue" customClass="AMSlideMenuContentSegue" id="5fH-u8-srp"/>
+                        <segue destination="vS7-R7-YWK" kind="custom" identifier="fifthSegue" customClass="AMSlideMenuContentSegue" id="sEi-st-rhG"/>
+                        <segue destination="PoG-iY-jQO" kind="custom" identifier="sixthSegue" customClass="AMSlideMenuContentSegue" id="KLM-tI-P0H"/>
+                        <segue destination="4B5-O0-xs1" kind="custom" identifier="seventhSegue" customClass="AMSlideMenuContentSegue" id="Mhn-r3-F2q"/>
+                        <segue destination="zKY-tG-2Zi" kind="custom" identifier="firstSegue" customClass="AMSlideMenuContentSegue" id="JKU-nd-5Yf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bb0-dW-cji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="830" y="857"/>
+            <point key="canvasLocation" x="788" y="857"/>
         </scene>
         <!--Families View Controller-->
         <scene sceneID="7Va-CN-kcl">
@@ -1011,6 +1012,26 @@
             </objects>
             <point key="canvasLocation" x="1994" y="3225"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="GNY-rm-hF8">
+            <objects>
+                <viewController id="KRe-dH-6mR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ckv-Xg-C67"/>
+                        <viewControllerLayoutGuide type="bottom" id="MEr-tn-ptB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bty-fw-mAs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Asg-KK-FJv"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b4Q-lS-34n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2814" y="-1591"/>
+        </scene>
         <!--Species View Controller-->
         <scene sceneID="N4E-t9-eVy">
             <objects>
@@ -1495,6 +1516,26 @@
             </objects>
             <point key="canvasLocation" x="2002" y="-855"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="maW-Ng-nte">
+            <objects>
+                <viewController id="zVP-SO-Sie" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1xL-ub-xhy"/>
+                        <viewControllerLayoutGuide type="bottom" id="h9b-bm-p8l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ccB-73-1fS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="b5c-Pe-cKe"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a77-23-SBF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2828" y="-2904"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7RQ-Db-sF1">
             <objects>
@@ -1900,6 +1941,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SwN-Wg-4dL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2907" y="2361"/>
+        </scene>
+        <!--Origin of lemurs-->
+        <scene sceneID="h7o-4Y-YrV">
+            <objects>
+                <viewController id="uJc-rj-MOu" userLabel="Origin of lemurs" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="neh-Xz-qFT"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZtP-Rz-o9V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gj2-yF-UMR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="wrQ-KD-STa"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="brs-v7-1ER" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2814" y="-2250"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Cyr-4t-BZ4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zKY-tG-2Zi" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qMz-FK-clA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zVP-SO-Sie" kind="relationship" relationship="rootViewController" id="O6j-Ly-kwS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CaV-3E-6Lh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="-2894"/>
+        </scene>
+        <!--Origin of lemurs-->
+        <scene sceneID="MfQ-eT-1rR">
+            <objects>
+                <navigationController title="Origin of lemurs" automaticallyAdjustsScrollViewInsets="NO" id="4kS-7Y-n3j" userLabel="Origin of lemurs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bWq-B0-12x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uJc-rj-MOu" kind="relationship" relationship="rootViewController" id="X1C-9D-1bY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3TD-1D-r49" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="-2250"/>
+        </scene>
+        <!--Bios-->
+        <scene sceneID="mPc-TT-qlE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LTH-JH-FM3" userLabel="Bios" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Eoo-kH-dxf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KRe-dH-6mR" kind="relationship" relationship="rootViewController" id="lY4-aY-lbu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fWf-qG-QX1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2002" y="-1591"/>
         </scene>
     </scenes>
     <resources>
