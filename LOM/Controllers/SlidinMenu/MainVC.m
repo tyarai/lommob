@@ -62,7 +62,7 @@ static MainVC *sharedMainVC = nil;
 
 - (NSIndexPath *)initialIndexPathForLeftMenu
 {
-    return [NSIndexPath indexPathForRow:1 inSection:0];
+    return [NSIndexPath indexPathForRow:2 inSection:0];
 }
 
 
@@ -105,6 +105,7 @@ static MainVC *sharedMainVC = nil;
     
     return identifier;
 }
+
 
 
 /*

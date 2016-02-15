@@ -26,7 +26,7 @@
     [Tools copyDatabaseIfNeeded:DATABASE_NAME];
     NSString* databasePath = [Tools getDatabasePath:DATABASE_NAME];
     [FCModel openDatabaseAtPath:databasePath withSchemaBuilder:^(FMDatabase *db, int *schemaVersion) {
-        NSLog(@"openDatabaseAtPath %@", databasePath);
+              NSLog(@"openDatabaseAtPath %@", databasePath);
     }];
     
     //Initialise cache image
