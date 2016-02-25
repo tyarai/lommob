@@ -16,10 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Create the data model
-    //_pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
-    //_pageImages = @[@"page1.png", @"page2.png", @"page3.png", @"page4.png"];
-  self.navigationItem.title=  NSLocalizedString(@"Introduction", @"Introduction");
+    
+    self.navigationItem.title=  NSLocalizedString(@"Introduction", @"Introduction");
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
 
     
@@ -37,7 +35,7 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     // Change the size of page view controller
-    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 60);
+    //self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 60);
     
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];

@@ -874,6 +874,8 @@
 		4CEC77771C36CB6400C9706A /* FamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77761C36CB6400C9706A /* FamilyTableViewCell.m */; };
 		4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */; };
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
+		B4B7BE811C7EA36400D32A48 /* OriginOfLemursRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */; };
+		B4B7BE841C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BE831C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m */; };
 		B4C599AF1C70D6E100C4B99A /* IntroPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C599AE1C70D6E100C4B99A /* IntroPageContentViewController.m */; };
 		B4C599B21C70D88000C4B99A /* IntroPageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C599B11C70D88000C4B99A /* IntroPageRootViewController.m */; };
 		B4C599BB1C71155B00C4B99A /* Menus.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C599BA1C71155B00C4B99A /* Menus.m */; };
@@ -1815,6 +1817,10 @@
 		4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FamiliesDetailsViewController.m; path = Controllers/FamiliesDetailsViewController.m; sourceTree = "<group>"; };
 		4CEC777C1C36E1ED00C9706A /* WatchingSiteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSiteTableViewCell.h; path = Controllers/WatchingSiteTableViewCell.h; sourceTree = "<group>"; };
 		4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSiteTableViewCell.m; path = Controllers/WatchingSiteTableViewCell.m; sourceTree = "<group>"; };
+		B4B7BE7F1C7EA36400D32A48 /* OriginOfLemursRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OriginOfLemursRootViewController.h; path = Controllers/OriginOfLemursRootViewController.h; sourceTree = "<group>"; };
+		B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OriginOfLemursRootViewController.m; path = Controllers/OriginOfLemursRootViewController.m; sourceTree = "<group>"; };
+		B4B7BE821C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OriginOfLemursPageContentViewController.h; path = Controllers/OriginOfLemursPageContentViewController.h; sourceTree = "<group>"; };
+		B4B7BE831C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OriginOfLemursPageContentViewController.m; path = Controllers/OriginOfLemursPageContentViewController.m; sourceTree = "<group>"; };
 		B4C599AD1C70D6E100C4B99A /* IntroPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntroPageContentViewController.h; path = Controllers/IntroPageContentViewController.h; sourceTree = "<group>"; };
 		B4C599AE1C70D6E100C4B99A /* IntroPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntroPageContentViewController.m; path = Controllers/IntroPageContentViewController.m; sourceTree = "<group>"; };
 		B4C599B01C70D88000C4B99A /* IntroPageRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntroPageRootViewController.h; path = Controllers/IntroPageRootViewController.h; sourceTree = "<group>"; };
@@ -2843,6 +2849,7 @@
 		4C74F2841C06381A00543A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4B7BE7E1C7E8BDB00D32A48 /* OriginOfLemurs */,
 				B4C599AC1C70D68E00C4B99A /* Introduction */,
 				4C85FF6F1C38063A00D6C233 /* Login */,
 				4C59ADA21C15F63200EA74C5 /* About */,
@@ -3045,6 +3052,17 @@
 				4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		B4B7BE7E1C7E8BDB00D32A48 /* OriginOfLemurs */ = {
+			isa = PBXGroup;
+			children = (
+				B4B7BE7F1C7EA36400D32A48 /* OriginOfLemursRootViewController.h */,
+				B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */,
+				B4B7BE821C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.h */,
+				B4B7BE831C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m */,
+			);
+			name = OriginOfLemurs;
 			sourceTree = "<group>";
 		};
 		B4C599AC1C70D68E00C4B99A /* Introduction */ = {
@@ -4075,6 +4093,7 @@
 				B4C599BB1C71155B00C4B99A /* Menus.m in Sources */,
 				4C74F2981C0638B900543A7F /* MTCSimpleActivityView.m in Sources */,
 				4C5D047F1C06351700EFCAAC /* Families.m in Sources */,
+				B4B7BE811C7EA36400D32A48 /* OriginOfLemursRootViewController.m in Sources */,
 				4C85FF6A1C37F4F700D6C233 /* LoginResult.m in Sources */,
 				4C59ADA11C15F62800EA74C5 /* PostsViewController.m in Sources */,
 				4C0BC9EB1C36F7C00062082B /* WatchingSiteDetailsViewController.m in Sources */,
@@ -4088,6 +4107,7 @@
 				4C95D4441C0A24AC0038B9FC /* Tools.m in Sources */,
 				4C1122E11C0A29DB00562FC1 /* SplashViewController.m in Sources */,
 				4C85FF721C38066000D6C233 /* PopupLoginViewController.m in Sources */,
+				B4B7BE841C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m in Sources */,
 				4C59ADA81C1606BF00EA74C5 /* UIView+Corner.m in Sources */,
 				4C85FF761C380E7300D6C233 /* LemurLifeListTableViewCell.m in Sources */,
 				4C74F2A21C0638EA00543A7F /* FCModelCachedObject.m in Sources */,

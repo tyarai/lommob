@@ -62,7 +62,7 @@ static MainVC *sharedMainVC = nil;
 
 - (NSIndexPath *)initialIndexPathForLeftMenu
 {
-    return [NSIndexPath indexPathForRow:2 inSection:0];
+    return [NSIndexPath indexPathForRow:5 inSection:0];
 }
 
 
@@ -81,24 +81,27 @@ static MainVC *sharedMainVC = nil;
             identifier = ORIGINOFLEMURS_MENU_SEGUE;
             break;
         case 3:
-            identifier = BIOS_MENU_SEGUE;
+            identifier = EXTINCT_LEMURS_MENU_SEGUE;
             break;
         case 4:
-            identifier = SPECIES_MENU_SEGUE;
+            identifier = BIOS_MENU_SEGUE;
             break;
         case 5:
+            identifier = SPECIES_MENU_SEGUE;
+            break;
+        case 6:
             identifier = FAMILIES_MENU_SEGUE;
             break;
-        case 6 :
+        case 7 :
             identifier = WATCHINGSITE_MENU_SEGUE;
             break;
-        case 7 :
+        case 8 :
             identifier = WATCHINGLIST_MENU_SEGUE;
             break;
-        case 8:
+        case 9:
             identifier = POSTS_MENU_SEGUE;
             break;
-        case 9:
+        case 10:
             identifier = ABOUT_MENU_SEGUE;
             break;
     }

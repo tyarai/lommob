@@ -10,13 +10,14 @@
 
 #define INTRODUCTION_MENU_SEGUE @"firstSegue"
 #define ORIGINOFLEMURS_MENU_SEGUE @"secondSegue"
-#define BIOS_MENU_SEGUE @"thirdSegue"
-#define SPECIES_MENU_SEGUE @"forthSegue"
-#define FAMILIES_MENU_SEGUE @"fifthSegue"
-#define WATCHINGSITE_MENU_SEGUE @"sixthhSegue"
-#define WATCHINGLIST_MENU_SEGUE @"seventhSegue"
-#define POSTS_MENU_SEGUE @"eigthSegue"
-#define ABOUT_MENU_SEGUE @"ninethSegue"
+#define EXTINCT_LEMURS_MENU_SEGUE @"thirdSegue"
+#define BIOS_MENU_SEGUE @"forthSegue"
+#define SPECIES_MENU_SEGUE @"fifthSegue"
+#define FAMILIES_MENU_SEGUE @"sixthSegue"
+#define WATCHINGSITE_MENU_SEGUE @"seventhSegue"
+#define WATCHINGLIST_MENU_SEGUE @"eighthSegue"
+#define POSTS_MENU_SEGUE @"ninethSegue"
+#define ABOUT_MENU_SEGUE @"tenthSegue"
 
 
 
