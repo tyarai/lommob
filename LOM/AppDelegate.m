@@ -22,7 +22,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    //Initialise database
+       //Initialise database
     [Tools copyDatabaseIfNeeded:DATABASE_NAME];
     NSString* databasePath = [Tools getDatabasePath:DATABASE_NAME];
     [FCModel openDatabaseAtPath:databasePath withSchemaBuilder:^(FMDatabase *db, int *schemaVersion) {

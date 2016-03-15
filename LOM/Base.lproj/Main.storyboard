@@ -1097,25 +1097,6 @@
             </objects>
             <point key="canvasLocation" x="1994" y="3225"/>
         </scene>
-        <!--About the authors-->
-        <scene sceneID="kPG-j4-8sO">
-            <objects>
-                <viewController title="About the authors" id="nXI-OC-MM0" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tpz-ZT-SPa"/>
-                        <viewControllerLayoutGuide type="bottom" id="gDf-Bk-lYJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4Hw-yJ-ljq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ihO-uP-wae"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="q5B-a1-Qhq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2768" y="-2207"/>
-        </scene>
         <!--Species View Controller-->
         <scene sceneID="N4E-t9-eVy">
             <objects>
@@ -2173,7 +2154,7 @@
         <!--Extinct lemurs-->
         <scene sceneID="zMv-tE-pD7">
             <objects>
-                <viewController title="Extinct lemurs" id="Blf-wR-EoW" sceneMemberID="viewController">
+                <viewController title="Extinct lemurs" id="Blf-wR-EoW" customClass="ExtinctLemursViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5CY-lX-J7g"/>
                         <viewControllerLayoutGuide type="bottom" id="DJe-Ew-jDl"/>
@@ -2181,14 +2162,68 @@
                     <view key="view" contentMode="scaleToFill" id="4yh-7w-M07">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bis-4Z-2V5">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="cyY-nw-uRT"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="webView" destination="bis-4Z-2V5" id="ra3-6p-SjU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KUD-lU-Lkd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2768" y="-2871"/>
+        </scene>
+        <!--Authors Table View Controller-->
+        <scene sceneID="Tvk-aY-KPk">
+            <objects>
+                <tableViewController id="QQC-Xo-iJk" customClass="AuthorsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" sectionHeaderHeight="28" sectionFooterHeight="28" id="v3d-dD-PLa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="authorCell" rowHeight="106" id="jjF-IT-6ha" customClass="AuthorTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="320" height="106"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jjF-IT-6ha" id="1NB-yS-iuT">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="105"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQ9-Gp-BQM">
+                                            <rect key="frame" x="8" y="8" width="89" height="89"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1h-qT-zcB">
+                                            <rect key="frame" x="105" y="8" width="186" height="21"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="authorName" destination="r1h-qT-zcB" id="IjR-ov-ZT9"/>
+                                    <outlet property="authorPhoto" destination="1NB-yS-iuT" id="IKb-7d-L8c"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QQC-Xo-iJk" id="lcF-jJ-A6Y"/>
+                            <outlet property="delegate" destination="QQC-Xo-iJk" id="W8r-4L-c3S"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Kkf-tW-74R"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nC4-0F-W3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2768" y="-2196"/>
         </scene>
         <!--Origin of lemurs-->
         <scene sceneID="K7F-fl-fHp">
@@ -2240,7 +2275,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nXI-OC-MM0" kind="relationship" relationship="rootViewController" id="slY-0J-Ipb"/>
+                        <segue destination="QQC-Xo-iJk" kind="relationship" relationship="rootViewController" id="eKo-Cy-j1X"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6K-oP-WxS" userLabel="First Responder" sceneMemberID="firstResponder"/>
