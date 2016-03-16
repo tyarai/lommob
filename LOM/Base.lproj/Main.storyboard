@@ -55,6 +55,7 @@
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
@@ -2196,20 +2197,34 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="105"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQ9-Gp-BQM">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AQ9-Gp-BQM">
                                             <rect key="frame" x="8" y="8" width="89" height="89"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="89" id="8yd-9b-D8K"/>
+                                                <constraint firstAttribute="width" constant="89" id="E8m-8x-5Ic"/>
+                                                <constraint firstAttribute="width" constant="89" id="d7z-du-URd"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1h-qT-zcB">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1h-qT-zcB">
                                             <rect key="frame" x="105" y="8" width="186" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="AQ9-Gp-BQM" firstAttribute="bottom" secondItem="1NB-yS-iuT" secondAttribute="bottomMargin" id="18H-oc-q2J"/>
+                                        <constraint firstItem="r1h-qT-zcB" firstAttribute="leading" secondItem="AQ9-Gp-BQM" secondAttribute="trailing" constant="8" symbolic="YES" id="6ra-o6-bqa"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="r1h-qT-zcB" secondAttribute="trailing" constant="-12" id="QVo-iK-irB"/>
+                                        <constraint firstItem="AQ9-Gp-BQM" firstAttribute="top" secondItem="1NB-yS-iuT" secondAttribute="topMargin" id="asR-mD-06l"/>
+                                        <constraint firstItem="AQ9-Gp-BQM" firstAttribute="top" secondItem="r1h-qT-zcB" secondAttribute="top" id="gnS-Db-0bJ"/>
+                                        <constraint firstItem="AQ9-Gp-BQM" firstAttribute="leading" secondItem="1NB-yS-iuT" secondAttribute="leadingMargin" id="nM9-vX-943"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="authorName" destination="r1h-qT-zcB" id="IjR-ov-ZT9"/>
-                                    <outlet property="authorPhoto" destination="1NB-yS-iuT" id="IKb-7d-L8c"/>
+                                    <outlet property="photo" destination="AQ9-Gp-BQM" id="GKk-Fq-fFi"/>
+                                    <segue destination="jMn-ef-i2W" kind="show" identifier="showAuthorDetails" trigger="accessoryAction" id="kBf-SM-SdY"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -2224,6 +2239,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nC4-0F-W3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2768" y="-2196"/>
+        </scene>
+        <!--Author Detail View Controller-->
+        <scene sceneID="C3h-1C-Gb9">
+            <objects>
+                <viewController id="jMn-ef-i2W" customClass="AuthorDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l9s-SI-kyQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="U4D-6T-a4H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ssU-AQ-rvw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cFA-78-OsL">
+                                <rect key="frame" x="-2" y="64" width="324" height="240"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="sn0-I4-Gvt">
+                                <rect key="frame" x="7" y="312" width="306" height="230"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="230" id="0VM-yq-gTn"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cFA-78-OsL" firstAttribute="top" secondItem="l9s-SI-kyQ" secondAttribute="bottom" id="5Vj-DL-BS9"/>
+                            <constraint firstItem="U4D-6T-a4H" firstAttribute="top" secondItem="sn0-I4-Gvt" secondAttribute="bottom" constant="26" id="6Kg-9p-6qX"/>
+                            <constraint firstItem="sn0-I4-Gvt" firstAttribute="centerX" secondItem="ssU-AQ-rvw" secondAttribute="centerX" id="8QV-Pq-ymI"/>
+                            <constraint firstItem="cFA-78-OsL" firstAttribute="leading" secondItem="ssU-AQ-rvw" secondAttribute="leadingMargin" constant="-18" id="Oby-kG-HtT"/>
+                            <constraint firstItem="sn0-I4-Gvt" firstAttribute="leading" secondItem="ssU-AQ-rvw" secondAttribute="leadingMargin" constant="-9" id="QIc-3i-qu1"/>
+                            <constraint firstItem="sn0-I4-Gvt" firstAttribute="top" secondItem="cFA-78-OsL" secondAttribute="bottom" constant="8" id="cB0-Qz-Lud"/>
+                            <constraint firstItem="sn0-I4-Gvt" firstAttribute="top" secondItem="cFA-78-OsL" secondAttribute="bottom" constant="8" symbolic="YES" id="q72-dG-9Ae"/>
+                            <constraint firstItem="sn0-I4-Gvt" firstAttribute="centerX" secondItem="cFA-78-OsL" secondAttribute="centerX" id="vdi-Dp-MPX"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="detail" destination="sn0-I4-Gvt" id="3qZ-4G-9Lp"/>
+                        <outlet property="photo" destination="cFA-78-OsL" id="anM-ln-KKD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7br-H9-hVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3348" y="-2196"/>
         </scene>
         <!--Origin of lemurs-->
         <scene sceneID="K7F-fl-fHp">

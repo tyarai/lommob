@@ -874,6 +874,7 @@
 		4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */; };
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
 		B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */; };
+		B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */; };
 		B4ABBC331C97DE9C0003DA43 /* LOM.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B4ABBC321C97DE9C0003DA43 /* LOM.sqlite */; };
 		B4B7BE811C7EA36400D32A48 /* OriginOfLemursRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */; };
 		B4B7BE841C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BE831C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m */; };
@@ -1822,6 +1823,8 @@
 		4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSiteTableViewCell.m; path = Controllers/WatchingSiteTableViewCell.m; sourceTree = "<group>"; };
 		B48667A41C81A2AA00F2B05D /* ExtinctLemursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtinctLemursViewController.h; path = Controllers/ExtinctLemursViewController.h; sourceTree = "<group>"; };
 		B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtinctLemursViewController.m; path = Controllers/ExtinctLemursViewController.m; sourceTree = "<group>"; };
+		B48F146C1C995DB30067F19B /* AuthorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorDetailViewController.h; path = Controllers/AuthorDetailViewController.h; sourceTree = "<group>"; };
+		B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorDetailViewController.m; path = Controllers/AuthorDetailViewController.m; sourceTree = "<group>"; };
 		B4ABBC321C97DE9C0003DA43 /* LOM.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LOM.sqlite; sourceTree = "<group>"; };
 		B4B7BE7F1C7EA36400D32A48 /* OriginOfLemursRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OriginOfLemursRootViewController.h; path = Controllers/OriginOfLemursRootViewController.h; sourceTree = "<group>"; };
 		B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OriginOfLemursRootViewController.m; path = Controllers/OriginOfLemursRootViewController.m; sourceTree = "<group>"; };
@@ -3096,6 +3099,8 @@
 				B4BBF3C11C979575005A5196 /* cell */,
 				B4BBF3BE1C9790F3005A5196 /* AuthorsTableViewController.h */,
 				B4BBF3BF1C9790F3005A5196 /* AuthorsTableViewController.m */,
+				B48F146C1C995DB30067F19B /* AuthorDetailViewController.h */,
+				B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */,
 			);
 			name = Authors;
 			sourceTree = "<group>";
@@ -4124,6 +4129,7 @@
 				4C74F28F1C06387A00543A7F /* RNCachingURLProtocol.m in Sources */,
 				4C74F2AC1C0639A600543A7F /* Maps.m in Sources */,
 				B4BBF3BC1C978BB9005A5196 /* Authors.m in Sources */,
+				B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */,
 				4C59AD951C15F59A00EA74C5 /* FamiliesViewController.m in Sources */,
 				4CBAEAF31BFA546B0011139C /* AppDelegate.m in Sources */,
 				4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */,

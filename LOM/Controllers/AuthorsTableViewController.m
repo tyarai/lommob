@@ -10,6 +10,7 @@
 #import "AuthorTableViewCell.h"
 #import "Constants.h"
 #import "Authors.h"
+#import "AuthorDetailViewController.h"
 
 @interface AuthorsTableViewController ()
 
@@ -52,8 +53,10 @@
     AuthorTableViewCell *cell = (AuthorTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
     Authors *author = self.allAuthors[indexPath.row];;
     cell.authorName.text = [author _name];
-    // Configure the cell...
+    NSString* photoFileName = [author _photo];
+    UIImage * photo = [UIImage imageNamed:photoFileName];
     
+    [cell.photo setImage:photo];
     return cell;
 }
 
@@ -92,14 +95,21 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    AuthorDetailViewController* vc = (AuthorDetailViewController*)segue.destinationViewController;
+    vc.selectedAuthor = self.selectedAuthor;
 }
-*/
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectedAuthor = self.allAuthors[indexPath.row];
+    [self performSegueWithIdentifier:@"showAuthorDetails" sender:self];
+
+}
+
 
 @end

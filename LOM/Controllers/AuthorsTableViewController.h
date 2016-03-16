@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Authors.h"
 
 @interface AuthorsTableViewController : UITableViewController
 @property NSArray* allAuthors;
+@property Authors *selectedAuthor;
 @end

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AuthorTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIView *authorPhoto;
+
 @property (weak, nonatomic) IBOutlet UILabel *authorName;
+@property (weak, nonatomic) IBOutlet UIImageView *photo;
 
 @end

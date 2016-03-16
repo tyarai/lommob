@@ -12,5 +12,7 @@
 @property (nonatomic) int64_t _id;
 @property (nonatomic, strong) NSString* _name;
 @property (nonatomic, strong) NSString* _details;
+@property (nonatomic, strong) NSString* _photo  ;
+
 
 @end
