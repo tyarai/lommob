@@ -875,6 +875,9 @@
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
 		B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */; };
 		B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */; };
+		B49C5FF41C999D4400B4F08D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FEF1C999D4400B4F08D /* UIImage+Alpha.m */; };
+		B49C5FF51C999D4400B4F08D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FF11C999D4400B4F08D /* UIImage+Resize.m */; };
+		B49C5FF61C999D4400B4F08D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FF31C999D4400B4F08D /* UIImage+RoundedCorner.m */; };
 		B4ABBC331C97DE9C0003DA43 /* LOM.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B4ABBC321C97DE9C0003DA43 /* LOM.sqlite */; };
 		B4B7BE811C7EA36400D32A48 /* OriginOfLemursRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */; };
 		B4B7BE841C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BE831C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m */; };
@@ -884,6 +887,7 @@
 		B4C599AF1C70D6E100C4B99A /* IntroPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C599AE1C70D6E100C4B99A /* IntroPageContentViewController.m */; };
 		B4C599B21C70D88000C4B99A /* IntroPageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C599B11C70D88000C4B99A /* IntroPageRootViewController.m */; };
 		B4C599BB1C71155B00C4B99A /* Menus.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C599BA1C71155B00C4B99A /* Menus.m */; };
+		B4D88E711C9A00670096B067 /* ScientificName.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D88E701C9A00670096B067 /* ScientificName.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1825,6 +1829,12 @@
 		B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtinctLemursViewController.m; path = Controllers/ExtinctLemursViewController.m; sourceTree = "<group>"; };
 		B48F146C1C995DB30067F19B /* AuthorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorDetailViewController.h; path = Controllers/AuthorDetailViewController.h; sourceTree = "<group>"; };
 		B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorDetailViewController.m; path = Controllers/AuthorDetailViewController.m; sourceTree = "<group>"; };
+		B49C5FEE1C999D4400B4F08D /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		B49C5FEF1C999D4400B4F08D /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		B49C5FF01C999D4400B4F08D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		B49C5FF11C999D4400B4F08D /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		B49C5FF21C999D4400B4F08D /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		B49C5FF31C999D4400B4F08D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		B4ABBC321C97DE9C0003DA43 /* LOM.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LOM.sqlite; sourceTree = "<group>"; };
 		B4B7BE7F1C7EA36400D32A48 /* OriginOfLemursRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OriginOfLemursRootViewController.h; path = Controllers/OriginOfLemursRootViewController.h; sourceTree = "<group>"; };
 		B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OriginOfLemursRootViewController.m; path = Controllers/OriginOfLemursRootViewController.m; sourceTree = "<group>"; };
@@ -1842,6 +1852,8 @@
 		B4C599B11C70D88000C4B99A /* IntroPageRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntroPageRootViewController.m; path = Controllers/IntroPageRootViewController.m; sourceTree = "<group>"; };
 		B4C599B91C71155B00C4B99A /* Menus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Menus.h; path = Models/Database/Menus.h; sourceTree = "<group>"; };
 		B4C599BA1C71155B00C4B99A /* Menus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Menus.m; path = Models/Database/Menus.m; sourceTree = "<group>"; };
+		B4D88E6F1C9A00670096B067 /* ScientificName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScientificName.h; path = Controllers/ScientificName.h; sourceTree = "<group>"; };
+		B4D88E701C9A00670096B067 /* ScientificName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScientificName.m; path = Controllers/ScientificName.m; sourceTree = "<group>"; };
 		DF432C35EFDB42BF2AA3395F /* Pods-LOM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LOM/Pods-LOM.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1915,6 +1927,8 @@
 				4C59AD901C15F57800EA74C5 /* SpeciesViewController.m */,
 				4C5177471C21EA5700BBD0B1 /* SpeciesDetailsViewController.h */,
 				4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */,
+				B4D88E6F1C9A00670096B067 /* ScientificName.h */,
+				B4D88E701C9A00670096B067 /* ScientificName.m */,
 			);
 			name = Species;
 			sourceTree = "<group>";
@@ -2888,6 +2902,7 @@
 		4C74F2851C06382A00543A7F /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				B49C5FE71C99934900B4F08D /* UIImage */,
 				4C59ADA61C1606BF00EA74C5 /* UIView+Corner.h */,
 				4C59ADA71C1606BF00EA74C5 /* UIView+Corner.m */,
 				4C95D4421C0A24AC0038B9FC /* Tools.h */,
@@ -3080,6 +3095,19 @@
 				B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */,
 			);
 			name = "Extinct Lemurs";
+			sourceTree = "<group>";
+		};
+		B49C5FE71C99934900B4F08D /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				B49C5FEE1C999D4400B4F08D /* UIImage+Alpha.h */,
+				B49C5FEF1C999D4400B4F08D /* UIImage+Alpha.m */,
+				B49C5FF01C999D4400B4F08D /* UIImage+Resize.h */,
+				B49C5FF11C999D4400B4F08D /* UIImage+Resize.m */,
+				B49C5FF21C999D4400B4F08D /* UIImage+RoundedCorner.h */,
+				B49C5FF31C999D4400B4F08D /* UIImage+RoundedCorner.m */,
+			);
+			name = UIImage;
 			sourceTree = "<group>";
 		};
 		B4B7BE7E1C7E8BDB00D32A48 /* OriginOfLemurs */ = {
@@ -4126,6 +4154,8 @@
 				4C74F2C81C06404000543A7F /* BaseViewController.m in Sources */,
 				4C59AD911C15F57800EA74C5 /* SpeciesViewController.m in Sources */,
 				4C74F2AF1C0639C400543A7F /* Photographs.m in Sources */,
+				B4D88E711C9A00670096B067 /* ScientificName.m in Sources */,
+				B49C5FF51C999D4400B4F08D /* UIImage+Resize.m in Sources */,
 				4C74F28F1C06387A00543A7F /* RNCachingURLProtocol.m in Sources */,
 				4C74F2AC1C0639A600543A7F /* Maps.m in Sources */,
 				B4BBF3BC1C978BB9005A5196 /* Authors.m in Sources */,
@@ -4135,6 +4165,8 @@
 				4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */,
 				4C74F2CC1C0641AB00543A7F /* MainVC.m in Sources */,
 				4C74F2A91C06399000543A7F /* LemursWatchingSites.m in Sources */,
+				B49C5FF41C999D4400B4F08D /* UIImage+Alpha.m in Sources */,
+				B49C5FF61C999D4400B4F08D /* UIImage+RoundedCorner.m in Sources */,
 				4C85FF601C37F31600D6C233 /* Photo.m in Sources */,
 				B4C599AF1C70D6E100C4B99A /* IntroPageContentViewController.m in Sources */,
 				B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */,

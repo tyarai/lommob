@@ -10,8 +10,16 @@
 #import "Tools.h"
 #import "Photographs.h"
 #import "Maps.h"
+#import "UIImage+Resize.h"
+#import "ScientificName.h"
 
 @interface SpeciesDetailsViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *btnFlag;
+@property (weak, nonatomic) IBOutlet UILabel *englishName;
+@property (weak, nonatomic) IBOutlet UILabel *germanName;
+@property (weak, nonatomic) IBOutlet UILabel *frenchName;
+
+@property (weak, nonatomic) IBOutlet UILabel *malagasyName;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollImage;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
@@ -27,6 +35,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnMap;
 @property (weak, nonatomic) IBOutlet UITextView *txtText;
 @property (weak, nonatomic) IBOutlet UIPageControl *sliderImageControl;
+
+- (IBAction)scientificNameTapped:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *nameView;
+
 
 
 @end
@@ -67,7 +79,7 @@
     int y = 0;
     
     float width = [Tools getScreenWidth];
-    float height = 150;
+    float height = 300;
     
     _photographs = [self.specy getSpeciePhotographs];
     
@@ -84,13 +96,17 @@
         for (Photographs* photograph in _photographs) {
             
             UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, width , height)];
-            imageView.contentMode = UIViewContentModeScaleAspectFill;
+           // imageView.contentMode = UIViewContentModeScaleAspectFill;
+            imageView.contentMode = UIViewContentModeScaleToFill;
             
             if (![Tools isNullOrEmptyString:photograph._photograph]) {
                 
                 NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
-                
-                [imageView setImage:[UIImage imageNamed:imageBundleName]];
+                 //[imageView setImage:[UIImage imageNamed:imageBundleName]];
+                UIImage *image = [UIImage imageNamed:imageBundleName];
+                CGSize newSize = CGSizeMake(width,height);
+                UIImage *scaledImage = [image scaledImageToSize:newSize];
+                [imageView setImage:scaledImage];
                 
             }else{
                 [imageView setImage:[UIImage imageNamed:@"ico_default_specy"]];
@@ -113,6 +129,12 @@
     [self activateButton:self.btnEnglish];
     
     [self btnIdentity_Touch:self.btnIdentity];
+    
+    self.malagasyName.text = self.specy._malagasy;
+    self.frenchName.text = self.specy._french;
+    self.germanName.text = self.specy._german;
+    self.englishName.text =self.specy._english;
+    
 }
 
 - (void) initTimer{
@@ -157,21 +179,25 @@
         [self.btnFrench setImage:[UIImage imageNamed:@"btn_french_off"] forState:UIControlStateNormal];
         [self.btnGerman setImage:[UIImage imageNamed:@"btn_german_off"] forState:UIControlStateNormal];
         [self.btnMalagasy setImage:[UIImage imageNamed:@"btn_malagasy_off"] forState:UIControlStateNormal];
+       // [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
     }else if ([button isEqual:self.btnFrench]){
         [self.btnEnglish setImage:[UIImage imageNamed:@"btn_english_off"] forState:UIControlStateNormal];
         [self.btnFrench setImage:[UIImage imageNamed:@"btn_french_on"] forState:UIControlStateNormal];
         [self.btnGerman setImage:[UIImage imageNamed:@"btn_german_off"] forState:UIControlStateNormal];
         [self.btnMalagasy setImage:[UIImage imageNamed:@"btn_malagasy_off"] forState:UIControlStateNormal];
+        //[self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
     }else if ([button isEqual:self.btnGerman]){
         [self.btnEnglish setImage:[UIImage imageNamed:@"btn_english_off"] forState:UIControlStateNormal];
         [self.btnFrench setImage:[UIImage imageNamed:@"btn_french_off"] forState:UIControlStateNormal];
         [self.btnGerman setImage:[UIImage imageNamed:@"btn_german_on"] forState:UIControlStateNormal];
         [self.btnMalagasy setImage:[UIImage imageNamed:@"btn_malagasy_off"] forState:UIControlStateNormal];
+       // [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
     }else if ([button isEqual:self.btnMalagasy]){
         [self.btnEnglish setImage:[UIImage imageNamed:@"btn_english_off"] forState:UIControlStateNormal];
         [self.btnFrench setImage:[UIImage imageNamed:@"btn_french_off"] forState:UIControlStateNormal];
         [self.btnGerman setImage:[UIImage imageNamed:@"btn_german_off"] forState:UIControlStateNormal];
         [self.btnMalagasy setImage:[UIImage imageNamed:@"btn_malagasy_on"] forState:UIControlStateNormal];
+       // [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
     }
     // Infos Buttons
     else if ([button isEqual:self.btnIdentity]){
@@ -181,6 +207,8 @@
         [self.btnWhereToSee setImage:[UIImage imageNamed:@"btn_where_to_see_off"] forState:UIControlStateNormal];
         [self.btnGeographic setImage:[UIImage imageNamed:@"btn_geographic_off"] forState:UIControlStateNormal];
         [self.btnMap setImage:[UIImage imageNamed:@"btn_map_off"] forState:UIControlStateNormal];
+        [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
+        self.nameView.hidden = YES;
     }
     else if ([button isEqual:self.btnHistory]){
         [self.btnIdentity setImage:[UIImage imageNamed:@"btn_info_lemur_off"] forState:UIControlStateNormal];
@@ -189,6 +217,8 @@
         [self.btnWhereToSee setImage:[UIImage imageNamed:@"btn_where_to_see_off"] forState:UIControlStateNormal];
         [self.btnGeographic setImage:[UIImage imageNamed:@"btn_geographic_off"] forState:UIControlStateNormal];
         [self.btnMap setImage:[UIImage imageNamed:@"btn_map_off"] forState:UIControlStateNormal];
+        [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
+        self.nameView.hidden = YES;
     }
     else if ([button isEqual:self.btnStatus]){
         [self.btnIdentity setImage:[UIImage imageNamed:@"btn_info_lemur_off"] forState:UIControlStateNormal];
@@ -197,6 +227,8 @@
         [self.btnWhereToSee setImage:[UIImage imageNamed:@"btn_where_to_see_off"] forState:UIControlStateNormal];
         [self.btnGeographic setImage:[UIImage imageNamed:@"btn_geographic_off"] forState:UIControlStateNormal];
         [self.btnMap setImage:[UIImage imageNamed:@"btn_map_off"] forState:UIControlStateNormal];
+        [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
+        self.nameView.hidden = YES;
     }
     else if ([button isEqual:self.btnWhereToSee]){
         [self.btnIdentity setImage:[UIImage imageNamed:@"btn_info_lemur_off"] forState:UIControlStateNormal];
@@ -205,6 +237,8 @@
         [self.btnWhereToSee setImage:[UIImage imageNamed:@"btn_where_to_see_on"] forState:UIControlStateNormal];
         [self.btnGeographic setImage:[UIImage imageNamed:@"btn_geographic_off"] forState:UIControlStateNormal];
         [self.btnMap setImage:[UIImage imageNamed:@"btn_map_off"] forState:UIControlStateNormal];
+        [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
+        self.nameView.hidden = YES;
     }
     else if ([button isEqual:self.btnGeographic]){
         [self.btnIdentity setImage:[UIImage imageNamed:@"btn_info_lemur_off"] forState:UIControlStateNormal];
@@ -213,6 +247,8 @@
         [self.btnWhereToSee setImage:[UIImage imageNamed:@"btn_where_to_see_off"] forState:UIControlStateNormal];
         [self.btnGeographic setImage:[UIImage imageNamed:@"btn_geographic_on"] forState:UIControlStateNormal];
         [self.btnMap setImage:[UIImage imageNamed:@"btn_map_off"] forState:UIControlStateNormal];
+        [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
+        self.nameView.hidden = YES;
     }
     else if ([button isEqual:self.btnMap]){
         [self.btnIdentity setImage:[UIImage imageNamed:@"btn_info_lemur_off"] forState:UIControlStateNormal];
@@ -221,7 +257,18 @@
         [self.btnWhereToSee setImage:[UIImage imageNamed:@"btn_where_to_see_off"] forState:UIControlStateNormal];
         [self.btnGeographic setImage:[UIImage imageNamed:@"btn_geographic_off"] forState:UIControlStateNormal];
         [self.btnMap setImage:[UIImage imageNamed:@"btn_map_on"] forState:UIControlStateNormal];
+        [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_off"] forState:UIControlStateNormal];
+        self.nameView.hidden = YES;
+    }else if ([button isEqual:self.btnFlag ]){
+        [self.btnIdentity setImage:[UIImage imageNamed:@"btn_info_lemur_off"] forState:UIControlStateNormal];
+        [self.btnHistory setImage:[UIImage imageNamed:@"btn_natural_history_off"] forState:UIControlStateNormal];
+        [self.btnStatus setImage:[UIImage imageNamed:@"btn_status_off"] forState:UIControlStateNormal];
+        [self.btnWhereToSee setImage:[UIImage imageNamed:@"btn_where_to_see_off"] forState:UIControlStateNormal];
+        [self.btnGeographic setImage:[UIImage imageNamed:@"btn_geographic_off"] forState:UIControlStateNormal];
+        [self.btnMap setImage:[UIImage imageNamed:@"btn_map_off"] forState:UIControlStateNormal];
+        [self.btnFlag setImage:[UIImage imageNamed:@"btn_flag_on"] forState:UIControlStateNormal];
     }
+     //self.nameView.hidden = YES;
     
 }
 
@@ -467,5 +514,11 @@
     return nil;
 }
 
+
+- (IBAction)scientificNameTapped:(id)sender {
+    self.nameView.hidden = NO;
+    [self activateButton:self.btnFlag];
+
+}
 
 @end

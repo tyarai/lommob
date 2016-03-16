@@ -7,6 +7,7 @@
 //
 
 #import "AuthorDetailViewController.h"
+#import "UIImage+Resize.h"
 
 @interface AuthorDetailViewController ()
 
@@ -19,8 +20,20 @@
     if(self.selectedAuthor != nil){
         self.navigationItem.title = self.selectedAuthor._name;
         UIImage *image = [UIImage imageNamed:self.selectedAuthor._photo];
+        CGSize newSize = self.photo.frame.size;
+        //CGRect rect = CGRectMake(0,166, self.photo.frame.size.width,self.photo.frame.size.height );
+        //[self.photo setFrame:rect];
+        //UIImage*newImage = [image scaledImageToSize:newSize ];
+        //UIImage*newImage = [UIImage imageByScalingAndCroppingForSize:newSize image:image];
+       // UIImage*newImage = [image resizedImageWithContentMode:UIViewContentModeScaleToFill  bounds:newSize interpolationQuality:0.5];
+        //[self.photo setImage:newImage];
         [self.photo setImage:image];
         self.detail.text  = self.selectedAuthor._details;
+        
+        
+        
+        
+        
     }
 }
 
