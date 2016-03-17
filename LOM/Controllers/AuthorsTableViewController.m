@@ -53,6 +53,7 @@
     AuthorTableViewCell *cell = (AuthorTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
     Authors *author = self.allAuthors[indexPath.row];;
     cell.authorName.text = [author _name];
+    cell.authorDetails.text = [author _details];
     NSString* photoFileName = [author _photo];
     UIImage * photo = [UIImage imageNamed:photoFileName];
     
