@@ -16,6 +16,8 @@
 - (void) displaySpecy:(Species*) species {
 	
     self.lblSpecyName.text = species._title;
+    self.lblSpecyName.numberOfLines = 0;
+    [self.lblSpecyName sizeToFit];
     
     Photographs* specyProfilPhotograph = [species getSpecieProfilePhotograph];
     

@@ -8,6 +8,8 @@
 
 #import "Menus.h"
 #import "ExtinctLemursViewController.h"
+#import "Tools.h"
+@import SafariServices;
 
 @interface ExtinctLemursViewController ()
 
@@ -15,14 +17,25 @@
 
 @implementation ExtinctLemursViewController
 
+-(id) init{
+    self =[super init];
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    Menus * extinctLemursUrl = [Menus getMenuContentByMenuName:@"extinctlemurs"];
-    NSString * strUrl = [extinctLemursUrl _menu_content ];
+    
+   
+    /*[_webView loadRequest:request];
+    
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    float screenHeight = [Tools getScreenHeight]/2;
+    float screenWidth = [Tools getScreenWidth]/2;
+    
+    self.activityIndicator.frame = CGRectMake(screenWidth,screenHeight,44,44);
+    [self.webView addSubview:self.activityIndicator];
+    self.webView.delegate = self;
+     */
 
-    NSURL * url = [NSURL URLWithString:strUrl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [_webView loadRequest:request];
     // Do any additional setup after loading the view.
 }
 
@@ -31,6 +44,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    [self.activityIndicator startAnimating];
+    return YES;
+}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    [self.activityIndicator stopAnimating];
+}
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [self.activityIndicator stopAnimating];
+}
 /*
 #pragma mark - Navigation
 
@@ -41,4 +64,6 @@
 }
 */
 
+- (IBAction)extinctLemursButtontapped:(id)sender {
+}
 @end

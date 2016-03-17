@@ -7,6 +7,7 @@
 //
 
 #import "AboutViewController.h"
+#import "Constants.h"
 
 @interface AboutViewController ()
 
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title=  NSLocalizedString(@"About this app", @"About this app");
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
 }
 
 - (void)didReceiveMemoryWarning {
