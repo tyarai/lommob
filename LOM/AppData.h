@@ -10,7 +10,7 @@
 #import "JSONHTTPClient.h"
 
 #define SERVER @"https://www.lemursofmadagascar.com/html"
-#define LOGIN_ENDPOINT @"/user/login.json"
+#define LOGIN_ENDPOINT @"/lom_endpoint/user/login.json"
 #define ALL_PUBLICATION_ENDPOINT @"/all-publication-json"
 #define LIFELIST_ENDPOINT @"/list/my-lemur-life-list-json"
 
@@ -21,9 +21,10 @@
 
 -(void) loginWithUserName:(NSString*)userName andPassword:(NSString*) password forCompletion:(JSONObjectBlock)completeBlock;
 
--(void) getPublicationForCompletion:(JSONObjectBlock)completeBlock;
 
--(void) getMyLemurLifeListForCompletion:(JSONObjectBlock)completeBlock;
+-(void) getPublicationForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
+
+-(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
 
 @end

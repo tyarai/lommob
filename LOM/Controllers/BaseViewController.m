@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "Tools.h"
 
 @interface BaseViewController ()
 
@@ -17,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    appData = [AppData getInstance];
+    
+    appDelegate = [Tools getAppDelegate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,13 +30,48 @@
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)removeActivityScreen
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (activityScreen != nil)
+        {
+            [activityScreen removeFromSuperview];
+            activityScreen = nil;
+        }
+    });
 }
-*/
+
+-(void)initActivityScreen:(NSString*)messageActivity
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (activityScreen != nil)
+        {
+            [activityScreen removeFromSuperview];
+            activityScreen = nil;
+        }
+        activityScreen =[[MTCSimpleActivityView alloc]initWithFrame:[Tools generateFrame:CGRectMake(0, 0, [Tools getScreenWidth], [Tools getScreenHeight])] withTextActivity:messageActivity];
+        
+        if (appDelegate == nil) {
+            appDelegate = [Tools getAppDelegate];
+        }
+        
+        [appDelegate.window addSubview:activityScreen];
+    });
+}
+
+-(void) showActivityScreen
+{
+    [self initActivityScreen:NSLocalizedString(@"please_wait", @"")];
+}
+
 
 @end

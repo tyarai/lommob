@@ -14,8 +14,8 @@
 #define BIOS_MENU_SEGUE @"forthSegue"
 #define SPECIES_MENU_SEGUE @"fifthSegue"
 #define FAMILIES_MENU_SEGUE @"sixthSegue"
-#define WATCHINGSITE_MENU_SEGUE @"seventhSegue"
-#define WATCHINGLIST_MENU_SEGUE @"eighthSegue"
+#define WATCHING_SITE_MENU_SEGUE @"seventhSegue"
+#define WATCHING_LIST_MENU_SEGUE @"eigthSegue"
 #define POSTS_MENU_SEGUE @"ninethSegue"
 #define ABOUT_MENU_SEGUE @"tenthSegue"
 

@@ -12,9 +12,12 @@
 #import "AppData.h"
 #import "PublicationResult.h"
 #import "PopupLoginViewController.h"
+#import "LoginResult.h"
+#import "Constants.h"
 
 @interface LemursLifeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
+@property (weak, nonatomic) IBOutlet UIButton *buttonConnect;
 
 @end
 
@@ -39,7 +42,7 @@
     controller.preferredContentSize = CGSizeMake(300, 200);
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
-    [popoverController presentPopoverFromRect:self.view.bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+    [popoverController presentPopoverFromRect:self.view.bounds inView:self.buttonConnect permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
 }
 
 
@@ -47,86 +50,26 @@
     
     [super viewWillAppear:animated];
     
-    if ([Tools isNullOrEmptyString:[Tools getAppDelegate].currentToken]) {
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]) {
         
         [self showLoginPopup ];
         
     }else{
-        
-        [self initActivityScreen:@"Please wait ..."];
-        
-        AppData* appData = [AppData getInstance];
-        [appData getMyLemurLifeListForCompletion:^(id json, JSONModelError *err) {
-            
-            if (err) {
-                [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
-            }else{
-                
-                NSDictionary* tmpDict = (NSDictionary*) json;
-                NSError* error;
-                PublicationResult* result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
-                
-                if (error)
-                {
-                    NSLog(@"Error parse : %@", error.debugDescription);
-                }
-                else
-                {
-                    _lemurLifeList = result.nodes;
-                    
-                    
-                    self.tableViewLifeList.delegate = self;
-                    self.tableViewLifeList.dataSource = self;
-                    
-                    [self.tableViewLifeList reloadData];
-                    
-                }
-                
-            }
-            
-            [self removeActivityScreen];
-            
-        }];
-        
+        [self getMyLemursLifeList];
     }
-
+    
 }
 
-
--(void)initActivityScreen:(NSString*)messageActivity
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (activityScreen != nil)
-        {
-            [activityScreen removeFromSuperview];
-            activityScreen = nil;
-        }
-        activityScreen =[[MTCSimpleActivityView alloc]initWithFrame:[Tools generateFrame:CGRectMake(0, 0, [Tools getScreenWidth], [Tools getScreenHeight])] withTextActivity:messageActivity];
-        
-        [[Tools getAppDelegate].window addSubview:activityScreen];
-    });
-}
-
--(void)removeActivityScreen
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (activityScreen != nil)
-        {
-            [activityScreen removeFromSuperview];
-            activityScreen = nil;
-        }
-    });
-}
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 
 #pragma mark UITableviewDataSource Implements
@@ -144,9 +87,11 @@
     
     LemurLifeListTableViewCell* cell = (LemurLifeListTableViewCell*) [Tools getCell:tableView identifier:@"lemurLifeListTableViewCell"];
     
-    Publication* publication = (Publication*) [_lemurLifeList objectAtIndex:indexPath.row];
+    //    Publication* publication = (Publication*) [_lemurLifeList objectAtIndex:indexPath.row];
     
-    [cell displayLemurLife:publication];
+    Node* node = (Node*) [_lemurLifeList objectAtIndex:indexPath.row];
+    
+    [cell displayLemurLife:node.node];
     
     return cell;
     
@@ -167,6 +112,125 @@
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller{
     popoverController.delegate = nil;
     popoverController = nil;
+}
+
+#pragma mark LoginPopoverDelegate
+
+- (void) cancel{
+    [popoverController dismissPopoverAnimated:YES];
+}
+
+
+- (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
+{
+    
+    [popoverController dismissPopoverAnimated:YES];
+    
+    [self showActivityScreen];
+    
+    [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
+        
+        [self removeActivityScreen];
+        
+        if (err)
+        {
+            [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            LoginResult* loginResult = [[LoginResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }
+            else
+            {
+                if (![Tools isNullOrEmptyString:loginResult.sessid]
+                    &&![Tools isNullOrEmptyString:loginResult.session_name]
+                    &&![Tools isNullOrEmptyString:loginResult.token]
+                    && loginResult.user != nil) {
+                    
+                    
+                    if (rememberMe) {
+                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token];
+                    }
+                    
+                    appDelegate._currentToken = loginResult.token;
+                    appDelegate._curentUser = loginResult.user;
+                    appDelegate._sessid = loginResult.sessid;
+                    appDelegate._sessionName = loginResult.session_name;
+                    
+                    [self getMyLemursLifeList];
+                    
+                    
+                }
+            }
+        }
+        
+    }];
+    
+}
+
+
+- (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token{
+    
+    [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
+    [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:session_name];
+    [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
+}
+
+
+
+- (void) getMyLemursLifeList{
+    
+    [self showActivityScreen];
+    
+    [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
+        
+        if (err) {
+            [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+        }else{
+            
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            NSError* error;
+            PublicationResult* result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }
+            else
+            {
+                _lemurLifeList = result.nodes;
+                
+                
+                self.tableViewLifeList.delegate = self;
+                self.tableViewLifeList.dataSource = self;
+                
+                [self.tableViewLifeList reloadData];
+                
+                [self.tableViewLifeList setHidden:NO];
+                
+            }
+            
+        }
+        
+        [self removeActivityScreen];
+        
+    }];
+    
+}
+
+
+#pragma IBAction
+
+- (IBAction)buttonConnet_Touch:(id)sender {
+    
+    [self showLoginPopup];
+    
 }
 
 

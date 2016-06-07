@@ -7,17 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MTCSimpleActivityView.h"
 #import "PopupLoginViewController.h"
 #import "WYPopoverController.h"
+#import "BaseViewController.h"
 
-@interface LemursLifeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
+@interface LemursLifeViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
     
     NSArray* _lemurLifeList;
     
     WYPopoverController* popoverController;
-
-    MTCSimpleActivityView* activityScreen;
 }
 
 @end

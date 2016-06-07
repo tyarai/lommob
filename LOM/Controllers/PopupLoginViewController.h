@@ -10,7 +10,7 @@
 
 @protocol PopupLoginViewControllerDelegate <NSObject>
 - (void) cancel;
-- (void) validWithUserName:(NSString*) userName andPassword:(NSString*) password;
+- (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe;
 @end
 
 

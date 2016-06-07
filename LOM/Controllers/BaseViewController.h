@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MTCSimpleActivityView.h"
+#import "AppDelegate.h"
+#import "AppData.h"
+
 
 @interface BaseViewController : UIViewController
+{
+    MTCSimpleActivityView* activityScreen;
+    AppDelegate* appDelegate;
+    AppData* appData;
+}
+
+
+-(void) showActivityScreen;
+-(void)removeActivityScreen;
+
 
 @end

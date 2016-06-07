@@ -93,10 +93,10 @@ static MainVC *sharedMainVC = nil;
             identifier = FAMILIES_MENU_SEGUE;
             break;
         case 7 :
-            identifier = WATCHINGSITE_MENU_SEGUE;
+            identifier = WATCHING_SITE_MENU_SEGUE;
             break;
         case 8 :
-            identifier = WATCHINGLIST_MENU_SEGUE;
+            identifier = WATCHING_LIST_MENU_SEGUE;
             break;
         case 9:
             identifier = POSTS_MENU_SEGUE;

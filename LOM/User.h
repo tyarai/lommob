@@ -12,19 +12,19 @@
 @interface User : JSONModel
 
 @property (nonatomic) NSInteger uid;
-@property (nonatomic, strong) NSString* name;
-@property (nonatomic, strong) NSString* mail;
-@property (nonatomic, strong) NSString* theme;
-@property (nonatomic, strong) NSString* signature;
-@property (nonatomic, strong) NSString* signature_format;
-@property (nonatomic, strong) NSString* created;
-@property (nonatomic, strong) NSString* access;
-@property (nonatomic, strong) NSString* login;
-@property (nonatomic, strong) NSString* status;
-@property (nonatomic, strong) NSString* timezone;
-@property (nonatomic, strong) NSString* language;
-@property (nonatomic, strong) NSString* picture;
-@property (nonatomic, strong) NSString* data;
-@property (nonatomic, strong) NSString* uuid;
+@property (nonatomic, strong) NSString<Optional>* name;
+@property (nonatomic, strong) NSString<Optional>* mail;
+@property (nonatomic, strong) NSString<Optional>* theme;
+@property (nonatomic, strong) NSString<Optional>* signature;
+@property (nonatomic, strong) NSString<Optional>* signature_format;
+@property (nonatomic, strong) NSString<Optional>* created;
+@property (nonatomic, strong) NSString<Optional>* access;
+@property (nonatomic, strong) NSString<Optional>* login;
+@property (nonatomic, strong) NSString<Optional>* status;
+@property (nonatomic, strong) NSString<Optional>* timezone;
+@property (nonatomic, strong) NSString<Optional>* language;
+@property (nonatomic, strong) NSString<Optional>* picture;
+@property (nonatomic, strong) NSString<Optional>* data;
+@property (nonatomic, strong) NSString<Optional>* uuid;
 
 @end

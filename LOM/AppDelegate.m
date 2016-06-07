@@ -22,11 +22,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-       //Initialise database
+    //Initialise database
     [Tools copyDatabaseIfNeeded:DATABASE_NAME];
     NSString* databasePath = [Tools getDatabasePath:DATABASE_NAME];
     [FCModel openDatabaseAtPath:databasePath withSchemaBuilder:^(FMDatabase *db, int *schemaVersion) {
-              NSLog(@"openDatabaseAtPath %@", databasePath);
+        NSLog(@"openDatabaseAtPath %@", databasePath);
     }];
     
     //Initialise cache image
@@ -36,6 +36,12 @@
     //Initialise application navigation bar
     [[UINavigationBar appearance] setOpaque:YES];
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
+    
+    
+    self._currentToken = [Tools getStringUserPreferenceWithKey:KEY_TOKEN];
+    self._sessionName = [Tools getStringUserPreferenceWithKey:KEY_SESSION_NAME];
+    self._sessid = [Tools getStringUserPreferenceWithKey:KEY_SESSID];
+    
     
     return YES;
 }

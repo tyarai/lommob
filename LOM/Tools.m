@@ -154,7 +154,7 @@ static float appScale = 1.0;
 +(NSString*) getStringUserPreferenceWithKey:(NSString*) key{
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
     if ([preferences objectForKey:key] == nil){
-        return nil;
+        return @"";
     }
     else{
         return [preferences objectForKey:key];
@@ -164,10 +164,10 @@ static float appScale = 1.0;
 
 +(void) showSimpleAlertWithTitle:(NSString*) title andMessage:(NSString*) message{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title
-                                                      message:message
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
     [alertView show];
 }
 

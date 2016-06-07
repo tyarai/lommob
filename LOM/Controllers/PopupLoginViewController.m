@@ -12,6 +12,7 @@
 @interface PopupLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *txtuserName;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
+@property (weak, nonatomic) IBOutlet UISwitch *switchRemeberMe;
 
 @end
 
@@ -44,9 +45,8 @@
 - (IBAction)btnOK_Touch:(id)sender {
     
     if (![Tools isNullOrEmptyString:self.txtuserName.text] && ![Tools isNullOrEmptyString:self.txtPassword.text]) {
-        
-        [self.delegate validWithUserName:self.txtuserName.text andPassword:self.txtPassword.text];
-        
+    
+        [self.delegate validWithUserName:self.txtuserName.text password:self.txtPassword.text andRememberMe:[self.switchRemeberMe isOn]];
     }
     
 }

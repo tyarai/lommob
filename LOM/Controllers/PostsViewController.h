@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostsViewController : UIViewController
+#import "PopupLoginViewController.h"
+#import "WYPopoverController.h"
+#import "BaseViewController.h"
+
+
+@interface PostsViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
+    
+    NSArray* _lemurLifeList;
+    
+    WYPopoverController* popoverController;
+}
 
 @end
