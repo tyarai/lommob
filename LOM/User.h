@@ -24,7 +24,7 @@
 @property (nonatomic, strong) NSString<Optional>* timezone;
 @property (nonatomic, strong) NSString<Optional>* language;
 @property (nonatomic, strong) NSString<Optional>* picture;
-@property (nonatomic, strong) NSString<Optional>* data;
+//@property (nonatomic, strong) NSString<Optional>* data;
 @property (nonatomic, strong) NSString<Optional>* uuid;
 
 @end

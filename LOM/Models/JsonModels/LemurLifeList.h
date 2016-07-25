@@ -1,26 +1,23 @@
 //
-//  Publication.h
+//  LemurLifeList.h
 //  LOM
 //
-//  Created by Andrianavonison Ranto Tiaray on 02/01/2016.
+//  Created by Ranto Andrianavonison on 7/25/16.
 //  Copyright © 2016 Kerty KAMARY. All rights reserved.
 //
 
 #import <JSONModel/JSONModel.h>
 #import "Photo.h"
 
-@interface Publication : JSONModel
+@interface LemurLifeList : JSONModel
 
 @property (nonatomic, strong) NSString<Optional>* title;
-//@property (nonatomic, strong) NSString<Optional>* field_associated_species;
 @property (nonatomic, strong) NSString<Optional>* species;
 @property (nonatomic, strong) NSString<Optional>* body;
 @property (nonatomic, strong) NSString<Optional>* where_see;
+@property (nonatomic, strong) NSString<Optional>* see_first_time;
 @property (nonatomic, strong) Photo<Optional>* lemur_photo;
 @property (nonatomic, strong) NSString<Optional>* created;
 @property (nonatomic, strong) NSString<Optional>* name;
 
-@end
-
-@protocol Publication
 @end

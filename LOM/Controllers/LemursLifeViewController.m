@@ -11,9 +11,12 @@
 #import "Tools.h"
 #import "AppData.h"
 #import "PublicationResult.h"
+#import "LemurLifeListResult.h"
 #import "PopupLoginViewController.h"
 #import "LoginResult.h"
 #import "Constants.h"
+#import "LemurLifeListNode.h"
+#import "Reachability.h"
 
 @interface LemursLifeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
@@ -50,13 +53,15 @@
     
     [super viewWillAppear:animated];
     
-    if ([Tools isNullOrEmptyString:appDelegate._currentToken]) {
-        
-        [self showLoginPopup ];
-        
-    }else{
-        [self getMyLemursLifeList];
-    }
+        if ([Tools isNullOrEmptyString:appDelegate._currentToken]) {
+            
+            [self showLoginPopup ];
+            
+            [self.tableViewLifeList setHidden:YES];
+            
+        }else{
+            [self getMyLemursLifeList];
+        }
     
 }
 
@@ -79,7 +84,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 150.0f;
+    return 115.0f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -89,9 +94,9 @@
     
     //    Publication* publication = (Publication*) [_lemurLifeList objectAtIndex:indexPath.row];
     
-    Node* node = (Node*) [_lemurLifeList objectAtIndex:indexPath.row];
+    LemurLifeListNode* lifeList = (LemurLifeListNode*) [_lemurLifeList objectAtIndex:indexPath.row];
     
-    [cell displayLemurLife:node.node];
+    [cell displayLemurLife:lifeList.node];
     
     return cell;
     
@@ -191,12 +196,15 @@
     [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
         
         if (err) {
-            [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            [Tools showError:err onViewController:self];
         }else{
             
             NSDictionary* tmpDict = (NSDictionary*) json;
             NSError* error;
-            PublicationResult* result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
+            //---- ny Class propertries 
+            LemurLifeListResult* result = [[LemurLifeListResult alloc] initWithDictionary:tmpDict error:&error];
             
             if (error)
             {
@@ -213,6 +221,13 @@
                 [self.tableViewLifeList reloadData];
                 
                 [self.tableViewLifeList setHidden:NO];
+                
+                NSInteger count = [_lemurLifeList count];
+                
+                NSString * _count = [NSString stringWithFormat:@"(%ld species)",count];
+                NSString * _title = [NSLocalizedString(@"lemur_life_list",@"") stringByAppendingString:_count];
+                self.navigationItem.title =_title;
+                self.title =_title;
                 
             }
             

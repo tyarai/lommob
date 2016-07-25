@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  LOM
+
+  Created by Ranto Andrianavonison on 7/25/16.
+  Copyright © 2016 Kerty KAMARY. All rights reserved.
+*/
+"please_wait" = "Loading your lemur-life list ...";
+"lemur_life_list" = "Lemur life-list";
+"not_connected_to_the_internet" = "You are offline. Please check your internet connection";
+"network_issue" = "Network problem";

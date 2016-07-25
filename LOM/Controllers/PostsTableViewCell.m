@@ -29,8 +29,8 @@
     }
     
     
-    if (![Tools isNullOrEmptyString:publication.field_associated_species]) {
-        self.lblSpecies.text = publication.field_associated_species;
+    if (![Tools isNullOrEmptyString:publication.species]) {
+        self.lblSpecies.text = publication.species;
     }
     
     
@@ -47,9 +47,9 @@
     }
     
     
-    if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
+    if (publication.lemur_photo != nil && ![Tools isNullOrEmptyString:publication.lemur_photo.src]) {
         
-        [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.lemur_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
             if (error) {
                 [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];

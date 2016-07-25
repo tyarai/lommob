@@ -10,9 +10,11 @@
 #import "JSONHTTPClient.h"
 
 #define SERVER @"https://www.lemursofmadagascar.com/html"
+//#define SERVER @"http://192.168.2.242"
 #define LOGIN_ENDPOINT @"/lom_endpoint/user/login.json"
 #define ALL_PUBLICATION_ENDPOINT @"/all-publication-json"
 #define LIFELIST_ENDPOINT @"/list/my-lemur-life-list-json"
+
 
 
 @interface AppData : NSObject

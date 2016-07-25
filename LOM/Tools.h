@@ -41,4 +41,7 @@
 +(BOOL)isNullOrEmptyString:(NSString*)input;
 +(CGRect) generateFrame:(CGRect) frame;
 
+// By Ranto 2016
++(UIAlertController*) createAlertViewWithTitle:(NSString*) title messsage:(NSString*)message;
++(void) showError:(JSONModelError*) err onViewController:(UIViewController*) view;
 @end

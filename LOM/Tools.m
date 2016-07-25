@@ -293,5 +293,44 @@ static float appScale = 1.0;
     return CGRectMake(x, y, width, height);
 }
 
+//********************************************************************
+// Update Ranto July 26 2016
+//********************************************************************
++(UIAlertController*) createAlertViewWithTitle:(NSString*) title messsage:(NSString*)message{
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:title
+                                 message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:@"OK"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    //Handle your yes please button action here
+                                }];
+    
+    
+    
+    [alert addAction:yesButton];
+    
+    return alert;
+    
+}
+
++(void) showError:(JSONModelError*) err onViewController:(UIViewController*) view{
+    
+    switch (err.code){
+        case -1009:{
+            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"not_connected_to_the_internet",@"")];
+            [view presentViewController:alert animated:YES completion:nil];
+            break;
+        }
+        default:{
+            UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:err.debugDescription];
+            [view presentViewController:alert animated:YES completion:nil];
+            break;
+        }
+    }
+}
 
 @end

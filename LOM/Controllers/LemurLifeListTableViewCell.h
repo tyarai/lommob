@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Publication.h"
+#import "LemurLifeList.h"
 
 @interface LemurLifeListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UILabel *lblSpecies;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblBody;
+@property (weak, nonatomic) IBOutlet UILabel *lblWhereSee;
 
-- (void) displayLemurLife:(Publication*) publication;
+- (void) displayLemurLife:(LemurLifeList*) lemurLifeList;
 
 @end
