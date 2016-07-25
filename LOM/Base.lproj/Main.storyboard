@@ -2206,7 +2206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ciP-Gv-qw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4062" y="-266"/>
+            <point key="canvasLocation" x="3976" y="-4"/>
         </scene>
         <!--Posts View Controller-->
         <scene sceneID="HMK-Uy-ODh">
