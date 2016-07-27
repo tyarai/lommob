@@ -8,4 +8,5 @@
 "please_wait" = "Loading your lemur-life list ...";
 "lemur_life_list" = "Lemur life-list";
 "not_connected_to_the_internet" = "You are offline. Please check your internet connection";
+"timed_out" = "Timed out! Unable to get data from the internet. Please try later";
 "network_issue" = "Network problem";

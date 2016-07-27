@@ -325,6 +325,11 @@ static float appScale = 1.0;
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
+        case -1001:{
+            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"timed_out",@"")];
+            [view presentViewController:alert animated:YES completion:nil];
+            break;
+        }
         default:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:err.debugDescription];
             [view presentViewController:alert animated:YES completion:nil];
