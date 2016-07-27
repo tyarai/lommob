@@ -13,3 +13,5 @@
 "empty_lemur_life_list" = "Your lemur life list is empty !";
 "updating_list" = "Updating the list";
 "title_lemur_life_list" = "Lemur life list";
+"wrong_password_username" = "Wrong username or password! Please check and try again";
+"authentication_issue" = "Authentication error";

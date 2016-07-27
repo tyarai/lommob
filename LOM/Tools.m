@@ -330,6 +330,13 @@ static float appScale = 1.0;
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
+        case -1012:{
+            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"authentication_issue",@"") messsage:NSLocalizedString(@"wrong_password_username",@"")];
+            [view presentViewController:alert animated:YES completion:nil];
+            break;
+        }
+    
+            
         default:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:err.debugDescription];
             [view presentViewController:alert animated:YES completion:nil];

@@ -180,7 +180,8 @@
         
         if (err)
         {
-            [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            [Tools showError:err onViewController:self];
         }
         else
         {
