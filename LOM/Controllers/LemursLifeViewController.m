@@ -21,14 +21,30 @@
 @interface LemursLifeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
 @property (weak, nonatomic) IBOutlet UIButton *buttonConnect;
+@property  UIRefreshControl *refreshControl;
+@property bool intialLoad;
 
 @end
 
 @implementation LemursLifeViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.intialLoad = YES;
+    
+    self.refreshControl = [[UIRefreshControl alloc]init];
+    self.refreshControl.backgroundColor = ORANGE_COLOR;
+    self.refreshControl.tintColor = [UIColor blackColor];
+    
+    [self.refreshControl addTarget:self
+                            action:@selector(getMyLemursLifeList)
+                  forControlEvents:UIControlEventValueChanged];
+    //--Rehefa tsy subclass n'ny UITableViewController ilay ViewController dia mila apina
+    //--- ao @ subView n'ilay TableView ny refreshController --
+    [self.tableViewLifeList addSubview:self.refreshControl];
     
 }
 
@@ -78,6 +94,26 @@
 
 
 #pragma mark UITableviewDataSource Implements
+
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+    if([_lemurLifeList count] != 0){
+        return 1;
+    }else{
+        //---Mbola vide ny _lemurlifelist ---
+        CGRect rect = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+        UILabel * message = [[UILabel alloc] initWithFrame:rect];
+        message.text = NSLocalizedString(@"empty_lemur_life_list",@"");
+        message.textColor = [UIColor blackColor];
+        message.numberOfLines = 0;
+        message.textAlignment = NSTextAlignmentCenter;
+        message.font = [UIFont fontWithName:@"Arial" size:23];
+        [message sizeToFit];
+        self.tableViewLifeList.backgroundView = message;
+        self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return 0;
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _lemurLifeList.count;
@@ -191,12 +227,19 @@
 
 - (void) getMyLemursLifeList{
     
-    [self showActivityScreen];
+    
+    
+    
+    if(self.intialLoad) [self showActivityScreen];
     
     [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
         
         if (err) {
+            if(self.refreshControl){
+                [self.refreshControl endRefreshing];
+            }
             [Tools showError:err onViewController:self];
+            
         }else{
             
             NSDictionary* tmpDict = (NSDictionary*) json;
@@ -218,7 +261,7 @@
                 self.tableViewLifeList.delegate = self;
                 self.tableViewLifeList.dataSource = self;
                 
-                [self.tableViewLifeList reloadData];
+                //[self.tableViewLifeList reloadData];
                 
                 [self.tableViewLifeList setHidden:NO];
                 
@@ -229,14 +272,31 @@
                 self.navigationItem.title =_title;
                 self.title =_title;
                 
+                [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+
+                
             }
             
         }
-        
         [self removeActivityScreen];
         
     }];
     
+    self.intialLoad = NO;
+    
+}
+
+-(void) reloadData
+{
+    [self.tableViewLifeList reloadData];
+    if(self.refreshControl){
+        NSString *updateText = NSLocalizedString(@"updating_list",@"");
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor blackColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:updateText attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+        [self.refreshControl endRefreshing];
+    }
 }
 
 
