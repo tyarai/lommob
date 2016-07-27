@@ -1016,22 +1016,22 @@
                     <navigationItem key="navigationItem" id="7lo-La-3d8">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="usR-N0-rqc">
-                            <rect key="frame" x="47" y="6" width="226" height="33"/>
+                            <rect key="frame" x="45" y="6" width="231" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lemur life list" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETj-ea-tfp">
-                                    <rect key="frame" x="36" y="6" width="156" height="21"/>
-                                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="20"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lemur life list" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETj-ea-tfp">
+                                    <rect key="frame" x="13" y="-9" width="224" height="34"/>
+                                    <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                                     <color key="textColor" red="1" green="0.68235294120000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="ETj-ea-tfp" firstAttribute="top" secondItem="usR-N0-rqc" secondAttribute="top" constant="6" id="YcN-C2-ZZS"/>
-                                <constraint firstItem="ETj-ea-tfp" firstAttribute="centerY" secondItem="usR-N0-rqc" secondAttribute="centerY" id="cpo-Jf-905"/>
-                                <constraint firstAttribute="trailing" secondItem="ETj-ea-tfp" secondAttribute="trailing" constant="34" id="g7C-PH-U1P"/>
-                                <constraint firstItem="ETj-ea-tfp" firstAttribute="leading" secondItem="usR-N0-rqc" secondAttribute="leading" constant="36" id="hfp-ug-xrN"/>
+                                <constraint firstAttribute="trailing" secondItem="ETj-ea-tfp" secondAttribute="trailing" constant="-6" id="A7J-M5-UUB"/>
+                                <constraint firstItem="ETj-ea-tfp" firstAttribute="bottom" secondItem="usR-N0-rqc" secondAttribute="bottomMargin" id="HWj-l1-HYS"/>
+                                <constraint firstItem="ETj-ea-tfp" firstAttribute="leading" secondItem="usR-N0-rqc" secondAttribute="leading" constant="13" id="Lmj-Sh-HHt"/>
+                                <constraint firstItem="ETj-ea-tfp" firstAttribute="top" secondItem="usR-N0-rqc" secondAttribute="top" constant="-9" id="UOR-LQ-Q1h"/>
                             </constraints>
                         </view>
                     </navigationItem>
@@ -1041,6 +1041,7 @@
                     <connections>
                         <outlet property="buttonConnect" destination="R3I-XA-w2t" id="nl9-0v-J30"/>
                         <outlet property="tableViewLifeList" destination="bEm-lf-tpH" id="TbY-Sz-T9N"/>
+                        <outlet property="viewTitle" destination="ETj-ea-tfp" id="eq6-Tg-Odq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88s-6F-WDM" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -1,3 +1,4 @@
+
 //
 //  LemursLifeViewController.h
 //  LOM
@@ -16,6 +17,12 @@
     NSArray* _lemurLifeList;
     
     WYPopoverController* popoverController;
+    
+    
+    
 }
+
+
+@property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 
 @end

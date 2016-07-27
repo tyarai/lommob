@@ -24,6 +24,8 @@
 @property  UIRefreshControl *refreshControl;
 @property bool intialLoad;
 
+
+
 @end
 
 @implementation LemursLifeViewController
@@ -33,10 +35,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    self.viewTitle.text = NSLocalizedString(@"title_lemur_life_list",@"");
+    
     self.intialLoad = YES;
     
     self.refreshControl = [[UIRefreshControl alloc]init];
-    self.refreshControl.backgroundColor = ORANGE_COLOR;
+    self.refreshControl.backgroundColor = [UIColor whiteColor];//ORANGE_COLOR;
     self.refreshControl.tintColor = [UIColor blackColor];
     
     [self.refreshControl addTarget:self
@@ -265,15 +270,14 @@
                 
                 [self.tableViewLifeList setHidden:NO];
                 
-                NSInteger count = [_lemurLifeList count];
-                
-                NSString * _count = [NSString stringWithFormat:@"(%ld species)",count];
-                NSString * _title = [NSLocalizedString(@"lemur_life_list",@"") stringByAppendingString:_count];
-                self.navigationItem.title =_title;
-                self.title =_title;
+                                //---Satria mandeha au background ireto functions ireto dia mila
+                // any @ mainThread no manao appel
                 
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-
+                
+                [self performSelectorOnMainThread:@selector(updateViewTitle) withObject:nil waitUntilDone:NO];
+                
+                
                 
             }
             
@@ -284,6 +288,14 @@
     
     self.intialLoad = NO;
     
+}
+
+- (void) updateViewTitle{
+    NSInteger count = [_lemurLifeList count];
+    NSString * _count = [NSString stringWithFormat:@" (%ld species)",count];
+    NSString * _title = [NSLocalizedString(@"title_lemur_life_list",@"") stringByAppendingString:_count];
+    self.viewTitle.text  = _title;
+
 }
 
 -(void) reloadData
