@@ -58,7 +58,7 @@
                   moduleName = "LOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andrianavonisonrantotiaray/Documents/MobileDev/LOM/LOM/Controllers/PostsViewController.m"
-                  timestampString = "491311780.40778"
+                  timestampString = "494607977.608096"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "129"
@@ -73,7 +73,7 @@
                   moduleName = "LOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andrianavonisonrantotiaray/Documents/MobileDev/LOM/LOM/Controllers/PostsViewController.m"
-                  timestampString = "491311780.40801"
+                  timestampString = "494607977.608261"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "129"
@@ -154,7 +154,7 @@
                   moduleName = "LOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andrianavonisonrantotiaray/Documents/MobileDev/LOM/LOM/Controllers/PostsViewController.m"
-                  timestampString = "491311780.410517"
+                  timestampString = "494607977.610036"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "187"
@@ -169,7 +169,7 @@
                   moduleName = "LOM"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/andrianavonisonrantotiaray/Documents/MobileDev/LOM/LOM/Controllers/PostsViewController.m"
-                  timestampString = "491311780.410705"
+                  timestampString = "494607977.61015"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "189"
@@ -262,7 +262,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOM/Controllers/LemursLifeViewController.m"
@@ -310,7 +310,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOM/Controllers/LemursLifeViewController.m"
@@ -326,7 +326,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOM/Controllers/LemursLifeViewController.m"
@@ -337,38 +337,6 @@
             endingLineNumber = "239"
             landmarkName = "-getMyLemursLifeList"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[LemursLifeViewController getMyLemursLifeList]"
-                  moduleName = "LOM"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrianavonisonrantotiaray/Documents/MobileDev/LOM/LOM/Controllers/LemursLifeViewController.m"
-                  timestampString = "491301633.223683"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "225"
-                  endingLineNumber = "225"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__47-[LemursLifeViewController getMyLemursLifeList]_block_invoke"
-                  moduleName = "LOM"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrianavonisonrantotiaray/Documents/MobileDev/LOM/LOM/Controllers/LemursLifeViewController.m"
-                  timestampString = "491301633.223815"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "227"
-                  endingLineNumber = "227"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -486,7 +454,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOM/AppData.m"
@@ -502,7 +470,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOM/Controllers/LemursLifeViewController.m"
@@ -629,7 +597,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LOM/Controllers/LemursLifeViewController.m"
@@ -703,6 +671,86 @@
             startingLineNumber = "296"
             endingLineNumber = "296"
             landmarkName = "-updateViewTitle"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOM/Controllers/AboutViewController.m"
+            timestampString = "494603302.063347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-logoutTapped:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOM/Tools.m"
+            timestampString = "494601756.054191"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
+            landmarkName = "+showError:onViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOM/Tools.m"
+            timestampString = "494601757.464125"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
+            landmarkName = "+showError:onViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOM/Controllers/AboutViewController.m"
+            timestampString = "494603125.336203"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-logoutTapped:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LOM/Controllers/LemursLifeViewController.m"
+            timestampString = "494607448.588198"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "-validWithUserName:password:andRememberMe:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

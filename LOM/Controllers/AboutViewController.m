@@ -8,6 +8,9 @@
 
 #import "AboutViewController.h"
 #import "Constants.h"
+#import "Tools.h"
+#import "AppData.h"
+#import "AppDelegate.h"
 
 @interface AboutViewController ()
 
@@ -37,4 +40,17 @@
 }
 */
 
+
+- (IBAction)logoutTapped:(id)sender {
+    
+        AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        appDelegate._currentToken = nil;
+        appDelegate._sessid = nil;
+        appDelegate._sessionName = nil;
+        [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:nil];
+        [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:nil];
+        [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:nil];
+    
+   
+}
 @end

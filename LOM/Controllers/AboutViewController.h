@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface AboutViewController : UIViewController
+- (IBAction)logoutTapped:(id)sender;
 
 @end

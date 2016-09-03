@@ -1115,6 +1115,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0o-wp-9jm">
+                                <rect key="frame" x="122" y="405" width="74" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="74" id="8bP-SG-fdG"/>
+                                </constraints>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutTapped:" destination="w1P-yW-I87" eventType="touchUpInside" id="d87-pV-UaT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1125,10 +1135,12 @@
                             <constraint firstAttribute="bottom" secondItem="nJZ-NP-Gwg" secondAttribute="bottom" constant="20" symbolic="YES" id="ghu-2e-ymb"/>
                             <constraint firstItem="Erz-I4-6RO" firstAttribute="top" secondItem="Cx3-v1-9GN" secondAttribute="bottom" constant="148" id="lBb-Cf-rr9"/>
                             <constraint firstItem="Dqs-Rw-AeB" firstAttribute="top" secondItem="s1m-c0-D98" secondAttribute="top" constant="20" symbolic="YES" id="lU2-UQ-Xm9"/>
+                            <constraint firstItem="h0o-wp-9jm" firstAttribute="centerX" secondItem="nJZ-NP-Gwg" secondAttribute="centerX" id="ntY-My-Fx3"/>
                             <constraint firstItem="Dqs-Rw-AeB" firstAttribute="leading" secondItem="s1m-c0-D98" secondAttribute="leadingMargin" constant="33" id="rhf-Hf-QlR"/>
                             <constraint firstItem="Cx3-v1-9GN" firstAttribute="centerX" secondItem="Dqs-Rw-AeB" secondAttribute="centerX" id="v3Q-Wh-dt0"/>
                             <constraint firstItem="Dqs-Rw-AeB" firstAttribute="centerX" secondItem="s1m-c0-D98" secondAttribute="centerX" id="vQy-js-ZAi"/>
                             <constraint firstItem="Cx3-v1-9GN" firstAttribute="centerX" secondItem="s1m-c0-D98" secondAttribute="centerX" id="vuM-ST-Z6C"/>
+                            <constraint firstItem="nJZ-NP-Gwg" firstAttribute="top" secondItem="h0o-wp-9jm" secondAttribute="bottom" constant="29" id="wYN-gU-hVk"/>
                             <constraint firstItem="nJZ-NP-Gwg" firstAttribute="centerX" secondItem="Cx3-v1-9GN" secondAttribute="centerX" id="xjC-tN-stJ"/>
                         </constraints>
                     </view>
