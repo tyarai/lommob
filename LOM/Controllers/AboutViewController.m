@@ -11,6 +11,7 @@
 #import "Tools.h"
 #import "AppData.h"
 #import "AppDelegate.h"
+#import "UserConnectedResult.h"
 
 @interface AboutViewController ()
 
@@ -42,15 +43,49 @@
 
 
 - (IBAction)logoutTapped:(id)sender {
+    [appData CheckSession:^(id json, JSONModelError *err){
+        BOOL stillConnected = YES;
+       
+        
+        UserConnectedResult* sessionCheckResult = nil;
+        if (err)
+        {
+            //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            [Tools showError:err onViewController:self];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error){
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }else{
+                if(sessionCheckResult.user != nil){
+                    if (sessionCheckResult.user.uid == 0){
+                        stillConnected = NO;
+                    }
+                    
+                }
+            }
+
+        }
+        //--- Only logout when stillConnected = YES ---//
+        if(stillConnected){
+            //AppData * _appData = [AppData getInstance];
+            [appData logoutUserName:sessionCheckResult.user.name ];
+            //AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            appDelegate._currentToken = nil;
+            appDelegate._sessid = nil;
+            appDelegate._sessionName = nil;
+            [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:nil];
+            [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:nil];
+            [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:nil];
+            
+        }
     
-        AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        appDelegate._currentToken = nil;
-        appDelegate._sessid = nil;
-        appDelegate._sessionName = nil;
-        [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:nil];
-        [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:nil];
-        [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:nil];
+    }];
     
-   
 }
 @end

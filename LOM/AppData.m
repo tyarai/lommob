@@ -39,7 +39,7 @@ static AppData* _instance;
     NSString* token = [Tools getAppDelegate]._currentToken;
     
     if (![Tools isNullOrEmptyString:token]) {
-        [[JSONHTTPClient requestHeaders] setValue:token forKey:@"CX-CSRF-Token"];
+        [[JSONHTTPClient requestHeaders] setValue:token forKey:@"X-CSRF-Token"];
     }
 }
 
@@ -52,7 +52,7 @@ static AppData* _instance;
     NSString* token = [Tools getAppDelegate]._currentToken;
     
     if (![Tools isNullOrEmptyString:token]) {
-        [[JSONHTTPClient requestHeaders] setValue:token forKey:@"CX-CSRF-Token"];
+        [[JSONHTTPClient requestHeaders] setValue:token forKey:@"X-CSRF-Token"];
     }
 }
 
@@ -61,6 +61,9 @@ static AppData* _instance;
     return [NSString stringWithFormat:@"username=%@&password=%@",
             userName,
             password];
+}
+- (NSString*) buildBodyWithUserName:(NSString*) userName {
+    return [NSString stringWithFormat:@"username=%@",userName];
 }
 
 
@@ -72,11 +75,47 @@ static AppData* _instance;
     
     NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, LOGIN_ENDPOINT];
     
-//    NSString* url = [NSString stringWithFormat:@"https://www.lemursofmadagascar.com%@", LOGIN_ENDPOINT];
-    
     [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
 }
 
+
+-(void) logoutUserName:(NSString*)userName {
+    
+    if(![Tools isNullOrEmptyString:userName]){
+        
+        [self buildPOSTHeader];
+        NSString * sessionName = [[Tools getAppDelegate] _sessionName];
+        NSString * sessionID = [[Tools getAppDelegate] _sessid];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
+        
+        if( ! [Tools isNullOrEmptyString:sessionName] && ! [Tools isNullOrEmptyString:sessionID] && ! [Tools isNullOrEmptyString:cookie]){
+            
+            NSString* body = [self buildBodyWithUserName:userName] ;
+            [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+            NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, LOGOUT_ENDPOINT];
+            [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:nil];
+        }
+
+        
+    }
+}
+
+
+-(void) CheckSession:(JSONObjectBlock)completeBlock{
+
+    
+    [self buildPOSTHeader];
+    NSString * sessionName = [[Tools getAppDelegate] _sessionName];
+    NSString * sessionID = [[Tools getAppDelegate] _sessid];
+    NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
+    
+    if( ! [Tools isNullOrEmptyString:sessionName] && ! [Tools isNullOrEmptyString:sessionID] && ! [Tools isNullOrEmptyString:cookie]){
+        
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, ISCONNECTED_ENDPOINT];
+        [JSONHTTPClient postJSONFromURLWithString:url bodyString:nil completion:completeBlock];
+    }
+}
 
 -(void) getPublicationForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
 {
@@ -100,9 +139,16 @@ static AppData* _instance;
 {
     [self buildGETHeader];
     
-    if (![Tools isNullOrEmptyString:session_id]) {
     
-        NSString* url = [NSString stringWithFormat:@"%@%@?session_name=%@", SERVER, LIFELIST_ENDPOINT, session_id];
+    if (![Tools isNullOrEmptyString:session_id]) {
+        
+        NSString * sessionName = [[Tools getAppDelegate] _sessionName];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+    
+        //NSString* url = [NSString stringWithFormat:@"%@%@?session_name=%@", SERVER, LIFELIST_ENDPOINT, session_id];
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, LIFELIST_ENDPOINT];
+        
         
         [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
         

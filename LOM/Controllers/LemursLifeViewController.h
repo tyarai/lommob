@@ -15,6 +15,7 @@
 @interface LemursLifeViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
     
     NSArray* _lemurLifeList;
+    //NSDictionary* _lemurLifeList;
     
     WYPopoverController* popoverController;
     

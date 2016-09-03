@@ -135,7 +135,11 @@
     
     //    Publication* publication = (Publication*) [_lemurLifeList objectAtIndex:indexPath.row];
     
+    //LemurLifeListNode* lifeList = (LemurLifeListNode*) [_lemurLifeList objectAtIndex:indexPath.row];
+    
+   
     LemurLifeListNode* lifeList = (LemurLifeListNode*) [_lemurLifeList objectAtIndex:indexPath.row];
+    
     
     [cell displayLemurLife:lifeList.node];
     

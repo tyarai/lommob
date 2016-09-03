@@ -17,6 +17,8 @@
 
 
 #define LOGIN_ENDPOINT @"/lom_endpoint/user/login.json"
+#define LOGOUT_ENDPOINT @"/lom_endpoint/user/logout.json"
+#define ISCONNECTED_ENDPOINT @"/lom_endpoint/system/connect.json"
 #define ALL_PUBLICATION_ENDPOINT @"/all-publication-json"
 #define LIFELIST_ENDPOINT @"/list/my-lemur-life-list-json"
 
@@ -27,6 +29,10 @@
 +(AppData*)getInstance;
 
 -(void) loginWithUserName:(NSString*)userName andPassword:(NSString*) password forCompletion:(JSONObjectBlock)completeBlock;
+
+-(void) logoutUserName:(NSString*)userName;
+
+-(void) CheckSession:(JSONObjectBlock)completeBlock;
 
 
 -(void) getPublicationForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;

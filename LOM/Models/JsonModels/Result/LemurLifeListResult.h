@@ -10,5 +10,11 @@
 #import "LemurLifeListNode.h"
 
 @interface LemurLifeListResult : JSONModel
+@property  NSString<Optional>* current_page;
+@property  NSString<Optional>* item_per_page;
+@property  NSString<Optional>* total_records;
+@property  NSString<Optional>* total_page;
+
 @property (nonatomic, strong) NSArray<LemurLifeListNode> * nodes;
+//@property (nonatomic, strong) NSDictionary<id,NSArray<LemurLifeListNode>*> * rows;
 @end
