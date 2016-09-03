@@ -123,7 +123,12 @@ static AppData* _instance;
     
     if (![Tools isNullOrEmptyString:session_id]) {
         
-        NSString* url = [NSString stringWithFormat:@"%@%@?session_name=%@", SERVER, ALL_PUBLICATION_ENDPOINT, session_id];
+        NSString * sessionName = [[Tools getAppDelegate] _sessionName];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        //NSString* url = [NSString stringWithFormat:@"%@%@?session_name=%@", SERVER, ALL_PUBLICATION_ENDPOINT, session_id];
+
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, ALL_PUBLICATION_ENDPOINT];
         
         [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
         
