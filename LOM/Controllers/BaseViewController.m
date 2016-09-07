@@ -73,5 +73,8 @@
     [self initActivityScreen:NSLocalizedString(@"please_wait", @"")];
 }
 
+-(AppDelegate*) getAppDelegate{
+    return appDelegate;
+}
 
 @end

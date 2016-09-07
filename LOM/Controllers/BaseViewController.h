@@ -20,6 +20,8 @@
 }
 
 
+-(AppDelegate*) getAppDelegate;
+
 -(void) showActivityScreen;
 -(void)removeActivityScreen;
 

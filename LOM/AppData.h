@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JSONHTTPClient.h"
 
+
 #ifdef DEBUG
     #define SERVER @"http://192.168.2.242"
 #else
@@ -30,9 +31,12 @@
 
 -(void) loginWithUserName:(NSString*)userName andPassword:(NSString*) password forCompletion:(JSONObjectBlock)completeBlock;
 
--(void) logoutUserName:(NSString*)userName;
+-(void) logoutUserName:(NSString*)userName forCompletion:(JSONObjectBlock)completeBlock;
 
--(void) CheckSession:(JSONObjectBlock)completeBlock;
+-(void) CheckSession:(NSString*)sessionName
+           sessionID:(NSString*)sessionID
+      viewController:(id) viewController
+       completeBlock:(JSONObjectBlock)completeBlock;
 
 
 -(void) getPublicationForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;

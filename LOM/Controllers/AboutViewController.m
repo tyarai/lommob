@@ -43,14 +43,17 @@
 
 
 - (IBAction)logoutTapped:(id)sender {
-    [appData CheckSession:^(id json, JSONModelError *err){
+    NSString * sessionName = [appDelegate _sessionName];
+    NSString * sessionID   = [appDelegate _sessid];
+    
+    
+    [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err){
         BOOL stillConnected = YES;
        
         
         UserConnectedResult* sessionCheckResult = nil;
         if (err)
         {
-            //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
             [Tools showError:err onViewController:self];
         }
         else
@@ -73,16 +76,19 @@
         }
         //--- Only logout when stillConnected = YES ---//
         if(stillConnected){
-            //AppData * _appData = [AppData getInstance];
-            [appData logoutUserName:sessionCheckResult.user.name ];
-            //AppDelegate * appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-            appDelegate._currentToken = nil;
-            appDelegate._sessid = nil;
-            appDelegate._sessionName = nil;
-            [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:nil];
-            [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:nil];
-            [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:nil];
+            [appData logoutUserName:sessionCheckResult.user.name  forCompletion:^(id json, JSONModelError *error){
             
+                if (error){
+                    NSLog(@"Error when log out : %@", error.debugDescription);
+                }else{
+                    appDelegate._currentToken = nil;
+                    appDelegate._sessid = nil;
+                    appDelegate._sessionName = nil;
+                    [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:nil];
+                    [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:nil];
+                    [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:nil];
+                }
+            }];
         }
     
     }];

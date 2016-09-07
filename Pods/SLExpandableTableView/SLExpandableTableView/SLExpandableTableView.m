@@ -331,6 +331,7 @@ static BOOL protocol_containsSelector(Protocol *protocol, SEL selector)
 
 - (void)reloadData {
     [self reloadDataAndResetExpansionStates:YES];
+    
 }
 
 - (void)deleteSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {

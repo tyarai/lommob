@@ -17,6 +17,7 @@
 #import "Constants.h"
 #import "LemurLifeListNode.h"
 #import "Reachability.h"
+#import "UserConnectedResult.h"
 
 @interface LemursLifeViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
@@ -73,14 +74,14 @@
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    appDelegate.showActivity = YES;
     
         if ([Tools isNullOrEmptyString:appDelegate._currentToken]) {
-            
             [self showLoginPopup ];
-            
             [self.tableViewLifeList setHidden:YES];
             
         }else{
+            
             [self getMyLemursLifeList];
         }
     
@@ -180,12 +181,11 @@
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        [self removeActivityScreen];
-        
         if (err)
         {
-            //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            
             [Tools showError:err onViewController:self];
+            [self removeActivityScreen];
         }
         else
         {
@@ -223,6 +223,8 @@
         
     }];
     
+    //
+    
 }
 
 
@@ -233,14 +235,7 @@
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
 }
 
-
-
-- (void) getMyLemursLifeList{
-    
-    
-    
-    
-    if(self.intialLoad) [self showActivityScreen];
+-(void) getLemursListJSONCall{
     
     [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
         
@@ -256,7 +251,7 @@
             NSError* error;
             
             //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
-            //---- ny Class propertries 
+            //---- ny Class propertries
             LemurLifeListResult* result = [[LemurLifeListResult alloc] initWithDictionary:tmpDict error:&error];
             
             if (error)
@@ -271,11 +266,9 @@
                 self.tableViewLifeList.delegate = self;
                 self.tableViewLifeList.dataSource = self;
                 
-                //[self.tableViewLifeList reloadData];
-                
                 [self.tableViewLifeList setHidden:NO];
                 
-                                //---Satria mandeha au background ireto functions ireto dia mila
+                //---Satria mandeha au background ireto functions ireto dia mila
                 // any @ mainThread no manao appel
                 
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
@@ -287,9 +280,58 @@
             }
             
         }
-        [self removeActivityScreen];
         
     }];
+}
+
+
+- (void) getMyLemursLifeList{
+    
+    
+    //if(self.intialLoad)[self showActivityScreen];
+  
+    NSString * sessionName = [appDelegate _sessionName];
+    NSString * sessionID   = [appDelegate _sessid];
+    
+    self.intialLoad = TRUE;
+    [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+        BOOL stillConnected = YES;
+        
+        
+        UserConnectedResult* sessionCheckResult = nil;
+        if (err)
+        {
+            [Tools showError:err onViewController:self];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error){
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }else{
+                if(sessionCheckResult.user != nil){
+                    if (sessionCheckResult.user.uid == 0){
+                        stillConnected = NO;
+                    }
+                    
+                }
+            }
+            
+        }
+        //--- Only do this when stillConnected = YES ---//
+        if(stillConnected){
+            if(appDelegate.showActivity) [self showActivityScreen];
+            [self getLemursListJSONCall];
+            
+        }else{
+            [self showLoginPopup ];
+            [self.tableViewLifeList setHidden:YES];
+        }
+    }];
+  
     
     self.intialLoad = NO;
     
@@ -297,7 +339,7 @@
 
 - (void) updateViewTitle{
     NSInteger count = [_lemurLifeList count];
-    NSString * _count = [NSString stringWithFormat:@" (%ld species)",count];
+    NSString * _count = [NSString stringWithFormat:@" (%ld species)",(long)count];
     NSString * _title = [NSLocalizedString(@"title_lemur_life_list",@"") stringByAppendingString:_count];
     self.viewTitle.text  = _title;
 
@@ -314,6 +356,8 @@
         self.refreshControl.attributedTitle = attributedTitle;
         [self.refreshControl endRefreshing];
     }
+    [self removeActivityScreen];
+    appDelegate.showActivity = NO;
 }
 
 

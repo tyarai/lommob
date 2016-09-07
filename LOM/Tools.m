@@ -325,8 +325,19 @@ static float appScale = 1.0;
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
+        case -1005:{
+            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"network_connection_was_lost",@"")];
+            [view presentViewController:alert animated:YES completion:nil];
+            break;
+        }
+    
         case -1001:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"timed_out",@"")];
+            [view presentViewController:alert animated:YES completion:nil];
+            break;
+        }
+        case -1003:{
+            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"server_not_found",@"") messsage:NSLocalizedString(@"timed_out",@"")];
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }

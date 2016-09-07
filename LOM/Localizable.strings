@@ -15,3 +15,5 @@
 "title_lemur_life_list" = "Lemur life list";
 "wrong_password_username" = "Wrong username or password! Please check and try again";
 "authentication_issue" = "Authentication error";
+"network_connection_was_lost" = "The network connection was lost! Please try again";
+"server_not_found" = "The lemurs of madagascar's server is not accessible! Please check your internet connection or your DNS service";

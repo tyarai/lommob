@@ -8,6 +8,8 @@
 
 #import "AppData.h"
 #import "Tools.h"
+#import "UserConnectedResult.h"
+#import "BaseViewController.h"
 
 @implementation AppData
 
@@ -79,7 +81,7 @@ static AppData* _instance;
 }
 
 
--(void) logoutUserName:(NSString*)userName {
+-(void) logoutUserName:(NSString*)userName forCompletion:(JSONObjectBlock)completeBlock {
     
     if(![Tools isNullOrEmptyString:userName]){
         
@@ -93,7 +95,7 @@ static AppData* _instance;
             NSString* body = [self buildBodyWithUserName:userName] ;
             [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
             NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, LOGOUT_ENDPOINT];
-            [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:nil];
+            [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
         }
 
         
@@ -101,13 +103,22 @@ static AppData* _instance;
 }
 
 
--(void) CheckSession:(JSONObjectBlock)completeBlock{
+-(void) CheckSession:(NSString*)sessionName
+           sessionID:(NSString*)sessionID
+      viewController:(id) viewController
+       completeBlock:(JSONObjectBlock)completeBlock{
 
+   if(viewController != nil){
+        BaseViewController* viewC =(BaseViewController*)viewController;
+       AppDelegate * appDelegate = [viewC getAppDelegate];
+       
+       if(appDelegate.showActivity){
+            [viewC showActivityScreen];
+       }
+    }
     
     [self buildPOSTHeader];
-    NSString * sessionName = [[Tools getAppDelegate] _sessionName];
-    NSString * sessionID = [[Tools getAppDelegate] _sessid];
-    NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
+     NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
     
     if( ! [Tools isNullOrEmptyString:sessionName] && ! [Tools isNullOrEmptyString:sessionID] && ! [Tools isNullOrEmptyString:cookie]){
         
@@ -116,6 +127,9 @@ static AppData* _instance;
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:nil completion:completeBlock];
     }
 }
+
+
+
 
 -(void) getPublicationForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
 {
