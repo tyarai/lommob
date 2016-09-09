@@ -23,7 +23,7 @@
     
 }
 
-
+@property BOOL pullToRefresh;
 @property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 
 @end

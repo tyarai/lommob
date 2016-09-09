@@ -17,3 +17,4 @@
 "authentication_issue" = "Authentication error";
 "network_connection_was_lost" = "The network connection was lost! Please try again";
 "server_not_found" = "The lemurs of madagascar's server is not accessible! Please check your internet connection or your DNS service";
+"could_not_connect_to_server"= "Could not connect to the server! Please check your WiFi or Cellular data connection";

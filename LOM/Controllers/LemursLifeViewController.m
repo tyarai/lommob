@@ -12,6 +12,9 @@
 #import "AppData.h"
 #import "PublicationResult.h"
 #import "LemurLifeListResult.h"
+#import "LemurLifeListTable.h"
+#import "LemurLifeList.h"
+#import "Photo.h"
 #import "PopupLoginViewController.h"
 #import "LoginResult.h"
 #import "Constants.h"
@@ -40,13 +43,14 @@
     self.viewTitle.text = NSLocalizedString(@"title_lemur_life_list",@"");
     
     self.intialLoad = YES;
+    self.pullToRefresh = NO;
     
     self.refreshControl = [[UIRefreshControl alloc]init];
     self.refreshControl.backgroundColor = [UIColor whiteColor];//ORANGE_COLOR;
     self.refreshControl.tintColor = [UIColor blackColor];
     
     [self.refreshControl addTarget:self
-                            action:@selector(getMyLemursLifeList)
+                            action:@selector(refreshListFromOnlineData)
                   forControlEvents:UIControlEventValueChanged];
     //--Rehefa tsy subclass n'ny UITableViewController ilay ViewController dia mila apina
     //--- ao @ subView n'ilay TableView ny refreshController --
@@ -74,7 +78,9 @@
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    appDelegate.showActivity = YES;
+    //if(!self.pullToRefresh){
+        appDelegate.showActivity = !self.pullToRefresh;
+    //}
     
         if ([Tools isNullOrEmptyString:appDelegate._currentToken]) {
             [self showLoginPopup ];
@@ -134,9 +140,6 @@
     
     LemurLifeListTableViewCell* cell = (LemurLifeListTableViewCell*) [Tools getCell:tableView identifier:@"lemurLifeListTableViewCell"];
     
-    //    Publication* publication = (Publication*) [_lemurLifeList objectAtIndex:indexPath.row];
-    
-    //LemurLifeListNode* lifeList = (LemurLifeListNode*) [_lemurLifeList objectAtIndex:indexPath.row];
     
    
     LemurLifeListNode* lifeList = (LemurLifeListNode*) [_lemurLifeList objectAtIndex:indexPath.row];
@@ -228,11 +231,98 @@
 }
 
 
+
 - (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token{
     
     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:session_name];
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
+}
+
+-(void) refreshListFromOnlineData{
+    self.pullToRefresh = YES;
+    appDelegate.showActivity = NO;
+    [self getMyLemursLifeList];
+    
+}
+
+-(void) loadLocalLemurLifeLists{
+    NSArray * allLemurLifeList = [LemurLifeListTable getAllLemurLifeLists];
+    NSMutableArray * nodeLists = nil;
+    if([allLemurLifeList count] > 0 && self.pullToRefresh == NO){
+        nodeLists = [NSMutableArray new];
+        
+        for (LemurLifeListTable *row in allLemurLifeList) {
+            LemurLifeListNode * listNode = [LemurLifeListNode new];
+            LemurLifeList * node = [LemurLifeList new];
+            node.title          = row._title;
+            node.species        = row._species;
+            node.where_see      = row._where_see_it;
+            node.see_first_time = row._when_see_it;
+            Photo * photo       = [Photo new];
+            photo.src           = row._photo_name;
+            node.lemur_photo    = photo;
+            node.nid            = row._nid;
+            node.species_nid    = row._species_id;
+            node.uuid           = row._uuid;
+            listNode.node       = node;
+            [nodeLists addObject:listNode];
+        }
+        
+        _lemurLifeList = nodeLists;
+        
+        
+    }else{
+        //---- Vide ny LemurLifeList local dia mi-load ny online dia atao update ny DB local
+        // na koa manaeo pull-to-refresh @ TableView
+        
+        
+        [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
+            
+            if (err) {
+                if(self.refreshControl){
+                    [self.refreshControl endRefreshing];
+                }
+                [Tools showError:err onViewController:self];
+                
+            }else{
+                
+                NSDictionary* tmpDict = (NSDictionary*) json;
+                NSError* error;
+                //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
+                //---- ny Class propertries
+                LemurLifeListResult* result = [[LemurLifeListResult alloc] initWithDictionary:tmpDict error:&error];
+                
+                if (error){
+                    NSLog(@"Error parse : %@", error.debugDescription);
+                }
+                else{
+                    [Tools updateLemurLifeListWithNodes:result.nodes];
+                    if ([result.nodes count] >0){
+                        //-- Efa misy lemurlife list any @ server fa mety ni-reinstall ilay user dia lasa vide
+                        // ny base local. Dia miverina mi-reload ilay view
+                        [self viewWillAppear:YES];
+                    }
+                }
+
+            }
+            
+        }];
+        
+    }
+    
+    self.tableViewLifeList.delegate = self;
+    self.tableViewLifeList.dataSource = self;
+    
+    [self.tableViewLifeList setHidden:NO];
+    
+    //---Satria mandeha au background ireto functions ireto dia mila
+    // any @ mainThread no manao appel
+    
+    [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    
+    [self performSelectorOnMainThread:@selector(updateViewTitle) withObject:nil waitUntilDone:NO];
+
 }
 
 -(void) getLemursListJSONCall{
@@ -261,6 +351,8 @@
             else
             {
                 _lemurLifeList = result.nodes;
+                
+                [Tools updateLemurLifeListWithNodes:result.nodes];
                 
                 
                 self.tableViewLifeList.delegate = self;
@@ -324,7 +416,8 @@
         //--- Only do this when stillConnected = YES ---//
         if(stillConnected){
             if(appDelegate.showActivity) [self showActivityScreen];
-            [self getLemursListJSONCall];
+            //[self getLemursListJSONCall];
+            [self loadLocalLemurLifeLists];
             
         }else{
             [self showLoginPopup ];
@@ -356,10 +449,20 @@
         self.refreshControl.attributedTitle = attributedTitle;
         [self.refreshControl endRefreshing];
     }
-    [self removeActivityScreen];
-    appDelegate.showActivity = NO;
+    if(appDelegate.showActivity){
+        [self removeActivityScreen];
+        appDelegate.showActivity = NO;
+    }
+    
 }
 
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+        self.pullToRefresh = NO;
+        
+    }
+}
 
 #pragma IBAction
 

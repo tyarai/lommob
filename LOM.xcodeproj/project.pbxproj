@@ -881,11 +881,12 @@
 		B46779361D4665B000618410 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46779351D4665AF00618410 /* Localizable.strings */; };
 		B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */; };
 		B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */; };
+		B4905CCE1D817BFD0059FA94 /* LemurLifeListTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4905CCD1D817BFD0059FA94 /* LemurLifeListTable.m */; };
+		B4905CD01D81A7CA0059FA94 /* LOM.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B4905CCF1D81A7CA0059FA94 /* LOM.sqlite */; };
 		B49C5FF41C999D4400B4F08D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FEF1C999D4400B4F08D /* UIImage+Alpha.m */; };
 		B49C5FF51C999D4400B4F08D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FF11C999D4400B4F08D /* UIImage+Resize.m */; };
 		B49C5FF61C999D4400B4F08D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FF31C999D4400B4F08D /* UIImage+RoundedCorner.m */; };
 		B4A4E0961D7B6ADD00916D0C /* UserConnectedResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A4E0951D7B6ADD00916D0C /* UserConnectedResult.m */; };
-		B4ABBC331C97DE9C0003DA43 /* LOM.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B4ABBC321C97DE9C0003DA43 /* LOM.sqlite */; };
 		B4AF341E1C9A6C090039DEBB /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AF341D1C9A6C090039DEBB /* SafariServices.framework */; };
 		B4AF34211C9A71910039DEBB /* ExtinctLemurs.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AF34201C9A71910039DEBB /* ExtinctLemurs.m */; };
 		B4AF34241C9A801F0039DEBB /* ExtinctLemursMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AF34231C9A801F0039DEBB /* ExtinctLemursMenu.m */; };
@@ -1855,6 +1856,9 @@
 		B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtinctLemursViewController.m; path = Controllers/ExtinctLemursViewController.m; sourceTree = "<group>"; };
 		B48F146C1C995DB30067F19B /* AuthorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorDetailViewController.h; path = Controllers/AuthorDetailViewController.h; sourceTree = "<group>"; };
 		B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorDetailViewController.m; path = Controllers/AuthorDetailViewController.m; sourceTree = "<group>"; };
+		B4905CCC1D817BFD0059FA94 /* LemurLifeListTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LemurLifeListTable.h; path = Models/Database/LemurLifeListTable.h; sourceTree = "<group>"; };
+		B4905CCD1D817BFD0059FA94 /* LemurLifeListTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LemurLifeListTable.m; path = Models/Database/LemurLifeListTable.m; sourceTree = "<group>"; };
+		B4905CCF1D81A7CA0059FA94 /* LOM.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LOM.sqlite; sourceTree = "<group>"; };
 		B49C5FEE1C999D4400B4F08D /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		B49C5FEF1C999D4400B4F08D /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		B49C5FF01C999D4400B4F08D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -1863,7 +1867,6 @@
 		B49C5FF31C999D4400B4F08D /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
 		B4A4E0941D7B6ADD00916D0C /* UserConnectedResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserConnectedResult.h; sourceTree = "<group>"; };
 		B4A4E0951D7B6ADD00916D0C /* UserConnectedResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserConnectedResult.m; sourceTree = "<group>"; };
-		B4ABBC321C97DE9C0003DA43 /* LOM.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LOM.sqlite; sourceTree = "<group>"; };
 		B4AF341D1C9A6C090039DEBB /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
 		B4AF341F1C9A71910039DEBB /* ExtinctLemurs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtinctLemurs.h; path = Controllers/ExtinctLemurs.h; sourceTree = "<group>"; };
 		B4AF34201C9A71910039DEBB /* ExtinctLemurs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtinctLemurs.m; path = Controllers/ExtinctLemurs.m; sourceTree = "<group>"; };
@@ -2087,6 +2090,8 @@
 				B4BBF3BB1C978BB9005A5196 /* Authors.m */,
 				B4AF34281C9A83770039DEBB /* Links.h */,
 				B4AF34291C9A83770039DEBB /* Links.m */,
+				B4905CCC1D817BFD0059FA94 /* LemurLifeListTable.h */,
+				B4905CCD1D817BFD0059FA94 /* LemurLifeListTable.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -3056,7 +3061,7 @@
 		4C95D43F1C0A15770038B9FC /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				B4ABBC321C97DE9C0003DA43 /* LOM.sqlite */,
+				B4905CCF1D81A7CA0059FA94 /* LOM.sqlite */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -3367,6 +3372,7 @@
 				4C6F1A5A1C1342A100272A06 /* Propithecus-diadema.jpg in Resources */,
 				4C6F18E61C1342A000272A06 /* Female-Eulemur-Mongoz--Anjahamena(clc).jpg in Resources */,
 				4C6F19A21C1342A000272A06 /* LFG3verreauxiPlate1.jpg in Resources */,
+				B4905CD01D81A7CA0059FA94 /* LOM.sqlite in Resources */,
 				4C6F1A5E1C1342A100272A06 /* Propithecus-verreauxi.jpg in Resources */,
 				4C6F179A1C1342A000272A06 /* 2_PeterKappeler.jpg in Resources */,
 				4C6F194B1C1342A000272A06 /* Lepilemur-edwardsi.jpg in Resources */,
@@ -3569,7 +3575,6 @@
 				4C6F19201C1342A000272A06 /* img005(clc).jpg in Resources */,
 				4C6F191D1C1342A000272A06 /* HsimusKEY.jpg in Resources */,
 				4C6F18E01C1342A000272A06 /* Eulemurcoronatus(male).jpg in Resources */,
-				B4ABBC331C97DE9C0003DA43 /* LOM.sqlite in Resources */,
 				4C6F18951C1342A000272A06 /* DSC_0046(clc).jpg in Resources */,
 				4C6F1A941C1342A100272A06 /* Shaw1790-Illustr-by-Sowerby.jpg in Resources */,
 				4C6F19BD1C1342A000272A06 /* MapMasterTemplate5Cheirogaleus3.jpg in Resources */,
@@ -4281,6 +4286,7 @@
 				4C85FF641C37F3B200D6C233 /* PublicationResult.m in Sources */,
 				B46779341D46224400618410 /* LemurLifeListResult.m in Sources */,
 				4C5177491C21EA5700BBD0B1 /* SpeciesDetailsViewController.m in Sources */,
+				B4905CCE1D817BFD0059FA94 /* LemurLifeListTable.m in Sources */,
 				4C95D4441C0A24AC0038B9FC /* Tools.m in Sources */,
 				4C1122E11C0A29DB00562FC1 /* SplashViewController.m in Sources */,
 				4C85FF721C38066000D6C233 /* PopupLoginViewController.m in Sources */,
