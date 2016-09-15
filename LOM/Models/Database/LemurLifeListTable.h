@@ -22,5 +22,6 @@
 
 + (id) getLemurLifeListByUUID:(NSString*) _uuid ;
 + (NSArray*) getAllLemurLifeLists;
++(void) emptyLemurLifeListTable;
 
 @end

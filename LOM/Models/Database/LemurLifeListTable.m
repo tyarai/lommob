@@ -18,7 +18,12 @@
 }
 
 + (NSArray*) getAllLemurLifeLists{
-    return [self allInstances];
+    //return [self allInstances];
+    return [self instancesOrderedBy:@" _nid DESC"];
+}
+
++(void) emptyLemurLifeListTable{
+    [self executeUpdateQuery:@"DELETE FROM $T"];
 }
 
 

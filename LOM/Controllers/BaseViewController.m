@@ -41,6 +41,7 @@
 
 -(void)removeActivityScreen
 {
+    if(appDelegate.showActivity) appDelegate.showActivity = NO;
     dispatch_async(dispatch_get_main_queue(), ^{
         if (activityScreen != nil)
         {
@@ -70,6 +71,7 @@
 
 -(void) showActivityScreen
 {
+    appDelegate.showActivity = YES;
     [self initActivityScreen:NSLocalizedString(@"please_wait", @"")];
 }
 

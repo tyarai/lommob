@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -926,10 +926,6 @@
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y73-VY-rRs">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="103" height="103"/>
-                                                                                    <constraints>
-                                                                                        <constraint firstAttribute="height" constant="103" id="MNf-zH-d6p"/>
-                                                                                        <constraint firstAttribute="width" constant="103" id="wFV-Cz-Eai"/>
-                                                                                    </constraints>
                                                                                 </imageView>
                                                                             </subviews>
                                                                         </stackView>
@@ -940,9 +936,9 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6d-rr-3VK">
-                                                    <rect key="frame" x="119" y="8" width="176" height="20"/>
+                                                    <rect key="frame" x="119" y="8" width="176" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="1N5-lb-Mp9"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="zC1-xN-70w"/>
                                                     </constraints>
                                                     <attributedString key="attributedText">
                                                         <fragment content="Species">
@@ -955,19 +951,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKG-XU-MqW">
-                                                    <rect key="frame" x="121" y="90" width="180" height="21"/>
+                                                    <rect key="frame" x="119" y="79" width="180" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="IKI-Jz-i0O"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="ysY-RH-mlr"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seen_value" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0h6-t3-ZDk">
-                                                    <rect key="frame" x="121" y="64" width="174" height="21"/>
+                                                    <rect key="frame" x="119" y="50" width="174" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="174" id="3Hq-VL-DF4"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Ldq-sI-CKY"/>
+                                                        <constraint firstAttribute="width" constant="174" id="Yhw-Ps-R9d"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="m92-Fm-qko"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -975,17 +971,20 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="R6d-rr-3VK" secondAttribute="trailing" constant="6" id="5zY-zd-Rt3"/>
-                                                <constraint firstItem="lKG-XU-MqW" firstAttribute="trailing" secondItem="NO1-js-WgP" secondAttribute="trailingMargin" id="Ajx-uR-4M5"/>
-                                                <constraint firstItem="0h6-t3-ZDk" firstAttribute="leading" secondItem="SBP-ex-vba" secondAttribute="trailing" constant="10" id="F1B-6j-tbl"/>
-                                                <constraint firstItem="lKG-XU-MqW" firstAttribute="bottom" secondItem="SBP-ex-vba" secondAttribute="bottom" id="GQF-1r-8uF"/>
-                                                <constraint firstItem="R6d-rr-3VK" firstAttribute="top" secondItem="SBP-ex-vba" secondAttribute="top" id="PYH-hT-9Ue"/>
-                                                <constraint firstItem="0h6-t3-ZDk" firstAttribute="top" relation="lessThanOrEqual" secondItem="R6d-rr-3VK" secondAttribute="bottom" constant="36" id="RyJ-sW-UAM"/>
-                                                <constraint firstItem="0h6-t3-ZDk" firstAttribute="trailing" secondItem="R6d-rr-3VK" secondAttribute="trailing" id="gV5-rx-dsU"/>
-                                                <constraint firstItem="0h6-t3-ZDk" firstAttribute="leading" secondItem="lKG-XU-MqW" secondAttribute="leading" id="map-YQ-HvY"/>
-                                                <constraint firstItem="R6d-rr-3VK" firstAttribute="top" secondItem="NO1-js-WgP" secondAttribute="topMargin" id="u1u-D9-hlv"/>
-                                                <constraint firstItem="R6d-rr-3VK" firstAttribute="leading" secondItem="SBP-ex-vba" secondAttribute="trailing" constant="8" symbolic="YES" id="wFu-Rw-WDw"/>
-                                                <constraint firstItem="lKG-XU-MqW" firstAttribute="top" secondItem="0h6-t3-ZDk" secondAttribute="bottom" constant="5" id="wLz-s7-pbs"/>
+                                                <constraint firstItem="0h6-t3-ZDk" firstAttribute="leading" secondItem="lKG-XU-MqW" secondAttribute="leading" id="6Rs-Hp-yPa"/>
+                                                <constraint firstItem="SBP-ex-vba" firstAttribute="top" secondItem="R6d-rr-3VK" secondAttribute="top" id="ClD-DQ-g4M"/>
+                                                <constraint firstItem="SBP-ex-vba" firstAttribute="leading" secondItem="NO1-js-WgP" secondAttribute="leadingMargin" id="JbY-Ox-RI3"/>
+                                                <constraint firstItem="lKG-XU-MqW" firstAttribute="top" relation="lessThanOrEqual" secondItem="0h6-t3-ZDk" secondAttribute="bottom" constant="8" symbolic="YES" id="JcZ-Wq-U3h"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0h6-t3-ZDk" secondAttribute="trailing" constant="8" id="NN4-eE-GUw"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="R6d-rr-3VK" secondAttribute="trailing" constant="6" id="Na8-oL-lj4"/>
+                                                <constraint firstItem="0h6-t3-ZDk" firstAttribute="centerY" secondItem="NO1-js-WgP" secondAttribute="centerY" id="PXr-Te-oCX"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="SBP-ex-vba" secondAttribute="bottom" constant="2" id="RFa-Ze-bce"/>
+                                                <constraint firstItem="R6d-rr-3VK" firstAttribute="leading" secondItem="0h6-t3-ZDk" secondAttribute="leading" id="YxW-tH-u8N"/>
+                                                <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="lKG-XU-MqW" secondAttribute="bottom" constant="13" id="fjP-0t-NKs"/>
+                                                <constraint firstItem="0h6-t3-ZDk" firstAttribute="top" relation="lessThanOrEqual" secondItem="R6d-rr-3VK" secondAttribute="bottom" constant="20" id="h4h-ZI-kca"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="lKG-XU-MqW" secondAttribute="trailing" constant="2" id="rtB-ot-mpN"/>
+                                                <constraint firstItem="SBP-ex-vba" firstAttribute="top" secondItem="NO1-js-WgP" secondAttribute="topMargin" id="sAv-vF-NfG"/>
+                                                <constraint firstItem="R6d-rr-3VK" firstAttribute="leading" secondItem="SBP-ex-vba" secondAttribute="trailing" constant="8" symbolic="YES" id="tPE-r1-gd2"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

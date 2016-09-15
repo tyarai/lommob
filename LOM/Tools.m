@@ -332,7 +332,7 @@ static float appScale = 1.0;
             if(node){
                 LemurLifeList* lemurLifeList = node.node;
                 NSString * _uuid = lemurLifeList.uuid;
-                id instance = [LemurLifeListTable getLemurLifeListByUUID:_uuid];
+                LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListByUUID:_uuid];
                 NSString * _title       = lemurLifeList.title;
                 NSString * _species     = lemurLifeList.species;
                 NSString * _where_see_it= lemurLifeList.where_see;
@@ -357,22 +357,30 @@ static float appScale = 1.0;
                     [newLemurLifeListTable save];
                 }else{
                     //--- Efa misy ao ilay lemur life list dia atao update ---
-                    LemurLifeListTable * existingLemurLifeListTable = (LemurLifeListTable *)instance;
-                    existingLemurLifeListTable._title        = _title;
-                    existingLemurLifeListTable._species      = _species;
-                    existingLemurLifeListTable._where_see_it = _where_see_it;
-                    existingLemurLifeListTable._when_see_it  = _when_see_it;
-                    existingLemurLifeListTable._photo_name   = _photo_name;
-                    existingLemurLifeListTable._species_id   = _species_nid;
-                    existingLemurLifeListTable._nid          = _nid;
-                    existingLemurLifeListTable._uuid         = _uuid;
+                    //LemurLifeListTable * existingLemurLifeListTable = (LemurLifeListTable *)instance;
                     
-                    [existingLemurLifeListTable save];
-
+                    /*[LemurLifeListTable executeUpdateQuery:@"UPDATE $T SET _title = ? , _species = ? , _where_see_it = ? , _when_see_it = ? , _photo_name = ? , _species_id = ? , _nid = ?  WHERE _uuid = ? ",
+                     _title,_species,_where_see_it,_when_see_it,_photo_name,_species_nid,_nid,_uuid
+                     ];*/
+                    
+                    //int64_t _id = instance._id ;
+                    //LemurLifeListTable * instanceToUpdate = [LemurLifeListTable instanceWithPrimaryKey:@[_id] ];
+                    
+                    [LemurLifeListTable executeUpdateQuery:@"UPDATE $T SET _where_see_it = ? _when_see_it = ? WHERE _uuid = ? ",
+                     _where_see_it,_when_see_it,_uuid  ];
+                    
+                  
                 }
             }
         }
     }
+}
+/**
+    UPDATE Sept 15
+ */
+
++(void) emptyLemurLifeListTable{
+    [LemurLifeListTable emptyLemurLifeListTable];
 }
 
 
