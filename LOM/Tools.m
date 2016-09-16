@@ -11,6 +11,7 @@
 #import "LemurLifeList.h"
 #import "LemurLifeListTable.h"
 
+
 @implementation Tools
 
 static float appScale = 1.0;
@@ -359,15 +360,13 @@ static float appScale = 1.0;
                     //--- Efa misy ao ilay lemur life list dia atao update ---
                     //LemurLifeListTable * existingLemurLifeListTable = (LemurLifeListTable *)instance;
                     
-                    /*[LemurLifeListTable executeUpdateQuery:@"UPDATE $T SET _title = ? , _species = ? , _where_see_it = ? , _when_see_it = ? , _photo_name = ? , _species_id = ? , _nid = ?  WHERE _uuid = ? ",
-                     _title,_species,_where_see_it,_when_see_it,_photo_name,_species_nid,_nid,_uuid
+                    /*[LemurLifeListTable executeUpdateQuery:@"UPDATE $T SET _title = ? , _species = ? , _where_see_it = ? , _when_see_it = ? , _photo_name = ? , _species_id = ? , _nid = ?  WHERE _uuid = ? ",_title,_species,_where_see_it,_when_see_it,_photo_name,_species_nid,_nid,_uuid
                      ];*/
                     
-                    //int64_t _id = instance._id ;
-                    //LemurLifeListTable * instanceToUpdate = [LemurLifeListTable instanceWithPrimaryKey:@[_id] ];
+                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _where_see_it = '%@' , _when_see_it = '%@' , _title = '%@' , _species = '%@' , _photo_name = '%@' , _nid = '%lli' , _species_id = '%lli'  WHERE _uuid = '%@' ",
+                                       _where_see_it,_when_see_it,_title,_species,_photo_name,_nid,_species_nid,_uuid];
                     
-                    [LemurLifeListTable executeUpdateQuery:@"UPDATE $T SET _where_see_it = ? _when_see_it = ? WHERE _uuid = ? ",
-                     _where_see_it,_when_see_it,_uuid  ];
+                    [LemurLifeListTable executeUpdateQuery:query];
                     
                   
                 }
@@ -384,16 +383,18 @@ static float appScale = 1.0;
 }
 
 
-+(void) showError:(JSONModelError*) err onViewController:(UIViewController*) view{
++(void) showError:(JSONModelError*) err onViewController:(BaseViewController*) view{
     
     switch (err.code){
         case -1009:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"not_connected_to_the_internet",@"")];
+            
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
         case -1005:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"network_connection_was_lost",@"")];
+            
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }

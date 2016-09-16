@@ -882,7 +882,6 @@
 		B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */; };
 		B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */; };
 		B4905CCE1D817BFD0059FA94 /* LemurLifeListTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4905CCD1D817BFD0059FA94 /* LemurLifeListTable.m */; };
-		B4905CD01D81A7CA0059FA94 /* LOM.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B4905CCF1D81A7CA0059FA94 /* LOM.sqlite */; };
 		B49C5FF41C999D4400B4F08D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FEF1C999D4400B4F08D /* UIImage+Alpha.m */; };
 		B49C5FF51C999D4400B4F08D /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FF11C999D4400B4F08D /* UIImage+Resize.m */; };
 		B49C5FF61C999D4400B4F08D /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FF31C999D4400B4F08D /* UIImage+RoundedCorner.m */; };
@@ -903,6 +902,7 @@
 		B4C599B21C70D88000C4B99A /* IntroPageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C599B11C70D88000C4B99A /* IntroPageRootViewController.m */; };
 		B4C599BB1C71155B00C4B99A /* Menus.m in Sources */ = {isa = PBXBuildFile; fileRef = B4C599BA1C71155B00C4B99A /* Menus.m */; };
 		B4D88E711C9A00670096B067 /* ScientificName.m in Sources */ = {isa = PBXBuildFile; fileRef = B4D88E701C9A00670096B067 /* ScientificName.m */; };
+		B4D9135A1D8CB5FC00DDC295 /* LOM.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B4D913591D8CB5FC00DDC295 /* LOM.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1858,7 +1858,6 @@
 		B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorDetailViewController.m; path = Controllers/AuthorDetailViewController.m; sourceTree = "<group>"; };
 		B4905CCC1D817BFD0059FA94 /* LemurLifeListTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LemurLifeListTable.h; path = Models/Database/LemurLifeListTable.h; sourceTree = "<group>"; };
 		B4905CCD1D817BFD0059FA94 /* LemurLifeListTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LemurLifeListTable.m; path = Models/Database/LemurLifeListTable.m; sourceTree = "<group>"; };
-		B4905CCF1D81A7CA0059FA94 /* LOM.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LOM.sqlite; sourceTree = "<group>"; };
 		B49C5FEE1C999D4400B4F08D /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
 		B49C5FEF1C999D4400B4F08D /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
 		B49C5FF01C999D4400B4F08D /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -1896,6 +1895,7 @@
 		B4C599BA1C71155B00C4B99A /* Menus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Menus.m; path = Models/Database/Menus.m; sourceTree = "<group>"; };
 		B4D88E6F1C9A00670096B067 /* ScientificName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScientificName.h; path = Controllers/ScientificName.h; sourceTree = "<group>"; };
 		B4D88E701C9A00670096B067 /* ScientificName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScientificName.m; path = Controllers/ScientificName.m; sourceTree = "<group>"; };
+		B4D913591D8CB5FC00DDC295 /* LOM.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LOM.sqlite; sourceTree = "<group>"; };
 		DF432C35EFDB42BF2AA3395F /* Pods-LOM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LOM/Pods-LOM.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3061,7 +3061,7 @@
 		4C95D43F1C0A15770038B9FC /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				B4905CCF1D81A7CA0059FA94 /* LOM.sqlite */,
+				B4D913591D8CB5FC00DDC295 /* LOM.sqlite */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -3372,7 +3372,7 @@
 				4C6F1A5A1C1342A100272A06 /* Propithecus-diadema.jpg in Resources */,
 				4C6F18E61C1342A000272A06 /* Female-Eulemur-Mongoz--Anjahamena(clc).jpg in Resources */,
 				4C6F19A21C1342A000272A06 /* LFG3verreauxiPlate1.jpg in Resources */,
-				B4905CD01D81A7CA0059FA94 /* LOM.sqlite in Resources */,
+				B4D9135A1D8CB5FC00DDC295 /* LOM.sqlite in Resources */,
 				4C6F1A5E1C1342A100272A06 /* Propithecus-verreauxi.jpg in Resources */,
 				4C6F179A1C1342A000272A06 /* 2_PeterKappeler.jpg in Resources */,
 				4C6F194B1C1342A000272A06 /* Lepilemur-edwardsi.jpg in Resources */,
