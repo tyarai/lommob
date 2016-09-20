@@ -47,15 +47,51 @@
     }
     
     if (lemurLifeList.lemur_photo != nil && ![Tools isNullOrEmptyString:lemurLifeList.lemur_photo.src]) {
+       
         
-        [self.imgPhoto setImageWithURL:[NSURL URLWithString: lemurLifeList.lemur_photo
+        [self.imgPhoto setImageWithURL:[NSURL URLWithString: lemurLifeList.lemur_photo.src]
+                      placeholderImage:nil
+                               options:SDWebImageRefreshCached
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                     if (error) {
+                                         [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                                     }
+                             }
+           usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray ];
+        
+        /*
+       [self.imgPhoto setImageWithURL:[NSURL URLWithString: lemurLifeList.lemur_photo
                                         .src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
             if (error) {
                 [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
             }
             
-        } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        }
+           usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray ];*/
+        
+        /*[self.imgPhoto sd_setImageWithURL:[NSURL URLWithString:lemurLifeList.lemur_photo.src]
+                     placeholderImage:[UIImage imageNamed:@"ico_default_specy"]
+                              options:SDWebImageRefreshCached];
+        
+        */
+        
+        /*
+        [self.imgPhoto setImageWithURL:[NSURL URLWithString:lemurLifeList.lemur_photo.src]
+                      placeholderImage:[UIImage imageNamed:@"ico_default_specy"]
+                               options:SDWebImageRefreshCached
+                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){}
+           usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray ];*/
+        
+        /*[self.imgPhoto sd_setImageWithURL:[NSURL URLWithString:lemurLifeList.lemur_photo.src]
+                         placeholderImage:[UIImage imageNamed:@"ico_default_specy"]
+                                  options:SDWebImageRefreshCached
+                                 progress:^(NSInteger receivedSize, NSInteger expectedSize){}
+                                 completed:nil
+         ];*/
+         
+        
+        
         
     }else{
         [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];

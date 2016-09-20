@@ -23,9 +23,9 @@
 #import "UserConnectedResult.h"
 
 @interface LemursLifeViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
 @property (weak, nonatomic) IBOutlet UIButton *buttonConnect;
-@property  UIRefreshControl *refreshControl;
 @property bool intialLoad;
 
 
@@ -56,6 +56,14 @@
     //--Rehefa tsy subclass n'ny UITableViewController ilay ViewController dia mila apina
     //--- ao @ subView n'ilay TableView ny refreshController --
     [self.tableViewLifeList addSubview:self.refreshControl];
+    
+    self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
+    self.tableViewLifeList.estimatedRowHeight = 140;
+    
+    self.searchText.delegate = self;
+    [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
+    
+    
     
     
     
@@ -124,9 +132,11 @@
     return _lemurLifeList.count;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 115.0f;
+    return 140.0f;
 }
+ 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -501,5 +511,139 @@
     
 }
 
+#pragma Search
 
+- (void) showSearch{
+    
+    self.searchTopSpace.constant = -5;
+    
+    
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         
+                         [self.searchView setNeedsUpdateConstraints];
+                         [self.searchView layoutIfNeeded];
+                         
+                         [self.tableViewLifeList setNeedsUpdateConstraints];
+                         [self.tableViewLifeList layoutIfNeeded];
+                         
+                         [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
+                         
+                         isSearchShown = YES;
+                         
+                         [self.searchText becomeFirstResponder];
+                     }];
+    
+}
+
+
+- (void) hideSearch{
+    
+    self.searchTopSpace.constant = -43;
+    
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         
+                         [self.searchView setNeedsUpdateConstraints];
+                         [self.searchView layoutIfNeeded];
+                         
+                         [self.tableViewLifeList setNeedsUpdateConstraints];
+                         [self.tableViewLifeList layoutIfNeeded];
+                         
+                         [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
+                         
+                         isSearchShown = NO;
+                         
+                         [self.searchText resignFirstResponder];
+                         
+                         [self.view endEditing:YES];
+                     }];
+    
+}
+
+#pragma UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSString * searchStr = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    [self performSearch:searchStr];
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    
+    [self performSearch:nil];
+    
+    [textField resignFirstResponder];
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    NSString* strSearch = self.searchText.text;
+    
+    [self performSearch:strSearch];
+    
+    [self hideSearch];
+    
+    return YES;
+}
+
+
+-(void) searchLemurLifeListByString:(NSString*)stringValue{
+    
+    if(stringValue){
+        NSMutableArray * nodeLists = nil;
+        NSArray* lists = [LemurLifeListTable getLemurLifeListLike:stringValue];
+        if([lists count] > 0 ){
+            nodeLists = [NSMutableArray new];
+            
+            for (LemurLifeListTable *row in lists) {
+                LemurLifeListNode * listNode = [LemurLifeListNode new];
+                LemurLifeList * node = [LemurLifeList new];
+                node.title          = row._title;
+                node.species        = row._species;
+                node.where_see      = row._where_see_it;
+                node.see_first_time = row._when_see_it;
+                Photo * photo       = [Photo new];
+                photo.src           = row._photo_name;
+                node.lemur_photo    = photo;
+                node.nid            = row._nid;
+                node.species_nid    = row._species_id;
+                node.uuid           = row._uuid;
+                listNode.node       = node;
+                [nodeLists addObject:listNode];
+            }
+            
+            _lemurLifeList = nodeLists;
+        }
+    }
+}
+
+
+- (void) performSearch:(NSString*) searchStr{
+    
+    if ([Tools isNullOrEmptyString:searchStr]) {
+        [self loadLocalLemurLifeLists];
+        [self.tableViewLifeList reloadData];
+        
+    }else{
+        [self searchLemurLifeListByString:searchStr];
+        [self.tableViewLifeList reloadData];
+    }
+}
+
+
+- (IBAction)btnSearchTapped:(id)sender {
+    if (isSearchShown)
+    {
+        [self hideSearch];
+    }else
+    {
+        [self showSearch];
+    }
+}
 @end

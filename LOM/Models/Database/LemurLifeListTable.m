@@ -26,5 +26,9 @@
     [self executeUpdateQuery:@"DELETE FROM $T"];
 }
 
++ (NSArray*) getLemurLifeListLike:(NSString*) strValue {
+    return [LemurLifeListTable instancesWhere:[NSString stringWithFormat:@"_title LIKE '%%%@%%' OR _species LIKE '%%%@%%' OR _where_see_it LIKE '%%%@%%' ", strValue,strValue,strValue]];
+}
+
 
 @end

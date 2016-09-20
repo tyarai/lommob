@@ -357,11 +357,7 @@ static float appScale = 1.0;
                     
                     [newLemurLifeListTable save];
                 }else{
-                    //--- Efa misy ao ilay lemur life list dia atao update ---
-                    //LemurLifeListTable * existingLemurLifeListTable = (LemurLifeListTable *)instance;
-                    
-                    /*[LemurLifeListTable executeUpdateQuery:@"UPDATE $T SET _title = ? , _species = ? , _where_see_it = ? , _when_see_it = ? , _photo_name = ? , _species_id = ? , _nid = ?  WHERE _uuid = ? ",_title,_species,_where_see_it,_when_see_it,_photo_name,_species_nid,_nid,_uuid
-                     ];*/
+                   
                     
                     NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _where_see_it = '%@' , _when_see_it = '%@' , _title = '%@' , _species = '%@' , _photo_name = '%@' , _nid = '%lli' , _species_id = '%lli'  WHERE _uuid = '%@' ",
                                        _where_see_it,_when_see_it,_title,_species,_photo_name,_nid,_species_nid,_uuid];
@@ -426,6 +422,10 @@ static float appScale = 1.0;
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
+    }
+    
+    if (view.refreshControl){
+        [view.refreshControl endRefreshing];
     }
 }
 

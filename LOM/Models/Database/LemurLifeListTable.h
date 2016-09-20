@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString* _photo_name;
 
 + (id) getLemurLifeListByUUID:(NSString*) _uuid ;
++ (NSArray*) getLemurLifeListLike:(NSString*) strValue ;
 + (NSArray*) getAllLemurLifeLists;
 +(void) emptyLemurLifeListTable;
 
