@@ -112,7 +112,7 @@ static AppData* _instance;
         BaseViewController* viewC =(BaseViewController*)viewController;
        AppDelegate * appDelegate = [viewC getAppDelegate];
        
-       if(appDelegate.showActivity){
+       if(appDelegate.showActivity ){
             [viewC showActivityScreen];
        }
     }

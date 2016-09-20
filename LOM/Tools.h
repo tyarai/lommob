@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "LemurLifeListNode.h"
+#import "BaseViewController.h"
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
@@ -43,5 +45,8 @@
 
 // By Ranto 2016
 +(UIAlertController*) createAlertViewWithTitle:(NSString*) title messsage:(NSString*)message;
-+(void) showError:(JSONModelError*) err onViewController:(UIViewController*) view;
++(void) showError:(JSONModelError*) err onViewController:(BaseViewController*) view;
++(void) updateLemurLifeListWithNodes:(NSArray<LemurLifeListNode>*) nodes;
++(void) emptyLemurLifeListTable;
+
 @end

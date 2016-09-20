@@ -42,7 +42,7 @@
     self._sessionName = [Tools getStringUserPreferenceWithKey:KEY_SESSION_NAME];
     self._sessid = [Tools getStringUserPreferenceWithKey:KEY_SESSID];
     
-    
+        
     return YES;
 }
 

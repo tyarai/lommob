@@ -7,6 +7,10 @@
 //
 
 #import "Tools.h"
+#import "LemurLifeListNode.h"
+#import "LemurLifeList.h"
+#import "LemurLifeListTable.h"
+
 
 @implementation Tools
 
@@ -314,19 +318,79 @@ static float appScale = 1.0;
     [alert addAction:yesButton];
     
     return alert;
-    
+  
 }
 
-+(void) showError:(JSONModelError*) err onViewController:(UIViewController*) view{
+//********************************************************************
+// Update Ranto Sept 8 2016
+//********************************************************************
+/*
+    Manao update ny LemurLifeList ao anaty Tablet
+ */
++(void) updateLemurLifeListWithNodes:(NSArray<LemurLifeListNode>*) nodes{
+    if(nodes != nil && [nodes count] > 0){
+        for (LemurLifeListNode *node in nodes) {
+            if(node){
+                LemurLifeList* lemurLifeList = node.node;
+                NSString * _uuid = lemurLifeList.uuid;
+                LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListByUUID:_uuid];
+                NSString * _title       = lemurLifeList.title;
+                NSString * _species     = lemurLifeList.species;
+                NSString * _where_see_it= lemurLifeList.where_see;
+                NSString * _when_see_it = lemurLifeList.see_first_time;
+                NSString * _photo_name  = lemurLifeList.lemur_photo.src;
+                int64_t  _species_nid   = lemurLifeList.species_nid;
+                int64_t    _nid         = lemurLifeList.nid;
+
+                if(instance == nil){
+                    //---Tsy mbola misy ao anaty base-tablet ity lemur life list ity dia apina ao --
+                    
+                    LemurLifeListTable * newLemurLifeListTable = [LemurLifeListTable new];
+                    newLemurLifeListTable._title        = _title;
+                    newLemurLifeListTable._species      = _species;
+                    newLemurLifeListTable._where_see_it = _where_see_it;
+                    newLemurLifeListTable._when_see_it  = _when_see_it;
+                    newLemurLifeListTable._photo_name   = _photo_name;
+                    newLemurLifeListTable._species_id   = _species_nid;
+                    newLemurLifeListTable._nid          = _nid;
+                    newLemurLifeListTable._uuid         = _uuid;
+                    
+                    [newLemurLifeListTable save];
+                }else{
+                   
+                    
+                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _where_see_it = '%@' , _when_see_it = '%@' , _title = '%@' , _species = '%@' , _photo_name = '%@' , _nid = '%lli' , _species_id = '%lli'  WHERE _uuid = '%@' ",
+                                       _where_see_it,_when_see_it,_title,_species,_photo_name,_nid,_species_nid,_uuid];
+                    
+                    [LemurLifeListTable executeUpdateQuery:query];
+                    
+                  
+                }
+            }
+        }
+    }
+}
+/**
+    UPDATE Sept 15
+ */
+
++(void) emptyLemurLifeListTable{
+    [LemurLifeListTable emptyLemurLifeListTable];
+}
+
+
++(void) showError:(JSONModelError*) err onViewController:(BaseViewController*) view{
     
     switch (err.code){
         case -1009:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"not_connected_to_the_internet",@"")];
+            
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
         case -1005:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"network_connection_was_lost",@"")];
+            
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
@@ -337,7 +401,12 @@ static float appScale = 1.0;
             break;
         }
         case -1003:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"server_not_found",@"") messsage:NSLocalizedString(@"timed_out",@"")];
+            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"server_not_found",@"")];
+            [view presentViewController:alert animated:YES completion:nil];
+            break;
+        }
+        case -1004:{
+            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"could_not_connect_to_server",@"")];
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
@@ -353,6 +422,10 @@ static float appScale = 1.0;
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
+    }
+    
+    if (view.refreshControl){
+        [view.refreshControl endRefreshing];
     }
 }
 

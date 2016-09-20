@@ -17,8 +17,9 @@
     MTCSimpleActivityView* activityScreen;
     AppDelegate* appDelegate;
     AppData* appData;
+    
 }
-
+@property  UIRefreshControl *refreshControl;
 
 -(AppDelegate*) getAppDelegate;
 
