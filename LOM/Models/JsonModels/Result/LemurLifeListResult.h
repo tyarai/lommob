@@ -16,5 +16,5 @@
 @property  NSString<Optional>* total_page;
 
 @property (nonatomic, strong) NSArray<LemurLifeListNode> * nodes;
-//@property (nonatomic, strong) NSDictionary<id,NSArray<LemurLifeListNode>*> * rows;
+
 @end

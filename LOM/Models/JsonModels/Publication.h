@@ -9,16 +9,28 @@
 #import <JSONModel/JSONModel.h>
 #import "Photo.h"
 
+/**
+    Publication = SightingNode
+*/
+
 @interface Publication : JSONModel
 
+
 @property (nonatomic, strong) NSString<Optional>* title;
-//@property (nonatomic, strong) NSString<Optional>* field_associated_species;
-@property (nonatomic, strong) NSString<Optional>* species;
+@property (nonatomic, strong) NSString<Optional>* species; //speciesName
+@property (nonatomic)         int64_t uid;// User uid
 @property (nonatomic, strong) NSString<Optional>* body;
-@property (nonatomic, strong) NSString<Optional>* where_see;
-@property (nonatomic, strong) Photo<Optional>* lemur_photo;
+@property (nonatomic)         int64_t nid; // Post's _nid
+@property (nonatomic, strong) Photo<Optional>* field_photo;
 @property (nonatomic, strong) NSString<Optional>* created;
-@property (nonatomic, strong) NSString<Optional>* name;
+@property (nonatomic, strong) NSString<Optional>* author_name;
+@property (nonatomic)         int64_t speciesNid;
+@property (nonatomic, strong) NSString<Optional>* uuid;
+@property (nonatomic, strong) NSString<Optional>* place_name;
+@property (nonatomic, strong) NSString<Optional>* latitude;
+@property (nonatomic, strong) NSString<Optional>* longitude;
+@property (nonatomic) NSInteger count; // Species count
+
 
 @end
 

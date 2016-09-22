@@ -131,7 +131,7 @@ static AppData* _instance;
 
 
 
--(void) getPublicationForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
+-(void) getSightingsForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
 {
     [self buildGETHeader];
     
@@ -140,17 +140,13 @@ static AppData* _instance;
         NSString * sessionName = [[Tools getAppDelegate] _sessionName];
         NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
-        //NSString* url = [NSString stringWithFormat:@"%@%@?session_name=%@", SERVER, ALL_PUBLICATION_ENDPOINT, session_id];
-
-        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, ALL_PUBLICATION_ENDPOINT];
+   
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, MY_SIGHTINGS_ENDPOINT];
         
         [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
         
     }
     
-    NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, ALL_PUBLICATION_ENDPOINT];
-    
-    [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
 }
 
 
@@ -165,7 +161,6 @@ static AppData* _instance;
         NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
     
-        //NSString* url = [NSString stringWithFormat:@"%@%@?session_name=%@", SERVER, LIFELIST_ENDPOINT, session_id];
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, LIFELIST_ENDPOINT];
         
         

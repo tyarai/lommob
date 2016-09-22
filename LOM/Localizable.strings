@@ -10,7 +10,8 @@
 "not_connected_to_the_internet" = "You are offline. Please check your internet connection";
 "timed_out" = "Timed out! Unable to get data from the server. Please try later";
 "network_issue" = "Network problem";
-"empty_lemur_life_list" = "Your lemur life list is empty !";
+"empty_lemur_life_list" = "Your list is empty! Please pull to refresh";
+"empty_posts_list" = "Your list is empty! Please pull to refresh";
 "updating_list" = "Updating the list";
 "title_lemur_life_list" = "Lemur life list";
 "wrong_password_username" = "Wrong username or password! Please check and try again";

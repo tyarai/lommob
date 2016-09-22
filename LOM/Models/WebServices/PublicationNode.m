@@ -6,8 +6,8 @@
 //  Copyright © 2016 Kerty KAMARY. All rights reserved.
 //
 
-#import "Node.h"
+#import "PublicationNode.h"
 
-@implementation Node
+@implementation PublicationNode
 
 @end

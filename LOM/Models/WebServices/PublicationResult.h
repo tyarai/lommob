@@ -7,10 +7,15 @@
 //
 
 #import <JSONModel/JSONModel.h>
-#import "Node.h"
+#import "PublicationNode.h"
 
 @interface PublicationResult : JSONModel
 
-@property (nonatomic, strong) NSArray<Node>* nodes;
+@property  NSString<Optional>* current_page;
+@property  NSString<Optional>* item_per_page;
+@property  NSString<Optional>* total_records;
+@property  NSString<Optional>* total_page;
+
+@property (nonatomic, strong) NSArray<PublicationNode>* nodes;
 
 @end

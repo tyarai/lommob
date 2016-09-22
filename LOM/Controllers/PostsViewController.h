@@ -13,11 +13,22 @@
 #import "BaseViewController.h"
 
 
-@interface PostsViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
+@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
     
-    NSArray* _lemurLifeList;
+    NSArray* _sightingsList;
+    BOOL isSearchShown;
+   
     
     WYPopoverController* popoverController;
 }
+@property (weak, nonatomic) IBOutlet UIView *searchView;
+@property (weak, nonatomic) IBOutlet UITextField *searchText;
+- (IBAction)searchButtonTapped:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *btnSearch;
+
+ @property BOOL pullToRefresh;
+ @property BOOL initialLoad;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchTopSpace;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchHeight;
 
 @end

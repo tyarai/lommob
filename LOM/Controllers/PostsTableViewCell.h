@@ -18,6 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblBody;
 @property (weak, nonatomic) IBOutlet UILabel *lblUser;
 
-- (void) displayLemurLife:(Publication*) publication;
+- (void) displaySighting:(Publication*) publication ;
 
 @end

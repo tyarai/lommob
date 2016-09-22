@@ -10,6 +10,8 @@
 #import "LemurLifeListNode.h"
 #import "LemurLifeList.h"
 #import "LemurLifeListTable.h"
+#import "Sightings.h"
+#import "PublicationNode.h"
 
 
 @implementation Tools
@@ -370,12 +372,82 @@ static float appScale = 1.0;
         }
     }
 }
+
+/**
+    Update the local sightings table
+ */
++(void) updateSightingsWithNodes:(NSArray<PublicationNode>*) nodes{
+    if(nodes != nil && [nodes count] > 0){
+        for (PublicationNode *node in nodes) {
+            if(node){
+                Publication* sighting = node.node;
+                
+                NSString * _uuid = sighting.uuid;
+                Sightings* instance = [Sightings getSightingsByUUID:_uuid];
+                NSString * _title       = sighting.title;
+                NSString * _species     = sighting.species;
+                NSString * _where_see_it= sighting.place_name;
+                //NSDate * date = [NSDate dateWithTimeIntervalSince1970:sighting.];
+                NSString * _photo_name  = sighting.field_photo.src;
+                int64_t  _species_nid   = sighting.speciesNid;
+                int64_t  _nid           = sighting.nid;
+                int64_t  _count         = sighting.count;
+                NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+                NSDate *createdDate     = [[NSDate alloc]init];
+                createdDate             = [dateFormatter dateFromString:sighting.created];
+                int64_t  _created       = [createdDate timeIntervalSince1970];
+                NSString * _latitude    = sighting.latitude;
+                NSString * _longitude   = sighting.longitude;
+                
+                
+                NSString *error = [NSString stringWithFormat:@" title =%@ nid=%lli photo = %@ ",_title,_nid,_photo_name];
+                NSAssert(_photo_name != nil, error);
+                
+                if(instance == nil){
+                    //---Tsy mbola misy ao anaty base-tablet ity lemur life list ity dia apina ao --
+                    
+                    Sightings * newSighting     = [Sightings new];
+                    newSighting._nid            = _nid;
+                    newSighting._speciesName    = _species;
+                    newSighting._speciesNid     = _species_nid;
+                    newSighting._speciesCount   = _count;
+                    newSighting._placeName      = _where_see_it;
+                    newSighting._placeLatitude  = _latitude;
+                    newSighting._placeLongitude = _longitude;
+                    newSighting._photoFileNames = _photo_name;
+                    newSighting._title          = _title;
+                    newSighting._createdTime    = _created;
+                    newSighting._uuid           = _uuid;
+                    
+                    [newSighting save];
+                    
+                }else{
+                    
+                    
+                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _nid = '%lli' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' WHERE _uuid = '%@' ",
+                    _nid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_uuid];
+                    
+                    [Sightings executeUpdateQuery:query];
+                    
+                    
+                }
+            }
+        }
+    }
+}
+
+
 /**
     UPDATE Sept 15
  */
 
 +(void) emptyLemurLifeListTable{
     [LemurLifeListTable emptyLemurLifeListTable];
+}
+
++(void) emptySigntingTable{
+    [Sightings emptySightingsTable];
 }
 
 

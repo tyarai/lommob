@@ -9,11 +9,11 @@
 #import <JSONModel/JSONModel.h>
 #import "Publication.h"
 
-@interface Node : JSONModel
+@interface PublicationNode : JSONModel
 
 @property (nonatomic, strong) Publication* node;
 
 @end
 
-@protocol Node
+@protocol PublicationNode
 @end

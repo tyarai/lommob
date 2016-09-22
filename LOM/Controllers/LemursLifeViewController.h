@@ -16,7 +16,7 @@
     
     NSArray* _lemurLifeList;
     BOOL isSearchShown;
-    //NSDictionary* _lemurLifeList;
+    
     
     WYPopoverController* popoverController;
     

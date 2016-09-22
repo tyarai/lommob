@@ -22,7 +22,7 @@
     // Configure the view for the selected state
 }
 
-- (void) displayLemurLife:(Publication*) publication {
+- (void) displaySighting:(Publication*) publication {
     
     if (![Tools isNullOrEmptyString:publication.title]) {
         self.lblTitle.text = publication.title;
@@ -42,14 +42,14 @@
         self.lblBody.text = publication.body;
     }
     
-    if (![Tools isNullOrEmptyString:publication.name]) {
-        self.lblUser.text = publication.name;
+    if (![Tools isNullOrEmptyString:publication.author_name]) {
+        self.lblUser.text = publication.author_name;
     }
     
     
-    if (publication.lemur_photo != nil && ![Tools isNullOrEmptyString:publication.lemur_photo.src]) {
+    if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
         
-        [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.lemur_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             
             if (error) {
                 [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];

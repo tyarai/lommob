@@ -27,6 +27,39 @@
     NSString* databasePath = [Tools getDatabasePath:DATABASE_NAME];
     [FCModel openDatabaseAtPath:databasePath withSchemaBuilder:^(FMDatabase *db, int *schemaVersion) {
         NSLog(@"openDatabaseAtPath %@", databasePath);
+        
+        
+        void (^failedAt)(int statement) = ^(int statement){
+            int lastErrorCode = db.lastErrorCode;
+            NSString *lastErrorMessage = db.lastErrorMessage;
+            [db rollback];
+            NSAssert3(0, @"Migration statement %d failed, code %d: %@", statement, lastErrorCode, lastErrorMessage);
+        };
+        
+        if (*schemaVersion < 1) {
+            if (! [db executeUpdate:
+                   @"CREATE TABLE Sightings ("
+                   @"    _id           INTEGER PRIMARY KEY,"
+                   @"    _nid          INTEGER UNIQUE NOT NULL,"
+                   @"    _uuid         TEXT NOT NULL UNIQUE,"
+                   @"    _speciesName  TEXT NOT NULL,"
+                   @"    _speciesNid   INTEGER NOT NULL,"
+                   @"    _speciesCount INTEGER,"
+                   @"    _placeName    TEXT NOT NULL,"
+                   @"    _placeLatitude TEXT,"
+                   @"    _placeLongitude TEXT,"
+                   @"    _photoFileNames TEXT NOT NULL,"
+                   @"    _title        TEXT ,"
+                   @"    _createdTime  REAL NOT NULL,"
+                   @"    _modifiedTime REAL"
+                   @");"
+                   ]) failedAt(1);
+            
+            if (! [db executeUpdate:@"CREATE INDEX IF NOT EXISTS _speciesName ON Sightings (_speciesName);"]) failedAt(2);
+            
+            *schemaVersion = 1;
+        }
+        
     }];
     
     //Initialise cache image

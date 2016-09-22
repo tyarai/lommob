@@ -21,7 +21,8 @@
 #define LOGOUT_ENDPOINT @"/lom_endpoint/user/logout.json"
 #define ISCONNECTED_ENDPOINT @"/lom_endpoint/system/connect.json"
 #define ALL_PUBLICATION_ENDPOINT @"/all-publication-json"
-#define LIFELIST_ENDPOINT @"/list/my-lemur-life-list-json"
+#define MY_SIGHTINGS_ENDPOINT @"/api/v1/list/my-sightings-json"
+#define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
 
 
 
@@ -39,7 +40,7 @@
        completeBlock:(JSONObjectBlock)completeBlock;
 
 
--(void) getPublicationForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
+-(void) getSightingsForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
