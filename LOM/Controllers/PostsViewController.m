@@ -46,6 +46,9 @@
     [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
     
     
+    self.viewTitle.tintColor = ORANGE_COLOR;
+    self.navigationItem.title = NSLocalizedString(@"sightings_title",@"");
+    
 }
 
 -(void) refreshListFromOnlineData{
@@ -227,11 +230,13 @@
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        [self removeActivityScreen];
+        //[self removeActivityScreen];
         
         if (err)
         {
-            [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            [self removeActivityScreen];
+            [Tools showError:err onViewController:self];
         }
         else
         {
@@ -276,7 +281,8 @@
         
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
-        [Tools emptySigntingTable];
+        [Tools emptySightingTable];
+        [Tools emptyLemurLifeListTable];
         
     }else{
         
@@ -318,6 +324,7 @@
             }else{
                 [self showLoginPopup ];
                 [self.tableViewLifeList setHidden:YES];
+                [Tools emptySightingTable];
                 [Tools emptyLemurLifeListTable];
             }
         }];

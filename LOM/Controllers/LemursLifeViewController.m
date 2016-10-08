@@ -22,6 +22,8 @@
 #import "Reachability.h"
 #import "UserConnectedResult.h"
 
+#define ROWHEIGHT 115
+
 @interface LemursLifeViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
@@ -58,11 +60,12 @@
     [self.tableViewLifeList addSubview:self.refreshControl];
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
-    self.tableViewLifeList.estimatedRowHeight = 140;
+    //self.tableViewLifeList.estimatedRowHeight = 110;
     
     self.searchText.delegate = self;
     [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
     
+    self.navigationItem.title = NSLocalizedString(@"lemur_life_list_title",@"");
     
     
     
@@ -134,7 +137,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140.0f;
+    return ROWHEIGHT;
 }
  
 
@@ -256,6 +259,7 @@
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
         [Tools emptyLemurLifeListTable];
+        [Tools emptySightingTable];
             
     }else{
         
@@ -298,6 +302,7 @@
                 [self showLoginPopup ];
                 [self.tableViewLifeList setHidden:YES];
                 [Tools emptyLemurLifeListTable];
+                [Tools emptySightingTable];
             }
         }];
 

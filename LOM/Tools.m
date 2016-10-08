@@ -446,7 +446,7 @@ static float appScale = 1.0;
     [LemurLifeListTable emptyLemurLifeListTable];
 }
 
-+(void) emptySigntingTable{
++(void) emptySightingTable{
     [Sightings emptySightingsTable];
 }
 

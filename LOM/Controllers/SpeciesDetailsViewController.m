@@ -8,6 +8,7 @@
 
 #import "SpeciesDetailsViewController.h"
 #import "Tools.h"
+#import "Constants.h"
 #import "Photographs.h"
 #import "Maps.h"
 #import "UIImage+Resize.h"
@@ -39,7 +40,9 @@
 - (IBAction)scientificNameTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *nameView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 
+- (IBAction)cameraButtonTapped:(id)sender;
 
 @end
 
@@ -52,6 +55,8 @@
     [self prepareImageScroll];
     
     [self displayLemurInfos];
+    
+    self.cameraButton.tintColor = ORANGE_COLOR;
     
 }
 
@@ -521,4 +526,6 @@
 
 }
 
+- (IBAction)cameraButtonTapped:(id)sender {
+}
 @end

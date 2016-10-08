@@ -19,3 +19,13 @@
 "network_connection_was_lost" = "The network connection was lost! Please try again";
 "server_not_found" = "The lemurs of madagascar's server is not accessible! Please check your internet connection or your DNS service";
 "could_not_connect_to_server"= "Could not connect to the server! Please check your WiFi or Cellular data connection";
+"authors_title"="Authors";
+"lemur_life_list_title"="Lemur life list";
+"intro_title"="Introduction";
+"lemur_origin_title"="Origin of lemurs";
+"extinct_title"="Extinct lemurs";
+"species_title"="Species";
+"families_title"="Families";
+"watching_sites_title"="Watching sites";
+"sightings_title"="Sightings";
+"about_the_app_title"="About the app";

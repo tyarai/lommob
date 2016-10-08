@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title=  NSLocalizedString(@"Introduction", @"Introduction");
+    self.navigationItem.title=  NSLocalizedString(@"intro_title", @"");
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
 
     

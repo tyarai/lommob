@@ -50,6 +50,6 @@
 +(void) updateLemurLifeListWithNodes:(NSArray<LemurLifeListNode>*) nodes;
 +(void) updateSightingsWithNodes:(NSArray<PublicationNode>*) nodes;
 +(void) emptyLemurLifeListTable;
-+(void) emptySigntingTable;
++(void) emptySightingTable;
 
 @end

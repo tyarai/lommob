@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title=  NSLocalizedString(@"About this app", @"About this app");
+    self.navigationItem.title=  NSLocalizedString(@"about_the_app_title", @"");
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
 }
 

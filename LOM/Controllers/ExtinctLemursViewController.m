@@ -24,19 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-   
-    /*[_webView loadRequest:request];
-    
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    float screenHeight = [Tools getScreenHeight]/2;
-    float screenWidth = [Tools getScreenWidth]/2;
-    
-    self.activityIndicator.frame = CGRectMake(screenWidth,screenHeight,44,44);
-    [self.webView addSubview:self.activityIndicator];
-    self.webView.delegate = self;
-     */
-
-    // Do any additional setup after loading the view.
+    self.navigationItem.title = NSLocalizedString(@"extinct_title",@"");
 }
 
 - (void)didReceiveMemoryWarning {

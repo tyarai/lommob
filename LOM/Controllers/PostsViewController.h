@@ -30,5 +30,6 @@
  @property BOOL initialLoad;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchTopSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchHeight;
+@property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 
 @end
