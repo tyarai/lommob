@@ -18,18 +18,18 @@
 
 @end
 
-@interface CameraViewController : BaseViewController <UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,SightingDataTableViewControllerDelegate>{
+@interface CameraViewController : BaseViewController <UIImagePickerControllerDelegate,UINavigationControllerDelegate,SightingDataTableViewControllerDelegate>{
     
     WYPopoverController* popoverController;
 }
 @property (nonatomic, retain) id<CameraViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 - (IBAction)takePhoto:(id)sender;
-- (IBAction)selectPhoto:(id)sender;
+- (IBAction)cancelPhoto:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
-@property (weak, nonatomic) IBOutlet UIButton *selectPhotoButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UICollectionView *photoCollection;
-@property (strong) NSMutableArray* photoFileNames;
+@property (strong) NSString * photoFileName;
 @property (weak, nonatomic) IBOutlet UIButton *saveSightingButton;
 - (IBAction)saveSightingTapped:(id)sender;
 @property (strong) Species *currentSpecies;

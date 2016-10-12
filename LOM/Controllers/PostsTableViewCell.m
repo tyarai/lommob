@@ -25,26 +25,18 @@
 
 - (void) displaySighting:(Publication*) publication {
     
-    if (![Tools isNullOrEmptyString:publication.title]) {
-        self.lblTitle.text = publication.title;
+    NSString * syncedText = @"";
+    if (!publication.isSynced && publication.isLocal) {
+        syncedText = NSLocalizedString(@"not_synced_sighting",@"");;
     }
-    
+    self.syncInfo.text = syncedText;
     
     if (![Tools isNullOrEmptyString:publication.species]) {
         self.lblSpecies.text = publication.species;
     }
     
-    
     if (![Tools isNullOrEmptyString:publication.created]) {
         self.lblDate.text = publication.created;
-    }
-    
-    if (![Tools isNullOrEmptyString:publication.body]) {
-        self.lblBody.text = publication.body;
-    }
-    
-    if (![Tools isNullOrEmptyString:publication.author_name]) {
-        self.lblUser.text = publication.author_name;
     }
     
     

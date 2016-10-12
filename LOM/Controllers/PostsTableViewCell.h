@@ -12,11 +12,11 @@
 @interface PostsTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblSpecies;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
-@property (weak, nonatomic) IBOutlet UILabel *lblBody;
-@property (weak, nonatomic) IBOutlet UILabel *lblUser;
+@property (weak, nonatomic) IBOutlet UILabel *syncInfo;
+
 
 - (void) displaySighting:(Publication*) publication ;
 
