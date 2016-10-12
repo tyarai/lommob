@@ -99,8 +99,9 @@
             PublicationNode * listNode = [PublicationNode new];
             Publication * node = [Publication new];
             node.title          = row._title;
-            node.species   = row._speciesName;
+            node.species        = row._speciesName;
             node.place_name      = row._placeName;
+            node.uid            = row._uid;
             NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
             node.created = [date description];
             Photo * photo       = [Photo new];
@@ -109,6 +110,9 @@
             node.nid            = row._nid;
             node.speciesNid     = row._speciesNid;
             node.uuid           = row._uuid;
+            node.isLocal        = row._isLocal;
+            node.isSynced       = row._isSynced;
+            
             listNode.node       = node;
             [nodeLists addObject:listNode];
         }
@@ -255,14 +259,17 @@
                     &&![Tools isNullOrEmptyString:loginResult.token]
                     && loginResult.user != nil) {
                     
+                    
                     if (rememberMe) {
-                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token];
+                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token uid:loginResult.user.uid];
                     }
                     
                     appDelegate._currentToken = loginResult.token;
                     appDelegate._curentUser = loginResult.user;
                     appDelegate._sessid = loginResult.sessid;
                     appDelegate._sessionName = loginResult.session_name;
+                    appDelegate._uid    = loginResult.user.uid;
+
                     
                     [self loadOnlineSightings];
                     
@@ -389,14 +396,13 @@
 
 
 
-- (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token{
-    
+- (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid{
+    NSString * strUid = [NSString stringWithFormat:@"%ld",(long)uid];
     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:session_name];
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
-    
+    [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
 }
-
 /*
 
 - (void) getAllPosts{

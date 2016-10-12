@@ -51,5 +51,6 @@
 +(void) updateSightingsWithNodes:(NSArray<PublicationNode>*) nodes;
 +(void) emptyLemurLifeListTable;
 +(void) emptySightingTable;
++(void) updateLocalSightingsUserUIDDWith:(NSUInteger) uid;
 
 @end

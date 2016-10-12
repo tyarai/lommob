@@ -30,6 +30,8 @@
 @property (nonatomic, strong) NSString<Optional>* latitude;
 @property (nonatomic, strong) NSString<Optional>* longitude;
 @property (nonatomic) NSInteger count; // Species count
+@property (nonatomic) int64_t isLocal;
+@property (nonatomic) int64_t isSynced;
 
 
 @end

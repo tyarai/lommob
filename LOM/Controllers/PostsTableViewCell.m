@@ -14,6 +14,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -49,13 +50,34 @@
     
     if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
         
-        [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        //[self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+       
+        if(publication.isLocal){
+        
+            NSArray * images =  [publication.field_photo.src componentsSeparatedByString:@"@"];
+            NSString * firstImage = [images objectAtIndex:0];
             
-            if (error) {
-                [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
-            }
+            NSURL * url = [NSURL fileURLWithPath: firstImage];
             
-        } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            
+            [self.imgPhoto setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                
+                if (error) {
+                    [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                }
+                
+            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            
+        }else{
+            
+            [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (error) {
+                    [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                }
+                
+            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+
+        }
         
     }else{
         [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];

@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSString *_currentToken;
 @property (strong, nonatomic) NSString *_sessionName;
 @property (strong, nonatomic) NSString *_sessid;
+@property                     NSInteger _uid;
+
 @property (strong, nonatomic) User *_curentUser;
 @property BOOL showActivity;
 

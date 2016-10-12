@@ -84,9 +84,11 @@
                     appDelegate._currentToken = nil;
                     appDelegate._sessid = nil;
                     appDelegate._sessionName = nil;
+                    appDelegate._uid = 0;
                     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:nil];
                     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:nil];
                     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:nil];
+                    [Tools setUserPreferenceWithKey:KEY_UID andStringValue:nil];
                 }
             }];
         }

@@ -40,7 +40,7 @@
             if (! [db executeUpdate:
                    @"CREATE TABLE Sightings ("
                    @"    _id           INTEGER PRIMARY KEY,"
-                   @"    _nid          INTEGER UNIQUE NOT NULL,"
+                   @"    _nid          INTEGER NOT NULL,"
                    @"    _uuid         TEXT NOT NULL UNIQUE,"
                    @"    _speciesName  TEXT NOT NULL,"
                    @"    _speciesNid   INTEGER NOT NULL,"
@@ -60,6 +60,25 @@
             *schemaVersion = 1;
         }
         
+        
+        /*
+         * Ampina ilay field _uid (uid drupal ito) 
+         */
+        if (*schemaVersion < 2) {
+             if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _uid INTEGER NOT NULL DEFAULT '0'"]) failedAt(3);
+             *schemaVersion = 2;
+        }
+        /*
+         * Ampina ilay field _isLocal sy _isSynced ny table Sightings
+         */
+        if (*schemaVersion < 3) {
+            if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _isLocal INTEGER NOT NULL DEFAULT 'NULL'"]) failedAt(4);
+             if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _isSynced INTEGER DEFAULT '0'"]) failedAt(4);
+            *schemaVersion = 3;
+        }
+
+        
+        
     }];
     
     //Initialise cache image
@@ -74,6 +93,7 @@
     self._currentToken = [Tools getStringUserPreferenceWithKey:KEY_TOKEN];
     self._sessionName = [Tools getStringUserPreferenceWithKey:KEY_SESSION_NAME];
     self._sessid = [Tools getStringUserPreferenceWithKey:KEY_SESSID];
+    self._uid    = [[Tools getStringUserPreferenceWithKey:KEY_UID] integerValue];
     
         
     return YES;

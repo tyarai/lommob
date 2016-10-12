@@ -451,6 +451,18 @@ static float appScale = 1.0;
 }
 
 
+/**
+    UPDATE OCT 11 2016
+ */
+
++(void) updateLocalSightingsUserUIDDWith:(NSUInteger) uid{
+    if(uid != 0){
+        NSString * query = [NSString stringWithFormat:@"UPDATE Sightings SET _uid = '%lu'",(unsigned long)uid];
+        [Sightings executeUpdateQuery:query];
+    }
+}
+
+
 +(void) showError:(JSONModelError*) err onViewController:(BaseViewController*) view{
     
     switch (err.code){

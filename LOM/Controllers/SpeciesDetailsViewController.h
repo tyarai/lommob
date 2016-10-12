@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Species.h"
 #import "MWPhotoBrowser.h"
+#import "CameraViewController.h"
 
-@interface SpeciesDetailsViewController : UIViewController <UIScrollViewDelegate, MWPhotoBrowserDelegate>
+@interface SpeciesDetailsViewController : UIViewController <UIScrollViewDelegate, MWPhotoBrowserDelegate,CameraViewControllerDelegate>
 {
     NSInteger _imagePosition;
     CGFloat _lastContentOffset;

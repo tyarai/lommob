@@ -19,5 +19,7 @@
 #define KEY_SESSID @"sessid"
 #define KEY_SESSION_NAME @"session_name"
 #define KEY_TOKEN @"token"
+#define KEY_UID @"uid"
+
 
 

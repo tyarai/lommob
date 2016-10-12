@@ -879,7 +879,9 @@
 		B46779311D46211700618410 /* LemurLifeListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B46779301D46211700618410 /* LemurLifeListNode.m */; };
 		B46779341D46224400618410 /* LemurLifeListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B46779331D46224400618410 /* LemurLifeListResult.m */; };
 		B46779361D4665B000618410 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46779351D4665AF00618410 /* Localizable.strings */; };
+		B475F1861DAA0401006A12EF /* SightingsInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B475F1851DAA0401006A12EF /* SightingsInfoViewController.m */; };
 		B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */; };
+		B4889C0E1DAB376F0096F908 /* SightingDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4889C0D1DAB376F0096F908 /* SightingDataTableViewController.m */; };
 		B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */; };
 		B4905CCE1D817BFD0059FA94 /* LemurLifeListTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B4905CCD1D817BFD0059FA94 /* LemurLifeListTable.m */; };
 		B49C5FF41C999D4400B4F08D /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = B49C5FEF1C999D4400B4F08D /* UIImage+Alpha.m */; };
@@ -1855,8 +1857,12 @@
 		B46779321D46224400618410 /* LemurLifeListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LemurLifeListResult.h; path = Models/JsonModels/Result/LemurLifeListResult.h; sourceTree = "<group>"; };
 		B46779331D46224400618410 /* LemurLifeListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LemurLifeListResult.m; path = Models/JsonModels/Result/LemurLifeListResult.m; sourceTree = "<group>"; };
 		B46779351D4665AF00618410 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		B475F1841DAA0401006A12EF /* SightingsInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SightingsInfoViewController.h; path = Controllers/SightingsInfoViewController.h; sourceTree = "<group>"; };
+		B475F1851DAA0401006A12EF /* SightingsInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SightingsInfoViewController.m; path = Controllers/SightingsInfoViewController.m; sourceTree = "<group>"; };
 		B48667A41C81A2AA00F2B05D /* ExtinctLemursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtinctLemursViewController.h; path = Controllers/ExtinctLemursViewController.h; sourceTree = "<group>"; };
 		B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtinctLemursViewController.m; path = Controllers/ExtinctLemursViewController.m; sourceTree = "<group>"; };
+		B4889C0C1DAB376F0096F908 /* SightingDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SightingDataTableViewController.h; path = Controllers/SightingDataTableViewController.h; sourceTree = "<group>"; };
+		B4889C0D1DAB376F0096F908 /* SightingDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SightingDataTableViewController.m; path = Controllers/SightingDataTableViewController.m; sourceTree = "<group>"; };
 		B48F146C1C995DB30067F19B /* AuthorDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthorDetailViewController.h; path = Controllers/AuthorDetailViewController.h; sourceTree = "<group>"; };
 		B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AuthorDetailViewController.m; path = Controllers/AuthorDetailViewController.m; sourceTree = "<group>"; };
 		B4905CCC1D817BFD0059FA94 /* LemurLifeListTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LemurLifeListTable.h; path = Models/Database/LemurLifeListTable.h; sourceTree = "<group>"; };
@@ -2950,6 +2956,8 @@
 		4C74F2841C06381A00543A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B4889C0B1DAB36540096F908 /* SightingData */,
+				B475F1831DAA03DA006A12EF /* SightingsInfo */,
 				B4A275551DA8D86100777499 /* CameraViewController */,
 				B4BBF3BD1C9790BF005A5196 /* Authors */,
 				B48667A31C81A29100F2B05D /* Extinct Lemurs */,
@@ -3173,6 +3181,15 @@
 			name = Cell;
 			sourceTree = "<group>";
 		};
+		B475F1831DAA03DA006A12EF /* SightingsInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B475F1841DAA0401006A12EF /* SightingsInfoViewController.h */,
+				B475F1851DAA0401006A12EF /* SightingsInfoViewController.m */,
+			);
+			name = SightingsInfo;
+			sourceTree = "<group>";
+		};
 		B48667A31C81A29100F2B05D /* Extinct Lemurs */ = {
 			isa = PBXGroup;
 			children = (
@@ -3186,6 +3203,15 @@
 				B4AF34261C9A80420039DEBB /* ExtinctLemursCell.m */,
 			);
 			name = "Extinct Lemurs";
+			sourceTree = "<group>";
+		};
+		B4889C0B1DAB36540096F908 /* SightingData */ = {
+			isa = PBXGroup;
+			children = (
+				B4889C0C1DAB376F0096F908 /* SightingDataTableViewController.h */,
+				B4889C0D1DAB376F0096F908 /* SightingDataTableViewController.m */,
+			);
+			name = SightingData;
 			sourceTree = "<group>";
 		};
 		B49C5FE71C99934900B4F08D /* UIImage */ = {
@@ -4275,6 +4301,7 @@
 				4C59AD911C15F57800EA74C5 /* SpeciesViewController.m in Sources */,
 				4C74F2AF1C0639C400543A7F /* Photographs.m in Sources */,
 				B4D88E711C9A00670096B067 /* ScientificName.m in Sources */,
+				B4889C0E1DAB376F0096F908 /* SightingDataTableViewController.m in Sources */,
 				B49C5FF51C999D4400B4F08D /* UIImage+Resize.m in Sources */,
 				8E9354A51D01C0FB0022A220 /* PublicationNode.m in Sources */,
 				4C74F28F1C06387A00543A7F /* RNCachingURLProtocol.m in Sources */,
@@ -4308,6 +4335,7 @@
 				B4BBF3C01C9790F3005A5196 /* AuthorsTableViewController.m in Sources */,
 				4C0BC9EB1C36F7C00062082B /* WatchingSiteDetailsViewController.m in Sources */,
 				4C74F28E1C06387A00543A7F /* NSString+Sha1.m in Sources */,
+				B475F1861DAA0401006A12EF /* SightingsInfoViewController.m in Sources */,
 				B4C495571D91274F00B829F5 /* Sightings.m in Sources */,
 				4C59ADA51C15F64900EA74C5 /* AboutViewController.m in Sources */,
 				4CF3E18B1CF2B4B1003010A5 /* PostsTableViewCell.m in Sources */,

@@ -534,7 +534,15 @@
     if([[segue identifier]  isEqual: @"showCameraVC"]){
         CameraViewController *vc = (CameraViewController*) [segue destinationViewController];
         vc.currentSpecies = self.specy;
+        vc.delegate = self;
         
     }
 }
+
+#pragma CameraViewControllerDelegate
+
+-(void)dismissCameraViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
