@@ -55,6 +55,70 @@
     self.pullToRefresh = YES;
     appDelegate.showActivity = NO;
     [self loadOnlineSightings];
+    [self syncWithServer];
+    
+}
+     
+-(void) syncWithServer{
+    
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        
+        [self showLoginPopup ];
+        [self.tableViewLifeList setHidden:YES];
+        //[Tools emptySightingTable];
+        //[Tools emptyLemurLifeListTable];
+        
+    }else{
+        
+        NSString * sessionName = [appDelegate _sessionName];
+        NSString * sessionID   = [appDelegate _sessid];
+        
+        self.initialLoad = TRUE;
+        [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+            BOOL stillConnected = YES;
+            
+            
+            UserConnectedResult* sessionCheckResult = nil;
+            if (err)
+            {
+                [Tools showError:err onViewController:self];
+            }
+            else
+            {
+                NSError* error;
+                NSDictionary* tmpDict = (NSDictionary*) json;
+                sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+                
+                if (error){
+                    NSLog(@"Error parse : %@", error.debugDescription);
+                }else{
+                    if(sessionCheckResult.user != nil){
+                        if (sessionCheckResult.user.uid == 0){
+                            stillConnected = NO;
+                        }
+                        
+                    }
+                }
+                
+            }
+            //--- Only do this when stillConnected = YES ---//
+            if(stillConnected){
+                NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
+                [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID];
+                [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+                
+            }else{
+                [self showLoginPopup ];
+                [self.tableViewLifeList setHidden:YES];
+                //[Tools emptySightingTable];
+                //[Tools emptyLemurLifeListTable];
+            }
+        }];
+        
+    }
+
+    
+    
     
 }
 
@@ -532,9 +596,10 @@
 
 -(void) searchSightingsByString:(NSString*)stringValue{
     
+    NSUInteger _uid= [appDelegate _uid];
     if(stringValue){
         NSMutableArray * nodeLists = nil;
-        NSArray* lists = [Sightings getSightingsLike:stringValue];
+        NSArray* lists = [Sightings getSightingsLike:stringValue withUID:_uid];
         if([lists count] > 0 ){
             nodeLists = [NSMutableArray new];
             
@@ -552,6 +617,9 @@
                 node.nid            = row._nid;
                 node.speciesNid     = row._speciesNid;
                 node.uuid           = row._uuid;
+                node.uid            = row._uid;
+                node.isLocal        = row._isLocal;
+                node.isSynced       = row._isSynced;
                 listNode.node       = node;
                 [nodeLists addObject:listNode];
             }

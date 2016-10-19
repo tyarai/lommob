@@ -10,6 +10,7 @@
 #import "Species.h"
 #import "MWPhotoBrowser.h"
 #import "CameraViewController.h"
+#import "PopupLoginViewController.h"
 
 @interface SpeciesDetailsViewController : UIViewController <UIScrollViewDelegate, MWPhotoBrowserDelegate,CameraViewControllerDelegate>
 {
@@ -18,6 +19,7 @@
     NSArray* _photographs;
     NSTimer* _timerScrollImage;
     MWPhotoBrowser *browser;
+    WYPopoverController* popoverController;
 }
 
 @property (nonatomic, strong) Species* specy;

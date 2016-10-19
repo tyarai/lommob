@@ -46,12 +46,23 @@
        
         if(publication.isLocal){
         
-            NSArray * images =  [publication.field_photo.src componentsSeparatedByString:@"@"];
-            NSString * firstImage = [images objectAtIndex:0];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *getImagePath = [documentsDirectory stringByAppendingPathComponent:publication.field_photo.src];
+            UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
             
-            NSURL * url = [NSURL fileURLWithPath: firstImage];
+            if(img){
+                [self.imgPhoto setImage:img];
+            }else{
+                [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+            }
             
-            
+            /*
+             
+             NSArray * images =  [publication.field_photo.src componentsSeparatedByString:@"@"];
+             NSString * firstImage = [images objectAtIndex:0];
+             
+             NSURL * url = [NSURL fileURLWithPath: firstImage];
             [self.imgPhoto setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 
                 if (error) {
@@ -59,6 +70,7 @@
                 }
                 
             } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+             */
             
         }else{
             

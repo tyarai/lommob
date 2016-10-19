@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "JSONHTTPClient.h"
+#import "Sightings.h"
 
 
 #ifdef DEBUG
     #define SERVER @"http://192.168.2.242"
+    //#define SERVER @"http://172.20.10.10"
 #else
     #define SERVER @"https://www.lemursofmadagascar.com/html"
 #endif
@@ -19,10 +21,14 @@
 
 #define LOGIN_ENDPOINT @"/lom_endpoint/user/login.json"
 #define LOGOUT_ENDPOINT @"/lom_endpoint/user/logout.json"
+#define FILE_ENDPOINT @"/lom_endpoint/file.json"
+#define NODE_ENDPOINT @"/lom_endpoint/node.json"
+
 #define ISCONNECTED_ENDPOINT @"/lom_endpoint/system/connect.json"
 #define ALL_PUBLICATION_ENDPOINT @"/all-publication-json"
 #define MY_SIGHTINGS_ENDPOINT @"/api/v1/list/my-sightings-json"
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
+
 
 
 
@@ -43,6 +49,8 @@
 -(void) getSightingsForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
+
+-(void) syncWithServer:(NSArray<Sightings *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID;
 
 
 @end

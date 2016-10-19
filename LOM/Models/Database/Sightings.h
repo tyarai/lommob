@@ -33,8 +33,9 @@
 @property (nonatomic) int64_t _isSynced;
 
 + (id) getSightingsByUUID:(NSString*) _uuid;
-+ (NSArray*) getSightingsLike:(NSString*) strValue;
++ (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid;
 + (NSArray*) getAllSightings;
++ (NSArray*) getNotSyncedSightings;
 + (void) emptySightingsTable;
 
 @end

@@ -12,6 +12,7 @@
 #import "LemurLifeListNode.h"
 #import "BaseViewController.h"
 #import "PublicationNode.h"
+#import "Sightings.h"
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
@@ -52,5 +53,6 @@
 +(void) emptyLemurLifeListTable;
 +(void) emptySightingTable;
 +(void) updateLocalSightingsUserUIDDWith:(NSUInteger) uid;
++(NSString*) base64:(UIImage*)image;
 
 @end

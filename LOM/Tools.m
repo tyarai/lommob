@@ -392,6 +392,7 @@ static float appScale = 1.0;
                 int64_t  _species_nid   = sighting.speciesNid;
                 int64_t  _nid           = sighting.nid;
                 int64_t  _count         = sighting.count;
+                int64_t  _uid           = sighting.uid;
                 NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
                 [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
                 NSDate *createdDate     = [[NSDate alloc]init];
@@ -419,14 +420,16 @@ static float appScale = 1.0;
                     newSighting._title          = _title;
                     newSighting._createdTime    = _created;
                     newSighting._uuid           = _uuid;
-                    
+                    newSighting._uid            = _uid;
+                    newSighting._isLocal        = (int)NO;
+                    newSighting._isSynced       = (int)YES;
                     [newSighting save];
                     
                 }else{
                     
                     
-                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _nid = '%lli' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' WHERE _uuid = '%@' ",
-                    _nid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_uuid];
+                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _nid = '%lli' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _uid = '%lli' , _isLocal = '0' , _isSynced = '1' WHERE _uuid = '%@' ",
+                    _nid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_uid,_uuid];
                     
                     [Sightings executeUpdateQuery:query];
                     
@@ -511,6 +514,16 @@ static float appScale = 1.0;
     if (view.refreshControl){
         [view.refreshControl endRefreshing];
     }
+}
+
+
++(NSString*) base64:(UIImage*)image{
+    if(image){
+        NSData * imageData = UIImageJPEGRepresentation(image, 1.0);
+        NSString * base64 = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        return base64;
+    }
+    return nil;
 }
 
 @end

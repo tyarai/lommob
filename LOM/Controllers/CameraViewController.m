@@ -15,6 +15,8 @@
 #import "Sightings.h"
 #import "AppDelegate.h"
 #import "User.h"
+#import "UserConnectedResult.h"
+
 
 #define FILE_EXT @".jpeg"
 
@@ -68,9 +70,62 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     UIImage * image = info[UIImagePickerControllerOriginalImage];
+    
     self.imageView.image = image;
     self.photoFileName = [self saveImageToFile:image];
     [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+-(UIImage*) resizeImage:(UIImage*) image scaledSize:(CGSize) newSize{
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+-(UIImage *)resizeImage:(UIImage *)image newWidth:(float)maxWidth newHeight:(float)maxHeight
+{
+    float actualHeight = image.size.height;
+    float actualWidth = image.size.width;
+    //float maxHeight = 300.0;
+    //float maxWidth = 400.0;
+    float imgRatio = actualWidth/actualHeight;
+    float maxRatio = maxWidth/maxHeight;
+    float compressionQuality = 0.75;//50 percent compression
+    
+    if (actualHeight > maxHeight || actualWidth > maxWidth)
+    {
+        if(imgRatio < maxRatio)
+        {
+            //adjust width according to maxHeight
+            imgRatio = maxHeight / actualHeight;
+            actualWidth = imgRatio * actualWidth;
+            actualHeight = maxHeight;
+        }
+        else if(imgRatio > maxRatio)
+        {
+            //adjust height according to maxWidth
+            imgRatio = maxWidth / actualWidth;
+            actualHeight = imgRatio * actualHeight;
+            actualWidth = maxWidth;
+        }
+        else
+        {
+            actualHeight = maxHeight;
+            actualWidth = maxWidth;
+        }
+    }
+    
+    CGRect rect = CGRectMake(0.0, 0.0, actualWidth, actualHeight);
+    UIGraphicsBeginImageContext(rect.size);
+    [image drawInRect:rect];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    NSData *imageData = UIImageJPEGRepresentation(img, compressionQuality);
+    UIGraphicsEndImageContext();
+    
+    return [UIImage imageWithData:imageData];
+    
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
@@ -79,10 +134,11 @@
 
 -(NSString*) saveImageToFile:(UIImage*) image{
     if(image){
+        UIImage *resizedImage = [self resizeImage:image newWidth:1024 newHeight:724];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString * title = self.currentSpecies._title;
         title = [title stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        NSString * fileName = [NSString stringWithFormat: @"%ld_%@", appDelegate._curentUser.uid, title];
+        NSString * fileName = [NSString stringWithFormat: @"%ld_%@", appDelegate._uid, title];
         NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
         NSString * date = [dateFormatter stringFromDate:[NSDate date]];
@@ -90,10 +146,13 @@
         fileName = [fileName stringByAppendingString:FILE_EXT];
         NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
         
-       [UIImageJPEGRepresentation(image, 1.0)writeToFile:filePath atomically:YES];
+       [UIImageJPEGRepresentation(resizedImage, 1.0)writeToFile:filePath atomically:YES];
         
-        return filePath;
-    }
+        //return filePath;
+        return fileName;
+         
+        
+           }
     return nil;
 }
 
@@ -108,42 +167,92 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+
+
 -(void)saveSightingInfo:(NSInteger)observation placeName:(NSString *)placeName date:(NSDate*)date comments:(NSString *)comments{
-    NSInteger _uid = [[Tools getStringUserPreferenceWithKey:KEY_UID] integerValue];
     
-    if(observation && placeName && comments && date ){
-        NSUUID *uuid = [NSUUID UUID];
-        NSString * _uuid        = [uuid UUIDString];
-        NSString *_speciesName  = self.currentSpecies._title;
-        NSInteger   _nid        = self.currentSpecies._species_id;
-        NSInteger  _count       = observation;
-        NSString *_placeName    = placeName;
-        NSString *_placeLatitude = @"";
-        NSString *_placeLongitude= @"";
-        NSString *_photoName     = self.photoFileName;
-        NSString *_title         = comments;
-        double  _created         = [date timeIntervalSince1970];
-        double  _modified        = [date timeIntervalSince1970];
-        Sightings * newSightings = [Sightings new];
-        newSightings._uuid          = _uuid;
-        newSightings._speciesName   = _speciesName;
-        newSightings._nid           = _nid;
-        newSightings._uid           = _uid;
-        newSightings._speciesCount  = _count;
-        newSightings._placeName     = _placeName;
-        newSightings._placeLatitude = _placeLatitude;
-        newSightings._placeLongitude= _placeLongitude;
-        newSightings._photoFileNames= _photoName;
-        newSightings._title         = _title;
-        newSightings._createdTime   = _created;
-        newSightings._modifiedTime  = _modified;
-        newSightings._isLocal       = (int)YES; //From iPhone = YES
-        newSightings._isSynced      = (int)NO; // Not yet synced with server
+    NSString * sessionName = [appDelegate _sessionName];
+    NSString * sessionID   = [appDelegate _sessid];
+    
+    
+    
+    [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+        BOOL stillConnected = YES;
         
-        [newSightings save];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    [self.delegate dismissCameraViewController];
+        
+        UserConnectedResult* sessionCheckResult = nil;
+        if (err)
+        {
+            [Tools showError:err onViewController:self];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error){
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }else{
+                if(sessionCheckResult.user != nil){
+                    if (sessionCheckResult.user.uid == 0){
+                        stillConnected = NO;
+                    }
+                    
+                }
+            }
+            
+        }
+        //--- Only do this when stillConnected = YES ---//
+        if(stillConnected){
+            
+            NSInteger _uid = [appDelegate _uid];
+            
+            if(observation && placeName && comments && date ){
+                NSUUID *uuid = [NSUUID UUID];
+                NSString * _uuid        = [uuid UUIDString];
+                NSString *_speciesName  = self.currentSpecies._title;
+                NSInteger   _nid        = self.currentSpecies._species_id;
+                NSInteger  _count       = observation;
+                NSString *_placeName    = placeName;
+                NSString *_placeLatitude = @"";
+                NSString *_placeLongitude= @"";
+                NSString *_photoName     = self.photoFileName;
+                NSString *_title         = comments;
+                double  _created         = [date timeIntervalSince1970];
+                double  _modified        = [date timeIntervalSince1970];
+                Sightings * newSightings = [Sightings new];
+                newSightings._uuid          = _uuid;
+                newSightings._speciesName   = _speciesName;
+                newSightings._nid           = _nid;
+                newSightings._uid           = _uid;
+                newSightings._speciesCount  = _count;
+                newSightings._placeName     = _placeName;
+                newSightings._placeLatitude = _placeLatitude;
+                newSightings._placeLongitude= _placeLongitude;
+                newSightings._photoFileNames= _photoName;
+                newSightings._title         = _title;
+                newSightings._createdTime   = _created;
+                newSightings._modifiedTime  = _modified;
+                newSightings._isLocal       = (int)YES; //From iPhone = YES
+                newSightings._isSynced      = (int)NO; // Not yet synced with server
+                
+                [newSightings save];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            [self.delegate dismissCameraViewController];
+            
+        }else{
+            //[self showLoginPopup ];
+            //[self.tableViewLifeList setHidden:YES];
+            
+        }
+    }];
+
+    
+    
+    
 }
 
 

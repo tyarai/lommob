@@ -12,6 +12,7 @@
 #import "Species.h"
 #import "SightingDataTableViewController.h"
 
+
 @protocol CameraViewControllerDelegate <NSObject>
 
 -(void) dismissCameraViewController;

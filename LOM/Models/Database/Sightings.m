@@ -20,9 +20,14 @@
     return [self instancesOrderedBy:@" _nid DESC"];
 }
 
++ (NSArray*) getNotSyncedSightings{
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" _isLocal = '1' AND _isSynced ='0'"]];
 
-+ (NSArray*) getSightingsLike:(NSString*) strValue {
-    return [Sightings instancesWhere:[NSString stringWithFormat:@"_title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ", strValue,strValue,strValue]];
+}
+
+
++ (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid {
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%'  ", strValue,strValue,strValue]];
 }
 
 + (void) emptySightingsTable{

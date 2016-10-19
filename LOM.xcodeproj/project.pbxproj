@@ -875,6 +875,7 @@
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
 		4CF3E18B1CF2B4B1003010A5 /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */; };
 		8E9354A51D01C0FB0022A220 /* PublicationNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9354A41D01C0FB0022A220 /* PublicationNode.m */; };
+		B460A6081DAF2D0D001BCECF /* FileResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B460A6071DAF2D0D001BCECF /* FileResult.m */; };
 		B467792E1D46209800618410 /* LemurLifeList.m in Sources */ = {isa = PBXBuildFile; fileRef = B467792D1D46209800618410 /* LemurLifeList.m */; };
 		B46779311D46211700618410 /* LemurLifeListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B46779301D46211700618410 /* LemurLifeListNode.m */; };
 		B46779341D46224400618410 /* LemurLifeListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B46779331D46224400618410 /* LemurLifeListResult.m */; };
@@ -1850,6 +1851,8 @@
 		8E9354A31D01C0FB0022A220 /* PublicationNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublicationNode.h; path = Models/WebServices/PublicationNode.h; sourceTree = "<group>"; };
 		8E9354A41D01C0FB0022A220 /* PublicationNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublicationNode.m; path = Models/WebServices/PublicationNode.m; sourceTree = "<group>"; };
 		B45DFF241D46CCF300886138 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B460A6061DAF2D0D001BCECF /* FileResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileResult.h; path = Models/JsonModels/Result/FileResult.h; sourceTree = "<group>"; };
+		B460A6071DAF2D0D001BCECF /* FileResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileResult.m; path = Models/JsonModels/Result/FileResult.m; sourceTree = "<group>"; };
 		B467792C1D46209800618410 /* LemurLifeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LemurLifeList.h; path = Models/JsonModels/LemurLifeList.h; sourceTree = "<group>"; };
 		B467792D1D46209800618410 /* LemurLifeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LemurLifeList.m; path = Models/JsonModels/LemurLifeList.m; sourceTree = "<group>"; };
 		B467792F1D46211700618410 /* LemurLifeListNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LemurLifeListNode.h; path = Models/JsonModels/LemurLifeListNode.h; sourceTree = "<group>"; };
@@ -3047,6 +3050,8 @@
 				B46779331D46224400618410 /* LemurLifeListResult.m */,
 				B4A4E0941D7B6ADD00916D0C /* UserConnectedResult.h */,
 				B4A4E0951D7B6ADD00916D0C /* UserConnectedResult.m */,
+				B460A6061DAF2D0D001BCECF /* FileResult.h */,
+				B460A6071DAF2D0D001BCECF /* FileResult.m */,
 			);
 			name = Result;
 			sourceTree = "<group>";
@@ -4346,6 +4351,7 @@
 				4C59ADAC1C16119100EA74C5 /* SpecyCollectionViewCell.m in Sources */,
 				4C85FF641C37F3B200D6C233 /* PublicationResult.m in Sources */,
 				B46779341D46224400618410 /* LemurLifeListResult.m in Sources */,
+				B460A6081DAF2D0D001BCECF /* FileResult.m in Sources */,
 				4C5177491C21EA5700BBD0B1 /* SpeciesDetailsViewController.m in Sources */,
 				B4905CCE1D817BFD0059FA94 /* LemurLifeListTable.m in Sources */,
 				4C95D4441C0A24AC0038B9FC /* Tools.m in Sources */,
