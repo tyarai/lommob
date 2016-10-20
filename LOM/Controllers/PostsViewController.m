@@ -18,6 +18,8 @@
 #import "PublicationNode.h"
 #import "UserConnectedresult.h"
 #import "PublicationResult.h"
+#import "LOM_TableViewCell.h"
+#import "UITableViewCell+Stretch.h"
 
 @interface PostsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
@@ -48,6 +50,12 @@
     
     self.viewTitle.tintColor = ORANGE_COLOR;
     self.navigationItem.title = NSLocalizedString(@"sightings_title",@"");
+    
+    self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
+    self.tableViewLifeList.estimatedRowHeight = 200;
+    self.tableViewLifeList.backgroundColor = nil;
+    self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     
 }
 
@@ -247,6 +255,8 @@
     return 0;
 }
 
+#pragma UITableView
+
 
 
 /*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -261,6 +271,8 @@
     PublicationNode* sightingNode = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
     
     [cell displaySighting:sightingNode.node];
+    
+    cell = (PostsTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-10];
     
     return cell;
     

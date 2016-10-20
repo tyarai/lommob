@@ -22,4 +22,8 @@
 #define KEY_UID @"uid"
 
 
+#define IMAGE_RESIZED_WIDTH 768
+#define IMAGE_RESIZED_HEIGHT 576
+
+
 

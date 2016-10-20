@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSpecies;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
 @property (weak, nonatomic) IBOutlet UILabel *syncInfo;
+@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 
 
 - (void) displaySighting:(Publication*) publication ;

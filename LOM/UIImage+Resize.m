@@ -95,7 +95,7 @@
             drawTransposed = NO;
     }
     
-    return [self resizedImage:newSize
+    return [self resizeImage:newSize
                     transform:[self transformForOrientation:newSize]
                drawTransposed:drawTransposed
          interpolationQuality:quality];

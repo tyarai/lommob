@@ -875,6 +875,7 @@
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
 		4CF3E18B1CF2B4B1003010A5 /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */; };
 		8E9354A51D01C0FB0022A220 /* PublicationNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9354A41D01C0FB0022A220 /* PublicationNode.m */; };
+		B43DF4321DB8F21800319654 /* UITableViewCell+Stretch.m in Sources */ = {isa = PBXBuildFile; fileRef = B43DF4311DB8F21800319654 /* UITableViewCell+Stretch.m */; };
 		B460A6081DAF2D0D001BCECF /* FileResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B460A6071DAF2D0D001BCECF /* FileResult.m */; };
 		B467792E1D46209800618410 /* LemurLifeList.m in Sources */ = {isa = PBXBuildFile; fileRef = B467792D1D46209800618410 /* LemurLifeList.m */; };
 		B46779311D46211700618410 /* LemurLifeListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B46779301D46211700618410 /* LemurLifeListNode.m */; };
@@ -1850,6 +1851,9 @@
 		4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostsTableViewCell.m; path = Controllers/PostsTableViewCell.m; sourceTree = "<group>"; };
 		8E9354A31D01C0FB0022A220 /* PublicationNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublicationNode.h; path = Models/WebServices/PublicationNode.h; sourceTree = "<group>"; };
 		8E9354A41D01C0FB0022A220 /* PublicationNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublicationNode.m; path = Models/WebServices/PublicationNode.m; sourceTree = "<group>"; };
+		B43DF42C1DB8EF3100319654 /* LOM_TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LOM_TableViewCell.h; path = Tools/LOM_TableViewCell.h; sourceTree = "<group>"; };
+		B43DF4301DB8F21800319654 /* UITableViewCell+Stretch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableViewCell+Stretch.h"; path = "Tools/UITableViewCell+Stretch.h"; sourceTree = "<group>"; };
+		B43DF4311DB8F21800319654 /* UITableViewCell+Stretch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableViewCell+Stretch.m"; path = "Tools/UITableViewCell+Stretch.m"; sourceTree = "<group>"; };
 		B45DFF241D46CCF300886138 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		B460A6061DAF2D0D001BCECF /* FileResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileResult.h; path = Models/JsonModels/Result/FileResult.h; sourceTree = "<group>"; };
 		B460A6071DAF2D0D001BCECF /* FileResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileResult.m; path = Models/JsonModels/Result/FileResult.m; sourceTree = "<group>"; };
@@ -2984,6 +2988,7 @@
 		4C74F2851C06382A00543A7F /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				B43DF4251DB8EE6300319654 /* TableViewCell */,
 				B4AF342B1C9A9BEC0039DEBB /* NetworkReachability */,
 				B49C5FE71C99934900B4F08D /* UIImage */,
 				4C59ADA61C1606BF00EA74C5 /* UIView+Corner.h */,
@@ -3184,6 +3189,16 @@
 				4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		B43DF4251DB8EE6300319654 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B43DF42C1DB8EF3100319654 /* LOM_TableViewCell.h */,
+				B43DF4301DB8F21800319654 /* UITableViewCell+Stretch.h */,
+				B43DF4311DB8F21800319654 /* UITableViewCell+Stretch.m */,
+			);
+			name = TableViewCell;
 			sourceTree = "<group>";
 		};
 		B475F1831DAA03DA006A12EF /* SightingsInfo */ = {
@@ -4333,6 +4348,7 @@
 				B4C599BB1C71155B00C4B99A /* Menus.m in Sources */,
 				B4A275581DA8D88700777499 /* CameraViewController.m in Sources */,
 				4C74F2981C0638B900543A7F /* MTCSimpleActivityView.m in Sources */,
+				B43DF4321DB8F21800319654 /* UITableViewCell+Stretch.m in Sources */,
 				4C5D047F1C06351700EFCAAC /* Families.m in Sources */,
 				B4B7BE811C7EA36400D32A48 /* OriginOfLemursRootViewController.m in Sources */,
 				4C85FF6A1C37F4F700D6C233 /* LoginResult.m in Sources */,

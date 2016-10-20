@@ -35,6 +35,10 @@
         self.lblSpecies.text = publication.species;
     }
     
+    if (![Tools isNullOrEmptyString:publication.title]) {
+        self.lblTitle.text = publication.title;
+    }
+    
     if (![Tools isNullOrEmptyString:publication.created]) {
         self.lblDate.text = publication.created;
     }
