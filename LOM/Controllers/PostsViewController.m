@@ -72,6 +72,7 @@
         
         NSString * sessionName = [appDelegate _sessionName];
         NSString * sessionID   = [appDelegate _sessid];
+        NSString * token       = [appDelegate _currentToken];
         
         self.initialLoad = TRUE;
         [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
@@ -104,7 +105,7 @@
             //--- Only do this when stillConnected = YES ---//
             if(stillConnected){
                 NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
-                [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID];
+                [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
                 
             }else{

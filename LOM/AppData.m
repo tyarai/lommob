@@ -190,7 +190,7 @@ static AppData* _instance;
 }
 
 
--(void) syncWithServer:(NSArray<Sightings *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID{
+-(void) syncWithServer:(NSArray<Sightings *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID {
     if([sightings count] != 0){
         
         [self buildPOSTHeader];
@@ -219,9 +219,9 @@ static AppData* _instance;
                         NSLog(@"Error : %@", err.description);
                     }else{
                         
-                        sighting._isSynced = YES;
-                        [sighting save];
-                        /*NSError* error;
+                        
+                        
+                        NSError* error;
                         NSDictionary* tmpDict = (NSDictionary*) json;
                         FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
                         
@@ -232,20 +232,21 @@ static AppData* _instance;
                         else{
                             NSInteger fid  = fileResult.fid;
                             //NSString * uri = fileResult.uri;
-                            [self saveSighting:sighting fileID:fid completeBlock:^(id json, JSONModelError *err) {
+                            [self saveSighting:sighting fileID:fid sessionName:sessionName sessionId:sessionID completeBlock:^(id json, JSONModelError *err) {
                                 NSError* error;
-                                NSDictionary* tmpDict = (NSDictionary*) json;
+                                //NSDictionary* tmpDict = (NSDictionary*) json;
                                 //FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
                                 
                                 if (error){
                                     NSLog(@"Error parse : %@", error.debugDescription);
                                 }
                                 else{
-                                    
+                                    sighting._isSynced = YES;
+                                    [sighting save];
                                 }
                             }];
                         }
-                         */
+                        
                             
                     }
                 }];
@@ -300,14 +301,54 @@ static AppData* _instance;
     return 0;
 }
 
--(void) saveSighting:(Sightings*)sighting fileID:(NSInteger)fid completeBlock:(JSONObjectBlock) completeBlock{
-    if(sighting){
+-(void) saveSighting:(Sightings*)sighting
+              fileID:(NSInteger)fid
+         sessionName:(NSString*)sessionName
+          sessionId :(NSString*)sessionId
+
+       completeBlock:(JSONObjectBlock) completeBlock{
+    
+    if(sighting && sessionName && sessionId && fid != 0){
+        
+        [self buildPOSTHeader];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionId];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+
+        
         NSString * sightingTitle = sighting._title;
         NSInteger speciesNID = sighting._speciesNid;
+        NSString * placeName = sighting._placeName;
+        NSString * latitude  = sighting._placeLatitude;
+        NSString * longitude = sighting._placeLongitude;
+        NSInteger  count     = sighting._speciesCount;
+        NSInteger  isLocal   = sighting._isLocal;
+        NSInteger  isSynced  = (int)YES;
+        double dateTimeStamp = sighting._createdTime;
+        NSTimeInterval _interval= dateTimeStamp;
+        NSDate *vDate = [NSDate dateWithTimeIntervalSince1970:_interval];
+        NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
+        [_formatter setDateFormat:@"M/d/y"];
+        NSString * strDate = [_formatter stringFromDate:vDate];
+
+        NSString *body = [NSString stringWithFormat:@"type=publication&language=und"];
+        //body = [body stringByAppendingString:@"&body[und][0][format]=full_html"];
         
-        NSString * body = [NSString stringWithFormat:@"title=[%@]&type=publication&language=und&                           body[und][0][format]=full_html&body[und][0][value]=[%@]&field_associated_species[und][nid]=[%ld]& field_photo[und][0][fid]=[%ld]",sightingTitle,sightingTitle,(long)speciesNID,(long)fid];
+        body = [body stringByAppendingFormat:@"&title=%@",sightingTitle];
+        body = [body stringByAppendingFormat:@"&body[und][0][value]=%@",sightingTitle];
+        body = [body stringByAppendingFormat:@"&field_place_name[und][0][value]=%@",placeName];
+        body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
+        body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%lu",speciesNID];
+        body = [body stringByAppendingFormat:@"&field_latitude[und][0][value]=%@",latitude];
+        body = [body stringByAppendingFormat:@"&field_longitude[und][0][value]=%@",longitude];
+        body = [body stringByAppendingFormat:@"&field_is_local[und][value]=%lu",isLocal];
+        body = [body stringByAppendingFormat:@"&field_is_synced[und][value]=%lu",isSynced];
+        body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
+        body = [body stringByAppendingFormat:@"&field_photo[und][0][fid]=%lu",fid];
+        
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NODE_ENDPOINT];
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
+        
+      
         
     }
 }

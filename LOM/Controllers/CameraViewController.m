@@ -212,6 +212,7 @@
             if(observation && placeName && comments && date ){
                 NSUUID *uuid = [NSUUID UUID];
                 NSString * _uuid        = [uuid UUIDString];
+                NSInteger   _speciesNid = self.currentSpecies._species_id;
                 NSString *_speciesName  = self.currentSpecies._title;
                 NSInteger   _nid        = self.currentSpecies._species_id;
                 NSInteger  _count       = observation;
@@ -222,9 +223,11 @@
                 NSString *_title         = comments;
                 double  _created         = [date timeIntervalSince1970];
                 double  _modified        = [date timeIntervalSince1970];
+                
                 Sightings * newSightings = [Sightings new];
                 newSightings._uuid          = _uuid;
                 newSightings._speciesName   = _speciesName;
+                newSightings._speciesNid    = _speciesNid;
                 newSightings._nid           = _nid;
                 newSightings._uid           = _uid;
                 newSightings._speciesCount  = _count;
