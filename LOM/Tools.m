@@ -12,6 +12,7 @@
 #import "LemurLifeListTable.h"
 #import "Sightings.h"
 #import "PublicationNode.h"
+#import "AppData.h"
 
 
 @implementation Tools
@@ -428,7 +429,7 @@ static float appScale = 1.0;
                 }else{
                     
                     
-                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _nid = '%lli' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _uid = '%lli' , _isLocal = '0' , _isSynced = '1' WHERE _uuid = '%@' ",
+                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _nid = '%lli' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _uid = '%lli' , _isSynced = '1' WHERE _uuid = '%@' ",
                     _nid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_uid,_uuid];
                     
                     [Sightings executeUpdateQuery:query];
@@ -524,6 +525,14 @@ static float appScale = 1.0;
         return base64;
     }
     return nil;
+}
+
++(void) saveSyncDate{
+    NSDate *currDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    NSString *syncDate = [dateFormatter stringFromDate:currDate];
+    [Tools setUserPreferenceWithKey:LAST_SYNC_DATE andStringValue:syncDate];
 }
 
 @end

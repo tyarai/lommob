@@ -10,6 +10,7 @@
 #import "Tools.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
+
 @implementation PostsTableViewCell
 
 - (void)awakeFromNib {
@@ -46,13 +47,10 @@
     
     if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
         
-        //[self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
        
         if(publication.isLocal){
         
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *getImagePath = [documentsDirectory stringByAppendingPathComponent:publication.field_photo.src];
+            NSString *getImagePath = [publication getSightingImageFullPathName];
             UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
             
             if(img){
@@ -60,21 +58,6 @@
             }else{
                 [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
             }
-            
-            /*
-             
-             NSArray * images =  [publication.field_photo.src componentsSeparatedByString:@"@"];
-             NSString * firstImage = [images objectAtIndex:0];
-             
-             NSURL * url = [NSURL fileURLWithPath: firstImage];
-            [self.imgPhoto setImageWithURL:url completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                
-                if (error) {
-                    [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
-                }
-                
-            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-             */
             
         }else{
             

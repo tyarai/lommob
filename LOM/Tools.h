@@ -54,5 +54,6 @@
 +(void) emptySightingTable;
 +(void) updateLocalSightingsUserUIDDWith:(NSUInteger) uid;
 +(NSString*) base64:(UIImage*)image;
++(void) saveSyncDate;
 
 @end

@@ -11,15 +11,17 @@
 #import "PopupLoginViewController.h"
 #import "WYPopoverController.h"
 #import "BaseViewController.h"
+#import "MWPhotoBrowser.h"
 
 
-@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
+@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate>{
     
     NSArray* _sightingsList;
     BOOL isSearchShown;
    
-    
+    MWPhotoBrowser *browser;
     WYPopoverController* popoverController;
+    
 }
 @property (weak, nonatomic) IBOutlet UIView *searchView;
 @property (weak, nonatomic) IBOutlet UITextField *searchText;
@@ -31,5 +33,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchTopSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchHeight;
 @property (weak, nonatomic) IBOutlet UILabel *viewTitle;
+@property NSMutableArray * currentPhotos;   
 
 @end

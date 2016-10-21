@@ -96,6 +96,7 @@
     self._uid    = [[Tools getStringUserPreferenceWithKey:KEY_UID] integerValue];
     
         
+        
     return YES;
 }
 

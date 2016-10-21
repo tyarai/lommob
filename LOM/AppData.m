@@ -159,9 +159,23 @@ static AppData* _instance;
         NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
    
-        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, MY_SIGHTINGS_ENDPOINT];
         
-        [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
+        NSString* url= nil;
+        
+        NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        if([Tools isNullOrEmptyString:lastSyncDate]){
+            //--- Rehefa vao mi-sync voalohany dia alatsaka daholo izay sighting any na Local na tsia --
+            url = [NSString stringWithFormat:@"%@%@", SERVER,ALL_MY_SIGHTINGS_ENDPOINT];
+            [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
+        }else{
+            //--- Rehefa vita sync voalohany dia izay Sighting natao tany @ Server ihany sisa no alaina --
+            //NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+            url = [NSString stringWithFormat:@"%@%@", SERVER,MY_SIGHTINGS_MODIFIED_FROM];
+            NSDictionary *param = [NSDictionary dictionaryWithObject:lastSyncDate forKey:@"changed"];
+            [JSONHTTPClient getJSONFromURLWithString:url params:param completion:completeBlock];
+        }
+        
+        [Tools saveSyncDate];
         
     }
     
@@ -231,11 +245,9 @@ static AppData* _instance;
                         }
                         else{
                             NSInteger fid  = fileResult.fid;
-                            //NSString * uri = fileResult.uri;
+                          
                             [self saveSighting:sighting fileID:fid sessionName:sessionName sessionId:sessionID completeBlock:^(id json, JSONModelError *err) {
                                 NSError* error;
-                                //NSDictionary* tmpDict = (NSDictionary*) json;
-                                //FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
                                 
                                 if (error){
                                     NSLog(@"Error parse : %@", error.debugDescription);

@@ -20,6 +20,10 @@
 #import "PublicationResult.h"
 #import "LOM_TableViewCell.h"
 #import "UITableViewCell+Stretch.h"
+#import "SDImageCache.h"
+
+
+
 
 @interface PostsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
@@ -56,7 +60,8 @@
     self.tableViewLifeList.backgroundColor = nil;
     self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    
+    //---- Array of photo to be shown on the next Window ----
+    self.currentPhotos = [[NSMutableArray alloc] init];
 }
 
 -(void) refreshListFromOnlineData{
@@ -80,7 +85,6 @@
         
         NSString * sessionName = [appDelegate _sessionName];
         NSString * sessionID   = [appDelegate _sessid];
-        NSString * token       = [appDelegate _currentToken];
         
         self.initialLoad = TRUE;
         [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
@@ -281,8 +285,62 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.currentPhotos removeAllObjects];
     
+    PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
+    __block UIImage * image = [UIImage imageNamed:@"ico_default_specy"];
+    if(sighting){
+        NSString * imageBundleName = [sighting.node getSightingImageFullPathName];
+        if(sighting.node.isLocal){
+            image = [UIImage imageWithContentsOfFile:imageBundleName];
+        }else{
+            
+            SDImageCache *imageCache = [SDImageCache sharedImageCache];
+            [imageCache queryDiskCacheForKey:imageBundleName done:^(UIImage *cachedImage,SDImageCacheType cacheType)
+             {
+                 if(cachedImage){
+                    image = cachedImage;
+                 }
+                 
+             }];
+            
+            
+        }
+    }
+    
+    MWPhoto* photo = [MWPhoto photoWithImage:image];
+    [self.currentPhotos addObject:photo];
+    browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    
+    // Set options
+    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+    browser.displayNavArrows = YES; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+    browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
+    browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+    browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+    browser.enableGrid = NO; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+    browser.startOnGrid = NO; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+    browser.autoPlayOnAppear = NO; // Auto-play first video
+    
+    [browser setCurrentPhotoIndex:0];
+    
+    
+    [self.navigationController pushViewController:browser animated:YES];
 }
+
+#pragma mark MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
+    return self.currentPhotos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
+    if (index < self.currentPhotos.count) {
+        return [self.currentPhotos objectAtIndex:index];
+    }
+    return nil;
+}
+
 
 
 #pragma mark WYPopoverControllerDelegate
