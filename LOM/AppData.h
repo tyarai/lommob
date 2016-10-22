@@ -28,7 +28,7 @@
 #define ALL_PUBLICATION_ENDPOINT @"/all-publication-json"
 #define MY_SIGHTINGS_ENDPOINT @"/api/v1/list/sightings" // Misy parameters isLocal
 #define ALL_MY_SIGHTINGS_ENDPOINT @"/api/v1/list/all-my-sightings" // Tsy misy parameter
-#define MY_SIGHTINGS_MODIFIED_FROM @"/api/v1/list/my-sightings-modified-from" // Parameter  updated date >= date
+#define MY_SIGHTINGS_MODIFIED_FROM @"/api/v1/list/my-sightings-modified-from" // Parameter  updated date >= date & isLocal = value
 
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
 #define LAST_SYNC_DATE @"last_sync_date"

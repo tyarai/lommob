@@ -498,6 +498,7 @@
                 NSLog(@"Error parse : %@", error.debugDescription);
             }
             else{
+                [Tools saveSyncDate]; // Ovaina androany ny LAST_SYNC_DATE
                 [Tools updateSightingsWithNodes:result.nodes];
                 [self loadLocalSightings];
                 

@@ -164,18 +164,21 @@ static AppData* _instance;
         
         NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
         if([Tools isNullOrEmptyString:lastSyncDate]){
+            [Tools saveSyncDate];
             //--- Rehefa vao mi-sync voalohany dia alatsaka daholo izay sighting any na Local na tsia --
             url = [NSString stringWithFormat:@"%@%@", SERVER,ALL_MY_SIGHTINGS_ENDPOINT];
             [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
         }else{
-            //--- Rehefa vita sync voalohany dia izay Sighting natao tany @ Server ihany sisa no alaina --
-            //NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+            //--- Rehefa vita sync voalohany dia izay Sighting modified from LAST_SYNC_DATE ka isLocal = FALSE sisa no midina ---
+            
+            
             url = [NSString stringWithFormat:@"%@%@", SERVER,MY_SIGHTINGS_MODIFIED_FROM];
-            NSDictionary *param = [NSDictionary dictionaryWithObject:lastSyncDate forKey:@"changed"];
-            [JSONHTTPClient getJSONFromURLWithString:url params:param completion:completeBlock];
+            NSDictionary *JSONParam = @{@"isLocal":@"0" , @"changed":lastSyncDate};
+            
+            [JSONHTTPClient getJSONFromURLWithString:url params:JSONParam completion:completeBlock];
         }
         
-        [Tools saveSyncDate];
+        
         
     }
     
