@@ -44,6 +44,10 @@
         self.lblDate.text = publication.created;
     }
     
+    if(![Tools isNullOrEmptyString:publication.place_name]){
+        self.lblPlaceName.text = publication.place_name;
+    }
+    
     
     if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
         
