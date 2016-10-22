@@ -12,9 +12,11 @@
 #import "WYPopoverController.h"
 #import "BaseViewController.h"
 #import "MWPhotoBrowser.h"
+#import "Species.h"
+#import "PostsTableViewCell.h"
 
 
-@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate>{
+@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate,PostTableViewCellDelegate>{
     
     NSArray* _sightingsList;
     BOOL isSearchShown;
@@ -35,4 +37,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 @property NSMutableArray * currentPhotos;   
 
+
+@property (strong) Species * selectedSpecies;
 @end

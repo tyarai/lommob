@@ -9,6 +9,9 @@
 #import "PostsTableViewCell.h"
 #import "Tools.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import "Species.h"
+#import "Photographs.h"
+#import "Constants.h"
 
 
 @implementation PostsTableViewCell
@@ -22,6 +25,14 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (IBAction)btnSpeciesInfoTapped:(id)sender {
+    if(speciesNID != 0){
+        Species * species = [Species firstInstanceWhere:[NSString stringWithFormat:@"  _species_id = '%ld' ", (long)speciesNID]];
+        [self.delegate performSegueWithSpecies:species];
+    }
+    
 }
 
 - (void) displaySighting:(Publication*) publication {
@@ -48,6 +59,31 @@
         self.lblPlaceName.text = publication.place_name;
     }
     
+    NSString * strCount = nil;
+    if(publication.count > 0){
+        strCount = [NSString stringWithFormat:@"%ld",(long)publication.count];
+        
+    }else{
+        strCount = [NSString stringWithFormat:@"%@",@"-"];
+        
+    }
+    self.lblSumberObserved.text = strCount;
+    
+    NSInteger speciesNid = publication.speciesNid;
+    speciesNID = speciesNid;
+    
+    if(speciesNid != 0){
+        Species * species = [Species firstInstanceWhere:[NSString stringWithFormat:@"  _species_id = '%ld' ", (long)speciesNid]];
+        
+        if(species){
+            Photographs * photo = [species getSpecieProfilePhotograph];
+            NSString* imageName = [NSString stringWithFormat:@"%@.jpg", photo._photograph];
+            UIImage* image = [UIImage imageNamed:imageName];
+            self.speciesPhoto.image = image;
+            
+
+        }
+    }
     
     if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
         

@@ -21,7 +21,7 @@
 #import "LOM_TableViewCell.h"
 #import "UITableViewCell+Stretch.h"
 #import "SDImageCache.h"
-
+#import "SpeciesDetailsViewController.h"
 
 
 
@@ -56,12 +56,14 @@
     self.navigationItem.title = NSLocalizedString(@"sightings_title",@"");
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
-    self.tableViewLifeList.estimatedRowHeight = 200;
+    self.tableViewLifeList.estimatedRowHeight = 300;
     self.tableViewLifeList.backgroundColor = nil;
     self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //---- Array of photo to be shown on the next Window ----
     self.currentPhotos = [[NSMutableArray alloc] init];
+    
+    
 }
 
 -(void) refreshListFromOnlineData{
@@ -189,6 +191,7 @@
             node.uuid           = row._uuid;
             node.isLocal        = row._isLocal;
             node.isSynced       = row._isSynced;
+            node.count          = row._speciesCount;
             
             listNode.node       = node;
             [nodeLists addObject:listNode];
@@ -210,6 +213,31 @@
     
     //[self performSelectorOnMainThread:@selector(updateViewTitle) withObject:nil waitUntilDone:NO];
 
+}
+
+-(Species*) sightingSpecies:(Sightings*)sighting{
+    if(sighting){
+        NSInteger speciesNid = sighting._speciesNid;
+        NSString * query = [NSString stringWithFormat:@" _species_id = '%ld' ",(long)speciesNid];
+        return [Species firstInstanceWhere:query];
+    }
+    return nil;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showSpeciesInfoFromPost"]){
+        SpeciesDetailsViewController* vc = (SpeciesDetailsViewController*) [segue destinationViewController];
+        vc.specy = self.selectedSpecies;
+    }
+}
+
+#pragma PostTableViewCellDelegate
+
+-(void)performSegueWithSpecies:(Species *)species{
+    if(species){
+        self.selectedSpecies = species;
+        [self performSegueWithIdentifier:@"showSpeciesInfoFromPost" sender:self];
+    }
 }
 
 /*
@@ -277,6 +305,8 @@
     [cell displaySighting:sightingNode.node];
     
     cell = (PostsTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-10];
+    cell.delegate = self;
+    
     
     return cell;
     
@@ -290,6 +320,7 @@
     PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
     __block UIImage * image = [UIImage imageNamed:@"ico_default_specy"];
     if(sighting){
+        
         NSString * imageBundleName = [sighting.node getSightingImageFullPathName];
         if(sighting.node.isLocal){
             image = [UIImage imageWithContentsOfFile:imageBundleName];
