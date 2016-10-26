@@ -536,6 +536,8 @@
                          
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
                          
+                         [self.view layoutIfNeeded];
+                         
                          isSearchShown = YES;
                          
                          [self.searchText becomeFirstResponder];
@@ -558,6 +560,8 @@
                          [self.tableViewLifeList layoutIfNeeded];
                          
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
+                         
+                         [self.view layoutIfNeeded];
                          
                          isSearchShown = NO;
                          

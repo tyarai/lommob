@@ -656,6 +656,8 @@
                          [self.tableViewLifeList setNeedsUpdateConstraints];
                          [self.tableViewLifeList layoutIfNeeded];
                          
+                         [self.view layoutIfNeeded];
+                         
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
                          
                          isSearchShown = YES;
@@ -682,6 +684,7 @@
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
                          
                          isSearchShown = NO;
+                         [self.view layoutIfNeeded];
                          
                          [self.searchText resignFirstResponder];
                          

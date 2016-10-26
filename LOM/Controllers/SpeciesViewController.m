@@ -33,6 +33,9 @@
     
     [self showData];
 }
+-(void)viewDidAppear:(BOOL)animated{
+    [self.collectionSpecies reloadData];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -91,6 +94,7 @@
                          [self.collectionSpecies layoutIfNeeded];
                          
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
+                         [self.view layoutIfNeeded];
                          
                          isSearchShown = YES;
                          
@@ -116,6 +120,7 @@
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
                          
                          isSearchShown = NO;
+                         [self.view layoutIfNeeded];
                          
                          [self.txtSearch resignFirstResponder];
                          

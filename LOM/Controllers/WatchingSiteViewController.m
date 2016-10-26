@@ -82,6 +82,7 @@
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
                          
                          isSearchShown = YES;
+                         [self.view layoutIfNeeded];
                          
                          [self.txtSearch becomeFirstResponder];
                      }];
@@ -105,6 +106,7 @@
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
                          
                          isSearchShown = NO;
+                         [self.view layoutIfNeeded];
                          
                          [self.txtSearch resignFirstResponder];
                          
