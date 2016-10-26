@@ -12,6 +12,7 @@
 #import "Species.h"
 #import "Photographs.h"
 #import "Constants.h"
+#import "UIImage+Resize.h"
 
 
 @implementation PostsTableViewCell
@@ -72,18 +73,23 @@
     NSInteger speciesNid = publication.speciesNid;
     speciesNID = speciesNid;
     
-    if(speciesNid != 0){
+    /*if(speciesNid != 0){
         Species * species = [Species firstInstanceWhere:[NSString stringWithFormat:@"  _species_id = '%ld' ", (long)speciesNid]];
         
         if(species){
             Photographs * photo = [species getSpecieProfilePhotograph];
             NSString* imageName = [NSString stringWithFormat:@"%@.jpg", photo._photograph];
             UIImage* image = [UIImage imageNamed:imageName];
-            self.speciesPhoto.image = image;
+            CGSize size =self.speciesPhoto.frame.size;
+            UIViewContentMode mode = self.speciesPhoto.contentMode;
+            
+            UIImage*resizedImage = [image resizedImageWithContentMode:mode bounds:size interpolationQuality:1.0];
+            
+            self.speciesPhoto.image = resizedImage;
             
 
         }
-    }
+    }*/
     
     if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
         

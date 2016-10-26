@@ -56,7 +56,7 @@
     self.navigationItem.title = NSLocalizedString(@"sightings_title",@"");
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
-    self.tableViewLifeList.estimatedRowHeight = 300;
+    self.tableViewLifeList.estimatedRowHeight = 212;
     self.tableViewLifeList.backgroundColor = nil;
     self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -64,6 +64,12 @@
     self.currentPhotos = [[NSMutableArray alloc] init];
     
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableViewLifeList reloadData];
 }
 
 -(void) refreshListFromOnlineData{
@@ -264,6 +270,7 @@
         
     }
 }
+
 
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     
