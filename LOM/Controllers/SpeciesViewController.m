@@ -11,6 +11,7 @@
 #import "SpecyCollectionViewCell.h"
 #import "Tools.h"
 #import "SpeciesDetailsViewController.h"
+#import "Constants.h"
 
 @interface SpeciesViewController ()
 
@@ -28,7 +29,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = NSLocalizedString(@"species_title",@"");
+    NSString * title = NSLocalizedString(@"species_title",@"");
+    self.navigationItem.title = title;
+    self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
+    
     
     
     [self showData];

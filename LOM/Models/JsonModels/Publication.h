@@ -22,7 +22,9 @@
 @property (nonatomic, strong) NSString<Optional>* body;
 @property (nonatomic)         int64_t nid; // Post's _nid
 @property (nonatomic, strong) Photo<Optional>* field_photo;
-@property (nonatomic, strong) NSString<Optional>* created;
+@property (nonatomic, strong) NSString<Optional>* date; // sighting date
+@property (nonatomic, strong) NSString<Optional>* created; // sighting creation date
+@property (nonatomic, strong) NSString<Optional>* modified; // sighting last modified date
 @property (nonatomic, strong) NSString<Optional>* author_name;
 @property (nonatomic)         int64_t speciesNid;
 @property (nonatomic, strong) NSString<Optional>* uuid;

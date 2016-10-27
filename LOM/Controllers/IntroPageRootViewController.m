@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     self.navigationItem.title=  NSLocalizedString(@"intro_title", @"");
-    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
 
     
     Menus * introMenu = [Menus getMenuContentByMenuName:@"introduction"];

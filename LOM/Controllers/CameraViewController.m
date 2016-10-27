@@ -183,10 +183,10 @@
     
     NSString * sessionName = [appDelegate _sessionName];
     NSString * sessionID   = [appDelegate _sessid];
+    NSString * token       = [appDelegate _currentToken];
+    NSInteger uid          = [appDelegate _uid];
     
-    
-    
-    [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+    /*[appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
         BOOL stillConnected = YES;
         
         
@@ -213,8 +213,10 @@
             }
             
         }
-        //--- Only do this when stillConnected = YES ---//
-        if(stillConnected){
+     */
+        //--- Only save when below are true ---//
+        if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
+           ![Tools isNullOrEmptyString:token] &&  uid != 0){
             
             NSInteger _uid = [appDelegate _uid];
             
@@ -223,15 +225,16 @@
                 NSString * _uuid        = [uuid UUIDString];
                 NSInteger   _speciesNid = self.currentSpecies._species_id;
                 NSString *_speciesName  = self.currentSpecies._title;
-                NSInteger   _nid        = self.currentSpecies._species_id;
+                NSInteger   _nid        = 0;
                 NSInteger  _count       = observation;
                 NSString *_placeName    = placeName;
                 NSString *_placeLatitude = @"";
                 NSString *_placeLongitude= @"";
                 NSString *_photoName     = self.photoFileName;
                 NSString *_title         = comments;
-                double  _created         = [date timeIntervalSince1970];
-                double  _modified        = [date timeIntervalSince1970];
+                double _date             = [date timeIntervalSince1970];
+                double  _created         = [[NSDate date] timeIntervalSince1970];
+                double  _modified        = [[NSDate date] timeIntervalSince1970];
                 
                 Sightings * newSightings = [Sightings new];
                 newSightings._uuid          = _uuid;
@@ -245,25 +248,27 @@
                 newSightings._placeLongitude= _placeLongitude;
                 newSightings._photoFileNames= _photoName;
                 newSightings._title         = _title;
+                newSightings._date          = _date;
                 newSightings._createdTime   = _created;
                 newSightings._modifiedTime  = _modified;
                 newSightings._isLocal       = (int)YES; //From iPhone = YES
                 newSightings._isSynced      = (int)NO; // Not yet synced with server
                 
                 [newSightings save];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                //[self dismissViewControllerAnimated:YES completion:nil];
             }
-            [self.delegate dismissCameraViewController];
+            //[self.delegate dismissCameraViewController];
             
         }else{
-            //[self showLoginPopup ];
-            //[self.tableViewLifeList setHidden:YES];
+            
+            [Tools showSimpleAlertWithTitle:NSLocalizedString(@"authentication_issue", @"") andMessage:NSLocalizedString(@"session_expired", @"")];
             
         }
-    }];
+    //}];
 
     
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate dismissCameraViewController];
     
 }
 

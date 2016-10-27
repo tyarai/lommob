@@ -16,8 +16,14 @@
     return [Sightings firstInstanceWhere: queryArgument];
 }
 
++ (id) getSightingsByNID:(NSInteger) _nid{
+    NSString * queryArgument = [NSString new];
+    queryArgument = [NSString stringWithFormat:@" _nid = '%lu' ", (long)_nid];
+    return [Sightings firstInstanceWhere: queryArgument];
+}
+
 + (NSArray*) getAllSightings{
-    return [self instancesOrderedBy:@" _nid DESC"];
+    return [self instancesOrderedBy:@" _id DESC"];
 }
 
 + (NSArray*) getNotSyncedSightings{

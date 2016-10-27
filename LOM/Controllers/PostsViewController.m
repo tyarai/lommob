@@ -52,8 +52,9 @@
     [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
     
     
-    self.viewTitle.tintColor = ORANGE_COLOR;
     self.navigationItem.title = NSLocalizedString(@"sightings_title",@"");
+    self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
     self.tableViewLifeList.estimatedRowHeight = 212;
@@ -187,8 +188,11 @@
             node.species        = row._speciesName;
             node.place_name      = row._placeName;
             node.uid            = row._uid;
-            NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
-            node.created = [date description];
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._date];
+            node.date = [date description];
+            NSDate* createdDate = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
+            node.created        = [createdDate description];
+
             Photo * photo       = [Photo new];
             photo.src           = row._photoFileNames;//<--- Mety sary betsaka
             node.field_photo    = photo;
@@ -723,7 +727,7 @@
                 node.species   = row._speciesName;
                 node.place_name      = row._placeName;
                 NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
-                node.created = [date description];
+                node.date = [date description];
                 Photo * photo       = [Photo new];
                 photo.src           = row._photoFileNames;//<--- Mety sary betsaka
                 node.field_photo    = photo;

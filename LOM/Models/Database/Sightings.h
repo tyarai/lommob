@@ -29,10 +29,12 @@
 @property (nonatomic, strong) NSString* _title;
 @property (nonatomic) double _createdTime;
 @property (nonatomic) double _modifiedTime;
+@property (nonatomic) double _date;
 @property (nonatomic) int64_t _isLocal;
 @property (nonatomic) int64_t _isSynced;
 
 + (id) getSightingsByUUID:(NSString*) _uuid;
++ (id) getSightingsByNID:(NSInteger) _nid;
 + (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid;
 + (NSArray*) getAllSightings;
 + (NSArray*) getNotSyncedSightings;

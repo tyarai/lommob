@@ -30,6 +30,10 @@
     self.txtText.text = self.families._family_description;
     
     self.lblTitle.text = self.families._family;
+    
+    self.navigationItem.titleView = nil;
+    self.navigationItem.title = self.families._family;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
 }
 
 - (void)didReceiveMemoryWarning {

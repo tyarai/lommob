@@ -76,6 +76,14 @@
              if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _isSynced INTEGER DEFAULT '0'"]) failedAt(4);
             *schemaVersion = 3;
         }
+        
+        /*
+         * Ampina ilay field _date (sighting date)
+         */
+        if (*schemaVersion < 4) {
+            if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _date REAL NOT NULL DEFAULT '0'"]) failedAt(5);
+            *schemaVersion = 4;
+        }
 
         
         
@@ -95,7 +103,7 @@
     self._sessid = [Tools getStringUserPreferenceWithKey:KEY_SESSID];
     self._uid    = [[Tools getStringUserPreferenceWithKey:KEY_UID] integerValue];
     
-        
+    [self.window setTintColor:ORANGE_COLOR]; // TintColor for the whole app
         
     return YES;
 }

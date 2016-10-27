@@ -5,7 +5,7 @@
   Created by Ranto Andrianavonison on 7/25/16.
   Copyright © 2016 Kerty KAMARY. All rights reserved.
 */
-"please_wait" = "Loading your lemur-life list ...";
+"please_wait" = "Loading...";
 "lemur_life_list" = "Lemur life-list";
 "not_connected_to_the_internet" = "You are offline. Please check your internet connection";
 "timed_out" = "Timed out! Unable to get data from the server. Please try later";
@@ -16,6 +16,7 @@
 "title_lemur_life_list" = "Lemur life list";
 "wrong_password_username" = "Wrong username or password! Please check and try again";
 "authentication_issue" = "Authentication error";
+"session_expired" = "Your session has expired! You need to login";
 "network_connection_was_lost" = "The network connection was lost! Please try again";
 "server_not_found" = "The lemurs of madagascar's server is not accessible! Please check your internet connection or your DNS service";
 "could_not_connect_to_server"= "Could not connect to the server! Please check your WiFi or Cellular data connection";
@@ -30,4 +31,3 @@
 "sightings_title"="Sightings";
 "about_the_app_title"="About the app";
 "not_synced_sighting"="Not synced";
-

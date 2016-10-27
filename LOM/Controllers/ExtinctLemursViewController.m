@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = NSLocalizedString(@"extinct_title",@"");
+    
 }
 
 - (void)didReceiveMemoryWarning {

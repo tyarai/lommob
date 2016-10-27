@@ -27,7 +27,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.navigationItem.title = NSLocalizedString(@"authors_title",@"");
-     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
     _allAuthors = [Authors allInstances];
 }

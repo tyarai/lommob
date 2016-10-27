@@ -22,7 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = NSLocalizedString(@"families_title",@"");
+    
+    NSString * title = NSLocalizedString(@"families_title",@"");
+    UINavigationItem * nav = self.navigationItem;
+    nav.titleView = nil;
+    nav.title = title;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
+    
+    
     _families = [Families allInstances];
 }
 

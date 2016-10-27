@@ -384,14 +384,20 @@ static float appScale = 1.0;
                 Publication* sighting = node.node;
                 
                 NSString * _uuid = sighting.uuid;
-                Sightings* instance = [Sightings getSightingsByUUID:_uuid];
+                int64_t  _nid           = sighting.nid;
+                //Sightings* instance = [Sightings getSightingsByUUID:_uuid];
+                Sightings* instance = [Sightings getSightingsByNID : _nid];
                 NSString * _title       = sighting.title;
                 NSString * _species     = sighting.species;
                 NSString * _where_see_it= sighting.place_name;
-                //NSDate * date = [NSDate dateWithTimeIntervalSince1970:sighting.];
+                NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+                [formatter setDateFormat:@"yyyy-MM-dd"];
+                NSDate * date          = [[NSDate alloc]init];
+                date                   = [formatter dateFromString:sighting.date];
+                int64_t   _date        =  [date timeIntervalSince1970];
                 NSString * _photo_name  = sighting.field_photo.src;
                 int64_t  _species_nid   = sighting.speciesNid;
-                int64_t  _nid           = sighting.nid;
+                
                 int64_t  _count         = sighting.count;
                 int64_t  _uid           = sighting.uid;
                 NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
@@ -419,7 +425,9 @@ static float appScale = 1.0;
                     newSighting._placeLongitude = _longitude;
                     newSighting._photoFileNames = _photo_name;
                     newSighting._title          = _title;
+                    newSighting._date           = _date;
                     newSighting._createdTime    = _created;
+                    newSighting._modifiedTime   = _created;
                     newSighting._uuid           = _uuid;
                     newSighting._uid            = _uid;
                     newSighting._isLocal        = (int)NO;
@@ -429,8 +437,10 @@ static float appScale = 1.0;
                 }else{
                     
                     
-                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _nid = '%lli' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _uid = '%lli' , _isSynced = '1' WHERE _uuid = '%@' ",
-                    _nid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_uid,_uuid];
+                    /*NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _nid = '%lli' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _uid = '%lli' , _isSynced = '1' WHERE _uuid = '%@' ",
+                    _nid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_uid,_uuid]; */
+                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '1' WHERE _nid = '%lli' ",
+                                        _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_nid];
                     
                     [Sightings executeUpdateQuery:query];
                     

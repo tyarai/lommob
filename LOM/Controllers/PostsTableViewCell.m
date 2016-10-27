@@ -52,8 +52,8 @@
         self.lblTitle.text = publication.title;
     }
     
-    if (![Tools isNullOrEmptyString:publication.created]) {
-        self.lblDate.text = publication.created;
+    if (![Tools isNullOrEmptyString:publication.date]) {
+        self.lblDate.text = publication.date;
     }
     
     if(![Tools isNullOrEmptyString:publication.place_name]){
