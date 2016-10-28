@@ -23,6 +23,12 @@
     
     self.lblTitle.text = self.lemursWatchingSites._title;
     self.txtText.text = self.lemursWatchingSites._body;
+    
+    
+    //self.navigationItem.titleView = nil;
+    //self.navigationItem.title = self.lemursWatchingSites._title;
+    //[self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
+
 }
 
 - (void)didReceiveMemoryWarning {

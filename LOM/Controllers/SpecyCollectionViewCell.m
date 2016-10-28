@@ -27,7 +27,7 @@
     
     self.imgSpecy.image = image;
     
-    [Tools roundedThisImageView:self.imgSpecy];
+    //[Tools roundedThisImageView:self.imgSpecy];
     
 }
 @end

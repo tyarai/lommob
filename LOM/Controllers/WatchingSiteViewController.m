@@ -27,6 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.titleView = nil;
+    self.navigationItem.title = NSLocalizedString(@"watching_sites_title",@"");
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
     __lemursWatchingSitesArray = [LemursWatchingSites allInstances];
 }
@@ -82,6 +85,7 @@
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
                          
                          isSearchShown = YES;
+                         [self.view layoutIfNeeded];
                          
                          [self.txtSearch becomeFirstResponder];
                      }];
@@ -105,6 +109,7 @@
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
                          
                          isSearchShown = NO;
+                         [self.view layoutIfNeeded];
                          
                          [self.txtSearch resignFirstResponder];
                          

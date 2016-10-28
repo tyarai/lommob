@@ -1,22 +1,19 @@
 //
-//  AuthorsTableViewController.m
+//  SightingDataTableViewController.m
 //  LOM
 //
-//  Created by Ranto Andrianavonison on 15/03/2016.
+//  Created by Ranto Andrianavonison on 10/10/2016.
 //  Copyright © 2016 Kerty KAMARY. All rights reserved.
 //
 
-#import "AuthorsTableViewController.h"
-#import "AuthorTableViewCell.h"
+#import "SightingDataTableViewController.h"
 #import "Constants.h"
-#import "Authors.h"
-#import "AuthorDetailViewController.h"
 
-@interface AuthorsTableViewController ()
+@interface SightingDataTableViewController ()
 
 @end
 
-@implementation AuthorsTableViewController
+@implementation SightingDataTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,10 +23,14 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = NSLocalizedString(@"authors_title",@"");
-    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
-    
-    _allAuthors = [Authors allInstances];
+    if(self.species){
+        self.speciesLabel.text = self.species._title;
+        self.cancelButton.tintColor = ORANGE_COLOR;
+        self.doneBUtton.tintColor = ORANGE_COLOR;
+    }
+    self.comments.delegate = self;
+    self.numberObserved.delegate = self;
+    self.placename.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,28 +40,27 @@
 
 #pragma mark - Table view data source
 
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.allAuthors count];
+#warning Incomplete implementation, return the number of rows
+    return 0;
 }
+ */
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AuthorTableViewCell *cell = (AuthorTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
-    Authors *author = self.allAuthors[indexPath.row];;
-    cell.authorName.text = [author _name];
-    cell.authorDetails.text = [author _details];
-    NSString* photoFileName = [author _photo];
-    UIImage * photo = [UIImage imageNamed:photoFileName];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    [cell.photo setImage:photo];
+    // Configure the cell...
+    
     return cell;
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -96,21 +96,50 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    AuthorDetailViewController* vc = (AuthorDetailViewController*)segue.destinationViewController;
-    vc.selectedAuthor = self.selectedAuthor;
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (IBAction)cancelTapped:(id)sender {
+    [self.delegate cancel];
+}
+
+- (IBAction)doneTapped:(id)sender {
+    NSString  * comments = self.comments.text;
+    NSInteger obs      = [self.numberObserved.text intValue];
+    NSDate * obsDate = [self.date date];
+    NSString  * place    = self.placename.text;
+    [self.delegate saveSightingInfo:obs placeName:place date:obsDate comments:comments];
+    
+}
+
+
+
+#pragma UITextFieldDelegate
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma  UITextViewDelegate
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if([text isEqualToString:@"\n"]){
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.selectedAuthor = self.allAuthors[indexPath.row];
-    [self performSegueWithIdentifier:@"showAuthorDetails" sender:self];
-
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
 
 @end

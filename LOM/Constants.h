@@ -19,5 +19,13 @@
 #define KEY_SESSID @"sessid"
 #define KEY_SESSION_NAME @"session_name"
 #define KEY_TOKEN @"token"
+#define KEY_UID @"uid"
+
+
+#define IMAGE_RESIZED_WIDTH 768
+#define IMAGE_RESIZED_HEIGHT 576
+#define TABLEVIEW_CELL_OFFSET 10
+#define TABLEVIEW_CELL_CORNER_RADIUS 0.0
+
 
 

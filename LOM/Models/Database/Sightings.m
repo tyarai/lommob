@@ -16,13 +16,24 @@
     return [Sightings firstInstanceWhere: queryArgument];
 }
 
++ (id) getSightingsByNID:(NSInteger) _nid{
+    NSString * queryArgument = [NSString new];
+    queryArgument = [NSString stringWithFormat:@" _nid = '%lu' ", (long)_nid];
+    return [Sightings firstInstanceWhere: queryArgument];
+}
+
 + (NSArray*) getAllSightings{
-    return [self instancesOrderedBy:@" _nid DESC"];
+    return [self instancesOrderedBy:@" _id DESC"];
+}
+
++ (NSArray*) getNotSyncedSightings{
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" _isLocal = '1' AND _isSynced ='0'"]];
+
 }
 
 
-+ (NSArray*) getSightingsLike:(NSString*) strValue {
-    return [Sightings instancesWhere:[NSString stringWithFormat:@"_title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ", strValue,strValue,strValue]];
++ (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid {
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" ( _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%') ", strValue,strValue,strValue]];
 }
 
 + (void) emptySightingsTable{

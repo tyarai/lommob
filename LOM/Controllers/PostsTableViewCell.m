@@ -9,11 +9,17 @@
 #import "PostsTableViewCell.h"
 #import "Tools.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import "Species.h"
+#import "Photographs.h"
+#import "Constants.h"
+#import "UIImage+Resize.h"
+
 
 @implementation PostsTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,40 +28,93 @@
     // Configure the view for the selected state
 }
 
-- (void) displaySighting:(Publication*) publication {
-    
-    if (![Tools isNullOrEmptyString:publication.title]) {
-        self.lblTitle.text = publication.title;
+- (IBAction)btnSpeciesInfoTapped:(id)sender {
+    if(speciesNID != 0){
+        Species * species = [Species firstInstanceWhere:[NSString stringWithFormat:@"  _species_id = '%ld' ", (long)speciesNID]];
+        [self.delegate performSegueWithSpecies:species];
     }
     
+}
+
+- (void) displaySighting:(Publication*) publication {
+    
+    NSString * syncedText = @"";
+    if (!publication.isSynced && publication.isLocal) {
+        syncedText = NSLocalizedString(@"not_synced_sighting",@"");;
+    }
+    self.syncInfo.text = syncedText;
     
     if (![Tools isNullOrEmptyString:publication.species]) {
         self.lblSpecies.text = publication.species;
     }
     
-    
-    if (![Tools isNullOrEmptyString:publication.created]) {
-        self.lblDate.text = publication.created;
+    if (![Tools isNullOrEmptyString:publication.title]) {
+        self.lblTitle.text = publication.title;
     }
     
-    if (![Tools isNullOrEmptyString:publication.body]) {
-        self.lblBody.text = publication.body;
+    if (![Tools isNullOrEmptyString:publication.date]) {
+        self.lblDate.text = publication.date;
     }
     
-    if (![Tools isNullOrEmptyString:publication.author_name]) {
-        self.lblUser.text = publication.author_name;
+    if(![Tools isNullOrEmptyString:publication.place_name]){
+        self.lblPlaceName.text = publication.place_name;
     }
     
+    NSString * strCount = nil;
+    if(publication.count > 0){
+        strCount = [NSString stringWithFormat:@"%ld",(long)publication.count];
+        
+    }else{
+        strCount = [NSString stringWithFormat:@"%@",@"-"];
+        
+    }
+    self.lblSumberObserved.text = strCount;
+    
+    NSInteger speciesNid = publication.speciesNid;
+    speciesNID = speciesNid;
+    
+    /*if(speciesNid != 0){
+        Species * species = [Species firstInstanceWhere:[NSString stringWithFormat:@"  _species_id = '%ld' ", (long)speciesNid]];
+        
+        if(species){
+            Photographs * photo = [species getSpecieProfilePhotograph];
+            NSString* imageName = [NSString stringWithFormat:@"%@.jpg", photo._photograph];
+            UIImage* image = [UIImage imageNamed:imageName];
+            CGSize size =self.speciesPhoto.frame.size;
+            UIViewContentMode mode = self.speciesPhoto.contentMode;
+            
+            UIImage*resizedImage = [image resizedImageWithContentMode:mode bounds:size interpolationQuality:1.0];
+            
+            self.speciesPhoto.image = resizedImage;
+            
+
+        }
+    }*/
     
     if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
         
-        [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+       
+        if(publication.isLocal){
+        
+            NSString *getImagePath = [publication getSightingImageFullPathName];
+            UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
             
-            if (error) {
+            if(img){
+                [self.imgPhoto setImage:img];
+            }else{
                 [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
             }
             
-        } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        }else{
+            
+            [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (error) {
+                    [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                }
+                
+            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+
+        }
         
     }else{
         [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];

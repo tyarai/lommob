@@ -8,10 +8,12 @@
 
 #import "SpeciesDetailsViewController.h"
 #import "Tools.h"
+#import "Constants.h"
 #import "Photographs.h"
 #import "Maps.h"
 #import "UIImage+Resize.h"
 #import "ScientificName.h"
+#import "CameraViewController.h"
 
 @interface SpeciesDetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *btnFlag;
@@ -39,7 +41,9 @@
 - (IBAction)scientificNameTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UIView *nameView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 
+- (IBAction)cameraButtonTapped:(id)sender;
 
 @end
 
@@ -52,6 +56,8 @@
     [self prepareImageScroll];
     
     [self displayLemurInfos];
+    
+    self.cameraButton.tintColor = ORANGE_COLOR;
     
 }
 
@@ -320,7 +326,77 @@
     _lastContentOffset = scrollView.contentOffset.x;
 }
 
+#pragma PopupLoginDelegate
+/*
+-(void) showLoginPopup{
+    NSString* indentifier=@"PopupLoginViewController";
+    PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    controller.delegate = self;
+    controller.preferredContentSize = CGSizeMake(300, 200);
+    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
+    popoverController.delegate = self;
+    [popoverController presentPopoverFromRect:self.view.bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+    
+}
 
+-(void)validWithUserName:(NSString *)userName password:(NSString *)password andRememberMe:(BOOL)rememberMe{
+    [popoverController dismissPopoverAnimated:YES];
+    
+    [self showActivityScreen];
+    
+    [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
+        
+        //[self removeActivityScreen];
+        
+        if (err)
+        {
+            //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            [self removeActivityScreen];
+            [Tools showError:err onViewController:self];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            LoginResult* loginResult = [[LoginResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }
+            else
+            {
+                if (![Tools isNullOrEmptyString:loginResult.sessid]
+                    &&![Tools isNullOrEmptyString:loginResult.session_name]
+                    &&![Tools isNullOrEmptyString:loginResult.token]
+                    && loginResult.user != nil) {
+                    
+                    
+                    if (rememberMe) {
+                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token uid:loginResult.user.uid];
+                    }
+                    
+                    appDelegate._currentToken = loginResult.token;
+                    appDelegate._curentUser = loginResult.user;
+                    appDelegate._sessid = loginResult.sessid;
+                    appDelegate._sessionName = loginResult.session_name;
+                    appDelegate._uid    = loginResult.user.uid;
+                    
+                    
+                    [self loadOnlineSightings];
+                    
+                }
+            }
+        }
+        
+    }];
+
+}
+
+-(void)cancel{
+    
+}
+*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -519,6 +595,24 @@
     self.nameView.hidden = NO;
     [self activateButton:self.btnFlag];
 
+}
+
+- (IBAction)cameraButtonTapped:(id)sender {
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier]  isEqual: @"showCameraVC"]){
+        CameraViewController *vc = (CameraViewController*) [segue destinationViewController];
+        vc.currentSpecies = self.specy;
+        vc.delegate = self;
+        
+    }
+}
+
+#pragma CameraViewControllerDelegate
+
+-(void)dismissCameraViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

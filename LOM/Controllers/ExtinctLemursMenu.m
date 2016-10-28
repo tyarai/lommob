@@ -15,8 +15,8 @@
 @implementation ExtinctLemursMenu
 
 -(void)viewDidLoad{
-    self.navigationItem.title = NSLocalizedString(@"Extinct lemurs",@"Extinct lemurs");
-    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
+    self.navigationItem.title = NSLocalizedString(@"extinct_title",@"");
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
 
     self.allLinks = [Links getLinkByName:@"extinctlemurs"];

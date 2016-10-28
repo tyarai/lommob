@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title=  NSLocalizedString(@"About this app", @"About this app");
+    self.navigationItem.title=  NSLocalizedString(@"about_the_app_title", @"");
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
 }
 
@@ -84,9 +84,11 @@
                     appDelegate._currentToken = nil;
                     appDelegate._sessid = nil;
                     appDelegate._sessionName = nil;
+                    appDelegate._uid = 0;
                     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:nil];
                     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:nil];
                     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:nil];
+                    [Tools setUserPreferenceWithKey:KEY_UID andStringValue:nil];
                 }
             }];
         }

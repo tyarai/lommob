@@ -22,6 +22,8 @@
 #import "Reachability.h"
 #import "UserConnectedResult.h"
 
+#define ROWHEIGHT 115
+
 @interface LemursLifeViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
@@ -58,11 +60,12 @@
     [self.tableViewLifeList addSubview:self.refreshControl];
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
-    self.tableViewLifeList.estimatedRowHeight = 140;
+    //self.tableViewLifeList.estimatedRowHeight = 110;
     
     self.searchText.delegate = self;
     [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
     
+    self.navigationItem.title = NSLocalizedString(@"lemur_life_list_title",@"");
     
     
     
@@ -134,7 +137,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 140.0f;
+    return ROWHEIGHT;
 }
  
 
@@ -212,13 +215,14 @@
                     
                     
                     if (rememberMe) {
-                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token];
+                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token uid:loginResult.user.uid];
                     }
                     
                     appDelegate._currentToken = loginResult.token;
                     appDelegate._curentUser = loginResult.user;
                     appDelegate._sessid = loginResult.sessid;
                     appDelegate._sessionName = loginResult.session_name;
+                    appDelegate._uid    = loginResult.user.uid;
                     
                     [self loadOnlineLemurLifeList];
                     
@@ -235,11 +239,12 @@
 
 
 
-- (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token{
-    
+- (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid{
+    NSString * strUid = [NSString stringWithFormat:@"%ld",(long)uid];
     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:session_name];
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
+    [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
 }
 
 -(void) refreshListFromOnlineData{
@@ -256,6 +261,7 @@
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
         [Tools emptyLemurLifeListTable];
+        [Tools emptySightingTable];
             
     }else{
         
@@ -298,6 +304,7 @@
                 [self showLoginPopup ];
                 [self.tableViewLifeList setHidden:YES];
                 [Tools emptyLemurLifeListTable];
+                [Tools emptySightingTable];
             }
         }];
 
@@ -529,6 +536,8 @@
                          
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
                          
+                         [self.view layoutIfNeeded];
+                         
                          isSearchShown = YES;
                          
                          [self.searchText becomeFirstResponder];
@@ -551,6 +560,8 @@
                          [self.tableViewLifeList layoutIfNeeded];
                          
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
+                         
+                         [self.view layoutIfNeeded];
                          
                          isSearchShown = NO;
                          

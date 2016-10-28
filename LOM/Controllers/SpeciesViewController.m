@@ -11,6 +11,7 @@
 #import "SpecyCollectionViewCell.h"
 #import "Tools.h"
 #import "SpeciesDetailsViewController.h"
+#import "Constants.h"
 
 @interface SpeciesViewController ()
 
@@ -28,8 +29,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
+    NSString * title = NSLocalizedString(@"species_title",@"");
+    self.navigationItem.title = title;
+    self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
+    
+    
+    
     [self showData];
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [self.collectionSpecies reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,6 +99,7 @@
                          [self.collectionSpecies layoutIfNeeded];
                          
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
+                         [self.view layoutIfNeeded];
                          
                          isSearchShown = YES;
                          
@@ -114,6 +125,7 @@
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
                          
                          isSearchShown = NO;
+                         [self.view layoutIfNeeded];
                          
                          [self.txtSearch resignFirstResponder];
                          

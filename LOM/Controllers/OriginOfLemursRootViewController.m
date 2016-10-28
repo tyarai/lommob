@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    self.navigationItem.title=  NSLocalizedString(@"Origin of lemurs", @"Origin of lemurs");
-   [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:ORANGE_COLOR }];
+   [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
  Menus * originMenu = [Menus getMenuContentByMenuName:@"originoflemurs"];
    _originOfLemursFullText = [originMenu _menu_content ];

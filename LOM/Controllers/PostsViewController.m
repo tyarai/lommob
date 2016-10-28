@@ -18,6 +18,12 @@
 #import "PublicationNode.h"
 #import "UserConnectedresult.h"
 #import "PublicationResult.h"
+#import "LOM_TableViewCell.h"
+#import "UITableViewCell+Stretch.h"
+#import "SDImageCache.h"
+#import "SpeciesDetailsViewController.h"
+
+
 
 @interface PostsViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableViewLifeList;
@@ -46,12 +52,95 @@
     [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
     
     
+    self.navigationItem.title = NSLocalizedString(@"sightings_title",@"");
+    self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
+    
+    self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
+    self.tableViewLifeList.estimatedRowHeight = 212;
+    self.tableViewLifeList.backgroundColor = nil;
+    self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    //---- Array of photo to be shown on the next Window ----
+    self.currentPhotos = [[NSMutableArray alloc] init];
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableViewLifeList reloadData];
 }
 
 -(void) refreshListFromOnlineData{
     self.pullToRefresh = YES;
     appDelegate.showActivity = NO;
     [self loadOnlineSightings];
+    [self syncWithServer];
+    
+}
+     
+-(void) syncWithServer{
+    
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        
+        [self showLoginPopup ];
+        [self.tableViewLifeList setHidden:YES];
+        //[Tools emptySightingTable];
+        //[Tools emptyLemurLifeListTable];
+        
+    }else{
+        
+        NSString * sessionName = [appDelegate _sessionName];
+        NSString * sessionID   = [appDelegate _sessid];
+        
+        self.initialLoad = TRUE;
+        [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+            BOOL stillConnected = YES;
+            
+            
+            UserConnectedResult* sessionCheckResult = nil;
+            if (err)
+            {
+                [Tools showError:err onViewController:self];
+            }
+            else
+            {
+                NSError* error;
+                NSDictionary* tmpDict = (NSDictionary*) json;
+                sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+                
+                if (error){
+                    NSLog(@"Error parse : %@", error.debugDescription);
+                }else{
+                    if(sessionCheckResult.user != nil){
+                        if (sessionCheckResult.user.uid == 0){
+                            stillConnected = NO;
+                        }
+                        
+                    }
+                }
+                
+            }
+            //--- Only do this when stillConnected = YES ---//
+            if(stillConnected){
+                NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
+                [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
+                [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+                
+            }else{
+                [self showLoginPopup ];
+                [self.tableViewLifeList setHidden:YES];
+                //[Tools emptySightingTable];
+                //[Tools emptyLemurLifeListTable];
+            }
+        }];
+        
+    }
+
+    
+    
     
 }
 
@@ -96,16 +185,24 @@
             PublicationNode * listNode = [PublicationNode new];
             Publication * node = [Publication new];
             node.title          = row._title;
-            node.species   = row._speciesName;
+            node.species        = row._speciesName;
             node.place_name      = row._placeName;
-            NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
-            node.created = [date description];
+            node.uid            = row._uid;
+            NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._date];
+            node.date = [date description];
+            NSDate* createdDate = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
+            node.created        = [createdDate description];
+
             Photo * photo       = [Photo new];
             photo.src           = row._photoFileNames;//<--- Mety sary betsaka
             node.field_photo    = photo;
             node.nid            = row._nid;
             node.speciesNid     = row._speciesNid;
             node.uuid           = row._uuid;
+            node.isLocal        = row._isLocal;
+            node.isSynced       = row._isSynced;
+            node.count          = row._speciesCount;
+            
             listNode.node       = node;
             [nodeLists addObject:listNode];
         }
@@ -126,6 +223,31 @@
     
     //[self performSelectorOnMainThread:@selector(updateViewTitle) withObject:nil waitUntilDone:NO];
 
+}
+
+-(Species*) sightingSpecies:(Sightings*)sighting{
+    if(sighting){
+        NSInteger speciesNid = sighting._speciesNid;
+        NSString * query = [NSString stringWithFormat:@" _species_id = '%ld' ",(long)speciesNid];
+        return [Species firstInstanceWhere:query];
+    }
+    return nil;
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"showSpeciesInfoFromPost"]){
+        SpeciesDetailsViewController* vc = (SpeciesDetailsViewController*) [segue destinationViewController];
+        vc.specy = self.selectedSpecies;
+    }
+}
+
+#pragma PostTableViewCellDelegate
+
+-(void)performSegueWithSpecies:(Species *)species{
+    if(species){
+        self.selectedSpecies = species;
+        [self performSegueWithIdentifier:@"showSpeciesInfoFromPost" sender:self];
+    }
 }
 
 /*
@@ -153,6 +275,7 @@
     }
 }
 
+
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     
     if([_sightingsList count] != 0){
@@ -175,6 +298,8 @@
     return 0;
 }
 
+#pragma UITableView
+
 
 
 /*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -190,6 +315,10 @@
     
     [cell displaySighting:sightingNode.node];
     
+    cell = (PostsTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-10];
+    cell.delegate = self;
+    
+    
     return cell;
     
 }
@@ -197,8 +326,63 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.currentPhotos removeAllObjects];
     
+    PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
+    __block UIImage * image = [UIImage imageNamed:@"ico_default_specy"];
+    if(sighting){
+        
+        NSString * imageBundleName = [sighting.node getSightingImageFullPathName];
+        if(sighting.node.isLocal){
+            image = [UIImage imageWithContentsOfFile:imageBundleName];
+        }else{
+            
+            SDImageCache *imageCache = [SDImageCache sharedImageCache];
+            [imageCache queryDiskCacheForKey:imageBundleName done:^(UIImage *cachedImage,SDImageCacheType cacheType)
+             {
+                 if(cachedImage){
+                    image = cachedImage;
+                 }
+                 
+             }];
+            
+            
+        }
+    }
+    
+    MWPhoto* photo = [MWPhoto photoWithImage:image];
+    [self.currentPhotos addObject:photo];
+    browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    
+    // Set options
+    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+    browser.displayNavArrows = YES; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+    browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
+    browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+    browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+    browser.enableGrid = NO; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+    browser.startOnGrid = NO; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+    browser.autoPlayOnAppear = NO; // Auto-play first video
+    
+    [browser setCurrentPhotoIndex:0];
+    
+    
+    [self.navigationController pushViewController:browser animated:YES];
 }
+
+#pragma mark MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser{
+    return self.currentPhotos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index{
+    if (index < self.currentPhotos.count) {
+        return [self.currentPhotos objectAtIndex:index];
+    }
+    return nil;
+}
+
 
 
 #pragma mark WYPopoverControllerDelegate
@@ -227,11 +411,13 @@
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        [self removeActivityScreen];
+        //[self removeActivityScreen];
         
         if (err)
         {
-            [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            [self removeActivityScreen];
+            [Tools showError:err onViewController:self];
         }
         else
         {
@@ -250,14 +436,17 @@
                     &&![Tools isNullOrEmptyString:loginResult.token]
                     && loginResult.user != nil) {
                     
+                    
                     if (rememberMe) {
-                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token];
+                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token uid:loginResult.user.uid];
                     }
                     
                     appDelegate._currentToken = loginResult.token;
                     appDelegate._curentUser = loginResult.user;
                     appDelegate._sessid = loginResult.sessid;
                     appDelegate._sessionName = loginResult.session_name;
+                    appDelegate._uid    = loginResult.user.uid;
+
                     
                     [self loadOnlineSightings];
                     
@@ -276,7 +465,8 @@
         
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
-        [Tools emptySigntingTable];
+        [Tools emptySightingTable];
+        [Tools emptyLemurLifeListTable];
         
     }else{
         
@@ -318,6 +508,7 @@
             }else{
                 [self showLoginPopup ];
                 [self.tableViewLifeList setHidden:YES];
+                [Tools emptySightingTable];
                 [Tools emptyLemurLifeListTable];
             }
         }];
@@ -349,6 +540,7 @@
                 NSLog(@"Error parse : %@", error.debugDescription);
             }
             else{
+                [Tools saveSyncDate]; // Ovaina androany ny LAST_SYNC_DATE
                 [Tools updateSightingsWithNodes:result.nodes];
                 [self loadLocalSightings];
                 
@@ -382,14 +574,13 @@
 
 
 
-- (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token{
-    
+- (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid{
+    NSString * strUid = [NSString stringWithFormat:@"%ld",(long)uid];
     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:session_name];
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
-    
+    [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
 }
-
 /*
 
 - (void) getAllPosts{
@@ -469,6 +660,8 @@
                          [self.tableViewLifeList setNeedsUpdateConstraints];
                          [self.tableViewLifeList layoutIfNeeded];
                          
+                         [self.view layoutIfNeeded];
+                         
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
                          
                          isSearchShown = YES;
@@ -495,6 +688,7 @@
                          [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
                          
                          isSearchShown = NO;
+                         [self.view layoutIfNeeded];
                          
                          [self.searchText resignFirstResponder];
                          
@@ -519,9 +713,10 @@
 
 -(void) searchSightingsByString:(NSString*)stringValue{
     
+    NSUInteger _uid= [appDelegate _uid];
     if(stringValue){
         NSMutableArray * nodeLists = nil;
-        NSArray* lists = [Sightings getSightingsLike:stringValue];
+        NSArray* lists = [Sightings getSightingsLike:stringValue withUID:_uid];
         if([lists count] > 0 ){
             nodeLists = [NSMutableArray new];
             
@@ -532,13 +727,16 @@
                 node.species   = row._speciesName;
                 node.place_name      = row._placeName;
                 NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
-                node.created = [date description];
+                node.date = [date description];
                 Photo * photo       = [Photo new];
                 photo.src           = row._photoFileNames;//<--- Mety sary betsaka
                 node.field_photo    = photo;
                 node.nid            = row._nid;
                 node.speciesNid     = row._speciesNid;
                 node.uuid           = row._uuid;
+                node.uid            = row._uid;
+                node.isLocal        = row._isLocal;
+                node.isSynced       = row._isSynced;
                 listNode.node       = node;
                 [nodeLists addObject:listNode];
             }
