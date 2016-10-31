@@ -10,7 +10,7 @@
 #import "Species.h"
 
 @protocol SightingDataTableViewControllerDelegate <NSObject>
-- (void) cancel;
+- (void) cancelSightingData;
 - (void) saveSightingInfo:(NSInteger) observation placeName:(NSString*) placeName date:(NSDate*) date comments:(NSString*) comments;
 @end
 

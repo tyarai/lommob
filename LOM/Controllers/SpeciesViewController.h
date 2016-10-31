@@ -9,15 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Species.h"
 #import "BaseViewController.h"
-
+#import "PopupLoginViewController.h"
+#import "WYPopoverController.h"
 
 @interface SpeciesViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>{
     BOOL isSearchShown;
     
     Species* _selectedSpecy;
+    WYPopoverController* popoverController;
     
 }
 
 @property (nonatomic, strong) NSArray* _speciesArray;
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
 
 @end

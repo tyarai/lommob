@@ -57,7 +57,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
-    self.tableViewLifeList.estimatedRowHeight = 212;
+    self.tableViewLifeList.estimatedRowHeight = 365;
     self.tableViewLifeList.backgroundColor = nil;
     self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -733,6 +733,7 @@
                 node.field_photo    = photo;
                 node.nid            = row._nid;
                 node.speciesNid     = row._speciesNid;
+                node.count          = row._speciesCount;
                 node.uuid           = row._uuid;
                 node.uid            = row._uid;
                 node.isLocal        = row._isLocal;

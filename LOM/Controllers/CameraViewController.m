@@ -18,6 +18,7 @@
 #import "UserConnectedResult.h"
 #import "UIImage+Resize.h"
 #import "LemurLifeListTable.h"
+#import "LoginResult.h"
 
 
 
@@ -91,8 +92,6 @@
 {
     float actualHeight = image.size.height;
     float actualWidth = image.size.width;
-    //float maxHeight = 300.0;
-    //float maxWidth = 400.0;
     float imgRatio = actualWidth/actualHeight;
     float maxRatio = maxWidth/maxHeight;
     float compressionQuality = 0.75;//50 percent compression
@@ -137,10 +136,6 @@
 
 -(NSString*) saveImageToFile:(UIImage*) image{
     if(image){
-        //UIImage *resizedImage = [self resizeImage:image newWidth:1024 newHeight:724];
-        //UIImage * resizedImage = [image  resizedImage:CGSizeMake(1024, 768) interpolationQuality:1];
-        
-        //UIImage * resizedImage = [image scaledImageToSize:CGSizeMake(1024, 1024)];
         
         UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFit                                                                     bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
                                                interpolationQuality:1];
@@ -167,13 +162,18 @@
     return nil;
 }
 
+
+
+
+
+
 #pragma SightingInfoViewControllerDelegate
 
 - (IBAction)saveSightingTapped:(id)sender {
     
 }
 
--(void)cancel{
+-(void)cancelSightingData{
     //[popoverController dismissPopoverAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

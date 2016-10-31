@@ -11,7 +11,8 @@
 #import "BaseViewController.h"
 #import "Species.h"
 #import "SightingDataTableViewController.h"
-
+#import "PopupLoginViewController.h"
+#import "WYPopoverController.h"
 
 @protocol CameraViewControllerDelegate <NSObject>
 
