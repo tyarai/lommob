@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Species.h"
+#import "BaseViewController.h"
 
 
-@interface SpeciesViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>{
+@interface SpeciesViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>{
     BOOL isSearchShown;
     
     Species* _selectedSpecy;
