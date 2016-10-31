@@ -12,6 +12,8 @@
 #import "Tools.h"
 #import "SpeciesDetailsViewController.h"
 #import "Constants.h"
+#import "LoginResult.h"
+
 
 @interface SpeciesViewController ()
 
@@ -35,8 +37,8 @@
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
     
-    
     [self showData];
+    
 }
 -(void)viewDidAppear:(BOOL)animated{
     [self.collectionSpecies reloadData];
@@ -55,6 +57,10 @@
     self.collectionSpecies.dataSource = self;
     
 }
+
+
+
+
 
 
 #pragma mark - Navigation

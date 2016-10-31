@@ -22,6 +22,12 @@
     return [Sightings firstInstanceWhere: queryArgument];
 }
 
++ (id) getSightingsBySpeciesID:(NSInteger) _speciesID{
+    NSString * queryArgument = [NSString new];
+    queryArgument = [NSString stringWithFormat:@" _speciesNid = '%lu' ", (long)_speciesID];
+    return [Sightings instancesWhere:queryArgument];
+}
+
 + (NSArray*) getAllSightings{
     return [self instancesOrderedBy:@" _id DESC"];
 }
@@ -40,6 +46,23 @@
     [self executeUpdateQuery:@"DELETE FROM $T"];
 }
 
+
++ (NSInteger) observationSumBySpeciesNID:(NSInteger) speciesNID{
+    if(speciesNID > 0){
+        
+        NSString * query = [NSString stringWithFormat:@" SELECT SUM(_speciesCount) total FROM $T WHERE _speciesNid = '%li' ",
+                            speciesNID];
+        
+        NSArray * results = [Sightings resultDictionariesFromQuery:query];
+        NSDictionary* dic = [results objectAtIndex:0]; // iray ihany ny zavatra returner-na
+        
+        NSInteger value = [[dic valueForKey:@"total"] integerValue];
+       
+        return  value;
+        
+    }
+    return 0;
+}
 
 
 @end

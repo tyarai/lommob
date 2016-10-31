@@ -32,5 +32,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchTopSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchHeight;
+- (IBAction)btnLogInTapped:(id)sender;
 
 @end

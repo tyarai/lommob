@@ -35,9 +35,11 @@
 
 + (id) getSightingsByUUID:(NSString*) _uuid;
 + (id) getSightingsByNID:(NSInteger) _nid;
++ (id) getSightingsBySpeciesID:(NSInteger) _speciesID;
 + (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid;
 + (NSArray*) getAllSightings;
 + (NSArray*) getNotSyncedSightings;
 + (void) emptySightingsTable;
++ (long) observationSumBySpeciesNID:(NSInteger) speciesNID;
 
 @end

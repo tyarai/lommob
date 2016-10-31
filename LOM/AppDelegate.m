@@ -84,6 +84,17 @@
             if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _date REAL NOT NULL DEFAULT '0'"]) failedAt(5);
             *schemaVersion = 4;
         }
+        
+        
+        /*
+         * Ampina ilay field _isLocal table LemurLifeListTable
+         */
+        if (*schemaVersion < 5) {
+            if (! [db executeUpdate:@"ALTER TABLE LemurLifeListTable ADD COLUMN _isLocal INTEGER NOT NULL DEFAULT 'NULL'"]) failedAt(4);
+            *schemaVersion = 5;
+        }
+
+       
 
         
         

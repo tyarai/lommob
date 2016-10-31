@@ -59,6 +59,12 @@
     
     self.cameraButton.tintColor = ORANGE_COLOR;
     
+    /*self.navigationItem.title = self.specy._title;
+    self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];*/
+
+    
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -131,10 +137,12 @@
 
 - (void) displayLemurInfos{
     
-    self.lblTitle.text = self.specy._english;
+    self.lblTitle.text = self.specy._title;
     [self activateButton:self.btnEnglish];
     
-    [self btnIdentity_Touch:self.btnIdentity];
+    //[self btnIdentity_Touch:self.btnIdentity];
+    
+    [self activateButton:self.btnFlag];
     
     self.malagasyName.text = self.specy._malagasy;
     self.frenchName.text = self.specy._french;

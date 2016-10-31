@@ -107,7 +107,7 @@
 */
 
 - (IBAction)cancelTapped:(id)sender {
-    [self.delegate cancel];
+    [self.delegate cancelSightingData];
 }
 
 - (IBAction)doneTapped:(id)sender {

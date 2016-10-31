@@ -54,4 +54,14 @@
 	return [Species instancesWhere:[NSString stringWithFormat:@"_family_id = %@", family_id]];
 }
 
+
++ (Species*) getSpeciesBySpeciesNID:(NSInteger) species_nid {
+    if(species_nid != 0){
+        return [Species firstInstanceWhere:[NSString stringWithFormat:@"_species_id = '%li' ", (long)species_nid]];
+    }
+    return nil;
+}
+
+
+
 @end

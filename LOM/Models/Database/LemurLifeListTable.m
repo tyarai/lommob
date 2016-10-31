@@ -17,6 +17,13 @@
     return [LemurLifeListTable firstInstanceWhere: queryArgument];
 }
 
++ (id) getLemurLifeListBySpeciesID:(NSInteger) _speciesID ; {
+    NSString * queryArgument = [NSString new];
+    queryArgument = [NSString stringWithFormat:@" _species_id = '%li' ", (long)_speciesID];
+    return [LemurLifeListTable firstInstanceWhere: queryArgument];
+
+}
+
 + (NSArray*) getAllLemurLifeLists{
     //return [self allInstances];
     return [self instancesOrderedBy:@" _nid DESC"];
