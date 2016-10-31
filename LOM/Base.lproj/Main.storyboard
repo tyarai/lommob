@@ -611,11 +611,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ef7-r2-fdK">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="watchingSiteTableViewCell" rowHeight="80" id="Hll-Th-0WL" customClass="WatchingSiteTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="watchingSiteTableViewCell" rowHeight="80" id="Hll-Th-0WL" customClass="WatchingSiteTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="359" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hll-Th-0WL" id="SZc-1G-z65">
-                                            <frame key="frameInset" width="818" height="79.5"/>
+                                            <frame key="frameInset" width="326" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="sdgnlbkbdskgkdfgdkdskfdfbgfjhgvdf;gvd;jbfsq;jbs;jcbdcvsj;cv;jsvfdhvcjsdbvbcxjvqfcvshdvqsj;cvscbscbsqcblfbdsfdldbglbndmg" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydM-xZ-0vJ">
@@ -846,7 +846,7 @@
                                             <constraint firstAttribute="width" constant="24" id="NXU-Za-POD"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap your search word here ..." textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="2Ot-fh-yRQ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Species name and place name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="2Ot-fh-yRQ">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="KQL-sW-6m2"/>
                                             <constraint firstAttribute="width" constant="224" id="nTC-Y9-akf"/>
@@ -866,12 +866,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="NYD-nc-d9e" firstAttribute="top" secondItem="LFO-sv-LiB" secondAttribute="top" constant="5" id="4Sr-2r-Mst"/>
+                                    <constraint firstItem="NYD-nc-d9e" firstAttribute="top" secondItem="LFO-sv-LiB" secondAttribute="top" constant="8" id="4Sr-2r-Mst"/>
                                     <constraint firstAttribute="bottom" secondItem="2Ot-fh-yRQ" secondAttribute="bottom" constant="1" id="9Kl-BZ-jjG"/>
                                     <constraint firstItem="2Ot-fh-yRQ" firstAttribute="leading" secondItem="NYD-nc-d9e" secondAttribute="trailing" constant="6" id="H07-zh-RhW"/>
                                     <constraint firstAttribute="width" constant="265" id="KLa-wG-Jkx"/>
                                     <constraint firstItem="NYD-nc-d9e" firstAttribute="leading" secondItem="LFO-sv-LiB" secondAttribute="leading" constant="8" id="SoN-LC-7x8"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="265" id="V3L-Mi-iU1"/>
                                     <constraint firstItem="NYD-nc-d9e" firstAttribute="top" secondItem="LFO-sv-LiB" secondAttribute="top" constant="12" id="Y3a-RO-4yj"/>
                                     <constraint firstItem="2Ot-fh-yRQ" firstAttribute="top" secondItem="LFO-sv-LiB" secondAttribute="top" constant="5" id="aiI-k8-cdr"/>
                                     <constraint firstAttribute="width" constant="288" id="hzb-A0-BPU"/>
@@ -908,13 +907,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="LFO-sv-LiB" firstAttribute="centerX" secondItem="tth-8a-HYv" secondAttribute="centerX" constant="-28" id="6yO-16-QLC"/>
                             <constraint firstItem="bEm-lf-tpH" firstAttribute="leading" secondItem="tth-8a-HYv" secondAttribute="leading" id="DNv-Kn-brE"/>
                             <constraint firstItem="LFO-sv-LiB" firstAttribute="top" secondItem="O6x-lx-TgD" secondAttribute="bottom" constant="-43" id="Dil-3n-Vgt"/>
                             <constraint firstItem="PQN-nb-4c8" firstAttribute="leading" secondItem="bEm-lf-tpH" secondAttribute="leading" id="MYu-ZG-OoY"/>
                             <constraint firstItem="PQN-nb-4c8" firstAttribute="trailing" secondItem="bEm-lf-tpH" secondAttribute="trailing" id="N81-CZ-PaU"/>
                             <constraint firstItem="bEm-lf-tpH" firstAttribute="top" secondItem="O6x-lx-TgD" secondAttribute="bottom" id="P6z-K0-nN5"/>
                             <constraint firstAttribute="trailing" secondItem="bEm-lf-tpH" secondAttribute="trailing" id="eEE-3B-KjH"/>
+                            <constraint firstItem="LFO-sv-LiB" firstAttribute="leading" secondItem="tth-8a-HYv" secondAttribute="leadingMargin" constant="19" id="fQH-W6-vZt"/>
                             <constraint firstItem="PQN-nb-4c8" firstAttribute="top" secondItem="O6x-lx-TgD" secondAttribute="bottom" constant="267" id="frd-VF-30h"/>
                             <constraint firstItem="ahR-B9-aqg" firstAttribute="top" secondItem="bEm-lf-tpH" secondAttribute="bottom" id="mYa-1K-dxF"/>
                             <constraint firstItem="ahR-B9-aqg" firstAttribute="top" secondItem="PQN-nb-4c8" secondAttribute="bottom" constant="280" id="ymm-mL-tAh"/>
@@ -923,7 +922,7 @@
                     <navigationItem key="navigationItem" id="7lo-La-3d8">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="usR-N0-rqc">
-                            <rect key="frame" x="75" y="4" width="226" height="37"/>
+                            <rect key="frame" x="74.5" y="3.5" width="226" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
@@ -1083,7 +1082,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDa-hA-AO4">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_search" translatesAutoresizingMaskIntoConstraints="NO" id="Z0v-PW-yWO"/>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap your search word here ..." textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="tvR-zK-Qcu">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Species name " textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="tvR-zK-Qcu">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="9Qe-4u-Sb0"/>
                                         </constraints>
@@ -1561,7 +1560,7 @@
                             </button>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="eBh-wo-INQ">
-                            <rect key="frame" x="51" y="6" width="266" height="33"/>
+                            <rect key="frame" x="51" y="5.5" width="266" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YjK-C2-Olt">
@@ -2056,11 +2055,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="312" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xDN-7y-o7C">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="PostsTableViewCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostsTableViewCell" rowHeight="312" id="a1o-46-aKo" customClass="PostsTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PostsTableViewCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostsTableViewCell" rowHeight="312" id="a1o-46-aKo" customClass="PostsTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="312"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a1o-46-aKo" id="lKx-wD-FvL">
-                                            <frame key="frameInset" width="375" height="312"/>
+                                            <frame key="frameInset" width="375" height="311.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KqU-Jv-1Qh">
@@ -2169,7 +2168,7 @@
                                             <constraint firstAttribute="height" constant="24" id="wuX-CV-5RV"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap your search word here ..." textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="p2B-RZ-WhF">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Species name and place name" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="p2B-RZ-WhF">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="224" id="Ehc-Rn-96Q"/>
                                             <constraint firstAttribute="height" constant="35" id="Gs6-Ab-iHM"/>
@@ -2911,6 +2910,6 @@
         <image name="logo_lom" width="174" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Rjc-fq-xQe"/>
+        <segue reference="ePp-eL-fVW"/>
     </inferredMetricsTieBreakers>
 </document>
