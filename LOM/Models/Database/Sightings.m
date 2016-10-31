@@ -22,6 +22,12 @@
     return [Sightings firstInstanceWhere: queryArgument];
 }
 
++ (id) getSightingsBySpeciesID:(NSInteger) _speciesID{
+    NSString * queryArgument = [NSString new];
+    queryArgument = [NSString stringWithFormat:@" _speciesNid = '%lu' ", (long)_speciesID];
+    return [Sightings instancesWhere:queryArgument];
+}
+
 + (NSArray*) getAllSightings{
     return [self instancesOrderedBy:@" _id DESC"];
 }

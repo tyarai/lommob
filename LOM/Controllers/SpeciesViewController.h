@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Species.h"
 
+
 @interface SpeciesViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>{
     BOOL isSearchShown;
     
     Species* _selectedSpecy;
+    
 }
 
 @property (nonatomic, strong) NSArray* _speciesArray;

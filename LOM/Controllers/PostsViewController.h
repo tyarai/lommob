@@ -39,4 +39,7 @@
 
 
 @property (strong) Species * selectedSpecies;
+
+-(void) loadOnlineSightings;
+
 @end

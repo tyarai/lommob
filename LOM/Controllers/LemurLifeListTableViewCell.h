@@ -11,7 +11,7 @@
 
 @interface LemurLifeListTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
+@property (weak, nonatomic) IBOutlet UILabel *lblSightingCount;
 @property (weak, nonatomic) IBOutlet UILabel *lblSpecies;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
 @property (weak, nonatomic) IBOutlet UILabel *lblWhereSee;

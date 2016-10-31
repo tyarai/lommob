@@ -17,6 +17,8 @@
 #import "User.h"
 #import "UserConnectedResult.h"
 #import "UIImage+Resize.h"
+#import "LemurLifeListTable.h"
+
 
 
 #define FILE_EXT @".jpeg"
@@ -176,9 +178,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-
-
+/*
+    Mi-save an'ny current species sigting any @ table
+ */
 -(void)saveSightingInfo:(NSInteger)observation placeName:(NSString *)placeName date:(NSDate*)date comments:(NSString *)comments{
     
     NSString * sessionName = [appDelegate _sessionName];
@@ -186,85 +188,76 @@
     NSString * token       = [appDelegate _currentToken];
     NSInteger uid          = [appDelegate _uid];
     
-    /*[appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
-        BOOL stillConnected = YES;
+   
+    //--- Only save when below are true ---//
+    if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
+       ![Tools isNullOrEmptyString:token] &&  uid != 0){
         
+        NSInteger _uid = [appDelegate _uid];
         
-        UserConnectedResult* sessionCheckResult = nil;
-        if (err)
-        {
-            [Tools showError:err onViewController:self];
-        }
-        else
-        {
-            NSError* error;
-            NSDictionary* tmpDict = (NSDictionary*) json;
-            sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+        if(observation && placeName && comments && date ){
+            NSUUID *uuid = [NSUUID UUID];
+            NSString * _uuid        = [uuid UUIDString];
+            NSInteger   _speciesNid = self.currentSpecies._species_id;
+            NSString *_speciesName  = self.currentSpecies._title;
+            NSInteger   _nid        = 0;
+            NSInteger  _count       = observation;
+            NSString *_placeName    = placeName;
+            NSString *_placeLatitude = @"";
+            NSString *_placeLongitude= @"";
+            NSString *_photoName     = self.photoFileName;
+            NSString *_title         = comments;
+            double _date             = [date timeIntervalSince1970];
+            double  _created         = [[NSDate date] timeIntervalSince1970];
+            double  _modified        = [[NSDate date] timeIntervalSince1970];
             
-            if (error){
-                NSLog(@"Error parse : %@", error.debugDescription);
-            }else{
-                if(sessionCheckResult.user != nil){
-                    if (sessionCheckResult.user.uid == 0){
-                        stillConnected = NO;
-                    }
-                    
-                }
+            Sightings * newSightings = [Sightings new];
+            newSightings._uuid          = _uuid;
+            newSightings._speciesName   = _speciesName;
+            newSightings._speciesNid    = _speciesNid;
+            newSightings._nid           = _nid;
+            newSightings._uid           = _uid;
+            newSightings._speciesCount  = _count;
+            newSightings._placeName     = _placeName;
+            newSightings._placeLatitude = _placeLatitude;
+            newSightings._placeLongitude= _placeLongitude;
+            newSightings._photoFileNames= _photoName;
+            newSightings._title         = _title;
+            newSightings._date          = _date;
+            newSightings._createdTime   = _created;
+            newSightings._modifiedTime  = _modified;
+            newSightings._isLocal       = (int)YES; //From iPhone = YES
+            newSightings._isSynced      = (int)NO; // Not yet synced with server
+            
+            [newSightings save];
+            
+            //---- Tadiavina raha efa misy ilay species-n'ity sighting ity ao @ LemurLifeListTable, ka raha efa misy dia tsy ampina ao @ LemurLifeListTable intsony. Raha tsia hita dia ampina --
+            
+            LemurLifeListTable * lifeList = [LemurLifeListTable getLemurLifeListBySpeciesID:_speciesNid];
+            
+            if(lifeList == nil){
+                LemurLifeListTable * newLemurLifeListTable = [LemurLifeListTable new];
+                newLemurLifeListTable._title        = _title;
+                newLemurLifeListTable._species      = _speciesName;
+                newLemurLifeListTable._where_see_it = _placeName;
+                newLemurLifeListTable._when_see_it  = _date;
+                newLemurLifeListTable._photo_name   = _photoName;
+                newLemurLifeListTable._species_id   = _speciesNid;
+                newLemurLifeListTable._nid          = _nid;
+                newLemurLifeListTable._uuid         = _uuid;
+                newLemurLifeListTable._isLocal      = (int)YES; // from iPhone
+                [newLemurLifeListTable save];
             }
-            
+
         }
-     */
-        //--- Only save when below are true ---//
-        if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
-           ![Tools isNullOrEmptyString:token] &&  uid != 0){
-            
-            NSInteger _uid = [appDelegate _uid];
-            
-            if(observation && placeName && comments && date ){
-                NSUUID *uuid = [NSUUID UUID];
-                NSString * _uuid        = [uuid UUIDString];
-                NSInteger   _speciesNid = self.currentSpecies._species_id;
-                NSString *_speciesName  = self.currentSpecies._title;
-                NSInteger   _nid        = 0;
-                NSInteger  _count       = observation;
-                NSString *_placeName    = placeName;
-                NSString *_placeLatitude = @"";
-                NSString *_placeLongitude= @"";
-                NSString *_photoName     = self.photoFileName;
-                NSString *_title         = comments;
-                double _date             = [date timeIntervalSince1970];
-                double  _created         = [[NSDate date] timeIntervalSince1970];
-                double  _modified        = [[NSDate date] timeIntervalSince1970];
-                
-                Sightings * newSightings = [Sightings new];
-                newSightings._uuid          = _uuid;
-                newSightings._speciesName   = _speciesName;
-                newSightings._speciesNid    = _speciesNid;
-                newSightings._nid           = _nid;
-                newSightings._uid           = _uid;
-                newSightings._speciesCount  = _count;
-                newSightings._placeName     = _placeName;
-                newSightings._placeLatitude = _placeLatitude;
-                newSightings._placeLongitude= _placeLongitude;
-                newSightings._photoFileNames= _photoName;
-                newSightings._title         = _title;
-                newSightings._date          = _date;
-                newSightings._createdTime   = _created;
-                newSightings._modifiedTime  = _modified;
-                newSightings._isLocal       = (int)YES; //From iPhone = YES
-                newSightings._isSynced      = (int)NO; // Not yet synced with server
-                
-                [newSightings save];
-                //[self dismissViewControllerAnimated:YES completion:nil];
-            }
-            //[self.delegate dismissCameraViewController];
-            
-        }else{
-            
-            [Tools showSimpleAlertWithTitle:NSLocalizedString(@"authentication_issue", @"") andMessage:NSLocalizedString(@"session_expired", @"")];
-            
-        }
-    //}];
+
+        
+    }else{
+        
+        [Tools showSimpleAlertWithTitle:NSLocalizedString(@"authentication_issue", @"") andMessage:NSLocalizedString(@"session_expired", @"")];
+        
+    }
+
 
     
     [self dismissViewControllerAnimated:YES completion:nil];

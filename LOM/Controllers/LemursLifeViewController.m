@@ -21,8 +21,11 @@
 #import "LemurLifeListNode.h"
 #import "Reachability.h"
 #import "UserConnectedResult.h"
+#import "UITableViewCell+Stretch.h"
+#import "PostsViewController.h"
 
-#define ROWHEIGHT 115
+#define ROWHEIGHT 121
+#define TABLEVIEWHEADERHEIGHT 44
 
 @interface LemursLifeViewController ()
 
@@ -41,9 +44,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    self.viewTitle.text = NSLocalizedString(@"title_lemur_life_list",@"");
-    
     self.intialLoad = YES;
     self.pullToRefresh = NO;
     appDelegate.showActivity = YES;
@@ -60,15 +60,17 @@
     [self.tableViewLifeList addSubview:self.refreshControl];
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
-    //self.tableViewLifeList.estimatedRowHeight = 110;
+    self.tableViewLifeList.estimatedRowHeight = ROWHEIGHT;
+    
     
     self.searchText.delegate = self;
     [self.btnSearch setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
     
     self.navigationItem.title = NSLocalizedString(@"lemur_life_list_title",@"");
+    self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
-    
-    
+    [self.buttonConnect setHidden:YES];
     
 }
 
@@ -90,11 +92,8 @@
 
 
 - (void) viewWillAppear:(BOOL)animated{
-    
     [super viewWillAppear:animated];
-    
     [self loadLocalLemurLifeLists];
-   
 }
 
 
@@ -126,20 +125,46 @@
         [message sizeToFit];
         self.tableViewLifeList.backgroundView = message;
         self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        [self removeActivityScreen];
     }
     return 0;
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    //-- Raha vao tsy atsoina ity dia tsy miseho ilay Header
+    return TABLEVIEWHEADERHEIGHT;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    NSInteger countLifeList = [_lemurLifeList count];
+    NSString * title = [NSString stringWithFormat:@"You have %ld species in your list",(long)countLifeList];
+    
+    UIView * view = [[UIView alloc]init];
+    [view setFrame:CGRectMake(0, 0, self.tableViewLifeList.frame.size.width, TABLEVIEWHEADERHEIGHT)];
+    view.backgroundColor = ORANGE_COLOR;
+    
+    UILabel * tableTitle = [[UILabel alloc]init];
+    [tableTitle setFrame:CGRectMake(0, 0, self.tableViewLifeList.frame.size.width, TABLEVIEWHEADERHEIGHT)];
+    tableTitle.text = title;
+    tableTitle.textAlignment = NSTextAlignmentCenter;
+    
+    [tableTitle setFont:[UIFont fontWithName:@"Open Sans" size:18]];
+    
+    [view addSubview:tableTitle];
+    
+   
+
+    return view;
+}
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _lemurLifeList.count;
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return ROWHEIGHT;
-}
- 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -152,6 +177,9 @@
     
     
     [cell displayLemurLife:lifeList.node];
+    
+    //cell = (LemurLifeListTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-5];
+    
     
     return cell;
     
@@ -177,6 +205,7 @@
 #pragma mark LoginPopoverDelegate
 
 - (void) cancel{
+    [self.buttonConnect setHidden:NO];
     [popoverController dismissPopoverAnimated:YES];
 }
 
@@ -224,9 +253,9 @@
                     appDelegate._sessionName = loginResult.session_name;
                     appDelegate._uid    = loginResult.user.uid;
                     
-                    [self loadOnlineLemurLifeList];
+                    [self loadOnlineSightings];
                     
-                    
+                
                 }
             }
         }
@@ -250,8 +279,52 @@
 -(void) refreshListFromOnlineData{
     self.pullToRefresh = YES;
     appDelegate.showActivity = NO;
-    [self loadOnlineLemurLifeList];
+    //[self loadOnlineLemurLifeList];
+    [self loadOnlineSightings]; // Ny sightings no alaina dia manao updateInsert automatic ny LemurLifeList
     
+}
+
+-(void) loadOnlineSightings{
+    
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        [self showLoginPopup ];
+        [self.tableViewLifeList setHidden:YES];
+        [Tools emptyLemurLifeListTable];
+        [Tools emptySightingTable];
+        
+    }else{
+        [appData getSightingsForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
+            
+            if (err) {
+                if(self.refreshControl){
+                    [self.refreshControl endRefreshing];
+                }
+                [Tools showError:err onViewController:self];
+                
+            }else{
+                
+                NSDictionary* tmpDict = (NSDictionary*) json;
+                NSError* error;
+                //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
+                //---- ny Class propertries
+                PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+                
+                if (error){
+                    NSLog(@"Error parse : %@", error.debugDescription);
+                }
+                else{
+                    [Tools saveSyncDate]; // Ovaina androany ny LAST_SYNC_DATE
+                    [Tools updateSightingsWithNodes:result.nodes];
+                    [self loadLocalLemurLifeLists];
+                    //-- fafana ilay message Empty List lasa background view teo aloha --
+                    self.tableViewLifeList.backgroundView = nil;
+                    self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+                }
+                
+            }
+            
+        }];
+    }
 }
 
 -(void) loadOnlineLemurLifeList{
@@ -312,14 +385,14 @@
 
 }
 
-
+/*
 -(void) function{
     [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
         
         if (err) {
-            if(self.refreshControl){
-                [self.refreshControl endRefreshing];
-            }
+            //if(self.refreshControl){
+              //  [self.refreshControl endRefreshing];
+            //}
             [Tools showError:err onViewController:self];
             
         }else{
@@ -347,6 +420,7 @@
     }];
 
 }
+*/
 
 -(void) loadLocalLemurLifeLists{
     
@@ -365,14 +439,21 @@
             node.title          = row._title;
             node.species        = row._species;
             node.where_see      = row._where_see_it;
-            node.see_first_time = row._when_see_it;
+            
+            NSDate * date       = [NSDate dateWithTimeIntervalSince1970:row._when_see_it];
+            NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *strDate = [formatter stringFromDate:date];
+            node.see_first_time = strDate;
             Photo * photo       = [Photo new];
             photo.src           = row._photo_name;
             node.lemur_photo    = photo;
             node.nid            = row._nid;
             node.species_nid    = row._species_id;
             node.uuid           = row._uuid;
+            node.isLocal        = row._isLocal;
             listNode.node       = node;
+            
             [nodeLists addObject:listNode];
         }
         
@@ -389,8 +470,9 @@
     // any @ mainThread no manao appel
     
     [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    //[self reloadData];
     
-    [self performSelectorOnMainThread:@selector(updateViewTitle) withObject:nil waitUntilDone:NO];
+    //[self performSelectorOnMainThread:@selector(updateViewTitle) withObject:nil waitUntilDone:NO];
 
 }
 
@@ -399,9 +481,9 @@
     [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
         
         if (err) {
-            if(self.refreshControl){
+            /*if(self.refreshControl){
                 [self.refreshControl endRefreshing];
-            }
+            }*/
             [Tools showError:err onViewController:self];
             
         }else{
@@ -492,11 +574,6 @@
 {
     [self.tableViewLifeList reloadData];
     if(self.refreshControl){
-        /*NSString *updateText = NSLocalizedString(@"updating_list",@"");
-        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor blackColor]
-                                                                    forKey:NSForegroundColorAttributeName];
-        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:updateText attributes:attrsDictionary];
-        self.refreshControl.attributedTitle = attributedTitle;*/
         [self.refreshControl endRefreshing];
     }
     
@@ -618,13 +695,19 @@
                 node.title          = row._title;
                 node.species        = row._species;
                 node.where_see      = row._where_see_it;
-                node.see_first_time = row._when_see_it;
+                int64_t timeStamp   = row._when_see_it;
+                NSDate * date       = [NSDate dateWithTimeIntervalSince1970:timeStamp];
+                NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+                [formatter setDateFormat:@"yyyy-MM-dd"];
+                node.see_first_time = [formatter stringFromDate:date];
+                
                 Photo * photo       = [Photo new];
                 photo.src           = row._photo_name;
                 node.lemur_photo    = photo;
                 node.nid            = row._nid;
                 node.species_nid    = row._species_id;
                 node.uuid           = row._uuid;
+                node.isLocal        = row._isLocal;
                 listNode.node       = node;
                 [nodeLists addObject:listNode];
             }
@@ -656,5 +739,8 @@
     {
         [self showSearch];
     }
+}
+- (IBAction)btnLogInTapped:(id)sender {
+    [self showLoginPopup];
 }
 @end

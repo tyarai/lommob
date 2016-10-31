@@ -336,15 +336,20 @@ static float appScale = 1.0;
             if(node){
                 LemurLifeList* lemurLifeList = node.node;
                 NSString * _uuid = lemurLifeList.uuid;
-                LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListByUUID:_uuid];
+                //LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListByUUID:_uuid];
+                NSInteger _nid = lemurLifeList.nid;
+                int64_t  _species_nid   = lemurLifeList.species_nid;
+                LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListBySpeciesID:_species_nid];
                 NSString * _title       = lemurLifeList.title;
                 NSString * _species     = lemurLifeList.species;
                 NSString * _where_see_it= lemurLifeList.where_see;
-                NSString * _when_see_it = lemurLifeList.see_first_time;
+                NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+                [formatter setDateFormat:@"yyyy-MM-dd"];
+                NSDate * date          = [[NSDate alloc]init];
+                date                   = [formatter dateFromString:lemurLifeList.see_first_time];
+                int64_t  _when_see_it  = [date timeIntervalSince1970];
                 NSString * _photo_name  = lemurLifeList.lemur_photo.src;
-                int64_t  _species_nid   = lemurLifeList.species_nid;
-                int64_t    _nid         = lemurLifeList.nid;
-
+                
                 if(instance == nil){
                     //---Tsy mbola misy ao anaty base-tablet ity lemur life list ity dia apina ao --
                     
@@ -362,8 +367,8 @@ static float appScale = 1.0;
                 }else{
                    
                     
-                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _where_see_it = '%@' , _when_see_it = '%@' , _title = '%@' , _species = '%@' , _photo_name = '%@' , _nid = '%lli' , _species_id = '%lli'  WHERE _uuid = '%@' ",
-                                       _where_see_it,_when_see_it,_title,_species,_photo_name,_nid,_species_nid,_uuid];
+                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _where_see_it = '%@' , _when_see_it = '%li' , _title = '%@' , _species = '%@' , _photo_name = '%@'  , _uuid = '%@' , _nid = '%li' WHERE _species_id = '%li' ",
+                                       _where_see_it,(long)_when_see_it,_title,_species,_photo_name,_uuid,(long)_nid,(long)_species_nid];
                     
                     [LemurLifeListTable executeUpdateQuery:query];
                     
@@ -385,7 +390,6 @@ static float appScale = 1.0;
                 
                 NSString * _uuid = sighting.uuid;
                 int64_t  _nid           = sighting.nid;
-                //Sightings* instance = [Sightings getSightingsByUUID:_uuid];
                 Sightings* instance = [Sightings getSightingsByNID : _nid];
                 NSString * _title       = sighting.title;
                 NSString * _species     = sighting.species;
@@ -436,16 +440,30 @@ static float appScale = 1.0;
                     
                 }else{
                     
-                    
-                    /*NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _nid = '%lli' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _uid = '%lli' , _isSynced = '1' WHERE _uuid = '%@' ",
-                    _nid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_uid,_uuid]; */
+               
                     NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '1' WHERE _nid = '%lli' ",
                                         _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_nid];
                     
                     [Sightings executeUpdateQuery:query];
-                    
-                    
                 }
+                
+                //------ Ampina ao anaty LemurLifeList raha toa tsy mbola ao ilay _speciesNID ---
+                LemurLifeListTable * lifeList = [LemurLifeListTable getLemurLifeListBySpeciesID:_species_nid];
+                if(lifeList == nil){
+                    LemurLifeListTable * newLemurLifeListTable = [LemurLifeListTable new];
+                    newLemurLifeListTable._title        = _title;
+                    newLemurLifeListTable._species      = _species;
+                    newLemurLifeListTable._where_see_it = _where_see_it;
+                    newLemurLifeListTable._when_see_it  = _date;
+                    newLemurLifeListTable._photo_name   = _photo_name;
+                    newLemurLifeListTable._species_id   = _species_nid;
+                    newLemurLifeListTable._nid          = _nid;
+                    newLemurLifeListTable._uuid         = _uuid;
+                    newLemurLifeListTable._isLocal      = (int)NO; // from Server
+                    [newLemurLifeListTable save];
+                }
+
+                
             }
         }
     }

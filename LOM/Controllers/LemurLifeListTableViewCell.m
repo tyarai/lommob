@@ -9,10 +9,13 @@
 #import "LemurLifeListTableViewCell.h"
 #import "Tools.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import "Sightings.h"
+
 
 @implementation LemurLifeListTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 
@@ -22,11 +25,15 @@
     // Configure the view for the selected state
 }
 
+
+
 - (void) displayLemurLife:(LemurLifeList*) lemurLifeList {
     
-    if (![Tools isNullOrEmptyString:lemurLifeList.title]) {
-        self.lblTitle.text = lemurLifeList.title;
-    }
+    NSInteger speciesNID = lemurLifeList.species_nid;
+    NSInteger sightingCount = [[Sightings getSightingsBySpeciesID:speciesNID] count];
+    NSString * strCount = [NSString stringWithFormat:@"%ld %@",(long)sightingCount,NSLocalizedString(@"sightings_title", @"")];
+    self.lblSightingCount.text = strCount;
+    
 
     
     if (![Tools isNullOrEmptyString:lemurLifeList.species]) {
@@ -48,48 +55,28 @@
     
     if (lemurLifeList.lemur_photo != nil && ![Tools isNullOrEmptyString:lemurLifeList.lemur_photo.src]) {
        
-        
-        [self.imgPhoto setImageWithURL:[NSURL URLWithString: lemurLifeList.lemur_photo.src]
-                      placeholderImage:nil
-                               options:SDWebImageRefreshCached
-                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                                     if (error) {
-                                         [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
-                                     }
-                             }
-           usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray ];
-        
-        /*
-       [self.imgPhoto setImageWithURL:[NSURL URLWithString: lemurLifeList.lemur_photo
-                                        .src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if(lemurLifeList.isLocal == YES){
+            NSString *getImagePath = [lemurLifeList getLemurLifeListImageFullPathName];
+            UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
             
-            if (error) {
+            if(img){
+                [self.imgPhoto setImage:img];
+            }else{
                 [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
             }
+        }else{
+            
+            [self.imgPhoto setImageWithURL:[NSURL URLWithString: lemurLifeList.lemur_photo.src]
+                          placeholderImage:nil
+                                   options:SDWebImageRefreshCached
+                                 completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                         if (error) {
+                                             [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                                         }
+                                 }
+               usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray ];
             
         }
-           usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray ];*/
-        
-        /*[self.imgPhoto sd_setImageWithURL:[NSURL URLWithString:lemurLifeList.lemur_photo.src]
-                     placeholderImage:[UIImage imageNamed:@"ico_default_specy"]
-                              options:SDWebImageRefreshCached];
-        
-        */
-        
-        /*
-        [self.imgPhoto setImageWithURL:[NSURL URLWithString:lemurLifeList.lemur_photo.src]
-                      placeholderImage:[UIImage imageNamed:@"ico_default_specy"]
-                               options:SDWebImageRefreshCached
-                             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){}
-           usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray ];*/
-        
-        /*[self.imgPhoto sd_setImageWithURL:[NSURL URLWithString:lemurLifeList.lemur_photo.src]
-                         placeholderImage:[UIImage imageNamed:@"ico_default_specy"]
-                                  options:SDWebImageRefreshCached
-                                 progress:^(NSInteger receivedSize, NSInteger expectedSize){}
-                                 completed:nil
-         ];*/
-         
         
         
         
