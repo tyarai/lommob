@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSpecies;
 @property (weak, nonatomic) IBOutlet UILabel *lblDate;
 @property (weak, nonatomic) IBOutlet UILabel *lblWhereSee;
+@property (weak, nonatomic) IBOutlet UILabel *numberObserved;
 
 - (void) displayLemurLife:(LemurLifeList*) lemurLifeList;
 

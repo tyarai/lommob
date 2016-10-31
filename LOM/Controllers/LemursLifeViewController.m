@@ -150,7 +150,7 @@
     tableTitle.text = title;
     tableTitle.textAlignment = NSTextAlignmentCenter;
     
-    [tableTitle setFont:[UIFont fontWithName:@"Open Sans" size:18]];
+    [tableTitle setFont:[UIFont fontWithName:@"Open Sans" size:19]];
     
     [view addSubview:tableTitle];
     

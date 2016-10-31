@@ -41,6 +41,6 @@
 
 + (NSArray*) getSpeciesByFamily:(NSString*) family_id;
 
-
++ (Species*) getSpeciesBySpeciesNID:(NSInteger) species_nid;
 
 @end
