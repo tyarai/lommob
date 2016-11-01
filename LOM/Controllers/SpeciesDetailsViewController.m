@@ -137,6 +137,8 @@
 
 - (void) displayLemurInfos{
     
+    
+    
     self.lblTitle.text = self.specy._title;
     [self activateButton:self.btnEnglish];
     
