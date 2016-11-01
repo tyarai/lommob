@@ -250,7 +250,11 @@
             }
 
         }
-
+        /**
+         @TODO Right after saving this sighting we could directly sync with server all un-synced sightings --
+            ---- NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
+            ---- [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
+        */
         
     }else{
         
