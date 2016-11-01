@@ -39,11 +39,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_splash" translatesAutoresizingMaskIntoConstraints="NO" id="ciw-fK-B8T"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_splash" translatesAutoresizingMaskIntoConstraints="NO" id="ciw-fK-B8T"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVX-YX-4oT">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="190" id="SGO-fm-blB"/>
+                                    <constraint firstAttribute="height" constant="30" id="l4k-oF-boJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
+                                <state key="normal" title="Log in">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tVX-YX-4oT" secondAttribute="bottom" constant="319" id="2Zb-cg-eIo"/>
                             <constraint firstItem="ciw-fK-B8T" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="5NQ-ec-zRg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tVX-YX-4oT" secondAttribute="trailing" constant="77" id="6BZ-DB-qqO"/>
+                            <constraint firstItem="tVX-YX-4oT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="76" id="H1d-Vy-RBi"/>
+                            <constraint firstItem="tVX-YX-4oT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="298" id="LvN-zr-YTQ"/>
                             <constraint firstItem="ciw-fK-B8T" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZXU-LM-J9e"/>
                             <constraint firstItem="ciw-fK-B8T" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="brk-Dh-a94"/>
                             <constraint firstItem="ciw-fK-B8T" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="zTa-uE-qF8"/>
@@ -52,12 +66,13 @@
                     <navigationItem key="navigationItem" id="O8X-eI-z0X"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="btnLogin" destination="tVX-YX-4oT" id="VgV-De-QeL"/>
                         <segue destination="lc9-V8-CUV" kind="presentation" identifier="presentMain" id="cqt-ST-ZOw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-846" y="857"/>
+            <point key="canvasLocation" x="-1354.4000000000001" y="856.82158920539734"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="e6K-fE-pAf">
@@ -74,7 +89,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5f-d4-RNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-234" y="857"/>
+            <point key="canvasLocation" x="-615" y="857"/>
         </scene>
         <!--MainVC-->
         <scene sceneID="awC-0Z-Xiu">
@@ -98,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6r-bn-hd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="347" y="857"/>
+            <point key="canvasLocation" x="86" y="857"/>
         </scene>
         <!--Slide Menu Left Table View Controller-->
         <scene sceneID="zWA-dC-qqH">

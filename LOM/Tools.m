@@ -13,6 +13,7 @@
 #import "Sightings.h"
 #import "PublicationNode.h"
 #import "AppData.h"
+#import "Constants.h"
 
 
 @implementation Tools
@@ -562,5 +563,15 @@ static float appScale = 1.0;
     NSString *syncDate = [dateFormatter stringFromDate:currDate];
     [Tools setUserPreferenceWithKey:LAST_SYNC_DATE andStringValue:syncDate];
 }
+
++ (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid{
+    NSString * strUid = [NSString stringWithFormat:@"%ld",(long)uid];
+    [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
+    [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:session_name];
+    [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
+    [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
+
+}
+
 
 @end
