@@ -100,6 +100,7 @@
                     
                     
                     //[self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
+                    [self dismissViewControllerAnimated:NO completion:nil];
                     [self performSelectorOnMainThread:@selector(presentMain) withObject:nil waitUntilDone:NO];
                     
                 }
@@ -123,15 +124,21 @@
     NSString* indentifier=@"PopupLoginViewController";
     PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
     controller.delegate = self;
-    controller.preferredContentSize = CGSizeMake(300, 200);
+    
+    /*controller.preferredContentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
-    popoverController.delegate = self;
-    CGRect bounds = self.view.bounds;
-    [popoverController presentPopoverFromRect:bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+    popoverController.delegate = self;*/
+    
+    
+    //[popoverController presentPopoverFromRect:bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+    
+    [self presentViewController:controller animated:YES completion:nil];
     
 }
 
-
+-(BOOL)prefersStatusBarHidden{
+    return YES;
+}
 
 /*
 #pragma mark - Navigation

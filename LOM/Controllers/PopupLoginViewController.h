@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @protocol PopupLoginViewControllerDelegate <NSObject>
 - (void) cancel;
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe;
@@ -15,8 +16,16 @@
 
 
 
-@interface PopupLoginViewController : UIViewController <UITextFieldDelegate>
+@interface PopupLoginViewController : UIViewController <UITextFieldDelegate>{
+    CGFloat constraint;
+}
 
 @property (nonatomic, retain) id<PopupLoginViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *loginTitle;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIView *controlView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
 
 @end
