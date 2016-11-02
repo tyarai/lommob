@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SignUpViewController.h"
 
 
 @protocol PopupLoginViewControllerDelegate <NSObject>
@@ -16,7 +17,7 @@
 
 
 
-@interface PopupLoginViewController : UIViewController <UITextFieldDelegate>{
+@interface PopupLoginViewController : UIViewController <UITextFieldDelegate,SignUpViewControllerDelegate>{
     CGFloat constraint;
 }
 
@@ -27,5 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIView *controlView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
+- (IBAction)createAccountTapped:(id)sender;
 
 @end

@@ -881,6 +881,7 @@
 		B46779311D46211700618410 /* LemurLifeListNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B46779301D46211700618410 /* LemurLifeListNode.m */; };
 		B46779341D46224400618410 /* LemurLifeListResult.m in Sources */ = {isa = PBXBuildFile; fileRef = B46779331D46224400618410 /* LemurLifeListResult.m */; };
 		B46779361D4665B000618410 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B46779351D4665AF00618410 /* Localizable.strings */; };
+		B47115201DCA741B00473D67 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B471151F1DCA741B00473D67 /* SignUpViewController.m */; };
 		B475F1861DAA0401006A12EF /* SightingsInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B475F1851DAA0401006A12EF /* SightingsInfoViewController.m */; };
 		B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B48667A51C81A2AA00F2B05D /* ExtinctLemursViewController.m */; };
 		B4889C0E1DAB376F0096F908 /* SightingDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4889C0D1DAB376F0096F908 /* SightingDataTableViewController.m */; };
@@ -1864,6 +1865,8 @@
 		B46779321D46224400618410 /* LemurLifeListResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LemurLifeListResult.h; path = Models/JsonModels/Result/LemurLifeListResult.h; sourceTree = "<group>"; };
 		B46779331D46224400618410 /* LemurLifeListResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LemurLifeListResult.m; path = Models/JsonModels/Result/LemurLifeListResult.m; sourceTree = "<group>"; };
 		B46779351D4665AF00618410 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		B471151E1DCA741B00473D67 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpViewController.h; path = Controllers/SignUpViewController.h; sourceTree = "<group>"; };
+		B471151F1DCA741B00473D67 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpViewController.m; path = Controllers/SignUpViewController.m; sourceTree = "<group>"; };
 		B475F1841DAA0401006A12EF /* SightingsInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SightingsInfoViewController.h; path = Controllers/SightingsInfoViewController.h; sourceTree = "<group>"; };
 		B475F1851DAA0401006A12EF /* SightingsInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SightingsInfoViewController.m; path = Controllers/SightingsInfoViewController.m; sourceTree = "<group>"; };
 		B48667A41C81A2AA00F2B05D /* ExtinctLemursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtinctLemursViewController.h; path = Controllers/ExtinctLemursViewController.h; sourceTree = "<group>"; };
@@ -2963,6 +2966,7 @@
 		4C74F2841C06381A00543A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B471151D1DCA73EA00473D67 /* Signup */,
 				B4889C0B1DAB36540096F908 /* SightingData */,
 				B475F1831DAA03DA006A12EF /* SightingsInfo */,
 				B4A275551DA8D86100777499 /* CameraViewController */,
@@ -3199,6 +3203,15 @@
 				B43DF4311DB8F21800319654 /* UITableViewCell+Stretch.m */,
 			);
 			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		B471151D1DCA73EA00473D67 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				B471151E1DCA741B00473D67 /* SignUpViewController.h */,
+				B471151F1DCA741B00473D67 /* SignUpViewController.m */,
+			);
+			name = Signup;
 			sourceTree = "<group>";
 		};
 		B475F1831DAA03DA006A12EF /* SightingsInfo */ = {
@@ -4326,6 +4339,7 @@
 				8E9354A51D01C0FB0022A220 /* PublicationNode.m in Sources */,
 				4C74F28F1C06387A00543A7F /* RNCachingURLProtocol.m in Sources */,
 				4C74F2AC1C0639A600543A7F /* Maps.m in Sources */,
+				B47115201DCA741B00473D67 /* SignUpViewController.m in Sources */,
 				B4BBF3BC1C978BB9005A5196 /* Authors.m in Sources */,
 				B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */,
 				4C59AD951C15F59A00EA74C5 /* FamiliesViewController.m in Sources */,
