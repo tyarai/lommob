@@ -535,7 +535,7 @@ static float appScale = 1.0;
     
             
         default:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:err.debugDescription];
+            UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:@"There was an error!"];
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }

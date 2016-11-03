@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SignUpViewController.h"
-
+#import "BaseViewController.h"
 
 @protocol PopupLoginViewControllerDelegate <NSObject>
 - (void) cancel;
@@ -17,8 +17,9 @@
 
 
 
-@interface PopupLoginViewController : UIViewController <UITextFieldDelegate,SignUpViewControllerDelegate>{
+@interface PopupLoginViewController : BaseViewController <UITextFieldDelegate,SignUpViewControllerDelegate>{
     CGFloat constraint;
+    SignUpViewController * signUpViewController;
 }
 
 @property (nonatomic, retain) id<PopupLoginViewControllerDelegate> delegate;

@@ -167,13 +167,13 @@
     return YES;
     
 }
-- (IBAction)createAccountTapped:(id)sender {
+- (IBAction)createAccountTapped:(id)sender{
     
     NSString* indentifier=@"signUpVC";
-    SignUpViewController* controller = (SignUpViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
-    controller.delegate = self;
+    signUpViewController = (SignUpViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    signUpViewController.delegate = self;
     
-    [self presentViewController:controller animated:YES completion:nil];
+    [self presentViewController:signUpViewController animated:YES completion:nil];
 }
 
 
@@ -183,8 +183,58 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)signUpWithUserName:(NSString *)userName password:(NSString *)password{
-    
+- (void) signUpWithUserName:(NSString*) userName email:(NSString*)email password:(NSString*) password{
+    if(![Tools isNullOrEmptyString:userName] && ![Tools isNullOrEmptyString:password] && ![Tools isNullOrEmptyString:email]){
+        
+        [self showActivityScreen];
+        [appData registerUserName:userName password:password mail:email forCompletion:^(id json, JSONModelError *err) {
+            
+            [self removeActivityScreen];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            if(err != nil){
+                [Tools showError:err onViewController:signUpViewController];
+            }else{
+                
+                UIAlertController * alert = [UIAlertController
+                                             alertControllerWithTitle:NSLocalizedString(@"signupTitle", @"")
+                                             message:NSLocalizedString(@"signUpSuccessfull", @"")
+                                             preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* yesButton = [UIAlertAction
+                                            actionWithTitle:NSLocalizedString(@"connectUsingNewAccount",@"")
+                                            style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {
+                                                
+                                            [self dismissViewControllerAnimated:YES completion:nil];
+                                            //BaseViewController * delegate = (BaseViewController*)self.delegate;
+                                            //[delegate dismissViewControllerAnimated:YES completion:nil];
+                                            [self.delegate validWithUserName:userName
+                                                                    password:password
+                                                               andRememberMe:YES];
+
+                                            }];
+                UIAlertAction* noButton = [UIAlertAction
+                                            actionWithTitle:NSLocalizedString(@"connectUsingOtherAccount",@"")
+                                            style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction * action) {
+                                                
+                                            //[self dismissViewControllerAnimated:YES completion:nil];
+                                            //BaseViewController * delegate = (BaseViewController*)self.delegate;
+                                            //[delegate dismissViewControllerAnimated:YES completion:nil];
+                                                
+                                            }];
+
+                
+                [alert addAction:yesButton];
+                [alert addAction:noButton];
+
+                [self presentViewController:alert animated:YES completion:nil];
+                
+                
+            }
+        }];
+    }
 }
 
 @end

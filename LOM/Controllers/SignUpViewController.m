@@ -40,26 +40,66 @@
     
 }
 - (IBAction)btnOK_Touch:(id)sender {
-    
-    if (![Tools isNullOrEmptyString:self.txtuserName.text] && ![Tools isNullOrEmptyString:self.txtPassword1.text]  && ![Tools isNullOrEmptyString:self.txtPassword2.text]) {
+    NSString * error=nil;
+    if([self validateUserNameEmailPassword:self.txtuserName email:self.txtEmail pass1:self.txtPassword1 pass2:self.txtPassword2 error:&error]){
+            //----- Nety daholo ny username, password, ary email ---/
+            [self.delegate signUpWithUserName:self.txtuserName.text email:self.txtEmail.text password:self.txtPassword1.text ];
         
-        if([self validateUserNameAndPassword:self.txtuserName.text pass1:self.txtPassword1.text pass2:self.txtPassword2.text]){
-            [self.delegate signUpWithUserName:self.txtuserName.text password:self.txtPassword1.text ];
-        
-        }else{
-            /*
-             @TODO Show Message : Tsy mitovy ny pass1 sy pass2 eto
-             */
-        }
     }
+    
+    if(error != nil){
+        [Tools showSimpleAlertWithTitle:NSLocalizedString(@"signupTitle",@"") andMessage:error];
+    }
+    
+    
+}
+-(BOOL) validateEmail:(NSString*) email{
+   
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+
+}
+
+
+-(BOOL) validatePassword:(NSString*) pass{
+    
+    NSString *emailRegex = @"^[a-zA-Z_0-9\\-_#!$&@]+$";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    BOOL value = [emailTest evaluateWithObject:pass];;
+    return value;
     
 }
 
--(BOOL) validateUserNameAndPassword:(NSString*)userName pass1:(NSString*)pass1 pass2:(NSString*)pass2{
-   
+
+-(BOOL) validateUserNameEmailPassword:(UITextField*)userName email:(UITextField*) email pass1:(UITextField*)pass1 pass2:(UITextField*)pass2 error:(NSString**)error{
+    
     /*
-     @TODO : Jerena raha mitovy ny pass1 sy pass2 eto
+     @TODO : Jerena raha mitovy ny pass1 sy pass2 eto sady tsy NULL ny username
      */
+    if([Tools isNullOrEmptyString:userName.text]){
+        [userName becomeFirstResponder];
+        *error = NSLocalizedString(@"invalidUserName", @"");
+        return NO;
+    }
+    
+    if(![self validateEmail:email.text]){
+        [email becomeFirstResponder];
+        *error = NSLocalizedString(@"invalidEmail", @"");
+        return NO;
+    }
+    
+    if([Tools isNullOrEmptyString:pass1.text]  || [Tools isNullOrEmptyString:pass2.text] || ![self validatePassword:pass1.text] || ![self validatePassword:pass2.text]){
+        *error = NSLocalizedString(@"invalidPasswords", @"");
+        return NO;
+    }
+    
+    if(![pass1.text isEqualToString:pass2.text]){
+        *error = NSLocalizedString(@"passwordsDoNotMatch", @"");
+        return NO;
+
+    }
+    
     return YES;
 }
 
@@ -130,7 +170,9 @@
     
     CGFloat height = keyboardSize.height ;
     
-    self.bottomConstraint.constant = constraint + height - self.viewTitle.frame.size.height;
+    CGFloat titleHeight = self.viewTitle.frame.size.height;
+    CGFloat newConstraint = constraint + height - (titleHeight*2);//titleHeight;
+    self.bottomConstraint.constant = newConstraint;
     [self.controlView setNeedsUpdateConstraints];
     
     

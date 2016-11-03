@@ -21,6 +21,7 @@
 
 #define LOGIN_ENDPOINT @"/lom_endpoint/user/login.json"
 #define LOGOUT_ENDPOINT @"/lom_endpoint/user/logout.json"
+#define REGISTER_ENDPOINT @"/lom_endpoint/user/register.json"
 #define FILE_ENDPOINT @"/lom_endpoint/file.json"
 #define NODE_ENDPOINT @"/lom_endpoint/node.json"
 
@@ -43,6 +44,11 @@
 -(void) loginWithUserName:(NSString*)userName andPassword:(NSString*) password forCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) logoutUserName:(NSString*)userName forCompletion:(JSONObjectBlock)completeBlock;
+
+-(void) registerUserName:(NSString*)userName
+                password:(NSString*)password
+                mail    :(NSString*)mail
+           forCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) CheckSession:(NSString*)sessionName
            sessionID:(NSString*)sessionID

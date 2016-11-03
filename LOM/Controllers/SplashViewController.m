@@ -56,19 +56,17 @@
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
     
-    [popoverController dismissPopoverAnimated:YES];
+    //[popoverController dismissPopoverAnimated:YES];
     
-    //[self showActivityScreen];
+    [self showActivityScreen];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        //[self removeActivityScreen];
+        [self removeActivityScreen];
         
         if (err)
         {
-            [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
-            //[self removeActivityScreen];
-            [Tools showError:err onViewController:self];
+            [Tools showError:err onViewController:loginViewController];
         }
         else
         {
@@ -122,8 +120,12 @@
 
 -(void) showLoginPopup{
     NSString* indentifier=@"PopupLoginViewController";
-    PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
-    controller.delegate = self;
+    
+    /*PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    controller.delegate = self;*/
+    
+    loginViewController = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    loginViewController.delegate = self;
     
     /*controller.preferredContentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
@@ -132,7 +134,7 @@
     
     //[popoverController presentPopoverFromRect:bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
     
-    [self presentViewController:controller animated:YES completion:nil];
+    [self presentViewController:loginViewController animated:YES completion:nil];
     
 }
 

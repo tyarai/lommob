@@ -87,6 +87,8 @@ static AppData* _instance;
 }
 
 
+#pragma User
+
 -(void) loginWithUserName:(NSString*)userName andPassword:(NSString*) password forCompletion:(JSONObjectBlock)completeBlock
 {
     [self buildPOSTHeader];
@@ -97,6 +99,21 @@ static AppData* _instance;
     
     [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
 }
+
+-(void) registerUserName:(NSString*)userName
+                password:(NSString*)password
+                mail    :(NSString*)mail
+           forCompletion:(JSONObjectBlock)completeBlock
+{
+    [self buildPOSTHeader];
+    
+    NSString* body = [NSString stringWithFormat:@"account[name]=%@&account[mail]=%@&account[pass]=%@",userName,mail,password];
+    
+    NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, REGISTER_ENDPOINT];
+    
+    [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
+}
+
 
 
 -(void) logoutUserName:(NSString*)userName forCompletion:(JSONObjectBlock)completeBlock {

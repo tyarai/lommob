@@ -465,8 +465,8 @@
         
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
-        [Tools emptySightingTable];
-        [Tools emptyLemurLifeListTable];
+        //[Tools emptySightingTable];
+        //[Tools emptyLemurLifeListTable];
         
     }else{
         

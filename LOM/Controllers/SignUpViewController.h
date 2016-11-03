@@ -10,7 +10,7 @@
 
 @protocol SignUpViewControllerDelegate <NSObject>
 - (void) cancelSignUp;
-- (void) signUpWithUserName:(NSString*) userName password:(NSString*) password ;
+- (void) signUpWithUserName:(NSString*) userName email:(NSString*)email password:(NSString*) password ;
 @end
 
 
@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtuserName;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword1;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword2;
+@property (weak, nonatomic) IBOutlet UITextField *txtEmail;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
 @property (weak, nonatomic) IBOutlet UIView *controlView;
