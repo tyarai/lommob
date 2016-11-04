@@ -237,7 +237,7 @@
             
             if(lifeList == nil){
                 LemurLifeListTable * newLemurLifeListTable = [LemurLifeListTable new];
-                newLemurLifeListTable._title        = _title;
+                newLemurLifeListTable._title        = _speciesName;//_title;
                 newLemurLifeListTable._species      = _speciesName;
                 newLemurLifeListTable._where_see_it = _placeName;
                 newLemurLifeListTable._when_see_it  = _date;
@@ -245,7 +245,10 @@
                 newLemurLifeListTable._species_id   = _speciesNid;
                 newLemurLifeListTable._nid          = _nid;
                 newLemurLifeListTable._uuid         = _uuid;
+                newLemurLifeListTable._uid          = _uid;
                 newLemurLifeListTable._isLocal      = (int)YES; // from iPhone
+                newLemurLifeListTable._isSynced     = (int)NO; // not Synced
+                
                 [newLemurLifeListTable save];
             }
 

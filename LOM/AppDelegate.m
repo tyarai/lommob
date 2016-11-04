@@ -93,6 +93,23 @@
             if (! [db executeUpdate:@"ALTER TABLE LemurLifeListTable ADD COLUMN _isLocal INTEGER NOT NULL DEFAULT 'NULL'"]) failedAt(4);
             *schemaVersion = 5;
         }
+        
+        /*
+         * Ampina ilay field _isLocal table LemurLifeListTable
+         */
+        if (*schemaVersion < 6) {
+            if (! [db executeUpdate:@"ALTER TABLE LemurLifeListTable ADD COLUMN _uid INTEGER NOT NULL DEFAULT 'NULL'"]) failedAt(5);
+            *schemaVersion = 6;
+        }
+        /*
+         * Ampina ilay field _isSynced table LemurLifeListTable
+         */
+        if (*schemaVersion < 7) {
+            if (! [db executeUpdate:@"ALTER TABLE LemurLifeListTable ADD COLUMN _isSynced INTEGER NOT NULL DEFAULT '0'"]) failedAt(6);
+            *schemaVersion = 7;
+        }
+        
+
 
        
 

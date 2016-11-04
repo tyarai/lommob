@@ -84,10 +84,12 @@
     NSString* indentifier=@"PopupLoginViewController";
     PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
     controller.delegate = self;
-    controller.preferredContentSize = CGSizeMake(300, 200);
-    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
-    popoverController.delegate = self;
-    [popoverController presentPopoverFromRect:self.view.bounds inView:self.buttonConnect permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+    
+    //controller.preferredContentSize = CGSizeMake(300, 200);
+    //popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
+    //popoverController.delegate = self;
+    //[popoverController presentPopoverFromRect:self.view.bounds inView:self.buttonConnect permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 
@@ -213,7 +215,8 @@
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
     
-    [popoverController dismissPopoverAnimated:YES];
+    //[popoverController dismissPopoverAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     [self showActivityScreen];
     
@@ -281,7 +284,63 @@
     appDelegate.showActivity = NO;
     //[self loadOnlineLemurLifeList];
     [self loadOnlineSightings]; // Ny sightings no alaina dia manao updateInsert automatic ny LemurLifeList
+    [self syncWithServer];
+}
+
+-(void) syncWithServer{
     
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        [self showLoginPopup ];
+        [self.tableViewLifeList setHidden:YES];
+        
+    }else{
+        
+        NSString * sessionName = [appDelegate _sessionName];
+        NSString * sessionID   = [appDelegate _sessid];
+        
+        [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+            BOOL stillConnected = YES;
+            
+            
+            UserConnectedResult* sessionCheckResult = nil;
+            if (err)
+            {
+                [Tools showError:err onViewController:self];
+            }
+            else
+            {
+                NSError* error;
+                NSDictionary* tmpDict = (NSDictionary*) json;
+                sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+                
+                if (error){
+                    NSLog(@"Error parse : %@", error.debugDescription);
+                }else{
+                    if(sessionCheckResult.user != nil){
+                        if (sessionCheckResult.user.uid == 0){
+                            stillConnected = NO;
+                        }
+                        
+                    }
+                }
+                
+            }
+            //--- Only do this when stillConnected = YES ---//
+            if(stillConnected){
+                NSArray * notSyncedLifeList = [LemurLifeListTable getNotSyncedLifeList];
+                [appData syncLifeListWithServer:notSyncedLifeList sessionName:sessionName sessionID:sessionID];
+                [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+                
+            }else{
+                [self showLoginPopup ];
+                [self.tableViewLifeList setHidden:YES];
+            }
+        }];
+        
+    }
+    
+    
+
 }
 
 -(void) loadOnlineSightings{
@@ -289,8 +348,8 @@
     if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
-        [Tools emptyLemurLifeListTable];
-        [Tools emptySightingTable];
+        //[Tools emptyLemurLifeListTable];
+        //[Tools emptySightingTable];
         
     }else{
         [appData getSightingsForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
@@ -330,12 +389,9 @@
 -(void) loadOnlineLemurLifeList{
     
     if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
-        
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
-        [Tools emptyLemurLifeListTable];
-        [Tools emptySightingTable];
-            
+        
     }else{
         
         NSString * sessionName = [appDelegate _sessionName];
@@ -376,8 +432,7 @@
             }else{
                 [self showLoginPopup ];
                 [self.tableViewLifeList setHidden:YES];
-                [Tools emptyLemurLifeListTable];
-                [Tools emptySightingTable];
+              
             }
         }];
 
@@ -385,42 +440,6 @@
 
 }
 
-/*
--(void) function{
-    [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
-        
-        if (err) {
-            //if(self.refreshControl){
-              //  [self.refreshControl endRefreshing];
-            //}
-            [Tools showError:err onViewController:self];
-            
-        }else{
-            
-            NSDictionary* tmpDict = (NSDictionary*) json;
-            NSError* error;
-            //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
-            //---- ny Class propertries
-            LemurLifeListResult* result = [[LemurLifeListResult alloc] initWithDictionary:tmpDict error:&error];
-            
-            if (error){
-                NSLog(@"Error parse : %@", error.debugDescription);
-            }
-            else{
-                [Tools updateLemurLifeListWithNodes:result.nodes];
-                [self loadLocalLemurLifeLists];
-                
-                //-- fafana ilay message Empty List lasa background view teo aloha --
-                self.tableViewLifeList.backgroundView = nil;
-                self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            }
-            
-        }
-        
-    }];
-
-}
-*/
 
 -(void) loadLocalLemurLifeLists{
     
@@ -428,12 +447,14 @@
         [self showActivityScreen];
     }
     
-    NSArray * allLemurLifeList = [LemurLifeListTable getAllLemurLifeLists];
+    //NSArray * allLemurLifeList = [LemurLifeListTable getAllLemurLifeLists];
+    NSInteger _uid = appDelegate._uid;
+    NSArray* currentUserLifeList =  [LemurLifeListTable getLemurLifeListsByUID:_uid];
     NSMutableArray * nodeLists = nil;
-    if([allLemurLifeList count] > 0 ){
+    if([currentUserLifeList count] > 0 ){
         nodeLists = [NSMutableArray new];
         
-        for (LemurLifeListTable *row in allLemurLifeList) {
+        for (LemurLifeListTable *row in currentUserLifeList) {
             LemurLifeListNode * listNode = [LemurLifeListNode new];
             LemurLifeList * node = [LemurLifeList new];
             node.title          = row._title;
@@ -470,10 +491,7 @@
     // any @ mainThread no manao appel
     
     [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-    //[self reloadData];
     
-    //[self performSelectorOnMainThread:@selector(updateViewTitle) withObject:nil waitUntilDone:NO];
-
 }
 
 -(void) getLemursListJSONCall{
@@ -481,9 +499,6 @@
     [appData getMyLemurLifeListForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
         
         if (err) {
-            /*if(self.refreshControl){
-                [self.refreshControl endRefreshing];
-            }*/
             [Tools showError:err onViewController:self];
             
         }else{

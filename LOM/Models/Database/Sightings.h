@@ -41,5 +41,6 @@
 + (NSArray*) getNotSyncedSightings;
 + (void) emptySightingsTable;
 + (long) observationSumBySpeciesNID:(NSInteger) speciesNID;
++ (NSArray*) getSightingsByUID:(NSInteger) uid;
 
 @end

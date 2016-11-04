@@ -154,10 +154,13 @@
     NSString* indentifier=@"PopupLoginViewController";
     PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
     controller.delegate = self;
-    controller.preferredContentSize = CGSizeMake(300, 200);
+    
+    /*controller.preferredContentSize = CGSizeMake(300, 200);
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
     [popoverController presentPopoverFromRect:self.view.bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+     */
+    [self presentViewController:controller animated:YES completion:nil];
     
 }
 
@@ -175,12 +178,14 @@
         [self showActivityScreen];
     }
     
-    NSArray * allSightings = [Sightings getAllSightings];
+    //NSArray * allSightings = [Sightings getAllSightings];
+    NSInteger _uid = appDelegate._uid;
+    NSArray *  currentUserSighting = [Sightings getSightingsByUID:_uid];
     NSMutableArray * nodeLists = nil;
-    if([allSightings count] > 0 ){
+    if([currentUserSighting count] > 0 ){
         nodeLists = [NSMutableArray new];
         
-        for (Sightings *row in allSightings) {
+        for (Sightings *row in currentUserSighting) {
             
             PublicationNode * listNode = [PublicationNode new];
             Publication * node = [Publication new];
@@ -405,13 +410,13 @@
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
     
-    [popoverController dismissPopoverAnimated:YES];
+    //[popoverController dismissPopoverAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     [self showActivityScreen];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        //[self removeActivityScreen];
         
         if (err)
         {
@@ -508,8 +513,8 @@
             }else{
                 [self showLoginPopup ];
                 [self.tableViewLifeList setHidden:YES];
-                [Tools emptySightingTable];
-                [Tools emptyLemurLifeListTable];
+                //[Tools emptySightingTable];
+                //[Tools emptyLemurLifeListTable];
             }
         }];
         

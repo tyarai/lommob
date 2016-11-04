@@ -89,6 +89,7 @@
                     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:nil];
                     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:nil];
                     [Tools setUserPreferenceWithKey:KEY_UID andStringValue:nil];
+                    [Tools setUserPreferenceWithKey:LAST_SYNC_DATE andStringValue:nil];
                 }
             }];
         }

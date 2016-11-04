@@ -336,11 +336,15 @@ static float appScale = 1.0;
         for (LemurLifeListNode *node in nodes) {
             if(node){
                 LemurLifeList* lemurLifeList = node.node;
-                NSString * _uuid = lemurLifeList.uuid;
-                //LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListByUUID:_uuid];
-                NSInteger _nid = lemurLifeList.nid;
+                NSString * _uuid        = lemurLifeList.uuid;
+                NSInteger _uid          = lemurLifeList.uid;
+                NSInteger _nid          = lemurLifeList.nid;
                 int64_t  _species_nid   = lemurLifeList.species_nid;
-                LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListBySpeciesID:_species_nid];
+               
+                //LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListBySpeciesID:_species_nid];
+                //LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListByUUID:_uuid];
+                LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListBySpeciesNID:_nid];
+                
                 NSString * _title       = lemurLifeList.title;
                 NSString * _species     = lemurLifeList.species;
                 NSString * _where_see_it= lemurLifeList.where_see;
@@ -363,13 +367,15 @@ static float appScale = 1.0;
                     newLemurLifeListTable._species_id   = _species_nid;
                     newLemurLifeListTable._nid          = _nid;
                     newLemurLifeListTable._uuid         = _uuid;
+                    newLemurLifeListTable._uid          = _uid;
                     
                     [newLemurLifeListTable save];
                 }else{
                    
+                    //--- Update by _nid ---//
                     
-                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _where_see_it = '%@' , _when_see_it = '%li' , _title = '%@' , _species = '%@' , _photo_name = '%@'  , _uuid = '%@' , _nid = '%li' WHERE _species_id = '%li' ",
-                                       _where_see_it,(long)_when_see_it,_title,_species,_photo_name,_uuid,(long)_nid,(long)_species_nid];
+                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _where_see_it = '%@' , _when_see_it = '%li' , _title = '%@' , _species = '%@' , _photo_name = '%@'  , _uuid = '%@' , _nid = '%li' , _species_id = '%li' , _uid = '%li' WHERE _nid = '%li'  ",
+                                       _where_see_it,(long)_when_see_it,_title,_species,_photo_name,_uuid,(long)_nid,(long)_species_nid,(long)_uid,(long)_nid];
                     
                     [LemurLifeListTable executeUpdateQuery:query];
                     
@@ -441,7 +447,7 @@ static float appScale = 1.0;
                     
                 }else{
                     
-               
+                    //------ Update by _nid -------//
                     NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '1' WHERE _nid = '%lli' ",
                                         _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_nid];
                     
@@ -449,7 +455,7 @@ static float appScale = 1.0;
                 }
                 
                 //------ Ampina ao anaty LemurLifeList raha toa tsy mbola ao ilay _speciesNID ---
-                LemurLifeListTable * lifeList = [LemurLifeListTable getLemurLifeListBySpeciesID:_species_nid];
+                /*LemurLifeListTable * lifeList = [LemurLifeListTable getLemurLifeListBySpeciesID:_species_nid];
                 if(lifeList == nil){
                     LemurLifeListTable * newLemurLifeListTable = [LemurLifeListTable new];
                     newLemurLifeListTable._title        = _title;
@@ -460,9 +466,10 @@ static float appScale = 1.0;
                     newLemurLifeListTable._species_id   = _species_nid;
                     newLemurLifeListTable._nid          = _nid;
                     newLemurLifeListTable._uuid         = _uuid;
+                    newLemurLifeListTable._uid          = _uid;
                     newLemurLifeListTable._isLocal      = (int)NO; // from Server
                     [newLemurLifeListTable save];
-                }
+                }*/
 
                 
             }
@@ -557,11 +564,13 @@ static float appScale = 1.0;
 }
 
 +(void) saveSyncDate{
+
     NSDate *currDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
     NSString *syncDate = [dateFormatter stringFromDate:currDate];
     [Tools setUserPreferenceWithKey:LAST_SYNC_DATE andStringValue:syncDate];
+
 }
 
 + (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid{

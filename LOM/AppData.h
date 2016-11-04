@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "JSONHTTPClient.h"
 #import "Sightings.h"
-
+#import "LemurLifeListTable.h"
 
 #ifdef DEBUG
     #define SERVER @"http://192.168.2.242"
@@ -32,6 +32,7 @@
 #define MY_SIGHTINGS_MODIFIED_FROM @"/api/v1/list/my-sightings-modified-from" // Parameter  updated date >= date & isLocal = value
 
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
+#define LIFELIST_ENDPOINT_MODIFIED_FROM @"api/v1/list/my-lemur-life-list-modified-from"
 #define LAST_SYNC_DATE @"last_sync_date"
 
 
@@ -61,6 +62,9 @@
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) syncWithServer:(NSArray<Sightings *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID ;
+
+-(void) syncLifeListWithServer:(NSArray<LemurLifeListTable *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID ;
+
 
 
 @end
