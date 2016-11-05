@@ -27,7 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *date;
 @property (weak, nonatomic) IBOutlet UITextField *placename;
-@property (weak, nonatomic) IBOutlet UITextView *comments;
+@property (weak, nonatomic) IBOutlet UITextField *comments;
 
 @property (weak, nonatomic) IBOutlet UILabel *speciesLabel;
 @property (strong) Species * species;

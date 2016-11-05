@@ -7,6 +7,7 @@
 //
 
 #import "Sightings.h"
+#import "Tools.h"
 
 @implementation Sightings
 
@@ -70,16 +71,29 @@
 }
 
 
-+ (NSArray*) getLemurLifeLists:(NSInteger)_uid{
-    if(_uid >0){
++ (NSArray*) getLemurLifeLists:(NSInteger)_uid search:(NSString*)like{
+    if(_uid >0 && [Tools isNullOrEmptyString:like]){
         NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid];
         
         NSArray * results = [Sightings resultDictionariesFromQuery:query];
         
         return results;
     }
+    
+    if(_uid >0 && ![Tools isNullOrEmptyString:like]){
+        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' AND ( _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' )  GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid,like,like];
+        
+        NSArray * results = [Sightings resultDictionariesFromQuery:query];
+        
+        return results;
+    }
+    
+    
+    
     return nil;
 }
+
+
 
 
 

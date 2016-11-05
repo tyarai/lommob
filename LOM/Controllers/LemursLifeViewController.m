@@ -511,7 +511,7 @@
 
 -(void) loadLocalLemurLifeLists{
      NSInteger _uid = appDelegate._uid;
-    NSArray * speciesInLifeList = [Sightings getLemurLifeLists:_uid];
+    NSArray * speciesInLifeList = [Sightings getLemurLifeLists:_uid search:nil];
     [_lemurLifeList removeAllObjects];
     for(id row in speciesInLifeList){
         [_lemurLifeList addObject:row];
@@ -829,7 +829,16 @@
         [self.tableViewLifeList reloadData];
         
     }else{
-        [self searchLemurLifeListByString:searchStr];
+        //[self searchLemurLifeListByString:searchStr];
+        NSInteger _uid = appDelegate._uid;
+        NSArray * speciesInLifeList = [Sightings getLemurLifeLists:_uid search:searchStr];
+        [_lemurLifeList removeAllObjects];
+        for(id row in speciesInLifeList){
+            [_lemurLifeList addObject:row];
+        }
+        self.tableViewLifeList.delegate = self;
+        self.tableViewLifeList.dataSource = self;
+        [self.tableViewLifeList setHidden:NO];
         [self.tableViewLifeList reloadData];
     }
 }

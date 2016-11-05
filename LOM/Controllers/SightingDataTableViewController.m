@@ -9,6 +9,7 @@
 #import "SightingDataTableViewController.h"
 #import "Constants.h"
 #import "Tools.h"
+#define ROWHEIGHT 70
 
 @interface SightingDataTableViewController ()
 
@@ -32,7 +33,11 @@
     self.comments.delegate = self;
     self.numberObserved.delegate = self;
     self.placename.delegate = self;
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = ROWHEIGHT;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
