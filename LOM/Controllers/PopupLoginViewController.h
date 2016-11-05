@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SignUpViewController.h"
+#import "BaseViewController.h"
 
 @protocol PopupLoginViewControllerDelegate <NSObject>
 - (void) cancel;
@@ -15,8 +17,18 @@
 
 
 
-@interface PopupLoginViewController : UIViewController <UITextFieldDelegate>
+@interface PopupLoginViewController : BaseViewController <UITextFieldDelegate,SignUpViewControllerDelegate>{
+    CGFloat constraint;
+    SignUpViewController * signUpViewController;
+}
 
 @property (nonatomic, retain) id<PopupLoginViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *loginTitle;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property (weak, nonatomic) IBOutlet UIView *controlView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *logo;
+- (IBAction)createAccountTapped:(id)sender;
 
 @end

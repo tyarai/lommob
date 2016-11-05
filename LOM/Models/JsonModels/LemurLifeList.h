@@ -23,6 +23,7 @@
 @property (nonatomic) int64_t nid;
 @property (nonatomic,strong) NSString<Optional>* uuid;
 @property (nonatomic) int64_t species_nid;
+@property (nonatomic) int64_t uid;
 @property (nonatomic) int64_t isLocal;
 
 

@@ -12,7 +12,9 @@
 
 @property (nonatomic) int64_t _id;
 @property (nonatomic) int64_t _nid;
+@property (nonatomic) int64_t _uid;
 @property (nonatomic) int64_t _isLocal;
+@property (nonatomic) int64_t _isSynced;
 @property (nonatomic, strong) NSString* _uuid;
 @property (nonatomic) int64_t _species_id;
 @property (nonatomic, strong) NSString* _title;
@@ -23,9 +25,13 @@
 
 + (id) getLemurLifeListByUUID:(NSString*) _uuid ;
 + (id) getLemurLifeListBySpeciesID:(NSInteger) _speciesID ;
++ (id) getLemurLifeListBySpeciesNID:(NSInteger) _nid ;
 
 + (NSArray*) getLemurLifeListLike:(NSString*) strValue ;
 + (NSArray*) getAllLemurLifeLists;
++ (NSArray*) getNotSyncedLifeList;
++ (NSArray*) getLemurLifeListsByUID:(NSInteger) _uid;
+
 +(void) emptyLemurLifeListTable;
 
 @end

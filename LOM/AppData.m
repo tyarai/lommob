@@ -87,6 +87,8 @@ static AppData* _instance;
 }
 
 
+#pragma User
+
 -(void) loginWithUserName:(NSString*)userName andPassword:(NSString*) password forCompletion:(JSONObjectBlock)completeBlock
 {
     [self buildPOSTHeader];
@@ -97,6 +99,21 @@ static AppData* _instance;
     
     [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
 }
+
+-(void) registerUserName:(NSString*)userName
+                password:(NSString*)password
+                mail    :(NSString*)mail
+           forCompletion:(JSONObjectBlock)completeBlock
+{
+    [self buildPOSTHeader];
+    
+    NSString* body = [NSString stringWithFormat:@"account[name]=%@&account[mail]=%@&account[pass]=%@",userName,mail,password];
+    
+    NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, REGISTER_ENDPOINT];
+    
+    [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
+}
+
 
 
 -(void) logoutUserName:(NSString*)userName forCompletion:(JSONObjectBlock)completeBlock {
@@ -163,6 +180,7 @@ static AppData* _instance;
         NSString* url= nil;
         
         NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        
         if([Tools isNullOrEmptyString:lastSyncDate]){
             [Tools saveSyncDate];
             //--- Rehefa vao mi-sync voalohany dia alatsaka daholo izay sighting any na Local na tsia --
@@ -170,7 +188,6 @@ static AppData* _instance;
             [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
         }else{
             //--- Rehefa vita sync voalohany dia izay Sighting modified from LAST_SYNC_DATE ka isLocal = FALSE sisa no midina ---
-            
             
             url = [NSString stringWithFormat:@"%@%@", SERVER,MY_SIGHTINGS_MODIFIED_FROM];
             //NSDictionary *JSONParam = @{@"isLocal":@"0" , @"changed":lastSyncDate};
@@ -190,24 +207,93 @@ static AppData* _instance;
 
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
 {
-    [self buildGETHeader];
-    
     
     if (![Tools isNullOrEmptyString:session_id]) {
+    
+        [self buildGETHeader];
         
         NSString * sessionName = [[Tools getAppDelegate] _sessionName];
         NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
     
-        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, LIFELIST_ENDPOINT];
-        
-        
-        [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
+        NSString* url= nil;
+        NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+
+        if([Tools isNullOrEmptyString:lastSyncDate]){
+            //----- Alatsaka daholo ny LifeList rehetra raha NULL ity date ity ---///
+            url = [NSString stringWithFormat:@"%@%@", SERVER, LIFELIST_ENDPOINT];
+            [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
+        }else{
+            url = [NSString stringWithFormat:@"%@%@", SERVER, LIFELIST_ENDPOINT_MODIFIED_FROM];
+            NSDictionary *JSONParam = @{@"changed":lastSyncDate};
+            [JSONHTTPClient getJSONFromURLWithString:url params:JSONParam completion:completeBlock];
+        }
         
     }
     
     
 }
+
+-(void) syncLifeListWithServer:(NSArray<LemurLifeListTable *>*)lifeLists
+                   sessionName:(NSString*)sessionName
+                     sessionID:(NSString*) sessionID{
+    
+    if([lifeLists count] > 0){
+        
+        [self buildPOSTHeader];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        for(LemurLifeListTable * list in lifeLists){
+            if(list._isLocal && !list._isSynced){
+                NSString * _title       = list._title;
+                int64_t     _species_id = list._species_id;
+                NSString * _species     = list._species;
+                //int64_t _uid            = list._uid; //<<-- Tsy mila alefa miakatra tsony ny _uid satria efa misy ilay session user no mitondra azy any @ server
+                int64_t _isLocal        = list._isLocal;
+                //int64_t _isSynced       = list._isSynced;
+                //NSString* _uuid         = list._uuid;
+                NSString* _where_see_it = list._where_see_it;
+                int64_t _when_see_it    = list._when_see_it;
+                //NSString* _photo_name   = list._photo_name;
+                
+                NSDate *vDate = [NSDate dateWithTimeIntervalSince1970:_when_see_it];
+                NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
+                [_formatter setDateFormat:@"y-M-d"];
+                NSString * strDate = [_formatter stringFromDate:vDate];
+                NSString *body = [NSString stringWithFormat:@"type=personal_lemur_life_list_item&language=und"];
+                
+                NSString * speciesName = [NSString stringWithFormat:@"%@(%lli)",_species,_species_id];
+                body = [body stringByAppendingFormat:@"&title=%@",_title];
+                body = [body stringByAppendingFormat:@"&field_species[und][0][target_id]=%@",speciesName];
+                body = [body stringByAppendingFormat:@"&field_locality[und][0][value]=%@",_where_see_it];
+                body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
+                body = [body stringByAppendingFormat:@"&field_is_local[und][value]=%lld",_isLocal];
+                
+                NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NODE_ENDPOINT];
+                [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:^(id json, JSONModelError *error) {
+                    
+                    NSDictionary * retDict = (NSDictionary*)json;
+                    
+                    
+                    if (error != nil){
+                        NSLog(@"Error parse : %@", error.debugDescription);
+                    }
+                    else{
+                        //-- Azo ny NID an'ity sighting vaovao ity ----
+                        NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
+                        list._nid = newNID;
+                        list._isSynced = YES;
+                        list._isLocal  = NO;
+                        [list save];
+                    }
+                }];
+                
+            }
+        }
+    }
+}
+
 
 
 -(void) syncWithServer:(NSArray<Sightings *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID {
@@ -324,6 +410,10 @@ static AppData* _instance;
     return 0;
 }
 
+
+/*
+    Sync Sighting to server
+ */
 -(void) saveSighting:(Sightings*)sighting
               fileID:(NSInteger)fid
          sessionName:(NSString*)sessionName
@@ -346,7 +436,7 @@ static AppData* _instance;
         NSInteger  count     = sighting._speciesCount;
         NSInteger  isLocal   = NO;//sighting._isLocal;
         NSInteger  isSynced  = (int)YES;
-        double dateTimeStamp = sighting._createdTime;
+        double dateTimeStamp = sighting._date;
         NSTimeInterval _interval= dateTimeStamp;
         NSDate *vDate = [NSDate dateWithTimeIntervalSince1970:_interval];
         NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
@@ -354,7 +444,6 @@ static AppData* _instance;
         NSString * strDate = [_formatter stringFromDate:vDate];
 
         NSString *body = [NSString stringWithFormat:@"type=publication&language=und"];
-        //body = [body stringByAppendingString:@"&body[und][0][format]=full_html"];
         
         body = [body stringByAppendingFormat:@"&title=%@",sightingTitle];
         body = [body stringByAppendingFormat:@"&field_uuid[und][0][value]=%@",uuid];
@@ -371,8 +460,6 @@ static AppData* _instance;
         
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NODE_ENDPOINT];
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
-        
-      
         
     }
 }

@@ -154,10 +154,13 @@
     NSString* indentifier=@"PopupLoginViewController";
     PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
     controller.delegate = self;
-    controller.preferredContentSize = CGSizeMake(300, 200);
+    
+    /*controller.preferredContentSize = CGSizeMake(300, 200);
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
     [popoverController presentPopoverFromRect:self.view.bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+     */
+    [self presentViewController:controller animated:YES completion:nil];
     
 }
 
@@ -165,7 +168,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+    [self loadOnlineSightings];
     [self loadLocalSightings];
 }
 
@@ -175,12 +178,14 @@
         [self showActivityScreen];
     }
     
-    NSArray * allSightings = [Sightings getAllSightings];
+    //NSArray * allSightings = [Sightings getAllSightings];
+    NSInteger _uid = appDelegate._uid;
+    NSArray *  currentUserSighting = [Sightings getSightingsByUID:_uid];
     NSMutableArray * nodeLists = nil;
-    if([allSightings count] > 0 ){
+    if([currentUserSighting count] > 0 ){
         nodeLists = [NSMutableArray new];
         
-        for (Sightings *row in allSightings) {
+        for (Sightings *row in currentUserSighting) {
             
             PublicationNode * listNode = [PublicationNode new];
             Publication * node = [Publication new];
@@ -405,13 +410,13 @@
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
     
-    [popoverController dismissPopoverAnimated:YES];
+    //[popoverController dismissPopoverAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     [self showActivityScreen];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        //[self removeActivityScreen];
         
         if (err)
         {
@@ -465,8 +470,8 @@
         
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
-        [Tools emptySightingTable];
-        [Tools emptyLemurLifeListTable];
+        //[Tools emptySightingTable];
+        //[Tools emptyLemurLifeListTable];
         
     }else{
         
@@ -508,8 +513,8 @@
             }else{
                 [self showLoginPopup ];
                 [self.tableViewLifeList setHidden:YES];
-                [Tools emptySightingTable];
-                [Tools emptyLemurLifeListTable];
+                //[Tools emptySightingTable];
+                //[Tools emptyLemurLifeListTable];
             }
         }];
         
@@ -726,7 +731,7 @@
                 node.title          = row._title;
                 node.species   = row._speciesName;
                 node.place_name      = row._placeName;
-                NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
+                NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._date];
                 node.date = [date description];
                 Photo * photo       = [Photo new];
                 photo.src           = row._photoFileNames;//<--- Mety sary betsaka

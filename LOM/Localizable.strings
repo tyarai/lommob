@@ -31,3 +31,17 @@
 "sightings_title"="Sightings";
 "about_the_app_title"="About the app";
 "not_synced_sighting"="Not synced";
+"invalidPasswords"="Invalid password! Password must only contain alpha numerical characters or the following special characters : - _ # ! $ & @";
+"passwordsDoNotMatch"="Passwords do not match! Please try again";
+"invalidEmail"="Invalid email address!";
+"invalidUserName"="Invalid username!";
+
+"signupTitle"="Sign up";
+"signUpSuccessfull" = "Your account has been successfully created!";
+"connectUsingNewAccount"="Log in using new account";
+"connectUsingOtherAccount"="Use other account";
+"sightingNumberObservedError"="Invalid observation number!";
+"sightingPlaceNameError"="Provide a place name!";
+"sightingCommentError"="Comment your sighting!";
+
+

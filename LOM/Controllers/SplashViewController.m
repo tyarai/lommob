@@ -7,6 +7,8 @@
 //
 
 #import "SplashViewController.h"
+#import "Tools.h"
+#import "LoginResult.h"
 
 @interface SplashViewController ()
 
@@ -17,9 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    [self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
+}
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self checkUserSession];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +34,112 @@
 #pragma mark methods
 - (void) presentMain{
     [self performSegueWithIdentifier:@"presentMain" sender:self];
+}
+
+#pragma mark WYPopoverControllerDelegate
+- (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller{
+    return YES;
+}
+
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller{
+    popoverController.delegate = nil;
+    popoverController = nil;
+}
+
+#pragma mark LoginPopoverDelegate
+
+- (void) cancel{
+    [popoverController dismissPopoverAnimated:YES];
+}
+
+
+- (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
+{
+    
+    //[popoverController dismissPopoverAnimated:YES];
+    
+    [self showActivityScreen];
+    
+    [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
+        
+        [self removeActivityScreen];
+        
+        if (err)
+        {
+            [Tools showError:err onViewController:loginViewController];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            LoginResult* loginResult = [[LoginResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }
+            else
+            {
+                if (![Tools isNullOrEmptyString:loginResult.sessid]
+                    &&![Tools isNullOrEmptyString:loginResult.session_name]
+                    &&![Tools isNullOrEmptyString:loginResult.token]
+                    && loginResult.user != nil) {
+                    
+                    
+                    if (rememberMe) {
+                        [Tools saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token uid:loginResult.user.uid];
+                    }
+                    
+                    appDelegate._currentToken = loginResult.token;
+                    appDelegate._curentUser = loginResult.user;
+                    appDelegate._sessid = loginResult.sessid;
+                    appDelegate._sessionName = loginResult.session_name;
+                    appDelegate._uid    = loginResult.user.uid;
+                    
+                    
+                    //[self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
+                    [self dismissViewControllerAnimated:NO completion:nil];
+                    [self performSelectorOnMainThread:@selector(presentMain) withObject:nil waitUntilDone:NO];
+                    
+                }
+            }
+        }
+        
+    }];
+    
+}
+
+-(void) checkUserSession{
+    if([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        [self showLoginPopup];
+    }else{
+        [self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
+    }
+}
+
+
+-(void) showLoginPopup{
+    NSString* indentifier=@"PopupLoginViewController";
+    
+    /*PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    controller.delegate = self;*/
+    
+    loginViewController = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    loginViewController.delegate = self;
+    
+    /*controller.preferredContentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
+    popoverController.delegate = self;*/
+    
+    
+    //[popoverController presentPopoverFromRect:bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
+    
+    [self presentViewController:loginViewController animated:YES completion:nil];
+    
+}
+
+-(BOOL)prefersStatusBarHidden{
+    return YES;
 }
 
 /*

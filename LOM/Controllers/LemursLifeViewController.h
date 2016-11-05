@@ -14,7 +14,7 @@
 
 @interface LemursLifeViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
     
-    NSArray* _lemurLifeList;
+    NSMutableArray* _lemurLifeList;
     BOOL isSearchShown;
     
     
