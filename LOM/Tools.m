@@ -346,7 +346,10 @@ static float appScale = 1.0;
                 LemurLifeListTable* instance = [LemurLifeListTable getLemurLifeListBySpeciesNID:_nid];
                 
                 NSString * _title       = lemurLifeList.title;
+                _title = [_title stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+                
                 NSString * _species     = lemurLifeList.species;
+                _species = [_species stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
                 NSString * _where_see_it= lemurLifeList.where_see;
                 NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
                 [formatter setDateFormat:@"yyyy-MM-dd"];
@@ -399,7 +402,9 @@ static float appScale = 1.0;
                 int64_t  _nid           = sighting.nid;
                 Sightings* instance = [Sightings getSightingsByNID : _nid];
                 NSString * _title       = sighting.title;
+                _title = [_title stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
                 NSString * _species     = sighting.species;
+                _species = [_species stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
                 NSString * _where_see_it= sighting.place_name;
                 NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
                 [formatter setDateFormat:@"yyyy-MM-dd"];

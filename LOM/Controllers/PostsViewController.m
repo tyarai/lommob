@@ -168,7 +168,7 @@
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+    [self loadOnlineSightings];
     [self loadLocalSightings];
 }
 
@@ -731,7 +731,7 @@
                 node.title          = row._title;
                 node.species   = row._speciesName;
                 node.place_name      = row._placeName;
-                NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
+                NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._date];
                 node.date = [date description];
                 Photo * photo       = [Photo new];
                 photo.src           = row._photoFileNames;//<--- Mety sary betsaka

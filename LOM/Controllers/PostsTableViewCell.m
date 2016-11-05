@@ -53,7 +53,20 @@
     }
     
     if (![Tools isNullOrEmptyString:publication.date]) {
-        self.lblDate.text = publication.date;
+        
+        
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        //Hanaovana conversion ity format voalohany ity
+        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+        
+        NSDate *date = [dateFormat dateFromString:publication.date];
+        [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
+        //Hanaovana display ity format faharoa ity
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString * strDate = [dateFormat stringFromDate:date];
+        
+        
+        self.lblDate.text = strDate;
     }
     
     if(![Tools isNullOrEmptyString:publication.place_name]){

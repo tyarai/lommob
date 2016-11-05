@@ -436,7 +436,7 @@ static AppData* _instance;
         NSInteger  count     = sighting._speciesCount;
         NSInteger  isLocal   = NO;//sighting._isLocal;
         NSInteger  isSynced  = (int)YES;
-        double dateTimeStamp = sighting._createdTime;
+        double dateTimeStamp = sighting._date;
         NSTimeInterval _interval= dateTimeStamp;
         NSDate *vDate = [NSDate dateWithTimeIntervalSince1970:_interval];
         NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];

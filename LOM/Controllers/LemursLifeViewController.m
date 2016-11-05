@@ -285,9 +285,75 @@
 -(void) refreshListFromOnlineData{
     self.pullToRefresh = YES;
     appDelegate.showActivity = NO;
+    
     //[self loadOnlineLemurLifeList];
+    
     [self loadOnlineSightings]; // Ny sightings no alaina dia manao updateInsert automatic ny LemurLifeList
-    [self syncWithServer];
+    [self syncSightingsWithServer]; // Ny sightings no atao syncronization
+}
+
+/**
+ Zay Sightings tsy mbola synced dia apekarina any @ server
+ */
+ 
+-(void) syncSightingsWithServer{
+    
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        
+        [self showLoginPopup ];
+        [self.tableViewLifeList setHidden:YES];
+        
+    }else{
+        
+        NSString * sessionName = [appDelegate _sessionName];
+        NSString * sessionID   = [appDelegate _sessid];
+        
+        
+        [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+            BOOL stillConnected = YES;
+            
+            
+            UserConnectedResult* sessionCheckResult = nil;
+            if (err)
+            {
+                [Tools showError:err onViewController:self];
+            }
+            else
+            {
+                NSError* error;
+                NSDictionary* tmpDict = (NSDictionary*) json;
+                sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+                
+                if (error){
+                    NSLog(@"Error parse : %@", error.debugDescription);
+                }else{
+                    if(sessionCheckResult.user != nil){
+                        if (sessionCheckResult.user.uid == 0){
+                            stillConnected = NO;
+                        }
+                        
+                    }
+                }
+                
+            }
+            //--- Only do this when stillConnected = YES ---//
+            if(stillConnected){
+                NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
+                [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
+                [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+                
+            }else{
+                [self showLoginPopup ];
+                [self.tableViewLifeList setHidden:YES];
+              
+            }
+        }];
+        
+    }
+    
+    
+    
+    
 }
 
 -(void) syncWithServer{

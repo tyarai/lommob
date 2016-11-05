@@ -40,3 +40,8 @@
 "signUpSuccessfull" = "Your account has been successfully created!";
 "connectUsingNewAccount"="Log in using new account";
 "connectUsingOtherAccount"="Use other account";
+"sightingNumberObservedError"="Invalid observation number!";
+"sightingPlaceNameError"="Provide a place name!";
+"sightingCommentError"="Comment your sighting!";
+
+

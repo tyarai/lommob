@@ -8,6 +8,7 @@
 
 #import "SightingDataTableViewController.h"
 #import "Constants.h"
+#import "Tools.h"
 
 @interface SightingDataTableViewController ()
 
@@ -115,8 +116,41 @@
     NSInteger obs      = [self.numberObserved.text intValue];
     NSDate * obsDate = [self.date date];
     NSString  * place    = self.placename.text;
-    [self.delegate saveSightingInfo:obs placeName:place date:obsDate comments:comments];
+    NSString * error = nil;
+    if([self validateEntries:comments observation:obs placeName:place error:&error]){
+        [self.delegate saveSightingInfo:obs placeName:place date:obsDate comments:comments];
+    }else{
+        UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"sightings_title",@"") messsage:error];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     
+}
+
+
+-(BOOL) validateEntries:(NSString*)comment
+            observation:(NSInteger)observation
+            placeName  :(NSString*)placeName
+            error      : (NSString**) error{
+    
+    
+    if(observation <= 0){
+        *error = NSLocalizedString(@"sightingNumberObservedError", @"");
+        return NO;
+    }
+
+    if([Tools isNullOrEmptyString:placeName]){
+        *error = NSLocalizedString(@"sightingPlaceNameError", @"");
+        return NO;
+    }
+    
+    if([Tools isNullOrEmptyString:comment]){
+        *error = NSLocalizedString(@"sightingCommentError", @"");
+        return NO;
+        
+    }
+    
+    
+    return YES;
 }
 
 
