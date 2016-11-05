@@ -39,7 +39,7 @@
         if (*schemaVersion < 1) {
             if (! [db executeUpdate:
                    @"CREATE TABLE Sightings ("
-                   @"    _id           INTEGER PRIMARY KEY,"
+                   @"    _id           INTEGER PRIMARY KEY AUTOINCREMENT,"
                    @"    _nid          INTEGER NOT NULL,"
                    @"    _uuid         TEXT NOT NULL UNIQUE,"
                    @"    _speciesName  TEXT NOT NULL,"

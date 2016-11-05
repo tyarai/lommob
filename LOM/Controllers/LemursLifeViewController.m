@@ -72,6 +72,8 @@
     
     [self.buttonConnect setHidden:YES];
     
+    _lemurLifeList = [[NSMutableArray alloc]init];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -175,10 +177,11 @@
     
     
    
-    LemurLifeListNode* lifeList = (LemurLifeListNode*) [_lemurLifeList objectAtIndex:indexPath.row];
+    NSDictionary * lifeList = [_lemurLifeList objectAtIndex:indexPath.row];
+    [cell displayLemurLifeData:lifeList];
     
-    
-    [cell displayLemurLife:lifeList.node];
+    //LemurLifeListNode* lifeList = (LemurLifeListNode*) [_lemurLifeList objectAtIndex:indexPath.row];
+    //[cell displayLemurLife:lifeList.node];
     
     //cell = (LemurLifeListTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-5];
     
@@ -440,7 +443,26 @@
 
 }
 
+-(void) loadLocalLemurLifeLists{
+     NSInteger _uid = appDelegate._uid;
+    NSArray * speciesInLifeList = [Sightings getLemurLifeLists:_uid];
+    [_lemurLifeList removeAllObjects];
+    for(id row in speciesInLifeList){
+        [_lemurLifeList addObject:row];
+    }
+    self.tableViewLifeList.delegate = self;
+    self.tableViewLifeList.dataSource = self;
+    
+    [self.tableViewLifeList setHidden:NO];
+    
+    //---Satria mandeha au background ireto functions ireto dia mila
+    // any @ mainThread no manao appel
+    
+    [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+    
+}
 
+/*
 -(void) loadLocalLemurLifeLists{
     
     if(!self.pullToRefresh && !appDelegate.showActivity){
@@ -493,6 +515,7 @@
     [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
     
 }
+ */
 
 -(void) getLemursListJSONCall{
     

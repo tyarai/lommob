@@ -26,7 +26,57 @@
     // Configure the view for the selected state
 }
 
-
+- (void) displayLemurLifeData:(NSDictionary*) row{
+    
+    if(row != nil){
+        
+        NSInteger totalObserved  = [[row valueForKey:@"totalObserved"] integerValue];
+        NSInteger totalSightings = [[row valueForKey:@"totalSightings"] integerValue];
+        NSString * species       = [row valueForKey:@"_speciesName"];
+        NSInteger speciesNID     = [[row valueForKey:@"_speciesNid"] integerValue];
+        
+        
+        //NSInteger sightingCount = [[Sightings getSightingsBySpeciesID:speciesNID] count];
+        NSString * strCount = [NSString stringWithFormat:@"%ld %@",(long)totalSightings,NSLocalizedString(@"sightings_title", @"")];
+        self.lblSightingCount.text = strCount;
+        
+        
+        //NSInteger observationTotal = [Sightings observationSumBySpeciesNID:speciesNID];
+        NSString * obsTotal = [NSString stringWithFormat:@"%li",(long)totalObserved];
+        self.numberObserved.text = obsTotal;
+        
+        
+        if (![Tools isNullOrEmptyString:species]) {
+            self.lblSpecies.text = species;
+        }
+        
+        
+        /*if (![Tools isNullOrEmptyString:lemurLifeList.created]) {
+            self.lblDate.text = lemurLifeList.created;
+        }*/
+        
+        /*if (![Tools isNullOrEmptyString:lemurLifeList.where_see]) {
+            self.lblWhereSee.text = lemurLifeList.where_see;
+        }*/
+        
+        /*if (![Tools isNullOrEmptyString:lemurLifeList.see_first_time]) {
+            self.lblDate.text = lemurLifeList.see_first_time;
+        }*/
+        
+        if(speciesNID > 0){
+            Species * species = [Species getSpeciesBySpeciesNID:speciesNID];
+            Photographs * profilePhotoname = [species getSpecieProfilePhotograph];
+            NSString * fileName = profilePhotoname._photograph;
+            fileName = [fileName stringByAppendingString:@".jpg"];
+            if(![Tools isNullOrEmptyString:fileName]){
+                UIImage * img = [UIImage imageNamed:fileName];
+                [self.imgPhoto setImage:img];
+            }else{
+                [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+            }
+        }
+    }
+}
 
 - (void) displayLemurLife:(LemurLifeList*) lemurLifeList {
     

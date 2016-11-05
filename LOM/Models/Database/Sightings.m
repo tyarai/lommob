@@ -70,6 +70,20 @@
 }
 
 
++ (NSArray*) getLemurLifeLists:(NSInteger)_uid{
+    if(_uid >0){
+        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid];
+        
+        NSArray * results = [Sightings resultDictionariesFromQuery:query];
+        
+        return results;
+    }
+    return nil;
+}
+
+
+
+
 + (NSArray*) getSightingsByUID:(NSInteger) uid{
     if(uid > 0){
         NSString *queryArgument = [NSString stringWithFormat:@" _uid = '%lu' order by _id DESC ", (long)uid];

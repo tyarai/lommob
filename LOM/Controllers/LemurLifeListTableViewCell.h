@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *numberObserved;
 
 - (void) displayLemurLife:(LemurLifeList*) lemurLifeList;
+- (void) displayLemurLifeData:(NSDictionary*) row;
 
 @end
