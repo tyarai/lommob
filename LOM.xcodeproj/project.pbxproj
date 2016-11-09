@@ -900,6 +900,7 @@
 		B4AF342A1C9A83770039DEBB /* Links.m in Sources */ = {isa = PBXBuildFile; fileRef = B4AF34291C9A83770039DEBB /* Links.m */; };
 		B4AF342D1C9AD35B0039DEBB /* PSGlogoNEW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B4AF342C1C9AD35B0039DEBB /* PSGlogoNEW.jpg */; };
 		B4AF342F1C9AD3630039DEBB /* CI logo (long format).jpg in Resources */ = {isa = PBXBuildFile; fileRef = B4AF342E1C9AD3630039DEBB /* CI logo (long format).jpg */; };
+		B4B694121DCE3D800078F535 /* PostEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B694111DCE3D800078F535 /* PostEditTableViewController.m */; };
 		B4B7BE811C7EA36400D32A48 /* OriginOfLemursRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */; };
 		B4B7BE841C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4B7BE831C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m */; };
 		B4BBF3BC1C978BB9005A5196 /* Authors.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BBF3BB1C978BB9005A5196 /* Authors.m */; };
@@ -1900,6 +1901,8 @@
 		B4AF34291C9A83770039DEBB /* Links.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Links.m; path = Models/Database/Links.m; sourceTree = "<group>"; };
 		B4AF342C1C9AD35B0039DEBB /* PSGlogoNEW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = PSGlogoNEW.jpg; sourceTree = "<group>"; };
 		B4AF342E1C9AD3630039DEBB /* CI logo (long format).jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "CI logo (long format).jpg"; sourceTree = "<group>"; };
+		B4B694101DCE3D800078F535 /* PostEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostEditTableViewController.h; path = Controllers/PostEditTableViewController.h; sourceTree = "<group>"; };
+		B4B694111DCE3D800078F535 /* PostEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostEditTableViewController.m; path = Controllers/PostEditTableViewController.m; sourceTree = "<group>"; };
 		B4B7BE7F1C7EA36400D32A48 /* OriginOfLemursRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OriginOfLemursRootViewController.h; path = Controllers/OriginOfLemursRootViewController.h; sourceTree = "<group>"; };
 		B4B7BE801C7EA36400D32A48 /* OriginOfLemursRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OriginOfLemursRootViewController.m; path = Controllers/OriginOfLemursRootViewController.m; sourceTree = "<group>"; };
 		B4B7BE821C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OriginOfLemursPageContentViewController.h; path = Controllers/OriginOfLemursPageContentViewController.h; sourceTree = "<group>"; };
@@ -2043,6 +2046,8 @@
 				4CF3E1881CF2B489003010A5 /* Cell */,
 				4C59AD9F1C15F62800EA74C5 /* PostsViewController.h */,
 				4C59ADA01C15F62800EA74C5 /* PostsViewController.m */,
+				B4B694101DCE3D800078F535 /* PostEditTableViewController.h */,
+				B4B694111DCE3D800078F535 /* PostEditTableViewController.m */,
 			);
 			name = "Sightings - Posts";
 			sourceTree = "<group>";
@@ -4375,6 +4380,7 @@
 				4C59ADA51C15F64900EA74C5 /* AboutViewController.m in Sources */,
 				4CF3E18B1CF2B4B1003010A5 /* PostsTableViewCell.m in Sources */,
 				4C74F2A31C0638EA00543A7F /* FCModelDatabaseQueue.m in Sources */,
+				B4B694121DCE3D800078F535 /* PostEditTableViewController.m in Sources */,
 				B4AF34241C9A801F0039DEBB /* ExtinctLemursMenu.m in Sources */,
 				4C74F2921C0638AE00543A7F /* AppUtilities.m in Sources */,
 				B4AF342A1C9A83770039DEBB /* Links.m in Sources */,

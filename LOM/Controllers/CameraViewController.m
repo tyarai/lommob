@@ -233,7 +233,7 @@
             
             //---- Tadiavina raha efa misy ilay species-n'ity sighting ity ao @ LemurLifeListTable, ka raha efa misy dia tsy ampina ao @ LemurLifeListTable intsony. Raha tsia hita dia ampina --
             
-            LemurLifeListTable * lifeList = [LemurLifeListTable getLemurLifeListBySpeciesID:_speciesNid];
+            /*LemurLifeListTable * lifeList = [LemurLifeListTable getLemurLifeListBySpeciesID:_speciesNid];
             
             if(lifeList == nil){
                 LemurLifeListTable * newLemurLifeListTable = [LemurLifeListTable new];
@@ -250,7 +250,7 @@
                 newLemurLifeListTable._isSynced     = (int)NO; // not Synced
                 
                 [newLemurLifeListTable save];
-            }
+            }*/
 
         }
         /**

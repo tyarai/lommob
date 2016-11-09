@@ -155,6 +155,14 @@ typedef void (^JSONObjectBlock)(id json, JSONModelError* err);
  */
 +(void)postJSONFromURLWithString:(NSString*)urlString params:(NSDictionary*)params completion:(JSONObjectBlock)completeBlock;
 
+
+/**
+  Ranto November 09 2016
+  Makes POST / PUT request
+ 
+ */
++(void)putJSONFromURLWithString:(NSString*)urlString bodyString:(NSString*)bodyString completion:(JSONObjectBlock)completeBlock;
+
 /**
  * Makes POST request to the given URL address and fetches a JSON response. Sends the bodyString param as the POST request body.
  * @param urlString the URL as a string

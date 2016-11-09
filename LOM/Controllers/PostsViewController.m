@@ -1,4 +1,4 @@
-//
+    //
 //  PostsViewController.m
 //  LOM
 //
@@ -316,12 +316,13 @@
     
     PostsTableViewCell* cell = (PostsTableViewCell*) [Tools getCell:tableView identifier:@"PostsTableViewCell"];
     
+    cell.parentTableView = self;
     PublicationNode* sightingNode = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
     
     [cell displaySighting:sightingNode.node];
     
     cell = (PostsTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-10];
-    cell.delegate = self;
+    //cell.delegate = self;
     
     
     return cell;

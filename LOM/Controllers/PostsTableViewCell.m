@@ -13,9 +13,12 @@
 #import "Photographs.h"
 #import "Constants.h"
 #import "UIImage+Resize.h"
+#import "PostEditTableViewController.h"
 
 
-@implementation PostsTableViewCell
+@implementation PostsTableViewCell{
+    WYPopoverController *popoverController;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -24,19 +27,50 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
+}
+
+
+#pragma WYPopoverControllerDelegate
+    
+- (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller{
+    return YES;
+}
+
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller{
+    popoverController.delegate = nil;
+    popoverController = nil;
+}
+
+
+- (IBAction)menuButtonTapped:(id)sender {
+    
+    NSString* indentifier=@"postEdit";
+    PostEditTableViewController* controller = (PostEditTableViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    controller.delegate = self;
+    controller.preferredContentSize = CGSizeMake(150, 100);
+    controller.currentPublication = currentPublication;
+    
+    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
+    popoverController.delegate = self;
+    [popoverController presentPopoverFromRect:self.btnEdit.bounds
+                                       inView:self.btnEdit
+                     permittedArrowDirections:WYPopoverArrowDirectionUp                                     animated:NO
+                                      options:WYPopoverAnimationOptionScale];
+
 }
 
 - (IBAction)btnSpeciesInfoTapped:(id)sender {
     if(speciesNID != 0){
-        Species * species = [Species firstInstanceWhere:[NSString stringWithFormat:@"  _species_id = '%ld' ", (long)speciesNID]];
-        [self.delegate performSegueWithSpecies:species];
+        //Species * species = [Species firstInstanceWhere:[NSString stringWithFormat:@"  _species_id = '%ld' ", (long)speciesNID]];
+        //[self.delegate performSegueWithSpecies:species];
     }
     
 }
 
 - (void) displaySighting:(Publication*) publication {
+    
+    currentPublication = publication;
     
     NSString * syncedText = @"";
     if (!publication.isSynced && publication.isLocal) {
@@ -53,19 +87,12 @@
     }
     
     if (![Tools isNullOrEmptyString:publication.date]) {
-        
-        
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        //Hanaovana conversion ity format voalohany ity
         [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-        
         NSDate *date = [dateFormat dateFromString:publication.date];
         [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
-        //Hanaovana display ity format faharoa ity
         [dateFormat setDateFormat:@"yyyy-MM-dd"];
         NSString * strDate = [dateFormat stringFromDate:date];
-        
-        
         self.lblDate.text = strDate;
     }
     
@@ -117,6 +144,20 @@
     }
     
     
+}
+
+#pragma PostEditTableViewControllerDelagate
+
+-(void)cancelPostEditTableViewController{
+    [popoverController dismissPopoverAnimated:YES completion:nil];
+}
+
+-(void)reloadPostsTableView{
+    //UITableView * tableView = self.tab
+    if(self.parentTableView){
+        PostsViewController * postViewController = (PostsViewController*)self.parentTableView;
+        [postViewController loadLocalSightings];
+    }
 }
 
 @end

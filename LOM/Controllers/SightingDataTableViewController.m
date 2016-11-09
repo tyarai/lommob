@@ -38,6 +38,25 @@
     self.tableView.estimatedRowHeight = ROWHEIGHT;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if(self.publication != nil){
+        self.numberObserved.text = [NSString stringWithFormat:@"%li",self.publication.count];
+        self.placename.text      = self.publication.place_name;
+        self.comments.text       = self.publication.title;
+        
+        //Hanaovana conversion ity format voalohany ity
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+        
+        NSDate *date = [dateFormat dateFromString:self.publication.date];
+        self.date.date = date;
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    self.publication = nil;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -46,27 +65,7 @@
 
 #pragma mark - Table view data source
 
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
- */
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
 
 /*
 // Override to support conditional editing of the table view.

@@ -19,6 +19,7 @@
 #pragma mark - constants
 NSString* const kHTTPMethodGET = @"GET";
 NSString* const kHTTPMethodPOST = @"POST";
+NSString* const kHTTPMethodPUT  = @"PUT";
 
 NSString* const kContentTypeAutomatic    = @"jsonmodel/automatic";
 NSString* const kContentTypeJSON         = @"application/json";
@@ -360,6 +361,18 @@ static NSString* requestContentType = nil;
                        if (completeBlock) completeBlock(json, e);
                    }];
 }
+/*
+ Update RANTO November 09 2016
+ */
++(void)putJSONFromURLWithString:(NSString*)urlString bodyString:(NSString*)bodyString completion:(JSONObjectBlock)completeBlock
+{
+    [self JSONFromURLWithString:urlString method:kHTTPMethodPUT
+                         params:nil
+                   orBodyString:bodyString completion:^(id json, JSONModelError* e) {
+                       if (completeBlock) completeBlock(json, e);
+                   }];
+}
+
 
 +(void)postJSONFromURLWithString:(NSString*)urlString bodyData:(NSData*)bodyData completion:(JSONObjectBlock)completeBlock
 {

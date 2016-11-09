@@ -34,7 +34,8 @@
 }
 
 + (NSArray*) getNotSyncedSightings{
-    return [Sightings instancesWhere:[NSString stringWithFormat:@" _isLocal = '1' AND _isSynced ='0'"]];
+    //return [Sightings instancesWhere:[NSString stringWithFormat:@" _isLocal = '1' AND _isSynced ='0'"]];
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" _isSynced ='0'"]];
 
 }
 

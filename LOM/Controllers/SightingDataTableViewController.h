@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Species.h"
+#import "Publication.h"
 
 @protocol SightingDataTableViewControllerDelegate <NSObject>
+@optional
 - (void) cancelSightingData;
 - (void) saveSightingInfo:(NSInteger) observation placeName:(NSString*) placeName date:(NSDate*) date comments:(NSString*) comments;
 @end
@@ -31,5 +33,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *speciesLabel;
 @property (strong) Species * species;
+@property (strong) Publication * publication;
+
 
 @end

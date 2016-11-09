@@ -24,6 +24,7 @@
 #define REGISTER_ENDPOINT @"/lom_endpoint/user/register.json"
 #define FILE_ENDPOINT @"/lom_endpoint/file.json"
 #define NODE_ENDPOINT @"/lom_endpoint/node.json"
+#define NODE_UPDATE_ENDPOINT @"/lom_endpoint/node/"
 
 #define ISCONNECTED_ENDPOINT @"/lom_endpoint/system/connect.json"
 #define ALL_PUBLICATION_ENDPOINT @"/all-publication-json"
@@ -62,6 +63,16 @@
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) syncWithServer:(NSArray<Sightings *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID ;
+
+-(void)   updateSightingWithNID:(NSInteger)nid
+                          Title:(NSString*)title
+                      placeName:(NSString*) placeName
+                           date:(NSInteger)date
+                          count:(NSInteger)count
+                    sessionName:(NSString*)sessionName
+                     sessionId :(NSString*)sessionId
+                  completeBlock:(JSONObjectBlock) completeBlock;
+
 
 -(void) syncLifeListWithServer:(NSArray<LemurLifeListTable *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID ;
 

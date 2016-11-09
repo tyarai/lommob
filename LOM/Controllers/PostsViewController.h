@@ -16,7 +16,8 @@
 #import "PostsTableViewCell.h"
 
 
-@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate,PostTableViewCellDelegate>{
+
+@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate>{
     
     NSArray* _sightingsList;
     BOOL isSearchShown;
@@ -41,5 +42,7 @@
 @property (strong) Species * selectedSpecies;
 
 -(void) loadOnlineSightings;
+-(void) reloadData;
+- (void) loadLocalSightings;
 
 @end
