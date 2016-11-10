@@ -519,6 +519,7 @@ static AppData* _instance;
         NSString *body = [NSString stringWithFormat:@""];
         
         body = [body stringByAppendingFormat:@"title=%@",title];
+        body = [body stringByAppendingFormat:@"&body[und][0][value]=%@",title];
         body = [body stringByAppendingFormat:@"&field_place_name[und][0][value]=%@",placeName];
         body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
         body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
