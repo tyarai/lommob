@@ -41,7 +41,7 @@
 
 
 + (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid {
-    return [Sightings instancesWhere:[NSString stringWithFormat:@" ( _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%') ", strValue,strValue,strValue]];
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" ( _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND _uid = '%li' ", strValue,strValue,strValue,uid]];
 }
 
 + (void) emptySightingsTable{

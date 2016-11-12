@@ -511,6 +511,8 @@ static float appScale = 1.0;
 +(void) showError:(JSONModelError*) err onViewController:(BaseViewController*) view{
     
     switch (err.code){
+            
+            
         case -1009:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"not_connected_to_the_internet",@"")];
             
@@ -544,7 +546,13 @@ static float appScale = 1.0;
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }
-    
+        case 2:{
+            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"signupTitle",@"") messsage:NSLocalizedString(@"signupExistingNameOrMail",@"")];
+            
+            [view presentViewController:alert animated:YES completion:nil];
+            break;
+        }
+            
             
         default:{
             UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:@"There was an error!"];

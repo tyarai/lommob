@@ -38,6 +38,7 @@
 
 "signupTitle"="Sign up";
 "signUpSuccessfull" = "Your account has been successfully created!";
+"signupExistingNameOrMail"="username or email already taken! Please choose another one";
 "connectUsingNewAccount"="Log in using new account";
 "connectUsingOtherAccount"="Use other account";
 "sightingNumberObservedError"="Invalid observation number!";

@@ -151,14 +151,23 @@
         if(observation && placeName && comments && date ){
             
             NSInteger   _nid        = self.currentPublication.nid;
+            NSString *  _uuid       = self.currentPublication.uuid;
             NSInteger  _count       = observation;
             NSString *_placeName    = placeName;
-            NSString *_title         = comments;
-            double _date             = [date timeIntervalSince1970];
-            double  _modified        = [[NSDate date] timeIntervalSince1970];
+            NSString *_title        = comments;
+            double _date            = [date timeIntervalSince1970];
+            double  _modified       = [[NSDate date] timeIntervalSince1970];
+            NSString * query        = nil;
             
-            //------ Update by _nid -------//
-            NSString * query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,(long)_nid];
+            if(_nid > 0){
+                //------ Update by _nid : Raha efa synced sady nahazo _nid ilay sighting --- //
+                
+                query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,(long)_nid];
+            }else{
+                //---- Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
+                query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_uuid];
+                
+            }
             
             [Sightings executeUpdateQuery:query];
 

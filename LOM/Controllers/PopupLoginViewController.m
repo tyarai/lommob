@@ -193,7 +193,9 @@
             [self dismissViewControllerAnimated:YES completion:nil];
             
             if(err != nil){
-                [Tools showError:err onViewController:signUpViewController];
+                //[Tools showError:err onViewController:signUpViewController];
+                [Tools showError:err onViewController:self];
+              
             }else{
                 
                 UIAlertController * alert = [UIAlertController
@@ -225,7 +227,7 @@
                                                 
                                             }];
 
-                
+                alert.view.tintColor = [UIColor blackColor];
                 [alert addAction:yesButton];
                 [alert addAction:noButton];
 

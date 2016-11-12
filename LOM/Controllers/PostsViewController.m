@@ -1,4 +1,4 @@
-    //
+//
 //  PostsViewController.m
 //  LOM
 //
@@ -412,7 +412,7 @@
 {
     
     //[popoverController dismissPopoverAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
     
     [self showActivityScreen];
     
