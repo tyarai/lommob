@@ -48,6 +48,9 @@
 // By Ranto 2016
 +(UIAlertController*) createAlertViewWithTitle:(NSString*) title messsage:(NSString*)message;
 +(void) showError:(JSONModelError*) err onViewController:(BaseViewController*) view;
++(void) showSimpleAlertWithTitle:(NSString*) title
+                      andMessage:(NSString*) message
+                     parentView :(BaseViewController*)view;
 +(void) updateLemurLifeListWithNodes:(NSArray<LemurLifeListNode>*) nodes;
 +(void) updateSightingsWithNodes:(NSArray<PublicationNode>*) nodes;
 +(void) emptyLemurLifeListTable;
@@ -56,6 +59,8 @@
 +(NSString*) base64:(UIImage*)image;
 +(void) saveSyncDate;
 +(void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid;
-    
+
++(NSString*)htmlToString:(NSString*)obj;
+
 
 @end

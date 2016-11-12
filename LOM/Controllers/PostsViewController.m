@@ -168,8 +168,14 @@
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    [self loadOnlineSightings];
-    [self loadLocalSightings];
+    
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        [self showLoginPopup ];
+        [self.tableViewLifeList setHidden:YES];
+    }else{
+        [self loadOnlineSightings];
+        [self loadLocalSightings];
+    }
 }
 
 
@@ -422,6 +428,7 @@
         if (err)
         {
             //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
+            //[self dismissViewControllerAnimated:YES completion:nil];
             [self removeActivityScreen];
             [Tools showError:err onViewController:self];
         }
@@ -453,8 +460,11 @@
                     appDelegate._sessionName = loginResult.session_name;
                     appDelegate._uid    = loginResult.user.uid;
 
-                    
-                    [self loadOnlineSightings];
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    //[self loadOnlineSightings];
+                    //[self loadLocalSightings];//-- Update Nov 12
+                    [self viewWillAppear:YES];
+
                     
                 }
             }
@@ -467,59 +477,48 @@
 
 -(void) loadOnlineSightings{
     
-    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+    NSString * sessionName = [appDelegate _sessionName];
+    NSString * sessionID   = [appDelegate _sessid];
+    
+    self.initialLoad = TRUE;
+    [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+        BOOL stillConnected = YES;
         
-        [self showLoginPopup ];
-        [self.tableViewLifeList setHidden:YES];
-        //[Tools emptySightingTable];
-        //[Tools emptyLemurLifeListTable];
         
-    }else{
-        
-        NSString * sessionName = [appDelegate _sessionName];
-        NSString * sessionID   = [appDelegate _sessid];
-        
-        self.initialLoad = TRUE;
-        [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
-            BOOL stillConnected = YES;
+        UserConnectedResult* sessionCheckResult = nil;
+        if (err)
+        {
+            [Tools showError:err onViewController:self];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
             
-            
-            UserConnectedResult* sessionCheckResult = nil;
-            if (err)
-            {
-                [Tools showError:err onViewController:self];
-            }
-            else
-            {
-                NSError* error;
-                NSDictionary* tmpDict = (NSDictionary*) json;
-                sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
-                
-                if (error){
-                    NSLog(@"Error parse : %@", error.debugDescription);
-                }else{
-                    if(sessionCheckResult.user != nil){
-                        if (sessionCheckResult.user.uid == 0){
-                            stillConnected = NO;
-                        }
-                        
-                    }
-                }
-                
-            }
-            //--- Only do this when stillConnected = YES ---//
-            if(stillConnected){
-                [self getPostsJSONCall];
-                
+            if (error){
+                NSLog(@"Error parse : %@", error.debugDescription);
             }else{
-                [self showLoginPopup ];
-                [self.tableViewLifeList setHidden:YES];
-                //[Tools emptySightingTable];
-                //[Tools emptyLemurLifeListTable];
+                if(sessionCheckResult.user != nil){
+                    if (sessionCheckResult.user.uid == 0){
+                        stillConnected = NO;
+                    }
+                    
+                }
             }
-        }];
-        
-    }
+            
+        }
+        //--- Only do this when stillConnected = YES ---//
+        if(stillConnected){
+            [self getPostsJSONCall];
+            
+        }else{
+            [self showLoginPopup ];
+            [self.tableViewLifeList setHidden:YES];
+            //[Tools emptySightingTable];
+            //[Tools emptyLemurLifeListTable];
+        }
+    }];
     
 }
 

@@ -179,6 +179,16 @@ static float appScale = 1.0;
     [alertView show];
 }
 
++(void) showSimpleAlertWithTitle:(NSString*) title
+                      andMessage:(NSString*) message
+                     parentView :(BaseViewController*)view{
+    
+    UIAlertController *alertView = [Tools createAlertViewWithTitle:title messsage:message];
+    [view presentViewController:alertView animated:YES completion:nil];
+
+}
+
+
 + (void) copyDatabaseIfNeeded:(NSString*) databaseName {
     
     //Using NSFileManager we can perform many file system operations.
@@ -593,6 +603,29 @@ static float appScale = 1.0;
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
     [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
 
+}
+
+
++(NSString*)htmlToString:(NSString*)html{
+    if([html length] >0){
+        NSScanner *myScanner;
+        NSString *text = nil;
+        myScanner = [NSScanner scannerWithString:html];
+        
+        while ([myScanner isAtEnd] == NO) {
+            
+            [myScanner scanUpToString:@"<" intoString:NULL] ;
+            
+            [myScanner scanUpToString:@">" intoString:&text] ;
+            
+            html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
+        }
+        //
+        html = [html stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        return html;
+    }
+    return nil;
 }
 
 

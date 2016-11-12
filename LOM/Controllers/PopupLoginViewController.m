@@ -194,7 +194,18 @@
             
             if(err != nil){
                 //[Tools showError:err onViewController:signUpViewController];
-                [Tools showError:err onViewController:self];
+                NSDictionary * jsonError = (NSDictionary*)json;
+                NSDictionary * errorMess = (NSDictionary*) [jsonError valueForKey:@"form_errors"];
+                __block NSMutableString * mess = [[NSMutableString alloc]init];
+                [errorMess enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                    obj = [Tools htmlToString:(NSString*)obj];
+                    mess = (NSMutableString*)[mess stringByAppendingString:(NSString*)obj];
+                }];
+                if([mess length]>0){
+                    [Tools showSimpleAlertWithTitle:NSLocalizedString(@"signupTitle",@"") andMessage:mess parentView:self];
+                }else{
+                    [Tools showError:err onViewController:self];
+                }
               
             }else{
                 
