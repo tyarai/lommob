@@ -173,7 +173,7 @@
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
     }else{
-        [self loadOnlineSightings];
+        //[self loadOnlineSightings];
         [self loadLocalSightings];
     }
 }
@@ -184,7 +184,6 @@
         [self showActivityScreen];
     }
     
-    //NSArray * allSightings = [Sightings getAllSightings];
     NSInteger _uid = appDelegate._uid;
     NSArray *  currentUserSighting = [Sightings getSightingsByUID:_uid];
     NSMutableArray * nodeLists = nil;
@@ -510,14 +509,15 @@
         }
         //--- Only do this when stillConnected = YES ---//
         if(stillConnected){
-            [self getPostsJSONCall];
+            [self getPostsJSONCall];// Sady maka ny online no manao update ny local DB
             
         }else{
             [self showLoginPopup ];
             [self.tableViewLifeList setHidden:YES];
-            //[Tools emptySightingTable];
-            //[Tools emptyLemurLifeListTable];
+            
         }
+        
+        //[self loadLocalSightings];
     }];
     
 }
