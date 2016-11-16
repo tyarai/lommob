@@ -153,10 +153,11 @@
 }
 
 -(void)reloadPostsTableView{
-    //UITableView * tableView = self.tab
+    
     if(self.parentTableView){
         PostsViewController * postViewController = (PostsViewController*)self.parentTableView;
         [postViewController loadLocalSightings];
+        //[postViewController synWithServer];
     }
 }
 

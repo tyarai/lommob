@@ -74,10 +74,16 @@
 }
 
 -(void) refreshListFromOnlineData{
-    self.pullToRefresh = YES;
-    appDelegate.showActivity = NO;
-    [self loadOnlineSightings];
-    [self syncWithServer];
+    
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        [self showLoginPopup ];
+        [self.tableViewLifeList setHidden:YES];
+    }else{
+        self.pullToRefresh = YES;
+        appDelegate.showActivity = NO;
+        //[self loadOnlineSightings];
+        [self syncWithServer];
+    }
     
 }
      
@@ -128,6 +134,7 @@
                 NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
                 [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+                [self loadOnlineSightings];
                 
             }else{
                 [self showLoginPopup ];
@@ -169,13 +176,13 @@
     
     [super viewWillAppear:animated];
     
-    if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
-        [self showLoginPopup ];
-        [self.tableViewLifeList setHidden:YES];
-    }else{
+    //if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
+    //    [self showLoginPopup ];
+    //    [self.tableViewLifeList setHidden:YES];
+    //}else{
         //[self loadOnlineSightings];
         [self loadLocalSightings];
-    }
+    //}
 }
 
 
@@ -462,7 +469,8 @@
                     [self dismissViewControllerAnimated:YES completion:nil];
                     //[self loadOnlineSightings];
                     //[self loadLocalSightings];//-- Update Nov 12
-                    [self viewWillAppear:YES];
+                    //[self viewWillAppear:YES];
+                    [self refreshListFromOnlineData];
 
                     
                 }

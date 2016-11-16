@@ -501,7 +501,7 @@ static AppData* _instance;
                   completeBlock:(JSONObjectBlock) completeBlock{
     
     if(![Tools isNullOrEmptyString:sessionName] && ![Tools isNullOrEmptyString:sessionId] && nid > 0 &&
-       ![Tools isNullOrEmptyString:title] && ![Tools isNullOrEmptyString:placeName] && date > 0 && count > 0){
+       ![Tools isNullOrEmptyString:title] && ![Tools isNullOrEmptyString:placeName] && date != 0 && count > 0){
         
         [self buildPOSTHeader];
        

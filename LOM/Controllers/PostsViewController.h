@@ -37,5 +37,6 @@
 -(void) loadOnlineSightings;
 -(void) reloadData;
 - (void) loadLocalSightings;
+//-(void) synWithServer;
 
 @end

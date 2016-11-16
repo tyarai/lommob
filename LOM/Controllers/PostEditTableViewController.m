@@ -10,6 +10,7 @@
 #import "SightingDataTableViewController.h"
 #import "AppDelegate.h"
 #import "Tools.h"
+#import "AppData.h"
 
 @interface PostEditTableViewController ()
 
@@ -170,15 +171,15 @@
             }
             
             [Sightings executeUpdateQuery:query];
-
+            
+            //NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
+            //AppData * appData = [AppData getInstance];
+            //[appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
+            
             [self.delegate reloadPostsTableView];
             
         }
-        /**
-         @TODO Right after saving this sighting we could directly sync with server all un-synced sightings --
-         ---- NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
-         ---- [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
-         */
+        
         
     }else{
         
