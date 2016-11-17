@@ -214,9 +214,6 @@
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
     
-    //[popoverController dismissPopoverAnimated:YES];
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    
     [self showActivityScreen];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {

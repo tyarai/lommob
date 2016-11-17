@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *numberObserved;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneBUtton;
+@property (weak, nonatomic) IBOutlet UIImageView *speciesImage;
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *date;
 @property (weak, nonatomic) IBOutlet UITextField *placename;
@@ -34,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *speciesLabel;
 @property (strong) Species * species;
 @property (strong) Publication * publication;
+@property  (strong,nonatomic) id SpeciesDetailsViewController;
+@property (strong,nonatomic) UIImage * takenPhoto;
 
 
 @end

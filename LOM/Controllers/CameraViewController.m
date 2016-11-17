@@ -143,8 +143,9 @@
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString * title = self.currentSpecies._title;
+        NSInteger speciesNid = self.currentSpecies._species_id;
         title = [title stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        NSString * fileName = [NSString stringWithFormat: @"%ld_%@", appDelegate._uid, title];
+        NSString * fileName = [NSString stringWithFormat: @"%ld_%li", appDelegate._uid, (long)speciesNid];
         NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
         NSString * date = [dateFormatter stringFromDate:[NSDate date]];
@@ -257,7 +258,11 @@
         SightingDataTableViewController * vc = (SightingDataTableViewController*)[segue destinationViewController];
         vc.delegate = self;
         vc.species = self.currentSpecies;
+        vc.SpeciesDetailsViewController = self.delegate;
+        UIImage * takenPhoto = self.imageView.image;
+        vc.takenPhoto = takenPhoto;
     }
+    
 }
 
 

@@ -9,6 +9,8 @@
 #import "SightingDataTableViewController.h"
 #import "Constants.h"
 #import "Tools.h"
+#import "CameraViewController.h"
+
 #define ROWHEIGHT 70
 
 @interface SightingDataTableViewController ()
@@ -30,6 +32,11 @@
         self.cancelButton.tintColor = ORANGE_COLOR;
         self.doneBUtton.tintColor = ORANGE_COLOR;
     }
+    
+    if(self.takenPhoto != nil){
+        self.speciesImage.image = self.takenPhoto;
+    }
+    
     self.comments.delegate = self;
     self.numberObserved.delegate = self;
     self.placename.delegate = self;
@@ -184,4 +191,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"takeAnotherPhoto"]){
+        CameraViewController        *dest = (CameraViewController*)[segue destinationViewController];
+        if(dest){
+            dest.currentSpecies = self.species;
+            dest.delegate = self.SpeciesDetailsViewController;
+            self.delegate = dest;
+        }
+    }
+}
 @end

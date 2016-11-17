@@ -107,10 +107,13 @@
             BOOL stillConnected = YES;
             
             
+            
             UserConnectedResult* sessionCheckResult = nil;
             if (err)
             {
                 [Tools showError:err onViewController:self];
+                [self.refreshControl endRefreshing];
+                return;
             }
             else
             {
@@ -150,8 +153,7 @@
             }else{
                 [self showLoginPopup ];
                 [self.tableViewLifeList setHidden:YES];
-                //[Tools emptySightingTable];
-                //[Tools emptyLemurLifeListTable];
+               
             }
         }];
         
@@ -173,11 +175,7 @@
     loginPopup = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
     loginPopup.delegate = self;
     
-    /*controller.preferredContentSize = CGSizeMake(300, 200);
-    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
-    popoverController.delegate = self;
-    [popoverController presentPopoverFromRect:self.view.bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
-     */
+  
     [self presentViewController:loginPopup animated:YES completion:nil];
     
 }
@@ -494,6 +492,7 @@
     [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
         BOOL stillConnected = YES;
         
+        [self.refreshControl endRefreshing];
         
         UserConnectedResult* sessionCheckResult = nil;
         if (err)

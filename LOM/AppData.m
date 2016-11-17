@@ -311,6 +311,7 @@ static AppData* _instance;
             if(sighting._isLocal && !sighting._isSynced){
                 //---- Create sighting on the server --//
                 NSString* fileName = sighting._photoFileNames;
+                //NSString* fileName = [NSString stringWithFormat:@"%li", (long)sighting._speciesNid];
                 NSString * fullPath = [self getImageFullPath:fileName];
                 NSURL * url = [NSURL fileURLWithPath: fullPath];
                 NSData *data = [NSData dataWithContentsOfURL:url];

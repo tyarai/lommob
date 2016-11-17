@@ -131,7 +131,7 @@
         }else{
             
             [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (error) {
+                if (error != nil) {
                     [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
                 }
                 
