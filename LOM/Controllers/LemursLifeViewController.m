@@ -84,14 +84,9 @@
 
 -(void) showLoginPopup{
     NSString* indentifier=@"PopupLoginViewController";
-    PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
-    controller.delegate = self;
-    
-    //controller.preferredContentSize = CGSizeMake(300, 200);
-    //popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
-    //popoverController.delegate = self;
-    //[popoverController presentPopoverFromRect:self.view.bounds inView:self.buttonConnect permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
-    [self presentViewController:controller animated:YES completion:nil];
+    loginPopup = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    loginPopup.delegate = self;
+    [self presentViewController:loginPopup animated:YES completion:nil];
 }
 
 
@@ -205,6 +200,7 @@
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller{
     popoverController.delegate = nil;
     popoverController = nil;
+    loginPopup = nil;
 }
 
 #pragma mark LoginPopoverDelegate
@@ -219,7 +215,7 @@
 {
     
     //[popoverController dismissPopoverAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
     
     [self showActivityScreen];
     
@@ -228,7 +224,7 @@
         if (err)
         {
             [self removeActivityScreen];
-            [Tools showError:err onViewController:self];
+            [Tools showError:err onViewController:loginPopup];
      
         }
         else
@@ -258,7 +254,8 @@
                     appDelegate._sessid = loginResult.sessid;
                     appDelegate._sessionName = loginResult.session_name;
                     appDelegate._uid    = loginResult.user.uid;
-                    
+                   
+                    [self dismissViewControllerAnimated:YES completion:nil];
                     [self loadOnlineSightings];
                     
                 
@@ -289,7 +286,7 @@
     //[self loadOnlineLemurLifeList];
     
     [self loadOnlineSightings]; // Ny sightings no alaina dia manao updateInsert automatic ny LemurLifeList
-    [self syncSightingsWithServer]; // Ny sightings no atao syncronization
+    //[self syncSightingsWithServer]; // Ny sightings no atao syncronization
 }
 
 /**
@@ -339,7 +336,11 @@
             //--- Only do this when stillConnected = YES ---//
             if(stillConnected){
                 NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
-                [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
+                [appData syncWithServer:notSyncedSightings
+                            sessionName:sessionName
+                              sessionID:sessionID
+                               callback:nil];
+                 
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
                 
             }else{

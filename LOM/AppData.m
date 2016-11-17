@@ -296,7 +296,10 @@ static AppData* _instance;
 
 
 
--(void) syncWithServer:(NSArray<Sightings *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID {
+-(void) syncWithServer:(NSArray<Sightings *>*)sightings
+           sessionName:(NSString*)sessionName
+             sessionID:(NSString*) sessionID
+              callback:(postsViewControllerFunctionCallback)func{
     if([sightings count] != 0){
         
         [self buildPOSTHeader];
@@ -347,10 +350,18 @@ static AppData* _instance;
                                     else{
                                         //-- Azo ny NID an'ity sighting vaovao ity ----
                                         NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
+                                        NSString * photoFileName = [NSString stringWithFormat:@"%@%@%@", SERVER,SERVER_IMAGE_PATH,sighting._photoFileNames];
+                                        sighting._photoFileNames = photoFileName;
                                         sighting._nid = newNID;
                                         sighting._isSynced = YES;
                                         sighting._isLocal = NO;
                                         [sighting save];
+                                        
+                                        //---- Miantso ilay [postViewController loadOnlineSightings] --//
+                                        if(func != nil){
+                                            func();
+                                        }
+                                        
                                     }
                                 }];
                             }
@@ -378,6 +389,11 @@ static AppData* _instance;
                                       
                                       sighting._isSynced = YES;
                                       [sighting save];
+                                      
+                                      //---- Miantso ilay [postViewController loadOnlineSightings] --//
+                                      if(func != nil){
+                                          func();
+                                      }
                                   }
                 }];
                 

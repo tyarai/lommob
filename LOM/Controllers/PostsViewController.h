@@ -17,6 +17,7 @@
    
     MWPhotoBrowser *browser;
     WYPopoverController* popoverController;
+    PopupLoginViewController * loginPopup;
     
 }
 @property (weak, nonatomic) IBOutlet UIView *searchView;

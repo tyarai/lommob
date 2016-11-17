@@ -758,7 +758,7 @@
                     <navigationItem key="navigationItem" id="DWl-Be-Bbo">
                         <nil key="title"/>
                         <view key="titleView" contentMode="scaleToFill" id="hoh-xn-BZA">
-                            <rect key="frame" x="124" y="6" width="128" height="33"/>
+                            <rect key="frame" x="123.5" y="5.5" width="128" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Families" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsi-RZ-Rj1">
@@ -1016,7 +1016,7 @@
                                     <constraint firstAttribute="height" constant="603" id="k77-pt-7a9"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="lemurLifeListTableViewCell" rowHeight="141" id="dDk-r4-an9" customClass="LemurLifeListTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="lemurLifeListTableViewCell" rowHeight="141" id="dDk-r4-an9" customClass="LemurLifeListTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="141"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="dDk-r4-an9" id="NO1-js-WgP">
@@ -2808,8 +2808,8 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Species" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wtu-rO-6I6">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="UwT-l5-ylr"/>
-                                                        <constraint firstAttribute="width" constant="367" id="lJ7-fv-jf0"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="UwT-l5-ylr"/>
+                                                        <constraint firstAttribute="width" constant="349" id="lJ7-fv-jf0"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="20"/>
                                                     <nil key="textColor"/>
@@ -2818,10 +2818,10 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.84619055410122157" green="0.84619055410122157" blue="0.84619055410122157" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="Wtu-rO-6I6" firstAttribute="bottom" secondItem="Xfv-XA-dOD" secondAttribute="bottomMargin" constant="-5" id="7hB-Z2-Hyx"/>
+                                                <constraint firstItem="Wtu-rO-6I6" firstAttribute="bottom" secondItem="Xfv-XA-dOD" secondAttribute="bottomMargin" constant="-21.5" id="7hB-Z2-Hyx"/>
                                                 <constraint firstItem="Wtu-rO-6I6" firstAttribute="top" secondItem="Xfv-XA-dOD" secondAttribute="topMargin" constant="4" id="Udb-cN-CVQ"/>
-                                                <constraint firstItem="Wtu-rO-6I6" firstAttribute="trailing" secondItem="Xfv-XA-dOD" secondAttribute="trailingMargin" id="VBW-pY-2bu"/>
-                                                <constraint firstItem="Wtu-rO-6I6" firstAttribute="leading" secondItem="Xfv-XA-dOD" secondAttribute="leadingMargin" constant="-8" id="dFw-ef-MFg"/>
+                                                <constraint firstItem="Wtu-rO-6I6" firstAttribute="trailing" secondItem="Xfv-XA-dOD" secondAttribute="trailingMargin" constant="-5" id="VBW-pY-2bu"/>
+                                                <constraint firstItem="Wtu-rO-6I6" firstAttribute="leading" secondItem="Xfv-XA-dOD" secondAttribute="leadingMargin" constant="5" id="dFw-ef-MFg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

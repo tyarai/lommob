@@ -11,6 +11,7 @@
 #import "Sightings.h"
 #import "LemurLifeListTable.h"
 
+
 #ifdef DEBUG
     #define SERVER @"http://192.168.2.242"
     //#define SERVER @"http://172.20.10.10"
@@ -36,7 +37,9 @@
 #define LIFELIST_ENDPOINT_MODIFIED_FROM @"api/v1/list/my-lemur-life-list-modified-from"
 #define LAST_SYNC_DATE @"last_sync_date"
 
+#define SERVER_IMAGE_PATH @"/sites/default/files/"
 
+typedef void (^postsViewControllerFunctionCallback) (void);
 
 
 @interface AppData : NSObject
@@ -62,7 +65,10 @@
 
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
--(void) syncWithServer:(NSArray<Sightings *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID ;
+-(void) syncWithServer:(NSArray<Sightings *>*)sightings
+           sessionName:(NSString*)sessionName
+             sessionID:(NSString*) sessionID
+              callback:(postsViewControllerFunctionCallback)func;
 
 -(void)   updateSightingWithNID:(NSInteger)nid
                           Title:(NSString*)title

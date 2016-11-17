@@ -16,7 +16,6 @@
 @end
 
 
-
 @interface PopupLoginViewController : BaseViewController <UITextFieldDelegate,SignUpViewControllerDelegate>{
     CGFloat constraint;
     SignUpViewController * signUpViewController;

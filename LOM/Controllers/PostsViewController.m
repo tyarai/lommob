@@ -81,8 +81,9 @@
     }else{
         self.pullToRefresh = YES;
         appDelegate.showActivity = NO;
-        //[self loadOnlineSightings];
         [self syncWithServer];
+        //[self loadOnlineSightings];
+        
     }
     
 }
@@ -132,9 +133,19 @@
             //--- Only do this when stillConnected = YES ---//
             if(stillConnected){
                 NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
-                [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
+                
+                //--- Rehefa vita tanteraka mitsy ny syncWithServer zay vao mampidina ny acy any @ server ---
+                postsViewControllerFunctionCallback callback = ^(void){
+                    [self loadOnlineSightings];
+                };
+                
+                [appData syncWithServer:notSyncedSightings
+                            sessionName:sessionName
+                              sessionID:sessionID
+                               callback:callback];
+                
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
-                [self loadOnlineSightings];
+                
                 
             }else{
                 [self showLoginPopup ];
@@ -159,15 +170,15 @@
 
 -(void) showLoginPopup{
     NSString* indentifier=@"PopupLoginViewController";
-    PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
-    controller.delegate = self;
+    loginPopup = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    loginPopup.delegate = self;
     
     /*controller.preferredContentSize = CGSizeMake(300, 200);
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
     [popoverController presentPopoverFromRect:self.view.bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
      */
-    [self presentViewController:controller animated:YES completion:nil];
+    [self presentViewController:loginPopup animated:YES completion:nil];
     
 }
 
@@ -175,14 +186,8 @@
 - (void) viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    [self loadLocalSightings];
     
-    //if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
-    //    [self showLoginPopup ];
-    //    [self.tableViewLifeList setHidden:YES];
-    //}else{
-        //[self loadOnlineSightings];
-        [self loadLocalSightings];
-    //}
 }
 
 
@@ -411,6 +416,7 @@
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller{
     popoverController.delegate = nil;
     popoverController = nil;
+    loginPopup = nil;
 }
 
 #pragma mark LoginPopoverDelegate
@@ -436,7 +442,7 @@
             //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
             //[self dismissViewControllerAnimated:YES completion:nil];
             [self removeActivityScreen];
-            [Tools showError:err onViewController:self];
+            [Tools showError:err onViewController:loginPopup];
         }
         else
         {
@@ -467,9 +473,6 @@
                     appDelegate._uid    = loginResult.user.uid;
 
                     [self dismissViewControllerAnimated:YES completion:nil];
-                    //[self loadOnlineSightings];
-                    //[self loadLocalSightings];//-- Update Nov 12
-                    //[self viewWillAppear:YES];
                     [self refreshListFromOnlineData];
 
                     

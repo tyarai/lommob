@@ -34,6 +34,9 @@
     self.numberObserved.delegate = self;
     self.placename.delegate = self;
     
+    NSDate *today = [[NSDate alloc]init];
+    [self.date setMaximumDate:today];
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = ROWHEIGHT;
 }
@@ -44,6 +47,7 @@
         self.numberObserved.text = [NSString stringWithFormat:@"%li",self.publication.count];
         self.placename.text      = self.publication.place_name;
         self.comments.text       = self.publication.title;
+        self.speciesLabel.text   = self.publication.species;
         
         //Hanaovana conversion ity format voalohany ity
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];

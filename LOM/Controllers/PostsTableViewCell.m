@@ -156,6 +156,7 @@
     
     if(self.parentTableView){
         PostsViewController * postViewController = (PostsViewController*)self.parentTableView;
+        //[postViewController dismissViewControllerAnimated:NO completion:nil];
         [postViewController loadLocalSightings];
         //[postViewController synWithServer];
     }

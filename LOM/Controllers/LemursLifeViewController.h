@@ -19,6 +19,7 @@
     
     
     WYPopoverController* popoverController;
+    PopupLoginViewController * loginPopup;
     
     
     

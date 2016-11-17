@@ -46,11 +46,12 @@
     NSString * sessionName = [appDelegate _sessionName];
     NSString * sessionID   = [appDelegate _sessid];
     
+    [self showActivityScreen];
     
     [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err){
         BOOL stillConnected = YES;
        
-        
+        [self removeActivityScreen];
         UserConnectedResult* sessionCheckResult = nil;
         if (err)
         {
@@ -97,4 +98,8 @@
     }];
     
 }
+
+
+
+
 @end
