@@ -400,6 +400,12 @@ static AppData* _instance;
             }
             
         }//for loop
+        
+    }else{
+        //---- Raha tsy misy ny sightings to alefa miakatra dia tonga dia asaina mi-load ny online avy hatrany --/
+        if(func != nil){
+            func();
+        }
     }
 }
 
