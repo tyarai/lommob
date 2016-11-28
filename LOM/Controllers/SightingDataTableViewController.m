@@ -1,4 +1,4 @@
-//
+    //
 //  SightingDataTableViewController.m
 //  LOM
 //
@@ -10,10 +10,14 @@
 #import "Constants.h"
 #import "Tools.h"
 #import "CameraViewController.h"
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 #define ROWHEIGHT 70
+#define PICKERVIEW_ROW_HEIGHT 50
 
-@interface SightingDataTableViewController ()
+@interface SightingDataTableViewController (){
+    NSArray<Species*> * allSpecies;
+}
 
 @end
 
@@ -22,20 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.isAdding = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    if(self.species){
-        self.speciesLabel.text = self.species._title;
-        self.cancelButton.tintColor = ORANGE_COLOR;
-        self.doneBUtton.tintColor = ORANGE_COLOR;
-    }
-    
-    if(self.takenPhoto != nil){
-        self.speciesImage.image = self.takenPhoto;
-    }
+    self.cancelButton.tintColor = ORANGE_COLOR;
+    self.doneBUtton.tintColor = ORANGE_COLOR;
     
     self.comments.delegate = self;
     self.numberObserved.delegate = self;
@@ -46,23 +40,86 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = ROWHEIGHT;
+    
+    allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
+    self.species.delegate = self; // UIPickerView Delegate
+    
+    self.takenPhotoFileName = nil;
+ 
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if(self.publication != nil){
+        
+        //---- Edit sighting ----
+        
         self.numberObserved.text = [NSString stringWithFormat:@"%li",self.publication.count];
         self.placename.text      = self.publication.place_name;
         self.comments.text       = self.publication.title;
-        self.speciesLabel.text   = self.publication.species;
+        //self.speciesLabel.text   = self.publication.species;
+        NSInteger speciesNID = self.publication.speciesNid;
+        NSInteger index = [self findSpeciesBySpeciesID:speciesNID];
+        [self.species selectRow:index inComponent:0 animated:NO];
         
+        
+        if(self.publication.isLocal){
+            
+            NSString *getImagePath = [self.publication getSightingImageFullPathName];
+            UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
+            [self.speciesImage setImage:img];
+            
+        }else{
+            [self.speciesImage setImageWithURL:[NSURL URLWithString: self.publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                NSLog(@"Finished");
+                
+            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            
+        }
+    
         //Hanaovana conversion ity format voalohany ity
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
         
         NSDate *date = [dateFormat dateFromString:self.publication.date];
         self.date.date = date;
+        
+    }else{
+        //---- Sighting vaovao mihitsy ity ----
+        if([self.takenPhotoFileName length] != 0){
+            UIImage * image = [UIImage imageNamed:self.takenPhotoFileName];
+            [self.speciesImage setImage:image];
+        }
+        
     }
+    
+}
+
+
+-(Species*) findSpeciesByTitle:(NSString*) title{
+    if([title length] > 0){
+        for (Species* sp in allSpecies) {
+            if([sp._title isEqualToString:title]){
+                return sp;
+            }
+        
+        }
+    }
+    return nil;
+}
+
+
+-(NSInteger) findSpeciesBySpeciesID:(NSInteger) speciesNID{
+    if(speciesNID > 0){
+        NSInteger index = 0;
+        for (Species* sp in allSpecies) {
+            if(sp._species_id == speciesNID){
+                return index;
+            }
+            index++;
+        }
+    }
+    return -1;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -77,51 +134,6 @@
 #pragma mark - Table view data source
 
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)cancelTapped:(id)sender {
     [self.delegate cancelSightingData];
 }
@@ -132,8 +144,21 @@
     NSDate * obsDate = [self.date date];
     NSString  * place    = self.placename.text;
     NSString * error = nil;
-    if([self validateEntries:comments observation:obs placeName:place error:&error]){
-        [self.delegate saveSightingInfo:obs placeName:place date:obsDate comments:comments];
+    NSUInteger selectedIndex = [self.species selectedRowInComponent:0];
+    Species * selectedSpecies = allSpecies[selectedIndex];
+    
+    if([self validateEntries:comments
+                 observation:obs
+                   placeName:place
+               photoFileName:self.takenPhotoFileName
+                       error:&error]){
+        [self.delegate saveSightingInfo:selectedSpecies
+                            observation:obs
+                              placeName:place
+                                   date:obsDate
+                               comments:comments
+                          photoFileName:self.takenPhotoFileName
+         ];
     }else{
         UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"sightings_title",@"") messsage:error];
         [self presentViewController:alert animated:YES completion:nil];
@@ -145,6 +170,7 @@
 -(BOOL) validateEntries:(NSString*)comment
             observation:(NSInteger)observation
             placeName  :(NSString*)placeName
+          photoFileName:(NSString*)takenPhotoFileName
             error      : (NSString**) error{
     
     
@@ -157,6 +183,12 @@
         *error = NSLocalizedString(@"sightingPlaceNameError", @"");
         return NO;
     }
+
+    if([Tools isNullOrEmptyString:takenPhotoFileName]){
+        *error = NSLocalizedString(@"sightingPhotoFileNameError", @"");
+        return NO;
+    }
+
     
     if([Tools isNullOrEmptyString:comment]){
         *error = NSLocalizedString(@"sightingCommentError", @"");
@@ -189,16 +221,80 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if(indexPath.row == 1){
+        [self performSegueWithIdentifier:@"takeAnotherPhoto" sender:self];
+    }
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"takeAnotherPhoto"]){
         CameraViewController        *dest = (CameraViewController*)[segue destinationViewController];
         if(dest){
-            dest.currentSpecies = self.species;
-            dest.delegate = self.SpeciesDetailsViewController;
-            self.delegate = dest;
+            NSUInteger selectedIndex = [self.species selectedRowInComponent:0];
+            Species * selectedSpecies = allSpecies[selectedIndex];
+            dest.currentSpecies = selectedSpecies;
+            dest.delegate = self;
+            
         }
     }
 }
+
+- (IBAction)myUnwindAction:(UIStoryboardSegue*)unwindSegue{
+    NSLog(@"unWindAction");
+}
+
+#pragma UIPickerViewDelegate
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return [allSpecies count];
+}
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    Species * species = allSpecies[row];
+    return species._title;
+}
+
+-(UIView *)pickerView:(UIPickerView *)pickerView
+           viewForRow:(NSInteger)row
+         forComponent:(NSInteger)component
+          reusingView:(UIView *)view{
+    UILabel* tView = (UILabel*)view;
+    if (!tView)
+    {
+        CGRect frame = CGRectMake(0.0, 0.0, 300, 50);
+        tView = [[UILabel alloc] initWithFrame:frame];
+        [tView setFont:[UIFont boldSystemFontOfSize:17]];//;[UIFont fontWithName:@"Helvetica" size:14 ]];
+        [tView setTextAlignment:NSTextAlignmentLeft];
+        tView.numberOfLines=0;
+        
+    }
+    Species * species = allSpecies[row];
+    tView.text=species._title;
+    
+    return tView;
+}
+
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return PICKERVIEW_ROW_HEIGHT;
+}
+
+#pragma CameraDelegate
+-(void)dismissCameraViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)saveCamera:(NSString *)photoFileName{
+    if([photoFileName length] != 0){
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:photoFileName];
+        self.takenPhotoFileName = ImagePath;
+        
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

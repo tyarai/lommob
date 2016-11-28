@@ -18,9 +18,6 @@
         return ImagePath;
     }else{
         NSString * fullURLPath = self.field_photo.src;
-        //NSArray * pathComponents = [fullURLPath componentsSeparatedByString:@"/"];
-        //NSUInteger count = [pathComponents count];
-        //return [pathComponents objectAtIndex:count-1];
         return fullURLPath;
     }
 }

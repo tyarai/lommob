@@ -1,4 +1,5 @@
 
+
 #import <UIKit/UIKit.h>
 
 #import "PopupLoginViewController.h"
@@ -7,13 +8,16 @@
 #import "MWPhotoBrowser.h"
 #import "Species.h"
 #import "PostsTableViewCell.h"
+#import "CameraViewController.h"
+#import "Publication.h"
 
 
 
-@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate>{
+@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate,CameraViewControllerDelegate,SightingDataTableViewControllerDelegate>{
     
     NSArray* _sightingsList;
     BOOL isSearchShown;
+    BOOL isAdding;
    
     MWPhotoBrowser *browser;
     WYPopoverController* popoverController;
@@ -31,9 +35,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchHeight;
 @property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 @property NSMutableArray * currentPhotos;   
+- (IBAction)addButtonTapped:(id)sender;
 
 
 @property (strong) Species * selectedSpecies;
+@property (strong) Publication * selectedPublication;
 
 -(void) loadOnlineSightings;
 -(void) reloadData;

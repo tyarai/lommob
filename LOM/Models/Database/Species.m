@@ -62,6 +62,15 @@
     return nil;
 }
 
++ (NSArray*) allSpeciesOrderedByTitle:(NSString*)direction{
+    if([direction length] != 0){
+        return [Species instancesOrderedBy:[NSString stringWithFormat:@" _title %@",direction]];
+    }else{
+        return [Species instancesOrderedBy:[NSString stringWithFormat:@" _title ASC"]];
+    }
+    return nil;
+}
+
 
 
 @end

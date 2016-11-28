@@ -1,5 +1,5 @@
 //
-//  PostsViewController.m
+//  ViewController.m
 //  LOM
 //
 //  Created by Andrianavonison Ranto Tiaray on 07/12/2015.
@@ -22,6 +22,7 @@
 #import "UITableViewCell+Stretch.h"
 #import "SDImageCache.h"
 #import "SpeciesDetailsViewController.h"
+#import "SightingDataTableViewController.h"
 
 
 
@@ -164,6 +165,11 @@
     
 }
 
+#pragma CameraViewControllerDelegate
+
+-(void)dismissCameraViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -183,6 +189,7 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     
+    isAdding = NO;
     [super viewWillAppear:animated];
     [self loadLocalSightings];
     
@@ -255,10 +262,12 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"showSpeciesInfoFromPost"]){
-        SpeciesDetailsViewController* vc = (SpeciesDetailsViewController*) [segue destinationViewController];
-        vc.specy = self.selectedSpecies;
+    SightingDataTableViewController* dest = (SightingDataTableViewController*) [segue destinationViewController];
+    if(!isAdding){
+        dest.publication = self.selectedPublication;
     }
+    dest.delegate = self;
+    dest.isAdding = isAdding;
 }
 
 #pragma PostTableViewCellDelegate
@@ -269,16 +278,6 @@
         [self performSegueWithIdentifier:@"showSpeciesInfoFromPost" sender:self];
     }
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 
 #pragma mark UITableviewDataSource Implements
@@ -344,9 +343,18 @@
     
 }
 
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
+    self.selectedPublication = sighting.node;
+    return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+ /*   [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.currentPhotos removeAllObjects];
     
     PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
@@ -389,6 +397,7 @@
     
     
     [self.navigationController pushViewController:browser animated:YES];
+  */
 }
 
 #pragma mark MWPhotoBrowserDelegate
@@ -596,48 +605,6 @@
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
     [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
 }
-/*
-
-- (void) getAllPosts{
-    
-    [self showActivityScreen];
-    
-    [appData getPublicationForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
-        
-        if (err) {
-            [Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
-        }else{
-            
-            NSDictionary* tmpDict = (NSDictionary*) json;
-            NSError* error;
-            PublicationResult* result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
-            
-            if (error)
-            {
-                NSLog(@"Error parse : %@", error.debugDescription);
-            }
-            else
-            {
-                _lemurLifeList = result.nodes;
-                
-                
-                self.tableViewLifeList.delegate = self;
-                self.tableViewLifeList.dataSource = self;
-                
-                [self.tableViewLifeList reloadData];
-                
-                [self.tableViewLifeList setHidden:NO];
-                
-            }
-            
-        }
-        
-        [self removeActivityScreen];
-        
-    }];
-    
-}
-*/
 
 #pragma IBAction
 
@@ -794,7 +761,77 @@
     return YES;
 }
 
+#pragma -- SightingDataTableViewController ---
 
+-(void)cancelSightingData{
+    [self dismissCameraViewController];
+}
 
+-(void)saveSightingInfo:(Species*)species
+            observation:(NSInteger)observation
+              placeName:(NSString *)placeName
+                   date:(NSDate *)date
+               comments:(NSString *)comments
+          photoFileName:(NSString*)takenPhotoFileName{
+    
+    NSString * sessionName = [appDelegate _sessionName];
+    NSString * sessionID   = [appDelegate _sessid];
+    NSString * token       = [appDelegate _currentToken];
+    NSInteger uid          = [appDelegate _uid];
+    
+    
+    //--- atao Update @ zay ilay  Publication ---//
+    if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
+       ![Tools isNullOrEmptyString:token] &&  uid != 0 && self.selectedPublication != nil){
+        
+        if(observation && placeName && comments && date && species ){
+            
+            NSInteger   _nid        = self.selectedPublication.nid;
+            NSString *  _uuid       = self.selectedPublication.uuid;
+            NSInteger  _count       = observation;
+            NSString *_placeName    = placeName;
+            NSString *_title        = comments;
+            NSString * _speciesName = species._title;
+            NSInteger   _speciesNID = species._species_id;
+            
+            double _date            = [date timeIntervalSince1970];
+            double  _modified       = [[NSDate date] timeIntervalSince1970];
+            NSString * query        = nil;
+            
+            if(_nid > 0 ){
+                //------ Update by _nid : Raha efa synced sady nahazo _nid ilay sighting --- //
+                
+                query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_nid];
+            }else{
+                //---- Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
+                query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,_uuid];
+                
+            }
+            
+            [Sightings executeUpdateQuery:query];
+            
+            [self.tableViewLifeList reloadData];
+            
+        }
+        
+        
+    }else{
+        
+        [Tools showSimpleAlertWithTitle:NSLocalizedString(@"authentication_issue", @"") andMessage:NSLocalizedString(@"session_expired", @"")];
+        
+    }
+    
+    
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self.delegate dismissCameraViewController];
+    
+    
+}
 
+- (IBAction)addButtonTapped:(id)sender {
+    
+    isAdding = YES;
+    [self performSegueWithIdentifier:@"showPost" sender:self];
+}
 @end

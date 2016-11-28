@@ -47,15 +47,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)takePhoto:(id)sender {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -171,99 +163,9 @@
 #pragma SightingInfoViewControllerDelegate
 
 - (IBAction)saveSightingTapped:(id)sender {
-    
+    [self.delegate saveCamera:self.photoFileName];
 }
 
--(void)cancelSightingData{
-    //[popoverController dismissPopoverAnimated:YES];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-/*
-    Mi-save an'ny current species sigting any @ table
- */
--(void)saveSightingInfo:(NSInteger)observation placeName:(NSString *)placeName date:(NSDate*)date comments:(NSString *)comments{
-    
-    NSString * sessionName = [appDelegate _sessionName];
-    NSString * sessionID   = [appDelegate _sessid];
-    NSString * token       = [appDelegate _currentToken];
-    NSInteger uid          = [appDelegate _uid];
-    
-   
-    //--- Only save when below are true ---//
-    if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
-       ![Tools isNullOrEmptyString:token] &&  uid != 0){
-        
-        NSInteger _uid = [appDelegate _uid];
-        
-        if(observation && placeName && comments && date ){
-            NSUUID *uuid = [NSUUID UUID];
-            NSString * _uuid        = [uuid UUIDString];
-            NSInteger   _speciesNid = self.currentSpecies._species_id;
-            NSString *_speciesName  = self.currentSpecies._title;
-            NSInteger   _nid        = 0;
-            NSInteger  _count       = observation;
-            NSString *_placeName    = placeName;
-            NSString *_placeLatitude = @"";
-            NSString *_placeLongitude= @"";
-            NSString *_photoName     = self.photoFileName;
-            NSString *_title         = comments;
-            double _date             = [date timeIntervalSince1970];
-            double  _created         = [[NSDate date] timeIntervalSince1970];
-            double  _modified        = [[NSDate date] timeIntervalSince1970];
-            
-            Sightings * newSightings = [Sightings new];
-            newSightings._uuid          = _uuid;
-            newSightings._speciesName   = _speciesName;
-            newSightings._speciesNid    = _speciesNid;
-            newSightings._nid           = _nid;
-            newSightings._uid           = _uid;
-            newSightings._speciesCount  = _count;
-            newSightings._placeName     = _placeName;
-            newSightings._placeLatitude = _placeLatitude;
-            newSightings._placeLongitude= _placeLongitude;
-            newSightings._photoFileNames= _photoName;
-            newSightings._title         = _title;
-            newSightings._date          = _date;
-            newSightings._createdTime   = _created;
-            newSightings._modifiedTime  = _modified;
-            newSightings._isLocal       = (int)YES; //From iPhone = YES
-            newSightings._isSynced      = (int)NO; // Not yet synced with server
-            
-            [newSightings save];
-            
-        }
-        /**
-         @TODO Right after saving this sighting we could directly sync with server all un-synced sightings --
-            ---- NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
-            ---- [appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
-        */
-        
-    }else{
-        
-        [Tools showSimpleAlertWithTitle:NSLocalizedString(@"authentication_issue", @"") andMessage:NSLocalizedString(@"session_expired", @"")];
-        
-    }
-
-
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self.delegate dismissCameraViewController];
-    
-}
-
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"showSightingData"] ){
-        SightingDataTableViewController * vc = (SightingDataTableViewController*)[segue destinationViewController];
-        vc.delegate = self;
-        vc.species = self.currentSpecies;
-        vc.SpeciesDetailsViewController = self.delegate;
-        UIImage * takenPhoto = self.imageView.image;
-        vc.takenPhoto = takenPhoto;
-    }
-    
-}
 
 
 

@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "Tools.h"
 #import "AppData.h"
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 @interface PostEditTableViewController ()
 
@@ -26,6 +27,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    /*if(self.currentPublication && self.currentSpecies == nil){
+        NSInteger speciesNid = self.currentPublication.speciesNid;
+        self.currentSpecies = nil;
+        if(speciesNid > 0){
+            Species * species = [Species getSpeciesBySpeciesNID:speciesNid];
+            self.currentSpecies = species;
+        }
+    }*/
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -39,70 +49,6 @@
 
 
 #pragma mark - Table view data source
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
- */
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch(indexPath.row){
@@ -124,7 +70,32 @@
     if([[segue identifier] isEqualToString:@"editPost"]){
         SightingDataTableViewController * dest = (SightingDataTableViewController*)[segue destinationViewController];
         dest.delegate = self;
+        //dest.species = self.currentSpecies;
         dest.publication = self.currentPublication;
+        dest.UIViewDelegate = self.delegate;
+        
+        __block UIImage *img = nil;
+        
+        if(self.currentPublication.isLocal){
+            
+            NSString *getImagePath = [self.currentPublication getSightingImageFullPathName];
+            img = [UIImage imageWithContentsOfFile:getImagePath];
+            
+        }else{
+            UIImageView * imageView = [[UIImageView alloc]init];
+            
+            [imageView setImageWithURL:[NSURL URLWithString: self.currentPublication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (error == nil) {
+                    img = imageView.image;
+                }
+                
+            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            
+        }
+        
+        //dest.takenPhoto = img;
+
+
     }
     
 }
@@ -135,7 +106,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
--(void)saveSightingInfo:(NSInteger)observation placeName:(NSString *)placeName date:(NSDate *)date comments:(NSString *)comments{
+-(void)saveSightingInfo:(NSInteger)observation
+              placeName:(NSString *)placeName
+                   date:(NSDate *)date
+               comments:(NSString *)comments{
     
     AppDelegate * appDelegate = [Tools getAppDelegate];
     
@@ -160,7 +134,7 @@
             double  _modified       = [[NSDate date] timeIntervalSince1970];
             NSString * query        = nil;
             
-            if(_nid > 0){
+            if(_nid > 0 ){
                 //------ Update by _nid : Raha efa synced sady nahazo _nid ilay sighting --- //
                 
                 query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,(long)_nid];
@@ -171,10 +145,6 @@
             }
             
             [Sightings executeUpdateQuery:query];
-            
-            //NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
-            //AppData * appData = [AppData getInstance];
-            //[appData syncWithServer:notSyncedSightings sessionName:sessionName sessionID:sessionID ];
             
             [self.delegate reloadPostsTableView];
             

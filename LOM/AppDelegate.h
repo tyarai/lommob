@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "Species.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -20,6 +21,8 @@
 
 @property (strong, nonatomic) User *_curentUser;
 @property BOOL showActivity;
+
+@property (strong,nonatomic) Species * currentSpecies;
 
 
 @end

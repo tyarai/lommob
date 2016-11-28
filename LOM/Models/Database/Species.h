@@ -43,4 +43,6 @@
 
 + (Species*) getSpeciesBySpeciesNID:(NSInteger) species_nid;
 
++ (NSArray*) allSpeciesOrderedByTitle:(NSString*)direction;
+
 @end

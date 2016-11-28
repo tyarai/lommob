@@ -10,17 +10,18 @@
 #import "WYPopoverController.h"
 #import "BaseViewController.h"
 #import "Species.h"
-#import "SightingDataTableViewController.h"
+//#import "SightingDataTableViewController.h"
 #import "PopupLoginViewController.h"
 #import "WYPopoverController.h"
+#import "Sightings.h"
 
 @protocol CameraViewControllerDelegate <NSObject>
-
+-(void) saveCamera:(NSString*)photoFileName;
 -(void) dismissCameraViewController;
 
 @end
 
-@interface CameraViewController : BaseViewController <UIImagePickerControllerDelegate,UINavigationControllerDelegate,SightingDataTableViewControllerDelegate>{
+@interface CameraViewController : BaseViewController <UIImagePickerControllerDelegate,UINavigationControllerDelegate>{
     
     WYPopoverController* popoverController;
 }

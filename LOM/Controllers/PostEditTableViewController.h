@@ -19,7 +19,7 @@
 @end
 
 @interface PostEditTableViewController : UITableViewController<SightingDataTableViewControllerDelegate>
-@property (nonatomic,strong) Species * currentSpecies;
+
 @property (nonatomic,strong) Publication * currentPublication;
 @property (nonatomic, retain) id<PostEditTableViewControllerDelegate> delegate;
 @end

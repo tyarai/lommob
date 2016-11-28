@@ -51,6 +51,7 @@
     controller.preferredContentSize = CGSizeMake(150, 100);
     controller.currentPublication = currentPublication;
     
+    //--- Tsy afak amanao [self presentViewController] avy hatrahy ny cell dia tsy maintsy mampiasa ilay popoverController --
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
     [popoverController presentPopoverFromRect:self.btnEdit.bounds
@@ -144,6 +145,12 @@
     }
     
     
+}
+
+#pragma CameraViewControllerDelegate
+
+-(void)dismissCameraViewController{
+    [self.parentTableView dismissCameraViewController];
 }
 
 #pragma PostEditTableViewControllerDelagate

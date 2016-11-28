@@ -14,15 +14,11 @@
 #import "Publication.h"
 #import "PostEditTableViewController.h"
 #import "PostsViewController.h"
+#import "CameraViewController.h"
 
-/*@protocol PostTableViewCellDelegate <NSObject>
-@optional
--(void) performSegueToSpecies:(Species*)species;
--(void) performSegueToSightings:(Sightings*)sightings;
-@end
- */
 
-@interface PostsTableViewCell : UITableViewCell<WYPopoverControllerDelegate,PostEditTableViewControllerDelegate>{
+
+@interface PostsTableViewCell : UITableViewCell<WYPopoverControllerDelegate,PostEditTableViewControllerDelegate,CameraViewControllerDelegate>{
     NSInteger speciesNID;
     Publication * currentPublication;
     
@@ -30,7 +26,7 @@
 
 @property (weak)id  parentTableView;
 
-//@property (strong,nonatomic) id<PostTableViewCellDelegate>delegate;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
 
 @property (weak, nonatomic) IBOutlet UIButton *btnEdit;
