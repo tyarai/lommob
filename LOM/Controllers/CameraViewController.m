@@ -58,9 +58,6 @@
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
-- (IBAction)cancelPhoto:(id)sender {
-    [self.delegate dismissCameraViewController];
-}
 
 #pragma UIImagePickerDelegate
 
@@ -164,6 +161,21 @@
 
 - (IBAction)saveSightingTapped:(id)sender {
     [self.delegate saveCamera:self.photoFileName];
+}
+
+- (IBAction)cancelPhoto:(id)sender {
+
+    //---- Delete the photo that was just taken ----//
+    if(![Tools isNullOrEmptyString:self.photoFileName]){
+        NSFileManager * fileManager = [NSFileManager defaultManager];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:self.photoFileName];
+        if([fileManager fileExistsAtPath:ImagePath]){
+            [fileManager removeItemAtPath:ImagePath error:nil];
+        }
+    }
+    [self.delegate dismissCameraViewController];
 }
 
 

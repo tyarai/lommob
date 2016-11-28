@@ -374,11 +374,13 @@ static AppData* _instance;
             
             //--- Update --//
             if(!sighting._isLocal && !sighting._isSynced){
+                Species * species = [Species getSpeciesBySpeciesNID:sighting._speciesNid];
                 [self updateSightingWithNID:sighting._nid
                                       Title:sighting._title
                                   placeName:sighting._placeName
                                        date:sighting._date
                                       count:sighting._speciesCount
+                                    species:species
                                 sessionName:sessionName
                                   sessionId:sessionID
                               completeBlock:^(id json, JSONModelError *error) {
@@ -519,12 +521,13 @@ static AppData* _instance;
                       placeName:(NSString*) placeName
                            date:(NSInteger)date
                           count:(NSInteger)count
+                        species:(Species*) species
                     sessionName:(NSString*)sessionName
                      sessionId :(NSString*)sessionId
                   completeBlock:(JSONObjectBlock) completeBlock{
     
     if(![Tools isNullOrEmptyString:sessionName] && ![Tools isNullOrEmptyString:sessionId] && nid > 0 &&
-       ![Tools isNullOrEmptyString:title] && ![Tools isNullOrEmptyString:placeName] && date != 0 && count > 0){
+       ![Tools isNullOrEmptyString:title] && ![Tools isNullOrEmptyString:placeName] && date != 0 && count > 0 && species != nil){
         
         [self buildPOSTHeader];
        
@@ -546,6 +549,8 @@ static AppData* _instance;
         body = [body stringByAppendingFormat:@"&field_place_name[und][0][value]=%@",placeName];
         body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
         body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
+        body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%li",(long)species._species_id];
+        
      
         
         NSString* url = [NSString stringWithFormat:@"%@%@%li", SERVER, NODE_UPDATE_ENDPOINT,(long)nid];

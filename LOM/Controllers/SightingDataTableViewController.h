@@ -45,7 +45,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *species;
 
 @property (weak, nonatomic) IBOutlet UILabel *speciesLabel;
-@property (strong) Publication * publication;
+@property (strong,nonatomic) Publication * publication;
 @property  (strong,nonatomic) id UIViewDelegate;
 @property (strong,nonatomic) NSString * takenPhotoFileName;
 @property BOOL isAdding;

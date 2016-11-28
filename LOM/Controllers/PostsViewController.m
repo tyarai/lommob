@@ -782,34 +782,80 @@
     
     //--- atao Update @ zay ilay  Publication ---//
     if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
-       ![Tools isNullOrEmptyString:token] &&  uid != 0 && self.selectedPublication != nil){
+       ![Tools isNullOrEmptyString:token] &&  uid != 0 ){
         
         if(observation && placeName && comments && date && species ){
             
-            NSInteger   _nid        = self.selectedPublication.nid;
-            NSString *  _uuid       = self.selectedPublication.uuid;
-            NSInteger  _count       = observation;
-            NSString *_placeName    = placeName;
-            NSString *_title        = comments;
-            NSString * _speciesName = species._title;
-            NSInteger   _speciesNID = species._species_id;
-            
-            double _date            = [date timeIntervalSince1970];
-            double  _modified       = [[NSDate date] timeIntervalSince1970];
-            NSString * query        = nil;
-            
-            if(_nid > 0 ){
-                //------ Update by _nid : Raha efa synced sady nahazo _nid ilay sighting --- //
+            if(!isAdding){
                 
-                query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_nid];
+                //----- Updating Sighting ------------//
+                
+                NSInteger   _nid        = self.selectedPublication.nid;
+                NSString *  _uuid       = self.selectedPublication.uuid;
+                NSInteger  _count       = observation;
+                NSString *_placeName    = placeName;
+                NSString *_title        = comments;
+                NSString * _speciesName = species._title;
+                NSInteger   _speciesNID = species._species_id;
+                
+                double _date            = [date timeIntervalSince1970];
+                double  _modified       = [[NSDate date] timeIntervalSince1970];
+                NSString * query        = nil;
+                
+                if(_nid > 0 ){
+                    //------ Update by _nid : Raha efa synced sady nahazo _nid ilay sighting --- //
+                    
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' ,  _isLocal = '1', _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_nid];
+                }else{
+                    //---- Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' ,  _isLocal = '1' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,_uuid];
+                    
+                }
+                
+                [Sightings executeUpdateQuery:query];
+                
             }else{
-                //---- Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
-                query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,_uuid];
+                
+                //----- Creating new Sighting ------------//
+                
+                NSInteger _uid = uid;
+                NSUUID *uuid = [NSUUID UUID];
+                NSString * _uuid        = [uuid UUIDString];
+                NSInteger   _speciesNid = species._species_id;
+                NSString *_speciesName  = species._title;
+                NSInteger   _nid        = 0;
+                NSInteger  _count       = observation;
+                NSString *_placeName    = placeName;
+                NSString *_placeLatitude = @"";
+                NSString *_placeLongitude= @"";
+                NSString *_photoName     = takenPhotoFileName;
+                NSString *_title         = comments;
+                double _date             = [date timeIntervalSince1970];
+                double  _created         = [[NSDate date] timeIntervalSince1970];
+                double  _modified        = [[NSDate date] timeIntervalSince1970];
+                
+                Sightings * newSightings = [Sightings new];
+                newSightings._uuid          = _uuid;
+                newSightings._speciesName   = _speciesName;
+                newSightings._speciesNid    = _speciesNid;
+                newSightings._nid           = _nid;
+                newSightings._uid           = _uid;
+                newSightings._speciesCount  = _count;
+                newSightings._placeName     = _placeName;
+                newSightings._placeLatitude = _placeLatitude;
+                newSightings._placeLongitude= _placeLongitude;
+                newSightings._photoFileNames= _photoName;
+                newSightings._title         = _title;
+                newSightings._date          = _date;
+                newSightings._createdTime   = _created;
+                newSightings._modifiedTime  = _modified;
+                newSightings._isLocal       = (int)YES; //From iPhone = YES
+                newSightings._isSynced      = (int)NO; // Not yet synced with server
+                
+                [newSightings save];
                 
             }
-            
-            [Sightings executeUpdateQuery:query];
-            
+                
             [self.tableViewLifeList reloadData];
             
         }
@@ -820,12 +866,9 @@
         [Tools showSimpleAlertWithTitle:NSLocalizedString(@"authentication_issue", @"") andMessage:NSLocalizedString(@"session_expired", @"")];
         
     }
-    
-    
+  
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    //[self.delegate dismissCameraViewController];
-    
     
 }
 

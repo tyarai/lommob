@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.isAdding = NO;
+    //self.isAdding = NO;
     
     self.cancelButton.tintColor = ORANGE_COLOR;
     self.doneBUtton.tintColor = ORANGE_COLOR;
@@ -62,6 +62,7 @@
         NSInteger index = [self findSpeciesBySpeciesID:speciesNID];
         [self.species selectRow:index inComponent:0 animated:NO];
         
+        self.takenPhotoFileName = self.publication.field_photo.src;
         
         if(self.publication.isLocal){
             
@@ -87,8 +88,14 @@
     }else{
         //---- Sighting vaovao mihitsy ity ----
         if([self.takenPhotoFileName length] != 0){
-            UIImage * image = [UIImage imageNamed:self.takenPhotoFileName];
-            [self.speciesImage setImage:image];
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:self.takenPhotoFileName];
+            NSURL * fileUrl = [NSURL fileURLWithPath:ImagePath];
+            NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+            UIImage * img = [UIImage imageWithData:data];
+            [self.speciesImage setImage:img];
         }
         
     }
@@ -152,13 +159,13 @@
                    placeName:place
                photoFileName:self.takenPhotoFileName
                        error:&error]){
-        [self.delegate saveSightingInfo:selectedSpecies
+        
+       [self.delegate saveSightingInfo:selectedSpecies
                             observation:obs
                               placeName:place
                                    date:obsDate
                                comments:comments
-                          photoFileName:self.takenPhotoFileName
-         ];
+                          photoFileName:self.takenPhotoFileName];
     }else{
         UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"sightings_title",@"") messsage:error];
         [self presentViewController:alert animated:YES completion:nil];
@@ -288,10 +295,7 @@
 
 -(void)saveCamera:(NSString *)photoFileName{
     if([photoFileName length] != 0){
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:photoFileName];
-        self.takenPhotoFileName = ImagePath;
+        self.takenPhotoFileName = photoFileName;
         
     }
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -119,15 +119,25 @@
         
        
         if(publication.isLocal){
-        
-            NSString *getImagePath = [publication getSightingImageFullPathName];
-            UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
             
-            if(img){
+            NSFileManager * fileManager = [NSFileManager defaultManager];
+        
+             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:publication.field_photo.src];
+            
+            UIImage *img = nil;
+            
+            if([fileManager fileExistsAtPath:ImagePath]){
+                NSURL * fileUrl = [NSURL fileURLWithPath:ImagePath];
+                NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+                img = [UIImage imageWithData:data];
                 [self.imgPhoto setImage:img];
             }else{
+                NSLog(@"File does not exist");
                 [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
             }
+            
             
         }else{
             
