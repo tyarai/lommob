@@ -23,6 +23,7 @@
 #import "SDImageCache.h"
 #import "SpeciesDetailsViewController.h"
 #import "SightingDataTableViewController.h"
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 
 
@@ -324,10 +325,6 @@
 
 
 
-/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 150.0f;
-}*/
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -336,11 +333,10 @@
     cell.parentTableView = self;
     PublicationNode* sightingNode = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
     
-    [cell displaySighting:sightingNode.node];
+    [cell displaySighting:sightingNode.node
+ postsTableViewController:self];
     
     cell = (PostsTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-10];
-    //cell.delegate = self;
-    
     
     return cell;
     
@@ -357,16 +353,33 @@
 {
     
     
- /*   [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.currentPhotos removeAllObjects];
     
     PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
+    __block UIImageView * tempImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     __block UIImage * image = [UIImage imageNamed:@"ico_default_specy"];
     if(sighting){
         
         NSString * imageBundleName = [sighting.node getSightingImageFullPathName];
-        if(sighting.node.isLocal){
-            image = [UIImage imageWithContentsOfFile:imageBundleName];
+        if(sighting.node.isLocal || !sighting.node.isSynced){
+            
+            //--- Jerena sao dia efa URL ilay fileName ---//
+            NSURL * tempURL = [NSURL URLWithString:sighting.node.field_photo.src];
+            
+            if(tempURL && tempURL.scheme && tempURL.host){
+                
+                [tempImageView setImageWithURL:tempURL completed:^(UIImage *img, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    if (error == nil) {
+                        image = tempImageView.image;
+                    }
+                    
+                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            }else{
+                image = [UIImage imageWithContentsOfFile:imageBundleName];
+            }
+            
+            
         }else{
             
             SDImageCache *imageCache = [SDImageCache sharedImageCache];
@@ -386,6 +399,8 @@
     [self.currentPhotos addObject:photo];
     browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     
+    //browser.navigtionBar.navigationItem.tintColor = ORANGE_COLOR;
+    
     // Set options
     browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
     browser.displayNavArrows = YES; // Whether to display left and right nav arrows on toolbar (defaults to NO)
@@ -400,7 +415,7 @@
     
     
     [self.navigationController pushViewController:browser animated:YES];
-  */
+  
 }
 
 #pragma mark MWPhotoBrowserDelegate
@@ -495,6 +510,8 @@
 }
 
 
+
+    
 -(void) loadOnlineSightings{
     
     NSString * sessionName = [appDelegate _sessionName];

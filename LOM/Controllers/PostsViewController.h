@@ -10,10 +10,10 @@
 #import "PostsTableViewCell.h"
 #import "CameraViewController.h"
 #import "Publication.h"
+#import "SightingDataTableViewController.h"
 
 
-
-@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate,CameraViewControllerDelegate,SightingDataTableViewControllerDelegate>{
+@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate,SightingDataTableViewControllerDelegate>{
     
     NSArray* _sightingsList;
     BOOL isSearchShown;
@@ -37,13 +37,13 @@
 @property NSMutableArray * currentPhotos;   
 - (IBAction)addButtonTapped:(id)sender;
 
-
 @property (strong) Species * selectedSpecies;
 @property (strong) Publication * selectedPublication;
+
 
 -(void) loadOnlineSightings;
 -(void) reloadData;
 - (void) loadLocalSightings;
-//-(void) synWithServer;
+
 
 @end

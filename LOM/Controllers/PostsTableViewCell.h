@@ -12,15 +12,15 @@
 #import "WYPopoverController.h"
 #import "Sightings.h"
 #import "Publication.h"
-#import "PostEditTableViewController.h"
 #import "PostsViewController.h"
-#import "CameraViewController.h"
 
 
 
-@interface PostsTableViewCell : UITableViewCell<WYPopoverControllerDelegate,PostEditTableViewControllerDelegate,CameraViewControllerDelegate>{
+
+@interface PostsTableViewCell : UITableViewCell<WYPopoverControllerDelegate>{
     NSInteger speciesNID;
     Publication * currentPublication;
+    id postsTableViewController;
     
 }
 
@@ -39,6 +39,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSumberObserved;
 
 
-- (void) displaySighting:(Publication*) publication ;
+- (void) displaySighting:(Publication*) publication
+postsTableViewController:(id)tableView;
+
 
 @end

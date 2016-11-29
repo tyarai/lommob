@@ -45,33 +45,24 @@
 
 - (IBAction)menuButtonTapped:(id)sender {
     
-    NSString* indentifier=@"postEdit";
-    PostEditTableViewController* controller = (PostEditTableViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
-    controller.delegate = self;
-    controller.preferredContentSize = CGSizeMake(150, 100);
-    controller.currentPublication = currentPublication;
+    PostsViewController* vc = (PostsViewController*)postsTableViewController;
+    vc.selectedPublication = currentPublication;
     
-    //--- Tsy afak amanao [self presentViewController] avy hatrahy ny cell dia tsy maintsy mampiasa ilay popoverController --
-    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
-    popoverController.delegate = self;
-    [popoverController presentPopoverFromRect:self.btnEdit.bounds
-                                       inView:self.btnEdit
-                     permittedArrowDirections:WYPopoverArrowDirectionUp                                     animated:NO
-                                      options:WYPopoverAnimationOptionScale];
-
+    [postsTableViewController performSegueWithIdentifier:@"showPost" sender:postsTableViewController];
+   
 }
 
 - (IBAction)btnSpeciesInfoTapped:(id)sender {
     if(speciesNID != 0){
-        //Species * species = [Species firstInstanceWhere:[NSString stringWithFormat:@"  _species_id = '%ld' ", (long)speciesNID]];
-        //[self.delegate performSegueWithSpecies:species];
     }
     
 }
 
-- (void) displaySighting:(Publication*) publication {
+- (void) displaySighting:(Publication*) publication
+postsTableViewController:(id)tableView{
     
     currentPublication = publication;
+    postsTableViewController = tableView;
     
     NSString * syncedText = @"";
     if (!publication.isSynced && publication.isLocal) {

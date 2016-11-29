@@ -13,7 +13,7 @@
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 #define ROWHEIGHT 70
-#define PICKERVIEW_ROW_HEIGHT 44
+#define PICKERVIEW_ROW_HEIGHT 34
 
 @interface SightingDataTableViewController (){
     NSArray<Species*> * allSpecies;

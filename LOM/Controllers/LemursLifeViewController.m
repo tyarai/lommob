@@ -48,7 +48,7 @@
     self.pullToRefresh = NO;
     appDelegate.showActivity = YES;
     
-    self.refreshControl = [[UIRefreshControl alloc]init];
+    /*self.refreshControl = [[UIRefreshControl alloc]init];
     self.refreshControl.backgroundColor = [UIColor whiteColor];//ORANGE_COLOR;
     self.refreshControl.tintColor = [UIColor blackColor];
     
@@ -57,7 +57,7 @@
                   forControlEvents:UIControlEventValueChanged];
     //--Rehefa tsy subclass n'ny UITableViewController ilay ViewController dia mila apina
     //--- ao @ subView n'ilay TableView ny refreshController --
-    [self.tableViewLifeList addSubview:self.refreshControl];
+    [self.tableViewLifeList addSubview:self.refreshControl];*/
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
     self.tableViewLifeList.estimatedRowHeight = ROWHEIGHT;

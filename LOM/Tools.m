@@ -467,31 +467,36 @@ static float appScale = 1.0;
                                         _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_nid];
                     
                     [Sightings executeUpdateQuery:query];
+                    
+                    //---- Vonona @ izay ilay fichier image local -----//
+                    [Tools removeImageFileFromDocumentsDirectory:_photo_name];
                 }
                 
-                //------ Ampina ao anaty LemurLifeList raha toa tsy mbola ao ilay _speciesNID ---
-                /*LemurLifeListTable * lifeList = [LemurLifeListTable getLemurLifeListBySpeciesID:_species_nid];
-                if(lifeList == nil){
-                    LemurLifeListTable * newLemurLifeListTable = [LemurLifeListTable new];
-                    newLemurLifeListTable._title        = _title;
-                    newLemurLifeListTable._species      = _species;
-                    newLemurLifeListTable._where_see_it = _where_see_it;
-                    newLemurLifeListTable._when_see_it  = _date;
-                    newLemurLifeListTable._photo_name   = _photo_name;
-                    newLemurLifeListTable._species_id   = _species_nid;
-                    newLemurLifeListTable._nid          = _nid;
-                    newLemurLifeListTable._uuid         = _uuid;
-                    newLemurLifeListTable._uid          = _uid;
-                    newLemurLifeListTable._isLocal      = (int)NO; // from Server
-                    [newLemurLifeListTable save];
-                }*/
-
                 
             }
         }
     }
 }
+/*
+  --- Mamafa ny image file ao @ Documents rehefa synced any @ server --
+ */
 
++(void) removeImageFileFromDocumentsDirectory:(NSString*) imageURL{
+    if(! [Tools isNullOrEmptyString:imageURL]){
+        NSURL * url = [NSURL URLWithString:imageURL];
+        if(url){
+            NSString* fileName = [url lastPathComponent];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:fileName];
+            NSFileManager * fileManager = [NSFileManager defaultManager];
+            if([fileManager fileExistsAtPath:imagePath isDirectory:nil]){
+                [fileManager removeItemAtPath:imagePath error:nil];
+            }
+            
+        }
+    }
+}
 
 /**
     UPDATE Sept 15
