@@ -64,7 +64,7 @@
         
         self.takenPhotoFileName = self.publication.field_photo.src;
         
-        if(self.publication.isLocal){
+        if(self.publication.isLocal || !self.publication.isSynced){
             
             NSString *getImagePath = [self.publication getSightingImageFullPathName];
             UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];

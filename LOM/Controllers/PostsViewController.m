@@ -805,10 +805,10 @@
                 if(_nid > 0 ){
                     //------ Update by _nid : Raha efa synced sady nahazo _nid ilay sighting --- //
                     
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' ,  _isLocal = '1', _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_nid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_nid];
                 }else{
                     //---- Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' ,  _isLocal = '1' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,_uuid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,_uuid];
                     
                 }
                 

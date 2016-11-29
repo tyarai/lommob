@@ -118,7 +118,7 @@
     if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
         
        
-        if(publication.isLocal){
+        if(publication.isLocal || !publication.isSynced){
             
             NSFileManager * fileManager = [NSFileManager defaultManager];
         
