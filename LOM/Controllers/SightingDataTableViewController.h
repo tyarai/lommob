@@ -50,6 +50,8 @@
 @property (strong,nonatomic) NSString * takenPhotoFileName;
 @property BOOL isAdding;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 
 
 

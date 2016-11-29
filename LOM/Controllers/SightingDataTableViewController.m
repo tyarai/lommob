@@ -1,4 +1,4 @@
-    //
+     //
 //  SightingDataTableViewController.m
 //  LOM
 //
@@ -13,7 +13,7 @@
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 
 #define ROWHEIGHT 70
-#define PICKERVIEW_ROW_HEIGHT 50
+#define PICKERVIEW_ROW_HEIGHT 44
 
 @interface SightingDataTableViewController (){
     NSArray<Species*> * allSpecies;
@@ -26,7 +26,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.isAdding = NO;
+    self.titleLabel.text = self.title;
+    
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
     self.cancelButton.tintColor = ORANGE_COLOR;
     self.doneBUtton.tintColor = ORANGE_COLOR;
@@ -48,6 +50,7 @@
  
 }
 
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if(self.publication != nil){
@@ -66,11 +69,25 @@
         
         if(self.publication.isLocal || !self.publication.isSynced){
             
-            NSString *getImagePath = [self.publication getSightingImageFullPathName];
-            UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
-            [self.speciesImage setImage:img];
+            //--- Jerena sao dia efa URL ilay fileName ---//
+            NSURL * tempURL = [NSURL URLWithString:self.publication.field_photo.src];
+            
+            if(tempURL && tempURL.scheme && tempURL.host){
+                [self.speciesImage setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    if (error != nil) {
+                        [self.speciesImage setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                    }
+                    
+                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            }else{
+                
+                NSString *getImagePath = [self.publication getSightingImageFullPathName];
+                UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
+                [self.speciesImage setImage:img];
+            }
             
         }else{
+            
             [self.speciesImage setImageWithURL:[NSURL URLWithString: self.publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 NSLog(@"Finished");
                 
@@ -89,13 +106,26 @@
         //---- Sighting vaovao mihitsy ity ----
         if([self.takenPhotoFileName length] != 0){
             
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:self.takenPhotoFileName];
-            NSURL * fileUrl = [NSURL fileURLWithPath:ImagePath];
-            NSData * data = [NSData dataWithContentsOfURL:fileUrl];
-            UIImage * img = [UIImage imageWithData:data];
-            [self.speciesImage setImage:img];
+            //--- Jerena sao dia efa URL ilay fileName ---//
+            NSURL * tempURL = [NSURL URLWithString:self.takenPhotoFileName ];
+            
+            if(tempURL && tempURL.scheme && tempURL.host){
+                [self.speciesImage setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    if (error != nil) {
+                        [self.speciesImage setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                    }
+                    
+                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            }else{
+
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:self.takenPhotoFileName];
+                NSURL * fileUrl = [NSURL fileURLWithPath:ImagePath];
+                NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+                UIImage * img = [UIImage imageWithData:data];
+                [self.speciesImage setImage:img];
+            }
         }
         
     }
@@ -271,9 +301,9 @@
     UILabel* tView = (UILabel*)view;
     if (!tView)
     {
-        CGRect frame = CGRectMake(0.0, 0.0, 300, 50);
+        CGRect frame = CGRectMake(0.0, 0.0, 300, PICKERVIEW_ROW_HEIGHT);
         tView = [[UILabel alloc] initWithFrame:frame];
-        [tView setFont:[UIFont boldSystemFontOfSize:17]];//;[UIFont fontWithName:@"Helvetica" size:14 ]];
+        [tView setFont:[UIFont boldSystemFontOfSize:16]];//;[UIFont fontWithName:@"Helvetica" size:14 ]];
         [tView setTextAlignment:NSTextAlignmentLeft];
         tView.numberOfLines=0;
         

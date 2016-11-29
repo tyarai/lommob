@@ -264,7 +264,10 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     SightingDataTableViewController* dest = (SightingDataTableViewController*) [segue destinationViewController];
     if(!isAdding){
+        dest.title =  NSLocalizedString(@"edit_sighting_title",@"");
         dest.publication = self.selectedPublication;
+    }else{
+        dest.title  = NSLocalizedString(@"new_sighting_title",@"");
     }
     dest.delegate = self;
     dest.isAdding = isAdding;

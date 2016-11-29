@@ -126,9 +126,10 @@
 -(NSString*) saveImageToFile:(UIImage*) image{
     if(image){
         
-        UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFit                                                                     bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
+        UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill
+                                                             bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
                                                interpolationQuality:1];
-        
+        //UIImage * resizedImage = image;
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString * title = self.currentSpecies._title;
