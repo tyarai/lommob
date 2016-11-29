@@ -310,10 +310,18 @@ static AppData* _instance;
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
         
         for (Sightings * sighting in sightings) {
-            
+            NSURL * url = nil;
             NSString* fileName = sighting._photoFileNames;
-            NSString * fullPath = [self getImageFullPath:fileName];
-            NSURL * url = [NSURL fileURLWithPath: fullPath];
+            //-- Jerena sao efa URL ilay fileName ---
+            NSURL * tempURL = [NSURL URLWithString:fileName];
+            
+            if(tempURL && tempURL.scheme && tempURL.host){
+                url = tempURL;
+            }else{
+                NSString * fullPath = [self getImageFullPath:fileName];
+                url = [NSURL fileURLWithPath: fullPath];
+            }
+            
             NSData *data = [NSData dataWithContentsOfURL:url];
             NSUInteger fileSize  = [data length];
             UIImage *img = [[UIImage alloc] initWithData:data];
@@ -543,7 +551,7 @@ static AppData* _instance;
 
 
 /*
- Sync-Udate Sighting to server
+ Sync-Update Sighting to server
  */
 -(void)   updateSightingWithNID:(NSInteger)nid
                           Title:(NSString*)title

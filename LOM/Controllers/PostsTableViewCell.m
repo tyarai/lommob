@@ -121,21 +121,34 @@
         if(publication.isLocal || !publication.isSynced){
             
             NSFileManager * fileManager = [NSFileManager defaultManager];
-        
-             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:publication.field_photo.src];
             
-            UIImage *img = nil;
+            //--- Jerena sao dia efa URL ilay fileName ---//
+            NSURL * tempURL = [NSURL URLWithString:publication.field_photo.src];
             
-            if([fileManager fileExistsAtPath:ImagePath]){
-                NSURL * fileUrl = [NSURL fileURLWithPath:ImagePath];
-                NSData * data = [NSData dataWithContentsOfURL:fileUrl];
-                img = [UIImage imageWithData:data];
-                [self.imgPhoto setImage:img];
+            if(tempURL && tempURL.scheme && tempURL.host){
+                [self.imgPhoto setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                    if (error != nil) {
+                        [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                    }
+                    
+                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             }else{
-                NSLog(@"File does not exist");
-                [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+            
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:publication.field_photo.src];
+                
+                UIImage *img = nil;
+                
+                if([fileManager fileExistsAtPath:ImagePath]){
+                    NSURL * fileUrl = [NSURL fileURLWithPath:ImagePath];
+                    NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+                    img = [UIImage imageWithData:data];
+                    [self.imgPhoto setImage:img];
+                }else{
+                    NSLog(@"File does not exist");
+                    [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                }
             }
             
             
