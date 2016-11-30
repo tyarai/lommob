@@ -164,6 +164,15 @@
     [self.delegate saveCamera:self.photoFileName];
 }
 
+- (IBAction)selectPhoto:(id)sender {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = NO;
+    picker.sourceType =  UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:picker animated:YES completion:NULL];
+}
+
 - (IBAction)cancelPhoto:(id)sender {
 
     //---- Delete the photo that was just taken ----//

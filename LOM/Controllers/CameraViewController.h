@@ -35,5 +35,6 @@
 @property (strong) NSString * photoFileName;
 @property (weak, nonatomic) IBOutlet UIButton *saveSightingButton;
 - (IBAction)saveSightingTapped:(id)sender;
+- (IBAction)selectPhoto:(id)sender;
 @property (strong) Species *currentSpecies;
 @end
