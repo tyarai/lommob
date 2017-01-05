@@ -10,7 +10,7 @@
 #import "Species.h"
 #import "Publication.h"
 #import "CameraViewController.h"
-
+#import "SpeciesSelectorViewController.h"
 
 @protocol SightingDataTableViewControllerDelegate <NSObject>
 @optional
@@ -26,7 +26,7 @@
 
 
 
-@interface SightingDataTableViewController : UITableViewController <UITextViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,CameraViewControllerDelegate>{
+@interface SightingDataTableViewController : UITableViewController <UITextViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,CameraViewControllerDelegate,UIPopoverPresentationControllerDelegate,SpeciesSelectorDelegate>{
     
 }
 
@@ -53,6 +53,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 
+@property (weak, nonatomic) IBOutlet UIButton *chooseSpeciesButton;
+- (IBAction)chooseSpeciesTapped:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *scientificName;
+@property (weak, nonatomic) IBOutlet UILabel *malagasyName;
 
-
+@property (strong,nonatomic) Species* currentSpecies;
 @end

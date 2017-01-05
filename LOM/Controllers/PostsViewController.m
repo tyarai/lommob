@@ -267,6 +267,7 @@
     if(!isAdding){
         dest.title =  NSLocalizedString(@"edit_sighting_title",@"");
         dest.publication = self.selectedPublication;
+        
     }else{
         dest.title  = NSLocalizedString(@"new_sighting_title",@"");
     }

@@ -11,6 +11,8 @@
 #import "Tools.h"
 #import "CameraViewController.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import "SpeciesSelectorViewController.h"
+#import "Species.h"
 
 #define ROWHEIGHT 70
 #define PICKERVIEW_ROW_HEIGHT 34
@@ -42,6 +44,8 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = ROWHEIGHT;
+    self.tableView.estimatedRowHeight = 100;
+
     
     allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
     self.species.delegate = self; // UIPickerView Delegate
@@ -60,10 +64,12 @@
         self.numberObserved.text = [NSString stringWithFormat:@"%li",self.publication.count];
         self.placename.text      = self.publication.place_name;
         self.comments.text       = self.publication.title;
-        //self.speciesLabel.text   = self.publication.species;
+        
         NSInteger speciesNID = self.publication.speciesNid;
-        NSInteger index = [self findSpeciesBySpeciesID:speciesNID];
-        [self.species selectRow:index inComponent:0 animated:NO];
+        Species * pubSpecies = [Species getSpeciesBySpeciesNID:speciesNID];
+        
+        self.scientificName.text = pubSpecies._title;
+        self.malagasyName.text   = pubSpecies._malagasy;
         
         self.takenPhotoFileName = self.publication.field_photo.src;
         
@@ -181,8 +187,8 @@
     NSDate * obsDate = [self.date date];
     NSString  * place    = self.placename.text;
     NSString * error = nil;
-    NSUInteger selectedIndex = [self.species selectedRowInComponent:0];
-    Species * selectedSpecies = allSpecies[selectedIndex];
+    //NSUInteger selectedIndex = [self.species selectedRowInComponent:0];
+    //Species * selectedSpecies = allSpecies[selectedIndex];
     
     if([self validateEntries:comments
                  observation:obs
@@ -190,7 +196,7 @@
                photoFileName:self.takenPhotoFileName
                        error:&error]){
         
-       [self.delegate saveSightingInfo:selectedSpecies
+       [self.delegate saveSightingInfo:_currentSpecies
                             observation:obs
                               placeName:place
                                    date:obsDate
@@ -327,6 +333,42 @@
     if([photoFileName length] != 0){
         self.takenPhotoFileName = photoFileName;
         
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)chooseSpeciesTapped:(id)sender {
+     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+     SpeciesSelectorViewController * speciesSelector = [storyboard instantiateViewControllerWithIdentifier:@"speciesSelector"];
+    if(speciesSelector){
+        
+        speciesSelector.delegate = self;
+        
+        NSArray* _allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
+        speciesSelector.species = _allSpecies;
+        
+        speciesSelector.modalPresentationStyle = UIModalPresentationPopover;
+        [self presentViewController:speciesSelector animated:YES completion:nil];
+        UIPopoverPresentationController *popController = [speciesSelector popoverPresentationController];
+        popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        popController.sourceView = self.view;
+        popController.sourceRect = CGRectMake(50, 50, 361,361);
+        popController.delegate = self;
+    }
+}
+
+#pragma SpeciesSelectorDelegate
+
+-(void)cancelSpeciesSelector{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+-(void)doneSpeciesSelector:(Species*)species{
+    if(species){
+        self.scientificName.text = species._title;
+        self.malagasyName.text   = species._malagasy;
+        self.currentSpecies      = species;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
