@@ -8,6 +8,7 @@
 
 #import "SpeciesSelectorViewController.h"
 #import "SpeciesSelectorTableViewCell.h"
+#import "SightingDataTableViewController.h"
 #import "Tools.h"
 #import "Constants.h"
 
@@ -89,10 +90,15 @@
 */
 
 - (IBAction)doneTapped:(id)sender {
+
+    SightingDataTableViewController * delegate = (SightingDataTableViewController*)self.delegate;
+    delegate.publication = self.publication;
     [self.delegate doneSpeciesSelector:self.selectedSpecies];
 }
 
 - (IBAction)cancelTapped:(id)sender {
+    SightingDataTableViewController * delegate = (SightingDataTableViewController*)self.delegate;
+    delegate.publication = self.publication;
     [self.delegate cancelSpeciesSelector];
 }
 @end

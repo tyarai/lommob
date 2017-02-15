@@ -139,7 +139,7 @@
             if(stillConnected){
                 NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
                 
-                //--- Rehefa vita tanteraka mitsy ny syncWithServer zay vao mampidina ny acy any @ server ---
+                //--- Rehefa vita tanteraka mitsy ny syncWithServer zay vao mampidina ny avy any @ server ---
                 postsViewControllerFunctionCallback callback = ^(void){
                     [self loadOnlineSightings];
                 };

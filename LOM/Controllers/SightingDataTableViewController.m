@@ -14,7 +14,7 @@
 #import "SpeciesSelectorViewController.h"
 #import "Species.h"
 
-#define ROWHEIGHT 70
+#define ROWHEIGHT 44
 #define PICKERVIEW_ROW_HEIGHT 34
 
 @interface SightingDataTableViewController (){
@@ -44,7 +44,7 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = ROWHEIGHT;
-    self.tableView.estimatedRowHeight = 100;
+    
 
     
     allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
@@ -109,6 +109,8 @@
         self.date.date = date;
         
     }else{
+        self.scientificName.text = @"";
+        self.malagasyName.text   = @"";
         //---- Sighting vaovao mihitsy ity ----
         if([self.takenPhotoFileName length] != 0){
             
@@ -343,6 +345,7 @@
     if(speciesSelector){
         
         speciesSelector.delegate = self;
+        speciesSelector.publication = self.publication;
         
         NSArray* _allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
         speciesSelector.species = _allSpecies;
@@ -371,6 +374,14 @@
         self.currentSpecies      = species;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewAutomaticDimension;
 }
 
 @end
