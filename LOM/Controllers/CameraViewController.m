@@ -161,7 +161,7 @@
 #pragma SightingInfoViewControllerDelegate
 
 - (IBAction)saveSightingTapped:(id)sender {
-    [self.delegate saveCamera:self.photoFileName];
+    [self.delegate saveCamera:self.photoFileName publication:self.publication];
 }
 
 - (IBAction)selectPhoto:(id)sender {

@@ -51,6 +51,9 @@
     self.species.delegate = self; // UIPickerView Delegate
     
     self.takenPhotoFileName = nil;
+    
+    self.scientificName.text = @"";
+    self.malagasyName.text   = @"";
  
 }
 
@@ -109,12 +112,13 @@
         self.date.date = date;
         
     }else{
-        self.scientificName.text = @"";
-        self.malagasyName.text   = @"";
-        //---- Sighting vaovao mihitsy ity ----
+        //**** Sighting vaovao mihitsy ity ******////
+        //self.scientificName.text = @"";
+        //self.malagasyName.text   = @"";
+        
         if([self.takenPhotoFileName length] != 0){
             
-            //--- Jerena sao dia efa URL ilay fileName ---//
+            //****** Jerena sao dia efa URL ilay fileName ******//
             NSURL * tempURL = [NSURL URLWithString:self.takenPhotoFileName ];
             
             if(tempURL && tempURL.scheme && tempURL.host){
@@ -279,6 +283,7 @@
             Species * selectedSpecies = allSpecies[selectedIndex];
             dest.currentSpecies = selectedSpecies;
             dest.delegate = self;
+            dest.publication = self.publication;
             
         }
     }
@@ -331,9 +336,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)saveCamera:(NSString *)photoFileName{
-    if([photoFileName length] != 0){
+-(void)saveCamera:(NSString *)photoFileName publication:(Publication*)publication{
+    if([photoFileName length] != 0 && publication != nil){
         self.takenPhotoFileName = photoFileName;
+        self.publication = publication;
+        self.publication.field_photo.src = photoFileName;
         
     }
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -14,9 +14,10 @@
 #import "PopupLoginViewController.h"
 #import "WYPopoverController.h"
 #import "Sightings.h"
+#import "Publication.h"
 
 @protocol CameraViewControllerDelegate <NSObject>
--(void) saveCamera:(NSString*)photoFileName;
+-(void) saveCamera:(NSString*)photoFileName publication:(Publication*)publication;
 -(void) dismissCameraViewController;
 
 @end
@@ -37,4 +38,5 @@
 - (IBAction)saveSightingTapped:(id)sender;
 - (IBAction)selectPhoto:(id)sender;
 @property (strong) Species *currentSpecies;
+@property Publication * publication;
 @end
