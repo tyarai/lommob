@@ -266,7 +266,7 @@
     SightingDataTableViewController* dest = (SightingDataTableViewController*) [segue destinationViewController];
     if(!isAdding){
         dest.title =  NSLocalizedString(@"edit_sighting_title",@"");
-        dest.publication = self.selectedPublication;
+        //dest.publication = self.selectedPublication;
         
     }else{
         dest.title  = NSLocalizedString(@"new_sighting_title",@"");
@@ -279,7 +279,7 @@
 
 -(void)performSegueWithSpecies:(Species *)species{
     if(species){
-        self.selectedSpecies = species;
+        //self.selectedSpecies = species;
         [self performSegueWithIdentifier:@"showSpeciesInfoFromPost" sender:self];
     }
 }
@@ -345,8 +345,8 @@
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
-    self.selectedPublication = sighting.node;
+    //PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
+    //self.selectedPublication = sighting.node;
     return indexPath;
 }
 
@@ -788,7 +788,8 @@
     [self dismissCameraViewController];
 }
 
--(void)saveSightingInfo:(Species*)species
+-(void)saveSightingInfo:(Publication*)publication
+            species    : (Species*) species
             observation:(NSInteger)observation
               placeName:(NSString *)placeName
                    date:(NSDate *)date
@@ -805,14 +806,16 @@
     if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
        ![Tools isNullOrEmptyString:token] &&  uid != 0 ){
         
-        if(observation && placeName && comments && date && species ){
+        if(observation && placeName && comments && date && publication != nil  && species != nil){
+            
+            //Species * species       = [Species getSpeciesBySpeciesNID:publication.speciesNid];
             
             if(!isAdding){
                 
                 //----- Updating Sighting ------------//
                 
-                NSInteger   _nid        = self.selectedPublication.nid;
-                NSString *  _uuid       = self.selectedPublication.uuid;
+                 NSInteger   _nid        = publication.nid;
+                NSString *  _uuid       = publication.uuid;
                 NSInteger  _count       = observation;
                 NSString *_placeName    = placeName;
                 NSString *_title        = comments;
@@ -824,11 +827,12 @@
                 NSString * query        = nil;
                 
                 if(_nid > 0 ){
-                    //------ Update by _nid : Raha efa synced sady nahazo _nid ilay sighting --- //
+                    
+                    //******** Update by _nid : Raha efa synced sady nahazo _nid ilay sighting - //
                     
                     query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_nid];
                 }else{
-                    //---- Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
+                    //*** Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
                     query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,_uuid];
                     
                 }

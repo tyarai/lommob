@@ -25,8 +25,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSArray<Species*> *species;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
-@property (strong,nonatomic) Species * selectedSpecies;
-@property (strong,nonatomic) Publication * publication;
+//@property (strong,nonatomic) Species * selectedSpecies;
+//@property (strong,nonatomic) Publication * publication;
 
 - (IBAction)doneTapped:(id)sender;
 

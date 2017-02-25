@@ -6,6 +6,7 @@
 //  Copyright © 2016 Kerty KAMARY. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "PostsTableViewCell.h"
 #import "Tools.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
@@ -44,9 +45,15 @@
 
 
 - (IBAction)menuButtonTapped:(id)sender {
+   
+    //**** Atao editing eto @ zay ity publication ity dia setter-na ilay variabla any @ appDelegate
+    // Ireto publication sy species ireto no raisin'ny SightingDataViewController avy eo
     
-    PostsViewController* vc = (PostsViewController*)postsTableViewController;
-    vc.selectedPublication = currentPublication;
+    AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelagate.appDelegateCurrentPublication = currentPublication;
+    Species * currentSpecies = [Species getSpeciesBySpeciesNID:currentPublication.speciesNid];
+    appDelagate.appDelegateCurrentSpecies     = currentSpecies;
+    //************************************************************************
     
     [postsTableViewController performSegueWithIdentifier:@"showPost" sender:postsTableViewController];
    

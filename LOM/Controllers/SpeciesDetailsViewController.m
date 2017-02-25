@@ -613,7 +613,6 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier]  isEqual: @"showCameraVC"]){
         CameraViewController *vc = (CameraViewController*) [segue destinationViewController];
-        vc.currentSpecies = self.specy;
         vc.delegate = self;
         
     }

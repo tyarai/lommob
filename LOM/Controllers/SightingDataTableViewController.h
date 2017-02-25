@@ -15,7 +15,8 @@
 @protocol SightingDataTableViewControllerDelegate <NSObject>
 @optional
 - (void) cancelSightingData;
-- (void) saveSightingInfo:(Species*) species
+- (void) saveSightingInfo:(Publication*) Publication
+                  species:(Species*) species
               observation:(NSInteger) observation
                 placeName:(NSString*) placeName
                      date:(NSDate*) date
@@ -45,7 +46,7 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *species;
 
 @property (weak, nonatomic) IBOutlet UILabel *speciesLabel;
-@property (strong,nonatomic) Publication * publication;
+
 @property  (strong,nonatomic) id UIViewDelegate;
 @property (strong,nonatomic) NSString * takenPhotoFileName;
 @property BOOL isAdding;
@@ -58,5 +59,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *scientificName;
 @property (weak, nonatomic) IBOutlet UILabel *malagasyName;
 
-@property (strong,nonatomic) Species* currentSpecies;
+//@property (strong,nonatomic) Species* currentSpecies;
 @end

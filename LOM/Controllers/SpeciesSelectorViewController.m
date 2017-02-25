@@ -26,7 +26,7 @@
     self.tableView.dataSource = self;
     self.view.tintColor = ORANGE_COLOR;
     self.toolBar.backgroundColor = [UIColor blackColor];
-    self.selectedSpecies = nil;
+    
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 125;
@@ -49,8 +49,13 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    /*  
+        Ni-selectionner species hafa ilay user teto fa tsy voatery hoe ito ny final satria
+        mety ho nanao CANCEL izy avy eo. Any @ DONE mihitsy izay vao ovana ny appDelegateCurrentSpecies
+    
+     */
     lastIndexPath = indexPath;
-    self.selectedSpecies = [self.species objectAtIndex:indexPath.row];
+    
     [tableView reloadData];
 }
 
@@ -91,14 +96,18 @@
 
 - (IBAction)doneTapped:(id)sender {
 
-    SightingDataTableViewController * delegate = (SightingDataTableViewController*)self.delegate;
-    delegate.publication = self.publication;
-    [self.delegate doneSpeciesSelector:self.selectedSpecies];
+    AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelagate.appDelegateCurrentSpecies       = [self.species objectAtIndex:lastIndexPath.row];
+    
+    //AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //Species * selectedSpecies = appDelagate.appDelegateCurrentSpecies ;
+    
+    [self.delegate doneSpeciesSelector:appDelagate.appDelegateCurrentSpecies];
 }
 
 - (IBAction)cancelTapped:(id)sender {
-    SightingDataTableViewController * delegate = (SightingDataTableViewController*)self.delegate;
-    delegate.publication = self.publication;
+    //SightingDataTableViewController * delegate = (SightingDataTableViewController*)self.delegate;
+    //delegate.publication = self.publication;
     [self.delegate cancelSpeciesSelector];
 }
 @end

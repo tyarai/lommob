@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "Species.h"
+#import "Publication.h"
+#import "Sightings.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -24,6 +26,10 @@
 
 @property (strong,nonatomic) Species * currentSpecies;
 
+
+@property (strong,nonatomic) Species     * appDelegateCurrentSpecies;
+@property (strong,nonatomic) Publication * appDelegateCurrentPublication;
+@property (strong,nonatomic) Sightings   * appDelegateCurrentSighting;
 
 @end
 

@@ -37,6 +37,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveSightingButton;
 - (IBAction)saveSightingTapped:(id)sender;
 - (IBAction)selectPhoto:(id)sender;
-@property (strong) Species *currentSpecies;
-@property Publication * publication;
+//@property (strong) Species *currentSpecies;
+//@property Publication * publication;
 @end

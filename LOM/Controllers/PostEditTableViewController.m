@@ -71,7 +71,7 @@
         SightingDataTableViewController * dest = (SightingDataTableViewController*)[segue destinationViewController];
         dest.delegate = self;
         //dest.species = self.currentSpecies;
-        dest.publication = self.currentPublication;
+        //dest.publication = self.currentPublication;
         dest.UIViewDelegate = self.delegate;
         
         __block UIImage *img = nil;

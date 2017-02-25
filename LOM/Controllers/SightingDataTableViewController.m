@@ -60,26 +60,37 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if(self.publication != nil){
+    
+    AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    Publication * publication = appDelagate.appDelegateCurrentPublication ;
+    Species * pubSpecies = [Species getSpeciesBySpeciesNID:publication.speciesNid];
+    
+    if(appDelagate.appDelegateCurrentSpecies._species_id != pubSpecies._species_id){
+        //***** Izany hoe efa vao avy nanova species tany @ speciesSelector ilay user
+         pubSpecies = appDelagate.appDelegateCurrentSpecies;
+    }
+    
+    
+    if(publication != nil && pubSpecies != nil){
         
         //---- Edit sighting ----
         
-        self.numberObserved.text = [NSString stringWithFormat:@"%li",self.publication.count];
-        self.placename.text      = self.publication.place_name;
-        self.comments.text       = self.publication.title;
+        self.numberObserved.text = [NSString stringWithFormat:@"%li",publication.count];
+        self.placename.text      = publication.place_name;
+        self.comments.text       = publication.title;
         
-        NSInteger speciesNID = self.publication.speciesNid;
-        Species * pubSpecies = [Species getSpeciesBySpeciesNID:speciesNID];
+        //NSInteger speciesNID = publication.speciesNid;
+        //Species * pubSpecies = [Species getSpeciesBySpeciesNID:speciesNID];
         
         self.scientificName.text = pubSpecies._title;
         self.malagasyName.text   = pubSpecies._malagasy;
         
-        self.takenPhotoFileName = self.publication.field_photo.src;
+        self.takenPhotoFileName = publication.field_photo.src;
         
-        if(self.publication.isLocal || !self.publication.isSynced){
+        if(publication.isLocal || !publication.isSynced){
             
             //--- Jerena sao dia efa URL ilay fileName ---//
-            NSURL * tempURL = [NSURL URLWithString:self.publication.field_photo.src];
+            NSURL * tempURL = [NSURL URLWithString:publication.field_photo.src];
             
             if(tempURL && tempURL.scheme && tempURL.host){
                 [self.speciesImage setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
@@ -90,14 +101,14 @@
                 } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             }else{
                 
-                NSString *getImagePath = [self.publication getSightingImageFullPathName];
+                NSString *getImagePath = [publication getSightingImageFullPathName];
                 UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
                 [self.speciesImage setImage:img];
             }
             
         }else{
             
-            [self.speciesImage setImageWithURL:[NSURL URLWithString: self.publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [self.speciesImage setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 NSLog(@"Finished");
                 
             } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -108,14 +119,12 @@
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
         
-        NSDate *date = [dateFormat dateFromString:self.publication.date];
+        NSDate *date = [dateFormat dateFromString:publication.date];
         self.date.date = date;
         
     }else{
         //**** Sighting vaovao mihitsy ity ******////
-        //self.scientificName.text = @"";
-        //self.malagasyName.text   = @"";
-        
+       
         if([self.takenPhotoFileName length] != 0){
             
             //****** Jerena sao dia efa URL ilay fileName ******//
@@ -172,7 +181,9 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
-    self.publication = nil;
+    //AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //appDelagate.appDelegateCurrentPublication   = nil;
+    //appDelagate.appDelegateCurrentSpecies       = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -184,6 +195,7 @@
 
 
 - (IBAction)cancelTapped:(id)sender {
+    
     [self.delegate cancelSightingData];
 }
 
@@ -193,8 +205,10 @@
     NSDate * obsDate = [self.date date];
     NSString  * place    = self.placename.text;
     NSString * error = nil;
-    //NSUInteger selectedIndex = [self.species selectedRowInComponent:0];
-    //Species * selectedSpecies = allSpecies[selectedIndex];
+    
+    AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    Publication * currentPublication = appDelagate.appDelegateCurrentPublication;
+    Species     * currentSpecies     = appDelagate.appDelegateCurrentSpecies;
     
     if([self validateEntries:comments
                  observation:obs
@@ -202,7 +216,8 @@
                photoFileName:self.takenPhotoFileName
                        error:&error]){
         
-       [self.delegate saveSightingInfo:_currentSpecies
+       [self.delegate saveSightingInfo :currentPublication
+                           species     :currentSpecies
                             observation:obs
                               placeName:place
                                    date:obsDate
@@ -279,12 +294,7 @@
     if([segue.identifier isEqualToString:@"takeAnotherPhoto"]){
         CameraViewController        *dest = (CameraViewController*)[segue destinationViewController];
         if(dest){
-            NSUInteger selectedIndex = [self.species selectedRowInComponent:0];
-            Species * selectedSpecies = allSpecies[selectedIndex];
-            dest.currentSpecies = selectedSpecies;
             dest.delegate = self;
-            dest.publication = self.publication;
-            
         }
     }
 }
@@ -338,9 +348,8 @@
 
 -(void)saveCamera:(NSString *)photoFileName publication:(Publication*)publication{
     if([photoFileName length] != 0 && publication != nil){
-        self.takenPhotoFileName = photoFileName;
-        self.publication = publication;
-        self.publication.field_photo.src = photoFileName;
+       self.takenPhotoFileName = photoFileName;
+       publication.field_photo.src = photoFileName;
         
     }
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -350,9 +359,8 @@
      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
      SpeciesSelectorViewController * speciesSelector = [storyboard instantiateViewControllerWithIdentifier:@"speciesSelector"];
     if(speciesSelector){
-        
+      
         speciesSelector.delegate = self;
-        speciesSelector.publication = self.publication;
         
         NSArray* _allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
         speciesSelector.species = _allSpecies;
@@ -378,7 +386,7 @@
     if(species){
         self.scientificName.text = species._title;
         self.malagasyName.text   = species._malagasy;
-        self.currentSpecies      = species;
+        //self.currentSpecies      = species;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

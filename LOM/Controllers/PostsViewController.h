@@ -37,8 +37,8 @@
 @property NSMutableArray * currentPhotos;   
 - (IBAction)addButtonTapped:(id)sender;
 
-@property (strong) Species * selectedSpecies;
-@property (strong) Publication * selectedPublication;
+//@property (strong) Species * selectedSpecies;
+//@property (strong) Publication * selectedPublication;
 
 
 -(void) loadOnlineSightings;

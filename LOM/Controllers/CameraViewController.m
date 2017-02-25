@@ -125,31 +125,35 @@
 
 -(NSString*) saveImageToFile:(UIImage*) image{
     if(image){
+        AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        Species * currentSpecies = appDelagate.appDelegateCurrentSpecies;
         
-        UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill
-                                                             bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
-                                               interpolationQuality:1];
-        //UIImage * resizedImage = image;
+        if(currentSpecies != nil){
         
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString * title = self.currentSpecies._title;
-        NSInteger speciesNid = self.currentSpecies._species_id;
-        title = [title stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-        NSString * fileName = [NSString stringWithFormat: @"%ld_%li", appDelegate._uid, (long)speciesNid];
-        NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
-        NSString * date = [dateFormatter stringFromDate:[NSDate date]];
-        fileName = [fileName stringByAppendingString:date];
-        fileName = [fileName stringByAppendingString:FILE_EXT];
-        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
-        
-       [UIImageJPEGRepresentation(resizedImage, 1.0)writeToFile:filePath atomically:YES];
-        
-        //return filePath;
-        return fileName;
-         
-        
-           }
+            UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill
+                                                                 bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
+                                                   interpolationQuality:1];
+            //UIImage * resizedImage = image;
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString * title     = currentSpecies._title;
+            NSInteger speciesNid = currentSpecies._species_id;
+            title = [title stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+            NSString * fileName = [NSString stringWithFormat: @"%ld_%li", appDelegate._uid, (long)speciesNid];
+            NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
+            NSString * date = [dateFormatter stringFromDate:[NSDate date]];
+            fileName = [fileName stringByAppendingString:date];
+            fileName = [fileName stringByAppendingString:FILE_EXT];
+            NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
+            
+           [UIImageJPEGRepresentation(resizedImage, 1.0)writeToFile:filePath atomically:YES];
+            
+            //return filePath;
+            return fileName;
+        }
+            
+    }
     return nil;
 }
 
@@ -161,7 +165,10 @@
 #pragma SightingInfoViewControllerDelegate
 
 - (IBAction)saveSightingTapped:(id)sender {
-    [self.delegate saveCamera:self.photoFileName publication:self.publication];
+    
+    AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    Publication * currentPublication = appDelagate.appDelegateCurrentPublication;
+    [self.delegate saveCamera:self.photoFileName publication:currentPublication];
 }
 
 - (IBAction)selectPhoto:(id)sender {
