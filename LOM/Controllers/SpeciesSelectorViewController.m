@@ -99,9 +99,6 @@
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     appDelagate.appDelegateCurrentSpecies       = [self.species objectAtIndex:lastIndexPath.row];
     
-    //AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    //Species * selectedSpecies = appDelagate.appDelegateCurrentSpecies ;
-    
     [self.delegate doneSpeciesSelector:appDelagate.appDelegateCurrentSpecies];
 }
 
