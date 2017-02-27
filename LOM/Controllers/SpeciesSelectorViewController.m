@@ -25,14 +25,32 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.view.tintColor = ORANGE_COLOR;
-    self.toolBar.backgroundColor = [UIColor blackColor];
-    
-    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 125;
     
+    //UIView* backgroundView = [self.bottomToolBar view
+    //[backgroundView setBackgroundColor:[UIColor blackColor]];
+    self.bottomToolBar.tintColor = ORANGE_COLOR;
+    self.bottomToolBar.backgroundColor = [UIColor blackColor];
+    
+
+    
  
 }
+
+-(void) viewWillAppear{
+    //[super viewWillAppear];
+    [self.bottomToolBar setBackgroundColor:[UIColor blackColor]];
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return@"Species list";
+    }
+    return nil;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -317,7 +317,7 @@
             <objects>
                 <navigationController id="lc9-V8-CUV" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="wLb-bu-0QA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="wLb-bu-0QA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -372,7 +372,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_lom" translatesAutoresizingMaskIntoConstraints="NO" id="a9y-Ke-qob">
-                                                    <rect key="frame" x="17" y="36" width="174" height="44"/>
+                                                    <rect key="frame" x="17" y="35" width="174" height="44"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -396,7 +396,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lemurs of Madagascar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8B-fT-pGv">
-                                                    <rect key="frame" x="74" y="32.5" width="144" height="19.5"/>
+                                                    <rect key="frame" x="74" y="31.5" width="143.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -429,7 +429,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Origin of lemurs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvQ-2C-fwI">
-                                                    <rect key="frame" x="73" y="15" width="272" height="28"/>
+                                                    <rect key="frame" x="73" y="15" width="272" height="27"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -460,7 +460,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Extinct lemurs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="341-cm-jC3">
-                                                    <rect key="frame" x="73" y="15" width="201" height="28"/>
+                                                    <rect key="frame" x="73" y="15" width="201" height="27"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -491,7 +491,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About the authors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jm-vs-M3E">
-                                                    <rect key="frame" x="73" y="15" width="150" height="28"/>
+                                                    <rect key="frame" x="73" y="15" width="150" height="27"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -515,7 +515,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_specy" translatesAutoresizingMaskIntoConstraints="NO" id="gbr-OR-3se">
-                                                    <rect key="frame" x="16" y="14" width="26" height="33"/>
+                                                    <rect key="frame" x="16" y="13" width="26" height="33"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Species" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4w1-Nh-jd1">
                                                     <rect key="frame" x="72" y="8" width="61" height="23.5"/>
@@ -524,7 +524,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="105 taxa and counting " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiS-FY-o90">
-                                                    <rect key="frame" x="72" y="32.5" width="144" height="19.5"/>
+                                                    <rect key="frame" x="72" y="31.5" width="144" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -557,7 +557,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Families" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROM-B4-pk2">
-                                                    <rect key="frame" x="70" y="32.5" width="63" height="19.5"/>
+                                                    <rect key="frame" x="70" y="31.5" width="62.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -590,7 +590,7 @@
                                                     <rect key="frame" x="16" y="18" width="28" height="24"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Best places to go" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jSf-z3-O0j">
-                                                    <rect key="frame" x="69" y="32.5" width="107" height="19.5"/>
+                                                    <rect key="frame" x="69" y="31.5" width="107" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -650,7 +650,7 @@
                                                     <rect key="frame" x="16" y="18" width="33" height="24"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My lemur life list" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPd-UT-Uoc">
-                                                    <rect key="frame" x="69" y="30" width="102.5" height="19.5"/>
+                                                    <rect key="frame" x="69" y="30" width="102" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -686,7 +686,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About this app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhU-we-OYO">
-                                                    <rect key="frame" x="68" y="15" width="146" height="28"/>
+                                                    <rect key="frame" x="68" y="15" width="146" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="146" id="eX3-Ap-Jrg"/>
                                                     </constraints>
@@ -1283,7 +1283,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vS7-R7-YWK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="QVH-er-W8n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="QVH-er-W8n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1941,7 +1941,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JjW-ae-GrF" userLabel="Species" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="D9c-Dg-cHY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="D9c-Dg-cHY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2489,14 +2489,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KqU-Jv-1Qh">
-                                                    <rect key="frame" x="8" y="53" width="359" height="229"/>
+                                                    <rect key="frame" x="8" y="62.5" width="359" height="229"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="229" id="7FU-Ng-yU7"/>
                                                         <constraint firstAttribute="width" constant="359" id="RrX-KK-b0b"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPECIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXD-7R-SBM">
-                                                    <rect key="frame" x="8" y="290" width="359" height="21"/>
+                                                    <rect key="frame" x="8" y="299.5" width="359" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="359" id="EZE-aT-2va"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="egP-Sw-m7y"/>
@@ -2506,7 +2506,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJE-BD-tAv">
-                                                    <rect key="frame" x="20" y="347" width="113" height="21"/>
+                                                    <rect key="frame" x="20" y="356.5" width="113" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="113" id="azA-45-duP"/>
                                                         <constraint firstAttribute="height" constant="21" id="kUY-Kr-8lk"/>
@@ -2516,7 +2516,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBy-b2-SMn">
-                                                    <rect key="frame" x="8" y="26" width="298" height="18"/>
+                                                    <rect key="frame" x="8" y="26" width="298" height="27.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="VTE-ci-efY"/>
                                                         <constraint firstAttribute="width" constant="298" id="jZ6-8l-nKE"/>
@@ -2526,14 +2526,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_map_off" translatesAutoresizingMaskIntoConstraints="NO" id="8Ap-bI-6Qp">
-                                                    <rect key="frame" x="20" y="319" width="19" height="19"/>
+                                                    <rect key="frame" x="20" y="328.5" width="19" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="19" id="38y-3A-362"/>
                                                         <constraint firstAttribute="height" constant="19" id="RVB-oV-dKY"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38r-En-OOB">
-                                                    <rect key="frame" x="163" y="345" width="204" height="24"/>
+                                                    <rect key="frame" x="163" y="354.5" width="204" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="DIc-ZN-c2j"/>
                                                         <constraint firstAttribute="width" constant="204" id="z8T-5u-vbU"/>
@@ -2543,7 +2543,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlaceName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRA-7l-3CK">
-                                                    <rect key="frame" x="47" y="318" width="306" height="21"/>
+                                                    <rect key="frame" x="47" y="327.5" width="306" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="306" id="5au-dC-jjb"/>
                                                         <constraint firstAttribute="height" constant="21" id="IU7-Md-EtH"/>
@@ -2921,7 +2921,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcd-fj-ebE">
-                                                    <rect key="frame" x="8" y="8" width="100" height="52"/>
+                                                    <rect key="frame" x="8" y="8" width="100" height="51"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="FkV-lv-BZm"/>
                                                     </constraints>
@@ -2932,7 +2932,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WKX-r3-9iU">
-                                                    <rect key="frame" x="267" y="8" width="100" height="52"/>
+                                                    <rect key="frame" x="267" y="8" width="100" height="51"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="ya0-l5-7Iw"/>
                                                     </constraints>
@@ -3259,6 +3259,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WwA-nU-6g5">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="667" id="Zni-rg-D96"/>
+                                    <constraint firstAttribute="width" constant="375" id="y8Z-FV-xJY"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="speciesSelectorCell" rowHeight="125" id="THp-PQ-GRk" customClass="SpeciesSelectorTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="125"/>
@@ -3286,7 +3290,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pBX-94-8qT">
-                                                    <rect key="frame" x="310" y="47" width="46" height="32"/>
+                                                    <rect key="frame" x="310" y="46" width="46" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="2W7-J6-qAU"/>
                                                         <constraint firstAttribute="height" constant="32" id="GrO-fR-84E"/>
@@ -3312,9 +3316,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNv-WA-Dqz">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNv-WA-Dqz">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ghr-18-Edo"/>
+                                    <constraint firstAttribute="width" constant="375" id="Skt-p1-kwe"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem title="Cancel" width="68" id="I1P-zW-FV3">
                                         <connections>
@@ -3333,11 +3341,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WwA-nU-6g5" firstAttribute="leading" secondItem="hnB-ZB-Sna" secondAttribute="leading" id="75S-xO-B57"/>
+                            <constraint firstItem="sNv-WA-Dqz" firstAttribute="leading" secondItem="hnB-ZB-Sna" secondAttribute="leading" id="7U0-SH-Zp9"/>
                             <constraint firstItem="sNv-WA-Dqz" firstAttribute="leading" secondItem="hnB-ZB-Sna" secondAttribute="leading" id="DNZ-uS-qoJ"/>
-                            <constraint firstItem="nwX-Pl-Phe" firstAttribute="top" secondItem="sNv-WA-Dqz" secondAttribute="bottom" id="KMA-Mc-ix0"/>
                             <constraint firstAttribute="trailing" secondItem="WwA-nU-6g5" secondAttribute="trailing" id="Rj5-2v-Giz"/>
+                            <constraint firstItem="WwA-nU-6g5" firstAttribute="top" secondItem="hnB-ZB-Sna" secondAttribute="top" id="Tcn-ol-pbT"/>
+                            <constraint firstAttribute="trailing" secondItem="sNv-WA-Dqz" secondAttribute="trailing" id="dqp-2j-X6J"/>
                             <constraint firstItem="WwA-nU-6g5" firstAttribute="top" secondItem="hnB-ZB-Sna" secondAttribute="top" id="hPN-in-msb"/>
                             <constraint firstItem="nwX-Pl-Phe" firstAttribute="top" secondItem="WwA-nU-6g5" secondAttribute="bottom" id="jSp-lw-9Va"/>
+                            <constraint firstAttribute="trailing" secondItem="WwA-nU-6g5" secondAttribute="trailing" id="kk8-PS-G7p"/>
+                            <constraint firstItem="nwX-Pl-Phe" firstAttribute="top" secondItem="sNv-WA-Dqz" secondAttribute="bottom" id="mxy-9k-lLh"/>
+                            <constraint firstItem="nwX-Pl-Phe" firstAttribute="top" secondItem="WwA-nU-6g5" secondAttribute="bottom" id="nuA-1s-104"/>
+                            <constraint firstItem="WwA-nU-6g5" firstAttribute="leading" secondItem="hnB-ZB-Sna" secondAttribute="leading" id="vpC-6w-k7w"/>
                             <constraint firstItem="WwA-nU-6g5" firstAttribute="leading" secondItem="sNv-WA-Dqz" secondAttribute="trailing" constant="-375" id="xMI-4a-PdV"/>
                         </constraints>
                     </view>
@@ -3346,8 +3360,8 @@
                         <barButtonItem title="Done" id="ZTg-sk-nO2"/>
                     </toolbarItems>
                     <connections>
+                        <outlet property="bottomToolBar" destination="sNv-WA-Dqz" id="b77-rL-pPp"/>
                         <outlet property="tableView" destination="WwA-nU-6g5" id="Q6G-fK-Ezb"/>
-                        <outlet property="toolBar" destination="sNv-WA-Dqz" id="hyZ-oc-4J9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kU8-LT-ooV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3471,7 +3485,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1h-qT-zcB">
-                                            <rect key="frame" x="105" y="8" width="241" height="22"/>
+                                            <rect key="frame" x="105" y="8" width="241" height="21"/>
                                             <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -3573,7 +3587,7 @@
             <objects>
                 <navigationController title="Origin of lemurs" automaticallyAdjustsScrollViewInsets="NO" id="tfC-Nw-bLj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iW1-Ah-XZX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iW1-Ah-XZX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -3591,7 +3605,7 @@
             <objects>
                 <navigationController title="Extinct lemurs" automaticallyAdjustsScrollViewInsets="NO" id="6N0-DJ-TJr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RkS-sK-nqL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RkS-sK-nqL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

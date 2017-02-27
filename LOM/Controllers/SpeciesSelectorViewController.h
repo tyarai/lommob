@@ -20,11 +20,12 @@
 
 @interface SpeciesSelectorViewController : BaseViewController <UITableViewDelegate,UITableViewDataSource>{
     NSIndexPath * lastIndexPath;
+    __weak IBOutlet UIToolbar *toolBar;
 }
 @property (strong,nonatomic) id<SpeciesSelectorDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSArray<Species*> *species;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UIToolbar *bottomToolBar;
 //@property (strong,nonatomic) Species * selectedSpecies;
 //@property (strong,nonatomic) Publication * publication;
 
