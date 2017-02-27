@@ -63,15 +63,15 @@
     
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Publication * publication = appDelagate.appDelegateCurrentPublication ;
-    Species * pubSpecies = [Species getSpeciesBySpeciesNID:publication.speciesNid];
+    Species * currentSpecies = [Species getSpeciesBySpeciesNID:publication.speciesNid];
     
-    if(appDelagate.appDelegateCurrentSpecies._species_id != pubSpecies._species_id){
-        //***** Izany hoe efa vao avy nanova species tany @ speciesSelector ilay user
-         pubSpecies = appDelagate.appDelegateCurrentSpecies;
+    if(appDelagate.appDelegateCurrentSpecies._species_id != currentSpecies._species_id){
+        //***** Izany hoe efa vao avy nanova species tany @ speciesSelector ilay user na koa izay species by default no izy ***//
+         currentSpecies = appDelagate.appDelegateCurrentSpecies;
     }
     
     
-    if(publication != nil && pubSpecies != nil){
+    if(publication != nil && currentSpecies != nil){
         
         //---- Edit sighting ----
         
@@ -79,11 +79,8 @@
         self.placename.text      = publication.place_name;
         self.comments.text       = publication.title;
         
-        //NSInteger speciesNID = publication.speciesNid;
-        //Species * pubSpecies = [Species getSpeciesBySpeciesNID:speciesNID];
-        
-        self.scientificName.text = pubSpecies._title;
-        self.malagasyName.text   = pubSpecies._malagasy;
+        self.scientificName.text = currentSpecies._title;
+        self.malagasyName.text   = currentSpecies._malagasy;
         
         self.takenPhotoFileName = publication.field_photo.src;
         
@@ -124,7 +121,12 @@
         
     }else{
         //**** Sighting vaovao mihitsy ity ******////
-       
+        
+        //---- Rehefa "new Sighting" dia izay species voalohany no "by default" --//
+        //pubSpecies = appDelagate.appDelegateCurrentSpecies;
+        self.scientificName.text = currentSpecies._title;
+        self.malagasyName.text   = currentSpecies._malagasy;
+        
         if([self.takenPhotoFileName length] != 0){
             
             //****** Jerena sao dia efa URL ilay fileName ******//
@@ -295,6 +297,7 @@
         CameraViewController        *dest = (CameraViewController*)[segue destinationViewController];
         if(dest){
             dest.delegate = self;
+            dest.isAdding = self.isAdding;
         }
     }
 }
@@ -346,11 +349,17 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)saveCamera:(NSString *)photoFileName publication:(Publication*)publication{
-    if([photoFileName length] != 0 && publication != nil){
-       self.takenPhotoFileName = photoFileName;
-       publication.field_photo.src = photoFileName;
+-(void)saveCamera:(NSString *)photoFileName
+      publication:(Publication*)publication
+          species:(Species *)species{
+ 
+    self.takenPhotoFileName = photoFileName;
+    
+    if(publication != nil){
         
+        publication.field_photo.src = photoFileName;
+        //** Niova ny sarin'ity publication ity. Tokony averina notSynced izy izany : Feb-27-2017
+        publication.isSynced = NO;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -387,6 +396,9 @@
         self.scientificName.text = species._title;
         self.malagasyName.text   = species._malagasy;
         //self.currentSpecies      = species;
+        /*
+         @TODO : Niova ny species eto. Raha ohatra ka isAdding=YES dia tokony ho renommer-na @ ity species ity ny self.takenPhotoFileName
+         */
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

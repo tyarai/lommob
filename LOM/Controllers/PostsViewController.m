@@ -269,6 +269,14 @@
         //dest.publication = self.selectedPublication;
         
     }else{
+        //** Rehefa hanao new Sighting dia atao by default izay species voalohany no atao current
+        NSArray<Species*>* _allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
+        // local variable ao @ Class BaseViewController ny appDelegate --//
+        appDelegate.appDelegateCurrentSpecies = (Species*)_allSpecies[0];
+        
+        //** Atao nil ihany koa ny publication satri vao hanao vaovao **//
+        appDelegate.appDelegateCurrentPublication = nil;
+        
         dest.title  = NSLocalizedString(@"new_sighting_title",@"");
     }
     dest.delegate = self;
@@ -806,15 +814,11 @@
     if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
        ![Tools isNullOrEmptyString:token] &&  uid != 0 ){
         
-        if(observation && placeName && comments && date && publication != nil  && species != nil){
+        if(!isAdding && observation && placeName && comments && date && publication != nil  && species != nil){
             
-            //Species * species       = [Species getSpeciesBySpeciesNID:publication.speciesNid];
-            
-            if(!isAdding){
+                 //----- Updating Sighting ------------//
                 
-                //----- Updating Sighting ------------//
-                
-                 NSInteger   _nid        = publication.nid;
+                NSInteger   _nid        = publication.nid;
                 NSString *  _uuid       = publication.uuid;
                 NSInteger  _count       = observation;
                 NSString *_placeName    = placeName;
@@ -839,7 +843,9 @@
                 
                 [Sightings executeUpdateQuery:query];
                 
-            }else{
+            }
+        
+            if(isAdding && observation && placeName && comments && date && species != nil){
                 
                 //----- Creating new Sighting ------------//
                 
@@ -883,7 +889,7 @@
                 
             [self.tableViewLifeList reloadData];
             
-        }
+        
         
         
     }else{

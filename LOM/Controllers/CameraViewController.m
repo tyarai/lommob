@@ -168,7 +168,17 @@
     
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Publication * currentPublication = appDelagate.appDelegateCurrentPublication;
-    [self.delegate saveCamera:self.photoFileName publication:currentPublication];
+    //-- Rehefa new sighting vao tena ilaina ity currentSpecies ity izy fa rehefa edit Sighting dia izay species miaraka @ ilay currentPublication no ampiasaina --//
+    Species     * currentSpecies    = nil;
+    if(self.isAdding){
+        currentSpecies    = appDelagate.appDelegateCurrentSpecies;
+    }else{
+        NSUInteger speciesID = currentPublication.speciesNid;
+        currentSpecies    = [Species getSpeciesBySpeciesNID:speciesID];
+    }
+    [self.delegate saveCamera:self.photoFileName
+                  publication:currentPublication
+                      species:currentSpecies];
 }
 
 - (IBAction)selectPhoto:(id)sender {
