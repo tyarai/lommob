@@ -303,7 +303,8 @@ static AppData* _instance;
            sessionName:(NSString*)sessionName
              sessionID:(NSString*) sessionID
               callback:(postsViewControllerFunctionCallback)func{
-    if([sightings count] != 0){
+    
+    if(sightings != nil &&  [sightings count] > 0){
         
         [self buildPOSTHeader];
         NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
