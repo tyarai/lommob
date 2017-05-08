@@ -31,6 +31,13 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.txtText scrollRangeToVisible:NSMakeRange(0, 0)];
+    });
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

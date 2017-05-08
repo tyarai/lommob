@@ -3007,6 +3007,7 @@
 		4C74F2851C06382A00543A7F /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				4CD8049F1E8BE7E50084FA6D /* NSDate */,
 				B43DF4251DB8EE6300319654 /* TableViewCell */,
 				B4AF342B1C9A9BEC0039DEBB /* NetworkReachability */,
 				B49C5FE71C99934900B4F08D /* UIImage */,
@@ -3181,6 +3182,13 @@
 				4CBAEB151BFA546B0011139C /* Info.plist */,
 			);
 			path = LOMUITests;
+			sourceTree = "<group>";
+		};
+		4CD8049F1E8BE7E50084FA6D /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = NSDate;
 			sourceTree = "<group>";
 		};
 		4CEC77741C36CB3800C9706A /* Cell */ = {
@@ -4588,7 +4596,7 @@
 					"\"/Users/ranto/Desktop/LOM/LOM/MapView\"",
 				);
 				INFOPLIST_FILE = LOM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4632,7 +4640,7 @@
 					"\"/Users/ranto/Desktop/LOM/LOM/MapView\"",
 				);
 				INFOPLIST_FILE = LOM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

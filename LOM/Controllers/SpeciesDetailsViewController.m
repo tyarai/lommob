@@ -71,6 +71,11 @@
     [super viewWillAppear:animated];
     
     [self initTimer];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.txtText scrollRangeToVisible:NSMakeRange(0, 0)];
+    });
+
+    
 }
 
 

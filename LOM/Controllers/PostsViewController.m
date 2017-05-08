@@ -825,7 +825,12 @@
                 NSString *_title        = comments;
                 NSString * _speciesName = species._title;
                 NSInteger   _speciesNID = species._species_id;
+            
+                //-- Mampisy error any @ SQLLite raha tsy escaper-na ny quote ' ---//
+                //   Special charcetr koa ny '\' dia tsy maintsy atao '\\'
+                _title = [_title stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
                 
+            
                 double _date            = [date timeIntervalSince1970];
                 double  _modified       = [[NSDate date] timeIntervalSince1970];
                 NSString * query        = nil;

@@ -17,7 +17,7 @@
     //#define SERVER @"http://172.20.10.4"
     //#define SERVER @"https://www.lemursofmadagascar.com/html"
 #else
-    //#define SERVER @"https://www.lemursofmadagascar.com/html"
+    #define SERVER @"https://www.lemursofmadagascar.com/html"
 #endif
 
 

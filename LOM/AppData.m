@@ -383,6 +383,7 @@ static AppData* _instance;
                             
                         }
                     }];
+                
             }
             
             //--- Update Sighting On Server --//
@@ -476,14 +477,20 @@ static AppData* _instance;
                 completeBlock:(JSONObjectBlock) completeBlock{
     
     if(imagebase64){
+        // ---- Ito body voalohany ito mandeha tsara rehefa local ----//
+        //NSString * body = [NSString stringWithFormat:@"file[file]=%@&file[filename]=%@&file[filepath]=public://%@",imagebase64,fileName,fileName];
         
-        NSString * body = [NSString stringWithFormat:@"file[file]=%@&file[filename]=%@&file[filepath]=public://%@",imagebase64,fileName,fileName];
+        NSString * body = [NSString stringWithFormat:@"file[file]=%@&file[filename]=%@&file[filepath]=public://%@&file[filesize]=%li",imagebase64,fileName,fileName,fileSize];
+        
+        
         
         NSString *charactersToEscape = @"!*'();:@+$,/?%#[]" "";
         NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
         NSString *encodedBody = [body stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
                                  
-                                 ;
+        //NSString * encodedbase64Data =[imagebase64 stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+
+        
         
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, FILE_ENDPOINT];
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:encodedBody completion:completeBlock];

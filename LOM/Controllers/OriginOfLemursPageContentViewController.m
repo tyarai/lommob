@@ -25,6 +25,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.textView scrollRangeToVisible:NSMakeRange(0, 0)];
+    });
+}
+
 /*
 #pragma mark - Navigation
 
