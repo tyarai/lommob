@@ -34,6 +34,13 @@
         }else{
             self.checkbox.image = nil;
         }
+        Photographs* specyProfilPhotograph = [species getSpecieProfilePhotograph];
+        
+        NSString* imageName = [NSString stringWithFormat:@"%@.jpg", specyProfilPhotograph._photograph];
+        
+        UIImage* image = [UIImage imageNamed:imageName];
+        
+        self.speciesImage.image = image;
     }
 }
 

@@ -47,5 +47,5 @@
 "sightingPlaceNameError"="Provide a place name!";
 "sightingCommentError"="Comment your sighting!";
 "sightingPhotoFileNameError"="Invalid photo! Please take another one";
-
+"choose_species"="Select species";
 

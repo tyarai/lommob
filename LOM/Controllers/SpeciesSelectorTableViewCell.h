@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scientificName;
 @property (weak, nonatomic) IBOutlet UILabel *malagasyName;
 @property (weak, nonatomic) IBOutlet UIImageView *checkbox;
+@property (weak, nonatomic) IBOutlet UIImageView *speciesImage;
 
 -(void)displaySpecies:(Species*)species;
 -(void) check;

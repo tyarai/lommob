@@ -33,19 +33,19 @@
     self.bottomToolBar.tintColor = ORANGE_COLOR;
     self.bottomToolBar.backgroundColor = [UIColor blackColor];
     
-
-    
- 
+    self.txtSearch.delegate = self;
+    self.myNavigationItem.title = NSLocalizedString(@"choose_species",@"");
 }
 
 -(void) viewWillAppear{
     //[super viewWillAppear];
     [self.bottomToolBar setBackgroundColor:[UIColor blackColor]];
+    isSearchShown = NO;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return@"Species list";
+        //return@"Species list";
     }
     return nil;
 }
@@ -125,4 +125,114 @@
     //delegate.publication = self.publication;
     [self.delegate cancelSpeciesSelector];
 }
+- (IBAction)searchButtonTapped:(id)sender {
+    if (isSearchShown)
+    {
+        [self hideSearch];
+    }else
+    {
+        [self showSearch];
+    }
+
+}
+
+- (void) showSearch{
+    
+    self.constraintTopSpaceSearch.constant = 20;
+    
+    
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         
+                         [self.viewSearch setNeedsUpdateConstraints];
+                         [self.viewSearch layoutIfNeeded];
+                         
+                         [self.tableView setNeedsUpdateConstraints];
+                         [self.tableView layoutIfNeeded];
+                         
+                         //[self.searchButton setImage:[UIImage imageNamed:@"ico_find_on"] forState:UIControlStateNormal];
+                         [self.view layoutIfNeeded];
+                         
+                         isSearchShown = YES;
+                         
+                         [self.txtSearch becomeFirstResponder];
+                     }];
+    
+}
+
+
+- (void) hideSearch{
+    
+    self.constraintTopSpaceSearch.constant = -33;
+    
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         
+                         [self.viewSearch setNeedsUpdateConstraints];
+                         [self.viewSearch layoutIfNeeded];
+                         
+                         [self.tableView setNeedsUpdateConstraints];
+                         [self.tableView layoutIfNeeded];
+                         
+                         //[self.searchButton setImage:[UIImage imageNamed:@"ico_find_off"] forState:UIControlStateNormal];
+                         
+                         isSearchShown = NO;
+                         [self.view layoutIfNeeded];
+                         
+                         [self.txtSearch resignFirstResponder];
+                         
+                         [self.view endEditing:YES];
+                     }];
+    
+}
+
+
+#pragma UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSString * searchStr = [self.txtSearch.text stringByReplacingCharactersInRange:range withString:string];
+    
+    [self performSearch:searchStr];
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    
+    [self performSearch:nil];
+    
+    [self.txtSearch resignFirstResponder];
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    NSString* strSearch = self.txtSearch.text;
+    
+    [self performSearch:strSearch];
+    
+    [self hideSearch];
+    
+    return YES;
+}
+
+- (void) performSearch:(NSString*) searchStr{
+    
+    if ([Tools isNullOrEmptyString:searchStr]) {
+        _species = [Species allInstances];
+        
+        [self.tableView reloadData];
+        
+    }else{
+        _species= [Species getSpeciesLike:searchStr];
+        
+        [self.tableView reloadData];
+    }
+}
+
+
+
+
+
 @end
