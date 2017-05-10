@@ -144,8 +144,19 @@ postsTableViewController:(id)tableView{
                     img = [UIImage imageWithData:data];
                     [self.imgPhoto setImage:img];
                 }else{
-                    NSLog(@"File does not exist");
-                    [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                    
+                    @try {
+                        //--- Ilay profile photo no lasa photo satria tsy naka sary ilay olona --//
+                        [self.imgPhoto setImage:[UIImage imageNamed:publication.field_photo.src]];
+                    } @catch (NSException *exception) {
+                        NSLog(@"File does not exist");
+                        [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                    } @finally {
+                        
+                    }
+                    
+                    
+                    
                 }
             }
             

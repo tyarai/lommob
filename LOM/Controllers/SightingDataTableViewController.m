@@ -212,6 +212,13 @@
     Publication * currentPublication = appDelagate.appDelegateCurrentPublication;
     Species     * currentSpecies     = appDelagate.appDelegateCurrentSpecies;
     
+    if([Tools isNullOrEmptyString:self.takenPhotoFileName] || self.speciesImage.image == nil){
+        [self setDefaultSpeciesImage:currentSpecies];
+        [self saveCamera:self.takenPhotoFileName
+             publication:currentPublication
+                 species:currentSpecies];
+    }
+    
     if([self validateEntries:comments
                  observation:obs
                    placeName:place
@@ -231,7 +238,31 @@
     }
     
 }
+/**
+ Raha toa ka tsy naka sary na tsy manana sarin'ilay species ilay olona 
+ dia atao sary by default eto (maka sary random @ izay sarin'ilay species
+ */
+-(void) setDefaultSpeciesImage:(Species*)species{
+    
+    if(species){
+        @try {
+            Photographs* specyProfilPhotograph = [species getSpecieProfilePhotograph];
+            
+            NSString* imageName = [NSString stringWithFormat:@"%@.jpg", specyProfilPhotograph._photograph];
+            
+            self.takenPhotoFileName = imageName;
+            
+            UIImage* image = [UIImage imageNamed:imageName];
+            
+            self.speciesImage.image = image;
 
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
+    }
+}
 
 -(BOOL) validateEntries:(NSString*)comment
             observation:(NSInteger)observation
