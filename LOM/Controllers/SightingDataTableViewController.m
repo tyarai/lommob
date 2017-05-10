@@ -122,6 +122,8 @@
     }else{
         //**** Sighting vaovao mihitsy ity ******////
         
+        [self.delteBtn setHidden:YES]; // Tsy aseho ity button ity raha newSighting
+        
         //---- Rehefa "new Sighting" dia izay species voalohany no "by default" --//
         //pubSpecies = appDelagate.appDelegateCurrentSpecies;
         self.scientificName.text = currentSpecies._title;
@@ -440,6 +442,61 @@
 
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return UITableViewAutomaticDimension;
+}
+
+- (IBAction)deleteButtonTapped:(id)sender {
+
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:NSLocalizedString(@"delete_sighting_title", @"")
+                                 message:NSLocalizedString(@"delete_sighting_message", @"")
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Delete sighting");
+        [self deleteSighting]; //Mark the current Sighting as deleted
+    }];
+    
+    
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Cancel");
+    }];
+    
+    
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+-(void) deleteSighting{
+
+    AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    Publication * currentPublication = appDelagate.appDelegateCurrentPublication;
+    
+    
+    if(currentPublication){
+        @try {
+            
+            if(currentPublication.nid != 0){
+                //--- Efa synced sady nahazo nid ilay publication
+                [currentPublication updateDeletedByNID:1 nid:currentPublication.nid];//Mark as deleted
+            }else{
+                //--- Tsy mbola synced sady tsy nahazo nid ilay publication
+                if(currentPublication.uuid != nil && currentPublication.isSynced == NO){
+                    [currentPublication updateDeletedByUUID:1 nid:currentPublication.uuid];//Mark as deleted
+                }
+            }
+            
+            [self.delegate cancelSightingData];
+            
+            
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
+    }
 }
 
 @end

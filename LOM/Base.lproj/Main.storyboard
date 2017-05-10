@@ -3221,6 +3221,40 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="1wM-i9-w3i">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="UWf-ws-zO4" userLabel="Number Cell">
+                                        <rect key="frame" x="0.0" y="660" width="375" height="79"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UWf-ws-zO4" id="bf4-Z9-Csl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37b-ph-h1A">
+                                                    <rect key="frame" x="8" y="0.0" width="359" height="71"/>
+                                                    <color key="backgroundColor" red="0.97895652055740356" green="0.16225576400756836" blue="0.001593946130014956" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="71" id="tCg-Af-iVu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <state key="normal" title="Delete this sighting">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonTapped:" destination="je3-gZ-LEh" eventType="touchUpInside" id="IQK-Ex-BfU"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="37b-ph-h1A" firstAttribute="top" secondItem="bf4-Z9-Csl" secondAttribute="top" id="3Kr-RL-4dD"/>
+                                                <constraint firstItem="37b-ph-h1A" firstAttribute="leading" secondItem="bf4-Z9-Csl" secondAttribute="leading" constant="8" id="WHa-ZU-Ovk"/>
+                                                <constraint firstAttribute="trailing" secondItem="37b-ph-h1A" secondAttribute="trailing" constant="8" id="Yny-iN-7bA"/>
+                                                <constraint firstAttribute="bottom" secondItem="37b-ph-h1A" secondAttribute="bottom" constant="7.5" id="yLM-CL-fYC"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="je3-gZ-LEh" id="Vjq-qi-CvS"/>
@@ -3232,6 +3266,7 @@
                         <outlet property="chooseSpeciesButton" destination="hfb-ta-UIv" id="wTC-HZ-aE7"/>
                         <outlet property="comments" destination="Rew-EX-O24" id="k8C-ga-REb"/>
                         <outlet property="date" destination="00W-Df-Vb0" id="goY-wK-I08"/>
+                        <outlet property="delteBtn" destination="37b-ph-h1A" id="BwW-O1-lEz"/>
                         <outlet property="doneBUtton" destination="WKX-r3-9iU" id="cbQ-uy-HEr"/>
                         <outlet property="malagasyName" destination="QTQ-JT-Gyz" id="4oX-Iu-DSk"/>
                         <outlet property="numberObserved" destination="klY-rn-Xzi" id="sHO-D1-mW4"/>

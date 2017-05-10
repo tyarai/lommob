@@ -205,6 +205,8 @@
     NSInteger _uid = appDelegate._uid;
     NSArray *  currentUserSighting = [Sightings getSightingsByUID:_uid];
     NSMutableArray * nodeLists = nil;
+    _sightingsList = nil;
+    
     if([currentUserSighting count] > 0 ){
         nodeLists = [NSMutableArray new];
         
@@ -794,6 +796,9 @@
 
 -(void)cancelSightingData{
     [self dismissCameraViewController];
+    [self loadLocalSightings];
+    [self.tableViewLifeList reloadData];
+    //[self viewWillAppear:YES];
 }
 
 -(void)saveSightingInfo:(Publication*)publication
@@ -887,6 +892,7 @@
                 newSightings._modifiedTime  = _modified;
                 newSightings._isLocal       = (int)YES; //From iPhone = YES
                 newSightings._isSynced      = (int)NO; // Not yet synced with server
+                newSightings._deleted       = (int)NO;
                 
                 [newSightings save];
                 

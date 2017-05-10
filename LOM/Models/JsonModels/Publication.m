@@ -7,6 +7,7 @@
 //
 
 #import "Publication.h"
+#import "Sightings.h"
 
 @implementation Publication
 
@@ -21,6 +22,28 @@
         return fullURLPath;
     }
 }
+
+-(void) updateDeletedByNID:(NSInteger) value nid:(NSInteger)nid {
+    
+    if(nid != 0){
+        NSString * query = nil;
+        query = [NSString stringWithFormat:@"UPDATE $T SET  _deleted = '%li', _isSynced = '0'  WHERE _nid = '%li' ", (long)value, (long)nid];
+        [Sightings executeUpdateQuery:query];
+    }
+
+}
+
+-(void) updateDeletedByUUID:(NSInteger) value nid:(NSString*)uuid {
+    
+    if(uuid  != nil){
+        NSString * query = nil;
+        query = [NSString stringWithFormat:@"UPDATE $T SET  _deleted = '%li', _isSynced = '0'  WHERE _uuid = '%@' ", (long)value, uuid];
+        [Sightings executeUpdateQuery:query];
+    }
+    
+}
+
+
 
 
 @end

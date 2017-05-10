@@ -190,7 +190,9 @@ static AppData* _instance;
             //--- Rehefa vita sync voalohany dia izay Sighting modified from LAST_SYNC_DATE ka isLocal = FALSE sisa no midina ---
             
             url = [NSString stringWithFormat:@"%@%@", SERVER,MY_SIGHTINGS_MODIFIED_FROM];
-            //NSDictionary *JSONParam = @{@"isLocal":@"0" , @"changed":lastSyncDate};
+           
+            //----- ilay "changed" eto ambany ito dia anaran parameter drupal "Filter identifier" ao
+            //  @ ilay filter criteria hoe "Updated date" ao @ views "api/v1/list/my-sightings-modified-from"
             
             NSDictionary *JSONParam = @{@"changed":lastSyncDate};
             
@@ -330,7 +332,7 @@ static AppData* _instance;
 
             
             //---- Create sighting on the server --//
-            if(sighting._isLocal && !sighting._isSynced){
+            if(sighting._isLocal && !sighting._isSynced && sighting._deleted == NO){
                
                     [self uploadImage:_base64Image
                              fileName:fileName
@@ -387,7 +389,7 @@ static AppData* _instance;
             }
             
             //--- Update Sighting On Server --//
-            if(!sighting._isLocal && !sighting._isSynced){
+            if(!sighting._isLocal && !sighting._isSynced && sighting._deleted == NO){
                 
                 [self uploadImage:_base64Image
                          fileName:fileName
@@ -440,6 +442,36 @@ static AppData* _instance;
             }//--Updating
             
             
+            //-------- Tsy mbola synced nefa deleted -----//
+            if( !sighting._isSynced && sighting._deleted == YES){
+                
+                [self deleteSighting:sighting
+                         sessionName:sessionName
+                           sessionId:sessionID
+                       completeBlock:^(id json, JSONModelError *err) {
+                           
+                           if (err){
+                               NSLog(@"Error parse : %@", err.debugDescription);
+                           }
+                           else{
+                               //--- Tonga dia vonona ato @ iPhone avy hatrany ity sighting ity
+                               [sighting delete];
+                           }
+                           
+                }];
+                
+            }
+
+            //-------- Efa synced nefa deleted -----//
+            // Tsy maintsy vonona ny version any @ server
+            
+            if( sighting._isSynced && sighting._deleted == YES){
+                
+                //--- Vonona ato @ iPhone avy hatrany ity sighting ity
+                [sighting delete];
+            }
+
+            
             
         }//for loop
         
@@ -490,8 +522,6 @@ static AppData* _instance;
                                  
         //NSString * encodedbase64Data =[imagebase64 stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
 
-        
-        
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, FILE_ENDPOINT];
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:encodedBody completion:completeBlock];
         
@@ -503,6 +533,36 @@ static AppData* _instance;
 }
 
 #pragma SYNC SERVER
+/*
+ * May 10, 2017
+ * Delete Sighting : Mamafa ny sighting any @ server
+ */
+
+-(void) deleteSighting:(Sightings*)sighting
+           sessionName:(NSString*)sessionName
+            sessionId :(NSString*)sessionId
+         completeBlock:(JSONObjectBlock) completeBlock{
+    
+    if(sighting != nil && sighting._nid != 0 && sessionId != nil & sessionName != nil){
+        
+        //--- Izay sighting manana 'nid' ihany no ho fafana any @ server ---//
+        
+        [self buildPOSTHeader];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionId];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        NSString* url = [NSString stringWithFormat:@"%@%@%li", SERVER, NODE_UPDATE_ENDPOINT,(long)sighting._nid];
+        [JSONHTTPClient deleteJSONFromURLWithString:url
+                                       completion:completeBlock];
+            
+    }
+    if(sighting != nil && sighting._nid == 0 && sighting._deleted == YES){
+        //--- Tsy mbola synced (tsy nahazo nid) ity sighting ity dia tonga dia vonona ny local
+        [sighting delete];
+    }
+    
+}
+
 
 /*
     Sync Sighting to server

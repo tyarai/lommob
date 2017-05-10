@@ -23,6 +23,8 @@
                  comments:(NSString*) comments
             photoFileName:(NSString*) photoFileName;
 
+
+
 @end
 
 
@@ -58,6 +60,7 @@
 - (IBAction)chooseSpeciesTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *scientificName;
 @property (weak, nonatomic) IBOutlet UILabel *malagasyName;
+@property (weak, nonatomic) IBOutlet UIButton *delteBtn;
 
 //@property (strong,nonatomic) Species* currentSpecies;
 @end

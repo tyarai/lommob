@@ -20,6 +20,7 @@
 NSString* const kHTTPMethodGET = @"GET";
 NSString* const kHTTPMethodPOST = @"POST";
 NSString* const kHTTPMethodPUT  = @"PUT";
+NSString* const kHTTPMethodDELETE  = @"DELETE"; // Updated By Ranto May 10, 2017
 
 NSString* const kContentTypeAutomatic    = @"jsonmodel/automatic";
 NSString* const kContentTypeJSON         = @"application/json";
@@ -383,5 +384,22 @@ static NSString* requestContentType = nil;
                        if (completeBlock) completeBlock(json, e);
                    }];
 }
+
+/*
+    Update Ranto - May 10 2017
+ */
+
++(void)deleteJSONFromURLWithString:(NSString*)urlString
+                        completion:(JSONObjectBlock)completeBlock
+{
+    [self JSONFromURLWithString:urlString
+                         method:kHTTPMethodDELETE
+                         params:nil
+                   orBodyString:nil completion:^(id json, JSONModelError* e) {
+                       if (completeBlock) completeBlock(json, e);
+                   }];
+}
+
+
 
 @end

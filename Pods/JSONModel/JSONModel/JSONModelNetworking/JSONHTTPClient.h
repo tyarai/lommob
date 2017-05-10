@@ -180,4 +180,12 @@ typedef void (^JSONObjectBlock)(id json, JSONModelError* err);
 +(void)postJSONFromURLWithString:(NSString*)urlString bodyData:(NSData*)bodyData completion:(JSONObjectBlock)completeBlock;
 
 
+/**
+ Makes DELETE requests By Ranto May 10 , 2017
+*/
+
++(void)deleteJSONFromURLWithString:(NSString*)urlString
+                        completion:(JSONObjectBlock)completeBlock;
+
+
 @end

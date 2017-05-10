@@ -34,8 +34,12 @@
 @property (nonatomic) NSInteger count; // Species count
 @property (nonatomic) int64_t isLocal;
 @property (nonatomic) int64_t isSynced;
+@property (nonatomic) int64_t deleted;
+
 
 -(NSString*) getSightingImageFullPathName;;
+-(void) updateDeletedByNID:(NSInteger) value nid:(NSInteger)nid ;
+-(void) updateDeletedByUUID:(NSInteger) value nid:(NSString*)uuid ;
 
 @end
 

@@ -13,24 +13,24 @@
 
 + (id) getSightingsByUUID:(NSString*) _uuid {
     NSString * queryArgument = [NSString new];
-    queryArgument = [NSString stringWithFormat:@" _uuid = '%@' ", _uuid];
+    queryArgument = [NSString stringWithFormat:@" _uuid = '%@' AND _deleted = '0' ", _uuid];
     return [Sightings firstInstanceWhere: queryArgument];
 }
 
 + (id) getSightingsByNID:(NSInteger) _nid{
     NSString * queryArgument = [NSString new];
-    queryArgument = [NSString stringWithFormat:@" _nid = '%lu' ", (long)_nid];
+    queryArgument = [NSString stringWithFormat:@" _nid = '%lu' AND _deleted = '0'  ", (long)_nid];
     return [Sightings firstInstanceWhere: queryArgument];
 }
 
 + (id) getSightingsBySpeciesID:(NSInteger) _speciesID{
     NSString * queryArgument = [NSString new];
-    queryArgument = [NSString stringWithFormat:@" _speciesNid = '%lu' ", (long)_speciesID];
+    queryArgument = [NSString stringWithFormat:@" _speciesNid = '%lu' AND _deleted = '0' ", (long)_speciesID];
     return [Sightings instancesWhere:queryArgument];
 }
 
 + (NSArray*) getAllSightings{
-    return [self instancesOrderedBy:@" _id DESC"];
+    return [self instancesOrderedBy:@" _id DESC AND _deleted = '0'"];
 }
 
 + (NSArray*) getNotSyncedSightings{
@@ -41,7 +41,7 @@
 
 
 + (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid {
-    return [Sightings instancesWhere:[NSString stringWithFormat:@" ( _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND _uid = '%li' ", strValue,strValue,strValue,uid]];
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" ( _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND _uid = '%li' AND _deleted = '0' ", strValue,strValue,strValue,uid]]; // <<<---- Mbola ampina AND _deleted = '0' ny condition ato
 }
 
 + (void) emptySightingsTable{
@@ -74,7 +74,7 @@
 
 + (NSArray*) getLemurLifeLists:(NSInteger)_uid search:(NSString*)like{
     if(_uid >0 && [Tools isNullOrEmptyString:like]){
-        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid];
+        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' AND _deleted ='0' GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid];
         
         NSArray * results = [Sightings resultDictionariesFromQuery:query];
         
@@ -82,7 +82,7 @@
     }
     
     if(_uid >0 && ![Tools isNullOrEmptyString:like]){
-        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' AND ( _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' )  GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid,like,like];
+        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' AND ( _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND  _deleted ='0' GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid,like,like];
         
         NSArray * results = [Sightings resultDictionariesFromQuery:query];
         
@@ -101,11 +101,13 @@
 
 + (NSArray*) getSightingsByUID:(NSInteger) uid{
     if(uid > 0){
-        NSString *queryArgument = [NSString stringWithFormat:@" _uid = '%lu' order by _id DESC ", (long)uid];
+        NSString *queryArgument = [NSString stringWithFormat:@" _uid = '%lu' AND _deleted = '0' order by _id DESC ", (long)uid];
         return [Sightings instancesWhere:queryArgument];
     }
     return nil;
 }
+
+
 
 
 

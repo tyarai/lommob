@@ -109,7 +109,13 @@
             *schemaVersion = 7;
         }
         
-
+        /*
+         * Ampina ilay field _deleted ny Sightings
+         */
+        if (*schemaVersion < 8) {
+            if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _deleted INTEGER NOT NULL DEFAULT '0'"]) failedAt(7);
+            *schemaVersion = 8;
+        }
 
        
 

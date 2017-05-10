@@ -48,4 +48,6 @@
 "sightingCommentError"="Comment your sighting!";
 "sightingPhotoFileNameError"="Invalid photo! Please take another one";
 "choose_species"="Select species";
+"delete_sighting_title" = "Delete sighting";
+"delete_sighting_message" = "This action could not be undone. Click OK to delete this sighting";
 

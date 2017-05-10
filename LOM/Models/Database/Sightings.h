@@ -15,7 +15,7 @@
 
 @interface Sightings : FCModel
 
-@property (nonatomic) int64_t _id;      // liteSGL table id
+@property (nonatomic) int64_t _id;      // liteSQL table id
 @property (nonatomic) int64_t _nid;     // drupal nid
 @property (nonatomic, strong) NSString* _uuid;
 @property (nonatomic, strong) NSString* _speciesName;
@@ -32,6 +32,7 @@
 @property (nonatomic) double _date;
 @property (nonatomic) int64_t _isLocal;
 @property (nonatomic) int64_t _isSynced;
+@property (nonatomic) int64_t _deleted;
 
 + (id) getSightingsByUUID:(NSString*) _uuid;
 + (id) getSightingsByNID:(NSInteger) _nid;
