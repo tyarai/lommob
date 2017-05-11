@@ -436,42 +436,63 @@ static float appScale = 1.0;
                 
                 
                 NSString *error = [NSString stringWithFormat:@" title =%@ nid=%lli photo = %@ ",_title,_nid,_photo_name];
+                
+                int64_t _deleted = sighting.deleted;
+                int64_t _synced = sighting.isSynced;
+                int64_t _local  = sighting.isLocal;
+                
                 NSAssert(_photo_name != nil, error);
                 
-                if(instance == nil){
-                    //---Tsy mbola misy ao anaty base-tablet ity lemur life list ity dia apina ao --
+                @try {
                     
-                    Sightings * newSighting     = [Sightings new];
-                    newSighting._nid            = _nid;
-                    newSighting._speciesName    = _species;
-                    newSighting._speciesNid     = _species_nid;
-                    newSighting._speciesCount   = _count;
-                    newSighting._placeName      = _where_see_it;
-                    newSighting._placeLatitude  = _latitude;
-                    newSighting._placeLongitude = _longitude;
-                    newSighting._photoFileNames = _photo_name;
-                    newSighting._title          = _title;
-                    newSighting._date           = _date;
-                    newSighting._createdTime    = _created;
-                    newSighting._modifiedTime   = _created;
-                    newSighting._uuid           = _uuid;
-                    newSighting._uid            = _uid;
-                    newSighting._isLocal        = (int)NO;
-                    newSighting._isSynced       = (int)YES;
-                    [newSighting save];
+                    if(instance == nil){
+                        //---Tsy mbola misy ao anaty base-tablet ity Sighting ity dia ampina ao --
+                        
+                        Sightings * newSighting     = [Sightings new];
+                        newSighting._nid            = _nid;
+                        newSighting._speciesName    = _species;
+                        newSighting._speciesNid     = _species_nid;
+                        newSighting._speciesCount   = _count;
+                        newSighting._placeName      = _where_see_it;
+                        newSighting._placeLatitude  = _latitude;
+                        newSighting._placeLongitude = _longitude;
+                        newSighting._photoFileNames = _photo_name;
+                        newSighting._title          = _title;
+                        newSighting._date           = _date;
+                        newSighting._createdTime    = _created;
+                        newSighting._modifiedTime   = _created;
+                        newSighting._uuid           = _uuid;
+                        newSighting._uid            = _uid;
+                        //newSighting._isLocal        = (int)NO;
+                        //newSighting._isSynced       = (int)YES;
+                        newSighting._isLocal        = _local;
+                        newSighting._isSynced       = _synced;
+                        newSighting._deleted        = _deleted;
+                        [newSighting save];
+                        
+                    }else{
+                        
+                        //------ Update by _nid -------//
+                        /*NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '1' _deleted = '%lli' WHERE _nid = '%lli' ",
+                                            _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_deleted,_nid];*/
+                        NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '%lli', _isLocal = '%lli', _deleted = '%lli' WHERE _nid = '%lli' ",
+                                            _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_synced,_local,_deleted,_nid];
+                        
+                        [Sightings executeUpdateQuery:query];
+                        
+                        //---- Vonona @ izay ilay fichier image local -----//
+                        [Tools removeImageFileFromDocumentsDirectory:_photo_name];
+                    }
+                   
+                } @catch (NSException *exception) {
                     
-                }else{
+                    NSLog(@"Insert/Update database error");
                     
-                    //------ Update by _nid -------//
-                    NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '1' WHERE _nid = '%lli' ",
-                                        _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_nid];
+                } @finally {
                     
-                    [Sightings executeUpdateQuery:query];
-                    
-                    //---- Vonona @ izay ilay fichier image local -----//
-                    [Tools removeImageFileFromDocumentsDirectory:_photo_name];
                 }
                 
+
                 
             }
         }

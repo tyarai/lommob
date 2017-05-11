@@ -443,33 +443,39 @@ static AppData* _instance;
             
             
             //-------- Tsy mbola synced nefa deleted -----//
-            if( !sighting._isSynced && sighting._deleted == YES){
+            //if( !sighting._isSynced && sighting._deleted == YES){
+            if(sighting._deleted == YES){
+            
+                if(sighting._nid == 0){
+                    //--- Tsy mbola synced (tsy nahazo nid) ity sighting ity dia tonga dia vonona ny local
+                    [sighting delete];
                 
-                [self deleteSighting:sighting
-                         sessionName:sessionName
-                           sessionId:sessionID
-                       completeBlock:^(id json, JSONModelError *err) {
-                           
-                           if (err){
-                               NSLog(@"Error parse : %@", err.debugDescription);
-                           }
-                           else{
-                               //--- Tonga dia vonona ato @ iPhone avy hatrany ity sighting ity
-                               [sighting delete];
-                           }
-                           
-                }];
+                }else{
                 
+                    [self deleteSighting:sighting
+                             sessionName:sessionName
+                               sessionId:sessionID
+                           completeBlock:^(id json, JSONModelError *err) {
+                               
+                               if (err){
+                                   NSLog(@"Error parse : %@", err.debugDescription);
+                               }
+                               else{
+                                   //--- Tonga dia vonona ato @ iPhone avy hatrany ity sighting ity
+                                   [sighting delete];
+                               }
+                    }];
+                }
             }
 
             //-------- Efa synced nefa deleted -----//
             // Tsy maintsy vonona ny version any @ server
             
-            if( sighting._isSynced && sighting._deleted == YES){
+            /*if( sighting._isSynced && sighting._deleted == YES){
                 
                 //--- Vonona ato @ iPhone avy hatrany ity sighting ity
                 [sighting delete];
-            }
+            }*/
 
             
             
@@ -556,10 +562,10 @@ static AppData* _instance;
                                        completion:completeBlock];
             
     }
-    if(sighting != nil && sighting._nid == 0 && sighting._deleted == YES){
+    /*if(sighting != nil && sighting._nid == 0 && sighting._deleted == YES){
         //--- Tsy mbola synced (tsy nahazo nid) ity sighting ity dia tonga dia vonona ny local
         [sighting delete];
-    }
+    }*/
     
 }
 
