@@ -50,12 +50,17 @@
     // Ireto publication sy species ireto no raisin'ny SightingDataViewController avy eo
     
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelagate.appDelegateCurrentPublication = currentPublication;
-    Species * currentSpecies = [Species getSpeciesBySpeciesNID:currentPublication.speciesNid];
-    appDelagate.appDelegateCurrentSpecies     = currentSpecies;
-    //************************************************************************
     
-    [postsTableViewController performSegueWithIdentifier:@"showPost" sender:postsTableViewController];
+    if(appDelagate != nil){
+        
+        appDelagate.appDelegateCurrentPublication = currentPublication;
+        Species * currentSpecies = [Species getSpeciesBySpeciesNID:currentPublication.speciesNid];
+        appDelagate.appDelegateCurrentSpecies     = currentSpecies;
+        
+        if(currentPublication && currentSpecies){
+            [postsTableViewController performSegueWithIdentifier:@"showPost" sender:postsTableViewController];
+        }
+    }
    
 }
 
@@ -65,8 +70,7 @@
     
 }
 
-- (void) displaySighting:(Publication*) publication
-postsTableViewController:(id)tableView{
+- (void) displaySighting:(Publication*) publication postsTableViewController:(id)tableView{
     
     currentPublication = publication;
     postsTableViewController = tableView;
@@ -113,7 +117,7 @@ postsTableViewController:(id)tableView{
     speciesNID = speciesNid;
     
     
-    if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]) {
+    if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]){
         
        
         if(publication.isLocal || !publication.isSynced){

@@ -344,8 +344,7 @@
     cell.parentTableView = self;
     PublicationNode* sightingNode = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
     
-    [cell displaySighting:sightingNode.node
- postsTableViewController:self];
+    [cell displaySighting:sightingNode.node postsTableViewController:self];
     
     cell = (PostsTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-10];
     
