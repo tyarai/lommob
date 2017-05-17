@@ -11,6 +11,7 @@
 #import "Publication.h"
 #import "CameraViewController.h"
 #import "SpeciesSelectorViewController.h"
+#import "WatchingSitesSelectorViewController.h"
 
 @protocol SightingDataTableViewControllerDelegate <NSObject>
 @optional
@@ -29,7 +30,9 @@
 
 
 
-@interface SightingDataTableViewController : UITableViewController <UITextViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,CameraViewControllerDelegate,UIPopoverPresentationControllerDelegate,SpeciesSelectorDelegate>{
+@interface SightingDataTableViewController : UITableViewController <UITextViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,CameraViewControllerDelegate,UIPopoverPresentationControllerDelegate,SpeciesSelectorDelegate,WatchingSitesSelectorDelegate>{
+    
+    BOOL didSelectNewSite;
     
 }
 

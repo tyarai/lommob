@@ -13,6 +13,8 @@
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import "SpeciesSelectorViewController.h"
 #import "Species.h"
+#import "LemursWatchingSites.h"
+
 
 #define ROWHEIGHT 44
 #define PICKERVIEW_ROW_HEIGHT 34
@@ -45,7 +47,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = ROWHEIGHT;
     
-
+    didSelectNewSite = NO;
     
     allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
     self.species.delegate = self; // UIPickerView Delegate
@@ -70,13 +72,19 @@
          currentSpecies = appDelagate.appDelegateCurrentSpecies;
     }
     
+    didSelectNewSite = NO;
     
     if(publication != nil && currentSpecies != nil){
         
         //---- Edit sighting ----
         
         self.numberObserved.text = [NSString stringWithFormat:@"%li",publication.count];
-        self.placename.text      = publication.place_name;
+        
+        if(didSelectNewSite){
+            self.placename.text      = appDelagate.appDelegateCurrentSite._title;
+        }else{
+            self.placename.text      = publication.place_name;
+        }
         self.comments.text       = publication.title;
         
         self.scientificName.text = currentSpecies._title;
@@ -320,7 +328,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(indexPath.row == 1){
+    if(indexPath.row == 1 && indexPath.section == 0){
         [self performSegueWithIdentifier:@"takeAnotherPhoto" sender:self];
     }
 }
@@ -397,6 +405,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)choosePlaceNameTapped:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    WatchingSitesSelectorViewController * siteSelector = [storyboard instantiateViewControllerWithIdentifier:@"siteSelector"];
+    
+    if(siteSelector){
+        siteSelector.delegate = self;
+        NSArray* _allSites = [LemursWatchingSites allSitesOrderedByTitle:@"ASC"];
+        siteSelector.sites = _allSites;
+
+        siteSelector.modalPresentationStyle = UIModalPresentationPopover;
+        [self presentViewController:siteSelector animated:YES completion:nil];
+        UIPopoverPresentationController *popController = [siteSelector popoverPresentationController];
+        popController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        popController.sourceView = self.view;
+        popController.sourceRect = CGRectMake(50, 50, 361,361);
+        popController.delegate = self;
+
+    }
+    
+}
+
+
 - (IBAction)chooseSpeciesTapped:(id)sender {
      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
      SpeciesSelectorViewController * speciesSelector = [storyboard instantiateViewControllerWithIdentifier:@"speciesSelector"];
@@ -416,6 +446,26 @@
         popController.delegate = self;
     }
 }
+
+#pragma mark - SiteSelector
+
+-(void)cancelSiteSelector{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+-(void)doneSiteSelector:(LemursWatchingSites*)site{
+    if(site){
+        didSelectNewSite = YES;
+        //self.placename.text = site._title;
+        //self.currentSpecies      = species;
+        /*
+         @TODO : Niova ny species eto. Raha ohatra ka isAdding=YES dia tokony ho renommer-na @ ity species ity ny self.takenPhotoFileName
+         */
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 #pragma SpeciesSelectorDelegate
 

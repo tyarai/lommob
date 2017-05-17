@@ -11,6 +11,8 @@
 		4C0BC9EB1C36F7C00062082B /* WatchingSiteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BC9EA1C36F7C00062082B /* WatchingSiteDetailsViewController.m */; };
 		4C1122E11C0A29DB00562FC1 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1122E01C0A29DB00562FC1 /* SplashViewController.m */; };
 		4C316F431C113CB1004CCFE5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */; };
+		4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */; };
+		4C3BB1711ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */; };
 		4C5177491C21EA5700BBD0B1 /* SpeciesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */; };
 		4C59AD911C15F57800EA74C5 /* SpeciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59AD901C15F57800EA74C5 /* SpeciesViewController.m */; };
 		4C59AD951C15F59A00EA74C5 /* FamiliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59AD941C15F59A00EA74C5 /* FamiliesViewController.m */; };
@@ -942,6 +944,10 @@
 		4C1122DF1C0A29DB00562FC1 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashViewController.h; path = Controllers/SplashViewController.h; sourceTree = "<group>"; };
 		4C1122E01C0A29DB00562FC1 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashViewController.m; path = Controllers/SplashViewController.m; sourceTree = "<group>"; };
 		4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4C3BB1691ECB8C6400EFD96B /* WatchingSitesSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSitesSelectorViewController.h; path = Controllers/WatchingSitesSelectorViewController.h; sourceTree = "<group>"; };
+		4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesSelectorViewController.m; path = Controllers/WatchingSitesSelectorViewController.m; sourceTree = "<group>"; };
+		4C3BB16F1ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSitesSelectorTableViewCell.h; path = Controllers/WatchingSitesSelectorTableViewCell.h; sourceTree = "<group>"; };
+		4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesSelectorTableViewCell.m; path = Controllers/WatchingSitesSelectorTableViewCell.m; sourceTree = "<group>"; };
 		4C5177471C21EA5700BBD0B1 /* SpeciesDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeciesDetailsViewController.h; path = Controllers/SpeciesDetailsViewController.h; sourceTree = "<group>"; };
 		4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeciesDetailsViewController.m; path = Controllers/SpeciesDetailsViewController.m; sourceTree = "<group>"; };
 		4C59AD8F1C15F57800EA74C5 /* SpeciesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeciesViewController.h; path = Controllers/SpeciesViewController.h; sourceTree = "<group>"; };
@@ -2034,6 +2040,8 @@
 				4C59AD981C15F5C400EA74C5 /* WatchingSiteViewController.m */,
 				4C0BC9E91C36F7C00062082B /* WatchingSiteDetailsViewController.h */,
 				4C0BC9EA1C36F7C00062082B /* WatchingSiteDetailsViewController.m */,
+				4C3BB1691ECB8C6400EFD96B /* WatchingSitesSelectorViewController.h */,
+				4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */,
 			);
 			name = "Watching Sites";
 			sourceTree = "<group>";
@@ -3205,6 +3213,8 @@
 			children = (
 				4CEC777C1C36E1ED00C9706A /* WatchingSiteTableViewCell.h */,
 				4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */,
+				4C3BB16F1ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.h */,
+				4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -4351,6 +4361,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3BB1711ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m in Sources */,
 				4C59AD991C15F5C400EA74C5 /* WatchingSiteViewController.m in Sources */,
 				4CEC77771C36CB6400C9706A /* FamilyTableViewCell.m in Sources */,
 				4C74F2C81C06404000543A7F /* BaseViewController.m in Sources */,
@@ -4422,6 +4433,7 @@
 				B467792E1D46209800618410 /* LemurLifeList.m in Sources */,
 				4C74F28D1C06387A00543A7F /* Reachability.m in Sources */,
 				4C74F2A11C0638EA00543A7F /* FCModel.m in Sources */,
+				4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */,
 				B4A2755C1DA8EFCC00777499 /* PhotoCollectionViewCell.m in Sources */,
 				4C85FF671C37F4E200D6C233 /* User.m in Sources */,
 				4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */,

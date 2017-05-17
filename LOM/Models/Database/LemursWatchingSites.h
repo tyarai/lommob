@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString* _body;
 
 + (NSArray*) getLemursWatchingSitesLike:(NSString*) strValue;
-
++ (NSArray*) allSitesOrderedByTitle:(NSString*)direction;
++ (NSArray*) getSitesLike:(NSString*) strValue ;
 @end

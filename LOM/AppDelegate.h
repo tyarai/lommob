@@ -11,6 +11,7 @@
 #import "Species.h"
 #import "Publication.h"
 #import "Sightings.h"
+#import "LemursWatchingSites.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -30,6 +31,6 @@
 @property (strong,nonatomic) Species     * appDelegateCurrentSpecies;
 @property (strong,nonatomic) Publication * appDelegateCurrentPublication;
 @property (strong,nonatomic) Sightings   * appDelegateCurrentSighting;
-
+@property (strong,nonatomic) LemursWatchingSites * appDelegateCurrentSite;
 @end
 
