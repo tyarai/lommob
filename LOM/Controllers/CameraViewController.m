@@ -38,8 +38,8 @@
     self.cancelButton.tintColor = ORANGE_COLOR;
     self.saveSightingButton.tintColor = ORANGE_COLOR;
     
-    
-    // Do any additional setup after loading the view.
+    //---- Update May 17 2017 ---//
+    self.photoFileName = nil;
 }
 
 - (void)didReceiveMemoryWarning {

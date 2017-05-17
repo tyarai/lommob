@@ -226,11 +226,14 @@
     Publication * currentPublication = appDelagate.appDelegateCurrentPublication;
     Species     * currentSpecies     = appDelagate.appDelegateCurrentSpecies;
     
+    //-- Updated on May 17th 2017 -----//
+    // Rehefa manao save sighting ka tsy naka sary, dia izay saryin'ilay species no atao by default
+    // miaraka amin'ilay publication
     if([Tools isNullOrEmptyString:self.takenPhotoFileName] || self.speciesImage.image == nil){
-        [self setDefaultSpeciesImage:currentSpecies];
-        [self saveCamera:self.takenPhotoFileName
-             publication:currentPublication
-                 species:currentSpecies];
+        self.takenPhotoFileName = [self setDefaultSpeciesImage:currentSpecies];
+        //[self saveCamera:self.takenPhotoFileName
+        //     publication:currentPublication
+        //         species:currentSpecies];
     }
     
     if([self validateEntries:comments
@@ -256,19 +259,52 @@
  Raha toa ka tsy naka sary na tsy manana sarin'ilay species ilay olona 
  dia atao sary by default eto (maka sary random @ izay sarin'ilay species
  */
--(void) setDefaultSpeciesImage:(Species*)species{
+-(NSString*) setDefaultSpeciesImage:(Species*)species{
     
     if(species){
+        
         @try {
-            Photographs* specyProfilPhotograph = [species getSpecieProfilePhotograph];
             
-            NSString* imageName = [NSString stringWithFormat:@"%@.jpg", specyProfilPhotograph._photograph];
+            NSString* imageName = nil;
+            NSArray<Photographs*>* speciesPhotos = [species getSpeciePhotographs];
             
-            self.takenPhotoFileName = imageName;
+            //--- Sarin'ilay species alohan no alaina raha misy, raha toa ka tsy misy mihitsy zay vao atao profile_image
+            if([speciesPhotos count] != 0){
+                for (Photographs * photo in speciesPhotos) {
+                 
+                    if(photo != nil){
+                        
+                        if(![Tools isNullOrEmptyString:photo._photograph]){
+                            imageName = [NSString stringWithFormat:@"%@.jpg",photo._photograph];
+                            break;
+                        }
+                    }
+                 
+                }
+            }else{
+            
+                Photographs* specyProfilPhotograph = [species getSpecieProfilePhotograph];
+                imageName = [NSString stringWithFormat:@"%@.jpg", specyProfilPhotograph._photograph];
+            }
             
             UIImage* image = [UIImage imageNamed:imageName];
             
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:imageName];
+           
+            
+            NSFileManager * fileManager = [NSFileManager defaultManager];
+           
+            if(! [fileManager fileExistsAtPath:filePath]){
+                //-- Raha tsy misy ilay fichier vao re-creer-na eto --//
+                [UIImageJPEGRepresentation(image, 1.0)writeToFile:filePath atomically:YES];
+            }
+
+            
             self.speciesImage.image = image;
+            
+            return imageName;
 
         } @catch (NSException *exception) {
             
@@ -276,6 +312,7 @@
             
         }
     }
+    return nil;
 }
 
 -(BOOL) validateEntries:(NSString*)comment
@@ -405,6 +442,7 @@
         publication.field_photo.src = photoFileName;
         //** Niova ny sarin'ity publication ity. Tokony averina notSynced izy izany : Feb-27-2017
         publication.isSynced = NO;
+    
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -313,138 +313,139 @@ static AppData* _instance;
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
         
         for (Sightings * sighting in sightings) {
-            NSURL * url = nil;
-            NSString* fileName = sighting._photoFileNames;
-            //-- Jerena sao efa URL ilay fileName ---
-            NSURL * tempURL = [NSURL URLWithString:fileName];
             
-            if(tempURL && tempURL.scheme && tempURL.host){
-                url = tempURL;
-            }else{
-                NSString * fullPath = [self getImageFullPath:fileName];
-                url = [NSURL fileURLWithPath: fullPath];
-            }
+            if(sighting._deleted == NO){
             
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            NSUInteger fileSize  = [data length];
-            UIImage *img = [[UIImage alloc] initWithData:data];
-            NSString * _base64Image = [Tools base64:img];
+                NSURL * url = nil;
+                NSString* fileName = sighting._photoFileNames;
+                //-- Jerena sao efa URL ilay fileName ---
+                NSURL * tempURL = [NSURL URLWithString:fileName];
+                
+                if(tempURL && tempURL.scheme && tempURL.host){
+                    url = tempURL;
+                }else{
+                    NSString * fullPath = [self getImageFullPath:fileName];
+                    url = [NSURL fileURLWithPath: fullPath];
+                }
+                
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                NSUInteger fileSize  = [data length];
+                UIImage *img = [[UIImage alloc] initWithData:data];
+                NSString * _base64Image = [Tools base64:img];
 
-            
-            //---- Create sighting on the server --//
-            if(sighting._isLocal && !sighting._isSynced && sighting._deleted == NO){
-               
+                
+                //---- Create sighting on the server --//
+                if(sighting._isLocal && !sighting._isSynced){
+                   
+                        [self uploadImage:_base64Image
+                                 fileName:fileName
+                                 fileSize:(NSUInteger)fileSize
+                                 completeBlock:^(id json, JSONModelError *err) {
+                                
+                            if(err){
+                                NSLog(@"Error : %@", err.description);
+                            }else{
+                                
+                                NSError* error;
+                                NSDictionary* tmpDict = (NSDictionary*) json;
+                                FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
+                                
+                                if (error){
+                                
+                                    NSLog(@"Error parse : %@", error.debugDescription);
+                                }
+                                else{
+                                    NSInteger fid  = fileResult.fid;
+                                  
+                                    [self saveSighting:sighting fileID:fid sessionName:sessionName sessionId:sessionID completeBlock:^(id RETjson, JSONModelError *err) {
+                                        NSError* error;
+                                        
+                                        NSDictionary * retDict = (NSDictionary*)RETjson;
+                                        
+                                        
+                                        if (error){
+                                            NSLog(@"Error parse : %@", error.debugDescription);
+                                        }
+                                        else{
+                                            //-- Azo ny NID an'ity sighting vaovao ity ----
+                                            NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
+                                            NSString * photoFileName = [NSString stringWithFormat:@"%@%@%@", SERVER,SERVER_IMAGE_PATH,sighting._photoFileNames];
+                                            sighting._photoFileNames = photoFileName;
+                                            sighting._nid = newNID;
+                                            sighting._isSynced = YES;
+                                            sighting._isLocal = NO;
+                                            [sighting save];
+                                            
+                                            //---- Miantso ilay [postViewController loadOnlineSightings] --//
+                                            if(func != nil){
+                                                func();
+                                            }
+                                            
+                                        }
+                                    }];
+                                }
+                                
+                                
+                            }
+                        }];
+                    
+                }
+                
+                //--- Update Sighting On Server --//
+                if(!sighting._isLocal && !sighting._isSynced){
+                    
                     [self uploadImage:_base64Image
                              fileName:fileName
                              fileSize:(NSUInteger)fileSize
-                             completeBlock:^(id json, JSONModelError *err) {
+                        completeBlock:^(id json, JSONModelError *err) {
                             
-                        if(err){
-                            NSLog(@"Error : %@", err.description);
-                        }else{
-                            
-                            NSError* error;
-                            NSDictionary* tmpDict = (NSDictionary*) json;
-                            FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
-                            
-                            if (error){
-                            
-                                NSLog(@"Error parse : %@", error.debugDescription);
-                            }
-                            else{
-                                NSInteger fid  = fileResult.fid;
-                              
-                                [self saveSighting:sighting fileID:fid sessionName:sessionName sessionId:sessionID completeBlock:^(id RETjson, JSONModelError *err) {
-                                    NSError* error;
-                                    
-                                    NSDictionary * retDict = (NSDictionary*)RETjson;
-                                    
-                                    
-                                    if (error){
-                                        NSLog(@"Error parse : %@", error.debugDescription);
-                                    }
-                                    else{
-                                        //-- Azo ny NID an'ity sighting vaovao ity ----
-                                        NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
-                                        NSString * photoFileName = [NSString stringWithFormat:@"%@%@%@", SERVER,SERVER_IMAGE_PATH,sighting._photoFileNames];
-                                        sighting._photoFileNames = photoFileName;
-                                        sighting._nid = newNID;
-                                        sighting._isSynced = YES;
-                                        sighting._isLocal = NO;
-                                        [sighting save];
-                                        
-                                        //---- Miantso ilay [postViewController loadOnlineSightings] --//
-                                        if(func != nil){
-                                            func();
-                                        }
-                                        
-                                    }
-                                }];
-                            }
-                            
-                            
-                        }
-                    }];
-                
-            }
-            
-            //--- Update Sighting On Server --//
-            if(!sighting._isLocal && !sighting._isSynced && sighting._deleted == NO){
-                
-                [self uploadImage:_base64Image
-                         fileName:fileName
-                         fileSize:(NSUInteger)fileSize
-                    completeBlock:^(id json, JSONModelError *err) {
-                        
-                        if(err){
-                            NSLog(@"Error : %@", err.description);
-                        }else{
-                            NSError* error;
-                            NSDictionary* tmpDict = (NSDictionary*) json;
-                            FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
-                            
-                            if (error == nil){
-                            
-                                NSInteger fid  = fileResult.fid;
+                            if(err){
+                                NSLog(@"Error : %@", err.description);
+                            }else{
+                                NSError* error;
+                                NSDictionary* tmpDict = (NSDictionary*) json;
+                                FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
                                 
-                                Species * species = [Species getSpeciesBySpeciesNID:sighting._speciesNid];
-                                [self updateSightingWithNID:sighting._nid
-                                                      Title:sighting._title
-                                                  placeName:sighting._placeName
-                                                       date:sighting._date
-                                                      count:sighting._speciesCount
-                                                    species:species
-                                                     fileID:fid
-                                                sessionName:sessionName
-                                                  sessionId:sessionID
-                                              completeBlock:^(id json, JSONModelError *error) {
+                                if (error == nil){
+                                
+                                    NSInteger fid  = fileResult.fid;
                                     
-                                                  if (error){
-                                                      NSLog(@"Error parse : %@", error.debugDescription);
-                                                  }
-                                                  else{
-                                                      
-                                                      sighting._isSynced = YES;
-                                                      [sighting save];
-                                                      
-                                                      //---- Miantso ilay [postViewController loadOnlineSightings] --//
-                                                      if(func != nil){
-                                                          func();
+                                    Species * species = [Species getSpeciesBySpeciesNID:sighting._speciesNid];
+                                    [self updateSightingWithNID:sighting._nid
+                                                          Title:sighting._title
+                                                      placeName:sighting._placeName
+                                                           date:sighting._date
+                                                          count:sighting._speciesCount
+                                                        species:species
+                                                         fileID:fid
+                                                    sessionName:sessionName
+                                                      sessionId:sessionID
+                                                  completeBlock:^(id json, JSONModelError *error) {
+                                        
+                                                      if (error){
+                                                          NSLog(@"Error parse : %@", error.debugDescription);
                                                       }
-                                                  }
-                                }];
-                                
-                            }
-                      }
-                        
-                }];
-                
-            }//--Updating
+                                                      else{
+                                                          
+                                                          sighting._isSynced = YES;
+                                                          [sighting save];
+                                                          
+                                                          //---- Miantso ilay [postViewController loadOnlineSightings] --//
+                                                          if(func != nil){
+                                                              func();
+                                                          }
+                                                      }
+                                    }];
+                                    
+                                }
+                          }
+                            
+                    }];
+                    
+                }//--Updating
             
             
-            //-------- Tsy mbola synced nefa deleted -----//
-            //if( !sighting._isSynced && sighting._deleted == YES){
-            if(sighting._deleted == YES){
+            }else{
             
                 if(sighting._nid == 0){
                     //--- Tsy mbola synced (tsy nahazo nid) ity sighting ity dia tonga dia vonona ny local
@@ -468,16 +469,7 @@ static AppData* _instance;
                 }
             }
 
-            //-------- Efa synced nefa deleted -----//
-            // Tsy maintsy vonona ny version any @ server
-            
-            /*if( sighting._isSynced && sighting._deleted == YES){
                 
-                //--- Vonona ato @ iPhone avy hatrany ity sighting ity
-                [sighting delete];
-            }*/
-
-            
             
         }//for loop
         
