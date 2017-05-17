@@ -72,7 +72,7 @@
          currentSpecies = appDelagate.appDelegateCurrentSpecies;
     }
     
-    didSelectNewSite = NO;
+    //didSelectNewSite = NO;
     
     if(publication != nil && currentSpecies != nil){
         
@@ -130,10 +130,14 @@
     }else{
         //**** Sighting vaovao mihitsy ity ******////
         
+        
+        if(didSelectNewSite){
+            self.placename.text      = appDelagate.appDelegateCurrentSite._title;
+        }
+        
         [self.delteBtn setHidden:YES]; // Tsy aseho ity button ity raha newSighting
         
         //---- Rehefa "new Sighting" dia izay species voalohany no "by default" --//
-        //pubSpecies = appDelagate.appDelegateCurrentSpecies;
         self.scientificName.text = currentSpecies._title;
         self.malagasyName.text   = currentSpecies._malagasy;
         
@@ -450,6 +454,7 @@
 #pragma mark - SiteSelector
 
 -(void)cancelSiteSelector{
+    didSelectNewSite = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -460,7 +465,7 @@
         //self.placename.text = site._title;
         //self.currentSpecies      = species;
         /*
-         @TODO : Niova ny species eto. Raha ohatra ka isAdding=YES dia tokony ho renommer-na @ ity species ity ny self.takenPhotoFileName
+         @TODO : Niova ny site eto.
          */
     }
     [self dismissViewControllerAnimated:YES completion:nil];
