@@ -14,7 +14,8 @@
 #import "SpeciesSelectorViewController.h"
 #import "Species.h"
 #import "LemursWatchingSites.h"
-
+#import "Tools.h"
+#import "UIImage+Resize.h"
 
 #define ROWHEIGHT 44
 #define PICKERVIEW_ROW_HEIGHT 34
@@ -289,22 +290,39 @@
             
             UIImage* image = [UIImage imageNamed:imageName];
             
+            //--- Compresser-na eto ity sary by default ity fa tsy eken'ny serveur online raha mihoatra ny 500KB -----//
+            UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill
+                                                                 bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
+                                                   interpolationQuality:1];
+            
+
+            
+            
+            AppDelegate * appDelegate = [Tools getAppDelegate];
+            
+            NSString * newfileName = [NSString stringWithFormat: @"%ld_%li", appDelegate._uid, (long)species._species_id];
+            NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
+            NSString * date = [dateFormatter stringFromDate:[NSDate date]];
+            newfileName = [newfileName stringByAppendingString:date];
+            newfileName = [newfileName stringByAppendingString:FILE_EXT];
+
             
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:imageName];
+            NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:newfileName];
            
             
             NSFileManager * fileManager = [NSFileManager defaultManager];
            
             if(! [fileManager fileExistsAtPath:filePath]){
                 //-- Raha tsy misy ilay fichier vao re-creer-na eto --//
-                [UIImageJPEGRepresentation(image, 1.0)writeToFile:filePath atomically:YES];
+                [UIImageJPEGRepresentation(resizedImage, 1.0)writeToFile:filePath atomically:YES];
             }
 
             
-            self.speciesImage.image = image;
+            self.speciesImage.image = resizedImage;
             
-            return imageName;
+            return newfileName;
 
         } @catch (NSException *exception) {
             

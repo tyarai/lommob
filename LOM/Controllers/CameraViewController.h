@@ -15,6 +15,7 @@
 #import "WYPopoverController.h"
 #import "Sightings.h"
 #import "Publication.h"
+#import "Constants.h"
 
 @protocol CameraViewControllerDelegate <NSObject>
 -(void) saveCamera:(NSString*)photoFileName

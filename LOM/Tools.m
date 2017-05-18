@@ -622,12 +622,18 @@ static float appScale = 1.0;
 
 }
 
-+ (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid{
++ (void) saveSessId:(NSString*)sessid
+        sessionName:(NSString*) session_name
+           andToken:(NSString*) token
+                uid:(NSInteger) uid
+           userName:(NSString*) userName{
+    
     NSString * strUid = [NSString stringWithFormat:@"%ld",(long)uid];
     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:session_name];
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
     [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
+    [Tools setUserPreferenceWithKey:KEY_USERNAME andStringValue:userName];
 
 }
 

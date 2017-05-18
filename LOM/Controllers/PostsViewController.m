@@ -498,7 +498,11 @@
                     
                     
                     if (rememberMe) {
-                        [self saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token uid:loginResult.user.uid];
+                        [self saveSessId:loginResult.sessid
+                             sessionName:loginResult.session_name
+                                andToken:loginResult.token
+                                     uid:loginResult.user.uid
+                                userName:userName];
                     }
                     
                     appDelegate._currentToken = loginResult.token;
@@ -628,12 +632,18 @@
 
 
 
-- (void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid{
+- (void) saveSessId:(NSString*) sessid
+        sessionName:(NSString*) session_name
+           andToken:(NSString*) token
+                uid:(NSInteger) uid
+           userName:(NSString*) userName{
+    
     NSString * strUid = [NSString stringWithFormat:@"%ld",(long)uid];
     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
     [Tools setUserPreferenceWithKey:KEY_SESSION_NAME andStringValue:session_name];
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
     [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
+    [Tools setUserPreferenceWithKey:KEY_USERNAME andStringValue:userName];
 }
 
 #pragma IBAction

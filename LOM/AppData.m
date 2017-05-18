@@ -164,6 +164,22 @@ static AppData* _instance;
 }
 
 
+-(void) CheckSession:(NSString*)sessionName
+           sessionID:(NSString*)sessionID
+       completeBlock:(JSONObjectBlock)completeBlock{
+   
+    [self buildPOSTHeader];
+    NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
+    
+    if( ! [Tools isNullOrEmptyString:sessionName] && ! [Tools isNullOrEmptyString:sessionID] && ! [Tools isNullOrEmptyString:cookie]){
+        
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, ISCONNECTED_ENDPOINT];
+        [JSONHTTPClient postJSONFromURLWithString:url bodyString:nil completion:completeBlock];
+    }
+}
+
+
 
 
 -(void) getSightingsForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
@@ -514,7 +530,7 @@ static AppData* _instance;
         
         
         
-        NSString *charactersToEscape = @"!*'();:@+$,/?%#[]" "";
+        NSString *charactersToEscape = @"._-!*'();:@+$,/?%#[]" "";
         NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
         NSString *encodedBody = [body stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
                                  

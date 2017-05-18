@@ -87,7 +87,11 @@
                     
                     
                     if (rememberMe) {
-                        [Tools saveSessId:loginResult.sessid sessionName:loginResult.session_name andToken:loginResult.token uid:loginResult.user.uid];
+                        [Tools saveSessId:loginResult.sessid
+                              sessionName:loginResult.session_name
+                                 andToken:loginResult.token
+                                      uid:loginResult.user.uid
+                                 userName:userName];
                     }
                     
                     appDelegate._currentToken = loginResult.token;

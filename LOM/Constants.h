@@ -20,6 +20,9 @@
 #define KEY_SESSION_NAME @"session_name"
 #define KEY_TOKEN @"token"
 #define KEY_UID @"uid"
+#define KEY_USERNAME @"username"
+
+#define FILE_EXT @".jpeg"
 
 
 //#define IMAGE_RESIZED_WIDTH 1024

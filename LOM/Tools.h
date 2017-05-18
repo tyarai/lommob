@@ -58,7 +58,7 @@
 +(void) updateLocalSightingsUserUIDDWith:(NSUInteger) uid;
 +(NSString*) base64:(UIImage*)image;
 +(void) saveSyncDate;
-+(void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid;
++(void) saveSessId:(NSString*)sessid sessionName:(NSString*) session_name andToken:(NSString*) token uid:(NSInteger) uid userName:(NSString*)userName;
 
 +(NSString*)htmlToString:(NSString*)obj;
 

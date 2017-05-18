@@ -10,6 +10,7 @@
 		41E886C79E90CF756C88653D /* libPods-LOM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38560A1F288A7437A61A784E /* libPods-LOM.a */; };
 		4C0BC9EB1C36F7C00062082B /* WatchingSiteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BC9EA1C36F7C00062082B /* WatchingSiteDetailsViewController.m */; };
 		4C1122E11C0A29DB00562FC1 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1122E01C0A29DB00562FC1 /* SplashViewController.m */; };
+		4C24A9A71ECC958500F475DA /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */; };
 		4C316F431C113CB1004CCFE5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */; };
 		4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */; };
 		4C3BB1711ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */; };
@@ -943,6 +944,8 @@
 		4C0BC9EA1C36F7C00062082B /* WatchingSiteDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSiteDetailsViewController.m; path = Controllers/WatchingSiteDetailsViewController.m; sourceTree = "<group>"; };
 		4C1122DF1C0A29DB00562FC1 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashViewController.h; path = Controllers/SplashViewController.h; sourceTree = "<group>"; };
 		4C1122E01C0A29DB00562FC1 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashViewController.m; path = Controllers/SplashViewController.m; sourceTree = "<group>"; };
+		4C24A9A51ECC958500F475DA /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTableViewController.h; path = Controllers/SettingsTableViewController.h; sourceTree = "<group>"; };
+		4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTableViewController.m; path = Controllers/SettingsTableViewController.m; sourceTree = "<group>"; };
 		4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4C3BB1691ECB8C6400EFD96B /* WatchingSitesSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSitesSelectorViewController.h; path = Controllers/WatchingSitesSelectorViewController.h; sourceTree = "<group>"; };
 		4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesSelectorViewController.m; path = Controllers/WatchingSitesSelectorViewController.m; sourceTree = "<group>"; };
@@ -2004,6 +2007,15 @@
 			name = Splash;
 			sourceTree = "<group>";
 		};
+		4C24A9A41ECC956400F475DA /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4C24A9A51ECC958500F475DA /* SettingsTableViewController.h */,
+				4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		4C59AD8E1C15F54300EA74C5 /* Species */ = {
 			isa = PBXGroup;
 			children = (
@@ -2989,6 +3001,7 @@
 		4C74F2841C06381A00543A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4C24A9A41ECC956400F475DA /* Settings */,
 				B471151D1DCA73EA00473D67 /* Signup */,
 				B4889C0B1DAB36540096F908 /* SightingData */,
 				B475F1831DAA03DA006A12EF /* SightingsInfo */,
@@ -4427,6 +4440,7 @@
 				B4BBF3C41C97959C005A5196 /* AuthorTableViewCell.m in Sources */,
 				B4B7BE841C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m in Sources */,
 				4C59ADA81C1606BF00EA74C5 /* UIView+Corner.m in Sources */,
+				4C24A9A71ECC958500F475DA /* SettingsTableViewController.m in Sources */,
 				4C85FF761C380E7300D6C233 /* LemurLifeListTableViewCell.m in Sources */,
 				B4AF34211C9A71910039DEBB /* ExtinctLemurs.m in Sources */,
 				4C74F2A21C0638EA00543A7F /* FCModelCachedObject.m in Sources */,

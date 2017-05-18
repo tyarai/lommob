@@ -83,6 +83,8 @@ typedef void (^postsViewControllerFunctionCallback) (void);
 
 -(void) syncLifeListWithServer:(NSArray<LemurLifeListTable *>*)sightings sessionName:(NSString*)sessionName sessionID:(NSString*) sessionID ;
 
-
+-(void) CheckSession:(NSString*)sessionName
+           sessionID:(NSString*)sessionID
+       completeBlock:(JSONObjectBlock)completeBlock;
 
 @end

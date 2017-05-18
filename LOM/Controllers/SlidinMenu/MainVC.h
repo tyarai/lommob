@@ -18,6 +18,7 @@
 #define WATCHING_LIST_MENU_SEGUE @"eigthSegue"
 #define POSTS_MENU_SEGUE @"ninethSegue"
 #define ABOUT_MENU_SEGUE @"tenthSegue"
+#define SETTINGS_MENU_SEGUE @"eleventhSegue"
 
 
 

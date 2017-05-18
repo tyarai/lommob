@@ -22,7 +22,7 @@
 
 
 
-#define FILE_EXT @".jpeg"
+//#define FILE_EXT @".jpeg"
 
 @interface CameraViewController ()
 
@@ -133,7 +133,6 @@
             UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill
                                                                  bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
                                                    interpolationQuality:1];
-            //UIImage * resizedImage = image;
             
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString * title     = currentSpecies._title;
