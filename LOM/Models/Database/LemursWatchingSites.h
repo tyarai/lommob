@@ -17,4 +17,5 @@
 + (NSArray*) getLemursWatchingSitesLike:(NSString*) strValue;
 + (NSArray*) allSitesOrderedByTitle:(NSString*)direction;
 + (NSArray*) getSitesLike:(NSString*) strValue ;
++ (LemursWatchingSites*) getLemursWatchingSitesByNID:(NSInteger) nid;
 @end

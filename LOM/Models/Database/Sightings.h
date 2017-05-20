@@ -33,6 +33,7 @@
 @property (nonatomic) int64_t _isLocal;
 @property (nonatomic) int64_t _isSynced;
 @property (nonatomic) int64_t _deleted;
+@property (nonatomic) int64_t _place_name_reference_nid;
 
 + (id) getSightingsByUUID:(NSString*) _uuid;
 + (id) getSightingsByNID:(NSInteger) _nid;

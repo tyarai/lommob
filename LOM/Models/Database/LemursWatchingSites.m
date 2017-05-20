@@ -30,5 +30,12 @@
 }
 
 
++ (LemursWatchingSites*) getLemursWatchingSitesByNID:(NSInteger) nid {
+    if(nid != 0){
+        return [LemursWatchingSites firstInstanceWhere:[NSString stringWithFormat:@" _site_id = '%li'", (long)nid]];
+    }
+    return nil;
+}
+
 
 @end

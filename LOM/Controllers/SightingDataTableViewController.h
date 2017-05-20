@@ -12,6 +12,7 @@
 #import "CameraViewController.h"
 #import "SpeciesSelectorViewController.h"
 #import "WatchingSitesSelectorViewController.h"
+#import "LemursWatchingSites.h"
 
 @protocol SightingDataTableViewControllerDelegate <NSObject>
 @optional
@@ -20,6 +21,7 @@
                   species:(Species*) species
               observation:(NSInteger) observation
                 placeName:(NSString*) placeName
+             placeNameRef:(LemursWatchingSites*)placeReference
                      date:(NSDate*) date
                  comments:(NSString*) comments
             photoFileName:(NSString*) photoFileName;

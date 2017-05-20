@@ -603,6 +603,7 @@ static AppData* _instance;
         NSInteger  count     = sighting._speciesCount;
         NSInteger  isLocal   = NO;//sighting._isLocal;
         NSInteger  isSynced  = (int)YES;
+        NSInteger  place_name_reference_nid = sighting._place_name_reference_nid;
         double dateTimeStamp = sighting._date;
         NSTimeInterval _interval= dateTimeStamp;
         NSDate *vDate = [NSDate dateWithTimeIntervalSince1970:_interval];
@@ -624,6 +625,7 @@ static AppData* _instance;
         body = [body stringByAppendingFormat:@"&field_is_synced[und][value]=%lu",isSynced];
         body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
         body = [body stringByAppendingFormat:@"&field_photo[und][0][fid]=%lu",fid];
+        body = [body stringByAppendingFormat:@"&field_place_name_reference[und][nid]=%lu",place_name_reference_nid];
         
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NODE_ENDPOINT];
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];

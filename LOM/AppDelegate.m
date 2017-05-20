@@ -116,6 +116,14 @@
             if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _deleted INTEGER NOT NULL DEFAULT '0'"]) failedAt(7);
             *schemaVersion = 8;
         }
+        
+        /*
+         * Ampina ilay field place_name_reference_nid ny Sightings
+         */
+        if (*schemaVersion < 9) {
+            if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _place_name_reference_nid INTEGER NOT NULL DEFAULT '0'"]) failedAt(8);
+            *schemaVersion = 9;
+        }
 
        
 

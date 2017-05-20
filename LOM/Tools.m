@@ -433,7 +433,7 @@ static float appScale = 1.0;
                 int64_t  _created       = [createdDate timeIntervalSince1970];
                 NSString * _latitude    = sighting.latitude;
                 NSString * _longitude   = sighting.longitude;
-                
+                int64_t place_name_ref_nid = sighting.place_name_reference_nid;
                 
                 NSString *error = [NSString stringWithFormat:@" title =%@ nid=%lli photo = %@ ",_title,_nid,_photo_name];
                 
@@ -468,6 +468,8 @@ static float appScale = 1.0;
                         newSighting._isLocal        = _local;
                         newSighting._isSynced       = _synced;
                         newSighting._deleted        = _deleted;
+                        newSighting._place_name_reference_nid = place_name_ref_nid;
+                        
                         [newSighting save];
                         
                     }else{
@@ -475,8 +477,8 @@ static float appScale = 1.0;
                         //------ Update by _nid -------//
                         /*NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '1' _deleted = '%lli' WHERE _nid = '%lli' ",
                                             _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_deleted,_nid];*/
-                        NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '%lli', _isLocal = '%lli', _deleted = '%lli' WHERE _nid = '%lli' ",
-                                            _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_synced,_local,_deleted,_nid];
+                        NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _createdTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '%lli', _isLocal = '%lli', _deleted = '%lli' , _place_name_reference_nid = '%lli' WHERE _nid = '%lli' ",
+                                            _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_synced,_local,_deleted,place_name_ref_nid,_nid];
                         
                         [Sightings executeUpdateQuery:query];
                         

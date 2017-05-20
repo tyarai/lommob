@@ -13,7 +13,7 @@
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import "SpeciesSelectorViewController.h"
 #import "Species.h"
-#import "LemursWatchingSites.h"
+
 #import "Tools.h"
 #import "UIImage+Resize.h"
 
@@ -41,6 +41,7 @@
     self.comments.delegate = self;
     self.numberObserved.delegate = self;
     self.placename.delegate = self;
+    self.placename.enabled = NO;
     
     NSDate *today = [[NSDate alloc]init];
     [self.date setMaximumDate:today];
@@ -226,6 +227,7 @@
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Publication * currentPublication = appDelagate.appDelegateCurrentPublication;
     Species     * currentSpecies     = appDelagate.appDelegateCurrentSpecies;
+    LemursWatchingSites * currentSite = appDelagate.appDelegateCurrentSite;
     
     //-- Updated on May 17th 2017 -----//
     // Rehefa manao save sighting ka tsy naka sary, dia izay saryin'ilay species no atao by default
@@ -240,6 +242,7 @@
     if([self validateEntries:comments
                  observation:obs
                    placeName:place
+                 currentSite:currentSite
                photoFileName:self.takenPhotoFileName
                        error:&error]){
         
@@ -247,6 +250,7 @@
                            species     :currentSpecies
                             observation:obs
                               placeName:place
+                           placeNameRef:currentSite
                                    date:obsDate
                                comments:comments
                           photoFileName:self.takenPhotoFileName];
@@ -336,6 +340,7 @@
 -(BOOL) validateEntries:(NSString*)comment
             observation:(NSInteger)observation
             placeName  :(NSString*)placeName
+            currentSite:(LemursWatchingSites*)site
           photoFileName:(NSString*)takenPhotoFileName
             error      : (NSString**) error{
     
@@ -345,7 +350,7 @@
         return NO;
     }
 
-    if([Tools isNullOrEmptyString:placeName]){
+    if([Tools isNullOrEmptyString:placeName] || site == nil){
         *error = NSLocalizedString(@"sightingPlaceNameError", @"");
         return NO;
     }

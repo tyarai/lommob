@@ -15,7 +15,7 @@
 #import "Constants.h"
 #import "UIImage+Resize.h"
 #import "PostEditTableViewController.h"
-
+#import "LemursWatchingSites.h"
 
 @implementation PostsTableViewCell{
     WYPopoverController *popoverController;
@@ -56,6 +56,10 @@
         appDelagate.appDelegateCurrentPublication = currentPublication;
         Species * currentSpecies = [Species getSpeciesBySpeciesNID:currentPublication.speciesNid];
         appDelagate.appDelegateCurrentSpecies     = currentSpecies;
+        
+        NSInteger siteNID = currentPublication.place_name_reference_nid;
+        LemursWatchingSites * currenSite = [LemursWatchingSites getLemursWatchingSitesByNID:siteNID];
+        appDelagate.appDelegateCurrentSite = currenSite;
         
         if(currentPublication && currentSpecies){
             [postsTableViewController performSegueWithIdentifier:@"showPost" sender:postsTableViewController];

@@ -35,6 +35,7 @@
 @property (nonatomic) int64_t isLocal;
 @property (nonatomic) int64_t isSynced;
 @property (nonatomic) int64_t deleted;
+@property (nonatomic) int64_t place_name_reference_nid;
 
 
 -(NSString*) getSightingImageFullPathName;;

@@ -232,6 +232,13 @@
             node.isLocal        = row._isLocal;
             node.isSynced       = row._isSynced;
             node.count          = row._speciesCount;
+           
+            //--- Updated May 20 2017 ---//
+            node.deleted        = row._deleted;
+            node.place_name_reference_nid = row._place_name_reference_nid;
+            NSDate* modifiedDate = [NSDate dateWithTimeIntervalSince1970:row._modifiedTime];
+            node.modified        = [modifiedDate description];
+            //-----------------------------------------------//
             
             listNode.node       = node;
             [nodeLists addObject:listNode];
@@ -814,6 +821,7 @@
             species    : (Species*) species
             observation:(NSInteger)observation
               placeName:(NSString *)placeName
+             placeNameRef:(LemursWatchingSites*)placeReference
                    date:(NSDate *)date
                comments:(NSString *)comments
           photoFileName:(NSString*)takenPhotoFileName{
@@ -828,7 +836,7 @@
     if(![Tools isNullOrEmptyString:sessionID] && ![Tools isNullOrEmptyString:sessionName] &&
        ![Tools isNullOrEmptyString:token] &&  uid != 0 ){
         
-        if(!isAdding && observation && placeName && comments && date && publication != nil  && species != nil){
+        if(!isAdding && observation && placeName && placeReference && comments && date && publication != nil  && species != nil){
             
                  //----- Updating Sighting ------------//
                 
@@ -839,6 +847,7 @@
                 NSString *_title        = comments;
                 NSString * _speciesName = species._title;
                 NSInteger   _speciesNID = species._species_id;
+                NSInteger _place_name_reference_nid = placeReference._site_id;
             
                 //-- Mampisy error any @ SQLLite raha tsy escaper-na ny quote ' ---//
                 //   Special charcetr koa ny '\' dia tsy maintsy atao '\\'
@@ -853,10 +862,10 @@
                     
                     //******** Update by _nid : Raha efa synced sady nahazo _nid ilay sighting - //
                     
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_nid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li'  WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,(long)_nid];
                 }else{
                     //*** Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,_uuid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,_uuid];
                     
                 }
                 
@@ -883,6 +892,7 @@
                 double _date             = [date timeIntervalSince1970];
                 double  _created         = [[NSDate date] timeIntervalSince1970];
                 double  _modified        = [[NSDate date] timeIntervalSince1970];
+                NSInteger _place_name_ref_nid = placeReference._site_id;
                 
                 Sightings * newSightings = [Sightings new];
                 newSightings._uuid          = _uuid;
@@ -902,6 +912,7 @@
                 newSightings._isLocal       = (int)YES; //From iPhone = YES
                 newSightings._isSynced      = (int)NO; // Not yet synced with server
                 newSightings._deleted       = (int)NO;
+                newSightings._place_name_reference_nid =_place_name_ref_nid;
                 
                 [newSightings save];
                 
