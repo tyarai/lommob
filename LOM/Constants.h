@@ -21,6 +21,7 @@
 #define KEY_TOKEN @"token"
 #define KEY_UID @"uid"
 #define KEY_USERNAME @"username"
+#define KEY_PUBLIC_LIST @"public_list"
 
 #define FILE_EXT @".jpeg"
 

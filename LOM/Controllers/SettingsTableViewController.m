@@ -12,6 +12,8 @@
 #import "Tools.h"
 #import "UserConnectedResult.h"
 #import "Constants.h"
+#import "Tools.h"
+#import "Constants.h"
 
 @interface SettingsTableViewController ()
 
@@ -22,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self updateOptions];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -42,7 +45,20 @@
     }else{
         self.btnLogOUt.hidden = YES;
     }
+    
+    [self updateOptions]; // Manao update ny options rehetra rehefa mipoitra ity view ity na koa rehefa mahazo front ilay app
+    
 }
+
+
+
+-(void)updateOptions{
+    NSString * listOptions = [Tools getStringUserPreferenceWithKey:KEY_PUBLIC_LIST] ;
+    BOOL option = [listOptions isEqualToString:@"1" ]? YES : NO;
+    
+    [self.switchBtn setOn:option];
+}
+
 - (IBAction)logOuttapped:(id)sender {
     
     AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -118,6 +134,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - TableView
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
 #pragma mark - Table view data source
 
 /*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -183,5 +205,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)listOptionSwitch:(UISwitch *)sender {
+    if(sender.isOn == true){
+        [Tools setUserPreferenceWithKey:KEY_PUBLIC_LIST andStringValue:@"1"];
+    }else{
+        [Tools setUserPreferenceWithKey:KEY_PUBLIC_LIST andStringValue:@"0"];
+    }
+}
+
 
 @end

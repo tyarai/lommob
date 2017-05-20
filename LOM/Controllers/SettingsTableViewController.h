@@ -11,5 +11,7 @@
 @interface SettingsTableViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogOUt;
+@property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
+
 
 @end

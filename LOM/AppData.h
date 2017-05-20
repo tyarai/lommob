@@ -40,6 +40,10 @@
 
 #define SERVER_IMAGE_PATH @"/sites/default/files/"
 
+//************ SETTINGS WEB SERVICE ******************//
+#define SETTINGS_ENDPOINT @"/lom_endpoint/api/v1/settings/lom_settings/export_settings" // Misy param user_uid
+
+
 typedef void (^postsViewControllerFunctionCallback) (void);
 
 
@@ -86,5 +90,9 @@ typedef void (^postsViewControllerFunctionCallback) (void);
 -(void) CheckSession:(NSString*)sessionName
            sessionID:(NSString*)sessionID
        completeBlock:(JSONObjectBlock)completeBlock;
+
+-(void) getUserSettingsWithUserUID:(NSInteger) user_uid
+                     completeBlock:(JSONObjectBlock) completeBlock;
+
 
 @end

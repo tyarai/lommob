@@ -11,6 +11,7 @@
 #include "Constants.h"
 #import "FCModel.h"
 #import "RNCachingURLProtocol.h"
+#import "AppData.h"
 
 @interface AppDelegate ()
 
@@ -146,10 +147,40 @@
     self._uid    = [[Tools getStringUserPreferenceWithKey:KEY_UID] integerValue];
     
     [self.window setTintColor:ORANGE_COLOR]; // TintColor for the whole app
-        
+    
+    
+    [self getServerSettings]; // Maka ny server settings
+    
+    
+    
     return YES;
 }
 
+
+-(void) getServerSettings{
+    //--- Loading user settings --------//
+    if(self._uid != 0){
+        AppData * appData = [AppData getInstance];
+        [appData getUserSettingsWithUserUID:self._uid completeBlock:^(id json, JSONModelError *err) {
+            if(err == nil){
+                
+                NSDictionary* tmpDict = (NSDictionary*) json;
+                for(id key in tmpDict){
+                   
+                    NSString *title = [key valueForKey:@"title"];
+                    NSString * value = [key valueForKey:@"value"];
+                    [Tools setUserPreferenceWithKey:title andStringValue:value];
+                    
+                }
+                
+                
+            }else{
+                NSLog(@"%@", [err description]);
+            }
+        }];
+    }
+
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -163,6 +194,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self getServerSettings]; // Maka ny server settings
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

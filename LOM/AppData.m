@@ -60,6 +60,20 @@ static AppData* _instance;
     }
 }
 
+- (void) buildPOSTHeaderWithContentType:(NSString*)contentTypeValue{
+    
+    [[JSONHTTPClient requestHeaders] setValue:@"application/json" forKey:@"Accept"];
+    [[JSONHTTPClient requestHeaders] setValue:contentTypeValue forKey:@"Content-Type"];
+    
+    NSString* token = [Tools getAppDelegate]._currentToken;
+    
+    if (![Tools isNullOrEmptyString:token]) {
+        [[JSONHTTPClient requestHeaders] setValue:token forKey:@"X-CSRF-Token"];
+    }
+}
+
+
+
 
 - (void) buildGETHeader{
     
@@ -680,5 +694,22 @@ static AppData* _instance;
     }
 }
 
+#pragma mark - Settings
 
+-(void) getUserSettingsWithUserUID:(NSInteger) user_uid
+                     completeBlock:(JSONObjectBlock) completeBlock
+{
+    [self buildPOSTHeaderWithContentType:@"application/json"];
+    
+    NSString * sessionName = [[Tools getAppDelegate] _sessionName];
+    NSString * session_id  = [[Tools getAppDelegate] _sessid];
+    
+    NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
+    [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+    
+    
+    NSString* url = [NSString stringWithFormat:@"%@%@?user_uid=%li", SERVER, SETTINGS_ENDPOINT,(long)user_uid];
+    [JSONHTTPClient postJSONFromURLWithString:url bodyString:nil completion:completeBlock];
+   
+}
 @end

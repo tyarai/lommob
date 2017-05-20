@@ -866,6 +866,7 @@
 		4C85FF721C38066000D6C233 /* PopupLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF711C38066000D6C233 /* PopupLoginViewController.m */; };
 		4C85FF761C380E7300D6C233 /* LemurLifeListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF751C380E7300D6C233 /* LemurLifeListTableViewCell.m */; };
 		4C95D4441C0A24AC0038B9FC /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D4431C0A24AC0038B9FC /* Tools.m */; };
+		4CB0157F1ED069DA0021F2A0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0157E1ED069DA0021F2A0 /* Settings.m */; };
 		4CBAEAF01BFA546B0011139C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEAEF1BFA546B0011139C /* main.m */; };
 		4CBAEAF31BFA546B0011139C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEAF21BFA546B0011139C /* AppDelegate.m */; };
 		4CBAEAF91BFA546B0011139C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CBAEAF71BFA546B0011139C /* Main.storyboard */; };
@@ -1840,6 +1841,8 @@
 		4C95D4421C0A24AC0038B9FC /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		4C95D4431C0A24AC0038B9FC /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		4C95D4451C0A25130038B9FC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4CB0157D1ED069DA0021F2A0 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = Tools/Settings.h; sourceTree = "<group>"; };
+		4CB0157E1ED069DA0021F2A0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = Tools/Settings.m; sourceTree = "<group>"; };
 		4CBAEAEB1BFA546B0011139C /* LOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CBAEAEF1BFA546B0011139C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4CBAEAF11BFA546B0011139C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2125,6 +2128,8 @@
 				B467792D1D46209800618410 /* LemurLifeList.m */,
 				B467792F1D46211700618410 /* LemurLifeListNode.h */,
 				B46779301D46211700618410 /* LemurLifeListNode.m */,
+				4CB0157D1ED069DA0021F2A0 /* Settings.h */,
+				4CB0157E1ED069DA0021F2A0 /* Settings.m */,
 			);
 			name = WebServices;
 			sourceTree = "<group>";
@@ -4446,6 +4451,7 @@
 				4C74F2A21C0638EA00543A7F /* FCModelCachedObject.m in Sources */,
 				B467792E1D46209800618410 /* LemurLifeList.m in Sources */,
 				4C74F28D1C06387A00543A7F /* Reachability.m in Sources */,
+				4CB0157F1ED069DA0021F2A0 /* Settings.m in Sources */,
 				4C74F2A11C0638EA00543A7F /* FCModel.m in Sources */,
 				4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */,
 				B4A2755C1DA8EFCC00777499 /* PhotoCollectionViewCell.m in Sources */,
