@@ -206,11 +206,29 @@
 }
 */
 - (IBAction)listOptionSwitch:(UISwitch *)sender {
+    
+    NSString * value = nil;
+    
     if(sender.isOn == true){
-        [Tools setUserPreferenceWithKey:KEY_PUBLIC_LIST andStringValue:@"1"];
+        value = @"1";
     }else{
-        [Tools setUserPreferenceWithKey:KEY_PUBLIC_LIST andStringValue:@"0"];
+        value = @"0";
     }
+    
+    AppData * appData = [AppData getInstance];
+    AppDelegate * appDelegate = [Tools getAppDelegate];
+    NSInteger uid = appDelegate._uid;
+    //--- Sync miakatra makany @ server ity settings ity --/
+    [appData setUserSettingsWithUserUID:uid
+                           settingsName:KEY_PUBLIC_LIST
+                          settingsValue:value
+                          completeBlock:^(id json, JSONModelError *err) {
+                              if(err == nil){
+                                  //-- Rehefa tsy nisy error ny nampiakatr tany @server zay vao atao update ny local
+                                  [Tools setUserPreferenceWithKey:KEY_PUBLIC_LIST andStringValue:value];
+                              }
+                          }];
+
 }
 
 

@@ -41,7 +41,9 @@
 #define SERVER_IMAGE_PATH @"/sites/default/files/"
 
 //************ SETTINGS WEB SERVICE ******************//
-#define SETTINGS_ENDPOINT @"/lom_endpoint/api/v1/settings/lom_settings/export_settings" // Misy param user_uid
+#define SETTINGS_EXPORT_ENDPOINT @"/lom_endpoint/api/v1/settings/lom_settings/export_settings" // Misy param user_uid
+
+#define SETTINGS_IMPORT_ENDPOINT @"/lom_endpoint/api/v1/settings/lom_settings/import_settings" // Misy param user_uid, settings_name, settings_value
 
 
 typedef void (^postsViewControllerFunctionCallback) (void);
@@ -92,6 +94,11 @@ typedef void (^postsViewControllerFunctionCallback) (void);
        completeBlock:(JSONObjectBlock)completeBlock;
 
 -(void) getUserSettingsWithUserUID:(NSInteger) user_uid
+                     completeBlock:(JSONObjectBlock) completeBlock;
+
+-(void) setUserSettingsWithUserUID:(NSInteger) user_uid
+                      settingsName:(NSString*) settings_name
+                     settingsValue:(NSString*) settings_value
                      completeBlock:(JSONObjectBlock) completeBlock;
 
 

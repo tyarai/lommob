@@ -149,18 +149,21 @@
     [self.window setTintColor:ORANGE_COLOR]; // TintColor for the whole app
     
     
-    [self getServerSettings]; // Maka ny server settings
+    [self syncSettings]; // mampidina ny avy any @ server
     
     
     
     return YES;
 }
 
-
--(void) getServerSettings{
+/*
+    mampidina ny avy any @ server
+ */
+-(void) syncSettings{
     //--- Loading user settings --------//
     if(self._uid != 0){
         AppData * appData = [AppData getInstance];
+        
         [appData getUserSettingsWithUserUID:self._uid completeBlock:^(id json, JSONModelError *err) {
             if(err == nil){
                 
@@ -194,7 +197,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [self getServerSettings]; // Maka ny server settings
+    [self syncSettings]; // mampidina ny avy any @ server
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

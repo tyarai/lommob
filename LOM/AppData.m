@@ -708,8 +708,28 @@ static AppData* _instance;
     [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
     
     
-    NSString* url = [NSString stringWithFormat:@"%@%@?user_uid=%li", SERVER, SETTINGS_ENDPOINT,(long)user_uid];
+    NSString* url = [NSString stringWithFormat:@"%@%@?user_uid=%li", SERVER, SETTINGS_EXPORT_ENDPOINT,(long)user_uid];
     [JSONHTTPClient postJSONFromURLWithString:url bodyString:nil completion:completeBlock];
    
 }
+
+-(void) setUserSettingsWithUserUID:(NSInteger) user_uid
+                      settingsName:(NSString*) settings_name
+                     settingsValue:(NSString*) settings_value
+                     completeBlock:(JSONObjectBlock) completeBlock
+{
+    [self buildPOSTHeaderWithContentType:@"application/json"];
+    
+    NSString * sessionName = [[Tools getAppDelegate] _sessionName];
+    NSString * session_id  = [[Tools getAppDelegate] _sessid];
+    
+    NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
+    [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+    
+    
+    NSString* url = [NSString stringWithFormat:@"%@%@?user_uid=%li&settings_name=%@&settings_value=%@", SERVER, SETTINGS_IMPORT_ENDPOINT,(long)user_uid,settings_name,settings_value];
+    [JSONHTTPClient postJSONFromURLWithString:url bodyString:nil completion:completeBlock];
+    
+}
+
 @end
