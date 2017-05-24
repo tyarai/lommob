@@ -100,6 +100,7 @@
                     appDelegate._sessionName = loginResult.session_name;
                     appDelegate._uid    = loginResult.user.uid;
                     
+                    [appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
                     
                     //[self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
                     [self dismissViewControllerAnimated:NO completion:nil];

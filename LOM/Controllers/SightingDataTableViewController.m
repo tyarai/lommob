@@ -50,6 +50,9 @@
     self.tableView.estimatedRowHeight = ROWHEIGHT;
     
     didSelectNewSite = NO;
+    didSelectNewDate = NO;
+    didSelectNewTitle = NO;
+    didSelectNewNumber = NO;
     
     allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
     self.species.delegate = self; // UIPickerView Delegate
@@ -74,20 +77,25 @@
          currentSpecies = appDelagate.appDelegateCurrentSpecies;
     }
     
-    //didSelectNewSite = NO;
     
     if(publication != nil && currentSpecies != nil){
         
         //---- Edit sighting ----
         
-        self.numberObserved.text = [NSString stringWithFormat:@"%li",publication.count];
+        if(appDelagate._sightingNumber != 0 && didSelectNewNumber){
+            self.numberObserved.text = [NSString stringWithFormat:@"%li",(long)appDelagate._sightingNumber];
+        }else{
+            self.numberObserved.text = [NSString stringWithFormat:@"%li",publication.count];
+        }
         
         if(didSelectNewSite){
             self.placename.text      = appDelagate.appDelegateCurrentSite._title;
         }else{
             self.placename.text      = publication.place_name;
         }
+        
         self.comments.text       = publication.title;
+        
         
         self.scientificName.text = currentSpecies._title;
         self.malagasyName.text   = currentSpecies._malagasy;
@@ -126,8 +134,13 @@
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
         
-        NSDate *date = [dateFormat dateFromString:publication.date];
-        self.date.date = date;
+        if(appDelagate._sightingNewDate != nil && didSelectNewDate){
+            //NSDate *date = [dateFormat d appDelagate._sightingNewDate];
+            self.date.date = appDelagate._sightingNewDate;
+        }else{
+            NSDate *date = [dateFormat dateFromString:publication.date];
+            self.date.date = date;
+        }
         
     }else{
         //**** Sighting vaovao mihitsy ity ******////
@@ -614,5 +627,18 @@
         }
     }
 }
+- (IBAction)selectedDate:(id)sender {
+    didSelectNewDate = YES;
+    AppDelegate * appDelegate = [Tools getAppDelegate];
+    UIDatePicker * datePicker = (UIDatePicker*)sender;
+    appDelegate._sightingNewDate = datePicker.date;
+    
+}
 
+- (IBAction)numberChanged:(id)sender {
+    didSelectNewNumber = YES;
+    AppDelegate * appDelegate = [Tools getAppDelegate];
+    UITextView * textView = (UITextView*)sender;
+    appDelegate._sightingNumber = [textView.text intValue];
+}
 @end

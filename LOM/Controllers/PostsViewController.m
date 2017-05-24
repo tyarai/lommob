@@ -210,41 +210,48 @@
     if([currentUserSighting count] > 0 ){
         nodeLists = [NSMutableArray new];
         
-        for (Sightings *row in currentUserSighting) {
+        @try{
             
-            PublicationNode * listNode = [PublicationNode new];
-            Publication * node = [Publication new];
-            node.title          = row._title;
-            node.species        = row._speciesName;
-            node.place_name      = row._placeName;
-            node.uid            = row._uid;
-            NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._date];
-            node.date = [date description];
-            NSDate* createdDate = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
-            node.created        = [createdDate description];
+            for (Sightings *row in currentUserSighting) {
+                
+                PublicationNode * listNode = [PublicationNode new];
+                Publication * node = [Publication new];
+                node.title          = row._title;
+                node.species        = row._speciesName;
+                node.place_name      = row._placeName;
+                node.uid            = row._uid;
+                NSDate* date = [NSDate dateWithTimeIntervalSince1970:row._date];
+                node.date = [date description];
+                NSDate* createdDate = [NSDate dateWithTimeIntervalSince1970:row._createdTime];
+                node.created        = [createdDate description];
 
-            Photo * photo       = [Photo new];
-            photo.src           = row._photoFileNames;//<--- Mety sary betsaka
-            node.field_photo    = photo;
-            node.nid            = row._nid;
-            node.speciesNid     = row._speciesNid;
-            node.uuid           = row._uuid;
-            node.isLocal        = row._isLocal;
-            node.isSynced       = row._isSynced;
-            node.count          = row._speciesCount;
-           
-            //--- Updated May 20 2017 ---//
-            node.deleted        = row._deleted;
-            node.place_name_reference_nid = row._place_name_reference_nid;
-            NSDate* modifiedDate = [NSDate dateWithTimeIntervalSince1970:row._modifiedTime];
-            node.modified        = [modifiedDate description];
-            //-----------------------------------------------//
+                Photo * photo       = [Photo new];
+                photo.src           = row._photoFileNames;//<--- Mety sary betsaka
+                node.field_photo    = photo;
+                node.nid            = row._nid;
+                node.speciesNid     = row._speciesNid;
+                node.uuid           = row._uuid;
+                node.isLocal        = row._isLocal;
+                node.isSynced       = row._isSynced;
+                node.count          = row._speciesCount;
+               
+                //--- Updated May 20 2017 ---//
+                //node.deleted        = row._deleted;
+                node.place_name_reference_nid = row._place_name_reference_nid;
+                //NSDate* modifiedDate = [NSDate dateWithTimeIntervalSince1970:row._modifiedTime];
+                //node.modified        = [modifiedDate description];
+                //-----------------------------------------------//
+                
+                listNode.node       = node;
+                [nodeLists addObject:listNode];
+            }
             
-            listNode.node       = node;
-            [nodeLists addObject:listNode];
+            _sightingsList = nodeLists;
+            
+        }@catch(NSException *e){
+            NSLog(@"%@",e.description);
         }
         
-        _sightingsList = nodeLists;
         
     }
     
@@ -471,9 +478,6 @@
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
     
-    //[popoverController dismissPopoverAnimated:YES];
-    //[self dismissViewControllerAnimated:YES completion:nil];
-    
     [self showActivityScreen];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
@@ -481,8 +485,6 @@
         
         if (err)
         {
-            //[Tools showSimpleAlertWithTitle:@"LOM" andMessage:err.debugDescription];
-            //[self dismissViewControllerAnimated:YES completion:nil];
             [self removeActivityScreen];
             [Tools showError:err onViewController:loginPopup];
         }
@@ -520,6 +522,7 @@
 
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self refreshListFromOnlineData];
+                    [appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
 
                     
                 }

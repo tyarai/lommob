@@ -259,6 +259,8 @@
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self loadOnlineSightings];
                     
+                    
+                    [appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
                 
                 }
             }
@@ -373,6 +375,8 @@
     
 }
 
+/*
+
 -(void) syncWithServer{
     
     if ([Tools isNullOrEmptyString:appDelegate._currentToken]){
@@ -428,7 +432,7 @@
     
 
 }
-
+*/
 -(void) loadOnlineSightings{
     
     if ([Tools isNullOrEmptyString:appDelegate._currentToken]){

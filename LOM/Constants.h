@@ -24,6 +24,7 @@
 #define KEY_PUBLIC_LIST @"public_list"
 
 #define FILE_EXT @".jpeg"
+#define PUBLIC_FOLDER @"public://"  
 
 
 //#define IMAGE_RESIZED_WIDTH 1024

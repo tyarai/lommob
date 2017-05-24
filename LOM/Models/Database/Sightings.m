@@ -74,7 +74,7 @@
 
 + (NSArray*) getLemurLifeLists:(NSInteger)_uid search:(NSString*)like{
     if(_uid >0 && [Tools isNullOrEmptyString:like]){
-        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' AND _deleted ='0' GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid];
+        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' AND _deleted ='0' GROUP BY _speciesNid ORDER BY _speciesName ASC)aa ",(long)_uid];
         
         NSArray * results = [Sightings resultDictionariesFromQuery:query];
         
@@ -82,7 +82,7 @@
     }
     
     if(_uid >0 && ![Tools isNullOrEmptyString:like]){
-        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' AND ( _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND  _deleted ='0' GROUP BY _speciesNid ORDER BY _speciesNid DESC)aa ",(long)_uid,like,like];
+        NSString * query = [NSString stringWithFormat:@" SELECT _speciesNid,_speciesName,totalObserved,totalSightings FROM(    SELECT _speciesNid,_speciesName,SUM(_speciesCount) totalObserved,count(_speciesNid) totalSightings FROM $T WHERE _uid = '%li' AND ( _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND  _deleted ='0' GROUP BY _speciesNid ORDER BY _speciesName ASC)aa ",(long)_uid,like,like];
         
         NSArray * results = [Sightings resultDictionariesFromQuery:query];
         

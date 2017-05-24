@@ -8,10 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsTableViewController : UITableViewController
+@interface SettingsTableViewController : UITableViewController{
+    UIActivityIndicatorView *spinner ;
+    UIView * overlayView;
+                                        
+}
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UIButton *btnLogOUt;
 @property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
+@property (weak, nonatomic) IBOutlet UIView *lifeListContentView;
+@property (weak, nonatomic) IBOutlet UIView *lifeListDescriptionView;
+
+
 
 
 @end

@@ -35,6 +35,10 @@
 @interface SightingDataTableViewController : UITableViewController <UITextViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,CameraViewControllerDelegate,UIPopoverPresentationControllerDelegate,SpeciesSelectorDelegate,WatchingSitesSelectorDelegate>{
     
     BOOL didSelectNewSite;
+    BOOL didSelectNewDate;
+    BOOL didSelectNewTitle;
+    BOOL didSelectNewNumber;
+    
     
 }
 
@@ -66,6 +70,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *scientificName;
 @property (weak, nonatomic) IBOutlet UILabel *malagasyName;
 @property (weak, nonatomic) IBOutlet UIButton *delteBtn;
+- (IBAction)numberChanged:(id)sender;
 
 //@property (strong,nonatomic) Species* currentSpecies;
 @end

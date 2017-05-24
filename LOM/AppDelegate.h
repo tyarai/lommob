@@ -21,6 +21,10 @@
 @property (strong, nonatomic) NSString *_sessionName;
 @property (strong, nonatomic) NSString *_sessid;
 @property                     NSInteger _uid;
+@property (strong, nonatomic) NSString *_sightingNewTitle;
+@property (strong, nonatomic) NSDate *_sightingNewDate;
+@property  int _sightingNumber;
+
 
 @property (strong, nonatomic) User *_curentUser;
 @property BOOL showActivity;
@@ -32,5 +36,7 @@
 @property (strong,nonatomic) Publication * appDelegateCurrentPublication;
 @property (strong,nonatomic) Sightings   * appDelegateCurrentSighting;
 @property (strong,nonatomic) LemursWatchingSites * appDelegateCurrentSite;
+
+-(void) syncSettings;
 @end
 

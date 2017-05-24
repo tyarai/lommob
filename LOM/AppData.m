@@ -11,6 +11,7 @@
 #import "UserConnectedResult.h"
 #import "BaseViewController.h"
 #import "FileResult.h"
+#import "Constants.h"
 
 @implementation AppData
 
@@ -537,24 +538,31 @@ static AppData* _instance;
                 completeBlock:(JSONObjectBlock) completeBlock{
     
     if(imagebase64){
-        // ---- Ito body voalohany ito mandeha tsara rehefa local ----//
-        //NSString * body = [NSString stringWithFormat:@"file[file]=%@&file[filename]=%@&file[filepath]=public://%@",imagebase64,fileName,fileName];
+  
+        //-- Jerena sao efa URL ilay fileName ---
+        NSURL * tempURL = [NSURL URLWithString:fileName];
         
-        NSString * body = [NSString stringWithFormat:@"file[file]=%@&file[filename]=%@&file[filepath]=public://%@&file[filesize]=%li",imagebase64,fileName,fileName,fileSize];
+        if(tempURL && tempURL.scheme && tempURL.host){
+            // --- http://192.168.2.242/sites/default/files/178_49_2017-05-11_12_38_25.jpeg ---//
+            // ---- Toy izao zany ilay fileName miditra eto. Efa synced any @ server izy ity izany
+            // fa averina miakatra indray fa nisy niova. Esorina izany ilay  http://192.168.2.242/sites/default/files/ eto ilay fileName farany sisa no ajanona eto.
+            
+            NSString *serverImagePath = [SERVER stringByAppendingString:SERVER_IMAGE_PATH];
+            
+             fileName = [fileName stringByReplacingOccurrencesOfString:serverImagePath withString:@""];
+        }
         
+        
+        NSString * body = [NSString stringWithFormat:@"file[file]=%@&file[filename]=%@&file[filepath]=%@%@&file[filesize]=%li",imagebase64,fileName,PUBLIC_FOLDER,fileName,(unsigned long)fileSize];
         
         
         NSString *charactersToEscape = @"._-!*'();:@+$,/?%#[]" "";
         NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
         NSString *encodedBody = [body stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
                                  
-        //NSString * encodedbase64Data =[imagebase64 stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
-
+ 
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, FILE_ENDPOINT];
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:encodedBody completion:completeBlock];
-        
-        
-       
         
     }
     return 0;

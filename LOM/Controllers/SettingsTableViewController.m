@@ -42,14 +42,54 @@
     if( ![Tools isNullOrEmptyString:currentUserName]){
         self.userName.text = currentUserName;
         self.btnLogOUt.hidden = NO;
+        [self setControlsHidden:NO];
+        
     }else{
         self.btnLogOUt.hidden = YES;
+        [self setControlsHidden:YES];
     }
     
     [self updateOptions]; // Manao update ny options rehetra rehefa mipoitra ity view ity na koa rehefa mahazo front ilay app
     
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self updateOptions]; // Manao update ny options rehetra rehefa mipoitra
+}
+
+/*
+    Activity Indicator  Spinner
+ */
+-(void) startSpinner{
+    
+    overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+    
+    spinner = [[UIActivityIndicatorView alloc]
+                                       initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = overlayView.center;
+    spinner.hidesWhenStopped = YES;
+    
+    
+    
+    [overlayView addSubview:spinner];
+    [spinner startAnimating];
+    [self.navigationController.view addSubview:overlayView];
+    
+}
+
+-(void) stopSpinner{
+    if(overlayView && spinner){
+       dispatch_async(dispatch_get_main_queue(), ^{
+            [spinner stopAnimating];
+            [spinner removeFromSuperview];
+            spinner = nil;
+       });
+        
+        overlayView.hidden = YES;
+        overlayView = nil;
+    }
+}
 
 
 -(void)updateOptions{
@@ -57,6 +97,7 @@
     BOOL option = [listOptions isEqualToString:@"1" ]? YES : NO;
     
     [self.switchBtn setOn:option];
+    [self.switchBtn setNeedsDisplay];
 }
 
 - (IBAction)logOuttapped:(id)sender {
@@ -68,8 +109,13 @@
     AppData * appData      = [[AppData alloc] init];
     //[self showActivityScreen];
     
+     [self startSpinner];
+
+    
     [appData CheckSession:sessionName sessionID:sessionID completeBlock:^(id json, JSONModelError *err){
         BOOL stillConnected = YES;
+        
+        [self stopSpinner];
         
         //[self removeActivityScreen];
         UserConnectedResult* sessionCheckResult = nil;
@@ -116,7 +162,7 @@
                     [Tools setUserPreferenceWithKey:KEY_USERNAME andStringValue:nil];
                     
                     self.userName.text = @"";
-                    self.btnLogOUt.hidden = YES;
+                    [self setControlsHidden:YES];
                 }
             }];
         }
@@ -126,6 +172,14 @@
     
     
     
+}
+
+-(void) setControlsHidden:(BOOL) value{
+    
+    self.btnLogOUt.hidden = value;
+    self.lifeListContentView.hidden = value;
+    self.lifeListDescriptionView.hidden = value;
+
 }
 
 
@@ -215,16 +269,22 @@
         value = @"0";
     }
     
+    [self startSpinner];
+    
     AppData * appData = [AppData getInstance];
     AppDelegate * appDelegate = [Tools getAppDelegate];
     NSInteger uid = appDelegate._uid;
+    
+    
     //--- Sync miakatra makany @ server ity settings ity --/
     [appData setUserSettingsWithUserUID:uid
                            settingsName:KEY_PUBLIC_LIST
                           settingsValue:value
                           completeBlock:^(id json, JSONModelError *err) {
+                              [self stopSpinner];
                               if(err == nil){
                                   //-- Rehefa tsy nisy error ny nampiakatr tany @server zay vao atao update ny local
+                                  
                                   [Tools setUserPreferenceWithKey:KEY_PUBLIC_LIST andStringValue:value];
                               }
                           }];
