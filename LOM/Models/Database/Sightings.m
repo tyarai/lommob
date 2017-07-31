@@ -44,6 +44,7 @@
     return [Sightings instancesWhere:[NSString stringWithFormat:@" ( _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND _uid = '%li' AND _deleted = '0' ", strValue,strValue,strValue,uid]]; // <<<---- Mbola ampina AND _deleted = '0' ny condition ato
 }
 
+
 + (void) emptySightingsTable{
     [self executeUpdateQuery:@"DELETE FROM $T"];
 }

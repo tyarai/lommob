@@ -335,7 +335,9 @@ static NSString* requestContentType = nil;
                    }];
 }
 
-+(void)getJSONFromURLWithString:(NSString*)urlString params:(NSDictionary*)params completion:(JSONObjectBlock)completeBlock
++(void)getJSONFromURLWithString:(NSString*)urlString
+                         params:(NSDictionary*)params
+                     completion:(JSONObjectBlock)completeBlock
 {
     [self JSONFromURLWithString:urlString method:kHTTPMethodGET
                          params:params
@@ -344,7 +346,9 @@ static NSString* requestContentType = nil;
                    }];
 }
 
-+(void)postJSONFromURLWithString:(NSString*)urlString params:(NSDictionary*)params completion:(JSONObjectBlock)completeBlock
++(void)postJSONFromURLWithString:(NSString*)urlString
+                          params:(NSDictionary*)params
+                      completion:(JSONObjectBlock)completeBlock
 {
     [self JSONFromURLWithString:urlString method:kHTTPMethodPOST
                          params:params

@@ -12,5 +12,8 @@
 
 @property (nonatomic) int64_t _nid;
 @property (nonatomic, strong) NSString* _file_name;
+@property (nonatomic, strong) NSString* _title;
+
++ (id) getMapByNID:(NSInteger) _nid;
 
 @end

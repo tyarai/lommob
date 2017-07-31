@@ -447,6 +447,7 @@ static AppData* _instance;
                                                           count:sighting._speciesCount
                                                         species:species
                                                          fileID:fid
+                                                   placeNameNID:sighting._place_name_reference_nid
                                                     sessionName:sessionName
                                                       sessionId:sessionID
                                                   completeBlock:^(id json, JSONModelError *error) {
@@ -664,6 +665,7 @@ static AppData* _instance;
                           count:(NSInteger)count
                         species:(Species*) species
                          fileID:(NSInteger)fid
+                   placeNameNID:(NSInteger)placeNID
                     sessionName:(NSString*)sessionName
                      sessionId :(NSString*)sessionId
                   completeBlock:(JSONObjectBlock) completeBlock{
@@ -692,6 +694,8 @@ static AppData* _instance;
         body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
         body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
         body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%li",(long)species._species_id];
+        body = [body stringByAppendingFormat:@"&field_place_name_reference[und][nid]=%li",(long)placeNID];
+        
         body = [body stringByAppendingFormat:@"&field_photo[und][0][fid]=%lu",fid];
         
         NSString* url = [NSString stringWithFormat:@"%@%@%li", SERVER, NODE_UPDATE_ENDPOINT,(long)nid];
@@ -743,9 +747,10 @@ static AppData* _instance;
  - Alaina izay changed na created manomboka @ izay "lastSyncDate" ampiakarin'ity iPhone ity
  */
 
--(void) getChangedNodesForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
+-(void) getChangedNodesForSessionId:(NSString*) session_id
+                      andCompletion:(JSONObjectBlock)completeBlock
 {
-    [self buildGETHeader];
+    [self buildPOSTHeader];
     
     if (![Tools isNullOrEmptyString:session_id]) {
         
@@ -765,14 +770,11 @@ static AppData* _instance;
             
             url = [NSString stringWithFormat:@"%@%@?from_date=%@", SERVER,CHANGED_NODES,lastSyncDate];
             
-            
-            [JSONHTTPClient getJSONFromURLWithString:url params:NULL completion:completeBlock];
+            [JSONHTTPClient postJSONFromURLWithString:url
+                                               params:NULL
+                                           completion:completeBlock];
         }
-        
-        
-        
     }
-    
 }
 
 
