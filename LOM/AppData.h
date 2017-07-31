@@ -21,14 +21,15 @@
 #endif
 
 
-#define LOGIN_ENDPOINT @"/lom_endpoint/user/login.json"
-#define LOGOUT_ENDPOINT @"/lom_endpoint/user/logout.json"
-#define REGISTER_ENDPOINT @"/lom_endpoint/user/register.json"
-#define FILE_ENDPOINT @"/lom_endpoint/file.json"
-#define NODE_ENDPOINT @"/lom_endpoint/node.json"
-#define NODE_UPDATE_ENDPOINT @"/lom_endpoint/node/"
+#define LOGIN_ENDPOINT       @"/lom_endpoint/api/v1/services/user/login.json"
+#define LOGOUT_ENDPOINT      @"/lom_endpoint/api/v1/services/user/logout.json"
+#define REGISTER_ENDPOINT    @"/lom_endpoint/api/v1/services/user/register.json"
+#define FILE_ENDPOINT        @"/lom_endpoint/api/v1/services/file.json"
+#define NODE_ENDPOINT        @"/lom_endpoint/api/v1/services/node.json"
+#define NODE_UPDATE_ENDPOINT @"/lom_endpoint/api/v1/services/node/"
 
-#define ISCONNECTED_ENDPOINT @"/lom_endpoint/system/connect.json"
+#define ISCONNECTED_ENDPOINT @"/lom_endpoint/api/v1/services/system/connect.json"
+
 #define ALL_PUBLICATION_ENDPOINT @"/all-publication-json"
 #define MY_SIGHTINGS_ENDPOINT @"/api/v1/list/sightings" // Misy parameters isLocal
 #define ALL_MY_SIGHTINGS_ENDPOINT @"/api/v1/list/all-my-sightings" // Tsy misy parameter
@@ -46,7 +47,7 @@
 #define SETTINGS_IMPORT_ENDPOINT @"/lom_endpoint/api/v1/settings/lom_settings/import_settings" // Misy param user_uid, settings_name, settings_value
 
 // ************* CHANGED NODES SERVICE (Species, Map, Photograph, Family, Places) *******
-#define CHANGED_NODES @ "lom_endpoint/api/v1/services/lom_node_services/changed_nodes" // Misy parama from_date
+#define CHANGED_NODES @ "/lom_endpoint/api/v1/services/lom_node_services/changed_nodes" // Misy parama from_date
 
 
 typedef void (^postsViewControllerFunctionCallback) (void);
