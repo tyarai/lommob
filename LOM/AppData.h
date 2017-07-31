@@ -45,6 +45,9 @@
 
 #define SETTINGS_IMPORT_ENDPOINT @"/lom_endpoint/api/v1/settings/lom_settings/import_settings" // Misy param user_uid, settings_name, settings_value
 
+// ************* CHANGED NODES SERVICE (Species, Map, Photograph, Family, Places) *******
+#define CHANGED_NODES @ "lom_endpoint/api/v1/services/lom_node_services/changed_nodes" // Misy parama from_date
+
 
 typedef void (^postsViewControllerFunctionCallback) (void);
 
@@ -69,6 +72,8 @@ typedef void (^postsViewControllerFunctionCallback) (void);
 
 
 -(void) getSightingsForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
+
+-(void) getChangedNodesForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 

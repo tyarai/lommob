@@ -195,8 +195,6 @@ static AppData* _instance;
 }
 
 
-
-
 -(void) getSightingsForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
 {
     [self buildGETHeader];
@@ -739,5 +737,43 @@ static AppData* _instance;
     [JSONHTTPClient postJSONFromURLWithString:url bodyString:nil completion:completeBlock];
     
 }
+
+/*
+ Maka ny changed nodes rehetra (Species,Families,Photo, Map,Places)
+ - Alaina izay changed na created manomboka @ izay "lastSyncDate" ampiakarin'ity iPhone ity
+ */
+
+-(void) getChangedNodesForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
+{
+    [self buildGETHeader];
+    
+    if (![Tools isNullOrEmptyString:session_id]) {
+        
+        NSString * sessionName = [[Tools getAppDelegate] _sessionName];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        
+        NSString* url= nil;
+        
+        NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        
+        if([Tools isNullOrEmptyString:lastSyncDate]){
+            lastSyncDate = @"2017-01-01"; // Alaina izay changed/created (defau;t value)
+        }else{
+            //--- Rehefa vita sync voalohany dia izay Sighting modified from LAST_SYNC_DATE ka isLocal = FALSE sisa no midina ---
+            
+            url = [NSString stringWithFormat:@"%@%@?from_date=%@", SERVER,CHANGED_NODES,lastSyncDate];
+            
+            
+            [JSONHTTPClient getJSONFromURLWithString:url params:NULL completion:completeBlock];
+        }
+        
+        
+        
+    }
+    
+}
+
 
 @end

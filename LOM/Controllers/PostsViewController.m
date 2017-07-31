@@ -625,6 +625,40 @@
 
 
 
+-(void) getChangedNodesJSONCall{
+    
+    [appData getChangedNodesForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
+        
+        if (err) {
+            if(self.refreshControl){
+                [self.refreshControl endRefreshing];
+            }
+            [Tools showError:err onViewController:self];
+            
+        }else{
+            
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            NSError* error;
+            //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
+            //---- ny Class propertries
+            //PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error){
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }
+            else{
+                
+            }
+            
+        }
+        
+    }];
+    
+}
+
+
+
+
 -(void) reloadData
 {
     [self.tableViewLifeList reloadData];

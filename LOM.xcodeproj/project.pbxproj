@@ -12,6 +12,72 @@
 		4C1122E11C0A29DB00562FC1 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1122E01C0A29DB00562FC1 /* SplashViewController.m */; };
 		4C24A9A71ECC958500F475DA /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */; };
 		4C316F431C113CB1004CCFE5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */; };
+		4C33F3EF1F2F42F800958818 /* Ambanja.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AD1F2F42F800958818 /* Ambanja.jpg */; };
+		4C33F3F01F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */; };
+		4C33F3F11F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AF1F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg */; };
+		4C33F3F21F2F42F800958818 /* Ambohitantely-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B01F2F42F800958818 /* Ambohitantely-Special-Reserve.jpg */; };
+		4C33F3F31F2F42F800958818 /* Analamerana-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B11F2F42F800958818 /* Analamerana-Special-Reserve.jpg */; };
+		4C33F3F41F2F42F800958818 /* Andasibe-.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B21F2F42F800958818 /* Andasibe-.jpg */; };
+		4C33F3F51F2F42F800958818 /* Andohahela-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B31F2F42F800958818 /* Andohahela-National-Park.jpg */; };
+		4C33F3F61F2F42F800958818 /* Andrafiamena.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B41F2F42F800958818 /* Andrafiamena.jpg */; };
+		4C33F3F71F2F42F800958818 /* Andranomena-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B51F2F42F800958818 /* Andranomena-Special-Reserve.jpg */; };
+		4C33F3F81F2F42F800958818 /* Andringitra-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B61F2F42F800958818 /* Andringitra-National-Park.jpg */; };
+		4C33F3F91F2F42F800958818 /* Anjajavy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B71F2F42F800958818 /* Anjajavy.jpg */; };
+		4C33F3FA1F2F42F800958818 /* Anjamena.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B81F2F42F800958818 /* Anjamena.jpg */; };
+		4C33F3FB1F2F42F800958818 /* Anjanaharibe-Sud-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3B91F2F42F800958818 /* Anjanaharibe-Sud-Special-Reserve.jpg */; };
+		4C33F3FC1F2F42F800958818 /* Anjiamangirana-Classified-Forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3BA1F2F42F800958818 /* Anjiamangirana-Classified-Forest.jpg */; };
+		4C33F3FD1F2F42F800958818 /* Anjozorobe-Angavo-Protected-Area.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3BB1F2F42F800958818 /* Anjozorobe-Angavo-Protected-Area.jpg */; };
+		4C33F3FE1F2F42F800958818 /* Ankarafantsika-National-Park-.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3BC1F2F42F800958818 /* Ankarafantsika-National-Park-.jpg */; };
+		4C33F3FF1F2F42F800958818 /* Ankarana-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3BD1F2F42F800958818 /* Ankarana-National-Park.jpg */; };
+		4C33F4001F2F42F800958818 /* Aye-aye-Island.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3BE1F2F42F800958818 /* Aye-aye-Island.jpg */; };
+		4C33F4011F2F42F800958818 /* Baie-de-Baly-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3BF1F2F42F800958818 /* Baie-de-Baly-National-Park.jpg */; };
+		4C33F4021F2F42F800958818 /* Bemosary-Classified-Forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C01F2F42F800958818 /* Bemosary-Classified-Forest.jpg */; };
+		4C33F4031F2F42F800958818 /* Benavony.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C11F2F42F800958818 /* Benavony.jpg */; };
+		4C33F4041F2F42F800958818 /* Berenty-Private-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C21F2F42F800958818 /* Berenty-Private-Reserve.jpg */; };
+		4C33F4051F2F42F800958818 /* Betampona-Strict-Nature-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C31F2F42F800958818 /* Betampona-Strict-Nature-Reserve.jpg */; };
+		4C33F4061F2F42F800958818 /* Beza-Mahafaly-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C41F2F42F800958818 /* Beza-Mahafaly-Special-Reserve.jpg */; };
+		4C33F4071F2F42F800958818 /* Bongolava-Classified-Forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C51F2F42F800958818 /* Bongolava-Classified-Forest.jpg */; };
+		4C33F4081F2F42F800958818 /* Bora-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C61F2F42F800958818 /* Bora-Special-Reserve.jpg */; };
+		4C33F4091F2F42F800958818 /* Croc-Farm-Parc-Zoologique.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C71F2F42F800958818 /* Croc-Farm-Parc-Zoologique.jpg */; };
+		4C33F40A1F2F42F800958818 /* Daraina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C81F2F42F800958818 /* Daraina.jpg */; };
+		4C33F40B1F2F42F800958818 /* Fandriana-Classified-Forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3C91F2F42F800958818 /* Fandriana-Classified-Forest.jpg */; };
+		4C33F40C1F2F42F800958818 /* Isalo-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3CA1F2F42F800958818 /* Isalo-National-Park.jpg */; };
+		4C33F40D1F2F42F800958818 /* Ivoloina-Parc-Zoologique.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3CB1F2F42F800958818 /* Ivoloina-Parc-Zoologique.jpg */; };
+		4C33F40E1F2F42F800958818 /* Kalambatritra-Special-Reserve-.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3CC1F2F42F800958818 /* Kalambatritra-Special-Reserve-.jpg */; };
+		4C33F40F1F2F42F800958818 /* Kasijy-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3CD1F2F42F800958818 /* Kasijy-Special-Reserve.jpg */; };
+		4C33F4101F2F42F800958818 /* Katsepy–Belemboka-Forests.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3CE1F2F42F800958818 /* Katsepy–Belemboka-Forests.jpg */; };
+		4C33F4111F2F42F800958818 /* Kirindy-Forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3CF1F2F42F800958818 /* Kirindy-Forest.jpg */; };
+		4C33F4121F2F42F800958818 /* Lac-Alaotra.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D01F2F42F800958818 /* Lac-Alaotra.jpg */; };
+		4C33F4131F2F42F800958818 /* Lemurs’-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D11F2F42F800958818 /* Lemurs’-Park.jpg */; };
+		4C33F4141F2F42F800958818 /* Lokobe-Strict-Nature-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D21F2F42F800958818 /* Lokobe-Strict-Nature-Reserve.jpg */; };
+		4C33F4151F2F42F800958818 /* Makira-Forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D31F2F42F800958818 /* Makira-Forest.jpg */; };
+		4C33F4161F2F42F800958818 /* Mananara-Nord-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D41F2F42F800958818 /* Mananara-Nord-National-Park.jpg */; };
+		4C33F4171F2F42F800958818 /* Mandena-Conservation-Zone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D51F2F42F800958818 /* Mandena-Conservation-Zone.jpg */; };
+		4C33F4181F2F42F800958818 /* Mangerivola-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D61F2F42F800958818 /* Mangerivola-Special-Reserve.jpg */; };
+		4C33F4191F2F42F800958818 /* Maningoza-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D71F2F42F800958818 /* Maningoza-Special-Reserve.jpg */; };
+		4C33F41A1F2F42F800958818 /* Manombo-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D81F2F42F800958818 /* Manombo-Special-Reserve.jpg */; };
+		4C33F41B1F2F42F800958818 /* Manongarivo-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3D91F2F42F800958818 /* Manongarivo-Special-Reserve.jpg */; };
+		4C33F41C1F2F42F800958818 /* Marojejy-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3DA1F2F42F800958818 /* Marojejy-National-Park.jpg */; };
+		4C33F41D1F2F42F800958818 /* Marotandrano-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3DB1F2F42F800958818 /* Marotandrano-Special-Reserve.jpg */; };
+		4C33F41E1F2F42F800958818 /* Masoala-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3DC1F2F42F800958818 /* Masoala-National-Park.jpg */; };
+		4C33F41F1F2F42F800958818 /* Midongy-du-Sud–Befotaka-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3DD1F2F42F800958818 /* Midongy-du-Sud–Befotaka-National-Park.jpg */; };
+		4C33F4201F2F42F800958818 /* Montagne-d-Ambre.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3DE1F2F42F800958818 /* Montagne-d-Ambre.jpg */; };
+		4C33F4211F2F42F800958818 /* Nosy-Komba.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3DF1F2F42F800958818 /* Nosy-Komba.jpg */; };
+		4C33F4221F2F42F800958818 /* Nosy-Mangabe-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E01F2F42F800958818 /* Nosy-Mangabe-Special-Reserve.jpg */; };
+		4C33F4231F2F42F800958818 /* Parc-Botanique-et-Zoologique-de-Tsimbazaza.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E11F2F42F800958818 /* Parc-Botanique-et-Zoologique-de-Tsimbazaza.jpg */; };
+		4C33F4241F2F42F800958818 /* Pic-d-Ivohibe-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E21F2F42F800958818 /* Pic-d-Ivohibe-Special-Reserve.jpg */; };
+		4C33F4251F2F42F800958818 /* PK-32-and-Ifaty.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E31F2F42F800958818 /* PK-32-and-Ifaty.jpg */; };
+		4C33F4261F2F42F800958818 /* Ranomafana-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E41F2F42F800958818 /* Ranomafana-National-Park.jpg */; };
+		4C33F4271F2F42F800958818 /* Sahamalaza-Iles-Radama-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E51F2F42F800958818 /* Sahamalaza-Iles-Radama-National-Park.jpg */; };
+		4C33F4281F2F42F800958818 /* Sainte-Luce-Private-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E61F2F42F800958818 /* Sainte-Luce-Private-Reserve.jpg */; };
+		4C33F4291F2F42F800958818 /* Tsaratanana-Strict-Nature-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E71F2F42F800958818 /* Tsaratanana-Strict-Nature-Reserve.jpg */; };
+		4C33F42A1F2F42F800958818 /* Tsimanampetsotsa-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E81F2F42F800958818 /* Tsimanampetsotsa-National-Park.jpg */; };
+		4C33F42B1F2F42F800958818 /* Tsingy-de-Bemaraha-National-Park-and-Strict-Nature-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3E91F2F42F800958818 /* Tsingy-de-Bemaraha-National-Park-and-Strict-Nature-Reserve.jpg */; };
+		4C33F42C1F2F42F800958818 /* Tsingy-de-Namoroka-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3EA1F2F42F800958818 /* Tsingy-de-Namoroka-National-Park.jpg */; };
+		4C33F42D1F2F42F800958818 /* Tsiombikibo-Forest.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3EB1F2F42F800958818 /* Tsiombikibo-Forest.jpg */; };
+		4C33F42E1F2F42F800958818 /* Vohimana.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3EC1F2F42F800958818 /* Vohimana.jpg */; };
+		4C33F42F1F2F42F800958818 /* Zahamena-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3ED1F2F42F800958818 /* Zahamena-National-Park.jpg */; };
+		4C33F4301F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3EE1F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg */; };
 		4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */; };
 		4C3BB1711ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */; };
 		4C5177491C21EA5700BBD0B1 /* SpeciesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */; };
@@ -948,6 +1014,72 @@
 		4C24A9A51ECC958500F475DA /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTableViewController.h; path = Controllers/SettingsTableViewController.h; sourceTree = "<group>"; };
 		4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTableViewController.m; path = Controllers/SettingsTableViewController.m; sourceTree = "<group>"; };
 		4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4C33F3AD1F2F42F800958818 /* Ambanja.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ambanja.jpg; sourceTree = "<group>"; };
+		4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ambatovaky-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3AF1F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ambohijanahary-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3B01F2F42F800958818 /* Ambohitantely-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ambohitantely-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3B11F2F42F800958818 /* Analamerana-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Analamerana-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3B21F2F42F800958818 /* Andasibe-.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Andasibe-.jpg"; sourceTree = "<group>"; };
+		4C33F3B31F2F42F800958818 /* Andohahela-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Andohahela-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3B41F2F42F800958818 /* Andrafiamena.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Andrafiamena.jpg; sourceTree = "<group>"; };
+		4C33F3B51F2F42F800958818 /* Andranomena-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Andranomena-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3B61F2F42F800958818 /* Andringitra-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Andringitra-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3B71F2F42F800958818 /* Anjajavy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Anjajavy.jpg; sourceTree = "<group>"; };
+		4C33F3B81F2F42F800958818 /* Anjamena.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Anjamena.jpg; sourceTree = "<group>"; };
+		4C33F3B91F2F42F800958818 /* Anjanaharibe-Sud-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Anjanaharibe-Sud-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3BA1F2F42F800958818 /* Anjiamangirana-Classified-Forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Anjiamangirana-Classified-Forest.jpg"; sourceTree = "<group>"; };
+		4C33F3BB1F2F42F800958818 /* Anjozorobe-Angavo-Protected-Area.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Anjozorobe-Angavo-Protected-Area.jpg"; sourceTree = "<group>"; };
+		4C33F3BC1F2F42F800958818 /* Ankarafantsika-National-Park-.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ankarafantsika-National-Park-.jpg"; sourceTree = "<group>"; };
+		4C33F3BD1F2F42F800958818 /* Ankarana-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ankarana-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3BE1F2F42F800958818 /* Aye-aye-Island.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Aye-aye-Island.jpg"; sourceTree = "<group>"; };
+		4C33F3BF1F2F42F800958818 /* Baie-de-Baly-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Baie-de-Baly-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3C01F2F42F800958818 /* Bemosary-Classified-Forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Bemosary-Classified-Forest.jpg"; sourceTree = "<group>"; };
+		4C33F3C11F2F42F800958818 /* Benavony.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Benavony.jpg; sourceTree = "<group>"; };
+		4C33F3C21F2F42F800958818 /* Berenty-Private-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Berenty-Private-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3C31F2F42F800958818 /* Betampona-Strict-Nature-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Betampona-Strict-Nature-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3C41F2F42F800958818 /* Beza-Mahafaly-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Beza-Mahafaly-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3C51F2F42F800958818 /* Bongolava-Classified-Forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Bongolava-Classified-Forest.jpg"; sourceTree = "<group>"; };
+		4C33F3C61F2F42F800958818 /* Bora-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Bora-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3C71F2F42F800958818 /* Croc-Farm-Parc-Zoologique.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Croc-Farm-Parc-Zoologique.jpg"; sourceTree = "<group>"; };
+		4C33F3C81F2F42F800958818 /* Daraina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Daraina.jpg; sourceTree = "<group>"; };
+		4C33F3C91F2F42F800958818 /* Fandriana-Classified-Forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Fandriana-Classified-Forest.jpg"; sourceTree = "<group>"; };
+		4C33F3CA1F2F42F800958818 /* Isalo-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Isalo-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3CB1F2F42F800958818 /* Ivoloina-Parc-Zoologique.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ivoloina-Parc-Zoologique.jpg"; sourceTree = "<group>"; };
+		4C33F3CC1F2F42F800958818 /* Kalambatritra-Special-Reserve-.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Kalambatritra-Special-Reserve-.jpg"; sourceTree = "<group>"; };
+		4C33F3CD1F2F42F800958818 /* Kasijy-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Kasijy-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3CE1F2F42F800958818 /* Katsepy–Belemboka-Forests.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Katsepy–Belemboka-Forests.jpg"; sourceTree = "<group>"; };
+		4C33F3CF1F2F42F800958818 /* Kirindy-Forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Kirindy-Forest.jpg"; sourceTree = "<group>"; };
+		4C33F3D01F2F42F800958818 /* Lac-Alaotra.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lac-Alaotra.jpg"; sourceTree = "<group>"; };
+		4C33F3D11F2F42F800958818 /* Lemurs’-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lemurs’-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3D21F2F42F800958818 /* Lokobe-Strict-Nature-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Lokobe-Strict-Nature-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3D31F2F42F800958818 /* Makira-Forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Makira-Forest.jpg"; sourceTree = "<group>"; };
+		4C33F3D41F2F42F800958818 /* Mananara-Nord-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Mananara-Nord-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3D51F2F42F800958818 /* Mandena-Conservation-Zone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Mandena-Conservation-Zone.jpg"; sourceTree = "<group>"; };
+		4C33F3D61F2F42F800958818 /* Mangerivola-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Mangerivola-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3D71F2F42F800958818 /* Maningoza-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Maningoza-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3D81F2F42F800958818 /* Manombo-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Manombo-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3D91F2F42F800958818 /* Manongarivo-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Manongarivo-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3DA1F2F42F800958818 /* Marojejy-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Marojejy-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3DB1F2F42F800958818 /* Marotandrano-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Marotandrano-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3DC1F2F42F800958818 /* Masoala-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Masoala-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3DD1F2F42F800958818 /* Midongy-du-Sud–Befotaka-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Midongy-du-Sud–Befotaka-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3DE1F2F42F800958818 /* Montagne-d-Ambre.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Montagne-d-Ambre.jpg"; sourceTree = "<group>"; };
+		4C33F3DF1F2F42F800958818 /* Nosy-Komba.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Nosy-Komba.jpg"; sourceTree = "<group>"; };
+		4C33F3E01F2F42F800958818 /* Nosy-Mangabe-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Nosy-Mangabe-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3E11F2F42F800958818 /* Parc-Botanique-et-Zoologique-de-Tsimbazaza.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Parc-Botanique-et-Zoologique-de-Tsimbazaza.jpg"; sourceTree = "<group>"; };
+		4C33F3E21F2F42F800958818 /* Pic-d-Ivohibe-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pic-d-Ivohibe-Special-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3E31F2F42F800958818 /* PK-32-and-Ifaty.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "PK-32-and-Ifaty.jpg"; sourceTree = "<group>"; };
+		4C33F3E41F2F42F800958818 /* Ranomafana-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ranomafana-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3E51F2F42F800958818 /* Sahamalaza-Iles-Radama-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Sahamalaza-Iles-Radama-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3E61F2F42F800958818 /* Sainte-Luce-Private-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Sainte-Luce-Private-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3E71F2F42F800958818 /* Tsaratanana-Strict-Nature-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Tsaratanana-Strict-Nature-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3E81F2F42F800958818 /* Tsimanampetsotsa-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Tsimanampetsotsa-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3E91F2F42F800958818 /* Tsingy-de-Bemaraha-National-Park-and-Strict-Nature-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Tsingy-de-Bemaraha-National-Park-and-Strict-Nature-Reserve.jpg"; sourceTree = "<group>"; };
+		4C33F3EA1F2F42F800958818 /* Tsingy-de-Namoroka-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Tsingy-de-Namoroka-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3EB1F2F42F800958818 /* Tsiombikibo-Forest.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Tsiombikibo-Forest.jpg"; sourceTree = "<group>"; };
+		4C33F3EC1F2F42F800958818 /* Vohimana.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Vohimana.jpg; sourceTree = "<group>"; };
+		4C33F3ED1F2F42F800958818 /* Zahamena-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Zahamena-National-Park.jpg"; sourceTree = "<group>"; };
+		4C33F3EE1F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Zombitse-Vohibasia-National-Park.jpg"; sourceTree = "<group>"; };
 		4C3BB1691ECB8C6400EFD96B /* WatchingSitesSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSitesSelectorViewController.h; path = Controllers/WatchingSitesSelectorViewController.h; sourceTree = "<group>"; };
 		4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesSelectorViewController.m; path = Controllers/WatchingSitesSelectorViewController.m; sourceTree = "<group>"; };
 		4C3BB16F1ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSitesSelectorTableViewCell.h; path = Controllers/WatchingSitesSelectorTableViewCell.h; sourceTree = "<group>"; };
@@ -2019,6 +2151,79 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		4C33F3AC1F2F42C900958818 /* place_maps */ = {
+			isa = PBXGroup;
+			children = (
+				4C33F3AD1F2F42F800958818 /* Ambanja.jpg */,
+				4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */,
+				4C33F3AF1F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg */,
+				4C33F3B01F2F42F800958818 /* Ambohitantely-Special-Reserve.jpg */,
+				4C33F3B11F2F42F800958818 /* Analamerana-Special-Reserve.jpg */,
+				4C33F3B21F2F42F800958818 /* Andasibe-.jpg */,
+				4C33F3B31F2F42F800958818 /* Andohahela-National-Park.jpg */,
+				4C33F3B41F2F42F800958818 /* Andrafiamena.jpg */,
+				4C33F3B51F2F42F800958818 /* Andranomena-Special-Reserve.jpg */,
+				4C33F3B61F2F42F800958818 /* Andringitra-National-Park.jpg */,
+				4C33F3B71F2F42F800958818 /* Anjajavy.jpg */,
+				4C33F3B81F2F42F800958818 /* Anjamena.jpg */,
+				4C33F3B91F2F42F800958818 /* Anjanaharibe-Sud-Special-Reserve.jpg */,
+				4C33F3BA1F2F42F800958818 /* Anjiamangirana-Classified-Forest.jpg */,
+				4C33F3BB1F2F42F800958818 /* Anjozorobe-Angavo-Protected-Area.jpg */,
+				4C33F3BC1F2F42F800958818 /* Ankarafantsika-National-Park-.jpg */,
+				4C33F3BD1F2F42F800958818 /* Ankarana-National-Park.jpg */,
+				4C33F3BE1F2F42F800958818 /* Aye-aye-Island.jpg */,
+				4C33F3BF1F2F42F800958818 /* Baie-de-Baly-National-Park.jpg */,
+				4C33F3C01F2F42F800958818 /* Bemosary-Classified-Forest.jpg */,
+				4C33F3C11F2F42F800958818 /* Benavony.jpg */,
+				4C33F3C21F2F42F800958818 /* Berenty-Private-Reserve.jpg */,
+				4C33F3C31F2F42F800958818 /* Betampona-Strict-Nature-Reserve.jpg */,
+				4C33F3C41F2F42F800958818 /* Beza-Mahafaly-Special-Reserve.jpg */,
+				4C33F3C51F2F42F800958818 /* Bongolava-Classified-Forest.jpg */,
+				4C33F3C61F2F42F800958818 /* Bora-Special-Reserve.jpg */,
+				4C33F3C71F2F42F800958818 /* Croc-Farm-Parc-Zoologique.jpg */,
+				4C33F3C81F2F42F800958818 /* Daraina.jpg */,
+				4C33F3C91F2F42F800958818 /* Fandriana-Classified-Forest.jpg */,
+				4C33F3CA1F2F42F800958818 /* Isalo-National-Park.jpg */,
+				4C33F3CB1F2F42F800958818 /* Ivoloina-Parc-Zoologique.jpg */,
+				4C33F3CC1F2F42F800958818 /* Kalambatritra-Special-Reserve-.jpg */,
+				4C33F3CD1F2F42F800958818 /* Kasijy-Special-Reserve.jpg */,
+				4C33F3CE1F2F42F800958818 /* Katsepy–Belemboka-Forests.jpg */,
+				4C33F3CF1F2F42F800958818 /* Kirindy-Forest.jpg */,
+				4C33F3D01F2F42F800958818 /* Lac-Alaotra.jpg */,
+				4C33F3D11F2F42F800958818 /* Lemurs’-Park.jpg */,
+				4C33F3D21F2F42F800958818 /* Lokobe-Strict-Nature-Reserve.jpg */,
+				4C33F3D31F2F42F800958818 /* Makira-Forest.jpg */,
+				4C33F3D41F2F42F800958818 /* Mananara-Nord-National-Park.jpg */,
+				4C33F3D51F2F42F800958818 /* Mandena-Conservation-Zone.jpg */,
+				4C33F3D61F2F42F800958818 /* Mangerivola-Special-Reserve.jpg */,
+				4C33F3D71F2F42F800958818 /* Maningoza-Special-Reserve.jpg */,
+				4C33F3D81F2F42F800958818 /* Manombo-Special-Reserve.jpg */,
+				4C33F3D91F2F42F800958818 /* Manongarivo-Special-Reserve.jpg */,
+				4C33F3DA1F2F42F800958818 /* Marojejy-National-Park.jpg */,
+				4C33F3DB1F2F42F800958818 /* Marotandrano-Special-Reserve.jpg */,
+				4C33F3DC1F2F42F800958818 /* Masoala-National-Park.jpg */,
+				4C33F3DD1F2F42F800958818 /* Midongy-du-Sud–Befotaka-National-Park.jpg */,
+				4C33F3DE1F2F42F800958818 /* Montagne-d-Ambre.jpg */,
+				4C33F3DF1F2F42F800958818 /* Nosy-Komba.jpg */,
+				4C33F3E01F2F42F800958818 /* Nosy-Mangabe-Special-Reserve.jpg */,
+				4C33F3E11F2F42F800958818 /* Parc-Botanique-et-Zoologique-de-Tsimbazaza.jpg */,
+				4C33F3E21F2F42F800958818 /* Pic-d-Ivohibe-Special-Reserve.jpg */,
+				4C33F3E31F2F42F800958818 /* PK-32-and-Ifaty.jpg */,
+				4C33F3E41F2F42F800958818 /* Ranomafana-National-Park.jpg */,
+				4C33F3E51F2F42F800958818 /* Sahamalaza-Iles-Radama-National-Park.jpg */,
+				4C33F3E61F2F42F800958818 /* Sainte-Luce-Private-Reserve.jpg */,
+				4C33F3E71F2F42F800958818 /* Tsaratanana-Strict-Nature-Reserve.jpg */,
+				4C33F3E81F2F42F800958818 /* Tsimanampetsotsa-National-Park.jpg */,
+				4C33F3E91F2F42F800958818 /* Tsingy-de-Bemaraha-National-Park-and-Strict-Nature-Reserve.jpg */,
+				4C33F3EA1F2F42F800958818 /* Tsingy-de-Namoroka-National-Park.jpg */,
+				4C33F3EB1F2F42F800958818 /* Tsiombikibo-Forest.jpg */,
+				4C33F3EC1F2F42F800958818 /* Vohimana.jpg */,
+				4C33F3ED1F2F42F800958818 /* Zahamena-National-Park.jpg */,
+				4C33F3EE1F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg */,
+			);
+			name = place_maps;
+			sourceTree = "<group>";
+		};
 		4C59AD8E1C15F54300EA74C5 /* Species */ = {
 			isa = PBXGroup;
 			children = (
@@ -2166,6 +2371,7 @@
 		4C6F14721C1340CD00272A06 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				4C33F3AC1F2F42C900958818 /* place_maps */,
 				B4AF342E1C9AD3630039DEBB /* CI logo (long format).jpg */,
 				B4AF342C1C9AD35B0039DEBB /* PSGlogoNEW.jpg */,
 				4C6F14731C13429D00272A06 /* _1.jpg */,
@@ -3487,6 +3693,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C33F3F21F2F42F800958818 /* Ambohitantely-Special-Reserve.jpg in Resources */,
 				4C6F17BB1C1342A000272A06 /* 381.jpg in Resources */,
 				4C6F196A1C1342A000272A06 /* LepilemurA5septentrionalis.jpg in Resources */,
 				4C6F17F91C1342A000272A06 /* 2008_12_Madagascar_145(clc).jpg in Resources */,
@@ -3495,6 +3702,7 @@
 				4C6F1A0E1C1342A100272A06 /* Mirza-coquereli.jpg in Resources */,
 				4C6F19001C1342A000272A06 /* Greater-Bamboo-Lemur_Prolemus-simus(clc).jpg in Resources */,
 				4C6F1A661C1342A100272A06 /* Propithecus4tattersalli.jpg in Resources */,
+				4C33F4241F2F42F800958818 /* Pic-d-Ivohibe-Special-Reserve.jpg in Resources */,
 				4C6F19C91C1342A000272A06 /* MapMasterTemplate5MicrocebusB4.jpg in Resources */,
 				4C6F17A51C1342A000272A06 /* 61.jpg in Resources */,
 				4C6F17D11C1342A000272A06 /* 2005_10_MAD_098(clc).jpg in Resources */,
@@ -3548,6 +3756,7 @@
 				4C6F183C1C1342A000272A06 /* April074(clc)(rotate).jpg in Resources */,
 				4C6F19F01C1342A100272A06 /* Microcebus-mitteremieri_2.jpg in Resources */,
 				4C6F18C41C1342A000272A06 /* Eulemur-cinereiceps-captive-1.jpg in Resources */,
+				4C33F41C1F2F42F800958818 /* Marojejy-National-Park.jpg in Resources */,
 				4C6F17FC1C1342A000272A06 /* 2009_01_Madagascar_040.jpg in Resources */,
 				B4AF342F1C9AD3630039DEBB /* CI logo (long format).jpg in Resources */,
 				4C6F1A091C1342A100272A06 /* MicrocebusC2griseorufus.jpg in Resources */,
@@ -3564,8 +3773,10 @@
 				4C6F188F1C1342A000272A06 /* dewit2.jpg in Resources */,
 				4C6F18F61C1342A000272A06 /* gr6.jpg in Resources */,
 				4C6F18621C1342A000272A06 /* black-indri_01.jpg in Resources */,
+				4C33F3F11F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg in Resources */,
 				4C6F18041C1342A000272A06 /* 2009_01_Madagascar_206(clc).jpg in Resources */,
 				4C6F19DA1C1342A100272A06 /* Meg13(resized).jpg in Resources */,
+				4C33F40D1F2F42F800958818 /* Ivoloina-Parc-Zoologique.jpg in Resources */,
 				4C6F198B1C1342A000272A06 /* LFG3EulemurPlate6A.jpg in Resources */,
 				4C6F19561C1342A000272A06 /* Lepilemur-mustelinus(clc).jpg in Resources */,
 				4C6F18971C1342A000272A06 /* DSC_0125.jpg in Resources */,
@@ -3586,6 +3797,7 @@
 				4C6F17961C1342A000272A06 /* _1.jpg in Resources */,
 				4C6F18D01C1342A000272A06 /* Eulemur-rufus-(1)(clc).jpg in Resources */,
 				4C6F18681C1342A000272A06 /* Brotdmann1827LemurEulemur.jpg in Resources */,
+				4C33F4191F2F42F800958818 /* Maningoza-Special-Reserve.jpg in Resources */,
 				4C6F17F81C1342A000272A06 /* 2008_12_MAD_032(clc).jpg in Resources */,
 				4C6F19551C1342A000272A06 /* Lepilemur-mustelinus-1(clc).jpg in Resources */,
 				4C6F18071C1342A000272A06 /* 2009_01_Madagascar_251(clc).jpg in Resources */,
@@ -3598,7 +3810,9 @@
 				4C6F18901C1342A000272A06 /* diademKEY.jpg in Resources */,
 				4C6F19671C1342A000272A06 /* LepilemurA5mustelinus.jpg in Resources */,
 				4C6F17A31C1342A000272A06 /* 57c.jpg in Resources */,
+				4C33F3F81F2F42F800958818 /* Andringitra-National-Park.jpg in Resources */,
 				4C6F1A3C1C1342A100272A06 /* Petter's-Sportive-Lemur_Lepilemur-petteri(clc).jpg in Resources */,
+				4C33F4091F2F42F800958818 /* Croc-Farm-Parc-Zoologique.jpg in Resources */,
 				4C6F18941C1342A000272A06 /* DSC_0038(clc).jpg in Resources */,
 				4C6F18831C1342A000272A06 /* collaris-by-Inaki-3.jpg in Resources */,
 				4C6F194F1C1342A000272A06 /* Lepilemur-jamesorum.jpg in Resources */,
@@ -3614,6 +3828,7 @@
 				4C6F19C01C1342A000272A06 /* MapMasterTemplate5EulemurA8.jpg in Resources */,
 				4C6F1A4C1C1342A100272A06 /* PICT1341.jpg in Resources */,
 				4C6F18051C1342A000272A06 /* 2009_01_Madagascar_211(clc).jpg in Resources */,
+				4C33F3FB1F2F42F800958818 /* Anjanaharibe-Sud-Special-Reserve.jpg in Resources */,
 				4C6F19F81C1342A100272A06 /* Microcebus-tavaratra.jpg in Resources */,
 				4C6F19141C1342A000272A06 /* Hapalemur4meridionalis.jpg in Resources */,
 				4C6F1A171C1342A100272A06 /* Mittermeir's-Mouse-Lemur_Microcebus-mittermeieri(clc)cropped.jpg in Resources */,
@@ -3625,6 +3840,7 @@
 				4C6F1A621C1342A100272A06 /* Propithecus4deckenii.jpg in Resources */,
 				4C6F19AD1C1342A000272A06 /* MacaucoPrint1Scan.jpg in Resources */,
 				4C6F1A0F1C1342A100272A06 /* Mirza-zaza.jpg in Resources */,
+				4C33F4071F2F42F800958818 /* Bongolava-Classified-Forest.jpg in Resources */,
 				4C6F19F91C1342A100272A06 /* MicrocebusA7arnholdi.jpg in Resources */,
 				4C6F191A1C1342A000272A06 /* Hawk's-Sportive-Lemur_Lepilemur-tymerlachsoni(clc).jpg in Resources */,
 				4C6F18AB1C1342A000272A06 /* DSC_4169(clc).jpg in Resources */,
@@ -3643,6 +3859,7 @@
 				4C6F18A11C1342A000272A06 /* DSC_1669.jpg in Resources */,
 				4C6F1A7B1C1342A100272A06 /* RAM_jan-05-madagascar0043(clc).jpg in Resources */,
 				4C6F18431C1342A000272A06 /* Avahi-meridionalis.jpg in Resources */,
+				4C33F40C1F2F42F800958818 /* Isalo-National-Park.jpg in Resources */,
 				4C6F17991C1342A000272A06 /* 1-RAM_katz0162(clc).jpg in Resources */,
 				4C6F1A9B1C1342A100272A06 /* Southern-Woolly-Lemur_Avahi-meridiionalis(clc).jpg in Resources */,
 				4C6F190B1C1342A000272A06 /* Hapalemur-meridionalis,-Mandena-forest-1thumb.jpg in Resources */,
@@ -3661,6 +3878,7 @@
 				4C6F19A11C1342A000272A06 /* LFG3VareciaPlate1.jpg in Resources */,
 				4C6F186C1C1342A000272A06 /* certainly-subcincta-Untitled-15(clc).jpg in Resources */,
 				4C6F1AA91C1342A100272A06 /* Varecia-rubra2.jpg in Resources */,
+				4C33F41E1F2F42F800958818 /* Masoala-National-Park.jpg in Resources */,
 				4C6F188D1C1342A000272A06 /* DerVariSchinzHonnegger1840.jpg in Resources */,
 				4C6F19CC1C1342A000272A06 /* MapMasterTemplate5Phaner6.jpg in Resources */,
 				4C6F18B81C1342A000272A06 /* ed-Eulemur-sanfordi-Male-Analamerana-Ed-Louis(clc)(rotate).jpg in Resources */,
@@ -3676,6 +3894,8 @@
 				4C6F18BA1C1342A000272A06 /* editgrp.jpg in Resources */,
 				4C6F17D71C1342A000272A06 /* 2006_02_Madagascar_210(clc).jpg in Resources */,
 				4C6F18AF1C1342A000272A06 /* DSC_29740390DSC_2974(clc).jpg in Resources */,
+				4C33F4301F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg in Resources */,
+				4C33F42D1F2F42F800958818 /* Tsiombikibo-Forest.jpg in Resources */,
 				4C6F189E1C1342A000272A06 /* DSC_0174(clc).jpg in Resources */,
 				4C6F1ACD1C134A0F00272A06 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				4C6F18DA1C1342A000272A06 /* EulemurA6sanfordi.jpg in Resources */,
@@ -3698,6 +3918,7 @@
 				4C6F19751C1342A000272A06 /* LepilemurB6otto.jpg in Resources */,
 				4C6F19851C1342A000272A06 /* LFG3DaubentoniaPlate2.jpg in Resources */,
 				4C6F17FB1C1342A000272A06 /* 2008_12_Madagascar_573(clc).jpg in Resources */,
+				4C33F4011F2F42F800958818 /* Baie-de-Baly-National-Park.jpg in Resources */,
 				4C6F18331C1342A000272A06 /* Amber-Mountain-Fork-crowned-lemur_Phaner-electromontis(clc).jpg in Resources */,
 				4C6F19111C1342A000272A06 /* Hapalemur4aureus.jpg in Resources */,
 				4C6F18401C1342A000272A06 /* Avahi-betsileo.jpg in Resources */,
@@ -3705,7 +3926,9 @@
 				4C6F1A1A1C1342A100272A06 /* Moore's-Woolly-Lemur_Avahi-mooreorum(clc).jpg in Resources */,
 				4C6F18EE1C1342A000272A06 /* Freddy-Midongy-du-Sud-1(clc)thumb.jpg in Resources */,
 				4C6F19D61C1342A100272A06 /* Matt-4.jpg in Resources */,
+				4C33F4221F2F42F800958818 /* Nosy-Mangabe-Special-Reserve.jpg in Resources */,
 				4C6F1A471C1342A100272A06 /* Phaner5pallescens.jpg in Resources */,
+				4C33F3F91F2F42F800958818 /* Anjajavy.jpg in Resources */,
 				4C6F1A6D1C1342A100272A06 /* PropithecusP&B4.jpg in Resources */,
 				4C6F1A401C1342A100272A06 /* pfurciKEY.jpg in Resources */,
 				4C6F19FF1C1342A100272A06 /* MicrocebusA7tavaratra.jpg in Resources */,
@@ -3753,6 +3976,7 @@
 				4C6F18F91C1342A000272A06 /* gr10.jpg in Resources */,
 				4C6F17D61C1342A000272A06 /* 2006_02_Madagascar_068(clc).jpg in Resources */,
 				4C6F18D21C1342A000272A06 /* Eulemur-rufus.jpg in Resources */,
+				4C33F4151F2F42F800958818 /* Makira-Forest.jpg in Resources */,
 				4C6F19E31C1342A100272A06 /* Microcebus-berthae.jpg in Resources */,
 				4C6F18F71C1342A000272A06 /* gr8.jpg in Resources */,
 				4C6F18D51C1342A000272A06 /* EulemurA6cinereiceps.jpg in Resources */,
@@ -3772,17 +3996,22 @@
 				4C6F193E1C1342A000272A06 /* landscapewithbaobabRAM(clc).jpg in Resources */,
 				4C6F18D41C1342A000272A06 /* EulemurA6albifrons.jpg in Resources */,
 				4C6F18231C1342A000272A06 /* 113941(clc).jpg in Resources */,
+				4C33F4021F2F42F800958818 /* Bemosary-Classified-Forest.jpg in Resources */,
 				4C6F1A071C1342A100272A06 /* MicrocebusB3macarthurii.jpg in Resources */,
 				4C6F1A9E1C1342A100272A06 /* subcgrp.jpg in Resources */,
 				4C6F18721C1342A000272A06 /* Cheirogaleous-sibreei.jpg in Resources */,
 				4C6F17F31C1342A000272A06 /* 2008_0_Mad-Baly_036(clc).jpg in Resources */,
 				4C6F1A481C1342A100272A06 /* Phaner5parienti.jpg in Resources */,
 				4C6F18511C1342A000272A06 /* Avahi3unicolor.jpg in Resources */,
+				4C33F3F01F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg in Resources */,
+				4C33F4111F2F42F800958818 /* Kirindy-Forest.jpg in Resources */,
 				4C6F17981C1342A000272A06 /* _8(clc).jpg in Resources */,
 				4C6F18581C1342A000272A06 /* BaobabsBurning2RAM.jpg in Resources */,
 				4C6F18C81C1342A000272A06 /* Eulemur-coronatus.jpg in Resources */,
 				4C6F1A1D1C1342A100272A06 /* NEW-fig.8.24-pg263_Lepilemur_seali.jpg in Resources */,
 				4C6F19271C1342A000272A06 /* Indri4indri.jpg in Resources */,
+				4C33F3EF1F2F42F800958818 /* Ambanja.jpg in Resources */,
+				4C33F42A1F2F42F800958818 /* Tsimanampetsotsa-National-Park.jpg in Resources */,
 				4CBAEAFB1BFA546B0011139C /* Assets.xcassets in Resources */,
 				4C6F17AD1C1342A000272A06 /* 135a(clc).jpg in Resources */,
 				4C6F19481C1342A000272A06 /* Lepilemur-aeeclis.jpg in Resources */,
@@ -3793,6 +4022,7 @@
 				4C6F18E51C1342A000272A06 /* Eulumur-macaco-DetailMap4.jpg in Resources */,
 				4C6F18281C1342A000272A06 /* Ahmanson's-Sportive-Lemur_Lepilemur-ahmansonorum(clc).jpg in Resources */,
 				4C6F197F1C1342A000272A06 /* Lesueur3.jpg in Resources */,
+				4C33F41F1F2F42F800958818 /* Midongy-du-Sud–Befotaka-National-Park.jpg in Resources */,
 				4C6F19FD1C1342A100272A06 /* MicrocebusA7margotmarshae.jpg in Resources */,
 				4C6F18301C1342A000272A06 /* AllocebusMitsinjo(clc).jpg in Resources */,
 				4C6F1ACA1C134A0F00272A06 /* OpenSans-LightItalic.ttf in Resources */,
@@ -3806,6 +4036,7 @@
 				4C6F1A721C1342A100272A06 /* RAM_090(clc).jpg in Resources */,
 				4C6F18B31C1342A000272A06 /* DSC_46801928DSC_4680(clc).jpg in Resources */,
 				4C6F19BE1C1342A000272A06 /* MapMasterTemplate5Cities5.jpg in Resources */,
+				4C33F40A1F2F42F800958818 /* Daraina.jpg in Resources */,
 				4C6F19C21C1342A000272A06 /* MapMasterTemplate5Hapalemur5.jpg in Resources */,
 				4C6F18571C1342A000272A06 /* BabakotiaReconstr.jpg in Resources */,
 				4C6F1AA61C1342A100272A06 /* V.-v.-ssp-Varecia_jan-05-madagascar0013RAM.jpg in Resources */,
@@ -3823,8 +4054,10 @@
 				4C6F1A731C1342A100272A06 /* RAM_097(clc).jpg in Resources */,
 				4C6F18F31C1342A000272A06 /* gr1.jpg in Resources */,
 				4C6F17E31C1342A000272A06 /* 2007_01_Madagascar_038(clc).jpg in Resources */,
+				4C33F3FA1F2F42F800958818 /* Anjamena.jpg in Resources */,
 				4C6F17F51C1342A000272A06 /* 2008_01_Madagascar_053(clc).jpg in Resources */,
 				4C6F18151C1342A000272A06 /* 2009_09_MAD(2)_065(clc).jpg in Resources */,
+				4C33F4201F2F42F800958818 /* Montagne-d-Ambre.jpg in Resources */,
 				4C6F19811C1342A000272A06 /* LFG3-Avahi-plate-1.jpg in Resources */,
 				4C6F19F61C1342A100272A06 /* Microcebus-sambiranensis.jpg in Resources */,
 				4C6F185F1C1342A000272A06 /* Betsileo-Sportive-Lemur_Lepilemur-betsileo(clc).jpg in Resources */,
@@ -3838,6 +4071,7 @@
 				4C6F1A361C1342A100272A06 /* owenayeaye-pl-1.jpg in Resources */,
 				4C6F1A111C1342A100272A06 /* Mirza-zaza2.jpg in Resources */,
 				4C6F1A711C1342A100272A06 /* RAM_049(clc).jpg in Resources */,
+				4C33F4051F2F42F800958818 /* Betampona-Strict-Nature-Reserve.jpg in Resources */,
 				4C6F17CB1C1342A000272A06 /* 2005_08_MAD_120(clc).jpg in Resources */,
 				4C6F18AD1C1342A000272A06 /* DSC_6325.jpg in Resources */,
 				4C6F17F71C1342A000272A06 /* 2008_07_Madagascar_117(clc).jpg in Resources */,
@@ -3845,6 +4079,7 @@
 				4C6F1A2B1C1342A100272A06 /* NEW-fig.9.103-pg.449_Eulemur_mongoz.jpg in Resources */,
 				4C6F18C01C1342A000272A06 /* EmongozDeSeveBuffon1783.jpg in Resources */,
 				4C6F19011C1342A000272A06 /* griffith-v-v-rubra.jpg in Resources */,
+				4C33F4181F2F42F800958818 /* Mangerivola-Special-Reserve.jpg in Resources */,
 				4C6F1A001C1342A100272A06 /* MicrocebusA8mamiratra.jpg in Resources */,
 				4C6F194E1C1342A000272A06 /* Lepilemur-hollandorum.jpg in Resources */,
 				4C6F18751C1342A000272A06 /* Cheirogaleus3major.jpg in Resources */,
@@ -3856,36 +4091,44 @@
 				4C6F19BB1C1342A000272A06 /* MapMasterTemplate5Avahi5.jpg in Resources */,
 				4C6F1A5D1C1342A100272A06 /* Propithecus-tattersalli.jpg in Resources */,
 				4C6F1A231C1342A100272A06 /* NEW-fig.9.32-pg.357_Prolemur_simus.jpg in Resources */,
+				4C33F42F1F2F42F800958818 /* Zahamena-National-Park.jpg in Resources */,
 				4C6F1A011C1342A100272A06 /* MicrocebusA8ravelobensis.jpg in Resources */,
 				4C6F17C81C1342A000272A06 /* 2004_10_Swanson_MAD_1325(clc).jpg in Resources */,
 				4C6F19721C1342A000272A06 /* LepilemurB6leucopus.jpg in Resources */,
 				4C6F187A1C1342A000272A06 /* Christian-Roos_lab(clc).jpg in Resources */,
 				4C6F1A5F1C1342A100272A06 /* Propithecus4candidus2.jpg in Resources */,
+				4C33F41A1F2F42F800958818 /* Manombo-Special-Reserve.jpg in Resources */,
 				4C6F18FD1C1342A000272A06 /* GrandidierGroup2.jpg in Resources */,
 				4C6F19B41C1342A000272A06 /* Madagascar2005March-April113(clc).jpg in Resources */,
 				4C6F18321C1342A000272A06 /* allocKEY.jpg in Resources */,
+				4C33F3FD1F2F42F800958818 /* Anjozorobe-Angavo-Protected-Area.jpg in Resources */,
 				4C6F19281C1342A000272A06 /* indriKEY.jpg in Resources */,
 				4C6F19621C1342A000272A06 /* LepilemurA5betsileo.jpg in Resources */,
 				4C6F181B1C1342A000272A06 /* 2009-2010_12-01_Mad_362(clc).jpg in Resources */,
 				4C6F17C11C1342A000272A06 /* 441(clc).jpg in Resources */,
+				4C33F4041F2F42F800958818 /* Berenty-Private-Reserve.jpg in Resources */,
 				4C6F1A391C1342A100272A06 /* Painting-elephant-bird-(clc).jpg in Resources */,
 				4C6F17C01C1342A000272A06 /* 437(clc).jpg in Resources */,
 				4C6F18211C1342A000272A06 /* 106627(clc).jpg in Resources */,
 				4C6F1AAF1C1342A100272A06 /* Varecia4vvariegata.jpg in Resources */,
 				4C6F196C1C1342A000272A06 /* LepilemurB6aeeclis.jpg in Resources */,
+				4C33F3FC1F2F42F800958818 /* Anjiamangirana-Classified-Forest.jpg in Resources */,
 				4C6F19641C1342A000272A06 /* LepilemurA5hollandorum.jpg in Resources */,
+				4C33F4261F2F42F800958818 /* Ranomafana-National-Park.jpg in Resources */,
 				4C6F188E1C1342A000272A06 /* DerVariSchinzHonnegger1840new.jpg in Resources */,
 				4C6F18731C1342A000272A06 /* Cheirogaleus-crossleyi.jpg in Resources */,
 				4C6F18871C1342A000272A06 /* DAR053(clc).jpg in Resources */,
 				4C6F19361C1342A000272A06 /* Jonah-&-VVV_edited.jpg in Resources */,
 				4C6F196E1C1342A000272A06 /* LepilemurB6dorsalis.jpg in Resources */,
 				4C6F1AC71C134A0F00272A06 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				4C33F4231F2F42F800958818 /* Parc-Botanique-et-Zoologique-de-Tsimbazaza.jpg in Resources */,
 				4C6F17FA1C1342A000272A06 /* 2008_12_Madagascar_333(clc).jpg in Resources */,
 				4C6F19801C1342A000272A06 /* Lesueur5.jpg in Resources */,
 				4C6F1A081C1342A100272A06 /* MicrocebusB3mittermeieri.jpg in Resources */,
 				4C6F18661C1342A000272A06 /* BoschiAtlanteZoolCheirogali.jpg in Resources */,
 				4C6F1A561C1342A100272A06 /* Propithecus-candidus.jpg in Resources */,
 				4C6F18BB1C1342A000272A06 /* EditorumDiagrams1A.jpg in Resources */,
+				4C33F4171F2F42F800958818 /* Mandena-Conservation-Zone.jpg in Resources */,
 				4C6F18CD1C1342A000272A06 /* Eulemur-mongoz.jpg in Resources */,
 				4C6F19F31C1342A100272A06 /* Microcebus-ravelobensis_Inaki-Relanzon(extra-black(.jpg in Resources */,
 				4C6F17A01C1342A000272A06 /* 5-pres_letter_feb10.jpg in Resources */,
@@ -3906,6 +4149,7 @@
 				4C6F19D81C1342A100272A06 /* MD1.8.9-Hapalemur-ranomafanensis(clc)(rotate).jpg in Resources */,
 				4C6F1A2D1C1342A100272A06 /* Northern-Brown-Mouse-Lemur_Microcebus-tavaratra.jpg in Resources */,
 				4C6F1A331C1342A100272A06 /* OpolemurMiliiPZL1872.jpg in Resources */,
+				4C33F3F51F2F42F800958818 /* Andohahela-National-Park.jpg in Resources */,
 				4C6F17EF1C1342A000272A06 /* 2007_07_Madagascar_038.jpg in Resources */,
 				4C6F17FE1C1342A000272A06 /* 2009_01_Madagascar_155(clc).jpg in Resources */,
 				4C6F185B1C1342A000272A06 /* BEM059(clc).jpg in Resources */,
@@ -3935,6 +4179,8 @@
 				4C6F17F61C1342A000272A06 /* 2008_01_Madagascar_054.jpg in Resources */,
 				4C6F18191C1342A000272A06 /* 2009-2010_12-01_Mad_337(clc)small.jpg in Resources */,
 				4C6F19CE1C1342A000272A06 /* MapMasterTemplate5Propithecus6.jpg in Resources */,
+				4C33F4131F2F42F800958818 /* Lemurs’-Park.jpg in Resources */,
+				4C33F4251F2F42F800958818 /* PK-32-and-Ifaty.jpg in Resources */,
 				4C6F1AA01C1342A100272A06 /* SubcinctaDiagrams1B.jpg in Resources */,
 				4C6F1AA11C1342A100272A06 /* subfossillemurspicNEWg1blank.jpg in Resources */,
 				4C6F19191C1342A000272A06 /* HapalemurPostural.jpg in Resources */,
@@ -3947,6 +4193,7 @@
 				4C6F1A1C1C1342A100272A06 /* MrufusSteLuceHAPKE(clc).jpg in Resources */,
 				4C6F19581C1342A000272A06 /* Lepilemur-otto.jpg in Resources */,
 				4C6F18BC1C1342A000272A06 /* edlouis-authorphoto(resized).jpg in Resources */,
+				4C33F4061F2F42F800958818 /* Beza-Mahafaly-Special-Reserve.jpg in Resources */,
 				4C6F199B1C1342A000272A06 /* LFG3LepilemurPlate8.jpg in Resources */,
 				4C6F17CE1C1342A000272A06 /* 2005_08_MAD_148(clc)(rotate).jpg in Resources */,
 				4C6F1AB61C1342A100272A06 /* Western-Woolly-Lemur_Avahi-occidentalis(clc).jpg in Resources */,
@@ -3962,6 +4209,7 @@
 				4C6F19B11C1342A000272A06 /* Madagascar_R1-cdcovers_cc-front.jpg in Resources */,
 				4C6F18F41C1342A000272A06 /* gr2.jpg in Resources */,
 				4C6F17CA1C1342A000272A06 /* 2005_08_MAD_095(clc).jpg in Resources */,
+				4C33F4141F2F42F800958818 /* Lokobe-Strict-Nature-Reserve.jpg in Resources */,
 				4C6F188C1C1342A000272A06 /* Decken's-Sifaka_Propithecus-deckeni-deckeni(cropped).jpg in Resources */,
 				4C6F18141C1342A000272A06 /* 2009_09_MAD(2)_064(clc).jpg in Resources */,
 				4C6F1A031C1342A100272A06 /* MicrocebusB2jollyae.jpg in Resources */,
@@ -3996,6 +4244,7 @@
 				4C6F1A931C1342A100272A06 /* shaw-plate-37-tiff.jpg in Resources */,
 				4C6F19431C1342A000272A06 /* LemurP&B2.jpg in Resources */,
 				4C6F18D11C1342A000272A06 /* Eulemur-rufus-2008_0_Mad-Baly_029(clc).jpg in Resources */,
+				4C33F4291F2F42F800958818 /* Tsaratanana-Strict-Nature-Reserve.jpg in Resources */,
 				4C6F18471C1342A000272A06 /* Avahi-ramanantsoavana.jpg in Resources */,
 				4C6F19371C1342A000272A06 /* Killed-aye-aye.jpg in Resources */,
 				4C6F17A81C1342A000272A06 /* 69b.jpg in Resources */,
@@ -4014,7 +4263,9 @@
 				4C6F186D1C1342A000272A06 /* CGM__Madagascar_45421-copy(resized).jpg in Resources */,
 				4C6F19991C1342A000272A06 /* LFG3LepilemurPlate5Aa.jpg in Resources */,
 				4C6F192D1C1342A000272A06 /* IRR_20071119_047(thumb).jpg in Resources */,
+				4C33F4081F2F42F800958818 /* Bora-Special-Reserve.jpg in Resources */,
 				4C6F1A8E1C1342A100272A06 /* sapm_mad.jpg in Resources */,
+				4C33F3F71F2F42F800958818 /* Andranomena-Special-Reserve.jpg in Resources */,
 				4C6F1A3E1C1342A100272A06 /* Peyrieras'-Woolly-Lemur_Avahi-peyrierasi-Type-3(clc).jpg in Resources */,
 				4C6F1A541C1342A100272A06 /* Prolemur-simus-by-Inaki(clc).jpg in Resources */,
 				4C6F190D1C1342A000272A06 /* Hapalemur-occidentalis.jpg in Resources */,
@@ -4028,6 +4279,7 @@
 				4C6F18911C1342A000272A06 /* DmadagKEY.jpg in Resources */,
 				4C6F19221C1342A000272A06 /* img042(clc)test.jpg in Resources */,
 				4C6F1A301C1342A100272A06 /* OCT008(clc).jpg in Resources */,
+				4C33F4281F2F42F800958818 /* Sainte-Luce-Private-Reserve.jpg in Resources */,
 				4C6F18EC1C1342A000272A06 /* Freddy-Manongarivo(clc).jpg in Resources */,
 				4C6F183E1C1342A000272A06 /* archaeolemur-1-ps4-edited-RGB.jpg in Resources */,
 				4C6F18BE1C1342A000272A06 /* EdwardsRAMslidescan(clc).jpg in Resources */,
@@ -4052,10 +4304,12 @@
 				4C6F19631C1342A000272A06 /* LepilemurA5fleuretae.jpg in Resources */,
 				4C6F18761C1342A000272A06 /* CheirogaleusP&B.jpg in Resources */,
 				4C6F19A81C1342A000272A06 /* LFG3verreauxiPlate7.jpg in Resources */,
+				4C33F3F61F2F42F800958818 /* Andrafiamena.jpg in Resources */,
 				B46779361D4665B000618410 /* Localizable.strings in Resources */,
 				4C6F19131C1342A000272A06 /* Hapalemur4ggriseus.jpg in Resources */,
 				4C6F18801C1342A000272A06 /* Collared-Brown-Lemur_Eulemur-collaris.jpg in Resources */,
 				4C6F19DE1C1342A100272A06 /* MegaSketch10.jpg in Resources */,
+				4C33F4001F2F42F800958818 /* Aye-aye-Island.jpg in Resources */,
 				4C6F18991C1342A000272A06 /* DSC_0130(clc)(test).jpg in Resources */,
 				4C6F19A31C1342A000272A06 /* LFG3verreauxiPlate2.jpg in Resources */,
 				4C6F1A9A1C1342A100272A06 /* SomeMicrocebusSkins2blank.jpg in Resources */,
@@ -4074,6 +4328,7 @@
 				4C6F182C1C1342A000272A06 /* Allocebus-trichotis_Hairy-eared-dwarf-lemur(clc).jpg in Resources */,
 				4C6F19411C1342A000272A06 /* Lemur5catta.jpg in Resources */,
 				4C6F19DF1C1342A100272A06 /* MegGorillaSkullComparison.jpg in Resources */,
+				4C33F42C1F2F42F800958818 /* Tsingy-de-Namoroka-National-Park.jpg in Resources */,
 				4C6F18B41C1342A000272A06 /* EcollarisHaringADJ(clc)(female).jpg in Resources */,
 				4C6F1A2E1C1342A100272A06 /* Northern-Sportive-Lemur_Lepilemur-septentrionalis(clc).jpg in Resources */,
 				4C6F1AC91C134A0F00272A06 /* OpenSans-Light.ttf in Resources */,
@@ -4082,6 +4337,7 @@
 				4C6F18CF1C1342A000272A06 /* Eulemur-rufifrons-Kirindy-John-Zaonarivelo(clc).jpg in Resources */,
 				4C6F17C61C1342A000272A06 /* 2003_11_MAD_494.jpg in Resources */,
 				4C6F18171C1342A000272A06 /* 2009_09_MAD(2)_231(clc).jpg in Resources */,
+				4C33F42E1F2F42F800958818 /* Vohimana.jpg in Resources */,
 				4C6F18371C1342A000272A06 /* Anjozorobe-forest-1(clc).jpg in Resources */,
 				4C6F179D1C1342A000272A06 /* 3Cheiros2.jpg in Resources */,
 				4C6F17B81C1342A000272A06 /* 346(clc).jpg in Resources */,
@@ -4089,15 +4345,18 @@
 				4C6F1A5C1C1342A100272A06 /* Propithecus-perrieri.jpg in Resources */,
 				4C6F196D1C1342A000272A06 /* LepilemurB6ahmansonorum.jpg in Resources */,
 				4C6F18B21C1342A000272A06 /* DSC_45621819DSC_4562(clc).jpg in Resources */,
+				4C33F40F1F2F42F800958818 /* Kasijy-Special-Reserve.jpg in Resources */,
 				4C6F1A421C1342A100272A06 /* Phaner-pallescens-2-Kirindy-John-Zaonarivelo(clc).jpg in Resources */,
 				4C6F18391C1342A000272A06 /* ankaranensis_RAM_katz0188(clc).jpg in Resources */,
 				4C6F19601C1342A000272A06 /* Lepilemur-wrightae.jpg in Resources */,
 				4C6F18531C1342A000272A06 /* AvahiJAR20234LOUIS.jpg in Resources */,
 				4C6F19BA1C1342A000272A06 /* MapMasterTemplate5Allocebus1.jpg in Resources */,
+				4C33F40E1F2F42F800958818 /* Kalambatritra-Special-Reserve-.jpg in Resources */,
 				4C6F19791C1342A000272A06 /* LepilemurB6sahamalazensis.jpg in Resources */,
 				4C6F181C1C1342A000272A06 /* 2009-2010_12-01_Mad_553(clc).jpg in Resources */,
 				4C6F182B1C1342A000272A06 /* Allocebus-rescan.jpg in Resources */,
 				4C6F179C1C1342A000272A06 /* 3-2007_06_Madagascar_006(clc2).jpg in Resources */,
+				4C33F4121F2F42F800958818 /* Lac-Alaotra.jpg in Resources */,
 				4C6F1A601C1342A100272A06 /* Propithecus4coquereli.jpg in Resources */,
 				4C6F1A461C1342A100272A06 /* Phaner5furcifer.jpg in Resources */,
 				4C6F19E01C1342A100272A06 /* MegSkullsPhotos1.jpg in Resources */,
@@ -4111,6 +4370,7 @@
 				4C6F17A61C1342A000272A06 /* 65.jpg in Resources */,
 				4C6F19E51C1342A100272A06 /* Microcebus-danfossi.jpg in Resources */,
 				4C6F1A3A1C1342A100272A06 /* Palaeopropithecus-3.jpg in Resources */,
+				4C33F4101F2F42F800958818 /* Katsepy–Belemboka-Forests.jpg in Resources */,
 				4C6F19C51C1342A000272A06 /* MapMasterTemplate5Lcatta5.jpg in Resources */,
 				4C6F1A501C1342A100272A06 /* PocketGuidesMadagascarArray.jpg in Resources */,
 				4C6F197D1C1342A000272A06 /* LepilemurPortraitsGroup5.jpg in Resources */,
@@ -4143,7 +4403,9 @@
 				4C6F18891C1342A000272A06 /* Daubentonia-madagascariensis.jpg in Resources */,
 				4C6F187C1C1342A000272A06 /* CI_Logo_554(resized).jpg in Resources */,
 				4C6F18381C1342A000272A06 /* Ankarana-Sportive-Lemur_Lepilemur-ankaranensis(clc).jpg in Resources */,
+				4C33F3FF1F2F42F800958818 /* Ankarana-National-Park.jpg in Resources */,
 				4C6F1A791C1342A100272A06 /* RAM_1463fix.jpg in Resources */,
+				4C33F3F31F2F42F800958818 /* Analamerana-Special-Reserve.jpg in Resources */,
 				4C6F17A71C1342A000272A06 /* 69a.jpg in Resources */,
 				4C6F1A741C1342A100272A06 /* RAM_0837(clc).jpg in Resources */,
 				4C6F17EB1C1342A000272A06 /* 2007_06_Madagascar_084(clc).jpg in Resources */,
@@ -4156,11 +4418,13 @@
 				4C6F1A5B1C1342A100272A06 /* Propithecus-edwardsi.jpg in Resources */,
 				4C6F17EC1C1342A000272A06 /* 2007_07_Madagascar_008(clc).jpg in Resources */,
 				4C6F1A951C1342A100272A06 /* sibreei-(clc).jpg in Resources */,
+				4C33F40B1F2F42F800958818 /* Fandriana-Classified-Forest.jpg in Resources */,
 				4C6F1A991C1342A100272A06 /* Small-toothed-Sportive-Lemur_Lepilemur-microdon(clc).jpg in Resources */,
 				4C6F1A141C1342A100272A06 /* mirzaKEY.jpg in Resources */,
 				4C6F193D1C1342A000272A06 /* L.hubbardorum_14(clc).jpg in Resources */,
 				4C6F1A651C1342A100272A06 /* Propithecus4perrieri.jpg in Resources */,
 				4C6F18521C1342A000272A06 /* AvahiDeSeveBuffon1783.jpg in Resources */,
+				4C33F4211F2F42F800958818 /* Nosy-Komba.jpg in Resources */,
 				4C6F1A411C1342A100272A06 /* Phaner-electromontis.jpg in Resources */,
 				4C6F19091C1342A000272A06 /* Hapalemur-griseus-griseus.jpg in Resources */,
 				4C6F1A4A1C1342A100272A06 /* PhanerP&B.jpg in Resources */,
@@ -4188,6 +4452,7 @@
 				4C6F1A851C1342A100272A06 /* Randrianasolis-Sportive-Lemur_Lepilemur-randrianasoli(clc).jpg in Resources */,
 				4C6F19891C1342A000272A06 /* LFG3EulemurPlate4A.jpg in Resources */,
 				4C6F18D91C1342A000272A06 /* EulemurA6rufus.jpg in Resources */,
+				4C33F42B1F2F42F800958818 /* Tsingy-de-Bemaraha-National-Park-and-Strict-Nature-Reserve.jpg in Resources */,
 				4C6F1A9D1C1342A100272A06 /* Stephen-in-studioADJ.jpg in Resources */,
 				4C6F18031C1342A000272A06 /* 2009_01_Madagascar_204a(clc).jpg in Resources */,
 				4C6F17C31C1342A000272A06 /* 1861BuchDerWeltPropithecusIndri.jpg in Resources */,
@@ -4213,6 +4478,7 @@
 				4C6F18591C1342A000272A06 /* Baulu33.jpg in Resources */,
 				4C6F18651C1342A000272A06 /* blue-eyed2(clc).jpg in Resources */,
 				4C6F19061C1342A000272A06 /* Hapalemur-aureus-by-Inaki2.jpg in Resources */,
+				4C33F41B1F2F42F800958818 /* Manongarivo-Special-Reserve.jpg in Resources */,
 				4C6F1A961C1342A100272A06 /* Sibreei-by-Marina-Blanco.jpg in Resources */,
 				4C6F1A291C1342A100272A06 /* NEW-fig.9.85-pg.423_Eulemur_cineireceps.jpg in Resources */,
 				4C6F180B1C1342A000272A06 /* 2009_01_Madagascar_404(clc).jpg in Resources */,
@@ -4221,6 +4487,7 @@
 				4C6F18961C1342A000272A06 /* DSC_0094(clc).jpg in Resources */,
 				4C6F193A1C1342A000272A06 /* L-grewcockorum-E-Louis-3(clc).jpg in Resources */,
 				4C6F19151C1342A000272A06 /* Hapalemur4occidentalis.jpg in Resources */,
+				4C33F4031F2F42F800958818 /* Benavony.jpg in Resources */,
 				4C6F1A311C1342A100272A06 /* OkenDaubentonia.jpg in Resources */,
 				4C6F1A891C1342A100272A06 /* rubgrp.jpg in Resources */,
 				4C6F19321C1342A000272A06 /* James'-Sportive-Lemur_Lepilemur-jamesorum.jpg in Resources */,
@@ -4237,6 +4504,7 @@
 				4C6F17D01C1342A000272A06 /* 2005_10_MAD_027(clc).jpg in Resources */,
 				4C6F195D1C1342A000272A06 /* Lepilemur-seali-(thumb).jpg in Resources */,
 				4C6F18641C1342A000272A06 /* black-indri_06.jpg in Resources */,
+				4C33F4161F2F42F800958818 /* Mananara-Nord-National-Park.jpg in Resources */,
 				4C6F18221C1342A000272A06 /* 113892(clc).jpg in Resources */,
 				4C6F17B71C1342A000272A06 /* 330.jpg in Resources */,
 				4C6F199D1C1342A000272A06 /* LFG3MicrocebusPlate2b.jpg in Resources */,
@@ -4251,6 +4519,7 @@
 				4C6F19771C1342A000272A06 /* LepilemurB6randrianasoloi.jpg in Resources */,
 				4C6F1A1F1C1342A100272A06 /* NEW-fig.9.15-pg.334_Hapalemur_meridionalis.jpg in Resources */,
 				4C6F18C21C1342A000272A06 /* EsanfordiHaring(male)(clc).jpg in Resources */,
+				4C33F3FE1F2F42F800958818 /* Ankarafantsika-National-Park-.jpg in Resources */,
 				4C6F18551C1342A000272A06 /* Aye-aye_Daubentonia-madagascariensis(clc).jpg in Resources */,
 				4C6F19B61C1342A000272A06 /* MadagMapSequenceColour2.jpg in Resources */,
 				4C6F1A4D1C1342A100272A06 /* pk_madagascar_lemurs.jpg in Resources */,
@@ -4282,15 +4551,18 @@
 				4C6F19911C1342A000272A06 /* LFG3HapalemurPlate1_2.jpg in Resources */,
 				4C6F18DC1C1342A000272A06 /* EulemurB6flavifrons.jpg in Resources */,
 				4C6F180E1C1342A000272A06 /* 2009_01_Madagascar_498(crop).jpg in Resources */,
+				4C33F41D1F2F42F800958818 /* Marotandrano-Special-Reserve.jpg in Resources */,
 				4C6F19651C1342A000272A06 /* LepilemurA5jamesorum.jpg in Resources */,
 				4C6F19351C1342A000272A06 /* Jolly's-Mouse-Lemur_Microcebus-jollyae(clc).jpg in Resources */,
 				4C6F1AA81C1342A100272A06 /* Valley-Baobabs.jpg in Resources */,
 				4C6F18081C1342A000272A06 /* 2009_01_Madagascar_266.jpg in Resources */,
 				4C6F19261C1342A000272A06 /* Img165(clc).jpg in Resources */,
 				4C6F180F1C1342A000272A06 /* 2009_09_MAD_222(clc).jpg in Resources */,
+				4C33F3F41F2F42F800958818 /* Andasibe-.jpg in Resources */,
 				4C6F19471C1342A000272A06 /* Lepilemur_ruficaudatus(clc)thumb.jpg in Resources */,
 				4C6F19A71C1342A000272A06 /* LFG3verreauxiPlate6a.jpg in Resources */,
 				4C6F18DE1C1342A000272A06 /* EulemurB6mongoz.jpg in Resources */,
+				4C33F4271F2F42F800958818 /* Sahamalaza-Iles-Radama-National-Park.jpg in Resources */,
 				4C6F18FB1C1342A000272A06 /* Grande-Cascade-Montagne-d'Ambre(clc).jpg in Resources */,
 				4C6F183D1C1342A000272A06 /* April095(clc).jpg in Resources */,
 				4C6F1AAD1C1342A100272A06 /* Varecia4veditorum.jpg in Resources */,
