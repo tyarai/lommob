@@ -81,6 +81,7 @@
      
      */
     lastIndexPath = indexPath;
+    appDelegate.appDelegateTemporarySite = self.sites[indexPath.row];
     [tableView reloadData];
 
 }
@@ -217,7 +218,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier]isEqualToString:@"showSiteMap"]){
         WatchingSiteMap* vc = (WatchingSiteMap*)[segue destinationViewController];
-        vc.currentSite = appDelegate.appDelegateCurrentSite;
+        //LemursWatchingSites * currentSite = self.sites[lastIndexPath.row];
+        //vc.currentSite = currentSite;
     }
 }
 

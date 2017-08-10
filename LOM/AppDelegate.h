@@ -36,6 +36,7 @@
 @property (strong,nonatomic) Publication * appDelegateCurrentPublication;
 @property (strong,nonatomic) Sightings   * appDelegateCurrentSighting;
 @property (strong,nonatomic) LemursWatchingSites * appDelegateCurrentSite;
+@property (strong,nonatomic) LemursWatchingSites * appDelegateTemporarySite;
 
 -(void) syncSettings;
 @end

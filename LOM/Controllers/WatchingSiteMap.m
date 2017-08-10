@@ -8,6 +8,7 @@
 
 #import "WatchingSiteMap.h"
 #import "Maps.h"
+#import "Tools.h"
 
 @interface WatchingSiteMap ()
 
@@ -21,10 +22,12 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+
+    AppDelegate* appDelegate = [Tools getAppDelegate];
     
-    if(self.currentSite != nil){
+    if(appDelegate.appDelegateTemporarySite!= nil){
         
-        NSInteger map_id = self.currentSite._map_id;
+        NSInteger map_id = appDelegate.appDelegateTemporarySite._map_id;
         
         Maps * map = [Maps getMapByNID:map_id];
         
