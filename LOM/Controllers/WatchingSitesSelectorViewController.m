@@ -217,7 +217,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier]isEqualToString:@"showSiteMap"]){
-        WatchingSiteMap* vc = (WatchingSiteMap*)[segue destinationViewController];
+        //WatchingSiteMap* vc = (WatchingSiteMap*)[segue destinationViewController];
         //LemursWatchingSites * currentSite = self.sites[lastIndexPath.row];
         //vc.currentSite = currentSite;
     }
