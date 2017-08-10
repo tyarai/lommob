@@ -628,7 +628,8 @@
 
 -(void) getChangedNodesJSONCall{
     
-    [appData getChangedNodesForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
+    [appData getChangedNodesForSessionId:appDelegate._sessid
+                           andCompletion:^(id json, JSONModelError *err) {
         
         if (err) {
             if(self.refreshControl){
@@ -638,17 +639,19 @@
             
         }else{
             
-            NSDictionary* tmpDict = (NSDictionary*) json;
-            NSError* error;
-            //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
-            //---- ny Class propertries
-            //PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+            NSError *error = nil;
+            NSString * Data = [NSString stringWithFormat:@"%@",json[0]];
+          
+            NSData *objectData = [Data dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *changedNodesJSONDictionary = [NSJSONSerialization JSONObjectWithData:objectData
+                                                                 options:NSJSONReadingMutableContainers
+                                                                   error:&error];
             
             if (error){
                 NSLog(@"Error parse : %@", error.debugDescription);
             }
             else{
-                
+                [appData updateLocalDatabaseWith:changedNodesJSONDictionary];
             }
             
         }

@@ -107,5 +107,6 @@ typedef void (^postsViewControllerFunctionCallback) (void);
                      settingsValue:(NSString*) settings_value
                      completeBlock:(JSONObjectBlock) completeBlock;
 
+-(void) updateLocalDatabaseWith:(NSDictionary*)changedNodesJSONDictionary;
 
 @end

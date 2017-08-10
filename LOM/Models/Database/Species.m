@@ -12,15 +12,15 @@
 
 
 - (Photographs*) getSpecieProfilePhotograph {
-	return [Photographs firstInstanceWhere:[NSString stringWithFormat:@"_nid = %@", self._profile_photograph_id]];
+	return [Photographs firstInstanceWhere:[NSString stringWithFormat:@"_nid = %lli", self._profile_photograph_id]];
 }
 
 - (Families*) getSpecieFamily {
-	return [Families firstInstanceWhere:[NSString stringWithFormat:@"_nid = %@", self._family_id]];
+	return [Families firstInstanceWhere:[NSString stringWithFormat:@"_nid = %lli", self._family_id]];
 }
 
 - (Maps*) getSpecieMap {
-	return [Maps firstInstanceWhere:[NSString stringWithFormat:@"_nid = %@", self._map]];
+	return [Maps firstInstanceWhere:[NSString stringWithFormat:@"_nid = %lli", self._map]];
 }
 
 - (NSArray*) getSpeciePhotographs {
@@ -50,8 +50,8 @@
 	return [Species instancesWhere:[NSString stringWithFormat:@"_title LIKE '%%%@%%' OR _english LIKE '%%%@%%' OR _other_english LIKE '%%%@%%' OR _french LIKE '%%%@%%' OR _german LIKE '%%%@%%' OR _malagasy LIKE '%%%@%%'", strValue, strValue, strValue, strValue, strValue, strValue]];
 }
 
-+ (NSArray*) getSpeciesByFamily:(NSString*) family_id {
-	return [Species instancesWhere:[NSString stringWithFormat:@"_family_id = %@", family_id]];
++ (NSArray*) getSpeciesByFamily:(NSInteger) family_id {
+	return [Species instancesWhere:[NSString stringWithFormat:@"_family_id = %li", (long)family_id]];
 }
 
 
