@@ -64,4 +64,5 @@
 
 +(void) updateLocalSpeciesWith:(NSArray*) speciesDico;
 +(void) updateLocalMaps:(NSArray*) mapsDico;
++(void) updateLocalSites:(NSArray*) sitesDico;
 @end

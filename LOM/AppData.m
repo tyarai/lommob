@@ -802,7 +802,11 @@ static AppData* _instance;
         if(mapsDictionary != nil){
             [Tools updateLocalMaps:mapsDictionary];
         }
+        if(placesDictionary != nil){
+            [Tools updateLocalSites:placesDictionary];
+        }
 
+        
     }
 }
 

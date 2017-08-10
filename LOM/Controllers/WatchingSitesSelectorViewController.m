@@ -11,7 +11,7 @@
 #import "Tools.h"
 #import "LemursWatchingSites.h"
 #import "Constants.h"
-
+#import "WatchingSiteMap.h"
 @interface WatchingSitesSelectorViewController ()
 
 @end
@@ -214,6 +214,12 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier]isEqualToString:@"showSiteMap"]){
+        WatchingSiteMap* vc = (WatchingSiteMap*)[segue destinationViewController];
+        vc.currentSite = appDelegate.appDelegateCurrentSite;
+    }
+}
 
 
 

@@ -11,9 +11,12 @@
 @interface LemursWatchingSites : FCModel
 
 @property (nonatomic) int64_t _site_id;
+@property (nonatomic) int64_t _map_id;
 @property (nonatomic, strong) NSString* _title;
 @property (nonatomic, strong) NSString* _body;
 
+
++ (id) getSiteByNID:(NSInteger) _nid;
 + (NSArray*) getLemursWatchingSitesLike:(NSString*) strValue;
 + (NSArray*) allSitesOrderedByTitle:(NSString*)direction;
 + (NSArray*) getSitesLike:(NSString*) strValue ;

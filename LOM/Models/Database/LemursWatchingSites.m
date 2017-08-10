@@ -10,6 +10,12 @@
 
 @implementation LemursWatchingSites
 
++ (id) getSiteByNID:(NSInteger) _nid{
+    NSString * queryArgument = [NSString new];
+    queryArgument = [NSString stringWithFormat:@" _site_id = '%lu' ", (long)_nid];
+    return [LemursWatchingSites firstInstanceWhere: queryArgument];
+}
+
 
 + (NSArray*) getLemursWatchingSitesLike:(NSString*) strValue {
 	return [LemursWatchingSites instancesWhere:[NSString stringWithFormat:@"_title LIKE '%%%@%%'", strValue]];

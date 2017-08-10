@@ -762,6 +762,39 @@ static float appScale = 1.0;
     }
 }
 
+//----------------- Update local sites in database with ones from server (sitessDico) -----------
+
++(void) updateLocalSites:(NSArray*) sitesDico{
+    
+    if(sitesDico != nil){
+        
+        for (NSDictionary * sites in sitesDico) {
+            
+            NSInteger nid     = [[sites valueForKey:@"nid"] integerValue];
+            NSString * title  = [sites valueForKey:@"title"];
+            NSString * body   = [sites valueForKey:@"body"];
+            NSInteger map_id  = [[sites valueForKey:@"map_id"] integerValue];
+            
+            
+            LemursWatchingSites * site = [LemursWatchingSites  getSiteByNID:nid];
+            
+            if(site != nil){
+                
+                NSString * query = [NSString stringWithFormat:@"UPDATE $T SET  _title = '%@', _body = '%@', _map_id = '%li'  WHERE _site_id = '%li' ",title,body,map_id,(long)nid];
+                
+                [LemursWatchingSites executeUpdateQuery:query];
+                
+            }else{
+                LemursWatchingSites * newSite = [LemursWatchingSites new];
+                newSite._title = title;
+                newSite._body  = body;
+                newSite._map_id = map_id;
+                [newSite save];
+            }
+        }
+    }
+
+}
 
 
 @end
