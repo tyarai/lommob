@@ -661,4 +661,107 @@ static float appScale = 1.0;
 }
 
 
+//------------------------------- Manao update ny species local ---------------------
+
++(void) updateLocalSpeciesWith:(NSArray*) speciesDico{
+    
+    if(speciesDico != nil){
+        
+        for (NSDictionary * species in speciesDico) {
+            NSString * title                = [species valueForKey:@"title"];
+            NSInteger   profile_photograph  = [[species valueForKey:@"profile_photograph_id"] integerValue];
+            //NSString *  scientific_name     = [species valueForKey:@"scientific_name"];
+            //NSString *  scientist_name      = [species valueForKey:@"scientist_name"];
+            NSString *  malagasy            = [species valueForKey:@"malagasy"];
+            NSString *  geographic_range    = [species valueForKey:@"geographic_range"];
+            NSString *  where_to_see_it     = [species valueForKey:@"where_to_see_it"];
+            //NSInteger   extinct             = [[species valueForKey:@"extinct"] integerValue];
+            NSString *  other_english       = [species valueForKey:@"other_english"];
+            NSString *  german              = [species valueForKey:@"german"];
+            NSInteger   map                 = [[species valueForKey:@"map"] integerValue];
+            NSInteger   lom_family_id       = [[species valueForKey:@"lom_family_id"] integerValue];
+            NSString *  conservation_status = [species valueForKey:@"conservation_status"];
+            NSInteger   nid                 = [[species valueForKey:@"nid"] integerValue];
+            NSString *  french              = [species valueForKey:@"french"];
+            NSArray  *  photograph_ids      = [species valueForKey:@"species_photographs"];
+            NSString * stringPhotograph_ids = [photograph_ids componentsJoinedByString:@","];
+            //NSInteger  taxa_tid             = [[species valueForKey:@"taxa_tid"]integerValue];
+            NSString *  identification      = [species valueForKey:@"identification"];
+            NSString *  natural_history     = [species valueForKey:@"natural_history"];
+            NSString *  english             = [species valueForKey:@"english"];
+            
+            //---- Tadiavina aloha sao efa ao ilay Species dia atao update . raha TSIA dia atao insert satria vaovao izany ---//
+            Species * species               = [Species getSpeciesBySpeciesNID:(NSInteger)nid];
+            
+            if(species != nil){
+                //---- Efa misy fa atao update ilat speices ---//
+                
+                NSString * query = [NSString    stringWithFormat:@"UPDATE $T SET  _profile_photograph_id = '%li' , _family_id = '%li' , _title = '%@' , _english = '%@' , _other_english = '%@' , _french = '%@' , _german ='%@' , _malagasy = '%@' , _identification = '%@' , _natural_history = '%@', _geographic_range = '%@' , _conservation_status = '%@', _where_to_see_it = '%@', _map = '%li' , _specie_photograph = '%@' WHERE _species_id = '%li' ",
+                                    (long)profile_photograph,(long)lom_family_id,title,english,other_english,french,german,malagasy,identification,natural_history,geographic_range,conservation_status,where_to_see_it,(long)map,stringPhotograph_ids,(long)nid];
+                
+                [Species executeUpdateQuery:query];
+                
+                
+            }else{
+                //---- Tsy mbola misy dia creer-na vaovao mihitsy ilay species ---//
+                
+                Species * newSpecies = [Species new];
+                newSpecies._species_id              = nid;
+                newSpecies._title                   = title;
+                newSpecies._profile_photograph_id   = profile_photograph;
+                newSpecies._family_id               = lom_family_id;
+                newSpecies._english                 = english;
+                newSpecies._other_english           = other_english;
+                newSpecies._french                  = french;
+                newSpecies._german                  = german;
+                newSpecies._malagasy                = malagasy;
+                newSpecies._identification          = identification;
+                newSpecies._natural_history         = natural_history;
+                newSpecies._geographic_range        = geographic_range;
+                newSpecies._conservation_status     = conservation_status;
+                newSpecies._where_to_see_it         = where_to_see_it;
+                newSpecies._map                     = map;
+                newSpecies._specie_photograph       = stringPhotograph_ids;
+                
+                [newSpecies save];
+            }
+            
+            
+        }
+    }
+}
+
+//----------------- Update local map in database with ones from server (mapsDico) ---------------
+
++(void) updateLocalMaps:(NSArray*) mapsDico{
+    
+    if(mapsDico != nil){
+        
+        for (NSDictionary * maps in mapsDico) {
+            NSInteger nid = [[maps valueForKey:@"nid"] integerValue];
+            NSString * image_url = [maps valueForKey:@"image_url"];
+            NSString *filename = [image_url lastPathComponent];
+            
+            
+            Maps * maps = [Maps getMapByNID:nid];
+            
+            if(maps != nil){
+                
+                NSString * query = [NSString stringWithFormat:@"UPDATE $T SET  _file_name = '%@'  WHERE _nid = '%li' ",filename,(long)nid];
+                
+                [Maps executeUpdateQuery:query];
+
+            }else{
+                Maps * newMap = [Maps new];
+                newMap._file_name = filename;
+                newMap._nid       = nid;
+                [newMap save];
+
+            }
+        }
+    }
+}
+
+
+
 @end

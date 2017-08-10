@@ -62,5 +62,6 @@
 
 +(NSString*)htmlToString:(NSString*)obj;
 
-
++(void) updateLocalSpeciesWith:(NSArray*) speciesDico;
++(void) updateLocalMaps:(NSArray*) mapsDico;
 @end
