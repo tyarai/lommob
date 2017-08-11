@@ -27,7 +27,7 @@
     
     if(appDelegate.appDelegateTemporarySite!= nil){
         
-        NSInteger map_id = appDelegate.appDelegateTemporarySite._map_id;
+        NSInteger map_id = (NSInteger)appDelegate.appDelegateTemporarySite._map_id;
         
         Maps * map = [Maps getMapByNID:map_id];
         

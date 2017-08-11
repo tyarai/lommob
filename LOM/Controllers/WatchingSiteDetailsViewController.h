@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LemursWatchingSites.h"
+#import "WatchingSiteMap.h"
 
-@interface WatchingSiteDetailsViewController : UIViewController
+@interface WatchingSiteDetailsViewController : UIViewController <WatchingSiteMapDelegate>
 
 @property (nonatomic, strong) LemursWatchingSites* lemursWatchingSites;
 

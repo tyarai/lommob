@@ -7,6 +7,7 @@
 //
 
 #import "WatchingSiteDetailsViewController.h"
+#import "Tools.h"
 
 @interface WatchingSiteDetailsViewController ()
 
@@ -43,19 +44,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if( [[segue identifier] isEqualToString:@"showSiteMap"]){
+        WatchingSiteMap* vc = (WatchingSiteMap*)[segue destinationViewController];
+        if(vc != nil){
+            vc.delegate = self;
+            AppDelegate* appDelegate = [Tools getAppDelegate];
+            appDelegate.appDelegateTemporarySite = self.lemursWatchingSites;
+        }
+    }
 }
-*/
+
 
 - (IBAction)btnBack_Touch:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+-(void)dismissSiteMapViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end
+
