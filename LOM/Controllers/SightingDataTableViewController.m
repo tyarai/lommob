@@ -1,4 +1,4 @@
-      //
+//
 //  SightingDataTableViewController.m
 //  LOM
 //
@@ -17,6 +17,7 @@
 #import "Tools.h"
 #import "UIImage+Resize.h"
 
+
 #define ROWHEIGHT 44
 #define PICKERVIEW_ROW_HEIGHT 34
 
@@ -28,8 +29,20 @@
 
 @implementation SightingDataTableViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+    [self.locationManager startUpdatingLocation];
+    self.startLocation = nil;
+    
+    placelongitude = 0.0f;
+    placelatitude  = 0.0f;
     
     self.titleLabel.text = self.title;
     
@@ -68,6 +81,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Publication * publication = appDelagate.appDelegateCurrentPublication ;
     Species * currentSpecies = [Species getSpeciesBySpeciesNID:publication.speciesNid];
@@ -85,7 +99,7 @@
         if(appDelagate._sightingNumber != 0 && didSelectNewNumber){
             self.numberObserved.text = [NSString stringWithFormat:@"%li",(long)appDelagate._sightingNumber];
         }else{
-            self.numberObserved.text = [NSString stringWithFormat:@"%li",publication.count];
+            self.numberObserved.text = [NSString stringWithFormat:@"%li",(long)publication.count];
         }
         
         if(didSelectNewSite){
@@ -231,6 +245,9 @@
 }
 
 - (IBAction)doneTapped:(id)sender {
+    
+    [self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
+    
     NSString  * comments = self.comments.text;
     NSInteger obs      = [self.numberObserved.text intValue];
     NSDate * obsDate = [self.date date];
@@ -266,7 +283,9 @@
                            placeNameRef:currentSite
                                    date:obsDate
                                comments:comments
-                          photoFileName:self.takenPhotoFileName];
+                          photoFileName:self.takenPhotoFileName
+                          placeLatitude:placelatitude
+                         placeLongitude:placelongitude];
     }else{
         UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"sightings_title",@"") messsage:error];
         [self presentViewController:alert animated:YES completion:nil];
@@ -317,7 +336,7 @@
             
             AppDelegate * appDelegate = [Tools getAppDelegate];
             
-            NSString * newfileName = [NSString stringWithFormat: @"%ld_%li", appDelegate._uid, (long)species._species_id];
+            NSString * newfileName = [NSString stringWithFormat: @"%ld_%li", (long)appDelegate._uid, (long)species._species_id];
             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
             NSString * date = [dateFormatter stringFromDate:[NSDate date]];
@@ -641,4 +660,24 @@
     UITextView * textView = (UITextView*)sender;
     appDelegate._sightingNumber = [textView.text intValue];
 }
+
+#pragma mark CLLocation Manager
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    
+    CLLocation * latestLocation = locations[locations.count - 1];
+    NSString * longitude = [NSString stringWithFormat:@"%.9f", latestLocation.coordinate.longitude];
+    NSString * latitude  = [NSString stringWithFormat:@"%.9f",latestLocation.coordinate.latitude];
+    self.latitude.text = latitude;
+    self.longitude.text = longitude;
+    
+    placelatitude   = latestLocation.coordinate.latitude;
+    placelongitude  = latestLocation.coordinate.longitude;
+    
+    NSLog(@"Longitude %@ Latitude %@", longitude,latitude);
+}
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    NSLog(@"%@",[error description]);
+}
+
 @end

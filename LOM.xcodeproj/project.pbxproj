@@ -2085,9 +2085,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C59ADC71C16C8F500EA74C5 /* CoreLocation.framework in Frameworks */,
 				B4AF341E1C9A6C090039DEBB /* SafariServices.framework in Frameworks */,
 				4C59ADC81C16C9C400EA74C5 /* MapKit.framework in Frameworks */,
-				4C59ADC71C16C8F500EA74C5 /* CoreLocation.framework in Frameworks */,
 				4C59ADC51C16C8E800EA74C5 /* CoreGraphics.framework in Frameworks */,
 				4C59ADC31C16C8D600EA74C5 /* QuartzCore.framework in Frameworks */,
 				4C316F431C113CB1004CCFE5 /* libsqlite3.0.tbd in Frameworks */,

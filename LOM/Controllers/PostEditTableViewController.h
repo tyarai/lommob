@@ -18,6 +18,7 @@
 
 @end
 
+
 @interface PostEditTableViewController : UITableViewController<SightingDataTableViewControllerDelegate>
 
 @property (nonatomic,strong) Publication * currentPublication;

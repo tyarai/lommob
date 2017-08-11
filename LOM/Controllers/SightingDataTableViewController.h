@@ -13,6 +13,7 @@
 #import "SpeciesSelectorViewController.h"
 #import "WatchingSitesSelectorViewController.h"
 #import "LemursWatchingSites.h"
+#import <CoreLocation/CoreLocation.h>
 
 @protocol SightingDataTableViewControllerDelegate <NSObject>
 @optional
@@ -24,7 +25,10 @@
              placeNameRef:(LemursWatchingSites*)placeReference
                      date:(NSDate*) date
                  comments:(NSString*) comments
-            photoFileName:(NSString*) photoFileName;
+            photoFileName:(NSString*) photoFileName
+             placeLatitude:(float)latitude
+           placeLongitude:(float)longitude;
+
 
 
 
@@ -32,13 +36,14 @@
 
 
 
-@interface SightingDataTableViewController : UITableViewController <UITextViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,CameraViewControllerDelegate,UIPopoverPresentationControllerDelegate,SpeciesSelectorDelegate,WatchingSitesSelectorDelegate>{
+@interface SightingDataTableViewController : UITableViewController <UITextViewDelegate,UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,CameraViewControllerDelegate,UIPopoverPresentationControllerDelegate,SpeciesSelectorDelegate,WatchingSitesSelectorDelegate,CLLocationManagerDelegate>{
     
     BOOL didSelectNewSite;
     BOOL didSelectNewDate;
     BOOL didSelectNewTitle;
     BOOL didSelectNewNumber;
-    
+    float placelongitude;
+    float placelatitude;
     
 }
 
@@ -71,6 +76,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *malagasyName;
 @property (weak, nonatomic) IBOutlet UIButton *delteBtn;
 - (IBAction)numberChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *longitude;
+@property (weak, nonatomic) IBOutlet UILabel *latitude;
+
+@property (nonatomic,strong) CLLocationManager * locationManager;
+@property (nonatomic,strong) CLLocation * startLocation;
+
+
 
 //@property (strong,nonatomic) Species* currentSpecies;
 @end
