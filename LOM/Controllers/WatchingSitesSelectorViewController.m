@@ -82,6 +82,16 @@
      */
     lastIndexPath = indexPath;
     appDelegate.appDelegateTemporarySite = self.sites[indexPath.row];
+    
+    //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //WatchingSiteMap * siteMap = (WatchingSiteMap*)[storyboard instantiateViewControllerWithIdentifier:@"siteMapVC"];
+    
+    //if(siteMap){
+      //  siteMap.delegate = self;
+        
+    //}
+    [self performSegueWithIdentifier:@"showSiteMap" sender:self];
+    
     [tableView reloadData];
 
 }
@@ -217,13 +227,16 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier]isEqualToString:@"showSiteMap"]){
-        //WatchingSiteMap* vc = (WatchingSiteMap*)[segue destinationViewController];
-        //LemursWatchingSites * currentSite = self.sites[lastIndexPath.row];
-        //vc.currentSite = currentSite;
+        WatchingSiteMap* mapVC = (WatchingSiteMap*)[segue destinationViewController];
+        if(mapVC){
+            mapVC.delegate = self;
+        }
     }
 }
 
 
-
+-(void)dismissSiteMapViewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 @end

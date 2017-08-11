@@ -38,6 +38,11 @@
             if(image){
                 self.mapImageView.image = image;
             }
+            NSString * title = map._title;;
+            if([Tools isNullOrEmptyString:title]){
+                title = appDelegate.appDelegateTemporarySite._title;
+            }
+            self.siteName.text = title;
         }
     }
 }
@@ -56,5 +61,8 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)closeTapped:(id)sender {
+    [self.delegate dismissSiteMapViewController];
+}
 
 @end

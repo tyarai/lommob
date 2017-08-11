@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "LemursWatchingSites.h"
+#import "WatchingSiteMap.h"
 
 @protocol WatchingSitesSelectorDelegate <NSObject>
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface WatchingSitesSelectorViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate>{
+@interface WatchingSitesSelectorViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate,WatchingSiteMapDelegate>{
     NSIndexPath * lastIndexPath;
     __weak IBOutlet UIToolbar *toolBar;
     BOOL isSearchShown;
