@@ -675,6 +675,7 @@
     placelongitude  = latestLocation.coordinate.longitude;
     
     NSLog(@"Longitude %@ Latitude %@", longitude,latitude);
+    
 }
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"%@",[error description]);

@@ -865,7 +865,9 @@
              placeNameRef:(LemursWatchingSites*)placeReference
                    date:(NSDate *)date
                comments:(NSString *)comments
-          photoFileName:(NSString*)takenPhotoFileName{
+          photoFileName:(NSString*)takenPhotoFileName
+          placeLatitude:(float)latitude
+         placeLongitude:(float)longitude{  
     
     NSString * sessionName = [appDelegate _sessionName];
     NSString * sessionID   = [appDelegate _sessid];
