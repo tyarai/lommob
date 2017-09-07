@@ -148,7 +148,7 @@
             
            [UIImageJPEGRepresentation(resizedImage, 1.0)writeToFile:filePath atomically:YES];
             
-            //return filePath;
+            //return filePath;asdasd
             return fileName;
         }
             
