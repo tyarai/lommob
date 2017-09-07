@@ -12,6 +12,7 @@
 #import "SightingsInfoViewController.h"
 #import "SightingDataTableViewController.h"
 #import "Tools.h"
+#import "Constants.h"
 #import "Sightings.h"
 #import "AppDelegate.h"
 #import "User.h"
@@ -132,7 +133,8 @@
         
             UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill
                                                                  bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
-                                                   interpolationQuality:1];
+                                                   interpolationQuality:IMAGE_INTERPOLATION_QUALITY];
+            //UIImage * resizedImage = [self resizeImage:image scaledSize:CGSizeMake(1024,768)];
             
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString * title     = currentSpecies._title;
@@ -143,10 +145,11 @@
             [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
             NSString * date = [dateFormatter stringFromDate:[NSDate date]];
             fileName = [fileName stringByAppendingString:date];
+            fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
             fileName = [fileName stringByAppendingString:FILE_EXT];
             NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
             
-           [UIImageJPEGRepresentation(resizedImage, 1.0)writeToFile:filePath atomically:YES];
+           [UIImageJPEGRepresentation(resizedImage, IMAGE_COMPRESSION_QUALITY)writeToFile:filePath atomically:YES];
             
             //return filePath;asdasd
             return fileName;

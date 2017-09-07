@@ -573,7 +573,7 @@
         //--- Only do this when stillConnected = YES ---//
         if(stillConnected){
             [self getPostsJSONCall];// Sady maka ny online no manao update ny local DB
-            [self getChangedNodesJSONCall];
+            //[self getChangedNodesJSONCall];
             
         }else{
             [self showLoginPopup ];

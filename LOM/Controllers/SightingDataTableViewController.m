@@ -15,6 +15,7 @@
 #import "Species.h"
 
 #import "Tools.h"
+#import "Constants.h"
 #import "UIImage+Resize.h"
 
 
@@ -327,9 +328,10 @@
             UIImage* image = [UIImage imageNamed:imageName];
             
             //--- Compresser-na eto ity sary by default ity fa tsy eken'ny serveur online raha mihoatra ny 500KB -----//
-            UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill
+            UIImage * resizedImage = [image resizedImageWithContentMode://UIViewContentModeScaleAspectFill
+                                      UIViewContentModeScaleAspectFit
                                                                  bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
-                                                   interpolationQuality:1];
+                                                   interpolationQuality:IMAGE_INTERPOLATION_QUALITY];
             
 
             
@@ -352,7 +354,7 @@
            
             if(! [fileManager fileExistsAtPath:filePath]){
                 //-- Raha tsy misy ilay fichier vao re-creer-na eto --//
-                [UIImageJPEGRepresentation(resizedImage, 1.0)writeToFile:filePath atomically:YES];
+                [UIImageJPEGRepresentation(resizedImage, IMAGE_COMPRESSION_QUALITY)writeToFile:filePath atomically:YES];
             }
 
             
