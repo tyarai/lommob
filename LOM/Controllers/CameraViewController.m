@@ -131,10 +131,11 @@
         
         if(currentSpecies != nil){
         
-            UIImage * resizedImage = [image resizedImageWithContentMode:UIViewContentModeScaleAspectFill
+            UIImage * resizedImage = [image resizedImageWithContentMode://UIViewContentModeScaleAspectFill
+                                      IMAGE_RESIZE_MODE
                                                                  bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
                                                    interpolationQuality:IMAGE_INTERPOLATION_QUALITY];
-            //UIImage * resizedImage = [self resizeImage:image scaledSize:CGSizeMake(1024,768)];
+            //resizedImage = [self resizeImage:image                                  scaledSize:CGSizeMake(IMAGE_RESIZED_WIDTH, IMAGE_RESIZED_HEIGHT)];
             
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString * title     = currentSpecies._title;

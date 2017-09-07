@@ -328,8 +328,7 @@
             UIImage* image = [UIImage imageNamed:imageName];
             
             //--- Compresser-na eto ity sary by default ity fa tsy eken'ny serveur online raha mihoatra ny 500KB -----//
-            UIImage * resizedImage = [image resizedImageWithContentMode://UIViewContentModeScaleAspectFill
-                                      UIViewContentModeScaleAspectFit
+            UIImage * resizedImage = [image resizedImageWithContentMode:                       IMAGE_RESIZE_MODE
                                                                  bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
                                                    interpolationQuality:IMAGE_INTERPOLATION_QUALITY];
             
