@@ -782,7 +782,7 @@ static AppData* _instance;
     }
 }
 /*
-    Rehefa mahazao izay nodes recently changed rehetra tany @ server dia mahazo io 'jsonFromServer'
+    Rehefa mahazo izay nodes recently changed rehetra tany @ server dia mahazo io 'jsonFromServer'
     izay ahafahana manao update ny local database.
  */
 
@@ -795,6 +795,7 @@ static AppData* _instance;
         NSArray * photoDictionary   = [changedNodesJSONDictionary valueForKey:@"photographs"];
         NSArray * placesDictionary  = [changedNodesJSONDictionary valueForKey:@"best_places"];
         NSArray * familyDictionary  = [changedNodesJSONDictionary valueForKey:@"families"];
+        NSArray * authors           = [changedNodesJSONDictionary valueForKey:@"authors"];
         
         if(speciesDictionary != nil){
             [Tools updateLocalSpeciesWith:speciesDictionary];

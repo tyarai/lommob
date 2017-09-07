@@ -14,6 +14,8 @@
 #import "PublicationNode.h"
 #import "AppData.h"
 #import "Constants.h"
+#import "SDWebImageDownloader.h"
+#import "SDWebImageManager.h"
 
 
 @implementation Tools
@@ -738,6 +740,7 @@ static float appScale = 1.0;
     if(mapsDico != nil){
         
         for (NSDictionary * maps in mapsDico) {
+            
             NSInteger nid = [[maps valueForKey:@"nid"] integerValue];
             NSString * image_url = [maps valueForKey:@"image_url"];
             NSString *filename = [image_url lastPathComponent];
@@ -758,6 +761,45 @@ static float appScale = 1.0;
                 [newMap save];
 
             }
+            
+            //---- Raha tsy mbola misy en local ilay fichier dia alaina avy any @ server --//
+            
+            NSFileManager *fileManager = [[NSFileManager alloc] init];
+            UIImage * image = [UIImage imageNamed:filename];
+            
+            
+            SDWebImageCompletionWithFinishedBlock successBlock =
+            
+            ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                if(image != nil && error == nil && finished){
+                    if (image && finished) {
+                        // Cache image to disk or memory
+                        //[[SDImageCache sharedImageCache] storeImage:image
+                          //                                   forKey:filename
+                            //                                 toDisk:YES];
+                        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:filename];
+                        
+                        [UIImageJPEGRepresentation(image, 1.0)
+                                    writeToFile:filePath
+                                    atomically:YES];
+                    }
+                    NSLog(@"Download Successed");
+                }
+            };
+            
+            //if (![fileManager fileExistsAtPath:filename] ){
+                
+                if(image == nil){
+                    //--------- Download image here ------//
+                    NSURL * url = [NSURL URLWithString:image_url];
+                    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+                    [manager downloadImageWithURL:url
+                                          options:SDWebImageRetryFailed | SDWebImageContinueInBackground
+                                         progress:nil
+                                        completed:successBlock];
+                }
+            //}
         }
     }
 }
