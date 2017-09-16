@@ -135,13 +135,11 @@
                                       IMAGE_RESIZE_MODE
                                                                  bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
                                                    interpolationQuality:IMAGE_INTERPOLATION_QUALITY];
-            //resizedImage = [self resizeImage:image                                  scaledSize:CGSizeMake(IMAGE_RESIZED_WIDTH, IMAGE_RESIZED_HEIGHT)];
-            
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString * title     = currentSpecies._title;
-            NSInteger speciesNid = currentSpecies._species_id;
+            int64_t speciesNid = currentSpecies._species_id;
             title = [title stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-            NSString * fileName = [NSString stringWithFormat: @"%ld_%li", appDelegate._uid, (long)speciesNid];
+            NSString * fileName = [NSString stringWithFormat: @"%ld_%li",(long) appDelegate._uid, (long)speciesNid];
             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
             NSString * date = [dateFormatter stringFromDate:[NSDate date]];
