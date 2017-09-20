@@ -12,15 +12,15 @@
 @implementation Publication
 
 -(NSString*) getSightingImageFullPathName{
-    if(self.isLocal || !self.isSynced){
+    //if(self.isLocal || !self.isSynced){
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:self.field_photo.src];
         return ImagePath;
-    }else{
+    /*}else{
         NSString * fullURLPath = self.field_photo.src;
         return fullURLPath;
-    }
+    }*/
 }
 
 -(void) updateDeletedByNID:(NSInteger) value nid:(NSInteger)nid {

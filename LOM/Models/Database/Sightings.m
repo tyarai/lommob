@@ -35,7 +35,7 @@
 
 + (NSArray*) getNotSyncedSightings{
     //return [Sightings instancesWhere:[NSString stringWithFormat:@" _isLocal = '1' AND _isSynced ='0'"]];
-    return [Sightings instancesWhere:[NSString stringWithFormat:@" _isSynced ='0'"]];
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" _isSynced ='0' OR _deleted ='1' "]];
 
 }
 
@@ -102,7 +102,7 @@
 
 + (NSArray*) getSightingsByUID:(NSInteger) uid{
     if(uid > 0){
-        NSString *queryArgument = [NSString stringWithFormat:@" _uid = '%lu' AND _deleted = '0' order by _id DESC ", (long)uid];
+        NSString *queryArgument = [NSString stringWithFormat:@"  _uid = '%lu' AND _deleted = '0' order by _modifiedTime DESC ", (long)uid];
         return [Sightings instancesWhere:queryArgument];
     }
     return nil;

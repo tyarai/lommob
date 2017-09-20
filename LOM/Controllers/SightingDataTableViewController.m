@@ -117,7 +117,7 @@
         
         self.takenPhotoFileName = publication.field_photo.src;
         
-        if(publication.isLocal || !publication.isSynced){
+        //if(publication.isLocal || !publication.isSynced){
             
             //--- Jerena sao dia efa URL ilay fileName ---//
             NSURL * tempURL = [NSURL URLWithString:publication.field_photo.src];
@@ -136,14 +136,14 @@
                 [self.speciesImage setImage:img];
             }
             
-        }else{
+        /*}else{
             
             [self.speciesImage setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 NSLog(@"Finished");
                 
             } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             
-        }
+        }*/
     
         //Hanaovana conversion ity format voalohany ity
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];

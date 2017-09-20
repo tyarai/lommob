@@ -202,21 +202,34 @@ static AppData* _instance;
     
     if (![Tools isNullOrEmptyString:session_id]) {
         
-        NSString * sessionName = [[Tools getAppDelegate] _sessionName];
-        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
+        NSString * sessionName  = [[Tools getAppDelegate] _sessionName];
+        NSString * cookie       = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
    
         
         NSString* url= nil;
+        AppDelegate * appDelegate         = [Tools getAppDelegate];
+        NSUInteger uid                    = appDelegate._uid;
+        
         
         NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
         
         if([Tools isNullOrEmptyString:lastSyncDate]){
             [Tools saveSyncDate];
             //--- Rehefa vao mi-sync voalohany dia alatsaka daholo izay sighting any na Local na tsia --
-            url = [NSString stringWithFormat:@"%@%@", SERVER,ALL_MY_SIGHTINGS_ENDPOINT];
-            [JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
+            //url = [NSString stringWithFormat:@"%@%@", SERVER,SERVICE_MY_SIGHTINGS];
+            //[JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
+            
+            url = [NSString stringWithFormat:@"%@%@?uid=%lu", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid];
+            
+            [JSONHTTPClient postJSONFromURLWithString:url
+                                               params:NULL
+                                           completion:completeBlock];
+            
+            
+            
         }else{
+            /* *************************************************************
             //--- Rehefa vita sync voalohany dia izay Sighting modified from LAST_SYNC_DATE ka isLocal = FALSE sisa no midina ---
             
             url = [NSString stringWithFormat:@"%@%@", SERVER,MY_SIGHTINGS_MODIFIED_FROM];
@@ -228,6 +241,19 @@ static AppData* _instance;
             
             
             [JSONHTTPClient getJSONFromURLWithString:url params:JSONParam completion:completeBlock];
+            ************************************************************* */
+           
+            NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
+            NSString *percentEncodedString    = [lastSyncDate stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+            
+            
+            url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,percentEncodedString];
+            
+            
+            [JSONHTTPClient postJSONFromURLWithString:url
+                                               params:NULL
+                                           completion:completeBlock];
+            
         }
         
         
@@ -346,10 +372,10 @@ static AppData* _instance;
             
             if(sighting._deleted == NO){
             
-                NSURL * url = nil;
-                NSString* fileName = sighting._photoFileNames;
+                NSURL * url         = nil;
+                NSString* fileName  = sighting._photoFileNames;
                 //-- Jerena sao efa URL ilay fileName ---
-                NSURL * tempURL = [NSURL URLWithString:fileName];
+                NSURL * tempURL     = [NSURL URLWithString:fileName];
                 
                 if(tempURL && tempURL.scheme && tempURL.host){
                     url = tempURL;
@@ -399,17 +425,22 @@ static AppData* _instance;
                                         else{
                                             //-- Azo ny NID an'ity sighting vaovao ity ----
                                             NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
-                                            NSString * photoFileName = [NSString stringWithFormat:@"%@%@%@", SERVER,SERVER_IMAGE_PATH,sighting._photoFileNames];
-                                            sighting._photoFileNames = photoFileName;
+                                            // **** Deleted Sept 18 2017 ********* //
+                                            //NSString * photoFileName = [NSString stringWithFormat:@"%@%@%@", SERVER,SERVER_IMAGE_PATH,sighting._photoFileNames];
+                                            //sighting._photoFileNames = photoFileName;
+                                            // *********************************** //
                                             sighting._nid = newNID;
                                             sighting._isSynced = YES;
                                             sighting._isLocal = NO;
                                             [sighting save];
+                                           
                                             
                                             //---- Miantso ilay [postViewController loadOnlineSightings] --//
-                                            if(func != nil){
+
+                                            /*if(func != nil){
                                                 func();
-                                            }
+                                            }*/
+                                            
                                             
                                         }
                                     }];
@@ -460,11 +491,11 @@ static AppData* _instance;
                                                           
                                                           sighting._isSynced = YES;
                                                           [sighting save];
-                                                          
+                                                         
                                                           //---- Miantso ilay [postViewController loadOnlineSightings] --//
-                                                          if(func != nil){
+                                                          /*if(func != nil){
                                                               func();
-                                                          }
+                                                          }*/
                                                       }
                                     }];
                                     
@@ -499,17 +530,19 @@ static AppData* _instance;
                     }];
                 }
             }
-
-                
             
         }//for loop
         
     }else{
-        //---- Raha tsy misy ny sightings to alefa miakatra dia tonga dia asaina mi-load ny online avy hatrany --/
+        //---- Raha tsy misy ny sightings ho alefa miakatra dia tonga dia asaina mi-load ny online avy hatrany --/
         if(func != nil){
             func();
         }
     }
+    
+    
+
+    
 }
 
 -(NSString*) getImageFullPath:(NSString*)file{
@@ -616,24 +649,24 @@ static AppData* _instance;
         NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionId];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
 
-        NSString * uuid         = sighting._uuid;
-        NSString * sightingTitle = sighting._title;
-        NSInteger speciesNID = sighting._speciesNid;
-        NSString * placeName = sighting._placeName;
-        NSString * latitude  = sighting._placeLatitude;
-        NSString * longitude = sighting._placeLongitude;
-        NSInteger  count     = sighting._speciesCount;
-        NSInteger  isLocal   = NO;//sighting._isLocal;
-        NSInteger  isSynced  = (int)YES;
+        NSString * uuid                     = sighting._uuid;
+        NSString * sightingTitle            = sighting._title;
+        NSInteger speciesNID                = sighting._speciesNid;
+        NSString * placeName                = sighting._placeName;
+        NSString * latitude                 = sighting._placeLatitude;
+        NSString * longitude                = sighting._placeLongitude;
+        NSInteger  count                    = sighting._speciesCount;
+        NSInteger  isLocal                  = NO;//sighting._isLocal;
+        NSInteger  isSynced                 = (int)YES;
         NSInteger  place_name_reference_nid = sighting._place_name_reference_nid;
-        double dateTimeStamp = sighting._date;
-        NSTimeInterval _interval= dateTimeStamp;
-        NSDate *vDate = [NSDate dateWithTimeIntervalSince1970:_interval];
-        NSDateFormatter *_formatter=[[NSDateFormatter alloc]init];
+        double dateTimeStamp                = sighting._date;
+        NSTimeInterval _interval            = dateTimeStamp;
+        NSDate *vDate                       = [NSDate dateWithTimeIntervalSince1970:_interval];
+        NSDateFormatter *_formatter         =[[NSDateFormatter alloc]init];
         [_formatter setDateFormat:@"M/d/y"];
-        NSString * strDate = [_formatter stringFromDate:vDate];
+        NSString * strDate                  = [_formatter stringFromDate:vDate];
 
-        NSString *body = [NSString stringWithFormat:@"type=publication&language=und"];
+        NSString *body                      = [NSString stringWithFormat:@"type=publication&language=und"];
         
         body = [body stringByAppendingFormat:@"&title=%@",sightingTitle];
         body = [body stringByAppendingFormat:@"&field_uuid[und][0][value]=%@",uuid];

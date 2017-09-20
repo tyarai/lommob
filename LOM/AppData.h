@@ -35,6 +35,11 @@
 #define ALL_MY_SIGHTINGS_ENDPOINT @"/api/v1/list/all-my-sightings" // Tsy misy parameter
 #define MY_SIGHTINGS_MODIFIED_FROM @"/api/v1/list/my-sightings-modified-from" // Parameter  updated date >= date & isLocal = value
 
+#define SERVICE_MY_SIGHTINGS @"/lom_endpoint/api/v1/services/lom_sighting_services/changed_sightings" //Parameters : 'uid' and 'from_date'
+
+
+
+
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
 #define LIFELIST_ENDPOINT_MODIFIED_FROM @"api/v1/list/my-lemur-life-list-modified-from"
 #define LAST_SYNC_DATE @"last_sync_date"

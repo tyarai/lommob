@@ -124,7 +124,7 @@
     if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]){
         
        
-        if(publication.isLocal || !publication.isSynced){
+        //if(publication.isLocal || !publication.isSynced){
             
             NSFileManager * fileManager = [NSFileManager defaultManager];
             
@@ -169,7 +169,7 @@
             }
             
             
-        }else{
+        /*}else{
             
             [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if (error != nil) {
@@ -178,7 +178,7 @@
                 
             } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 
-        }
+        }*/
         
     }else{
         [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];

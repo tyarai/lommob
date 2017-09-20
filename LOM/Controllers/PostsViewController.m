@@ -386,7 +386,7 @@
     if(sighting){
         
         NSString * imageBundleName = [sighting.node getSightingImageFullPathName];
-        if(sighting.node.isLocal || !sighting.node.isSynced){
+        //if(sighting.node.isLocal || !sighting.node.isSynced){
             
             //--- Jerena sao dia efa URL ilay fileName ---//
             NSURL * tempURL = [NSURL URLWithString:sighting.node.field_photo.src];
@@ -404,7 +404,7 @@
             }
             
             
-        }else{
+        /*}else{
             
             SDImageCache *imageCache = [SDImageCache sharedImageCache];
             [imageCache queryDiskCacheForKey:imageBundleName done:^(UIImage *cachedImage,SDImageCacheType cacheType)
@@ -416,7 +416,7 @@
              }];
             
             
-        }
+        }*/
     }
     
     MWPhoto* photo = [MWPhoto photoWithImage:image];
@@ -599,11 +599,17 @@
             
         }else{
             
+            //NSString* stringData = (NSString*) json[0];
+            //NSDictionary* tmpDict = (NSDictionary*) stringData;
             NSDictionary* tmpDict = (NSDictionary*) json;
+            
             NSError* error;
             //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
             //---- ny Class propertries
             PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            //PublicationResult * result = [[PublicationResult alloc] initWithString:stringData  error:&error];
+            
             
             if (error){
                 NSLog(@"Error parse : %@", error.debugDescription);
