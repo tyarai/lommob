@@ -29,8 +29,8 @@
 @property (nonatomic)         int64_t speciesNid;
 @property (nonatomic, strong) NSString<Optional>* uuid;
 @property (nonatomic, strong) NSString<Optional>* place_name;
-@property (nonatomic, strong) NSString<Optional>* latitude;
-@property (nonatomic, strong) NSString<Optional>* longitude;
+@property (nonatomic) float  latitude;
+@property (nonatomic) float longitude;
 @property (nonatomic) NSInteger count; // Species count
 @property (nonatomic) int64_t isLocal;
 @property (nonatomic) int64_t isSynced;

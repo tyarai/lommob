@@ -107,6 +107,7 @@
         self.lblPlaceName.text = publication.place_name;
     }
     
+       
     NSString * strCount = nil;
     if(publication.count > 0){
         strCount = [NSString stringWithFormat:@"Number observed: %ld",(long)publication.count];

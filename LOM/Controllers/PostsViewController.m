@@ -234,6 +234,8 @@
                 node.isLocal        = row._isLocal;
                 node.isSynced       = row._isSynced;
                 node.count          = row._speciesCount;
+                node.latitude       = row._placeLatitude;
+                node.longitude      = row._placeLongitude;
                
                 //--- Updated May 20 2017 ---//
                 //node.deleted        = row._deleted;
@@ -538,11 +540,17 @@
     
 -(void) loadOnlineSightings{
     
-    NSString * sessionName = [appDelegate _sessionName];
-    NSString * sessionID   = [appDelegate _sessid];
+    
     
     self.initialLoad = TRUE;
-    [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
+    [self getPostsJSONCall];
+    
+    
+    /*
+     NSString * sessionName = [appDelegate _sessionName];
+     NSString * sessionID   = [appDelegate _sessid];
+     
+     [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
         BOOL stillConnected = YES;
         
         [self.refreshControl endRefreshing];
@@ -583,7 +591,7 @@
         
         //[self loadLocalSightings];
     }];
-    
+    */
 }
 
 
@@ -873,7 +881,7 @@
                comments:(NSString *)comments
           photoFileName:(NSString*)takenPhotoFileName
           placeLatitude:(float)latitude
-         placeLongitude:(float)longitude{  
+         placeLongitude:(float)longitude{
     
     NSString * sessionName = [appDelegate _sessionName];
     NSString * sessionID   = [appDelegate _sessid];
@@ -911,10 +919,10 @@
                     
                     //******** Update by _nid : Raha efa synced sady nahazo _nid ilay sighting - //
                     
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li'  WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,(long)_nid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%f' , _placeLongitude = '%f'  WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,(long)_nid];
                 }else{
                     //*** Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,_uuid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%f' , _placeLongitude = '%f'   WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,_uuid];
                     
                 }
                 
@@ -926,17 +934,15 @@
                 
                 //----- Creating new Sighting ------------//
                 
-                NSInteger _uid = uid;
-                NSUUID *uuid = [NSUUID UUID];
+                NSInteger _uid          = uid;
+                NSUUID *uuid            = [NSUUID UUID];
                 NSString * _uuid        = [uuid UUIDString];
                 NSInteger   _speciesNid = species._species_id;
                 NSString *_speciesName  = species._title;
                 NSInteger   _nid        = 0;
                 NSInteger  _count       = observation;
                 NSString *_placeName    = placeName;
-                NSString *_placeLatitude = @"";
-                NSString *_placeLongitude= @"";
-                NSString *_photoName     = takenPhotoFileName;
+                 NSString *_photoName     = takenPhotoFileName;
                 NSString *_title         = comments;
                 double _date             = [date timeIntervalSince1970];
                 double  _created         = [[NSDate date] timeIntervalSince1970];
@@ -951,8 +957,8 @@
                 newSightings._uid           = _uid;
                 newSightings._speciesCount  = _count;
                 newSightings._placeName     = _placeName;
-                newSightings._placeLatitude = _placeLatitude;
-                newSightings._placeLongitude= _placeLongitude;
+                newSightings._placeLatitude = latitude;
+                newSightings._placeLongitude= longitude;
                 newSightings._photoFileNames= _photoName;
                 newSightings._title         = _title;
                 newSightings._date          = _date;
@@ -988,4 +994,36 @@
     isAdding = YES;
     [self performSegueWithIdentifier:@"showPost" sender:self];
 }
+
+
+#pragma mark TABLEVIEWHEADER
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    //-- Raha vao tsy atsoina ity dia tsy miseho ilay Header
+    return TABLEVIEWHEADERHEIGHT;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    NSInteger count = [_sightingsList count];
+    NSString * title = [NSString stringWithFormat:@"You have %ld sightings",(long)count];
+    
+    UIView * view = [[UIView alloc]init];
+    [view setFrame:CGRectMake(0, 0, self.tableViewLifeList.frame.size.width, TABLEVIEWHEADERHEIGHT)];
+    view.backgroundColor = ORANGE_COLOR;
+    
+    UILabel * tableTitle = [[UILabel alloc]init];
+    [tableTitle setFrame:CGRectMake(0, 0, self.tableViewLifeList.frame.size.width, TABLEVIEWHEADERHEIGHT)];
+    tableTitle.text = title;
+    tableTitle.textAlignment = NSTextAlignmentCenter;
+    
+    [tableTitle setFont:[UIFont fontWithName:@"Open Sans" size:19]];
+    
+    [view addSubview:tableTitle];
+    
+    
+    
+    return view;
+}
+
 @end

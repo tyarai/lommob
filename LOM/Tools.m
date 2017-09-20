@@ -438,8 +438,8 @@ static float appScale = 1.0;
                 NSDate * now                    = [NSDate date];
                 int64_t  _created               = [now timeIntervalSince1970];
                 
-                NSString * _latitude            = sighting.latitude;
-                NSString * _longitude           = sighting.longitude;
+                float _latitude                 = (float)sighting.latitude;
+                float _longitude                = (float)sighting.longitude;
                 int64_t place_name_ref_nid      = sighting.place_name_reference_nid;
                 
                 NSString *error                 = [NSString stringWithFormat:@" PhotoName nil! title =%@ nid=%lli photo = %@ ",_title,_nid,_photo_name];

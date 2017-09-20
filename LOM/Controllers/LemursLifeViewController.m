@@ -23,9 +23,10 @@
 #import "UserConnectedResult.h"
 #import "UITableViewCell+Stretch.h"
 #import "PostsViewController.h"
+#import "Constants.h"
 
 #define ROWHEIGHT 121
-#define TABLEVIEWHEADERHEIGHT 44
+
 
 @interface LemursLifeViewController ()
 

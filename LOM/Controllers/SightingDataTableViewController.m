@@ -111,6 +111,8 @@
         
         self.comments.text       = publication.title;
         
+        //self.longitude.text      = [NSString stringWithFormat:@"%f",placelongitude];
+        //self.latitude.text       = [NSString stringWithFormat:@"%f",placelatitude];
         
         self.scientificName.text = currentSpecies._title;
         self.malagasyName.text   = currentSpecies._malagasy;
