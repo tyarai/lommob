@@ -302,7 +302,6 @@
     self.pullToRefresh = YES;
     appDelegate.showActivity = NO;
     
-    //[self loadOnlineLemurLifeList];
     
     [self loadOnlineSightings]; // Ny sightings no alaina dia manao updateInsert automatic ny LemurLifeList
     //[self syncSightingsWithServer]; // Ny sightings no atao syncronization
@@ -443,7 +442,11 @@
         //[Tools emptySightingTable];
         
     }else{
-        [appData getSightingsForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
+        [appData getSightingsForSessionId:appDelegate._sessid
+                                from_date:nil
+                                    start:nil
+                                    count:nil
+                            andCompletion:^(id json, JSONModelError *err) {
             
             if (err) {
                 if(self.refreshControl){

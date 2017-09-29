@@ -1,4 +1,4 @@
-//
+ //
 //  ViewController.m
 //  LOM
 //
@@ -38,6 +38,8 @@
     [super viewDidLoad];
     self.pullToRefresh = NO;
     isSearchShown = NO;
+    
+    self.recordCount = 0;
     
     self.refreshControl = [[UIRefreshControl alloc]init];
     self.refreshControl.backgroundColor = [UIColor whiteColor];//ORANGE_COLOR;
@@ -199,7 +201,7 @@
 
 - (void) loadLocalSightings{
     if(!self.pullToRefresh && !appDelegate.showActivity){
-        [self showActivityScreen];
+        //[self showActivityScreen];
     }
     
     NSInteger _uid = appDelegate._uid;
@@ -349,8 +351,6 @@
 }
 
 #pragma UITableView
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -539,105 +539,236 @@
 
     
 -(void) loadOnlineSightings{
-    
-    
-    
     self.initialLoad = TRUE;
     [self getPostsJSONCall];
     
-    
-    /*
-     NSString * sessionName = [appDelegate _sessionName];
-     NSString * sessionID   = [appDelegate _sessid];
+}
+
+
+
+ -(void) getPostsJSONCall{
+ 
+     //---- Alaina aloha ny count any @ server ----//
      
-     [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
-        BOOL stillConnected = YES;
-        
-        [self.refreshControl endRefreshing];
-        
-        UserConnectedResult* sessionCheckResult = nil;
-        if (err)
-        {
-            [Tools showError:err onViewController:self];
-        }
-        else
-        {
-            NSError* error;
-            NSDictionary* tmpDict = (NSDictionary*) json;
-            sessionCheckResult = [[UserConnectedResult alloc] initWithDictionary:tmpDict error:&error];
+     NSUInteger uid                    = appDelegate._uid;
+     NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+ 
+     [appData getSightingsCountForUID:uid
+                  changedFromDate:lastSyncDate
+                        sessionID:appDelegate._sessid
+                    andCompletion:^(id json, JSONModelError *err){
+                        
+        if(err == nil){
             
-            if (error){
-                NSLog(@"Error parse : %@", error.debugDescription);
-            }else{
-                if(sessionCheckResult.user != nil){
-                    if (sessionCheckResult.user.uid == 0){
-                        stillConnected = NO;
+            NSDictionary * result            = (NSDictionary*)json;
+            id count                         = [result valueForKey:@"count"];
+            self.recordCount                 = [count integerValue];
+            self.currentPointer              = 0;
+            
+            
+            [appData getSightingsForSessionId:appDelegate._sessid
+                                    from_date:lastSyncDate
+                                        start:[NSString stringWithFormat:@"%li", self.currentPointer]
+                                        count:[NSString stringWithFormat:@"%li", self.recordCount]
+                andCompletion:^(id json, JSONModelError *err) {
+                    
+                    if (err) {
+                        if(self.refreshControl){
+                            [self.refreshControl endRefreshing];
+                        }
+                        [Tools showError:err onViewController:self];
+                        
+                    }else{
+                        
+                        NSDictionary* tmpDict = (NSDictionary*) json;
+                        
+                        NSError* error;
+                        //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
+                        //---- ny Class propertries
+                        PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+                        
+                        if (error){
+                            
+                            NSLog(@"Error parse : %@", error.debugDescription);
+                            
+                        }
+                        else{
+                            [Tools saveSyncDate];//Atao now ny lastSync Date
+                            [Tools updateSightingsWithNodes:result.nodes];
+                            [self loadLocalSightings];
+                            
+                            //-- fafana ilay message Empty List lasa background view teo aloha --
+                            self.tableViewLifeList.backgroundView = nil;
+                            self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+                        }
+                        
                     }
                     
-                }
-            }
+                }];
             
-        }
-        //--- Only do this when stillConnected = YES ---//
-        if(stillConnected){
-            [self getPostsJSONCall];// Sady maka ny online no manao update ny local DB
-            //[self getChangedNodesJSONCall];
+
             
-        }else{
-            [self showLoginPopup ];
-            [self.tableViewLifeList setHidden:YES];
-            
-        }
+        }//--err == nil
         
-        //[self loadLocalSightings];
     }];
-    */
-}
+ }
+
+ 
 
 
+/*
 -(void) getPostsJSONCall{
     
-    [appData getSightingsForSessionId:appDelegate._sessid andCompletion:^(id json, JSONModelError *err) {
-        
-        if (err) {
-            if(self.refreshControl){
-                [self.refreshControl endRefreshing];
-            }
-            [Tools showError:err onViewController:self];
-            
-        }else{
-            
-            //NSString* stringData = (NSString*) json[0];
-            //NSDictionary* tmpDict = (NSDictionary*) stringData;
-            NSDictionary* tmpDict = (NSDictionary*) json;
-            
-            NSError* error;
-            //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
-            //---- ny Class propertries
-            PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
-            
-            //PublicationResult * result = [[PublicationResult alloc] initWithString:stringData  error:&error];
-            
-            
-            if (error){
-                NSLog(@"Error parse : %@", error.debugDescription);
-            }
-            else{
-                [Tools saveSyncDate]; // Ovaina androany ny LAST_SYNC_DATE
-                [Tools updateSightingsWithNodes:result.nodes];
-                [self loadLocalSightings];
-                
-                //-- fafana ilay message Empty List lasa background view teo aloha --
-                self.tableViewLifeList.backgroundView = nil;
-                self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            }
-            
-        }
-        
-    }];
+    //---- Alaina aloha ny count any @ server ----//
+    
+    //NSUInteger uid                    = appDelegate._uid;
+    //NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+    NSString * lastSyncDate           = nil;;
+    
+   [appData getSightingsForSessionId:appDelegate._sessid
+                           from_date:lastSyncDate
+                       andCompletion:^(id json, JSONModelError *err) {
+                       
+           if (err) {
+               if(self.refreshControl){
+                   [self.refreshControl endRefreshing];
+               }
+               [Tools showError:err onViewController:self];
+               
+           }else{
+               
+               NSDictionary* tmpDict = (NSDictionary*) json;
+               
+               NSError* error;
+               //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
+               //---- ny Class propertries
+               PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+               
+               if (error){
+                   
+                   NSLog(@"Error parse : %@", error.debugDescription);
+                   
+               }
+               else{
+                   
+                   [Tools saveSyncDate]; // Ovaina androany ny LAST_SYNC_DATE
+                   [Tools updateSightingsWithNodes:result.nodes];
+                   [self loadLocalSightings];
+                   
+                   
+                   //-- fafana ilay message Empty List lasa background view teo aloha --
+                   self.tableViewLifeList.backgroundView = nil;
+                   self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+                   
+                   
+               }
+               
+           }
+                       
+   }];
+
+               
     
 }
+ */
 
+/*
+-(void) getPostsJSONCall{
+    
+    //---- Alaina aloha ny count any @ server ----//
+    
+    NSUInteger uid                    = appDelegate._uid;
+    //NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+    NSString * lastSyncDate           = nil;;
+    
+    [appData getSightingsCountForUID:uid
+                     changedFromDate:lastSyncDate
+                           sessionID:appDelegate._sessid
+                       andCompletion:^(id json, JSONModelError *err){
+    
+       if(err == nil){
+    
+           NSDictionary * result                    = (NSDictionary*)json;
+           id count                                 = [result valueForKey:@"count"];
+           __block NSUInteger recordStart           = 0;
+           __block NSUInteger max                   = [count integerValue];
+           __block NSUInteger iteration             = (int)(max / SIGHTING_OFFSET);
+           __block NSUInteger i                     = 1;
+           __block NSUInteger recordEnd             = SIGHTING_OFFSET;
+           
+           __block BOOL looping = YES;
+           
+           while(looping){
+           
+               [appData getSightingsForSessionId:appDelegate._sessid
+                                       from_date:lastSyncDate
+                                           start:[NSString stringWithFormat:@"%li", recordStart]
+                                           count:[NSString stringWithFormat:@"%li", recordEnd]
+                                   andCompletion:^(id json, JSONModelError *err) {
+                            
+                            if (err) {
+                                if(self.refreshControl){
+                                    [self.refreshControl endRefreshing];
+                                }
+                                [Tools showError:err onViewController:self];
+                                
+                            }else{
+                                
+                                NSDictionary* tmpDict = (NSDictionary*) json;
+                                
+                                NSError* error;
+                                //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
+                                //---- ny Class propertries
+                                PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+                                
+                                if (error){
+                                    
+                                    NSLog(@"Error parse : %@", error.debugDescription);
+                                    
+                                }
+                                else{
+                                    
+                                    [Tools saveSyncDate]; // Ovaina androany ny LAST_SYNC_DATE
+                                    [Tools updateSightingsWithNodes:result.nodes];
+                                    [self loadLocalSightings];
+                                    
+                                    
+                                    //-- fafana ilay message Empty List lasa background view teo aloha --
+                                    self.tableViewLifeList.backgroundView = nil;
+                                    self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+                                    
+                                    NSUInteger page = (i * SIGHTING_OFFSET);
+                                    
+                                    if( i <= iteration){
+                                        
+                                        recordStart += SIGHTING_OFFSET;
+                                        i++;
+                                        
+                                        if( page > max ){
+                                        //    recordEnd = SIGHTING_OFFSET;
+                                        //}else{
+                                            recordEnd = max - (i * SIGHTING_OFFSET);
+                                        }
+                                        
+                                    }else{
+                                        looping = NO;
+                                    }
+                                    
+                                }
+                                
+                            }
+                            
+               }];
+               
+           } //-- While
+          
+           
+       }//--err == nil
+                           
+   }];//--- Count
+    
+}
+*/
 
 
 -(void) getChangedNodesJSONCall{
@@ -909,7 +1040,9 @@
                 //-- Mampisy error any @ SQLLite raha tsy escaper-na ny quote ' ---//
                 //   Special charcetr koa ny '\' dia tsy maintsy atao '\\'
                 _title = [_title stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
-                
+            takenPhotoFileName = [takenPhotoFileName stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+            _speciesName = [_speciesName stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+            _placeName  = [_placeName stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
             
                 double _date            = [date timeIntervalSince1970];
                 double  _modified       = [[NSDate date] timeIntervalSince1970];
@@ -919,10 +1052,10 @@
                     
                     //******** Update by _nid : Raha efa synced sady nahazo _nid ilay sighting - //
                     
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%f' , _placeLongitude = '%f'  WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,(long)_nid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%.9f' , _placeLongitude = '%.9f'  WHERE _nid = '%li' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,(long)_nid];
                 }else{
                     //*** Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%f' , _placeLongitude = '%f'   WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,_uuid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%.9f' , _placeLongitude = '%.9f'   WHERE _uuid = '%@' ", _placeName,_title,_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,_uuid];
                     
                 }
                 

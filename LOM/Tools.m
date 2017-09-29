@@ -417,13 +417,19 @@ static float appScale = 1.0;
                 _title                          = [_title stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
                 NSString * _species             = sighting.species;
                 _species                        = [_species stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+                
                 NSString * _where_see_it        = sighting.place_name;
+                _where_see_it                   = [_where_see_it stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+                
+                
+                
                 NSDateFormatter * formatter     = [[NSDateFormatter alloc]init];
                 [formatter setDateFormat:@"yyyy-MM-dd"];
                 NSDate * date                   = [[NSDate alloc]init];
                 date                            = [formatter dateFromString:sighting.date];
                 int64_t   _date                 =  [date timeIntervalSince1970];
                 NSString * _photo_name          = sighting.field_photo.src;
+                _photo_name                     = [_photo_name stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
                 int64_t  _species_nid           = sighting.speciesNid;
                 
                 int64_t  _count                 = sighting.count;
@@ -495,7 +501,7 @@ static float appScale = 1.0;
                     }else{
                         
                       
-                        NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%@' , _placeLongitude = '%@' , _photoFileNames ='%@' , _title = '%@' , _modifiedTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '%lli', _isLocal = '%lli', _deleted = '%lli' , _place_name_reference_nid = '%lli' WHERE _nid = '%lli' ",
+                        NSString * query = [NSString stringWithFormat:@"UPDATE $T SET _uuid = '%@' , _speciesName = '%@' , _speciesNid = '%lli' , _speciesCount = '%lli' , _placeName = '%@' , _placeLatitude = '%.10f' , _placeLongitude = '%.10f' , _photoFileNames ='%@' , _title = '%@' , _modifiedTime = '%lli' , _date = '%lli', _uid = '%lli' , _isSynced = '%lli', _isLocal = '%lli', _deleted = '%lli' , _place_name_reference_nid = '%lli' WHERE _nid = '%lli' ",
                                             _uuid,_species,_species_nid,_count,_where_see_it,_latitude,_longitude,_photo_name,_title,_created,_date,_uid,_synced,_local,_deleted,place_name_ref_nid,_nid];
                         
                         [Sightings executeUpdateQuery:query];
@@ -632,15 +638,23 @@ static float appScale = 1.0;
     return nil;
 }
 
+/*
 +(void) saveSyncDate{
 
-    NSDate *currDate = [NSDate date];
+    NSDate *currDate = [NSDate date];//Current time in UTC time
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
     NSString *syncDate = [dateFormatter stringFromDate:currDate];
     [Tools setUserPreferenceWithKey:LAST_SYNC_DATE andStringValue:syncDate];
+}*/
 
++(void) saveSyncDate{
+    
+    NSDate *currDate    = [NSDate date];//Current time in UTC time
+    int64_t  _now       = [currDate timeIntervalSince1970];
+    [Tools setUserPreferenceWithKey:LAST_SYNC_DATE andStringValue:[NSString stringWithFormat:@"%lli", _now]];
 }
+
 
 + (void) saveSessId:(NSString*)sessid
         sessionName:(NSString*) session_name

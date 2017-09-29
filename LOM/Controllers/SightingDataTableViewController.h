@@ -81,7 +81,9 @@
 
 @property (nonatomic,strong) CLLocationManager * locationManager;
 @property (nonatomic,strong) CLLocation * startLocation;
+@property (weak, nonatomic) IBOutlet UIButton *captureButton;
 
+- (IBAction)captureTapped:(id)sender;
 
 
 //@property (strong,nonatomic) Species* currentSpecies;

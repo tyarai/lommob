@@ -128,10 +128,16 @@
         //if(publication.isLocal || !publication.isSynced){
             
             NSFileManager * fileManager = [NSFileManager defaultManager];
-            
+        
+            //-- T@ nampiditra ilay fileName dia natao escape ny "'" character dia lasa "''"
+            // Dia mila unescape 
+            NSString * unescapedFileName = [publication.field_photo.src stringByReplacingOccurrencesOfString:@"''" withString:@"'"];
+        
+        
+            NSURL * tempURL = [NSURL URLWithString:unescapedFileName];
             //--- Jerena sao dia efa URL ilay fileName ---//
-            NSURL * tempURL = [NSURL URLWithString:publication.field_photo.src];
-            
+        
+        
             if(tempURL && tempURL.scheme && tempURL.host){
                 [self.imgPhoto setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     if (error != nil) {

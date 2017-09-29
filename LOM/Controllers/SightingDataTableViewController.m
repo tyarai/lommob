@@ -24,6 +24,7 @@
 
 @interface SightingDataTableViewController (){
     NSArray<Species*> * allSpecies;
+    BOOL capturing;
 }
 
 @end
@@ -35,12 +36,20 @@
     [super viewDidLoad];
     
     
+    /*
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
     [self.locationManager requestAlwaysAuthorization];
     [self.locationManager startUpdatingLocation];
     self.startLocation = nil;
+     */
+    
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+    capturing = NO;
     
     placelongitude = 0.0f;
     placelatitude  = 0.0f;
@@ -82,7 +91,6 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Publication * publication = appDelagate.appDelegateCurrentPublication ;
     Species * currentSpecies = [Species getSpeciesBySpeciesNID:publication.speciesNid];
@@ -109,44 +117,39 @@
             self.placename.text      = publication.place_name;
         }
         
-        self.comments.text       = publication.title;
+        self.comments.text          = publication.title;
         
-        //self.longitude.text      = [NSString stringWithFormat:@"%f",placelongitude];
-        //self.latitude.text       = [NSString stringWithFormat:@"%f",placelatitude];
+        self.longitude.text         = [NSString stringWithFormat:@"%f",publication.longitude];
+        self.latitude.text          = [NSString stringWithFormat:@"%f",publication.latitude];
         
-        self.scientificName.text = currentSpecies._title;
-        self.malagasyName.text   = currentSpecies._malagasy;
+        placelongitude              = publication.longitude;
+        placelatitude               = publication.latitude;
         
-        self.takenPhotoFileName = publication.field_photo.src;
         
-        //if(publication.isLocal || !publication.isSynced){
-            
-            //--- Jerena sao dia efa URL ilay fileName ---//
-            NSURL * tempURL = [NSURL URLWithString:publication.field_photo.src];
-            
-            if(tempURL && tempURL.scheme && tempURL.host){
-                [self.speciesImage setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                    if (error != nil) {
-                        [self.speciesImage setImage:[UIImage imageNamed:@"ico_default_specy"]];
-                    }
-                    
-                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            }else{
-                
-                NSString *getImagePath = [publication getSightingImageFullPathName];
-                UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
-                [self.speciesImage setImage:img];
-            }
-            
-        /*}else{
-            
-            [self.speciesImage setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                NSLog(@"Finished");
+        self.scientificName.text    = currentSpecies._title;
+        self.malagasyName.text      = currentSpecies._malagasy;
+        
+        NSString *  photoName       = publication.field_photo.src;
+        self.takenPhotoFileName     = [photoName stringByReplacingOccurrencesOfString:@"''" withString:@"'"];
+        
+        //--- Jerena sao dia efa URL ilay fileName ---//
+        NSURL * tempURL = [NSURL URLWithString:publication.field_photo.src];
+        
+        if(tempURL && tempURL.scheme && tempURL.host){
+            [self.speciesImage setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (error != nil) {
+                    [self.speciesImage setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                }
                 
             } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        }else{
             
-        }*/
-    
+            NSString *getImagePath = [publication getSightingImageFullPathName];
+            UIImage *img = [UIImage imageWithContentsOfFile:getImagePath];
+            [self.speciesImage setImage:img];
+        }
+            
+       
         //Hanaovana conversion ity format voalohany ity
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
@@ -161,8 +164,6 @@
         
     }else{
         //**** Sighting vaovao mihitsy ity ******////
-        
-        
         if(didSelectNewSite){
             self.placename.text      = appDelagate.appDelegateCurrentSite._title;
         }
@@ -249,7 +250,7 @@
 
 - (IBAction)doneTapped:(id)sender {
     
-    [self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
+    //[self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
     
     NSString  * comments = self.comments.text;
     NSInteger obs      = [self.numberObserved.text intValue];
@@ -684,4 +685,17 @@
     NSLog(@"%@",[error description]);
 }
 
+- (IBAction)captureTapped:(id)sender {
+    
+    if(! capturing){
+        [self.locationManager startUpdatingLocation];
+        [self.captureButton setTitle:NSLocalizedString(@"stop_capture", @"") forState:UIControlStateNormal] ;
+        
+    }else{
+        [self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
+        [self.captureButton setTitle:NSLocalizedString(@"start_capture", @"") forState:UIControlStateNormal] ;
+        self.startLocation = nil;
+    }
+    capturing = !capturing;
+}
 @end

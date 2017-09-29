@@ -196,9 +196,65 @@ static AppData* _instance;
 }
 
 
--(void) getSightingsForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock
+-(void) getSightingsCountForUID:(NSInteger)uid
+                changedFromDate:(NSString*)from_date
+                      sessionID:(NSString*)session_id
+                  andCompletion:(JSONObjectBlock)completeBlock
 {
-    [self buildGETHeader];
+    [self buildPOSTHeader];
+    
+    if (![Tools isNullOrEmptyString:session_id]) {
+        
+        NSString * sessionName  = [[Tools getAppDelegate] _sessionName];
+        NSString * cookie       = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        NSString * url = nil;
+        
+        if([Tools isNullOrEmptyString:from_date]){
+        
+            url = [NSString stringWithFormat:@"%@%@?uid=%lu", SERVER,COUNT_SIGHTINGS,(unsigned long)uid];
+        }else{
+            NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
+            NSString *percentEncodedString    = [from_date stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+            url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@", SERVER,COUNT_SIGHTINGS,(unsigned long)uid,percentEncodedString];
+        }
+        
+        [JSONHTTPClient postJSONFromURLWithString:url
+                                           params:NULL
+                                       completion:completeBlock];
+    }
+    
+}
+
+
+-(void) paginate:(NSString*)sessionID
+           start:(NSString*)start
+           count:(NSString*)count
+   andCompletion:(JSONObjectBlock)completeBlock{
+}
+
+
+-(void) getSightingsForSessionId:(NSString*) session_id
+                       from_date:(NSString*) from_date
+                   andCompletion:(JSONObjectBlock)completeBlock{
+    
+    [self getSightingsForSessionId:session_id
+                         from_date:from_date
+                             start:nil
+                             count:nil
+                     andCompletion:completeBlock];
+}
+
+
+
+-(void) getSightingsForSessionId:(NSString*) session_id
+                       from_date:(NSString*) from_date
+                           start:(NSString*)start
+                           count:(NSString*)count
+                   andCompletion:(JSONObjectBlock)completeBlock
+{
+    [self buildPOSTHeader];
     
     if (![Tools isNullOrEmptyString:session_id]) {
         
@@ -207,26 +263,22 @@ static AppData* _instance;
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
    
         
-        NSString* url= nil;
+        NSString* url                     = nil;
         AppDelegate * appDelegate         = [Tools getAppDelegate];
         NSUInteger uid                    = appDelegate._uid;
         
-        
-        NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        //NSString * lastSyncDate = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        NSString * lastSyncDate           = from_date;
         
         if([Tools isNullOrEmptyString:lastSyncDate]){
-            [Tools saveSyncDate];
+            //[Tools saveSyncDate];
             //--- Rehefa vao mi-sync voalohany dia alatsaka daholo izay sighting any na Local na tsia --
-            //url = [NSString stringWithFormat:@"%@%@", SERVER,SERVICE_MY_SIGHTINGS];
-            //[JSONHTTPClient getJSONFromURLWithString:url completion:completeBlock];
             
-            url = [NSString stringWithFormat:@"%@%@?uid=%lu", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid];
+            url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=&start=%@&count=%@", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,start,count];
             
             [JSONHTTPClient postJSONFromURLWithString:url
                                                params:NULL
                                            completion:completeBlock];
-            
-            
             
         }else{
             /* *************************************************************
@@ -247,7 +299,7 @@ static AppData* _instance;
             NSString *percentEncodedString    = [lastSyncDate stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
             
             
-            url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,percentEncodedString];
+            url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@&start=%@&count=%@&synced=%d", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,percentEncodedString,start,count,0];
             
             
             [JSONHTTPClient postJSONFromURLWithString:url
@@ -255,11 +307,7 @@ static AppData* _instance;
                                            completion:completeBlock];
             
         }
-        
-        
-        
     }
-    
 }
 
 
@@ -425,22 +473,11 @@ static AppData* _instance;
                                         else{
                                             //-- Azo ny NID an'ity sighting vaovao ity ----
                                             NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
-                                            // **** Deleted Sept 18 2017 ********* //
-                                            //NSString * photoFileName = [NSString stringWithFormat:@"%@%@%@", SERVER,SERVER_IMAGE_PATH,sighting._photoFileNames];
-                                            //sighting._photoFileNames = photoFileName;
-                                            // *********************************** //
                                             sighting._nid = newNID;
                                             sighting._isSynced = YES;
                                             sighting._isLocal = NO;
                                             [sighting save];
                                            
-                                            
-                                            //---- Miantso ilay [postViewController loadOnlineSightings] --//
-
-                                            /*if(func != nil){
-                                                func();
-                                            }*/
-                                            
                                             
                                         }
                                     }];
@@ -480,6 +517,8 @@ static AppData* _instance;
                                                         species:species
                                                          fileID:fid
                                                    placeNameNID:sighting._place_name_reference_nid
+                                                       latitude:sighting._placeLatitude
+                                                      longitude:sighting._placeLongitude
                                                     sessionName:sessionName
                                                       sessionId:sessionID
                                                   completeBlock:^(id json, JSONModelError *error) {
@@ -492,10 +531,7 @@ static AppData* _instance;
                                                           sighting._isSynced = YES;
                                                           [sighting save];
                                                          
-                                                          //---- Miantso ilay [postViewController loadOnlineSightings] --//
-                                                          /*if(func != nil){
-                                                              func();
-                                                          }*/
+                                                      
                                                       }
                                     }];
                                     
@@ -634,7 +670,7 @@ static AppData* _instance;
 
 
 /*
-    Sync Sighting to server
+    Sync - Create Sighting on server
  */
 -(void) saveSighting:(Sightings*)sighting
               fileID:(NSInteger)fid
@@ -674,8 +710,9 @@ static AppData* _instance;
         body = [body stringByAppendingFormat:@"&field_place_name[und][0][value]=%@",placeName];
         body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
         body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%lu",speciesNID];
-        body = [body stringByAppendingFormat:@"&field_latitude[und][0][value]=%f",latitude];
-        body = [body stringByAppendingFormat:@"&field_longitude[und][0][value]=%f",longitude];
+        body = [body stringByAppendingFormat:@"&field_lat[und][0][value]=%5.8f",latitude];
+        body = [body stringByAppendingFormat:@"&field_long[und][0][value]=%5.8f",longitude];
+        
         body = [body stringByAppendingFormat:@"&field_is_local[und][value]=%lu",isLocal];
         body = [body stringByAppendingFormat:@"&field_is_synced[und][value]=%lu",isSynced];
         body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
@@ -700,6 +737,8 @@ static AppData* _instance;
                         species:(Species*) species
                          fileID:(NSInteger)fid
                    placeNameNID:(NSInteger)placeNID
+                       latitude:(float)latitude
+                      longitude:(float)longitude
                     sessionName:(NSString*)sessionName
                      sessionId :(NSString*)sessionId
                   completeBlock:(JSONObjectBlock) completeBlock{
@@ -719,13 +758,14 @@ static AppData* _instance;
         [_formatter setDateFormat:@"M/d/y"];
         NSString * strDate = [_formatter stringFromDate:vDate];
         
-        //NSString *body = [NSString stringWithFormat:@"type=publication&language=und"];
         NSString *body = [NSString stringWithFormat:@""];
         
         body = [body stringByAppendingFormat:@"title=%@",title];
         body = [body stringByAppendingFormat:@"&body[und][0][value]=%@",title];
         body = [body stringByAppendingFormat:@"&field_place_name[und][0][value]=%@",placeName];
         body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
+        body = [body stringByAppendingFormat:@"&field_lat[und][0][value]=%5.8f",latitude];
+        body = [body stringByAppendingFormat:@"&field_long[und][0][value]=%5.8f",longitude];
         body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
         body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%li",(long)species._species_id];
         body = [body stringByAppendingFormat:@"&field_place_name_reference[und][nid]=%li",(long)placeNID];

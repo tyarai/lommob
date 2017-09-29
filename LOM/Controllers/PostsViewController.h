@@ -37,6 +37,11 @@
 @property NSMutableArray * currentPhotos;   
 - (IBAction)addButtonTapped:(id)sender;
 
+@property NSInteger recordCount;
+@property NSInteger currentPage;
+@property NSInteger currentPointer; 
+
+
 //@property (strong) Species * selectedSpecies;
 //@property (strong) Publication * selectedPublication;
 

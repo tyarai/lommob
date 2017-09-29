@@ -1,10 +1,8 @@
-//
-//  AppData.h
-//  LOM
-//
-//  Created by Andrianavonison Ranto Tiaray on 02/01/2016.
-//  Copyright © 2016 Kerty KAMARY. All rights reserved.
-//
+// AppData.h
+// LOM
+// Created by Andrianavonison Ranto Tiaray on 02/01/2016.
+// Copyright © 2016 Kerty KAMARY. All rights reserved.
+
 
 #import <Foundation/Foundation.h>
 #import "JSONHTTPClient.h"
@@ -13,7 +11,7 @@
 
 
 #ifdef DEBUG
-    #define SERVER @"http://192.168.2.242"
+    #define SERVER @"http://192.168.3.242"
     //#define SERVER @"http://172.20.10.4"
     //#define SERVER @"https://www.lemursofmadagascar.com/html"
 #else
@@ -37,8 +35,7 @@
 
 #define SERVICE_MY_SIGHTINGS @"/lom_endpoint/api/v1/services/lom_sighting_services/changed_sightings" //Parameters : 'uid' and 'from_date'
 
-
-
+#define COUNT_SIGHTINGS @"/lom_endpoint/api/v1/services/lom_sighting_services/count_sightings" //Parameters : 'uid' (mandatory) and 'from_date' (optional)
 
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
 #define LIFELIST_ENDPOINT_MODIFIED_FROM @"api/v1/list/my-lemur-life-list-modified-from"
@@ -53,6 +50,7 @@
 
 // ************* CHANGED NODES SERVICE (Species, Map, Photograph, Family, Places) *******
 #define CHANGED_NODES @ "/lom_endpoint/api/v1/services/lom_node_services/changed_nodes" // Misy parama from_date
+
 
 
 typedef void (^postsViewControllerFunctionCallback) (void);
@@ -77,7 +75,17 @@ typedef void (^postsViewControllerFunctionCallback) (void);
        completeBlock:(JSONObjectBlock)completeBlock;
 
 
--(void) getSightingsForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
+-(void) getSightingsForSessionId:(NSString*) session_id
+                       from_date:(NSString*) from_date
+                           start:(NSString*)start
+                             count:(NSString*)count
+                   andCompletion:(JSONObjectBlock)completeBlock;
+
+-(void) getSightingsForSessionId:(NSString*) session_id
+                       from_date:(NSString*) from_date
+                   andCompletion:(JSONObjectBlock)completeBlock;
+
+
 
 -(void) getChangedNodesForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
@@ -113,5 +121,13 @@ typedef void (^postsViewControllerFunctionCallback) (void);
                      completeBlock:(JSONObjectBlock) completeBlock;
 
 -(void) updateLocalDatabaseWith:(NSDictionary*)changedNodesJSONDictionary;
+
+-(void) getSightingsCountForUID:(NSInteger)uid
+                changedFromDate:(NSString*)from_date
+                      sessionID:(NSString*)session_id
+                  andCompletion:(JSONObjectBlock)completeBlock;
+
+
+
 
 @end

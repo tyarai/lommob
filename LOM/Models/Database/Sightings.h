@@ -23,8 +23,8 @@
 @property (nonatomic) int64_t _uid; //drupal uid
 @property (nonatomic) NSInteger _speciesCount;
 @property (nonatomic, strong) NSString* _placeName;
-@property (nonatomic) float _placeLatitude;
-@property (nonatomic) float _placeLongitude;
+@property (nonatomic) double _placeLatitude;
+@property (nonatomic) double _placeLongitude;
 @property (nonatomic, strong) NSString* _photoFileNames;
 @property (nonatomic, strong) NSString* _title;
 @property (nonatomic) double _createdTime;
