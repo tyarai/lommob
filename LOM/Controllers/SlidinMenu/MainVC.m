@@ -107,6 +107,10 @@ static MainVC *sharedMainVC = nil;
         case 11:
             identifier = SETTINGS_MENU_SEGUE;
             break;
+        case 12:
+            identifier = APPINSTRUCTIONS_MENU_SEGUE;
+            break;
+    
         
     }
     

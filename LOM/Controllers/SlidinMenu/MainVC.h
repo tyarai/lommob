@@ -19,6 +19,7 @@
 #define POSTS_MENU_SEGUE @"ninethSegue"
 #define ABOUT_MENU_SEGUE @"tenthSegue"
 #define SETTINGS_MENU_SEGUE @"eleventhSegue"
+#define APPINSTRUCTIONS_MENU_SEGUE @"twelvethSegue"
 
 
 

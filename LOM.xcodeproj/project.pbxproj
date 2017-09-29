@@ -78,6 +78,9 @@
 		4C33F42E1F2F42F800958818 /* Vohimana.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3EC1F2F42F800958818 /* Vohimana.jpg */; };
 		4C33F42F1F2F42F800958818 /* Zahamena-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3ED1F2F42F800958818 /* Zahamena-National-Park.jpg */; };
 		4C33F4301F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3EE1F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg */; };
+		4C3B541F1F7E9A880039EBCD /* AppInstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B541E1F7E9A880039EBCD /* AppInstructionsViewController.m */; };
+		4C3B54221F7E9D830039EBCD /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B54211F7E9D830039EBCD /* InstructionsViewController.m */; };
+		4C3B54251F7EA3F30039EBCD /* RootPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B54241F7EA3F30039EBCD /* RootPageController.m */; };
 		4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */; };
 		4C3BB1711ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */; };
 		4C5177491C21EA5700BBD0B1 /* SpeciesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */; };
@@ -1081,6 +1084,12 @@
 		4C33F3EC1F2F42F800958818 /* Vohimana.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Vohimana.jpg; sourceTree = "<group>"; };
 		4C33F3ED1F2F42F800958818 /* Zahamena-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Zahamena-National-Park.jpg"; sourceTree = "<group>"; };
 		4C33F3EE1F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Zombitse-Vohibasia-National-Park.jpg"; sourceTree = "<group>"; };
+		4C3B541D1F7E9A880039EBCD /* AppInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppInstructionsViewController.h; path = Controllers/AppInstructionsViewController.h; sourceTree = "<group>"; };
+		4C3B541E1F7E9A880039EBCD /* AppInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppInstructionsViewController.m; path = Controllers/AppInstructionsViewController.m; sourceTree = "<group>"; };
+		4C3B54201F7E9D830039EBCD /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstructionsViewController.h; path = Controllers/InstructionsViewController.h; sourceTree = "<group>"; };
+		4C3B54211F7E9D830039EBCD /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstructionsViewController.m; path = Controllers/InstructionsViewController.m; sourceTree = "<group>"; };
+		4C3B54231F7EA3F30039EBCD /* RootPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootPageController.h; path = Controllers/RootPageController.h; sourceTree = "<group>"; };
+		4C3B54241F7EA3F30039EBCD /* RootPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootPageController.m; path = Controllers/RootPageController.m; sourceTree = "<group>"; };
 		4C3BB1691ECB8C6400EFD96B /* WatchingSitesSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSitesSelectorViewController.h; path = Controllers/WatchingSitesSelectorViewController.h; sourceTree = "<group>"; };
 		4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesSelectorViewController.m; path = Controllers/WatchingSitesSelectorViewController.m; sourceTree = "<group>"; };
 		4C3BB16F1ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSitesSelectorTableViewCell.h; path = Controllers/WatchingSitesSelectorTableViewCell.h; sourceTree = "<group>"; };
@@ -2227,6 +2236,19 @@
 			name = place_maps;
 			sourceTree = "<group>";
 		};
+		4C3B541C1F7E9A3B0039EBCD /* App Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				4C3B541D1F7E9A880039EBCD /* AppInstructionsViewController.h */,
+				4C3B541E1F7E9A880039EBCD /* AppInstructionsViewController.m */,
+				4C3B54201F7E9D830039EBCD /* InstructionsViewController.h */,
+				4C3B54211F7E9D830039EBCD /* InstructionsViewController.m */,
+				4C3B54231F7EA3F30039EBCD /* RootPageController.h */,
+				4C3B54241F7EA3F30039EBCD /* RootPageController.m */,
+			);
+			name = "App Instructions";
+			sourceTree = "<group>";
+		};
 		4C59AD8E1C15F54300EA74C5 /* Species */ = {
 			isa = PBXGroup;
 			children = (
@@ -3217,6 +3239,7 @@
 		4C74F2841C06381A00543A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4C3B541C1F7E9A3B0039EBCD /* App Instructions */,
 				4C24A9A41ECC956400F475DA /* Settings */,
 				B471151D1DCA73EA00473D67 /* Signup */,
 				B4889C0B1DAB36540096F908 /* SightingData */,
@@ -4659,6 +4682,7 @@
 				4C3BB1711ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m in Sources */,
 				4C59AD991C15F5C400EA74C5 /* WatchingSiteViewController.m in Sources */,
 				4CEC77771C36CB6400C9706A /* FamilyTableViewCell.m in Sources */,
+				4C3B54221F7E9D830039EBCD /* InstructionsViewController.m in Sources */,
 				4C74F2C81C06404000543A7F /* BaseViewController.m in Sources */,
 				4C59AD911C15F57800EA74C5 /* SpeciesViewController.m in Sources */,
 				4C74F2AF1C0639C400543A7F /* Photographs.m in Sources */,
@@ -4697,6 +4721,7 @@
 				4C5D047F1C06351700EFCAAC /* Families.m in Sources */,
 				B4B7BE811C7EA36400D32A48 /* OriginOfLemursRootViewController.m in Sources */,
 				4C85FF6A1C37F4F700D6C233 /* LoginResult.m in Sources */,
+				4C3B54251F7EA3F30039EBCD /* RootPageController.m in Sources */,
 				4C59ADA11C15F62800EA74C5 /* PostsViewController.m in Sources */,
 				B4BBF3C01C9790F3005A5196 /* AuthorsTableViewController.m in Sources */,
 				4C0BC9EB1C36F7C00062082B /* WatchingSiteDetailsViewController.m in Sources */,
@@ -4731,6 +4756,7 @@
 				4C8BFC5D1F3CF8070080B871 /* WatchingSiteMap.m in Sources */,
 				4CB0157F1ED069DA0021F2A0 /* Settings.m in Sources */,
 				4C74F2A11C0638EA00543A7F /* FCModel.m in Sources */,
+				4C3B541F1F7E9A880039EBCD /* AppInstructionsViewController.m in Sources */,
 				4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */,
 				B4A2755C1DA8EFCC00777499 /* PhotoCollectionViewCell.m in Sources */,
 				4C85FF671C37F4E200D6C233 /* User.m in Sources */,
@@ -4912,6 +4938,43 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MapView/build/Debug-iphoneos",
 				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"AMSlideMenu\"",
+					"-l\"DACircularProgress\"",
+					"-l\"FMDB\"",
+					"-l\"HCSStarRatingView\"",
+					"-l\"JSONModel\"",
+					"-l\"SAMTextView\"",
+					"-l\"SDWebImage\"",
+					"-l\"SLExpandableTableView\"",
+					"-l\"UIActivityIndicator-for-SDWebImage\"",
+					"-l\"WYPopoverController\"",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.conservation.lemursofmadagascar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -4955,6 +5018,41 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MapView/build/Debug-iphoneos",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"AMSlideMenu\"",
+					"-l\"DACircularProgress\"",
+					"-l\"FMDB\"",
+					"-l\"HCSStarRatingView\"",
+					"-l\"JSONModel\"",
+					"-l\"SAMTextView\"",
+					"-l\"SLExpandableTableView\"",
+					"-l\"WYPopoverController\"",
+					"-l\"sqlite3\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MediaPlayer\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-weak_framework",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.conservation.lemursofmadagascar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
