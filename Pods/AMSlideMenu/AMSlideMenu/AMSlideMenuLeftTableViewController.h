@@ -26,6 +26,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @class AMSlideMenuMainViewController;
 
 @interface AMSlideMenuLeftTableViewController : UITableViewController
@@ -34,5 +36,8 @@
 
 // Only afor non storyboard use
 - (void)openContentNavigationController:(UINavigationController *)nvc;
+@property (weak, nonatomic) IBOutlet UILabel *speciesCount;
+@property (weak, nonatomic) IBOutlet UILabel *sightingsCount;
+@property (weak, nonatomic) IBOutlet UILabel *lemurLifeListCount;
 
 @end

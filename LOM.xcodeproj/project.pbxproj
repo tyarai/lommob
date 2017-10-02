@@ -926,6 +926,11 @@
 		4C74F2B21C0639E400543A7F /* Species.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F2B11C0639E300543A7F /* Species.m */; };
 		4C74F2C81C06404000543A7F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F2C71C06404000543A7F /* BaseViewController.m */; };
 		4C74F2CC1C0641AB00543A7F /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F2CB1C0641AB00543A7F /* MainVC.m */; };
+		4C74F8D31F82C8DA0030AA12 /* home_screen in Resources */ = {isa = PBXBuildFile; fileRef = 4C74F8CE1F82C8DA0030AA12 /* home_screen */; };
+		4C74F8D41F82C8DA0030AA12 /* menu_screen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C74F8CF1F82C8DA0030AA12 /* menu_screen.jpg */; };
+		4C74F8D51F82C8DA0030AA12 /* sighting_info_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C74F8D01F82C8DA0030AA12 /* sighting_info_1.jpg */; };
+		4C74F8D61F82C8DA0030AA12 /* sighting_info_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C74F8D11F82C8DA0030AA12 /* sighting_info_2.jpg */; };
+		4C74F8D81F82D5420030AA12 /* add_sightins.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C74F8D71F82D5420030AA12 /* add_sightins.jpg */; };
 		4C85FF5D1C37F27000D6C233 /* Publication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF5C1C37F27000D6C233 /* Publication.m */; };
 		4C85FF601C37F31600D6C233 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF5F1C37F31600D6C233 /* Photo.m */; };
 		4C85FF641C37F3B200D6C233 /* PublicationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF631C37F3B200D6C233 /* PublicationResult.m */; };
@@ -1964,6 +1969,11 @@
 		4C74F2CA1C0641AB00543A7F /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainVC.h; path = Controllers/SlidinMenu/MainVC.h; sourceTree = "<group>"; };
 		4C74F2CB1C0641AB00543A7F /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainVC.m; path = Controllers/SlidinMenu/MainVC.m; sourceTree = "<group>"; };
 		4C74F2CD1C06498B00543A7F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4C74F8CE1F82C8DA0030AA12 /* home_screen */ = {isa = PBXFileReference; lastKnownFileType = file; name = home_screen; path = instructions/sightings/home_screen; sourceTree = "<group>"; };
+		4C74F8CF1F82C8DA0030AA12 /* menu_screen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = menu_screen.jpg; path = instructions/sightings/menu_screen.jpg; sourceTree = "<group>"; };
+		4C74F8D01F82C8DA0030AA12 /* sighting_info_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sighting_info_1.jpg; path = instructions/sightings/sighting_info_1.jpg; sourceTree = "<group>"; };
+		4C74F8D11F82C8DA0030AA12 /* sighting_info_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sighting_info_2.jpg; path = instructions/sightings/sighting_info_2.jpg; sourceTree = "<group>"; };
+		4C74F8D71F82D5420030AA12 /* add_sightins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = add_sightins.jpg; path = instructions/sightings/add_sightins.jpg; sourceTree = "<group>"; };
 		4C85FF5B1C37F27000D6C233 /* Publication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Publication.h; path = Models/JsonModels/Publication.h; sourceTree = "<group>"; };
 		4C85FF5C1C37F27000D6C233 /* Publication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Publication.m; path = Models/JsonModels/Publication.m; sourceTree = "<group>"; };
 		4C85FF5E1C37F31600D6C233 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = Models/WebServices/Photo.h; sourceTree = "<group>"; };
@@ -3228,6 +3238,7 @@
 		4C7059711BFD06D4004E9BB6 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				4C74F8CC1F82C8BF0030AA12 /* Instructions */,
 				4C6F1AB91C1349DA00272A06 /* Fonts */,
 				4C6F14721C1340CD00272A06 /* Photos */,
 				4C95D43F1C0A15770038B9FC /* Database */,
@@ -3322,6 +3333,18 @@
 				4C74F2CB1C0641AB00543A7F /* MainVC.m */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		4C74F8CC1F82C8BF0030AA12 /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				4C74F8D71F82D5420030AA12 /* add_sightins.jpg */,
+				4C74F8CE1F82C8DA0030AA12 /* home_screen */,
+				4C74F8CF1F82C8DA0030AA12 /* menu_screen.jpg */,
+				4C74F8D01F82C8DA0030AA12 /* sighting_info_1.jpg */,
+				4C74F8D11F82C8DA0030AA12 /* sighting_info_2.jpg */,
+			);
+			name = Instructions;
 			sourceTree = "<group>";
 		};
 		4C85FF611C37F39400D6C233 /* Result */ = {
@@ -3725,6 +3748,7 @@
 				4C6F17BB1C1342A000272A06 /* 381.jpg in Resources */,
 				4C6F196A1C1342A000272A06 /* LepilemurA5septentrionalis.jpg in Resources */,
 				4C6F17F91C1342A000272A06 /* 2008_12_Madagascar_145(clc).jpg in Resources */,
+				4C74F8D41F82C8DA0030AA12 /* menu_screen.jpg in Resources */,
 				4C6F17FF1C1342A000272A06 /* 2009_01_Madagascar_190(clc).jpg in Resources */,
 				4C6F18F21C1342A000272A06 /* Goodman's-Mouse-Lemur_Microcebus-lehilahytsara.jpg in Resources */,
 				4C6F1A0E1C1342A100272A06 /* Mirza-coquereli.jpg in Resources */,
@@ -3836,6 +3860,7 @@
 				4C6F187E1C1342A000272A06 /* Cmajorlatest4KEY.jpg in Resources */,
 				4C6F18101C1342A000272A06 /* 2009_09_MAD_262(clc).jpg in Resources */,
 				4C6F18901C1342A000272A06 /* diademKEY.jpg in Resources */,
+				4C74F8D31F82C8DA0030AA12 /* home_screen in Resources */,
 				4C6F19671C1342A000272A06 /* LepilemurA5mustelinus.jpg in Resources */,
 				4C6F17A31C1342A000272A06 /* 57c.jpg in Resources */,
 				4C33F3F81F2F42F800958818 /* Andringitra-National-Park.jpg in Resources */,
@@ -3999,6 +4024,7 @@
 				4C6F18B11C1342A000272A06 /* DSC_38961175DSC_3896(clc).jpg in Resources */,
 				4C6F1A3F1C1342A100272A06 /* pfurci(thumb).jpg in Resources */,
 				4C6F1A131C1342A100272A06 /* Mirza5zaza.jpg in Resources */,
+				4C74F8D81F82D5420030AA12 /* add_sightins.jpg in Resources */,
 				B4AF342D1C9AD35B0039DEBB /* PSGlogoNEW.jpg in Resources */,
 				4C6F19081C1342A000272A06 /* Hapalemur-gilberti.jpg in Resources */,
 				4C6F18F91C1342A000272A06 /* gr10.jpg in Resources */,
@@ -4159,6 +4185,7 @@
 				4C33F4171F2F42F800958818 /* Mandena-Conservation-Zone.jpg in Resources */,
 				4C6F18CD1C1342A000272A06 /* Eulemur-mongoz.jpg in Resources */,
 				4C6F19F31C1342A100272A06 /* Microcebus-ravelobensis_Inaki-Relanzon(extra-black(.jpg in Resources */,
+				4C74F8D51F82C8DA0030AA12 /* sighting_info_1.jpg in Resources */,
 				4C6F17A01C1342A000272A06 /* 5-pres_letter_feb10.jpg in Resources */,
 				4C6F19CB1C1342A000272A06 /* MapMasterTemplate5Mirza5.jpg in Resources */,
 				4C6F1A6E1C1342A100272A06 /* PZSallocebus1875print.jpg in Resources */,
@@ -4215,6 +4242,7 @@
 				4C6F18481C1342A000272A06 /* Avahi-unicolor.jpg in Resources */,
 				4C6F1A061C1342A100272A06 /* MicrocebusB2simmonsi.jpg in Resources */,
 				4C6F1AA51C1342A100272A06 /* tree.jpg in Resources */,
+				4C74F8D61F82C8DA0030AA12 /* sighting_info_2.jpg in Resources */,
 				4C6F19571C1342A000272A06 /* Lepilemur-mustelinus(thumb).jpg in Resources */,
 				4C6F19971C1342A000272A06 /* LFG3LepilemurPlate4A.jpg in Resources */,
 				4C6F19901C1342A000272A06 /* LFG3HapalemurgilbertiPlate1_2.jpg in Resources */,
@@ -4937,43 +4965,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MapView/build/Debug-iphoneos",
-				);
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"$(inherited)",
-					"-ObjC",
-					"-l\"AFNetworking\"",
-					"-l\"AMSlideMenu\"",
-					"-l\"DACircularProgress\"",
-					"-l\"FMDB\"",
-					"-l\"HCSStarRatingView\"",
-					"-l\"JSONModel\"",
-					"-l\"SAMTextView\"",
-					"-l\"SDWebImage\"",
-					"-l\"SLExpandableTableView\"",
-					"-l\"UIActivityIndicator-for-SDWebImage\"",
-					"-l\"WYPopoverController\"",
-					"-l\"sqlite3\"",
-					"-framework",
-					"\"AssetsLibrary\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"MediaPlayer\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"-weak_framework",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.conservation.lemursofmadagascar;
 				PRODUCT_NAME = "$(TARGET_NAME)";

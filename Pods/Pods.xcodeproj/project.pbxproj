@@ -1834,6 +1834,12 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					5813251FEA21E4AEE97385709F1912DE = {
+						DevelopmentTeam = 73ZGWN5766;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2381,8 +2387,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC5ABBB51D2B5D799C6D81A051DF2DD2 /* MWPhotoBrowser.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 73ZGWN5766;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/HCSStarRatingView/HCSStarRatingView/Info.plist";
 				PRODUCT_NAME = MWPhotoBrowser;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;
@@ -2611,8 +2621,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FC5ABBB51D2B5D799C6D81A051DF2DD2 /* MWPhotoBrowser.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 73ZGWN5766;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/HCSStarRatingView/HCSStarRatingView/Info.plist";
 				PRODUCT_NAME = MWPhotoBrowser;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = bundle;

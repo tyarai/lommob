@@ -17,8 +17,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features"];
-    _pageImages = @[@"57b.jpg", @"57c.jpg"];
+    _pageTitles = @[@"Species screen",
+                    @"Menu screen",
+                    @"Add sighting",
+                    @"Sighting info1",
+                    @"Sighting info2"
+                    ];
+    _pageImages = @[@"home_screen.jpg",
+                    @"menu_screen.jpg",
+                    @"add_sightins.jpg",
+                    @"sighting_info_1.jpg",
+                    @"sighting_info_2.jpg"
+                    
+                    ];
     // Do any additional setup after loading the view.
     
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];

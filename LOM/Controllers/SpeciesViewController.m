@@ -32,7 +32,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     NSString * title = NSLocalizedString(@"species_title",@"");
-    self.navigationItem.title = title;
+    
+    NSArray * allSpecies = [Species allSpeciesOrderedByTitle:@""];
+    
+    NSString * _title = [NSString stringWithFormat:@"%lu %@ %@",(unsigned long)[allSpecies count],title,@" and counting"];
+    
+    self.navigationItem.title = _title;
     self.navigationItem.titleView = nil;
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
