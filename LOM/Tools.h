@@ -65,4 +65,8 @@
 +(void) updateLocalSpeciesWith:(NSArray*) speciesDico;
 +(void) updateLocalMaps:(NSArray*) mapsDico;
 +(void) updateLocalSites:(NSArray*) sitesDico;
++(void) updateLocalLemurFamilies:(NSArray*) familiesDico;
++(void) updateLocalAuthors:(NSArray*) authorDico;
+
++(void) downloadImageAsynchronously:(NSString*)image_url;
 @end

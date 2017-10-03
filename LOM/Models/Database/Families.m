@@ -12,6 +12,13 @@
 @implementation Families
 
 
++ (id) getFamilyByNID:(NSInteger) _nid{
+    NSString * queryArgument = [NSString new];
+    queryArgument = [NSString stringWithFormat:@" _nid = '%lu' ", (long)_nid];
+    return [Families firstInstanceWhere: queryArgument];
+}
+
+
 - (NSArray*) getIllustrations {
 	
     NSMutableArray* families_illustrations = [[NSMutableArray alloc] init];

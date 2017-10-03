@@ -25,6 +25,12 @@
     [super viewDidLoad];
     
     [self updateOptions];
+    self.updateText.text      = NSLocalizedString(@"no_available_update", @"");
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50;
+    //self.updateButton.enabled = NO;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -39,6 +45,9 @@
     NSString * currentUserName = [Tools getStringUserPreferenceWithKey:KEY_USERNAME] ;
     self.userName.text = @"";
     
+    
+    NSString *updateTExt =[Tools getStringUserPreferenceWithKey:UPDATE_TEXT] ;
+    
     if( ![Tools isNullOrEmptyString:currentUserName]){
         self.userName.text = currentUserName;
         self.btnLogOUt.hidden = NO;
@@ -48,6 +57,18 @@
         self.btnLogOUt.hidden = YES;
         [self setControlsHidden:YES];
     }
+    
+    
+    if( ![Tools isNullOrEmptyString:updateTExt]){
+        self.updateText.text      = updateTExt;
+        self.updateButton.hidden  = NO;
+        
+    }else{
+        [self resetUpdateControl];
+
+    }
+    
+    
     
     [self updateOptions]; // Manao update ny options rehetra rehefa mipoitra ity view ity na koa rehefa mahazo front ilay app
     
@@ -63,7 +84,7 @@
 -(void) startSpinner{
     
     overlayView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+    overlayView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
     
     spinner = [[UIActivityIndicatorView alloc]
                                        initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -292,4 +313,61 @@
 }
 
 
+/*
+    Get changed species,families,maps,illustraiions,photograph
+ */
+
+-(void) getChangedNodesFromServer:(NSString*)fromDate{
+    
+    AppData * appData = [AppData getInstance];
+    AppDelegate * appDelegate =  [Tools getAppDelegate];
+    [self startSpinner];
+    
+    [appData getChangedNodesForSessionId:appDelegate._sessid
+                                fromDate:fromDate
+                            andCompletion:^(id json, JSONModelError *err) {
+            
+           [self stopSpinner];
+                                
+           if (err) {
+               [Tools showError:err onViewController:nil];
+               
+           }else{
+               
+               NSError *error = nil;
+               
+               NSDictionary *changedNodesJSONDictionary = (NSDictionary*)json;
+               
+               if (error){
+                   NSLog(@"Error parse : %@", error.debugDescription);
+               }
+               else{
+                   [appData updateLocalDatabaseWith:changedNodesJSONDictionary];
+                   [Tools setUserPreferenceWithKey:UPDATE_TEXT andStringValue:@""];
+                   NSDate *currDate    = [NSDate date];//Current time in UTC time
+                   int64_t  _now       = [currDate timeIntervalSince1970];
+                   [Tools setUserPreferenceWithKey:UPDATE_SYNC_DATE andStringValue:[NSString stringWithFormat:@"%lli",_now] ];
+                   [self resetUpdateControl];
+               }
+               
+           }
+           
+   }];
+    
+}
+
+-(void)resetUpdateControl{
+    self.updateText.text      = NSLocalizedString(@"no_available_update",@"");
+    self.updateButton.hidden  = YES;
+}
+
+
+- (IBAction)tappedUpdateButton:(id)sender {
+    
+    NSString* updateLastSync = [Tools getStringUserPreferenceWithKey:UPDATE_SYNC_DATE];
+    
+    if(![Tools isNullOrEmptyString:updateLastSync]){
+        [self getChangedNodesFromServer:updateLastSync];
+    }
+}
 @end

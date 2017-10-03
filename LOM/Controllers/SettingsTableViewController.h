@@ -19,7 +19,11 @@
 @property (weak, nonatomic) IBOutlet UIView *lifeListContentView;
 @property (weak, nonatomic) IBOutlet UIView *lifeListDescriptionView;
 
+@property (weak, nonatomic) IBOutlet UILabel *updateText;
 
+@property (weak, nonatomic) IBOutlet UIButton *updateButton;
+
+- (IBAction)tappedUpdateButton:(id)sender;
 
 
 @end

@@ -40,6 +40,8 @@
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
 #define LIFELIST_ENDPOINT_MODIFIED_FROM @"api/v1/list/my-lemur-life-list-modified-from"
 #define LAST_SYNC_DATE @"last_sync_date"
+#define UPDATE_TEXT @"update_text"
+#define UPDATE_SYNC_DATE @"update_sync_date"
 
 #define SERVER_IMAGE_PATH @"/sites/default/files/"
 
@@ -87,7 +89,9 @@ typedef void (^postsViewControllerFunctionCallback) (void);
 
 
 
--(void) getChangedNodesForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
+-(void) getChangedNodesForSessionId:(NSString*) session_id
+                           fromDate:(NSString*) fromDate
+                      andCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 

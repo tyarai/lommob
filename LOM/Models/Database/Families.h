@@ -17,5 +17,6 @@
 @property (nonatomic, strong) NSString* _illustration;
 
 - (NSArray*) getIllustrations;
++ (id) getFamilyByNID:(NSInteger) _nid;
 
 @end

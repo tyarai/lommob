@@ -53,3 +53,4 @@
 "delete_sighting_message" = "This action could not be undone. Click OK to delete this sighting";
 "stop_capture" = "Stop capture";
 "start_capture" = "Update location";
+"no_available_update" = "No available updates!";

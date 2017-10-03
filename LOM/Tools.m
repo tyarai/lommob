@@ -778,6 +778,8 @@ static float appScale = 1.0;
             NSString *filename = [image_url lastPathComponent];
             
             
+            
+            
             Maps * maps = [Maps getMapByNID:nid];
             
             if(maps != nil){
@@ -794,9 +796,13 @@ static float appScale = 1.0;
 
             }
             
+            [Tools downloadImageAsynchronously:image_url];
+            
+            
+            
             //---- Raha tsy mbola misy en local ilay fichier dia alaina avy any @ server --//
             
-            NSFileManager *fileManager = [[NSFileManager alloc] init];
+            /*NSFileManager *fileManager = [[NSFileManager alloc] init];
             UIImage * image = [UIImage imageNamed:filename];
             
             
@@ -832,7 +838,33 @@ static float appScale = 1.0;
                                         completed:successBlock];
                 }
             //}
+             */
         }
+    }
+}
+
+/*
+  DownloadImage from Server (asynchronously)
+*/
++(void) downloadImageAsynchronously:(NSString*)image_url{
+    
+    if(![Tools isNullOrEmptyString:image_url]){
+        
+        NSURL *url = [NSURL URLWithString:image_url];
+        SDWebImageManager *manager = [SDWebImageManager sharedManager];
+        [manager downloadImageWithURL:url
+                              options:0
+             progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                 NSLog(@"%li / %li ",(long)receivedSize,(long)expectedSize);
+             }
+             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                if (image) {
+                    NSLog(@"Downloaded");
+                }
+                else {
+                    [self downloadImageAsynchronously:image_url]; //try download once again
+                }
+            }];
     }
 }
 
@@ -869,6 +901,45 @@ static float appScale = 1.0;
     }
 
 }
+
+//----------------- Update local lemur Families with ones from server (familiesDico) -----------
+
++(void) updateLocalLemurFamilies:(NSArray*) familiesDico{
+   
+    if(familiesDico != nil){
+        
+        for (NSDictionary * family in familiesDico) {
+            
+            NSInteger nid               = [[family valueForKey:@"nid"] integerValue];
+            NSString * title            = [family valueForKey:@"title"];
+            NSString * body             = [family valueForKey:@"body"];
+            NSString * illustrations    = [family valueForKey:@"illustration_ref"];
+            //NSInteger extinct           = [[family valueForKey:@"extinct"] integerValue];
+        
+            
+            Families * _family = [Families  getFamilyByNID:nid];
+            
+            if(_family != nil){
+                
+                NSString * query = [NSString stringWithFormat:@"UPDATE $T SET  _family = '%@', _family_description = '%@', _illustration = '%@'  WHERE _nid = '%li' ",title,body,illustrations,(long)nid];
+                
+                [Families executeUpdateQuery:query];
+                
+            }else{
+                Families * newfamily            = [Families new];
+                newfamily._family               = title;
+                newfamily._family_description   = body;
+                newfamily._illustration         = illustrations;
+                [newfamily save];
+            }
+        }
+    }
+}
+
++(void) updateLocalAuthors:(NSArray*) authorDico{
+    
+}
+
 
 
 @end

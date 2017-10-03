@@ -150,8 +150,7 @@
     
     
     [self syncSettings]; // mampidina ny avy any @ server
-    
-    
+    //[self checkChangedNodesFromServer];
     
     return YES;
 }
@@ -176,6 +175,8 @@
                     
                 }
                 
+              [self checkChangedNodesFromServer];
+                
                 
             }else{
                 NSLog(@"%@", [err description]);
@@ -184,6 +185,69 @@
     }
 
 }
+
+
+-(void) checkChangedNodesFromServer{
+    
+    AppData * appData           = [AppData getInstance];
+    AppDelegate * appDelegate   = [Tools getAppDelegate];
+    
+    NSString * lastSyncDate     = [NSString stringWithFormat:@"%@",[Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE]];
+    
+    NSString *updateSyncDate    = [NSString stringWithFormat:@"%@",[Tools getStringUserPreferenceWithKey:UPDATE_SYNC_DATE]];
+
+    updateSyncDate = [Tools isNullOrEmptyString:updateSyncDate] ? lastSyncDate : updateSyncDate;
+    
+    [appData getChangedNodesForSessionId:appDelegate._sessid
+                                fromDate:updateSyncDate
+                           andCompletion:^(id json, JSONModelError *err) {
+               
+           if (err) {
+               [Tools showError:err onViewController:nil];
+               
+           }else{
+               
+               NSError *error = nil;
+               NSString * updateText = @"";
+               
+               NSDictionary *changedNodesJSONDictionary = (NSDictionary*)json;
+               
+               if (error){
+                   NSLog(@"Error parse : %@", error.debugDescription);
+               }
+               else{
+                   
+                   if(changedNodesJSONDictionary != nil){
+                       
+                       NSArray * speciesDictionary = [changedNodesJSONDictionary valueForKey:@"species"];
+                       NSArray * mapsDictionary    = [changedNodesJSONDictionary valueForKey:@"maps"];
+                       NSArray * photoDictionary   = [changedNodesJSONDictionary valueForKey:@"photographs"];
+                       NSArray * placesDictionary  = [changedNodesJSONDictionary valueForKey:@"best_places"];
+                       NSArray * familyDictionary  = [changedNodesJSONDictionary valueForKey:@"families"];
+                       
+                       NSInteger species = [speciesDictionary count];
+                       NSInteger map     = [mapsDictionary count];
+                       NSInteger photo   = [photoDictionary count];
+                       NSInteger place   = [placesDictionary count];
+                       NSInteger family  = [familyDictionary count];
+                       //NSInteger authors = [authorsDictionary count];
+                       
+                       if(species != 0 || map != 0 || photo != 0 || place !=0 || family != 0 ){
+                       
+                           updateText = [NSString stringWithFormat:@"(%lu) species (%lu) families updates (%lu) maps (%lu) sites (%lu) photographs ",species,family,map,place,photo];
+                       }
+                   }
+                   
+                   [Tools setUserPreferenceWithKey:UPDATE_TEXT andStringValue:updateText];
+                   //[Tools setUserPreferenceWithKey:UPDATE_SYNC_DATE andStringValue:lastSyncDate];
+               }
+               
+           }
+               
+   }];
+    
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

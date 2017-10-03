@@ -1,4 +1,4 @@
- //
+    //
 //  ViewController.m
 //  LOM
 //
@@ -86,7 +86,6 @@
         self.pullToRefresh = YES;
         appDelegate.showActivity = NO;
         [self syncWithServer];
-        //[self loadOnlineSightings];
         
     }
     
@@ -541,6 +540,7 @@
 -(void) loadOnlineSightings{
     self.initialLoad = TRUE;
     [self getPostsJSONCall];
+    //[self getChangedNodesJSONCall];
     
 }
 
@@ -770,7 +770,7 @@
 }
 */
 
-
+/*
 -(void) getChangedNodesJSONCall{
     
     [appData getChangedNodesForSessionId:appDelegate._sessid
@@ -785,12 +785,9 @@
         }else{
             
             NSError *error = nil;
-            NSString * Data = [NSString stringWithFormat:@"%@",json[0]];
-          
-            NSData *objectData = [Data dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *changedNodesJSONDictionary = [NSJSONSerialization JSONObjectWithData:objectData
-                                                                 options:NSJSONReadingMutableContainers
-                                                                   error:&error];
+            
+            NSDictionary *changedNodesJSONDictionary = (NSDictionary*)json;
+
             
             if (error){
                 NSLog(@"Error parse : %@", error.debugDescription);
@@ -804,7 +801,7 @@
     }];
     
 }
-
+*/
 
 
 
