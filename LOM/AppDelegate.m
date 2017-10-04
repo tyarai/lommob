@@ -150,7 +150,6 @@
     
     
     [self syncSettings]; // mampidina ny avy any @ server
-    //[self checkChangedNodesFromServer];
     
     return YES;
 }
@@ -175,9 +174,8 @@
                     
                 }
                 
-              [self checkChangedNodesFromServer];
-                
-                
+              //[self checkChangedNodesFromServer];
+      
             }else{
                 NSLog(@"%@", [err description]);
             }

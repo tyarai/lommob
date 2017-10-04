@@ -864,7 +864,7 @@ static float appScale = 1.0;
                 else {
                     [self downloadImageAsynchronously:image_url]; //try download once again
                 }
-            }];
+        }];
     }
 }
 
