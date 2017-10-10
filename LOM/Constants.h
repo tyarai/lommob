@@ -22,6 +22,8 @@
 #define KEY_UID @"uid"
 #define KEY_USERNAME @"username"
 #define KEY_PUBLIC_LIST @"public_list"
+#define KEY_RECORD_INDEX @"record_index"
+#define KEY_RECORD_COUNT @"record_count"
 
 #define FILE_EXT @".jpeg"
 #define PUBLIC_FOLDER @"public://"  
@@ -38,5 +40,5 @@
 #define TABLEVIEW_CELL_CORNER_RADIUS 0.0
 
 #define TABLEVIEWHEADERHEIGHT 44
-#define SIGHTING_OFFSET 10 // 10 record offset
+#define SIGHTING_OFFSET 3// 3 record offset
 

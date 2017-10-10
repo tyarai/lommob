@@ -10,6 +10,8 @@
 #import "LemurLifeListTable.h"
 
 
+
+
 #ifdef DEBUG
     #define SERVER @"http://192.168.2.242"
     //#define SERVER @"http://172.20.10.4"
@@ -36,6 +38,12 @@
 #define SERVICE_MY_SIGHTINGS @"/lom_endpoint/api/v1/services/lom_sighting_services/changed_sightings" //Parameters : 'uid' and 'from_date'
 
 #define COUNT_SIGHTINGS @"/lom_endpoint/api/v1/services/lom_sighting_services/count_sightings" //Parameters : 'uid' (mandatory) and 'from_date' (optional)
+
+
+
+#define RESET_SYNCED @"/lom_endpoint/api/v1/services/lom_sighting_services/reset_synced" //Parameters : 'uid' (mandatory) and 'synced_value' (optional)
+
+
 
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
 #define LIFELIST_ENDPOINT_MODIFIED_FROM @"api/v1/list/my-lemur-life-list-modified-from"
@@ -80,7 +88,8 @@ typedef void (^postsViewControllerFunctionCallback) (void);
 -(void) getSightingsForSessionId:(NSString*) session_id
                        from_date:(NSString*) from_date
                            start:(NSString*)start
-                             count:(NSString*)count
+                           count:(NSString*)count
+                          
                    andCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) getSightingsForSessionId:(NSString*) session_id
@@ -96,6 +105,7 @@ typedef void (^postsViewControllerFunctionCallback) (void);
 -(void) getMyLemurLifeListForSessionId:(NSString*) session_id andCompletion:(JSONObjectBlock)completeBlock;
 
 -(void) syncWithServer:(NSArray<Sightings *>*)sightings
+                  view:(id)vc
            sessionName:(NSString*)sessionName
              sessionID:(NSString*) sessionID
               callback:(postsViewControllerFunctionCallback)func;

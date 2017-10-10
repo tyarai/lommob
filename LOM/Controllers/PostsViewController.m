@@ -39,11 +39,11 @@
     self.pullToRefresh = NO;
     isSearchShown = NO;
     
-    self.recordCount = 0;
     
-    self.refreshControl = [[UIRefreshControl alloc]init];
+    
+    self.refreshControl                 = [[UIRefreshControl alloc]init];
     self.refreshControl.backgroundColor = [UIColor whiteColor];//ORANGE_COLOR;
-    self.refreshControl.tintColor = [UIColor blackColor];
+    self.refreshControl.tintColor       = [UIColor blackColor];
     
     [self.refreshControl addTarget:self
                             action:@selector(refreshListFromOnlineData)
@@ -146,9 +146,11 @@
                 };
                 
                 [appData syncWithServer:notSyncedSightings
+                                   view:self
                             sessionName:sessionName
                               sessionID:sessionID
-                               callback:callback];
+                               callback:callback
+                 ];
                 
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
                 
@@ -194,6 +196,7 @@
     isAdding = NO;
     [super viewWillAppear:animated];
     [self loadLocalSightings];
+    
     
 }
 
@@ -311,8 +314,9 @@
     }
 }
 
+#pragma mark UITableView Delegate
 
-#pragma mark UITableviewDataSource Implements
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [_sightingsList count];
@@ -354,24 +358,27 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    PostsTableViewCell* cell = (PostsTableViewCell*) [Tools getCell:tableView identifier:@"PostsTableViewCell"];
+    if(_sightingsList != nil && [_sightingsList count] != 0){
     
-    cell.parentTableView = self;
-    PublicationNode* sightingNode = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
+        PostsTableViewCell* cell = (PostsTableViewCell*) [Tools getCell:tableView identifier:@"PostsTableViewCell"];
+
+        cell.parentTableView = self;
+        PublicationNode* sightingNode = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
+
+        [cell displaySighting:sightingNode.node postsTableViewController:self];
+
+        cell = (PostsTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-10];
+
+        return cell;
+    }
     
-    [cell displaySighting:sightingNode.node postsTableViewController:self];
-    
-    cell = (PostsTableViewCell*)[cell stretchCell:cell width:self.view.frame.size.width height:self.view.frame.size.height-10];
-    
-    return cell;
+    return nil;
     
 }
 
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    //PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
-    //self.selectedPublication = sighting.node;
-    return indexPath;
+     return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -381,43 +388,32 @@
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.currentPhotos removeAllObjects];
     
+    
     PublicationNode * sighting = (PublicationNode*) [_sightingsList objectAtIndex:indexPath.row];
     __block UIImageView * tempImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     __block UIImage * image = [UIImage imageNamed:@"ico_default_specy"];
+    
     if(sighting){
         
         NSString * imageBundleName = [sighting.node getSightingImageFullPathName];
-        //if(sighting.node.isLocal || !sighting.node.isSynced){
+        
+        //--- Jerena sao dia efa URL ilay fileName ---//
+        NSURL * tempURL = [NSURL URLWithString:sighting.node.field_photo.src];
+        
+        if(tempURL && tempURL.scheme && tempURL.host){
             
-            //--- Jerena sao dia efa URL ilay fileName ---//
-            NSURL * tempURL = [NSURL URLWithString:sighting.node.field_photo.src];
-            
-            if(tempURL && tempURL.scheme && tempURL.host){
+            [tempImageView setImageWithURL:tempURL completed:^(UIImage *img, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                if (error == nil) {
+                    image = tempImageView.image;
+                }
                 
-                [tempImageView setImageWithURL:tempURL completed:^(UIImage *img, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                    if (error == nil) {
-                        image = tempImageView.image;
-                    }
-                    
-                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            }else{
-                image = [UIImage imageWithContentsOfFile:imageBundleName];
-            }
+            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        }else{
+            image = [UIImage imageWithContentsOfFile:imageBundleName];
+        }
             
             
-        /*}else{
-            
-            SDImageCache *imageCache = [SDImageCache sharedImageCache];
-            [imageCache queryDiskCacheForKey:imageBundleName done:^(UIImage *cachedImage,SDImageCacheType cacheType)
-             {
-                 if(cachedImage){
-                    image = cachedImage;
-                 }
-                 
-             }];
-            
-            
-        }*/
+        
     }
     
     MWPhoto* photo = [MWPhoto photoWithImage:image];
@@ -539,13 +535,16 @@
     
 -(void) loadOnlineSightings{
     self.initialLoad = TRUE;
-    [self getPostsJSONCall];
-    //[self getChangedNodesJSONCall];
-    
+    [self getPostsCount]; //Alaina ny isan'ny niova rehetra any @ server --//
 }
 
 
 
+
+/* 
+ 
+ // ---------- OCTOBER 04 2017 --------//
+ 
  -(void) getPostsJSONCall{
  
      //---- Alaina aloha ny count any @ server ----//
@@ -569,7 +568,8 @@
             [appData getSightingsForSessionId:appDelegate._sessid
                                     from_date:lastSyncDate
                                         start:[NSString stringWithFormat:@"%li", self.currentPointer]
-                                        count:[NSString stringWithFormat:@"%li", self.recordCount]
+                                        //count:[NSString stringWithFormat:@"%li", self.recordCount]
+             count:[NSString stringWithFormat:@"%li", 10]
                 andCompletion:^(id json, JSONModelError *err) {
                     
                     if (err) {
@@ -612,7 +612,7 @@
         
     }];
  }
-
+*/
  
 
 
@@ -1154,6 +1154,169 @@
     
     
     return view;
+}
+
+#pragma mark UIScrollViewDelegate
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+    {
+        [self loadDataForVisibleRows];
+    }
+}
+
+// -------------------------------------------------------------------------------
+//	scrollViewDidEndDecelerating:scrollView
+//  When scrolling stops, proceed to load the app icons that are on screen.
+// -------------------------------------------------------------------------------
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadDataForVisibleRows];
+}
+
+
+
+-(void)loadDataForVisibleRows{
+    
+    //NSIndexPath *firstVisibleIndexPath = [[self.tableViewLifeList indexPathsForVisibleRows] objectAtIndex:0];
+    
+    //NSIndexPath *lastVisibleIndexPath = [[self.tableViewLifeList indexPathsForVisibleRows] objectAtIndex:1];
+    
+    //NSLog(@"first visible cell's: %li, last: %li",(long) firstVisibleIndexPath.row, (long)lastVisibleIndexPath.row);
+    
+    NSInteger lastChangedRecordsCount = 0;
+    //NSInteger countLocalSightings     = [[Sightings getAllSightings] count];
+    NSString *_recordCount = [Tools getStringUserPreferenceWithKey:KEY_RECORD_COUNT];
+    
+    if(! [Tools isNullOrEmptyString:_recordCount]){
+        lastChangedRecordsCount = [_recordCount integerValue];
+    }
+    
+    __block NSString * recordIndex     = [Tools getStringUserPreferenceWithKey:KEY_RECORD_INDEX];
+    __block NSInteger _recordIndex     = 0;
+    
+    if(![Tools isNullOrEmptyString:recordIndex]){
+        _recordIndex = [recordIndex integerValue];
+    }
+    
+    if(lastChangedRecordsCount > 0 ){
+    
+        NSString * lastSyncDate  = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        
+        if(! [Tools isNullOrEmptyString:lastSyncDate]){
+            _recordIndex = 0; //
+        }
+        
+        [appData getSightingsForSessionId:appDelegate._sessid
+                                    from_date:lastSyncDate
+                                        start:[NSString stringWithFormat:@"%li", _recordIndex]
+                                        count:[NSString stringWithFormat:@"%i", SIGHTING_OFFSET]
+                                andCompletion:^(id json, JSONModelError *err) {
+                                
+                if (err) {
+                    if(self.refreshControl){
+                        [self.refreshControl endRefreshing];
+                    }
+             
+                    [Tools showError:err onViewController:self];
+                    
+                }else{
+                    
+                    NSDictionary* tmpDict = (NSDictionary*) json;
+                    
+                    NSError* error;
+                    //--- overLoaded ito function ito . Manao parsing ny JSON fields sy
+                    //---- ny Class propertries
+                    PublicationResult * result = [[PublicationResult alloc] initWithDictionary:tmpDict error:&error];
+                    
+                    if (error){
+                        
+                        NSLog(@"Error parse : %@", error.debugDescription);
+                        
+                    }
+                    else{
+
+                        
+                        
+                        if([result.nodes count] == 0){
+                            //--Atao now ny lastSync Date fa tafidina daholo ny tany @ server
+                            [Tools saveSyncDate];
+                            [Tools setUserPreferenceWithKey:KEY_RECORD_INDEX andStringValue:@""];
+                            [Tools setUserPreferenceWithKey:KEY_RECORD_COUNT andStringValue:@""];
+                            
+                        }else{
+                            //--Rehefa misy data milatsaka avy any @server ihany vao atao update ny local
+                            
+                            NSInteger newRecordCount = lastChangedRecordsCount - SIGHTING_OFFSET;
+                            newRecordCount           = newRecordCount > 0  ? newRecordCount : 0;
+                            
+                            if(newRecordCount > 0){
+                                _recordIndex += SIGHTING_OFFSET;
+                            }else{
+                                _recordIndex = 0;//Tapitra, tsy hisy sighting ho ampidinina intsony
+                                [Tools saveSyncDate];
+                            }
+                            
+                            recordIndex = [NSString stringWithFormat:@"%li",_recordIndex];
+                            [Tools setUserPreferenceWithKey:KEY_RECORD_INDEX andStringValue:recordIndex];
+                            
+                            [Tools setUserPreferenceWithKey:KEY_RECORD_COUNT andStringValue: [NSString stringWithFormat:@"%li", newRecordCount]];
+                            
+                            
+                            [Tools updateSightingsWithNodes:result.nodes];
+                            
+                            [self loadLocalSightings];
+                            
+                        }
+                        
+                        //-- fafana ilay message Empty List lasa background view teo aloha --
+                        self.tableViewLifeList.backgroundView = nil;
+                        //self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+                    }
+                    
+                }
+                
+        }];
+    }
+}
+
+-(void) getPostsCount{
+    
+    //---- Alaina aloha ny count any @ server ----//
+    
+    NSUInteger uid                    = appDelegate._uid;
+    NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+    
+    NSString * changedRecords         = [Tools getStringUserPreferenceWithKey:KEY_RECORD_COUNT];
+    
+    NSInteger count = [Tools isNullOrEmptyString:changedRecords] == NO ?  [changedRecords integerValue]:0;
+    
+    if(count <=0){
+    
+        [appData getSightingsCountForUID:uid
+                 changedFromDate:lastSyncDate
+                       sessionID:appDelegate._sessid
+                   andCompletion:^(id json, JSONModelError *err){
+                       
+                       if(err == nil){
+                           
+                           NSDictionary * result            = (NSDictionary*)json;
+                           id count                         = [result valueForKey:@"count"];
+                           NSString* _changedRecordsCount   = [NSString stringWithFormat:@"%li",[count integerValue]];
+                           [Tools setUserPreferenceWithKey:KEY_RECORD_COUNT andStringValue:_changedRecordsCount];
+                           
+                           
+                           if([count integerValue] !=0){
+                               //--- Misy changed sighting an @ server dia tokony averina 0 ny index hiaingana aty @ server
+                               NSString* recordIndex = [NSString stringWithFormat:@"%i",0];
+                               [Tools setUserPreferenceWithKey:KEY_RECORD_INDEX andStringValue:recordIndex];
+                           }
+                           
+                       }
+                       
+       }];
+   }
 }
 
 @end

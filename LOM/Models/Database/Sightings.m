@@ -30,7 +30,8 @@
 }
 
 + (NSArray*) getAllSightings{
-    return [self instancesOrderedBy:@" _id DESC AND _deleted = '0'"];
+    //return [self instancesOrderedBy:@" _id DESC AND _deleted = '0'"];
+    return [self instancesWhere:@" _deleted = '0'"];
 }
 
 + (NSArray*) getNotSyncedSightings{

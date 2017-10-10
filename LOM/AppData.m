@@ -217,7 +217,8 @@ static AppData* _instance;
         }else{
             NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
             NSString *percentEncodedString    = [from_date stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
-            url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@", SERVER,COUNT_SIGHTINGS,(unsigned long)uid,percentEncodedString];
+            /*url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@", SERVER,COUNT_SIGHTINGS,(unsigned long)uid,percentEncodedString];*/
+            url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@&synced=%d", SERVER,COUNT_SIGHTINGS,(unsigned long)uid,percentEncodedString,0];
         }
         
         [JSONHTTPClient postJSONFromURLWithString:url
@@ -252,6 +253,7 @@ static AppData* _instance;
                        from_date:(NSString*) from_date
                            start:(NSString*)start
                            count:(NSString*)count
+                          
                    andCompletion:(JSONObjectBlock)completeBlock
 {
     [self buildPOSTHeader];
@@ -271,14 +273,36 @@ static AppData* _instance;
         NSString * lastSyncDate           = from_date;
         
         if([Tools isNullOrEmptyString:lastSyncDate]){
-            //[Tools saveSyncDate];
-            //--- Rehefa vao mi-sync voalohany dia alatsaka daholo izay sighting any na Local na tsia --
+            //--- Rehefa vao mi-sync voalohany dia mila atao synced=FALSE daholo aloha ny any @ server
             
-            url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=&start=%@&count=%@", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,start,count];
             
-            [JSONHTTPClient postJSONFromURLWithString:url
+    
+            NSString* _url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=&start=%@&count=%@", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,start,count];
+            
+            [JSONHTTPClient postJSONFromURLWithString:_url
                                                params:NULL
                                            completion:completeBlock];
+        
+        
+            /*url = [NSString stringWithFormat:@"%@%@?uid=%lu&synced_value=0", SERVER,RESET_SYNCED,(unsigned long)uid];
+            
+            [JSONHTTPClient postJSONFromURLWithString:url params:nil completion:^(id json, JSONModelError *err) {
+                
+                if(err){
+                    NSLog(@"Error :%@",err.description);
+                }else{
+                    
+                    NSString* _url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=&start=%@&count=%@&synced=0", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,start,count];
+                    
+                    [JSONHTTPClient postJSONFromURLWithString:_url
+                                                       params:NULL
+                                                   completion:completeBlock];
+                }
+                
+            }];*/
+            
+            
+            
             
         }else{
             /* *************************************************************
@@ -300,6 +324,7 @@ static AppData* _instance;
             
             
             url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@&start=%@&count=%@&synced=%d", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,percentEncodedString,start,count,0];
+            /*url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@&start=%@&count=%@", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,percentEncodedString,start,count];*/
             
             
             [JSONHTTPClient postJSONFromURLWithString:url
@@ -406,6 +431,7 @@ static AppData* _instance;
 
 
 -(void) syncWithServer:(NSArray<Sightings *>*)sightings
+                  view:(id)vc
            sessionName:(NSString*)sessionName
              sessionID:(NSString*) sessionID
               callback:(postsViewControllerFunctionCallback)func{
@@ -445,8 +471,11 @@ static AppData* _instance;
                                  fileName:fileName
                                  fileSize:(NSUInteger)fileSize
                                  completeBlock:^(id json, JSONModelError *err) {
-                                
+                       
+                                     
                             if(err){
+                                BaseViewController *viewController = (BaseViewController*)vc;
+                                [Tools showError:err onViewController:viewController];
                                 NSLog(@"Error : %@", err.description);
                             }else{
                                 
@@ -455,19 +484,23 @@ static AppData* _instance;
                                 FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
                                 
                                 if (error){
-                                
+                                    BaseViewController *viewController = (BaseViewController*)vc;
+                                    [Tools showError:err onViewController:viewController];
                                     NSLog(@"Error parse : %@", error.debugDescription);
                                 }
                                 else{
                                     NSInteger fid  = fileResult.fid;
                                   
                                     [self saveSighting:sighting fileID:fid sessionName:sessionName sessionId:sessionID completeBlock:^(id RETjson, JSONModelError *err) {
+                                        
                                         NSError* error;
                                         
                                         NSDictionary * retDict = (NSDictionary*)RETjson;
                                         
                                         
                                         if (error){
+                                            BaseViewController *viewController = (BaseViewController*)vc;
+                                            [Tools showError:err onViewController:viewController];
                                             NSLog(@"Error parse : %@", error.debugDescription);
                                         }
                                         else{

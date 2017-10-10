@@ -13,7 +13,7 @@
 #import "SightingDataTableViewController.h"
 
 
-@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate,SightingDataTableViewControllerDelegate>{
+@interface PostsViewController : BaseViewController <UITableViewDataSource, UITextFieldDelegate,UITableViewDelegate, PopupLoginViewControllerDelegate, WYPopoverControllerDelegate,MWPhotoBrowserDelegate,SightingDataTableViewControllerDelegate,UIScrollViewDelegate>{
     
     NSArray* _sightingsList;
     BOOL isSearchShown;
@@ -37,9 +37,9 @@
 @property NSMutableArray * currentPhotos;   
 - (IBAction)addButtonTapped:(id)sender;
 
-@property NSInteger recordCount;
+
 @property NSInteger currentPage;
-@property NSInteger currentPointer; 
+ 
 
 
 //@property (strong) Species * selectedSpecies;

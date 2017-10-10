@@ -1701,59 +1701,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Data update" id="uxu-A3-S2g" userLabel="Update">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="130" id="CM5-AC-Wra">
-                                        <rect key="frame" x="0.0" y="365" width="375" height="130"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CM5-AC-Wra" id="1lh-g3-4qD">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="129.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmE-NW-6em">
-                                                    <rect key="frame" x="13" y="8" width="349" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="KHZ-44-UXT"/>
-                                                        <constraint firstAttribute="width" constant="349" id="RGh-pQ-FZe"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdG-gj-2Rd">
-                                                    <rect key="frame" x="13" y="47" width="349" height="51"/>
-                                                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="51" id="HrH-PX-grG"/>
-                                                        <constraint firstAttribute="width" constant="349" id="MpU-I5-2n0"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
-                                                    <state key="normal" title="Get updates">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="tappedUpdateButton:" destination="1Dl-zC-HS4" eventType="touchUpInside" id="7QF-dO-Q9Y"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="bdG-gj-2Rd" firstAttribute="top" secondItem="hmE-NW-6em" secondAttribute="bottom" constant="8" id="8A8-A8-tIG"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="bdG-gj-2Rd" secondAttribute="bottom" constant="23.5" id="Wyz-9D-yWn"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hmE-NW-6em" secondAttribute="trailing" constant="5" id="doU-gm-WxH"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="bdG-gj-2Rd" secondAttribute="trailing" constant="5" id="i4H-i3-1Ov"/>
-                                                <constraint firstItem="bdG-gj-2Rd" firstAttribute="top" secondItem="hmE-NW-6em" secondAttribute="bottom" constant="8" id="kOI-J6-6dA"/>
-                                                <constraint firstItem="hmE-NW-6em" firstAttribute="leading" secondItem="1lh-g3-4qD" secondAttribute="leadingMargin" constant="5" id="m9e-ag-tFQ"/>
-                                                <constraint firstItem="bdG-gj-2Rd" firstAttribute="leading" secondItem="1lh-g3-4qD" secondAttribute="leadingMargin" constant="5" id="mpR-S0-fK1"/>
-                                                <constraint firstAttribute="topMargin" secondItem="hmE-NW-6em" secondAttribute="top" id="pIK-YS-fQ8"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Version" id="kI6-hj-W7D">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BaD-JU-q3T">
-                                        <rect key="frame" x="0.0" y="523" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="365" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BaD-JU-q3T" id="O1a-dW-Mhw">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1792,8 +1743,6 @@
                         <outlet property="lifeListContentView" destination="x8f-cg-xyl" id="cf5-iJ-8nN"/>
                         <outlet property="lifeListDescriptionView" destination="KZR-4O-QIk" id="TMx-fU-ZTc"/>
                         <outlet property="switchBtn" destination="dQ0-Yj-pM0" id="rgg-Nj-s4b"/>
-                        <outlet property="updateButton" destination="bdG-gj-2Rd" id="cWi-GR-4cJ"/>
-                        <outlet property="updateText" destination="hmE-NW-6em" id="aJe-kU-oci"/>
                         <outlet property="userName" destination="xX1-zC-hAL" id="xTz-K2-saw"/>
                     </connections>
                 </tableViewController>

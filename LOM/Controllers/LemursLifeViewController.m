@@ -304,7 +304,7 @@
     
     
     [self loadOnlineSightings]; // Ny sightings no alaina dia manao updateInsert automatic ny LemurLifeList
-    //[self syncSightingsWithServer]; // Ny sightings no atao syncronization
+    
 }
 
 /**
@@ -355,6 +355,7 @@
             if(stillConnected){
                 NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
                 [appData syncWithServer:notSyncedSightings
+                                   view:self
                             sessionName:sessionName
                               sessionID:sessionID
                                callback:nil];

@@ -405,6 +405,7 @@ static float appScale = 1.0;
     Update the local sightings table
  */
 +(void) updateSightingsWithNodes:(NSArray<PublicationNode>*) nodes{
+    
     if(nodes != nil && [nodes count] > 0){
         for (PublicationNode *node in nodes) {
             if(node){
@@ -412,6 +413,7 @@ static float appScale = 1.0;
                 
                 NSString * _uuid                = sighting.uuid;
                 int64_t  _nid                   = sighting.nid;
+                //---- Tadiavina raha efa ao anaty local DB ---/
                 Sightings* instance             = [Sightings getSightingsByNID : _nid];
                 NSString * _title               = sighting.title;
                 _title                          = [_title stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
