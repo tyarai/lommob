@@ -284,25 +284,7 @@ static AppData* _instance;
                                            completion:completeBlock];
         
         
-            /*url = [NSString stringWithFormat:@"%@%@?uid=%lu&synced_value=0", SERVER,RESET_SYNCED,(unsigned long)uid];
-            
-            [JSONHTTPClient postJSONFromURLWithString:url params:nil completion:^(id json, JSONModelError *err) {
-                
-                if(err){
-                    NSLog(@"Error :%@",err.description);
-                }else{
-                    
-                    NSString* _url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=&start=%@&count=%@&synced=0", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,start,count];
-                    
-                    [JSONHTTPClient postJSONFromURLWithString:_url
-                                                       params:NULL
-                                                   completion:completeBlock];
-                }
-                
-            }];*/
-            
-            
-            
+                       
             
         }else{
             /* *************************************************************

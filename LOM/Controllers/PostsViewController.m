@@ -1210,7 +1210,7 @@
         
         [appData getSightingsForSessionId:appDelegate._sessid
                                     from_date:lastSyncDate
-                                        start:[NSString stringWithFormat:@"%li", _recordIndex]
+                                        start:[NSString stringWithFormat:@"%li", (long)_recordIndex]
                                         count:[NSString stringWithFormat:@"%i", SIGHTING_OFFSET]
                                 andCompletion:^(id json, JSONModelError *err) {
                                 
@@ -1258,10 +1258,10 @@
                                 [Tools saveSyncDate];
                             }
                             
-                            recordIndex = [NSString stringWithFormat:@"%li",_recordIndex];
+                            recordIndex = [NSString stringWithFormat:@"%li",(long)_recordIndex];
                             [Tools setUserPreferenceWithKey:KEY_RECORD_INDEX andStringValue:recordIndex];
                             
-                            [Tools setUserPreferenceWithKey:KEY_RECORD_COUNT andStringValue: [NSString stringWithFormat:@"%li", newRecordCount]];
+                            [Tools setUserPreferenceWithKey:KEY_RECORD_COUNT andStringValue: [NSString stringWithFormat:@"%li", (long)newRecordCount]];
                             
                             
                             [Tools updateSightingsWithNodes:result.nodes];
@@ -1303,7 +1303,7 @@
                            
                            NSDictionary * result            = (NSDictionary*)json;
                            id count                         = [result valueForKey:@"count"];
-                           NSString* _changedRecordsCount   = [NSString stringWithFormat:@"%li",[count integerValue]];
+                           NSString* _changedRecordsCount   = [NSString stringWithFormat:@"%li",(long)[count integerValue]];
                            [Tools setUserPreferenceWithKey:KEY_RECORD_COUNT andStringValue:_changedRecordsCount];
                            
                            
