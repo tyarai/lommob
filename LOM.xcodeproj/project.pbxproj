@@ -83,6 +83,7 @@
 		4C3B54251F7EA3F30039EBCD /* RootPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B54241F7EA3F30039EBCD /* RootPageController.m */; };
 		4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */; };
 		4C3BB1711ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */; };
+		4C3C71231F8FF93300DB697D /* ExtinctLemursNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C71221F8FF93300DB697D /* ExtinctLemursNewViewController.m */; };
 		4C5177491C21EA5700BBD0B1 /* SpeciesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */; };
 		4C59AD911C15F57800EA74C5 /* SpeciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59AD901C15F57800EA74C5 /* SpeciesViewController.m */; };
 		4C59AD951C15F59A00EA74C5 /* FamiliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59AD941C15F59A00EA74C5 /* FamiliesViewController.m */; };
@@ -1099,6 +1100,8 @@
 		4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesSelectorViewController.m; path = Controllers/WatchingSitesSelectorViewController.m; sourceTree = "<group>"; };
 		4C3BB16F1ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WatchingSitesSelectorTableViewCell.h; path = Controllers/WatchingSitesSelectorTableViewCell.h; sourceTree = "<group>"; };
 		4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesSelectorTableViewCell.m; path = Controllers/WatchingSitesSelectorTableViewCell.m; sourceTree = "<group>"; };
+		4C3C71211F8FF93300DB697D /* ExtinctLemursNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtinctLemursNewViewController.h; path = Controllers/ExtinctLemursNewViewController.h; sourceTree = "<group>"; };
+		4C3C71221F8FF93300DB697D /* ExtinctLemursNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtinctLemursNewViewController.m; path = Controllers/ExtinctLemursNewViewController.m; sourceTree = "<group>"; };
 		4C5177471C21EA5700BBD0B1 /* SpeciesDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeciesDetailsViewController.h; path = Controllers/SpeciesDetailsViewController.h; sourceTree = "<group>"; };
 		4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeciesDetailsViewController.m; path = Controllers/SpeciesDetailsViewController.m; sourceTree = "<group>"; };
 		4C59AD8F1C15F57800EA74C5 /* SpeciesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeciesViewController.h; path = Controllers/SpeciesViewController.h; sourceTree = "<group>"; };
@@ -2259,6 +2262,15 @@
 			name = "App Instructions";
 			sourceTree = "<group>";
 		};
+		4C3C71201F8FF8DE00DB697D /* Extinct Lemurs View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C3C71211F8FF93300DB697D /* ExtinctLemursNewViewController.h */,
+				4C3C71221F8FF93300DB697D /* ExtinctLemursNewViewController.m */,
+			);
+			name = "Extinct Lemurs View Controller";
+			sourceTree = "<group>";
+		};
 		4C59AD8E1C15F54300EA74C5 /* Species */ = {
 			isa = PBXGroup;
 			children = (
@@ -3257,6 +3269,7 @@
 				B475F1831DAA03DA006A12EF /* SightingsInfo */,
 				B4A275551DA8D86100777499 /* CameraViewController */,
 				B4BBF3BD1C9790BF005A5196 /* Authors */,
+				4C3C71201F8FF8DE00DB697D /* Extinct Lemurs View Controller */,
 				B48667A31C81A29100F2B05D /* Extinct Lemurs */,
 				B4B7BE7E1C7E8BDB00D32A48 /* OriginOfLemurs */,
 				B4C599AC1C70D68E00C4B99A /* Introduction */,
@@ -4747,6 +4760,7 @@
 				4C74F2981C0638B900543A7F /* MTCSimpleActivityView.m in Sources */,
 				B43DF4321DB8F21800319654 /* UITableViewCell+Stretch.m in Sources */,
 				4C5D047F1C06351700EFCAAC /* Families.m in Sources */,
+				4C3C71231F8FF93300DB697D /* ExtinctLemursNewViewController.m in Sources */,
 				B4B7BE811C7EA36400D32A48 /* OriginOfLemursRootViewController.m in Sources */,
 				4C85FF6A1C37F4F700D6C233 /* LoginResult.m in Sources */,
 				4C3B54251F7EA3F30039EBCD /* RootPageController.m in Sources */,

@@ -796,10 +796,10 @@
                         <segue destination="4B5-O0-xs1" kind="custom" identifier="tenthSegue" customClass="AMSlideMenuContentSegue" id="Mhn-r3-F2q"/>
                         <segue destination="zKY-tG-2Zi" kind="custom" identifier="firstSegue" customClass="AMSlideMenuContentSegue" id="WKD-HR-Qyo"/>
                         <segue destination="tfC-Nw-bLj" kind="custom" identifier="secondSegue" customClass="AMSlideMenuContentSegue" id="m6o-zu-t5g"/>
-                        <segue destination="6N0-DJ-TJr" kind="custom" identifier="thirdSegue" customClass="AMSlideMenuContentSegue" id="YB8-71-JPv"/>
                         <segue destination="2fz-6h-hVv" kind="custom" identifier="forthSegue" customClass="AMSlideMenuContentSegue" id="vcj-Nx-pnx"/>
                         <segue destination="NQ6-Li-hHy" kind="custom" identifier="eleventhSegue" customClass="AMSlideMenuContentSegue" id="lMr-HS-IIR"/>
                         <segue destination="aO8-F9-gfI" kind="show" identifier="twelvethSegue" customClass="AMSlideMenuContentSegue" id="6On-9l-qLb"/>
+                        <segue destination="qfn-iY-zdU" kind="custom" identifier="thirdSegue" customClass="AMSlideMenuContentSegue" id="0yK-p9-lNm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bb0-dW-cji" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2418,7 +2418,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEs-96-eKi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4334" y="-3560"/>
+            <point key="canvasLocation" x="5272.8000000000002" y="-3560.8695652173915"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7RQ-Db-sF1">
@@ -4214,7 +4214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43V-8U-ARz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2768" y="-3569"/>
+            <point key="canvasLocation" x="3706.4000000000001" y="-3569.8650674662672"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="TdO-Gm-qB2">
@@ -4222,7 +4222,7 @@
                 <pageViewController storyboardIdentifier="OriginOfLemursPageVC" autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Db0-Jd-Ypr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ImL-Ea-O8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3580" y="-3570"/>
+            <point key="canvasLocation" x="4519.1999999999998" y="-3570.7646176911549"/>
         </scene>
         <!--Extinct Lemurs Menu-->
         <scene sceneID="SSu-DX-H3K">
@@ -4269,7 +4269,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MOy-L2-wTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2746" y="-2872"/>
+            <point key="canvasLocation" x="5351.1999999999998" y="-2892.5037481259374"/>
         </scene>
         <!--Authors Table View Controller-->
         <scene sceneID="Tvk-aY-KPk">
@@ -4411,6 +4411,50 @@
             </objects>
             <point key="canvasLocation" x="2018" y="-3569"/>
         </scene>
+        <!--Extinct Lemurs New View Controller-->
+        <scene sceneID="zbf-j7-t79">
+            <objects>
+                <viewController id="NCA-2z-hCL" customClass="ExtinctLemursNewViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hqu-mn-VYe"/>
+                        <viewControllerLayoutGuide type="bottom" id="chC-D7-fPK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kTO-SS-1eE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="FaQ-40-flS">
+                                <rect key="frame" x="8" y="64" width="359" height="595"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="359" id="hoG-2m-Mxd"/>
+                                    <constraint firstAttribute="height" constant="595" id="wDl-ZZ-wE3"/>
+                                </constraints>
+                                <mutableString key="text">Since the arrival of humans on Madagascar, fully eight genera and at least 17 lemur species have gone extinct (Figs. 3.3 and 3.4). This represents 15% of all known species of lemurs and over one-third of all known genera, and it is noteworthy that all of the now extinct species were larger than those that survive today. There are 73 living primate genera and these eight extinct lemur genera represent as such a loss of 10% of the world’s primates in historic times. This loss of lemurs in Madagascar in geologically very recent times is a dramatic example of the kind of extinction spasm that conservationists are constantly warning us about and, indeed, many of the surviving lemur species could fall victim to the same fate if conservationists are unsuccessful in their efforts. We describe this extinct fauna in order to convey some sense of the catastrophic loss of primate diversity that this unique island has already experienced, in the hope that it will make us redouble our efforts to save those that remain. A century ago, C. I. Forsyth Major (1894a) described the first subfossil remains of giant extinct lemurs recovered from marshes in the center and southwest of Madagascar. Not only were these remains clearly those of lemurs much larger than any which survive today, they were equally clearly of no great antiquity (hence the “subfossil” appellation). In a review published as early as 1905, the paleontologist Guillaume Grandidier, was able to show that many more names than necessary had been bestowed upon the large collection of subfossil lemur bones that had been amassed by that time. However, among those names were most of the extinct genera recognized today. Despite extensive excavations during the first half of the century, notably by Charles Lamberton (1934a, 1934b, 1936a, 1936b, 1938) of the Académie Malgache, no new extinct lemur genera were recovered between the first decade of the century and the late 1980s. In 1986, a team led by Elwyn Simons of Duke University began work in karst caves on the Ankarana Massif in the far north of Madagascar. Besides discovering at least one new genus of extinct lemur (Babakotia), this team has made finds that have caused considerable rethinking of the adaptations of the extinct lemurs and the relationships among them. The team also made finds indicating that species that still survive today, among them Prolemur simus and Indri indri, once had much more extensive ranges. Until the mid-20th century, subfossil lemurs were known almost exclusively from the center, south and southwest of Madagascar. Now, however, the only major biogeographic region of Madagascar where subrecent fauna remains unsampled is the eastern rain forest. Perhaps even more importantly, the recent era of fieldwork has allowed the collection of complete or relatively complete skeletons in which skulls and the various elements of the body skeleton are positively associated. This contrasts with earlier excavations in which bones tended to be dredged up one by one from swamps and muddy marsh bottoms. Given such circumstances of excavation, the association of postcranial bones with skulls and with each other tended to be a matter of guesswork and size-matching. As it turned out, this was not the most accurate procedure. Most of currently known subfossil sites consist either of marsh deposits (dried to varying extents) or of deposits washed into limestone caves or fissures. Most such sites are rich in the bones of many other vertebrates besides primates (living as well as extinct). Common among such remains are those of pygmy hippopotami, giant tortoises and the famous elephant birds (Aepyornis and Mullerornis). Of particular interest is the Ankilitelo pit cave in the karst landscape of the Mikoboka Plateau in southwestern Madagascar. It has a uniquely rich subfossil mammal fauna (34 species in all), which is very recent (around 500 years old), making it one of the most diverse Holocene assemblages in Madagascar (Simons et al., 2004; Muldoon et al., 2009a, 2009b). It is an extraordinarily rich repository for five species of extinct giant lemurs: Palaeopropithecus ingens, Megaladapis madagascariensis, Archaeolemur majori, Daubentonia robusta, and Pachylemur (Wunderlich et al., 1996; Jungers et al., 1997, 2005; Godfrey et al., 1999; Hamrick et al., 2000; Simons et al., 2004; Shapiro et al., 2005). All of the subfossil sites are strictly localized, and all are of comparatively recent age. Most radiocarbon dates that have been obtained so far cluster in the period between about 2,500 and 1,000 years ago, and only one or two stretch back to the final millennia of the last Ice Age, which ended around 10,000 years ago. These are not very ancient ages by any standard, and they show that subfossil and living lemurs all form part of the same contemporary fauna; the extinct lemurs are in no way the precursors of those that still survive.
+
+</mutableString>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FaQ-40-flS" firstAttribute="trailing" secondItem="kTO-SS-1eE" secondAttribute="trailingMargin" constant="8" id="9wq-TJ-vFp"/>
+                            <constraint firstItem="FaQ-40-flS" firstAttribute="top" secondItem="Hqu-mn-VYe" secondAttribute="bottom" id="jme-hk-DEM"/>
+                            <constraint firstItem="FaQ-40-flS" firstAttribute="leading" secondItem="kTO-SS-1eE" secondAttribute="leadingMargin" constant="-8" id="jmu-9a-Wsj"/>
+                            <constraint firstItem="chC-D7-fPK" firstAttribute="top" secondItem="FaQ-40-flS" secondAttribute="bottom" constant="8" id="yNW-NC-y5X"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Dbi-VQ-LNR"/>
+                    <connections>
+                        <outlet property="textView" destination="FaQ-40-flS" id="KAc-3F-t9E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6fV-3O-v5l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2869.5999999999999" y="-2894.3028485757122"/>
+        </scene>
         <!--Extinct lemurs-->
         <scene sceneID="MJc-Ls-qrF">
             <objects>
@@ -4427,7 +4471,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tuu-3w-zzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2018" y="-2871"/>
+            <point key="canvasLocation" x="4580" y="-2893.403298350825"/>
         </scene>
         <!--About the authors-->
         <scene sceneID="S5L-ac-cMH">
@@ -4482,6 +4526,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkD-6q-j2j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1968.8" y="4868.8155922038986"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gzH-tr-StB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qfn-iY-zdU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TbJ-FU-lPa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="NCA-2z-hCL" kind="relationship" relationship="rootViewController" id="46k-Cx-tJI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ae-Pt-yRS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2017" y="-2894"/>
         </scene>
     </scenes>
     <resources>

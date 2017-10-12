@@ -23,7 +23,7 @@
    self.navigationItem.title=  NSLocalizedString(@"Origin of lemurs", @"Origin of lemurs");
    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
- Menus * originMenu = [Menus getMenuContentByMenuName:@"originoflemurs"];
+ Menus * originMenu = [Menus getMenuContentByMenuName:@"origin"];
    _originOfLemursFullText = [originMenu _menu_content ];
     self.pageText = [ _originOfLemursFullText componentsSeparatedByString:PAGE_SEPARATOR];
     
