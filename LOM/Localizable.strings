@@ -54,3 +54,6 @@
 "stop_capture" = "Stop capture";
 "start_capture" = "Update location";
 "no_available_update" = "No available updates!";
+"location_service_title"="Lemurs of Madagascar Location Service";
+"location_service_global_disabled"="Location service is disabled! Please go to settings and enable it";
+"location_service_app_disabled"="Location service is disabled for this app! Please go to settings and enable location services for Lemurs Of Madagascar";

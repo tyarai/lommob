@@ -319,7 +319,7 @@
             <objects>
                 <navigationController id="lc9-V8-CUV" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="wLb-bu-0QA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="wLb-bu-0QA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1092,7 +1092,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FHg-vw-HMz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="yWm-IP-Gmt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="yWm-IP-Gmt">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1111,7 +1111,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OeS-CT-Cgh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Pyq-sU-qDq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Pyq-sU-qDq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1355,7 +1355,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vS7-R7-YWK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="QVH-er-W8n">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="QVH-er-W8n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1438,7 +1438,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PoG-iY-jQO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="G0x-LA-p6Q">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="G0x-LA-p6Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1756,7 +1756,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4B5-O0-xs1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="F3T-kr-7d0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="F3T-kr-7d0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2296,7 +2296,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JjW-ae-GrF" userLabel="Species" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="D9c-Dg-cHY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="D9c-Dg-cHY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2425,7 +2425,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2El-0s-XfG" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="H4n-6h-bSO">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="H4n-6h-bSO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4184,7 +4184,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zKY-tG-2Zi" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="qMz-FK-clA">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qMz-FK-clA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4398,7 +4398,7 @@
             <objects>
                 <navigationController title="Origin of lemurs" automaticallyAdjustsScrollViewInsets="NO" id="tfC-Nw-bLj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iW1-Ah-XZX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iW1-Ah-XZX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4430,9 +4430,9 @@
                                     <constraint firstAttribute="width" constant="359" id="hoG-2m-Mxd"/>
                                     <constraint firstAttribute="height" constant="595" id="wDl-ZZ-wE3"/>
                                 </constraints>
-                                <mutableString key="text">Since the arrival of humans on Madagascar, fully eight genera and at least 17 lemur species have gone extinct (Figs. 3.3 and 3.4). This represents 15% of all known species of lemurs and over one-third of all known genera, and it is noteworthy that all of the now extinct species were larger than those that survive today. There are 73 living primate genera and these eight extinct lemur genera represent as such a loss of 10% of the world’s primates in historic times. This loss of lemurs in Madagascar in geologically very recent times is a dramatic example of the kind of extinction spasm that conservationists are constantly warning us about and, indeed, many of the surviving lemur species could fall victim to the same fate if conservationists are unsuccessful in their efforts. We describe this extinct fauna in order to convey some sense of the catastrophic loss of primate diversity that this unique island has already experienced, in the hope that it will make us redouble our efforts to save those that remain. A century ago, C. I. Forsyth Major (1894a) described the first subfossil remains of giant extinct lemurs recovered from marshes in the center and southwest of Madagascar. Not only were these remains clearly those of lemurs much larger than any which survive today, they were equally clearly of no great antiquity (hence the “subfossil” appellation). In a review published as early as 1905, the paleontologist Guillaume Grandidier, was able to show that many more names than necessary had been bestowed upon the large collection of subfossil lemur bones that had been amassed by that time. However, among those names were most of the extinct genera recognized today. Despite extensive excavations during the first half of the century, notably by Charles Lamberton (1934a, 1934b, 1936a, 1936b, 1938) of the Académie Malgache, no new extinct lemur genera were recovered between the first decade of the century and the late 1980s. In 1986, a team led by Elwyn Simons of Duke University began work in karst caves on the Ankarana Massif in the far north of Madagascar. Besides discovering at least one new genus of extinct lemur (Babakotia), this team has made finds that have caused considerable rethinking of the adaptations of the extinct lemurs and the relationships among them. The team also made finds indicating that species that still survive today, among them Prolemur simus and Indri indri, once had much more extensive ranges. Until the mid-20th century, subfossil lemurs were known almost exclusively from the center, south and southwest of Madagascar. Now, however, the only major biogeographic region of Madagascar where subrecent fauna remains unsampled is the eastern rain forest. Perhaps even more importantly, the recent era of fieldwork has allowed the collection of complete or relatively complete skeletons in which skulls and the various elements of the body skeleton are positively associated. This contrasts with earlier excavations in which bones tended to be dredged up one by one from swamps and muddy marsh bottoms. Given such circumstances of excavation, the association of postcranial bones with skulls and with each other tended to be a matter of guesswork and size-matching. As it turned out, this was not the most accurate procedure. Most of currently known subfossil sites consist either of marsh deposits (dried to varying extents) or of deposits washed into limestone caves or fissures. Most such sites are rich in the bones of many other vertebrates besides primates (living as well as extinct). Common among such remains are those of pygmy hippopotami, giant tortoises and the famous elephant birds (Aepyornis and Mullerornis). Of particular interest is the Ankilitelo pit cave in the karst landscape of the Mikoboka Plateau in southwestern Madagascar. It has a uniquely rich subfossil mammal fauna (34 species in all), which is very recent (around 500 years old), making it one of the most diverse Holocene assemblages in Madagascar (Simons et al., 2004; Muldoon et al., 2009a, 2009b). It is an extraordinarily rich repository for five species of extinct giant lemurs: Palaeopropithecus ingens, Megaladapis madagascariensis, Archaeolemur majori, Daubentonia robusta, and Pachylemur (Wunderlich et al., 1996; Jungers et al., 1997, 2005; Godfrey et al., 1999; Hamrick et al., 2000; Simons et al., 2004; Shapiro et al., 2005). All of the subfossil sites are strictly localized, and all are of comparatively recent age. Most radiocarbon dates that have been obtained so far cluster in the period between about 2,500 and 1,000 years ago, and only one or two stretch back to the final millennia of the last Ice Age, which ended around 10,000 years ago. These are not very ancient ages by any standard, and they show that subfossil and living lemurs all form part of the same contemporary fauna; the extinct lemurs are in no way the precursors of those that still survive.
+                                <string key="text">Since the arrival of humans on Madagascar, fully eight genera and at least 17 lemur species have gone extinct (Figs. 3.3 and 3.4). This represents 15% of all known species of lemurs and over one-third of all known genera, and it is noteworthy that all of the now extinct species were larger than those that survive today. There are 73 living primate genera and these eight extinct lemur genera represent as such a loss of 10% of the world’s primates in historic times. This loss of lemurs in Madagascar in geologically very recent times is a dramatic example of the kind of extinction spasm that conservationists are constantly warning us about and, indeed, many of the surviving lemur species could fall victim to the same fate if conservationists are unsuccessful in their efforts. We describe this extinct fauna in order to convey some sense of the catastrophic loss of primate diversity that this unique island has already experienced, in the hope that it will make us redouble our efforts to save those that remain. A century ago, C. I. Forsyth Major (1894a) described the first subfossil remains of giant extinct lemurs recovered from marshes in the center and southwest of Madagascar. Not only were these remains clearly those of lemurs much larger than any which survive today, they were equally clearly of no great antiquity (hence the “subfossil” appellation). In a review published as early as 1905, the paleontologist Guillaume Grandidier, was able to show that many more names than necessary had been bestowed upon the large collection of subfossil lemur bones that had been amassed by that time. However, among those names were most of the extinct genera recognized today. Despite extensive excavations during the first half of the century, notably by Charles Lamberton (1934a, 1934b, 1936a, 1936b, 1938) of the Académie Malgache, no new extinct lemur genera were recovered between the first decade of the century and the late 1980s. In 1986, a team led by Elwyn Simons of Duke University began work in karst caves on the Ankarana Massif in the far north of Madagascar. Besides discovering at least one new genus of extinct lemur (Babakotia), this team has made finds that have caused considerable rethinking of the adaptations of the extinct lemurs and the relationships among them. The team also made finds indicating that species that still survive today, among them Prolemur simus and Indri indri, once had much more extensive ranges. Until the mid-20th century, subfossil lemurs were known almost exclusively from the center, south and southwest of Madagascar. Now, however, the only major biogeographic region of Madagascar where subrecent fauna remains unsampled is the eastern rain forest. Perhaps even more importantly, the recent era of fieldwork has allowed the collection of complete or relatively complete skeletons in which skulls and the various elements of the body skeleton are positively associated. This contrasts with earlier excavations in which bones tended to be dredged up one by one from swamps and muddy marsh bottoms. Given such circumstances of excavation, the association of postcranial bones with skulls and with each other tended to be a matter of guesswork and size-matching. As it turned out, this was not the most accurate procedure. Most of currently known subfossil sites consist either of marsh deposits (dried to varying extents) or of deposits washed into limestone caves or fissures. Most such sites are rich in the bones of many other vertebrates besides primates (living as well as extinct). Common among such remains are those of pygmy hippopotami, giant tortoises and the famous elephant birds (Aepyornis and Mullerornis). Of particular interest is the Ankilitelo pit cave in the karst landscape of the Mikoboka Plateau in southwestern Madagascar. It has a uniquely rich subfossil mammal fauna (34 species in all), which is very recent (around 500 years old), making it one of the most diverse Holocene assemblages in Madagascar (Simons et al., 2004; Muldoon et al., 2009a, 2009b). It is an extraordinarily rich repository for five species of extinct giant lemurs: Palaeopropithecus ingens, Megaladapis madagascariensis, Archaeolemur majori, Daubentonia robusta, and Pachylemur (Wunderlich et al., 1996; Jungers et al., 1997, 2005; Godfrey et al., 1999; Hamrick et al., 2000; Simons et al., 2004; Shapiro et al., 2005). All of the subfossil sites are strictly localized, and all are of comparatively recent age. Most radiocarbon dates that have been obtained so far cluster in the period between about 2,500 and 1,000 years ago, and only one or two stretch back to the final millennia of the last Ice Age, which ended around 10,000 years ago. These are not very ancient ages by any standard, and they show that subfossil and living lemurs all form part of the same contemporary fauna; the extinct lemurs are in no way the precursors of those that still survive.
 
-</mutableString>
+</string>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -4460,7 +4460,7 @@
             <objects>
                 <navigationController title="Extinct lemurs" automaticallyAdjustsScrollViewInsets="NO" id="6N0-DJ-TJr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="RkS-sK-nqL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RkS-sK-nqL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4478,7 +4478,7 @@
             <objects>
                 <navigationController title="About the authors" automaticallyAdjustsScrollViewInsets="NO" id="2fz-6h-hVv" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="03r-zr-GSh">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="03r-zr-GSh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4496,7 +4496,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NQ6-Li-hHy" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Zjf-v3-A3d">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zjf-v3-A3d">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4514,7 +4514,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aO8-F9-gfI" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="3Iu-kc-cxj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3Iu-kc-cxj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -4532,7 +4532,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qfn-iY-zdU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="TbJ-FU-lPa">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TbJ-FU-lPa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

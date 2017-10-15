@@ -27,6 +27,7 @@
     BOOL capturing;
 }
 
+
 @end
 
 @implementation SightingDataTableViewController
@@ -687,15 +688,56 @@
 
 - (IBAction)captureTapped:(id)sender {
     
-    if(! capturing){
-        [self.locationManager startUpdatingLocation];
-        [self.captureButton setTitle:NSLocalizedString(@"stop_capture", @"") forState:UIControlStateNormal] ;
+    //if(! capturing){
         
-    }else{
+        if ([CLLocationManager locationServicesEnabled]){
+            
+             if ([CLLocationManager authorizationStatus]== kCLAuthorizationStatusDenied){
+                 
+                 UIAlertController * alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"location_service_title",@"") messsage:NSLocalizedString(@"location_service_app_disabled", @"")];
+
+                 [self presentViewController:alert animated:YES completion:nil];
+                 
+                 
+             }else{
+        
+                 if(capturing == NO){
+        
+                    [self.locationManager startUpdatingLocation];
+                    [self.captureButton setTitle:NSLocalizedString(@"stop_capture", @"") forState:UIControlStateNormal] ;
+                     capturing = YES;
+                     
+                 }else{
+                     
+                     [self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
+                     [self.captureButton setTitle:NSLocalizedString(@"start_capture", @"") forState:UIControlStateNormal] ;
+                     self.startLocation = nil;
+                     capturing = NO;
+                     
+                 }
+                 
+                 
+             }
+            
+        }else{
+            
+            
+            UIAlertController * alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"location_service_title", @"") messsage:NSLocalizedString(@"location_service_global_disabled", @"")];
+            
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        }
+        
+        
+        
+    //}
+    
+    /*else{
         [self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
         [self.captureButton setTitle:NSLocalizedString(@"start_capture", @"") forState:UIControlStateNormal] ;
         self.startLocation = nil;
-    }
-    capturing = !capturing;
+        capturing = !capturing;
+    }*/
+    //capturing = !capturing;
 }
 @end
