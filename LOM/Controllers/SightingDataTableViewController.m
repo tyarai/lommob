@@ -686,7 +686,7 @@
     NSLog(@"%@",[error description]);
 }
 
-- (IBAction)captureTapped:(id)sender {
+-  (IBAction)captureTapped:(id)sender {
     
     //if(! capturing){
         
