@@ -7,6 +7,11 @@
 //
 
 #import "AMSlideMenuMainViewController.h"
+#import "PopupLoginViewController.h"
+#import "WYPopoverController.h"
+#import "PopupLoginViewController.h"
+#import "SignUpViewController.h"
+
 
 #define INTRODUCTION_MENU_SEGUE @"firstSegue"
 #define ORIGINOFLEMURS_MENU_SEGUE @"secondSegue"
@@ -23,7 +28,15 @@
 
 
 
-@interface MainVC : AMSlideMenuMainViewController {
+
+
+
+
+
+@interface MainVC : AMSlideMenuMainViewController <PopupLoginViewControllerDelegate,WYPopoverControllerDelegate> {
+
+    WYPopoverController* popoverController;
+    PopupLoginViewController* loginViewController;
     BOOL leftMenuIsOpen;
     BOOL isMoving;
 }

@@ -41,12 +41,108 @@
     self.navigationItem.titleView = nil;
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
+    ongoingLogin = NO;
     
     [self showData];
     
 }
 -(void)viewDidAppear:(BOOL)animated{
     [self.collectionSpecies reloadData];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self checkUserSession];
+}
+
+#pragma mark PopupLogin
+
+- (void) cancel{
+    [popoverController dismissPopoverAnimated:YES];
+}
+
+
+-(void) checkUserSession{
+    if([Tools isNullOrEmptyString:appDelegate._currentToken] && !ongoingLogin){
+        [self showLoginPopup];
+    }/*else{
+        [self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
+    }*/
+}
+
+-(void) showLoginPopup{
+    
+    NSString* indentifier=@"PopupLoginViewController";
+    
+    ongoingLogin = YES;
+    
+    loginViewController = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    loginViewController.delegate = self;
+    
+    [self presentViewController:loginViewController animated:YES completion:nil];
+    
+}
+
+- (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
+{
+    
+    //[popoverController dismissPopoverAnimated:YES];
+    
+    [self showActivityScreen];
+    
+    [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
+        
+        [self removeActivityScreen];
+        
+        if (err)
+        {
+            [Tools showError:err onViewController:loginViewController];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            LoginResult* loginResult = [[LoginResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }
+            else
+            {
+                if (![Tools isNullOrEmptyString:loginResult.sessid]
+                    &&![Tools isNullOrEmptyString:loginResult.session_name]
+                    &&![Tools isNullOrEmptyString:loginResult.token]
+                    && loginResult.user != nil) {
+                    
+                    
+                    if (rememberMe) {
+                        [Tools saveSessId:loginResult.sessid
+                              sessionName:loginResult.session_name
+                                 andToken:loginResult.token
+                                      uid:loginResult.user.uid
+                                 userName:userName];
+                    }
+                    
+                    appDelegate._currentToken = loginResult.token;
+                    appDelegate._curentUser = loginResult.user;
+                    appDelegate._sessid = loginResult.sessid;
+                    appDelegate._sessionName = loginResult.session_name;
+                    appDelegate._uid    = loginResult.user.uid;
+                    
+                    [appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
+                    
+                    [self dismissViewControllerAnimated:NO completion:nil];
+                    
+                    ongoingLogin = NO; // VIta ny login
+                    
+                    //[self performSelectorOnMainThread:@selector(presentMain) withObject:nil waitUntilDone:NO];
+                    
+                }
+            }
+        }
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

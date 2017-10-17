@@ -24,6 +24,7 @@
 #import "UITableViewCell+Stretch.h"
 #import "PostsViewController.h"
 #import "Constants.h"
+#import "SpeciesDetailsViewController.h"
 
 #define ROWHEIGHT 121
 
@@ -189,6 +190,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary * lifeList = [_lemurLifeList objectAtIndex:indexPath.row];
+    
+    if(lifeList){
+        NSInteger speciesNID =  [[lifeList valueForKey:@"_speciesNid"] integerValue];;
+        if(speciesNID){
+            self.currentSpecies = [Species getSpeciesBySpeciesNID:speciesNID];
+            [self performSegueWithIdentifier:@"showSpecies" sender:self];
+        }
+    }
     
 }
 
@@ -640,6 +651,22 @@
         
     }];
 
+}
+
+#pragma mark UITableView
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"showSpecies"]){
+        SpeciesDetailsViewController * speciesVC = (SpeciesDetailsViewController*)[segue destinationViewController];
+        if(speciesVC){
+            
+            if(self.currentSpecies){
+                
+                speciesVC.specy = self.currentSpecies;
+            }
+            
+        }
+    }
 }
 
 

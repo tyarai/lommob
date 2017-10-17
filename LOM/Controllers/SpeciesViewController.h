@@ -12,11 +12,13 @@
 #import "PopupLoginViewController.h"
 #import "WYPopoverController.h"
 
-@interface SpeciesViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate>{
+@interface SpeciesViewController : BaseViewController <UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate,PopupLoginViewControllerDelegate>{
     BOOL isSearchShown;
     
     Species* _selectedSpecy;
     WYPopoverController* popoverController;
+    PopupLoginViewController* loginViewController;
+    BOOL ongoingLogin;
     
 }
 

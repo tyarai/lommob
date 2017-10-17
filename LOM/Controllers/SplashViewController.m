@@ -126,18 +126,9 @@
 -(void) showLoginPopup{
     NSString* indentifier=@"PopupLoginViewController";
     
-    /*PopupLoginViewController* controller = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
-    controller.delegate = self;*/
     
     loginViewController = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
     loginViewController.delegate = self;
-    
-    /*controller.preferredContentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
-    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
-    popoverController.delegate = self;*/
-    
-    
-    //[popoverController presentPopoverFromRect:bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionNone animated:NO options:WYPopoverAnimationOptionScale];
     
     [self presentViewController:loginViewController animated:YES completion:nil];
     

@@ -37,19 +37,11 @@
     [super viewDidLoad];
     
     
-    /*
     self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate = self;
-    [self.locationManager requestAlwaysAuthorization];
-    [self.locationManager startUpdatingLocation];
-    self.startLocation = nil;
-     */
+    //self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    //self.locationManager.delegate = self;
+    //[self.locationManager requestAlwaysAuthorization];
     
-    self.locationManager = [[CLLocationManager alloc]init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.delegate = self;
-    [self.locationManager requestAlwaysAuthorization];
     capturing = NO;
     
     placelongitude = 0.0f;
@@ -85,11 +77,13 @@
     
     self.scientificName.text = @"";
     self.malagasyName.text   = @"";
- 
+    
+    
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
     
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -175,6 +169,10 @@
         self.scientificName.text = currentSpecies._title;
         self.malagasyName.text   = currentSpecies._malagasy;
         
+        self.longitude.text         = [NSString stringWithFormat:@"%f",0.0];
+        self.latitude.text          = [NSString stringWithFormat:@"%f",0.0];
+        
+        
         if([self.takenPhotoFileName length] != 0){
             
             //****** Jerena sao dia efa URL ilay fileName ******//
@@ -188,7 +186,8 @@
                     
                 } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
             }else{
-
+                
+                
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
                 NSString *documentsDirectory = [paths objectAtIndex:0];
                 NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:self.takenPhotoFileName];
@@ -246,12 +245,18 @@
 
 - (IBAction)cancelTapped:(id)sender {
     
+    if(capturing){
+        [self stopLocationCapture]; // Ajanona @ izay ny locationUpdating
+    }
     [self.delegate cancelSightingData];
 }
 
 - (IBAction)doneTapped:(id)sender {
     
-    //[self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
+    
+    if(capturing){
+        [self stopLocationCapture]; // Ajanona @ izay ny locationUpdating
+    }
     
     NSString  * comments = self.comments.text;
     NSInteger obs      = [self.numberObserved.text intValue];
@@ -428,10 +433,30 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(indexPath.row == 1 && indexPath.section == 0){
+    
+    NSInteger row     = indexPath.row;
+    NSInteger section = indexPath.section;
+    
+    if(row == 1 && section == 0){
         [self performSegueWithIdentifier:@"takeAnotherPhoto" sender:self];
     }
+    
+    if( row == 0 && section == 1){
+        [self chooseSpeciesTapped:self];
+    }
+    
+    if( row == 1 && section == 2){
+        [self choosePlaceNameTapped:self];
+    }
+    
+    if( row == 2 && section == 2){
+        [self captureTapped:self];
+    }
+    
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -666,6 +691,9 @@
     appDelegate._sightingNumber = [textView.text intValue];
 }
 
+#pragma mark UITableView
+
+
 #pragma mark CLLocation Manager
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
@@ -682,13 +710,20 @@
     NSLog(@"Longitude %@ Latitude %@", longitude,latitude);
     
 }
+
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
+    [Tools showSimpleAlertWithTitle:NSLocalizedString(@"location_service_title", @"")
+                         andMessage:NSLocalizedString(@"location_error_getting_info", @"")];
     NSLog(@"%@",[error description]);
 }
 
 -  (IBAction)captureTapped:(id)sender {
     
     //if(! capturing){
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.delegate = self;
+    [self.locationManager requestAlwaysAuthorization];
+
         
         if ([CLLocationManager locationServicesEnabled]){
             
@@ -709,11 +744,7 @@
                      
                  }else{
                      
-                     [self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
-                     [self.captureButton setTitle:NSLocalizedString(@"start_capture", @"") forState:UIControlStateNormal] ;
-                     self.startLocation = nil;
-                     capturing = NO;
-                     
+                     [self stopLocationCapture];
                  }
                  
                  
@@ -740,4 +771,13 @@
     }*/
     //capturing = !capturing;
 }
+
+-(void)stopLocationCapture{
+    [self.locationManager stopUpdatingLocation]; // Ajanona @ izay ny locationUpdating
+    [self.captureButton setTitle:NSLocalizedString(@"start_capture", @"") forState:UIControlStateNormal] ;
+    self.startLocation = nil;
+    capturing = NO;
+
+}
+
 @end

@@ -232,7 +232,7 @@
                        
                        if(species != 0 || map != 0 || photo != 0 || place !=0 || family != 0 ){
                        
-                           updateText = [NSString stringWithFormat:@"(%lu) species (%lu) families updates (%lu) maps (%lu) sites (%lu) photographs ",species,family,map,place,photo];
+                           updateText = [NSString stringWithFormat:@"(%lu) species (%lu) families updates (%lu) maps (%lu) sites (%lu) photographs ",(long)species,family,map,place,photo];
                        }
                    }
                    

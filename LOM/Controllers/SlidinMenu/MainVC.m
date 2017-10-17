@@ -8,6 +8,8 @@
 
 #import "MainVC.h"
 #import "Tools.h"
+#import "LoginResult.h"
+
 
 @interface MainVC ()
 
@@ -33,6 +35,117 @@ static MainVC *sharedMainVC = nil;
     self.navigationController.navigationBar.hidden = NO;
     // Do any additional setup after loading the view.
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+//[self checkUserSession];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    //[self checkUserSession];
+}
+
+
+
+-(void) checkUserSession{
+    AppDelegate * appDelegate = [Tools getAppDelegate];
+    if([Tools isNullOrEmptyString:appDelegate._currentToken]){
+        [self showLoginPopup];
+    }
+    /*else{
+        [self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
+    }*/
+}
+-(void) showLoginPopup{
+    NSString* indentifier=@"PopupLoginViewController";
+    
+    loginViewController = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    loginViewController.delegate = self;
+    
+    [self presentViewController:loginViewController animated:YES completion:nil];
+    
+}
+
+
+- (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
+{
+    
+    AppData * appData = [AppData getInstance];
+    
+    [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
+        
+        //[self removeActivityScreen];
+        
+        AppDelegate * appDelegate = [Tools getAppDelegate];
+        
+        if (err)
+        {
+            [Tools showError:err onViewController:loginViewController];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            LoginResult* loginResult = [[LoginResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }
+            else
+            {
+                if (![Tools isNullOrEmptyString:loginResult.sessid]
+                    &&![Tools isNullOrEmptyString:loginResult.session_name]
+                    &&![Tools isNullOrEmptyString:loginResult.token]
+                    && loginResult.user != nil) {
+                    
+                    
+                    if (rememberMe) {
+                        [Tools saveSessId:loginResult.sessid
+                              sessionName:loginResult.session_name
+                                 andToken:loginResult.token
+                                      uid:loginResult.user.uid
+                                 userName:userName];
+                    }
+                    
+                    appDelegate._currentToken = loginResult.token;
+                    appDelegate._curentUser = loginResult.user;
+                    appDelegate._sessid = loginResult.sessid;
+                    appDelegate._sessionName = loginResult.session_name;
+                    appDelegate._uid    = loginResult.user.uid;
+                    
+                    [appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
+                    
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    
+                    
+                }
+            }
+        }
+        
+    }];
+    
+}
+
+#pragma mark WYPopoverControllerDelegate
+- (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller{
+    return YES;
+}
+
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller{
+    popoverController.delegate = nil;
+    popoverController = nil;
+}
+
+#pragma mark LoginPopoverDelegate
+
+- (void) cancel{
+    [popoverController dismissPopoverAnimated:YES];
+}
+
+- (void) presentMain{
+    [self performSegueWithIdentifier:@"presentMain" sender:self];
+}
+
 
 + (id)sharedMainVC{
     @synchronized(self) {

@@ -78,6 +78,7 @@
 		4C33F42E1F2F42F800958818 /* Vohimana.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3EC1F2F42F800958818 /* Vohimana.jpg */; };
 		4C33F42F1F2F42F800958818 /* Zahamena-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3ED1F2F42F800958818 /* Zahamena-National-Park.jpg */; };
 		4C33F4301F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3EE1F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg */; };
+		4C36DACF1F966C2F009032C3 /* partners.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C36DACE1F966C2F009032C3 /* partners.png */; };
 		4C3B541F1F7E9A880039EBCD /* AppInstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B541E1F7E9A880039EBCD /* AppInstructionsViewController.m */; };
 		4C3B54221F7E9D830039EBCD /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B54211F7E9D830039EBCD /* InstructionsViewController.m */; };
 		4C3B54251F7EA3F30039EBCD /* RootPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B54241F7EA3F30039EBCD /* RootPageController.m */; };
@@ -1090,6 +1091,7 @@
 		4C33F3EC1F2F42F800958818 /* Vohimana.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Vohimana.jpg; sourceTree = "<group>"; };
 		4C33F3ED1F2F42F800958818 /* Zahamena-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Zahamena-National-Park.jpg"; sourceTree = "<group>"; };
 		4C33F3EE1F2F42F800958818 /* Zombitse-Vohibasia-National-Park.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Zombitse-Vohibasia-National-Park.jpg"; sourceTree = "<group>"; };
+		4C36DACE1F966C2F009032C3 /* partners.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = partners.png; sourceTree = "<group>"; };
 		4C3B541D1F7E9A880039EBCD /* AppInstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppInstructionsViewController.h; path = Controllers/AppInstructionsViewController.h; sourceTree = "<group>"; };
 		4C3B541E1F7E9A880039EBCD /* AppInstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppInstructionsViewController.m; path = Controllers/AppInstructionsViewController.m; sourceTree = "<group>"; };
 		4C3B54201F7E9D830039EBCD /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstructionsViewController.h; path = Controllers/InstructionsViewController.h; sourceTree = "<group>"; };
@@ -2431,6 +2433,7 @@
 				4C6F14781C13429D00272A06 /* 2hotspots-book-cover.jpg */,
 				4C6F14791C13429D00272A06 /* 3-2007_06_Madagascar_006(clc2).jpg */,
 				4C6F147A1C13429D00272A06 /* 3Cheiros2.jpg */,
+				4C36DACE1F966C2F009032C3 /* partners.png */,
 				4C6F147B1C13429D00272A06 /* 4-pres_letter_feb10.jpg */,
 				4C6F147C1C13429D00272A06 /* 4-RAM_katz0175(clc).jpg */,
 				4C6F147D1C13429D00272A06 /* 5-pres_letter_feb10.jpg */,
@@ -3721,6 +3724,7 @@
 					4CBAEAEA1BFA546B0011139C = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = 73ZGWN5766;
+						ProvisioningStyle = Automatic;
 					};
 					4CBAEB031BFA546B0011139C = {
 						CreatedOnToolsVersion = 7.1;
@@ -4355,6 +4359,7 @@
 				4C6F18411C1342A000272A06 /* Avahi-cleesei.jpg in Resources */,
 				4C6F17FD1C1342A000272A06 /* 2009_01_Madagascar_137(clc).jpg in Resources */,
 				4C6F17971C1342A000272A06 /* _5(clc).jpg in Resources */,
+				4C36DACF1F966C2F009032C3 /* partners.png in Resources */,
 				4C6F19C71C1342A000272A06 /* MapMasterTemplate5LepilemurB8.jpg in Resources */,
 				4C6F19ED1C1342A100272A06 /* Microcebus-margotmarshae-(1)(clc).jpg in Resources */,
 				4C6F19401C1342A000272A06 /* Lemur-catta.jpg in Resources */,
@@ -4951,6 +4956,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 73ZGWN5766;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -4983,6 +4989,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.conservation.lemursofmadagascar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4995,6 +5002,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 73ZGWN5766;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -5027,6 +5035,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.conservation.lemursofmadagascar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -103,7 +103,7 @@ static AppData* _instance;
 }
 
 
-#pragma User
+#pragma mark User
 
 -(void) loginWithUserName:(NSString*)userName andPassword:(NSString*) password forCompletion:(JSONObjectBlock)completeBlock
 {

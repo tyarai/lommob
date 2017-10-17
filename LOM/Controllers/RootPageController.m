@@ -50,6 +50,10 @@
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     
+    self.navigationItem.title=  NSLocalizedString(@"app_instruction_title", @"");
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
+
+    
 }
 
 - (void)didReceiveMemoryWarning {

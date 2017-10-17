@@ -10,7 +10,7 @@
 "not_connected_to_the_internet" = "You are offline. Please check your internet connection";
 "timed_out" = "Timed out! Unable to get data from the server. Please try later";
 "network_issue" = "Network problem";
-"empty_lemur_life_list" = "Your list is empty! Please pull to refresh";
+"empty_lemur_life_list" = "Your list is empty! Please pull to refresh and sync with server";
 "empty_posts_list" = "Your list is empty! Please pull to refresh";
 "updating_list" = "Updating the list";
 "title_lemur_life_list" = "Lemur life list";
@@ -32,6 +32,8 @@
 "watching_sites_title"="Watching sites";
 "sightings_title"="Sightings";
 "about_the_app_title"="Our partners";
+"settings_title"="Settings";
+"app_instruction_title"="Sighting instructions";
 "not_synced_sighting"="Not synced";
 "invalidPasswords"="Invalid password! Password must only contain alpha numerical characters or the following special characters : - _ # ! $ & @";
 "passwordsDoNotMatch"="Passwords do not match! Please try again";
@@ -51,9 +53,10 @@
 "choose_site"="Select site";
 "delete_sighting_title" = "Delete sighting";
 "delete_sighting_message" = "This action could not be undone. Click OK to delete this sighting";
-"stop_capture" = "Stop capture";
-"start_capture" = "Update location";
+"stop_capture" = "Tap to stop location capture";
+"start_capture" = "Tap to update location";
 "no_available_update" = "No available updates!";
 "location_service_title"="Lemurs of Madagascar Location Service";
 "location_service_global_disabled"="Location service is disabled! Please go to settings and enable it";
 "location_service_app_disabled"="Location service is disabled for this app! Please go to settings and enable location services for Lemurs Of Madagascar";
+"location_error_getting_info"="There was an error retrieving your location";

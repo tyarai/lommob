@@ -11,17 +11,15 @@
 #import "PopupLoginViewController.h"
 #import "WYPopoverController.h"
 #import "BaseViewController.h"
+#import "Species.h"
 
 @interface LemursLifeViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,PopupLoginViewControllerDelegate, WYPopoverControllerDelegate>{
     
     NSMutableArray* _lemurLifeList;
     BOOL isSearchShown;
     
-    
     WYPopoverController* popoverController;
     PopupLoginViewController * loginPopup;
-    
-    
     
 }
 @property (weak, nonatomic) IBOutlet UIButton *btnSearch;
@@ -33,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchTopSpace;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *searchHeight;
+@property (strong,nonatomic) Species * currentSpecies;
+
 - (IBAction)btnLogInTapped:(id)sender;
 
 @end
