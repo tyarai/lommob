@@ -12,7 +12,15 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import tyarai.com.lom.model.Author;
+import tyarai.com.lom.model.Family;
+import tyarai.com.lom.model.Illustration;
+import tyarai.com.lom.model.Links;
+import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
+import tyarai.com.lom.model.Photograph;
+import tyarai.com.lom.model.Specie;
+import tyarai.com.lom.model.WatchingSite;
 
 
 public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
@@ -62,6 +70,15 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
 		try {
 			TableUtils.createTable(connectionSource, Menus.class);
+			TableUtils.createTable(connectionSource, Author.class);
+			TableUtils.createTable(connectionSource, Family.class);
+			TableUtils.createTable(connectionSource, Illustration.class);
+			TableUtils.createTable(connectionSource, Links.class);
+			TableUtils.createTable(connectionSource, Maps.class);
+			TableUtils.createTable(connectionSource, Photograph.class);
+			TableUtils.createTable(connectionSource, Specie.class);
+			TableUtils.createTable(connectionSource, WatchingSite.class);
+
 		} catch (SQLException e) {
 			Log.e(DataBaseHelper.class.getName(), "Can't create database", e);
 			throw new RuntimeException(e);

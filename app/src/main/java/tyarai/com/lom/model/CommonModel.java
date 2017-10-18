@@ -22,7 +22,7 @@ public abstract class CommonModel {
     protected long id;
 
     @DatabaseField(columnName = NID_COL, dataType = DataType.LONG_OBJ)
-    protected long nid;
+    protected Long nid;
 
     @DatabaseField(columnName = CDATE_COL, dataType = DataType.DATE_LONG)
     protected Date postingDate;
@@ -39,11 +39,11 @@ public abstract class CommonModel {
         this.id = id;
     }
 
-    public long getNid() {
+    public Long getNid() {
         return nid;
     }
 
-    public void setNid(long nid) {
+    public void setNid(Long nid) {
         this.nid = nid;
     }
 

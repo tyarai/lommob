@@ -49,4 +49,14 @@ public class Author extends CommonModel {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "name='" + name + '\'' +
+                ", detail='" + detail == null ? "null" : detail.substring(0,20) + '\'' +
+                ", photo='" + photo + '\'' +
+                '}';
+    }
 }
