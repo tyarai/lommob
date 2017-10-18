@@ -17,6 +17,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 
 dependencies {
@@ -28,4 +41,12 @@ dependencies {
     compile 'com.android.support:design:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.5'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.5'
+    compile 'com.j256.ormlite:ormlite-jdbc:5.0'
+    compile 'com.j256.ormlite:ormlite-android:5.0'
+    compile 'com.google.code.gson:gson:2.5'
+    compile 'joda-time:joda-time:2.9.4'
+    annotationProcessor 'org.androidannotations:androidannotations:4.3.0' //annotationProcessor apt
+    compile 'org.androidannotations:androidannotations-api:4.3.0'
 }

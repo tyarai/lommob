@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
                 finally
                 {
                     // Start home activity
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    startActivity(new Intent(SplashActivity.this, IntroductionActivity.class));
                     // close splash activity
                     finish();
                 }

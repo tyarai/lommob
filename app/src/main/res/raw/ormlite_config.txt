@@ -1,0 +1,432 @@
+#
+# generated on 2017/10/19 01:35:56
+#
+# --table-start--
+dataClass=tyarai.com.lom.model.Author
+tableName=authors
+# --table-fields-start--
+# --field-start--
+fieldName=name
+columnName=name
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=detail
+columnName=details
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=photo
+columnName=photo
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Family
+tableName=families
+# --table-fields-start--
+# --field-start--
+fieldName=family
+columnName=family
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=description
+columnName=description
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=illustrations
+foreignCollection=true
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Illustration
+tableName=illustrations
+# --table-fields-start--
+# --field-start--
+fieldName=title
+columnName=title
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=description
+columnName=description
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Links
+tableName=links
+# --table-fields-start--
+# --field-start--
+fieldName=name
+columnName=name
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=title
+columnName=title
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=url
+columnName=url
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Maps
+tableName=maps
+# --table-fields-start--
+# --field-start--
+fieldName=name
+columnName=name
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Menus
+tableName=menus
+# --table-fields-start--
+# --field-start--
+fieldName=name
+columnName=name
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=content
+columnName=content
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Photograph
+tableName=photographs
+# --table-fields-start--
+# --field-start--
+fieldName=title
+columnName=title
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=photo
+columnName=photo
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Specie
+tableName=species
+# --table-fields-start--
+# --field-start--
+fieldName=title
+columnName=title
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=english
+columnName=english
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=otherEnglish
+columnName=other_english
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=french
+columnName=french
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=german
+columnName=german
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=malagasy
+columnName=malagasy
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=identification
+columnName=identification
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=naturalHistory
+columnName=natural_history
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=geographicRange
+columnName=geo_range
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=conservationStatus
+columnName=conservation_status
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=whereToSeeIt
+columnName=wheretoseeit
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=favorite
+columnName=favorite
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=profilePhotograph
+columnName=photo_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=familyPhotograph
+columnName=family_photo
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=family
+columnName=family_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.WatchingSite
+tableName=watchingsite
+# --table-fields-start--
+# --field-start--
+fieldName=title
+columnName=title
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=body
+columnName=body
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=map
+columnName=map_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
