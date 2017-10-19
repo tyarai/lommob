@@ -28,6 +28,9 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
     public void parseData(final Context context) {
 
         for(String[] data : parseCsv(context, R.raw.authors) ) {
+//            for (String s : data) {
+//                Log.d("XXX", "datax : " + s);
+//            }
             try {
                 Author author = new Author();
                 author.setNid(Long.valueOf(data[0]));
