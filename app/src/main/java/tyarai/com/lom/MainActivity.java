@@ -12,9 +12,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import tyarai.com.lom.views.adapter.navigation.DrawerListAdapter;
+import tyarai.com.lom.views.adapter.navigation.NavItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    DrawerLayout drawer;
+    ListView mDrawerList;
+    ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
+    DrawerListAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +45,7 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
             this,
                 drawer,
@@ -41,9 +54,41 @@ public class MainActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 //        navigationView.setItemIconTintList(null);
-        navigationView.setNavigationItemSelectedListener(this);
+//        navigationView.setNavigationItemSelectedListener(this);
+
+
+        mNavItems.add(new NavItem(getString(R.string.introduction), "", R.drawable.ico_infos));
+        mNavItems.add(new NavItem(getString(R.string.lemur_origin), "", R.drawable.origin));
+        mNavItems.add(new NavItem(getString(R.string.lemur_extinct), "", R.drawable.extinct));
+        mNavItems.add(new NavItem(getString(R.string.authors), "", R.drawable.author));
+        mNavItems.add(new NavItem(getString(R.string.species), "101 taxa and couting", R.drawable.ico_specy));
+        mNavItems.add(new NavItem(getString(R.string.families), "5 families", R.drawable.ico_families));
+        mNavItems.add(new NavItem(getString(R.string.sites), "Best place to go", R.drawable.ico_map));
+        mNavItems.add(new NavItem(getString(R.string.watching), "My lemur life list", R.drawable.ico_eye));
+        mNavItems.add(new NavItem(getString(R.string.posts), "Online posts", R.drawable.ico_posts));
+        mNavItems.add(new NavItem(getString(R.string.about), "", R.drawable.about));
+
+
+        // Populate the Navigtion Drawer with options
+//        mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
+        mDrawerList = (ListView) findViewById(R.id.navList);
+        adapter = new DrawerListAdapter(this, mNavItems);
+        mDrawerList.setAdapter(adapter);
+
+        // Drawer Item click listeners
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectItemFromDrawer(position);
+            }
+        });
+    }
+
+
+    private void selectItemFromDrawer(int position) {
+        drawer.closeDrawers();
     }
 
     @Override
