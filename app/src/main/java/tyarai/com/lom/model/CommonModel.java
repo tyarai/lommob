@@ -16,6 +16,7 @@ public abstract class CommonModel {
     public static final String NID_COL = "nid";
     public static final String CDATE_COL = "cdate";
     public static final String MDATE_COL = "mdate";
+    public static final String ACTIVE_COL = "active";
 
 
     @DatabaseField(columnName = BaseColumns._ID, generatedId = true, dataType = DataType.LONG)
@@ -29,6 +30,9 @@ public abstract class CommonModel {
 
     @DatabaseField(columnName = MDATE_COL, dataType = DataType.DATE_LONG)
     protected Date lastModifiedOnTablet;
+
+    @DatabaseField(columnName = ACTIVE_COL, dataType = DataType.BOOLEAN)
+    protected boolean active = true;
 
 
     public long getId() {
@@ -61,5 +65,13 @@ public abstract class CommonModel {
 
     public void setLastModifiedOnTablet(Date lastModifiedOnTablet) {
         this.lastModifiedOnTablet = lastModifiedOnTablet;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

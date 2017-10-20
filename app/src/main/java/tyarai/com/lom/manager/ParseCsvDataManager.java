@@ -24,13 +24,13 @@ import tyarai.com.lom.model.CommonModel;
 import tyarai.com.lom.model.Family;
 import tyarai.com.lom.model.FamilyIllustration;
 import tyarai.com.lom.model.Illustration;
+import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
 import tyarai.com.lom.utils.csv.CsvFile;
 
 /**
  * Created by saimon on 19/10/17.
  * Used razorsql to generate json data (in src/main/res/raw folder) from lom.sqlite
- * TODO add active field to models to manage update
  */
 @EBean
 public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInterface {
@@ -87,6 +87,13 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         public String content;
     }
 
+    static class MapDto {
+        @JsonProperty(value = "_nid")
+        public long nid;
+        @JsonProperty(value = "_file_name")
+        public String filename;
+    }
+
     static class FamilyDto {
         @JsonProperty(value = "_nid")
         public long nid;
@@ -109,22 +116,64 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
             parseIllustrations();
             parseFamilies();
             parseMenus();
+            parseMaps();
+        }
+
+        void parseMaps()
+        {
+            try {
+                getMapsDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
+                Log.d(TAG, "parseMaps()....");
+                List<MapDto> maps = parseJson(context, R.raw.maps,
+                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$MapDto"));
+                if (maps != null && !maps.isEmpty()) {
+                    for (MapDto mapItem : maps) {
+                        try {
+                            Maps map = getMapsDao().queryBuilder()
+                                    .where().eq(CommonModel.NID_COL, mapItem.nid).queryForFirst();
+                            if (map == null) {
+                                map = new Maps();
+                            }
+                            map.setNid(mapItem.nid);
+                            map.setName(mapItem.filename);
+                            map.setActive(true);
+                            getMapsDao().createOrUpdate(map);
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                for (Maps map : getMapsDao().queryForAll()) {
+                    Log.d(TAG, "map : " + map);
+                }
+
+                Log.d(TAG, "countMap : " + getMapsDao().countOf());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         void parseMenus()
         {
             try {
-//                getMenusDao().deleteBuilder().delete();
+                getMenusDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseMenus()....");
                 List<MenuDto> menus = parseJson(context, R.raw.menus,
                         Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$MenuDto"));
                 if (menus != null && !menus.isEmpty()) {
                     for (MenuDto menuItem : menus) {
                         try {
-                            Menus menu = new Menus();
+                            Menus menu = getMenusDao().queryBuilder()
+                                    .where().eq(CommonModel.NID_COL, menuItem.nid).queryForFirst();
+                            if (menu == null) {
+                                menu = new Menus();
+                            }
                             menu.setNid(menuItem.nid);
                             menu.setName(menuItem.title);
                             menu.setContent(menuItem.content);
+                            menu.setActive(true);
                             getMenusDao().createOrUpdate(menu);
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
@@ -146,8 +195,8 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         void parseFamilies()
         {
             try {
+                getFamilyDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 getFamilyIllustrationDao().deleteBuilder().delete();
-//                getFamilyDao().deleteBuilder().delete();
                 Log.d(TAG, "parseFamilies....");
                 List<FamilyDto> families = parseJson(context, R.raw.families,
                         Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$FamilyDto"));
@@ -163,6 +212,7 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
                             family.setFamily(familyItem.family);
                             family.setDescription(familyItem.description);
                             getFamilyDao().assignEmptyForeignCollection(family, Family.ILLUSTRATION_FIELD);
+                            family.setActive(true);
                             getFamilyDao().createOrUpdate(family);
                             if (!TextUtils.isEmpty(familyItem.illustrationNids)) {
                                 String[] familyIllustrationNids = familyItem.illustrationNids.split(",");
@@ -202,7 +252,7 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         void parseIllustrations()
         {
             try {
-//                getIllustrationDao().deleteBuilder().delete();
+                getIllustrationDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseIllustrations()....");
                 List<IllustrationDto> illustrations = parseJson(context, R.raw.illustrations,
                         Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$IllustrationDto"));
@@ -217,6 +267,7 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
                             illustr.setNid(illustrationItem.nid);
                             illustr.setTitle(illustrationItem.title);
                             illustr.setDescription(illustrationItem.description);
+                            illustr.setActive(true);
                             getIllustrationDao().createOrUpdate(illustr);
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
@@ -238,7 +289,7 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         void parseAuthors()
         {
             try {
-//                getAuthorDao().deleteBuilder().delete();
+                getAuthorDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseAuthors()....");
                 List<AuthorDto> authors = parseJson(context, R.raw.authors, Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$AuthorDto"));
                 if (authors != null && !authors.isEmpty()) {
@@ -253,6 +304,7 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
                             author.setName(authorItem.name);
                             author.setDetail(authorItem.details);
                             author.setPhoto(authorItem.photo);
+                            author.setActive(true);
                             getAuthorDao().createOrUpdate(author);
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
