@@ -53,10 +53,11 @@ public class Author extends CommonModel {
 
     @Override
     public String toString() {
-        return "Author{" +
-                "name='" + name + '\'' +
-                ", detail='" + detail == null ? "null" : detail.substring(0,20) + '\'' +
-                ", photo='" + photo + '\'' +
+        return "Author{ " +
+                "nid=" + nid +
+                " | name=" + name +
+                " | detail=" + (detail == null ? "null" : detail.substring(0,20) ) +
+                " | photo=" + photo +
                 '}';
     }
 }

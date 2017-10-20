@@ -14,6 +14,7 @@ import com.j256.ormlite.table.TableUtils;
 
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.model.Family;
+import tyarai.com.lom.model.FamilyIllustration;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.model.Links;
 import tyarai.com.lom.model.Maps;
@@ -73,6 +74,7 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, Author.class);
 			TableUtils.createTable(connectionSource, Family.class);
 			TableUtils.createTable(connectionSource, Illustration.class);
+			TableUtils.createTable(connectionSource, FamilyIllustration.class);
 			TableUtils.createTable(connectionSource, Links.class);
 			TableUtils.createTable(connectionSource, Maps.class);
 			TableUtils.createTable(connectionSource, Photograph.class);

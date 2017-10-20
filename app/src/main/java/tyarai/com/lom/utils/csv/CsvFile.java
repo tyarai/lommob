@@ -1,10 +1,13 @@
 package tyarai.com.lom.utils.csv;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,6 +15,9 @@ import java.util.List;
  */
 
 public class CsvFile {
+
+    private static final String TAG = CsvFile.class.getSimpleName();
+
     InputStream inputStream;
 
     public CsvFile(InputStream inputStream){
@@ -24,7 +30,8 @@ public class CsvFile {
         try {
             String csvLine;
             while ((csvLine = reader.readLine()) != null) {
-                String[] row = csvLine.split("|");
+                String[] row = csvLine.split("\t");
+                Log.d(TAG, Arrays.toString(row));
                 resultList.add(row);
             }
         }

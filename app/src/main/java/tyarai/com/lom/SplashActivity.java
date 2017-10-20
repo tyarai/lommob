@@ -30,38 +30,37 @@ public class SplashActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        Thread timer= new Thread()
-        {
-            public void run()
-            {
-                try
-                {
-                    //Display for 2 seconds
-                    sleep(1000);
-                }
-                catch (InterruptedException e)
-                {
-                    e.printStackTrace();
-                }
-                finally
-                {
-                    // Start home activity
-                    startActivity(new Intent(SplashActivity.this, IntroductionActivity_.class));
-                    // close splash activity
-                    finish();
-                }
-            }
-        };
-        timer.start();
-//        delayedMethod();
+//        Thread timer= new Thread()
+//        {
+//            public void run()
+//            {
+//                try
+//                {
+//                    //Display for 2 seconds
+//                    sleep(1000);
+//                }
+//                catch (InterruptedException e)
+//                {
+//                    e.printStackTrace();
+//                }
+//                finally
+//                {
+//                    // Start home activity
+//                    startActivity(new Intent(SplashActivity.this, IntroductionActivity_.class));
+//                    // close splash activity
+//                    finish();
+//                }
+//            }
+//        };
+//        timer.start();
+        delayedMethod();
     }
 
-//    @Override
-//    protected void onNewIntent(Intent intent) {
-//        super.onNewIntent(intent);
-//        delayedMethod();
-//    }
-
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        delayedMethod();
+    }
 
 
     @Override
@@ -71,61 +70,62 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-//    void delayedMethod()
-//    {
-//        doInUiThreadAfterTwoSeconds();
-//    }
-//
-//    @UiThread(delay=500)
-//    void doInUiThreadAfterTwoSeconds()
-//    {
-//        boolean USE_IN_MEMORY_DB = false;
-//        DatabaseManager.init(this, USE_IN_MEMORY_DB);
-//        new DatabaseInitTask().execute();
-//    }
-//
-//    private class DatabaseInitTask extends AsyncTask<Void, Integer, Integer> {
-//
-//        @Override
-//        protected Integer doInBackground(Void... params) {
-//            try {
-//                parseCsv.parseData(SplashActivity.this);
-//                SplashActivity.setInSharedDbState(SplashActivity.this);
-//                return 1;
-//            } catch (Exception e) {
-//                Log.e("XXX", "erreur init db :" + e.getMessage() );
-//                e.printStackTrace();
-//                return -1;
-//            }
-//        }
-//
-//        protected void onPostExecute(Integer result) {
-//            returnResult(result);
-//        };
-//
-//    }
+    void delayedMethod()
+    {
+        Log.d("xxxxxxxxxxxxxxxxx", "delayedMethod() called");
+        doInUiThreadAfterTwoSeconds();
+    }
 
-//    void returnResult(Integer result) {
-//        Intent returnIntent = getIntent();
-//        if (result != null) {
-//            returnIntent.putExtra("result",result);
-//        }
-//        setResult(RESULT_OK,returnIntent);
-//        startActivity(new Intent(SplashActivity.this, IntroductionActivity_.class));
-//        finish();
-//    }
-//
-//    public static void setInSharedDbState(Context ctx) {
-//        SharedPreferences pref = ctx.getSharedPreferences("DB_STATE",	MODE_PRIVATE);
-//        SharedPreferences.Editor editor = pref.edit();
-//        editor.putBoolean("db_initialized", true);
-//        editor.commit();
-//
-//    }
-//
-//    public static boolean getInSharedDbState(Context ctx) {
-//        SharedPreferences pref = ctx.getSharedPreferences("DB_STATE",	MODE_PRIVATE);
-//        return pref.getBoolean("db_initialized", false);
-//    }
+    @UiThread(delay=500)
+    void doInUiThreadAfterTwoSeconds()
+    {
+        Log.d("xxxxxxxxxxxxxxxxx", "doInUiThreadAfterTwoSeconds() called");
+        boolean USE_IN_MEMORY_DB = false;
+        DatabaseManager.init(this, USE_IN_MEMORY_DB);
+        new DatabaseInitTask().execute();
+    }
+
+    private class DatabaseInitTask extends AsyncTask<Void, Integer, Integer> {
+
+        @Override
+        protected Integer doInBackground(Void... params) {
+            try {
+                parseCsv.parseData(SplashActivity.this);
+                SplashActivity.setInSharedDbState(SplashActivity.this);
+                return 1;
+            } catch (Exception e) {
+                Log.e("XXX", "erreur init db :" + e.getMessage() );
+                e.printStackTrace();
+                return -1;
+            }
+        }
+
+        protected void onPostExecute(Integer result) {
+            returnResult(result);
+        };
+
+    }
+
+    void returnResult(Integer result) {
+        Intent returnIntent = getIntent();
+        if (result != null) {
+            returnIntent.putExtra("result",result);
+        }
+        setResult(RESULT_OK,returnIntent);
+        startActivity(new Intent(SplashActivity.this, IntroductionActivity_.class));
+        finish();
+    }
+
+    public static void setInSharedDbState(Context ctx) {
+        SharedPreferences pref = ctx.getSharedPreferences("DB_STATE",	MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("db_initialized", true);
+        editor.commit();
+    }
+
+    public static boolean getInSharedDbState(Context ctx) {
+        SharedPreferences pref = ctx.getSharedPreferences("DB_STATE",	MODE_PRIVATE);
+        return pref.getBoolean("db_initialized", false);
+    }
 
 }

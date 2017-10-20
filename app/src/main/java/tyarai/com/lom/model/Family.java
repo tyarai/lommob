@@ -27,9 +27,9 @@ public class Family extends CommonModel{
     private String description;
 
     @ForeignCollectionField(eager = false)
-    private ForeignCollection<Illustration> illustrations;
+    private ForeignCollection<FamilyIllustration> illustrations;
 
-    private void addIllustration(Illustration illustration) {
+    private void addIllustration(FamilyIllustration illustration) {
         if (illustrations != null) {
             illustrations.add(illustration);
         }
@@ -52,11 +52,11 @@ public class Family extends CommonModel{
         this.description = description;
     }
 
-    public ForeignCollection<Illustration> getIllustrations() {
+    public ForeignCollection<FamilyIllustration> getIllustrations() {
         return illustrations;
     }
 
-    public void setIllustrations(ForeignCollection<Illustration> illustrations) {
+    public void setIllustrations(ForeignCollection<FamilyIllustration> illustrations) {
         this.illustrations = illustrations;
     }
 }

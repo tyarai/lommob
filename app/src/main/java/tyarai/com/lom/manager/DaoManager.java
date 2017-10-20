@@ -6,6 +6,7 @@ import java.util.Map;
 
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.model.Family;
+import tyarai.com.lom.model.FamilyIllustration;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.model.Links;
 import tyarai.com.lom.model.Maps;
@@ -22,6 +23,7 @@ public abstract class DaoManager {
 	private static RuntimeExceptionDao<Author, Long> authorDao;
 	private static RuntimeExceptionDao<Family, Long> familyDao;
 	private static RuntimeExceptionDao<Illustration, Long> illustrationDao;
+	private static RuntimeExceptionDao<FamilyIllustration, Long> familyIllustrationDao;
 	private static RuntimeExceptionDao<Links, Long> linksDao;
 	private static RuntimeExceptionDao<Maps, Long> mapsDao;
 	private static RuntimeExceptionDao<Menus, Long> menusDao;
@@ -101,6 +103,13 @@ public abstract class DaoManager {
 			watchingsiteDao = getHelper().getRuntimeExceptionDao(WatchingSite.class);
 		}
 		return watchingsiteDao;
+	}
+
+	public RuntimeExceptionDao<FamilyIllustration, Long> getFamilyIllustrationDao() {
+		if (familyIllustrationDao == null) {
+			familyIllustrationDao = getHelper().getRuntimeExceptionDao(FamilyIllustration.class);
+		}
+		return familyIllustrationDao;
 	}
 }
 

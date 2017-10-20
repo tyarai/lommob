@@ -38,4 +38,13 @@ public class Illustration extends CommonModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "Illustration{" +
+                " | nid=" + nid +
+                " | title=" + title +
+                " | description=" + description +
+                '}';
+    }
 }
