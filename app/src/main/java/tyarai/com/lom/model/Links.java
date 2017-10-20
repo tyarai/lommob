@@ -50,4 +50,14 @@ public class Links extends CommonModel {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "Links{" +
+                " | nid=" + nid  +
+                " | name=" + name  +
+                " | title=" + title +
+                " | url=" + url +
+                '}';
+    }
 }

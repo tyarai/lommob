@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,8 +12,6 @@ import org.androidannotations.annotations.EBean;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,10 +21,10 @@ import tyarai.com.lom.model.CommonModel;
 import tyarai.com.lom.model.Family;
 import tyarai.com.lom.model.FamilyIllustration;
 import tyarai.com.lom.model.Illustration;
+import tyarai.com.lom.model.Links;
 import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
 import tyarai.com.lom.model.Photograph;
-import tyarai.com.lom.utils.csv.CsvFile;
 
 /**
  * Created by saimon on 19/10/17.
@@ -115,6 +112,17 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         public String illustrationNids;
     }
 
+    static class LinksDto {
+        @JsonProperty(value = "_id")
+        public long nid;
+        @JsonProperty(value = "_linkname")
+        public String name;
+        @JsonProperty(value = "_linkurl")
+        public String url;
+        @JsonProperty(value = "_linktitle")
+        public String title;
+    }
+
     class Parser {
         Context context;
         public Parser(final Context context) {
@@ -128,6 +136,45 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
             parseMenus();
             parseMaps();
             parsePhotographs();
+            parseLinks();
+        }
+
+        void parseLinks()
+        {
+            try {
+                getLinksDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
+                Log.d(TAG, "parsePhotographs()....");
+                List<LinksDto> linksDtos = parseJson(context, R.raw.links,
+                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$LinksDto"));
+                if (linksDtos != null && !linksDtos.isEmpty()) {
+                    for (LinksDto photoItem : linksDtos) {
+                        try {
+                            Links photo = getLinksDao().queryBuilder()
+                                    .where().eq(CommonModel.NID_COL, photoItem.nid).queryForFirst();
+                            if (photo == null) {
+                                photo = new Links();
+                            }
+                            photo.setNid(photoItem.nid);
+                            photo.setTitle(photoItem.title);
+                            photo.setName(photoItem.name);
+                            photo.setUrl(photoItem.url);
+                            photo.setActive(true);
+                            getLinksDao().createOrUpdate(photo);
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                for (Links ph : getLinksDao().queryForAll()) {
+                    Log.d(TAG, "link : " + ph);
+                }
+
+                Log.d(TAG, "countLinks : " + getLinksDao().countOf());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         void parsePhotographs()
