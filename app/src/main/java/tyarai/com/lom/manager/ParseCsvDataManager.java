@@ -1,6 +1,7 @@
 package tyarai.com.lom.manager;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,6 +21,8 @@ import java.util.List;
 import tyarai.com.lom.R;
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.model.CommonModel;
+import tyarai.com.lom.model.Family;
+import tyarai.com.lom.model.FamilyIllustration;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.utils.csv.CsvFile;
 
@@ -73,6 +76,17 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         public String description;
     }
 
+    static class FamilyDto {
+        @JsonProperty(value = "_nid")
+        public long nid;
+        @JsonProperty(value = "_family")
+        public String family;
+        @JsonProperty(value = "_family_description")
+        public String description;
+        @JsonProperty(value = "_illustration")
+        public String illustrationNids;
+    }
+
     class Parser {
         Context context;
         public Parser(final Context context) {
@@ -82,6 +96,63 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         void startParsing() {
             parseAuthors();
             parseIllustrations();
+            parseFamilies();
+        }
+
+        void parseFamilies()
+        {
+            try {
+                getFamilyIllustrationDao().deleteBuilder().delete();
+                getFamilyDao().deleteBuilder().delete();
+                Log.d(TAG, "parseFamilies....");
+                List<FamilyDto> families = parseJson(context, R.raw.families,
+                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$FamilyDto"));
+                if (families != null && !families.isEmpty()) {
+                    for (FamilyDto familyItem : families) {
+                        try {
+                            Family family = getFamilyDao().queryBuilder()
+                                    .where().eq(CommonModel.NID_COL, familyItem.nid).queryForFirst();
+                            if (family == null) {
+                                family = new Family();
+                            }
+                            family.setNid(familyItem.nid);
+                            family.setFamily(familyItem.family);
+                            family.setDescription(familyItem.description);
+                            getFamilyDao().assignEmptyForeignCollection(family, Family.ILLUSTRATION_FIELD);
+                            getFamilyDao().create(family);
+                            if (!TextUtils.isEmpty(familyItem.illustrationNids)) {
+                                String[] familyIllustrationNids = familyItem.illustrationNids.split(",");
+                                if (familyIllustrationNids != null) {
+                                    Log.d(TAG, "familyIllustrationNids " + Arrays.toString(familyIllustrationNids));
+                                    for (String nidS : familyIllustrationNids) {
+                                        long nid = Long.valueOf(nidS);
+                                        Illustration illustration = getIllustrationDao().queryBuilder()
+                                                .where().eq(CommonModel.NID_COL, nid).queryForFirst();
+                                        if (illustration != null) {
+                                            FamilyIllustration familyIllustration = new FamilyIllustration();
+                                            familyIllustration.setIllustration(illustration);
+                                            family.addIllustration(familyIllustration);
+                                        }
+                                    }
+                                }
+                            }
+
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                for (Family family : getFamilyDao().queryForAll()) {
+                    Log.d(TAG, "family : " + family);
+                }
+
+                Log.d(TAG, "countFamily : " + getFamilyDao().countOf());
+                Log.d(TAG, "familyIllustrations : " + getFamilyIllustrationDao().countOf());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         void parseIllustrations()
@@ -109,11 +180,11 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
                     }
                 }
 
-                Log.d(TAG, "countIllustration : " + getIllustrationDao().countOf());
-
                 for (Illustration illustration : getIllustrationDao().queryForAll()) {
                     Log.d(TAG, "illustration : " + illustration);
                 }
+
+                Log.d(TAG, "countIllustration : " + getIllustrationDao().countOf());
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -145,11 +216,11 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
                     }
                 }
 
-                Log.d(TAG, "countAuthor : " + getAuthorDao().countOf());
-
                 for (Author author : getAuthorDao().queryForAll()) {
                     Log.d(TAG, "author : " + author);
                 }
+
+                Log.d(TAG, "countAuthor : " + getAuthorDao().countOf());
 
             } catch (Exception e) {
                 e.printStackTrace();

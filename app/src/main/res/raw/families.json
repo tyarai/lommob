@@ -1,6 +1,5 @@
 
-{
-    "data":[
+[
         {
             "_nid":28,
             "_family":"CHEIROGALEIDAE Gray, 1873",
@@ -31,5 +30,4 @@
             "_family_description":"The family Daubentoniidae has just one living species, the aye-aye (Daubentonia madagascariensis) and one extinct species (Daubentonia robusta). The living species is a very unusual nocturnal animal that differs from the other lemurs in many anatomical and behavioral specializations, among them its distinctive dental formula, the continually growing incisor teeth (which led to it being considered a rodent during part of the 19th century), the large ears that are almost certainly used to locate insect larvae in decayed wood, and the thin skeletal middle finger that is used to extract such prey. So unique is the aye-aye that it has proven difficult to determine which other lemurs are its closest relatives. Although it has been suggested that its affinities may lie with the indriids (Schwartz and Tattersall, 1985), all genetic studies (summarized in Quinn and Wilson, 2004) are in agreement that it is the sister-group to all other lemurs, to the extent that Groves (1989, 2001) and Roos et al. (2004) place it in the separate infraorder Chiromyiformes, distinct from the Lemuriformes.\nAlthough only one living species of aye-aye is recognized, remains of a second, extinct species, Daubentonia robusta, are known from a few sites in southwestern Madagascar (Godfrey and Jungers, 2003b). The body weight of that animal is estimated at approximately 13 kg, four to five times heavier than the living species. However, despite its size, it may have fed upon similar structurally-defended resources (e.g., hard-coated seeds and wood-boring insect larvae; Sterling, 1994b), based upon the elongated incisors and post-cranial skeletal elements that have been found in subfossil remains. Teeth of D. robusta that appear to have been perforated for stringing and used as ornamentation also provide strong evidence that this species was hunted and possibly driven to extinction by humans (MacPhee and Raholimavo, 1988).\nThe aye-aye has the largest range of any living lemur. Although there have not yet been any studies of possible geographic differentiation among aye-aye populations in different parts of Madagascar, it would not be surprising to find some level of variation—especially given the extraordinary taxonomic diversity that exists in most other lemur genera (C. P. Groves, pers. comm.). \n",
             "_illustration":"617"
         }
-    ]
-}
+]

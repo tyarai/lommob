@@ -1,6 +1,5 @@
 
-{
-    "data":[
+[
         {
             "_id":1,
             "_linkname":"extinctlemurs",
@@ -37,5 +36,4 @@
             "_linkurl":"https://www.lemursofmadagascar.com/html/species/extinction-subfossil-lemurs",
             "_linktitle":"Extinction of the Subfossil Lemurs"
         }
-    ]
-}
+]
