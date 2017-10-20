@@ -26,6 +26,7 @@ import tyarai.com.lom.model.FamilyIllustration;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
+import tyarai.com.lom.model.Photograph;
 import tyarai.com.lom.utils.csv.CsvFile;
 
 /**
@@ -87,6 +88,15 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         public String content;
     }
 
+    static class PhotographDto {
+        @JsonProperty(value = "_nid")
+        public long nid;
+        @JsonProperty(value = "_title")
+        public String title;
+        @JsonProperty(value = "_photograph")
+        public String photo;
+    }
+
     static class MapDto {
         @JsonProperty(value = "_nid")
         public long nid;
@@ -117,6 +127,44 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
             parseFamilies();
             parseMenus();
             parseMaps();
+            parsePhotographs();
+        }
+
+        void parsePhotographs()
+        {
+            try {
+                getPhotographDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
+                Log.d(TAG, "parsePhotographs()....");
+                List<PhotographDto> photographDtos = parseJson(context, R.raw.photographs,
+                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$PhotographDto"));
+                if (photographDtos != null && !photographDtos.isEmpty()) {
+                    for (PhotographDto photoItem : photographDtos) {
+                        try {
+                            Photograph photo = getPhotographDao().queryBuilder()
+                                    .where().eq(CommonModel.NID_COL, photoItem.nid).queryForFirst();
+                            if (photo == null) {
+                                photo = new Photograph();
+                            }
+                            photo.setNid(photoItem.nid);
+                            photo.setTitle(photoItem.title);
+                            photo.setPhoto(photoItem.photo);
+                            photo.setActive(true);
+                            getPhotographDao().createOrUpdate(photo);
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                for (Photograph ph : getPhotographDao().queryForAll()) {
+                    Log.d(TAG, "photo : " + ph);
+                }
+
+                Log.d(TAG, "countPhoto : " + getPhotographDao().countOf());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         void parseMaps()

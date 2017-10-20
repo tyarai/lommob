@@ -38,4 +38,14 @@ public class Photograph extends CommonModel {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
+
+
+    @Override
+    public String toString() {
+        return "Photograph{" +
+                " | nid=" + nid  +
+                " | title=" + title  +
+                " | photo=" + photo +  +
+                '}';
+    }
 }
