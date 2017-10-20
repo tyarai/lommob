@@ -34,4 +34,13 @@ public class Menus extends CommonModel{
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	@Override
+	public String toString() {
+		return "Menus{" +
+				" nid=" + nid +
+				" | name=" + name  +
+				" |  content=" + content  +
+				'}';
+	}
 }
