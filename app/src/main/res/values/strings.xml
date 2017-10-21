@@ -16,4 +16,5 @@
     <string name="about">About this app</string>
     <string name="authors">About the authors</string>
     <string name="appquit_message">Appuyez encore pour quitter</string>
+    <string name="data_not_found">Erreur de chargement de données</string>
 </resources>

@@ -28,9 +28,9 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/main_layout"/>
+        android:id="@+id/main_layout"
+        android:layout_marginTop="?attr/actionBarSize"/>
 
-    <!--<include android:id="@+id/main_layout" layout="@layout/content_main"/>-->
 
     <!--
     <android.support.design.widget.FloatingActionButton

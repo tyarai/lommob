@@ -1,4 +1,4 @@
-package tyarai.com.lom;
+package tyarai.com.lom.views;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -10,32 +10,28 @@ import android.widget.FrameLayout;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.UiThread;
 
+import tyarai.com.lom.R;
+import tyarai.com.lom.manager.CommonManager;
 import tyarai.com.lom.manager.DatabaseManager;
 import tyarai.com.lom.manager.ParceCsvDataInterface;
 import tyarai.com.lom.manager.ParseCsvDataManager;
+import tyarai.com.lom.views.BaseFrag;
 
 /**
  * Created by saimon on 18/10/17.
  */
-@EActivity
-public class IntroductionActivity extends MainActivity {
+@EFragment(R.layout.introduction)
+public class IntroductionFragment extends BaseFrag {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Bean(CommonManager.class)
+    CommonManager commonManager;
 
-        super.onCreate(savedInstanceState);
-
-        FrameLayout contentFrameLayout = (FrameLayout) findViewById(R.id.main_layout);
-        getLayoutInflater().inflate(R.layout.introduction, contentFrameLayout);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(getString(R.string.introduction));
-        }
+    @AfterViews
+    void initDataViews()
+    {
 
     }
-
-
 }

@@ -1,24 +1,28 @@
 package tyarai.com.lom;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import tyarai.com.lom.views.IntroductionFragment;
+import tyarai.com.lom.views.IntroductionFragment_;
+import tyarai.com.lom.views.OriginOfLemursFragment_;
 import tyarai.com.lom.views.adapter.navigation.DrawerListAdapter;
 import tyarai.com.lom.views.adapter.navigation.NavItem;
 
@@ -30,7 +34,18 @@ public class MainActivity extends AppCompatActivity
     ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
     DrawerListAdapter adapter;
     boolean canExit;
+    CharSequence mTitle;
 
+    static final int MENU_INTRO = 0;
+    static final int MENU_ORIGIN = 1;
+    static final int MENU_EXTINCT = 2;
+    static final int MENU_AUTHORS = 3;
+    static final int MENU_SPECIES = 4;
+    static final int MENU_FAMILIES = 5;
+    static final int MENU_SITES = 6;
+    static final int MENU_LEMUR_LIST = 7;
+    static final int MENU_POSTS = 8;
+    static final int ABOUT = 9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,14 +99,49 @@ public class MainActivity extends AppCompatActivity
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mDrawerList.setItemChecked(position, true);
+                setTitle(mNavItems.get(position).getmTitle());
+                drawer.closeDrawers();
                 selectItemFromDrawer(position);
             }
         });
     }
 
+    @Override
+    public void setTitle(CharSequence title) {
+        mTitle = title;
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(mTitle);
+        }
+    }
+
+
 
     private void selectItemFromDrawer(int position) {
-        drawer.closeDrawers();
+        switch (position) {
+            case MENU_INTRO:
+                startIntent(new IntroductionFragment_(), null);
+                break;
+            case MENU_ORIGIN:
+                startIntent(new OriginOfLemursFragment_(), null);
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    protected void startIntent(Fragment fragment, Bundle args) {
+        if (args != null) {
+            fragment.setArguments(args);
+        }
+        // Insert the fragment by replacing any existing fragment
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.main_layout, fragment)
+                .commit();
+
     }
 
     @Override
@@ -179,5 +229,9 @@ public class MainActivity extends AppCompatActivity
             }
         }
     };
+
+    public void showLoadingError() {
+        Toast.makeText(this, getString(R.string.data_not_found), Toast.LENGTH_LONG).show();
+    }
 
 }

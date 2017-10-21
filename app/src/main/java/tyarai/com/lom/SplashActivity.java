@@ -114,7 +114,7 @@ public class SplashActivity extends AppCompatActivity {
             returnIntent.putExtra("result",result);
         }
         setResult(RESULT_OK,returnIntent);
-        startActivity(new Intent(SplashActivity.this, IntroductionActivity_.class));
+        startActivity(new Intent(SplashActivity.this, MainActivity.class));
         finish();
     }
 
