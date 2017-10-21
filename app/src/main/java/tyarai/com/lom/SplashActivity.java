@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -15,6 +16,7 @@ import org.androidannotations.annotations.UiThread;
 import tyarai.com.lom.manager.DatabaseManager;
 import tyarai.com.lom.manager.ParceCsvDataInterface;
 import tyarai.com.lom.manager.ParseCsvDataManager;
+import tyarai.com.lom.views.IntroductionActivity_;
 
 /**
  * Created by saimon on 18/10/17.
@@ -26,6 +28,7 @@ public class SplashActivity extends AppCompatActivity {
 
     @Bean(ParseCsvDataManager.class)
     ParceCsvDataInterface parseCsv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +85,11 @@ public class SplashActivity extends AppCompatActivity {
     {
         boolean USE_IN_MEMORY_DB = false;
         DatabaseManager.init(this, USE_IN_MEMORY_DB);
-        new DatabaseInitTask().execute();
+        if (!getInSharedDbState(SplashActivity.this)) {
+            Snackbar.make(getWindow().getDecorView().getRootView(),
+                    getString(R.string.data_loading), Snackbar.LENGTH_INDEFINITE).show();
+            new DatabaseInitTask().execute();
+        }
     }
 
     private class DatabaseInitTask extends AsyncTask<Void, Integer, Integer> {
@@ -90,9 +97,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(Void... params) {
             try {
-                if (!getInSharedDbState(SplashActivity.this)) {
-                    parseCsv.parseData(SplashActivity.this);
-                }
+                parseCsv.parseData(SplashActivity.this);
                 SplashActivity.setInSharedDbState(SplashActivity.this);
                 return 1;
             } catch (Exception e) {
@@ -114,7 +119,9 @@ public class SplashActivity extends AppCompatActivity {
             returnIntent.putExtra("result",result);
         }
         setResult(RESULT_OK,returnIntent);
-        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        Intent intent = new Intent(this, IntroductionActivity_.class);
+        startActivity(intent);
         finish();
     }
 

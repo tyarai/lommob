@@ -1,6 +1,5 @@
 package tyarai.com.lom;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -23,11 +22,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import tyarai.com.lom.views.IntroductionFragment;
-import tyarai.com.lom.views.IntroductionFragment_;
-import tyarai.com.lom.views.OriginActivity;
+import tyarai.com.lom.views.ExtinctFragment_;
+import tyarai.com.lom.views.IntroductionActivity_;
 import tyarai.com.lom.views.OriginActivity_;
-import tyarai.com.lom.views.OriginOfLemursFragment_;
 import tyarai.com.lom.views.adapter.navigation.DrawerListAdapter;
 import tyarai.com.lom.views.adapter.navigation.NavItem;
 
@@ -129,10 +126,13 @@ public class MainActivity extends AppCompatActivity
     private void selectItemFromDrawer(int position) {
         switch (position) {
             case MENU_INTRO:
-                startFragment(new IntroductionFragment_(), null);
+                startActivity(IntroductionActivity_.class);
                 break;
             case MENU_ORIGIN:
                 startActivity(OriginActivity_.class);
+                break;
+            case MENU_EXTINCT:
+                startFragment(new ExtinctFragment_(), null);
                 break;
             default:
                 break;
@@ -142,13 +142,16 @@ public class MainActivity extends AppCompatActivity
 
     protected void startActivity(Class<?> clazz) {
         Intent intent = new Intent(this, clazz);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 
     protected void startFragment(Fragment fragment, Bundle args) {
         if (args != null) {
             fragment.setArguments(args);
         }
+        frmLayout.removeAllViews();
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
@@ -188,8 +191,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_quit) {
+//            return true;
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
@@ -226,7 +230,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
     public Handler mHandler = new Handler(){
