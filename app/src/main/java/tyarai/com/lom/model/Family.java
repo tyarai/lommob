@@ -6,6 +6,9 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by saimon on 19/10/17.
  */
@@ -18,7 +21,7 @@ public class Family extends CommonModel{
     public static final String FAMILY_COL = "family";
     public static final String DESCRIPTION_COL = "description";
 
-    public static final String ILLUSTRATION_FIELD = "illustrations";
+    public static final String ILLUSTRATION_NIDS = "illustration_nids" ;
 
     @DatabaseField(columnName = FAMILY_COL, dataType = DataType.STRING)
     private String family;
@@ -26,14 +29,8 @@ public class Family extends CommonModel{
     @DatabaseField(columnName = DESCRIPTION_COL, dataType = DataType.LONG_STRING)
     private String description;
 
-    @ForeignCollectionField(eager = false)
-    private ForeignCollection<FamilyIllustration> illustrations;
-
-    public void addIllustration(FamilyIllustration illustration) {
-        if (illustrations != null) {
-            illustrations.add(illustration);
-        }
-    }
+    @DatabaseField(columnName = ILLUSTRATION_NIDS, dataType = DataType.SERIALIZABLE)
+    private ArrayList<Long> illustrationNids = new ArrayList<>();
 
 
     public String getFamily() {
@@ -52,12 +49,13 @@ public class Family extends CommonModel{
         this.description = description;
     }
 
-    public ForeignCollection<FamilyIllustration> getIllustrations() {
-        return illustrations;
+
+    public ArrayList<Long> getIllustrationNids() {
+        return illustrationNids;
     }
 
-    public void setIllustrations(ForeignCollection<FamilyIllustration> illustrations) {
-        this.illustrations = illustrations;
+    public void setIllustrationNids(ArrayList<Long> illustrationNids) {
+        this.illustrationNids = illustrationNids;
     }
 
     @Override
@@ -66,6 +64,7 @@ public class Family extends CommonModel{
                 " | nid=" + nid +
                 " | family=" + family +
                 " | description=" + description +
+                " | illustrationNids=" + illustrationNids == null ? "" : Arrays.toString(illustrationNids.toArray()) +
                 '}';
     }
 }

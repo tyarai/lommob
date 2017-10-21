@@ -5,7 +5,6 @@ import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
 
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.model.Family;
-import tyarai.com.lom.model.FamilyIllustration;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.model.Links;
 import tyarai.com.lom.model.Maps;
@@ -21,7 +20,6 @@ public class DBConfigUtil extends OrmLiteConfigUtil {
             Author.class,
             Family.class,
             Illustration.class,
-            FamilyIllustration.class,
             Links.class,
             Maps.class,
             Menus.class,

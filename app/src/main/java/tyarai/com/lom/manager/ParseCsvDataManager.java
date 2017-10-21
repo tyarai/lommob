@@ -12,19 +12,19 @@ import org.androidannotations.annotations.EBean;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import tyarai.com.lom.R;
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.model.CommonModel;
 import tyarai.com.lom.model.Family;
-import tyarai.com.lom.model.FamilyIllustration;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.model.Links;
 import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
 import tyarai.com.lom.model.Photograph;
+import tyarai.com.lom.model.Specie;
 
 /**
  * Created by saimon on 19/10/17.
@@ -123,6 +123,67 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         public String title;
     }
 
+
+    static class SpecieDto {
+        @JsonProperty(value = "_species_id")
+        public long nid;
+        @JsonProperty(value = "_title")
+        public String title;
+        @JsonProperty(value = "_profile_photograph_id")
+        public long profilePhotographNid;
+        @JsonProperty(value = "_family_id")
+        public long familyNid;
+        @JsonProperty(value = "_english")
+        public String english;
+        @JsonProperty(value = "_other_english")
+        public String otherEnglish;
+        @JsonProperty(value = "_french")
+        public String french;
+        @JsonProperty(value = "_german")
+        public String german;
+        @JsonProperty(value = "_malagasy")
+        public String malagasy;
+        @JsonProperty(value = "_identification")
+        public String identification;
+        @JsonProperty(value = "_natural_history")
+        public String naturalHistory;
+        @JsonProperty(value = "_geographic_range")
+        public String geographicRange;
+        @JsonProperty(value = "_conservation_status")
+        public String conservationStatus;
+        @JsonProperty(value = "_where_to_see_it")
+        public String whereToSeetIt;
+        @JsonProperty(value = "_map")
+        public long mapNid;
+        @JsonProperty(value = "_specie_photograph")
+        public String speciePhotoGraphNids;
+        @JsonProperty(value = "_favorite")
+        public String favorite;
+
+        @Override
+        public String toString() {
+            return "SpecieDto{" +
+                    "nid=" + nid +
+                    ", title='" + title + '\'' +
+                    ", profilePhotographNid=" + profilePhotographNid +
+                    ", familyNid=" + familyNid +
+                    ", english='" + english + '\'' +
+                    ", otherEnglish='" + otherEnglish + '\'' +
+                    ", french='" + french + '\'' +
+                    ", german='" + german + '\'' +
+                    ", malagasy='" + malagasy + '\'' +
+                    ", identification='" + identification + '\'' +
+                    ", naturalHistory='" + naturalHistory + '\'' +
+                    ", geographicRange='" + geographicRange + '\'' +
+                    ", conservationStatus='" + conservationStatus + '\'' +
+                    ", whereToSeetIt='" + whereToSeetIt + '\'' +
+                    ", mapNid=" + mapNid +
+                    ", speciePhotoGraphNids='" + speciePhotoGraphNids + '\'' +
+                    ", favorite='" + favorite + '\'' +
+                    '}';
+        }
+    }
+
     class Parser {
         Context context;
         public Parser(final Context context) {
@@ -135,8 +196,71 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
             parseFamilies();
             parseMenus();
             parseMaps();
-            parsePhotographs();
             parseLinks();
+            parsePhotographs();
+            parseSpecies();
+        }
+
+        void parseSpecies()
+        {
+            try {
+                getSpecieDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
+                Log.d(TAG, "parseSpecies....");
+                List<SpecieDto> specieDtos = parseJson(context, R.raw.species,
+                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$SpecieDto"));
+                if (specieDtos != null && !specieDtos.isEmpty()) {
+                    for (SpecieDto specieItem : specieDtos) {
+//                        Log.d(TAG, "specieItem : " + specieItem);
+                        try {
+                            Specie specie = getSpecieDao().queryBuilder()
+                                    .where().eq(CommonModel.NID_COL, specieItem.nid).queryForFirst();
+                            if (specie == null) {
+                                specie = new Specie();
+                            }
+                            specie.setNid(specieItem.nid);
+                            specie.setTitle(specieItem.title);
+                            specie.setConservationStatus(specieItem.conservationStatus);
+                            specie.setEnglish(specieItem.english);
+                            specie.setFrench(specieItem.french);
+                            specie.setOtherEnglish(specieItem.otherEnglish);
+                            specie.setWhereToSeeIt(specieItem.whereToSeetIt);
+                            specie.setNaturalHistory(specieItem.naturalHistory);
+                            specie.setGerman(specieItem.german);
+                            specie.setGeographicRange(specieItem.geographicRange);
+                            specie.setIdentification(specieItem.identification);
+                            specie.setMalagasy(specieItem.malagasy);
+                            specie.setFavorite(specieItem.favorite);
+                            specie.setFamily(getFamilyDao().queryBuilder().where().eq(CommonModel.NID_COL,
+                                    specieItem.familyNid).queryForFirst());
+                            specie.setMap(getMapsDao().queryBuilder().where().eq(CommonModel.NID_COL,
+                                    specieItem.mapNid).queryForFirst());
+                            specie.setProfilePhotograph(getPhotographDao().queryBuilder().where().eq(CommonModel.NID_COL,
+                                    specieItem.profilePhotographNid).queryForFirst());
+                            if (!TextUtils.isEmpty(specieItem.speciePhotoGraphNids)) {
+                                String[] speciePhotoGraphNidss = specieItem.speciePhotoGraphNids.split(",");
+                                ArrayList<Long> speciePhotoGraphNids = new ArrayList<>();
+                                for (String s : speciePhotoGraphNidss) {
+                                    speciePhotoGraphNids.add(Long.valueOf(s.trim()));
+                                }
+                                specie.setSpeciephotographNids(speciePhotoGraphNids);
+                            }
+                            specie.setActive(true);
+                            getSpecieDao().createOrUpdate(specie);
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                for (Specie sp : getSpecieDao().queryForAll()) {
+                    Log.d(TAG, "specie : " + sp);
+                }
+
+                Log.d(TAG, "countSpecies: " + getSpecieDao().countOf());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         void parseLinks()
@@ -291,8 +415,6 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         {
             try {
                 getFamilyDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
-                getFamilyIllustrationDao().deleteBuilder().delete();
-                Log.d(TAG, "parseFamilies....");
                 List<FamilyDto> families = parseJson(context, R.raw.families,
                         Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$FamilyDto"));
                 if (families != null && !families.isEmpty()) {
@@ -306,25 +428,16 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
                             family.setNid(familyItem.nid);
                             family.setFamily(familyItem.family);
                             family.setDescription(familyItem.description);
-                            getFamilyDao().assignEmptyForeignCollection(family, Family.ILLUSTRATION_FIELD);
+                            if (!TextUtils.isEmpty(familyItem.illustrationNids)) {
+                                String[] familyIllustrationNidss = familyItem.illustrationNids.split(",");
+                                ArrayList<Long> familyIllustrationNids = new ArrayList<>();
+                                for (String s : familyIllustrationNidss) {
+                                    familyIllustrationNids.add(Long.valueOf(s.trim()));
+                                }
+                                family.setIllustrationNids(familyIllustrationNids);
+                            }
                             family.setActive(true);
                             getFamilyDao().createOrUpdate(family);
-                            if (!TextUtils.isEmpty(familyItem.illustrationNids)) {
-                                String[] familyIllustrationNids = familyItem.illustrationNids.split(",");
-                                if (familyIllustrationNids != null) {
-                                    Log.d(TAG, "familyIllustrationNids " + Arrays.toString(familyIllustrationNids));
-                                    for (String nidS : familyIllustrationNids) {
-                                        long nid = Long.valueOf(nidS);
-                                        Illustration illustration = getIllustrationDao().queryBuilder()
-                                                .where().eq(CommonModel.NID_COL, nid).queryForFirst();
-                                        if (illustration != null) {
-                                            FamilyIllustration familyIllustration = new FamilyIllustration();
-                                            familyIllustration.setIllustration(illustration);
-                                            family.addIllustration(familyIllustration);
-                                        }
-                                    }
-                                }
-                            }
 
                         } catch (NumberFormatException e) {
                             e.printStackTrace();
@@ -337,7 +450,6 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
                 }
 
                 Log.d(TAG, "countFamily : " + getFamilyDao().countOf());
-                Log.d(TAG, "familyIllustrations : " + getFamilyIllustrationDao().countOf());
 
             } catch (Exception e) {
                 e.printStackTrace();
