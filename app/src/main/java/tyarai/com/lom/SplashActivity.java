@@ -90,6 +90,9 @@ public class SplashActivity extends AppCompatActivity {
                     getString(R.string.data_loading), Snackbar.LENGTH_INDEFINITE).show();
             new DatabaseInitTask().execute();
         }
+        else {
+            returnResult(1);
+        }
     }
 
     private class DatabaseInitTask extends AsyncTask<Void, Integer, Integer> {
@@ -119,7 +122,6 @@ public class SplashActivity extends AppCompatActivity {
             returnIntent.putExtra("result",result);
         }
         setResult(RESULT_OK,returnIntent);
-//        startActivity(new Intent(SplashActivity.this, MainActivity.class));
         Intent intent = new Intent(this, IntroductionActivity_.class);
         startActivity(intent);
         finish();
