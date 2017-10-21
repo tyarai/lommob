@@ -1,7 +1,9 @@
 package tyarai.com.lom;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -15,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +25,8 @@ import java.util.ArrayList;
 
 import tyarai.com.lom.views.IntroductionFragment;
 import tyarai.com.lom.views.IntroductionFragment_;
+import tyarai.com.lom.views.OriginActivity;
+import tyarai.com.lom.views.OriginActivity_;
 import tyarai.com.lom.views.OriginOfLemursFragment_;
 import tyarai.com.lom.views.adapter.navigation.DrawerListAdapter;
 import tyarai.com.lom.views.adapter.navigation.NavItem;
@@ -35,6 +40,8 @@ public class MainActivity extends AppCompatActivity
     DrawerListAdapter adapter;
     boolean canExit;
     CharSequence mTitle;
+
+    protected FrameLayout frmLayout;
 
     static final int MENU_INTRO = 0;
     static final int MENU_ORIGIN = 1;
@@ -52,6 +59,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        frmLayout = (FrameLayout)findViewById(R.id.main_layout);
         setSupportActionBar(toolbar);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -121,10 +129,10 @@ public class MainActivity extends AppCompatActivity
     private void selectItemFromDrawer(int position) {
         switch (position) {
             case MENU_INTRO:
-                startIntent(new IntroductionFragment_(), null);
+                startFragment(new IntroductionFragment_(), null);
                 break;
             case MENU_ORIGIN:
-                startIntent(new OriginOfLemursFragment_(), null);
+                startActivity(OriginActivity_.class);
                 break;
             default:
                 break;
@@ -132,7 +140,12 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    protected void startIntent(Fragment fragment, Bundle args) {
+    protected void startActivity(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+    }
+
+    protected void startFragment(Fragment fragment, Bundle args) {
         if (args != null) {
             fragment.setArguments(args);
         }

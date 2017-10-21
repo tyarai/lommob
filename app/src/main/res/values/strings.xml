@@ -17,4 +17,5 @@
     <string name="authors">About the authors</string>
     <string name="appquit_message">Appuyez encore pour quitter</string>
     <string name="data_not_found">Erreur de chargement de données</string>
+    <string name="txt_image_slider">Slide</string>
 </resources>

@@ -4,4 +4,10 @@
     <color name="colorPrimaryDark">#000000</color><!--#303F9F -->
     <color name="colorAccent">#ffae00</color><!--FF8C00 #FF4081-->
     <color name="lightGray">#fafafafa</color>
+
+    <color name="holo_blue_dark">#ff0099cc</color>
+    <color name="view_divider_color">#BABABA</color>
+    <color name="view_divider_color_2">#DADADA</color>
+
+    <color name="activity_bg">#e4e5e5</color>
 </resources>
