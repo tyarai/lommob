@@ -22,6 +22,8 @@ import tyarai.com.lom.manager.ParseCsvDataManager;
 @EActivity
 public class SplashActivity extends AppCompatActivity {
 
+    private static final String TAG = SplashActivity.class.getSimpleName();
+
     @Bean(ParseCsvDataManager.class)
     ParceCsvDataInterface parseCsv;
 
@@ -72,14 +74,12 @@ public class SplashActivity extends AppCompatActivity {
 
     void delayedMethod()
     {
-        Log.d("xxxxxxxxxxxxxxxxx", "delayedMethod() called");
         doInUiThreadAfterTwoSeconds();
     }
 
     @UiThread(delay=500)
     void doInUiThreadAfterTwoSeconds()
     {
-        Log.d("xxxxxxxxxxxxxxxxx", "doInUiThreadAfterTwoSeconds() called");
         boolean USE_IN_MEMORY_DB = false;
         DatabaseManager.init(this, USE_IN_MEMORY_DB);
         new DatabaseInitTask().execute();
@@ -90,11 +90,13 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(Void... params) {
             try {
-                parseCsv.parseData(SplashActivity.this);
+                if (!getInSharedDbState(SplashActivity.this)) {
+                    parseCsv.parseData(SplashActivity.this);
+                }
                 SplashActivity.setInSharedDbState(SplashActivity.this);
                 return 1;
             } catch (Exception e) {
-                Log.e("XXX", "erreur init db :" + e.getMessage() );
+                Log.e(TAG, "error init db :" + e.getMessage() );
                 e.printStackTrace();
                 return -1;
             }

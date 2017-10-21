@@ -53,4 +53,13 @@ public class WatchingSite extends CommonModel {
     public void setMap(Maps map) {
         this.map = map;
     }
+
+    @Override
+    public String toString() {
+        return "WatchingSite{" +
+                " | title='" + title + '\'' +
+                " | body='" + body + '\'' +
+                " | map=" + (map == null ? "" : map.id) +
+                '}';
+    }
 }

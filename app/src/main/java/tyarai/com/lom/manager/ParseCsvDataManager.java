@@ -25,6 +25,7 @@ import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
 import tyarai.com.lom.model.Photograph;
 import tyarai.com.lom.model.Specie;
+import tyarai.com.lom.model.WatchingSite;
 
 /**
  * Created by saimon on 19/10/17.
@@ -184,6 +185,18 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
         }
     }
 
+    static class WatchingSitesDto {
+        @JsonProperty(value = "_site_id")
+        public long siteId;
+        @JsonProperty(value = "_title")
+        public String title;
+        @JsonProperty(value = "_body")
+        public String body;
+        @JsonProperty(value = "_map_id")
+        public long mapNid;
+    }
+
+
     class Parser {
         Context context;
         public Parser(final Context context) {
@@ -199,6 +212,46 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
             parseLinks();
             parsePhotographs();
             parseSpecies();
+            parseWatchingSite();
+        }
+
+        void parseWatchingSite()
+        {
+            try {
+                getWatchingsiteDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
+                Log.d(TAG, "parseWatchinSites()....");
+                List<WatchingSitesDto> sites = parseJson(context, R.raw.watchingsites,
+                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$WatchingSitesDto"));
+                if (sites != null && !sites.isEmpty()) {
+                    for (WatchingSitesDto siteItem : sites) {
+                        try {
+                            WatchingSite ws = getWatchingsiteDao().queryBuilder()
+                                    .where().eq(CommonModel.NID_COL, siteItem.siteId).queryForFirst();
+                            if (ws == null) {
+                                ws = new WatchingSite();
+                            }
+                            ws.setNid(siteItem.siteId);
+                            ws.setBody(siteItem.body);
+                            ws.setTitle(siteItem.title);
+                            ws.setMap(getMapsDao().queryBuilder().where().eq(CommonModel.NID_COL,
+                                    siteItem.mapNid).queryForFirst());
+                            ws.setActive(true);
+                            getWatchingsiteDao().createOrUpdate(ws);
+                        } catch (NumberFormatException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                for (WatchingSite ws : getWatchingsiteDao().queryForAll()) {
+                    Log.d(TAG, "WatchingSite : " + ws);
+                }
+
+                Log.d(TAG, "countWatchingSite : " + getWatchingsiteDao().countOf());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         void parseSpecies()
