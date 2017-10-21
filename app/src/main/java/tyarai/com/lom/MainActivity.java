@@ -1,6 +1,7 @@
 package tyarai.com.lom;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     ListView mDrawerList;
     ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
     DrawerListAdapter adapter;
+    boolean canExit;
 
 
     @Override
@@ -97,7 +100,13 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(canExit)
+                super.onBackPressed();
+            else{
+                canExit = true;
+                Toast.makeText(getApplicationContext(), getString(R.string.appquit_message), Toast.LENGTH_SHORT).show();
+            }
+            mHandler.sendEmptyMessageDelayed(1, 2000/*time interval to next press in milli second*/);// if not pressed within 2seconds then will be setted(canExit) as false
         }
     }
 
@@ -154,4 +163,21 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+    public Handler mHandler = new Handler(){
+
+        public void handleMessage(android.os.Message msg) {
+
+            switch (msg.what) {
+                case 1:
+                    canExit = false;
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
 }
