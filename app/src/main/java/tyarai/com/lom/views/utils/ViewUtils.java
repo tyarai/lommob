@@ -14,4 +14,8 @@ public class ViewUtils {
     public static void showLoadingError(final Context context) {
         Toast.makeText(context, context.getString(R.string.data_not_found), Toast.LENGTH_LONG).show();
     }
+
+    public static String getNonEmptyString(String value) {
+        return value == null ? "" : value;
+    }
 }

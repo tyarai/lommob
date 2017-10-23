@@ -9,5 +9,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="design_navigation_icon_size" tools:override="true">30dp</dimen>
     <dimen name="author_image_height">500dp</dimen>
-    <dimen name="specie_image_height">300dp</dimen>
+    <dimen name="specie_image_height">200dp</dimen>
 </resources>
