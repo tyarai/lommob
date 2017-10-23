@@ -3,6 +3,7 @@ package tyarai.com.lom.views.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,6 +21,8 @@ import java.util.List;
 import tyarai.com.lom.R;
 import tyarai.com.lom.model.Specie;
 import tyarai.com.lom.utils.csv.RenameF;
+import tyarai.com.lom.views.SpecieDetailActivity;
+import tyarai.com.lom.views.SpecieDetailActivity_;
 
 /**
  * Created by saimon
@@ -90,13 +93,11 @@ public class SpecieAdapter extends RecyclerView.Adapter<SpecieAdapter.ViewHolder
                     int pos = getAdapterPosition();
                     // check if item still exists
                     if (pos != RecyclerView.NO_POSITION) {
-//                        Specie clickedDataItem = filterList.get(pos);
-//                        Intent intent = new Intent(context, AuthorDetailActivity_.class);
-//                        intent.putExtra(AuthorDetailActivity.IMAGE_PATH_EXTRA, clickedDataItem.getPhoto());
-//                        intent.putExtra(AuthorDetailActivity.DESC_EXTRA, clickedDataItem.getDetail());
-//                        intent.putExtra(AuthorDetailActivity.NAME_EXTRA, clickedDataItem.getName());
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        context.startActivity(intent);
+                        Specie clickedDataItem = filterList.get(pos);
+                        Intent intent = new Intent(context, SpecieDetailActivity_.class);
+                        intent.putExtra(SpecieDetailActivity.EXTRA_SPECIE_ID, clickedDataItem.getId());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
                     }
                 }
             });

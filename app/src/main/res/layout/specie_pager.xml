@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".views.SpecieDetailActivity"
+    >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/specie_pager_introduction"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/specie_image_height"
+        android:fitsSystemWindows="true"
+        tools:listitem="@layout/pager_item"
+        />
+
+    <RelativeLayout
+        android:id="@+id/specie_viewPagerIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:paddingTop="5dp"
+        android:gravity="center"
+        android:layout_below="@id/specie_pager_introduction"
+        android:background="@color/colorPrimaryDark"
+        >
+
+        <LinearLayout
+            android:id="@+id/specie_viewPagerCountDots"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="horizontal" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

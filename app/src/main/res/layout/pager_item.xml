@@ -11,15 +11,6 @@
     android:layout_height="match_parent"
     android:padding="@dimen/activity_vertical_margin">
 
-    <!--<ImageView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--tools:src="@mipmap/abc1"-->
-        <!--android:id="@+id/img_pager_item"-->
-        <!--android:scaleType="fitXY"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:clickable="false"/>-->
-
     <TextView
         android:id="@+id/pager_item"
         android:layout_width="match_parent"

@@ -75,7 +75,6 @@ public class AuthorDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            // Respond to the action bar's Up/Home button
             case android.R.id.home:
                 onBackPressed();
                 return true;

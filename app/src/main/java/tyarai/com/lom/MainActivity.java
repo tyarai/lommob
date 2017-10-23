@@ -129,10 +129,10 @@ public class MainActivity extends AppCompatActivity
     private void selectItemFromDrawer(int position) {
         switch (position) {
             case MENU_INTRO:
-                startActivity(IntroductionActivity_.class);
+                startActivity(IntroductionActivity_.class, null);
                 break;
             case MENU_ORIGIN:
-                startActivity(OriginActivity_.class);
+                startActivity(OriginActivity_.class, null);
                 break;
             case MENU_EXTINCT:
                 startFragment(new ExtinctFragment_(), null);
@@ -149,9 +149,12 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    protected void startActivity(Class<?> clazz) {
+    protected void startActivity(Class<?> clazz, Bundle args) {
         Intent intent = new Intent(this, clazz);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (args != null) {
+            intent.putExtras(args);
+        }
         startActivity(intent);
         finish();
     }

@@ -14,7 +14,7 @@ import tyarai.com.lom.R;
 
 
 /**
- * Created by Wasim on 11-06-2015.
+ * Created by saimon
  */
 public class ViewPagerAdapter extends PagerAdapter {
 
@@ -40,7 +40,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.pager_item, container, false);
 
-        TextView imageView = (TextView) itemView.findViewById(R.id.pager_item);
+        TextView imageView = itemView.findViewById(R.id.pager_item);
         imageView.setText(mResources[position].trim());
 
         container.addView(itemView);

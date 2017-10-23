@@ -1,6 +1,7 @@
 package tyarai.com.lom.views;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
@@ -87,7 +88,7 @@ public class OriginActivity extends MainActivity implements ViewPager.OnPageChan
 
         for (int i = 0; i < dotsCount; i++) {
             dots[i] = new ImageView(this);
-            dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
+            dots[i].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.nonselecteditem_dot));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -99,7 +100,7 @@ public class OriginActivity extends MainActivity implements ViewPager.OnPageChan
             pager_indicator.addView(dots[i], params);
         }
 
-        dots[0].setImageDrawable(getResources().getDrawable(R.drawable.selecteditem_dot));
+        dots[0].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selecteditem_dot));
     }
 
 
@@ -125,10 +126,10 @@ public class OriginActivity extends MainActivity implements ViewPager.OnPageChan
     @Override
     public void onPageSelected(int position) {
         for (int i = 0; i < dotsCount; i++) {
-            dots[i].setImageDrawable(getResources().getDrawable(R.drawable.nonselecteditem_dot));
+            dots[i].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.nonselecteditem_dot));
         }
 
-        dots[position].setImageDrawable(getResources().getDrawable(R.drawable.selecteditem_dot));
+        dots[position].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selecteditem_dot));
 
 //        if (position + 1 == dotsCount) {
 //            btnNext.setVisibility(View.GONE);
