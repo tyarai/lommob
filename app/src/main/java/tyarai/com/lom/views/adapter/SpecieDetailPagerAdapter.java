@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.Arrays;
+
 import tyarai.com.lom.R;
 import tyarai.com.lom.utils.csv.RenameF;
 
@@ -53,7 +55,7 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
             TextView txtMalagasy = itemView.findViewById(R.id.specie_malagasy);
             TextView txtFrench = itemView.findViewById(R.id.specie_french);
             TextView txtGerman = itemView.findViewById(R.id.specie_german);
-            String[] langs = mResources[0].split("|");
+            String[] langs = mResources[0].split("##");
             txtEnglish.setText(langs[0]);
             txtMalagasy.setText(langs[1]);
             txtFrench.setText(langs[2]);

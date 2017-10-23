@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -93,9 +94,9 @@ public class SpecieDetailActivity extends AppCompatActivity {
                 }
             }
             lemurDetails = new String[6];
-            lemurDetails[0] = ViewUtils.getNonEmptyString(specie.getEnglish()) + "|"  +
-                                ViewUtils.getNonEmptyString(specie.getMalagasy()) + "|"  +
-                                ViewUtils.getNonEmptyString(specie.getFrench())  + "|"  +
+            lemurDetails[0] = ViewUtils.getNonEmptyString(specie.getOtherEnglish()) + "##"  +
+                                ViewUtils.getNonEmptyString(specie.getMalagasy()) + "##"  +
+                                ViewUtils.getNonEmptyString(specie.getFrench())  + "##"  +
                                 ViewUtils.getNonEmptyString(specie.getGerman());
             lemurDetails[1] = ViewUtils.getNonEmptyString(specie.getIdentification());
             lemurDetails[2] = ViewUtils.getNonEmptyString(specie.getNaturalHistory());
@@ -151,7 +152,16 @@ public class SpecieDetailActivity extends AppCompatActivity {
 
             params.setMargins(4, 0, 4, 0);
 
+            final int j = i;
+            swipers[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    pager_detail.setCurrentItem(j);
+                }
+            });
+
             detail_indicator.addView(swipers[i], params);
+
         }
         if (swipers != null && swipers.length > 0) {
             swipers[0].setImageDrawable(ContextCompat.getDrawable(this, drawablesOn[0]));
@@ -179,6 +189,9 @@ public class SpecieDetailActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     private void setupImageList() {
 

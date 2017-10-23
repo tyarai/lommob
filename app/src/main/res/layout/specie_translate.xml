@@ -18,8 +18,9 @@
 
         <TextView
             android:id="@+id/specie_english"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/activity_vertical_margin" />
     </LinearLayout>
 
@@ -35,8 +36,9 @@
 
         <TextView
             android:id="@+id/specie_malagasy"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/activity_vertical_margin" />
     </LinearLayout>
 
@@ -52,8 +54,9 @@
 
         <TextView
             android:id="@+id/specie_french"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/activity_vertical_margin" />
     </LinearLayout>
 
@@ -69,8 +72,9 @@
 
         <TextView
             android:id="@+id/specie_german"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/activity_vertical_margin" />
     </LinearLayout>
 
