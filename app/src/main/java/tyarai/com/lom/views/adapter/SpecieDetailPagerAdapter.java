@@ -1,6 +1,7 @@
 package tyarai.com.lom.views.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -16,6 +18,7 @@ import java.util.Arrays;
 
 import tyarai.com.lom.R;
 import tyarai.com.lom.utils.csv.RenameF;
+import tyarai.com.lom.views.FullScreenImageActivity;
 
 
 /**
@@ -41,7 +44,7 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((LinearLayout) object);
+        return view == ((ScrollView) object);
     }
 
     @Override
@@ -55,12 +58,17 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
             TextView txtMalagasy = itemView.findViewById(R.id.specie_malagasy);
             TextView txtFrench = itemView.findViewById(R.id.specie_french);
             TextView txtGerman = itemView.findViewById(R.id.specie_german);
-            String[] langs = mResources[0].split("##");
-            txtEnglish.setText(langs[0]);
-            txtMalagasy.setText(langs[1]);
-            txtFrench.setText(langs[2]);
-            txtGerman.setText(langs[3]);
-            container.addView(itemView);
+            try {
+                String[] langs = mResources[0].split("##");
+                txtEnglish.setText(langs[0]);
+                txtMalagasy.setText(langs[1]);
+                txtFrench.setText(langs[2]);
+                txtGerman.setText(langs[3]);
+                container.addView(itemView);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         else if (position == 1) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_text, container, false);
@@ -101,9 +109,27 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
             if (resourceImage != 0) {
                 Picasso.with(mContext)
                         .load(resourceImage)
-                        .fit().centerInside()
+                        .fit()
+                        .centerInside()
                         .into(imageView);
             }
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String title = "";
+                    try {
+                        String[] langs = mResources[0].split("##");
+                        title = langs[0];
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Intent intent = new Intent(mContext, FullScreenImageActivity.class);
+                    intent.putExtra(FullScreenImageActivity.NAME, title);
+                    intent.putExtra(FullScreenImageActivity.IMAGE_URL, resourceImage);
+                    mContext.startActivity(intent);
+                }
+            });
             container.addView(itemView);
         }
         return itemView;
@@ -113,6 +139,6 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        container.removeView((LinearLayout) object);
+        container.removeView((ScrollView) object);
     }
 }
