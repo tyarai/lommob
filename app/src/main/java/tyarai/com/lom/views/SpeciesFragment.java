@@ -120,33 +120,31 @@ public class SpeciesFragment extends BaseFrag
 
     @Override
     public boolean onQueryTextChange(String query) {
-        if (TextUtils.isEmpty(query)) {
-            doSearch(query);
-        }
+        adapter.filter(query);
         return false;
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        doSearch(query);
+//        doSearch(query);
         return false;
     }
 
-    private void doSearch(String query) {
-        try {
-            Where<Specie, Long> wh =  commonManager.getSpecieDao().queryBuilder().where();
-            wh.eq(CommonModel.ACTIVE_COL, true);
-            String filterTrimmed = "%" + query.trim() + "%";
-            if (!TextUtils.isEmpty(filterTrimmed)) {
-                speciesList= wh.and().like(Specie.TITLE_COL, new SelectArg(filterTrimmed)).query();
-                adapter = new SpecieAdapter(getActivity(), speciesList);
-                recyclerView.setAdapter(adapter);
-            }
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private void doSearch(String query) {
+//        try {
+//            Where<Specie, Long> wh =  commonManager.getSpecieDao().queryBuilder().where();
+//            wh.eq(CommonModel.ACTIVE_COL, true);
+//            String filterTrimmed = "%" + query.trim() + "%";
+//            if (!TextUtils.isEmpty(filterTrimmed)) {
+//                speciesList= wh.and().like(Specie.TITLE_COL, new SelectArg(filterTrimmed)).query();
+//                adapter = new SpecieAdapter(getActivity(), speciesList);
+//                recyclerView.setAdapter(adapter);
+//            }
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 //    @Override
 //    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
