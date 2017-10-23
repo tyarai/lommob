@@ -4,40 +4,40 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_introduction"
-            android:icon="@mipmap/ico_infos"
+            android:icon="@drawable/ico_infos"
             android:title="@string/introduction"
             />
         <item
             android:id="@+id/nav_lemur_origin"
-            android:icon="@mipmap/arrow61"
+            android:icon="@drawable/arrow61"
             android:title="@string/lemur_origin" />
         <item
             android:id="@+id/nav_lemur_extinct"
-            android:icon="@mipmap/extinct"
+            android:icon="@drawable/extinct"
             android:title="@string/lemur_extinct" />
 
         <item
             android:id="@+id/nav_authors"
-            android:icon="@mipmap/author"
+            android:icon="@drawable/author"
             android:title="@string/authors" />
 
         <item
             android:id="@+id/nav_species"
-            android:icon="@mipmap/ico_specy"
+            android:icon="@drawable/ico_specy"
             android:title="@string/species" />
         <item
             android:id="@+id/nav_families"
-            android:icon="@mipmap/ico_families"
+            android:icon="@drawable/ico_families"
             android:title="@string/families" />
 
         <item
             android:id="@+id/nav_sites"
-            android:icon="@mipmap/ico_map"
+            android:icon="@drawable/ico_map"
             android:title="@string/sites" />
 
         <item
             android:id="@+id/nav_watching"
-            android:icon="@mipmap/ico_eye"
+            android:icon="@drawable/ico_eye"
             android:title="@string/watching" />
 
     </group>

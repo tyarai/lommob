@@ -51,7 +51,7 @@
             android:layout_marginRight="15dip"
             android:background="@drawable/btn_round_semitransperant"
             android:contentDescription="Let's start"
-            android:src="@mipmap/ic_navigation_check"
+            android:src="@drawable/ic_navigation_check"
             android:visibility="gone" />
 
     </RelativeLayout>

@@ -16,8 +16,10 @@
     <string name="posts">Posts</string>
     <string name="about">About this app</string>
     <string name="authors">About the authors</string>
-    <string name="appquit_message">Appuyez encore pour quitter</string>
-    <string name="data_not_found">Erreur de chargement de données</string>
+    <string name="appquit_message">Press again to exit</string>
+    <string name="data_not_found">Loading data error</string>
     <string name="txt_image_slider">Slide</string>
     <string name="data_loading">Loading initial data, it may takes few time.</string>
+    <string name="no_items">No items detected</string>
+    <string name="view">View</string>
 </resources>

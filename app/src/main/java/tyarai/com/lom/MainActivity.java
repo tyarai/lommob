@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import tyarai.com.lom.views.AuthorsFragment;
+import tyarai.com.lom.views.AuthorsFragment_;
 import tyarai.com.lom.views.ExtinctFragment_;
 import tyarai.com.lom.views.IntroductionActivity_;
 import tyarai.com.lom.views.OriginActivity_;
@@ -134,6 +136,8 @@ public class MainActivity extends AppCompatActivity
             case MENU_EXTINCT:
                 startFragment(new ExtinctFragment_(), null);
                 break;
+            case MENU_AUTHORS :
+                startFragment(new AuthorsFragment_(), null);
             default:
                 break;
         }

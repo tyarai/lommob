@@ -10,4 +10,5 @@
     <color name="view_divider_color_2">#DADADA</color>
 
     <color name="activity_bg">#e4e5e5</color>
+    <color name="base_lightgray">#bdbdbd</color>
 </resources>
