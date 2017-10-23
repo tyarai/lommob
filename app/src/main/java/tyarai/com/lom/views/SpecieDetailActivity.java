@@ -93,7 +93,7 @@ public class SpecieDetailActivity extends AppCompatActivity {
                     }
                 }
             }
-            lemurDetails = new String[6];
+            lemurDetails = new String[7];
             lemurDetails[0] = ViewUtils.getNonEmptyString(specie.getOtherEnglish()) + "##"  +
                                 ViewUtils.getNonEmptyString(specie.getMalagasy()) + "##"  +
                                 ViewUtils.getNonEmptyString(specie.getFrench())  + "##"  +
@@ -103,7 +103,10 @@ public class SpecieDetailActivity extends AppCompatActivity {
             lemurDetails[3] = ViewUtils.getNonEmptyString(specie.getConservationStatus());
             lemurDetails[4] = ViewUtils.getNonEmptyString(specie.getWhereToSeeIt());
             lemurDetails[5] = ViewUtils.getNonEmptyString(specie.getGeographicRange());
-            //lemurDetails[6] = ViewUtils.getNonEmptyString(specie.getMap() == null ? "" : specie.getMap().getName());
+            lemurDetails[6] = ViewUtils.getNonEmptyString(specie.getMap() == null ? "" : specie.getMap().getName());
+
+            setupImageList();
+            setupDetailList();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -115,9 +118,6 @@ public class SpecieDetailActivity extends AppCompatActivity {
             actionBar.setTitle(specie == null ? getString(R.string.specie): specie.getEnglish());
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
-        setupImageList();
-        setupDetailList();
 
     }
 
@@ -196,6 +196,7 @@ public class SpecieDetailActivity extends AppCompatActivity {
     private void setupImageList() {
 
         imageAdapter = new ViewPagerImageAdapter(SpecieDetailActivity.this, lemurPhotographs);
+        imageAdapter.setTitle(specie.getEnglish());
         intro_images.setAdapter(imageAdapter);
         intro_images.setCurrentItem(0);
         intro_images.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

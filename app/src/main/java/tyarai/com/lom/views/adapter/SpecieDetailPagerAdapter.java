@@ -92,6 +92,20 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
             txtGeographicRange.setText(mResources[5]);
             container.addView(itemView);
         }
+        else if (position == 6) {
+            itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_map, container, false);
+            ImageView imageView = itemView.findViewById(R.id.specie_image);
+            final String fname = RenameF.renameFNoExtension(mResources[6]);
+            Log.d(TAG, "map fname : " + fname);
+            final int resourceImage = mContext.getResources().getIdentifier(fname, "drawable", mContext.getPackageName());
+            if (resourceImage != 0) {
+                Picasso.with(mContext)
+                        .load(resourceImage)
+                        .fit().centerInside()
+                        .into(imageView);
+            }
+            container.addView(itemView);
+        }
         return itemView;
 
 
