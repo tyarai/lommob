@@ -25,18 +25,20 @@ import tyarai.com.lom.views.AuthorDetailActivity_;
  * Created by saimon
  */
 public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHolder> {
+
+    private static final String TAG = AuthorsAdapter.class.getSimpleName();
+
     private List<Author> authors;
     private Context context;
-    // private Movie movie;
 
-    public AuthorsAdapter(Context applicationContext, List<Author> movieArrayList) {
+    public AuthorsAdapter(Context applicationContext, List<Author> authorsArrayList) {
         this.context = applicationContext;
-        this.authors = movieArrayList;
+        this.authors = authorsArrayList;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_author, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.author_row, viewGroup, false);
 
 
         return new ViewHolder(view);
@@ -48,8 +50,9 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
         viewHolder.name.setText(authors.get(i).getName());
         viewHolder.description.setText(authors.get(i).getDetail());
 
-        Log.d("xxxxxxxxxxx", "fname : " + RenameF.renameFNoExtension(authors.get(i).getPhoto()));
-        int resourceImage = context.getResources().getIdentifier(RenameF.renameFNoExtension(authors.get(i).getPhoto()), "drawable", context.getPackageName());
+        String fname = RenameF.renameFNoExtension(authors.get(i).getPhoto());
+        Log.d(TAG, "fname : " + fname);
+        int resourceImage = context.getResources().getIdentifier(fname, "drawable", context.getPackageName());
         if (resourceImage != 0) {
             Picasso.with(context)
                     .load(resourceImage)
@@ -70,7 +73,7 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name, description, actors;
+        private TextView name, description;
         private ImageView imageView;
 
         public ViewHolder(View view) {
@@ -109,8 +112,8 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
 
     //RecyclerView mRecycler;
     // Add a list of ites
-    public void addAll(int position, List<Author> mov) {
-        authors.addAll(0, mov);
+    public void addAll(int position, List<Author> auth) {
+        authors.addAll(0, auth);
         notifyItemInserted(0);
         //mRecycler.smoothScrollToPosition(0);
         notifyDataSetChanged();

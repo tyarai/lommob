@@ -27,6 +27,7 @@ import tyarai.com.lom.views.AuthorsFragment_;
 import tyarai.com.lom.views.ExtinctFragment_;
 import tyarai.com.lom.views.IntroductionActivity_;
 import tyarai.com.lom.views.OriginActivity_;
+import tyarai.com.lom.views.SpeciesFragment_;
 import tyarai.com.lom.views.adapter.navigation.DrawerListAdapter;
 import tyarai.com.lom.views.adapter.navigation.NavItem;
 
@@ -138,6 +139,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case MENU_AUTHORS :
                 startFragment(new AuthorsFragment_(), null);
+                break;
+            case MENU_SPECIES:
+                startFragment(new SpeciesFragment_(), null);
                 break;
             default:
                 break;

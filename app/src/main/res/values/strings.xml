@@ -23,4 +23,6 @@
     <string name="no_items">No items detected</string>
     <string name="view">View</string>
     <string name="author">Author</string>
+    <string name="action_search">Search</string>
+    <string name="search_name">Search name...</string>
 </resources>
