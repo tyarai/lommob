@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case MENU_AUTHORS :
                 startFragment(new AuthorsFragment_(), null);
+                break;
             default:
                 break;
         }

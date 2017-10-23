@@ -22,4 +22,5 @@
     <string name="data_loading">Loading initial data, it may takes few time.</string>
     <string name="no_items">No items detected</string>
     <string name="view">View</string>
+    <string name="author">Author</string>
 </resources>

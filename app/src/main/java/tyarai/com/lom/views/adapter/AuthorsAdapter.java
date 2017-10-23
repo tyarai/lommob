@@ -2,7 +2,7 @@ package tyarai.com.lom.views.adapter;
 
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,6 +18,8 @@ import java.util.List;
 import tyarai.com.lom.R;
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.utils.csv.RenameF;
+import tyarai.com.lom.views.AuthorDetailActivity;
+import tyarai.com.lom.views.AuthorDetailActivity_;
 
 /**
  * Created by saimon
@@ -25,11 +27,11 @@ import tyarai.com.lom.utils.csv.RenameF;
 public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHolder> {
     private List<Author> authors;
     private Context context;
-   // private Movie movie;
+    // private Movie movie;
 
     public AuthorsAdapter(Context applicationContext, List<Author> movieArrayList) {
-        this.context =applicationContext;
-        this.authors =movieArrayList;
+        this.context = applicationContext;
+        this.authors = movieArrayList;
     }
 
     @Override
@@ -46,7 +48,8 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
         viewHolder.name.setText(authors.get(i).getName());
         viewHolder.description.setText(authors.get(i).getDetail());
 
-      int resourceImage = context.getResources().getIdentifier(RenameF.renameFNoExtension(authors.get(i).getPhoto()), "drawable", context.getPackageName());
+        Log.d("xxxxxxxxxxx", "fname : " + RenameF.renameFNoExtension(authors.get(i).getPhoto()));
+        int resourceImage = context.getResources().getIdentifier(RenameF.renameFNoExtension(authors.get(i).getPhoto()), "drawable", context.getPackageName());
         if (resourceImage != 0) {
             Picasso.with(context)
                     .load(resourceImage)
@@ -54,9 +57,13 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
                     .placeholder(R.drawable.ic_more_horiz_black_48dp)
                     .into(viewHolder.imageView);
         }
-//        viewHolder.imageView.setImageResource(resourceImage);
+        else {
+            viewHolder.imageView.setImageResource(R.drawable.ic_more_horiz_black_48dp);
+        }
+
 
     }
+
     @Override
     public int getItemCount() {
         return authors.size();
@@ -70,32 +77,28 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
             super(view);
             name = (TextView) view.findViewById(R.id.author_name);
             description = (TextView) view.findViewById(R.id.author_description);
-            imageView= (ImageView) view.findViewById(R.id.author_cover);
+            imageView = (ImageView) view.findViewById(R.id.author_cover);
 
             // on item click
-            itemView.setOnClickListener(new View.OnClickListener(){
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // get position
                     int pos = getAdapterPosition();
                     // check if item still exists
-                    if(pos != RecyclerView.NO_POSITION){
-//                        Movie clickedDataItem = authors.get(pos);
-//                        Intent intent = new Intent(context, DetailActivity.class);
-//                        intent.putExtra("movie_title", authors.get(pos).getTitle());
-//                        intent.putExtra("movie_actors", authors.get(pos).getActors());
-//                        intent.putExtra("movie_cover", authors.get(pos).getCover());
-//                        intent.putExtra("movie_director", authors.get(pos).getDirector());
-//                        intent.putExtra("movie_year", authors.get(pos).getYear());
-//                        intent.putExtra("movie_plot", authors.get(pos).getPlot());
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        context.startActivity(intent);
-//                        Toast.makeText(v.getContext(), "You clicked " + clickedDataItem.getTitle(), Toast.LENGTH_SHORT).show();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        Author clickedDataItem = authors.get(pos);
+                        Intent intent = new Intent(context, AuthorDetailActivity_.class);
+                        intent.putExtra(AuthorDetailActivity.IMAGE_PATH_EXTRA, clickedDataItem.getPhoto());
+                        intent.putExtra(AuthorDetailActivity.DESC_EXTRA, clickedDataItem.getDetail());
+                        intent.putExtra(AuthorDetailActivity.NAME_EXTRA, clickedDataItem.getName());
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
                     }
                 }
             });
         }
-        }
+    }
 
     /* Within the RecyclerView.Adapter class */
     // Clean all elements of the recycler
@@ -107,7 +110,7 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
     //RecyclerView mRecycler;
     // Add a list of ites
     public void addAll(int position, List<Author> mov) {
-        authors.addAll(0,mov);
+        authors.addAll(0, mov);
         notifyItemInserted(0);
         //mRecycler.smoothScrollToPosition(0);
         notifyDataSetChanged();

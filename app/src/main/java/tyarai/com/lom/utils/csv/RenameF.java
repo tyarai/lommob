@@ -39,6 +39,6 @@ public class RenameF {
         if (!TextUtils.isEmpty(fname)) {
             return "z_" + fname.replaceAll("[^a-zA-Z0-9//]", "_").replace("_jpg", "").toLowerCase();
         }
-        return null;
+        return "";
     }
 }
