@@ -426,6 +426,12 @@ static AppData* _instance;
         
         for (Sightings * sighting in sightings) {
             
+            //--- Update Oct 24 2017 // Verouiller-na ilay row any anaty table mba hisorohana hoe process
+            //  (pull to refresh) samihafa miara- mampiakatra azy
+            sighting._locked = YES;
+            [sighting save];
+            //-------------------------------------------------------------
+            
             if(sighting._deleted == NO){
             
                 NSURL * url         = nil;
@@ -483,14 +489,20 @@ static AppData* _instance;
                                         if (error){
                                             BaseViewController *viewController = (BaseViewController*)vc;
                                             [Tools showError:err onViewController:viewController];
+                                            
                                             NSLog(@"Error parse : %@", error.debugDescription);
+                                            
+                                            //sighting._locked   = NO; // Unlock the row
+                                            //[sighting save];
+
                                         }
                                         else{
                                             //-- Azo ny NID an'ity sighting vaovao ity ----
                                             NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
                                             sighting._nid = newNID;
                                             sighting._isSynced = YES;
-                                            sighting._isLocal = NO;
+                                            sighting._isLocal  = NO;
+                                            sighting._locked   = NO; // Unlock the row
                                             [sighting save];
                                            
                                             
@@ -540,10 +552,24 @@ static AppData* _instance;
                                         
                                                       if (error){
                                                           NSLog(@"Error parse : %@", error.debugDescription);
+                                                          
+                                                         //---- Update Oct 24 2017 ---//
+                                                         /* 
+                                                          BaseViewController *viewController = (BaseViewController*)vc;
+                                                          [Tools showError:err onViewController:viewController];
+                                                          NSLog(@"Error parse : %@", error.debugDescription);
+
+                                                          
+                                                          sighting._locked   = NO; // Unlock the row
+                                                          [sighting save];
+                                                          */
+                                                          //----------------------------------//
+
                                                       }
                                                       else{
                                                           
                                                           sighting._isSynced = YES;
+                                                          sighting._locked   = NO; // Unlock the row
                                                           [sighting save];
                                                          
                                                       

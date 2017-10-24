@@ -35,14 +35,13 @@
 }
 
 + (NSArray*) getNotSyncedSightings{
-    //return [Sightings instancesWhere:[NSString stringWithFormat:@" _isLocal = '1' AND _isSynced ='0'"]];
-    return [Sightings instancesWhere:[NSString stringWithFormat:@" _isSynced ='0' OR _deleted ='1' "]];
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" (_isSynced ='0' OR _deleted ='1' ) AND _locked = '0' "]];
 
 }
 
 
 + (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid {
-    return [Sightings instancesWhere:[NSString stringWithFormat:@" ( _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND _uid = '%li' AND _deleted = '0' ", strValue,strValue,strValue,uid]]; // <<<---- Mbola ampina AND _deleted = '0' ny condition ato
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" ( _title LIKE '%%%@%%' OR _speciesName LIKE '%%%@%%' OR _placeName LIKE '%%%@%%' ) AND _uid = '%li' AND _deleted = '0' ", strValue,strValue,strValue,(long)uid]]; // <<<---- Mbola ampina AND _deleted = '0' ny condition ato
 }
 
 
@@ -55,7 +54,7 @@
     if(speciesNID > 0){
         
         NSString * query = [NSString stringWithFormat:@" SELECT SUM(_speciesCount) total FROM $T WHERE _speciesNid = '%li' ",
-                            speciesNID];
+                            (long)speciesNID];
         
         NSArray * results = [Sightings resultDictionariesFromQuery:query];
         NSDictionary* dic = [results objectAtIndex:0]; // iray ihany ny zavatra retourner-na
