@@ -55,7 +55,7 @@ public class ViewPagerImageAdapter extends PagerAdapter {
         if (resourceImage != 0) {
             Picasso.with(mContext)
                     .load(resourceImage)
-                    //.fit().centerCrop()
+//                    .fit().centerInside()
                     .placeholder(R.drawable.ic_more_horiz_black_48dp)
                     .into(imageView);
         }

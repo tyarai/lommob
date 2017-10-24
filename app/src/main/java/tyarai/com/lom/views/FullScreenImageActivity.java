@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -24,7 +25,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
     int imageDrawableId;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.full_screen_image);
         Bundle extras = getIntent().getExtras();
@@ -41,8 +42,18 @@ public class FullScreenImageActivity extends AppCompatActivity {
         if (imageDrawableId != -1) {
             Picasso.with(this)
                     .load(imageDrawableId)
-                    //.fit().centerCrop()
                     .into(imageView);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

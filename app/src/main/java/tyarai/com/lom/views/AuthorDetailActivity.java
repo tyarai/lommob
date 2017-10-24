@@ -1,5 +1,6 @@
 package tyarai.com.lom.views;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -61,12 +62,13 @@ public class AuthorDetailActivity extends AppCompatActivity {
     void initData() {
         int resourceImage = getResources().getIdentifier(RenameF.renameFNoExtension(authImagePath), "drawable", getPackageName());
         if (resourceImage != 0) {
-            Picasso.with(this)
-                    .load(resourceImage)
-                    .fit()
-//                    .centerCrop()
-                    .placeholder(R.drawable.if_more_2628486)
-                    .into(imageView);
+//            int orientation = this.getResources().getConfiguration().orientation;
+//            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+                Picasso.with(this)
+                        .load(resourceImage)
+                        .placeholder(R.drawable.if_more_2628486)
+                        .into(imageView);
+//            }
         }
         descriptionView.setText(authDesc);
     }
