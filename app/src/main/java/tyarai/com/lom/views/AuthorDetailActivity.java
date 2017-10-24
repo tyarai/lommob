@@ -1,5 +1,6 @@
 package tyarai.com.lom.views;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -60,7 +62,7 @@ public class AuthorDetailActivity extends AppCompatActivity {
 
     @AfterViews
     void initData() {
-        int resourceImage = getResources().getIdentifier(RenameF.renameFNoExtension(authImagePath), "drawable", getPackageName());
+        final int resourceImage = getResources().getIdentifier(RenameF.renameFNoExtension(authImagePath), "drawable", getPackageName());
         if (resourceImage != 0) {
 //            int orientation = this.getResources().getConfiguration().orientation;
 //            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -71,6 +73,16 @@ public class AuthorDetailActivity extends AppCompatActivity {
 //            }
         }
         descriptionView.setText(authDesc);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AuthorDetailActivity.this, FullScreenImageActivity.class);
+                intent.putExtra(FullScreenImageActivity.NAME, authName);
+                intent.putExtra(FullScreenImageActivity.IMAGE_URL, resourceImage);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

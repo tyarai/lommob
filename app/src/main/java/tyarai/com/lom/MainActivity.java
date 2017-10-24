@@ -2,6 +2,7 @@ package tyarai.com.lom;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 
 import tyarai.com.lom.views.AuthorsFragment;
 import tyarai.com.lom.views.AuthorsFragment_;
+import tyarai.com.lom.views.BaseFrag;
 import tyarai.com.lom.views.ExtinctFragment_;
 import tyarai.com.lom.views.IntroductionActivity_;
 import tyarai.com.lom.views.OriginActivity_;
@@ -33,6 +36,8 @@ import tyarai.com.lom.views.adapter.navigation.NavItem;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     DrawerLayout drawer;
     ListView mDrawerList;
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        frmLayout = (FrameLayout)findViewById(R.id.main_layout);
+        frmLayout = (FrameLayout) findViewById(R.id.main_layout);
         setSupportActionBar(toolbar);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -73,7 +78,7 @@ public class MainActivity extends AppCompatActivity
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-            this,
+                this,
                 drawer,
                 toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -113,6 +118,12 @@ public class MainActivity extends AppCompatActivity
                 selectItemFromDrawer(position);
             }
         });
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -159,17 +170,21 @@ public class MainActivity extends AppCompatActivity
         finish();
     }
 
-    protected void startFragment(Fragment fragment, Bundle args) {
+    protected void startFragment(BaseFrag fragment, Bundle args) {
         if (args != null) {
             fragment.setArguments(args);
         }
         frmLayout.removeAllViews();
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getFragmentManager();
+//        fragmentManager.popBackStack();
         fragmentManager.beginTransaction()
                 .replace(R.id.main_layout, fragment)
                 .commit();
-
+//        FragmentTransaction fragmentTransaction =   fragmentManager.beginTransaction();
+        //        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.replace(R.id.main_layout, fragment);
+//        fragmentTransaction.commit();
     }
 
     @Override

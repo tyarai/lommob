@@ -11,4 +11,6 @@
 
     <color name="activity_bg">#e4e5e5</color>
     <color name="base_lightgray">#bdbdbd</color>
+
+    <color name="fragment_bg">#EEEEEE</color>
 </resources>
