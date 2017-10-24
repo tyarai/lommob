@@ -24,6 +24,7 @@
 #define KEY_PUBLIC_LIST @"public_list"
 #define KEY_RECORD_INDEX @"record_index"
 #define KEY_RECORD_COUNT @"record_count"
+#define KEY_ACCEPTED_TERMS @"record_count"
 
 #define FILE_EXT @".jpeg"
 #define PUBLIC_FOLDER @"public://"  

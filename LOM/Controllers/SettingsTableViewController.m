@@ -178,6 +178,7 @@
                     [Tools setUserPreferenceWithKey:LAST_SYNC_DATE andStringValue:nil];
                     
                     [Tools setUserPreferenceWithKey:KEY_USERNAME andStringValue:nil];
+                    [Tools setUserPreferenceWithKey:KEY_ACCEPTED_TERMS andStringValue:nil];
                     
                     self.userName.text = @"";
                     [self setControlsHidden:YES];

@@ -7,6 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "PrivacyPolicyViewController.h"
+#import "TermsOfUseViewController.h"
 
 @protocol SignUpViewControllerDelegate <NSObject>
 - (void) cancelSignUp;
@@ -14,8 +16,10 @@
 @end
 
 
-@interface SignUpViewController : BaseViewController <UITextViewDelegate>{
+@interface SignUpViewController : BaseViewController <UITextViewDelegate,TermsOfUseViewControllerDelegate,PrivacyPolicyViewControllerDelegate>{
     CGFloat constraint;
+    BOOL acceptTermsOfUse;
+    BOOL readPrivacyPolicy;
 }
 
 @property (nonatomic, retain) id<SignUpViewControllerDelegate> delegate;

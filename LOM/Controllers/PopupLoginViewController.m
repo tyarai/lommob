@@ -220,8 +220,6 @@
                                             handler:^(UIAlertAction * action) {
                                                 
                                             [self dismissViewControllerAnimated:YES completion:nil];
-                                            //BaseViewController * delegate = (BaseViewController*)self.delegate;
-                                            //[delegate dismissViewControllerAnimated:YES completion:nil];
                                             [self.delegate validWithUserName:userName
                                                                     password:password
                                                                andRememberMe:YES];

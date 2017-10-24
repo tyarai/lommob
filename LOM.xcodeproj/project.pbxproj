@@ -11,6 +11,7 @@
 		4C0BC9EB1C36F7C00062082B /* WatchingSiteDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BC9EA1C36F7C00062082B /* WatchingSiteDetailsViewController.m */; };
 		4C1122E11C0A29DB00562FC1 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C1122E01C0A29DB00562FC1 /* SplashViewController.m */; };
 		4C24A9A71ECC958500F475DA /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */; };
+		4C2816A21F9ED93F003D9687 /* TermsOfUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2816A11F9ED93F003D9687 /* TermsOfUseViewController.m */; };
 		4C316F431C113CB1004CCFE5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */; };
 		4C33F3EF1F2F42F800958818 /* Ambanja.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AD1F2F42F800958818 /* Ambanja.jpg */; };
 		4C33F3F01F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */; };
@@ -953,6 +954,7 @@
 		4CBAEB141BFA546B0011139C /* LOMUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEB131BFA546B0011139C /* LOMUITests.m */; };
 		4CBBAC391DEF5305005CBCBA /* SpeciesSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBBAC381DEF5305005CBCBA /* SpeciesSelectorViewController.m */; };
 		4CBBAC3C1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBBAC3B1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m */; };
+		4CC1F3651F99F2BD00714460 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */; };
 		4CEC77771C36CB6400C9706A /* FamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77761C36CB6400C9706A /* FamilyTableViewCell.m */; };
 		4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */; };
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
@@ -1024,6 +1026,8 @@
 		4C1122E01C0A29DB00562FC1 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashViewController.m; path = Controllers/SplashViewController.m; sourceTree = "<group>"; };
 		4C24A9A51ECC958500F475DA /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsTableViewController.h; path = Controllers/SettingsTableViewController.h; sourceTree = "<group>"; };
 		4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsTableViewController.m; path = Controllers/SettingsTableViewController.m; sourceTree = "<group>"; };
+		4C2816A01F9ED93F003D9687 /* TermsOfUseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TermsOfUseViewController.h; path = Controllers/TermsOfUseViewController.h; sourceTree = "<group>"; };
+		4C2816A11F9ED93F003D9687 /* TermsOfUseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermsOfUseViewController.m; path = Controllers/TermsOfUseViewController.m; sourceTree = "<group>"; };
 		4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4C33F3AD1F2F42F800958818 /* Ambanja.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ambanja.jpg; sourceTree = "<group>"; };
 		4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ambatovaky-Special-Reserve.jpg"; sourceTree = "<group>"; };
@@ -2020,6 +2024,8 @@
 		4CBBAC381DEF5305005CBCBA /* SpeciesSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeciesSelectorViewController.m; path = Controllers/SpeciesSelectorViewController.m; sourceTree = "<group>"; };
 		4CBBAC3A1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeciesSelectorTableViewCell.h; path = Controllers/SpeciesSelectorTableViewCell.h; sourceTree = "<group>"; };
 		4CBBAC3B1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeciesSelectorTableViewCell.m; path = Controllers/SpeciesSelectorTableViewCell.m; sourceTree = "<group>"; };
+		4CC1F3631F99F2BD00714460 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyPolicyViewController.h; path = Controllers/PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		4CEC77751C36CB6400C9706A /* FamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamilyTableViewCell.h; path = Controllers/FamilyTableViewCell.h; sourceTree = "<group>"; };
 		4CEC77761C36CB6400C9706A /* FamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FamilyTableViewCell.m; path = Controllers/FamilyTableViewCell.m; sourceTree = "<group>"; };
 		4CEC77781C36D41900C9706A /* FamiliesDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamiliesDetailsViewController.h; path = Controllers/FamiliesDetailsViewController.h; sourceTree = "<group>"; };
@@ -2176,6 +2182,15 @@
 				4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		4C28169F1F9ED923003D9687 /* TermsOfUse */ = {
+			isa = PBXGroup;
+			children = (
+				4C2816A01F9ED93F003D9687 /* TermsOfUseViewController.h */,
+				4C2816A11F9ED93F003D9687 /* TermsOfUseViewController.m */,
+			);
+			name = TermsOfUse;
 			sourceTree = "<group>";
 		};
 		4C33F3AC1F2F42C900958818 /* place_maps */ = {
@@ -3265,6 +3280,8 @@
 		4C74F2841C06381A00543A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4C28169F1F9ED923003D9687 /* TermsOfUse */,
+				4CC1F3621F99F29400714460 /* Privacy Policy */,
 				4C3B541C1F7E9A3B0039EBCD /* App Instructions */,
 				4C24A9A41ECC956400F475DA /* Settings */,
 				B471151D1DCA73EA00473D67 /* Signup */,
@@ -3481,6 +3498,15 @@
 				4CBAEB151BFA546B0011139C /* Info.plist */,
 			);
 			path = LOMUITests;
+			sourceTree = "<group>";
+		};
+		4CC1F3621F99F29400714460 /* Privacy Policy */ = {
+			isa = PBXGroup;
+			children = (
+				4CC1F3631F99F2BD00714460 /* PrivacyPolicyViewController.h */,
+				4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */,
+			);
+			name = "Privacy Policy";
 			sourceTree = "<group>";
 		};
 		4CD8049F1E8BE7E50084FA6D /* NSDate */ = {
@@ -4782,6 +4808,7 @@
 				B4AF34241C9A801F0039DEBB /* ExtinctLemursMenu.m in Sources */,
 				4C74F2921C0638AE00543A7F /* AppUtilities.m in Sources */,
 				B4AF342A1C9A83770039DEBB /* Links.m in Sources */,
+				4C2816A21F9ED93F003D9687 /* TermsOfUseViewController.m in Sources */,
 				4C59ADAC1C16119100EA74C5 /* SpecyCollectionViewCell.m in Sources */,
 				4C85FF641C37F3B200D6C233 /* PublicationResult.m in Sources */,
 				B46779341D46224400618410 /* LemurLifeListResult.m in Sources */,
@@ -4810,6 +4837,7 @@
 				4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */,
 				B4C599B21C70D88000C4B99A /* IntroPageRootViewController.m in Sources */,
 				4C59AD9D1C15F5FB00EA74C5 /* LemursLifeViewController.m in Sources */,
+				4CC1F3651F99F2BD00714460 /* PrivacyPolicyViewController.m in Sources */,
 				4C85FF5D1C37F27000D6C233 /* Publication.m in Sources */,
 				4C85FF6E1C37F6DC00D6C233 /* AppData.m in Sources */,
 			);

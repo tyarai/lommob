@@ -8,6 +8,9 @@
 
 #import "SignUpViewController.h"
 #import "Tools.h"
+#import "PrivacyPolicyViewController.h"
+#import "TermsOfUseViewController.h"
+#import "Constants.h"
 
 @interface SignUpViewController ()
 
@@ -18,8 +21,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    acceptTermsOfUse   = NO;
+    readPrivacyPolicy  = NO;
+    
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self registerForKeyboardNotifications];
+    
+    NSString * acceptedTerms = [Tools getStringUserPreferenceWithKey:KEY_ACCEPTED_TERMS];
+    if(![Tools isNullOrEmptyString:acceptedTerms] && [acceptedTerms boolValue] == YES){
+        acceptTermsOfUse = YES;
+    }
+}
+
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
      constraint = self.bottomConstraint.constant;
@@ -40,15 +58,50 @@
     
 }
 - (IBAction)btnOK_Touch:(id)sender {
-    NSString * error=nil;
-    if([self validateUserNameEmailPassword:self.txtuserName email:self.txtEmail pass1:self.txtPassword1 pass2:self.txtPassword2 error:&error]){
-            //----- Nety daholo ny username, password, ary email ---/
-            [self.delegate signUpWithUserName:self.txtuserName.text email:self.txtEmail.text password:self.txtPassword1.text ];
-        
-    }
     
-    if(error != nil){
-        [Tools showSimpleAlertWithTitle:NSLocalizedString(@"signupTitle",@"") andMessage:error];
+    NSString * error=nil;
+    
+    if(acceptTermsOfUse){
+    
+        if([self validateUserNameEmailPassword:self.txtuserName email:self.txtEmail pass1:self.txtPassword1 pass2:self.txtPassword2 error:&error]){
+                //----- Nety daholo ny username, password, ary email ---/
+                [self.delegate signUpWithUserName:self.txtuserName.text email:self.txtEmail.text password:self.txtPassword1.text ];
+            
+        }
+        
+        if(error != nil){
+            [Tools showSimpleAlertWithTitle:NSLocalizedString(@"signupTitle",@"") andMessage:error];
+        }
+        
+    }else{
+        
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:NSLocalizedString(@"signupTitle", @"")
+                                     message:NSLocalizedString(@"terms_of_use_declined", @"")
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* showTermsOfUse = [UIAlertAction
+                                    actionWithTitle:NSLocalizedString(@"see_terms_of_use_title",@"")
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                        
+                                        NSString* indentifier=@"termsOfUse";
+                                        TermsOfUseViewController* termsVC = (TermsOfUseViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+                                        termsVC.delegate = self;
+                                        
+                                        [self presentViewController:termsVC animated:YES completion:nil];
+                                        
+                                        
+                                    }];
+       
+        alert.view.tintColor = [UIColor blackColor];
+        [alert addAction:showTermsOfUse];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+
+        
+        
     }
     
     
@@ -104,16 +157,43 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if([[segue identifier]isEqualToString:@"showPrivacyPolicy"]){
+        
+        PrivacyPolicyViewController * privacyPolicy = (PrivacyPolicyViewController*) [segue destinationViewController];
+        privacyPolicy.delegate = self;
+    }
+    if([[segue identifier]isEqualToString:@"showTermsOfUse"]){
+        
+        TermsOfUseViewController * termsOfUse = (TermsOfUseViewController*) [segue destinationViewController];
+        termsOfUse.delegate = self;
+    }
 }
-*/
 
+#pragma mark    PrivacyPolicyVCDelegate
+
+-(void)cancel{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)readPrivacyPolicy{
+    readPrivacyPolicy = YES;
+}
+
+#pragma mark TermsOfUseDelegate
+
+-(void)acceptTerms{
+    [Tools setUserPreferenceWithKey:KEY_ACCEPTED_TERMS andStringValue:@"1"];
+}
+
+-(void)declineTerms{
+    [Tools setUserPreferenceWithKey:KEY_ACCEPTED_TERMS andStringValue:@"0"];
+}
 
 #pragma UITextFieldDelegate
 
@@ -147,13 +227,7 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    
-    [self registerForKeyboardNotifications];
-    
-}
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     
@@ -204,5 +278,21 @@
     
 }
 
+- (IBAction)privacyPolicyTapped:(id)sender {
+    
+    NSString* indentifier=@"privacyPolicy";
+    PrivacyPolicyViewController* ppVC = (PrivacyPolicyViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    ppVC.delegate = self;
+    
+    [self presentViewController:ppVC animated:YES completion:nil];
+
+}
+- (IBAction)termsOfUseTapped:(id)sender {
+    NSString* indentifier=@"termsOfUse";
+    TermsOfUseViewController* termsVC = (TermsOfUseViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    termsVC.delegate = self;
+    
+    [self presentViewController:termsVC animated:YES completion:nil];
+}
 
 @end
