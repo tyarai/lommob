@@ -56,4 +56,5 @@ dependencies {
     annotationProcessor 'org.androidannotations:androidannotations:4.3.0' //annotationProcessor apt
     compile 'org.androidannotations:androidannotations-api:4.3.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'org.jsoup:jsoup:1.10.3'
 }

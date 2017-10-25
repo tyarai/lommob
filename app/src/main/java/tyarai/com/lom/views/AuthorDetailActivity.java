@@ -1,7 +1,6 @@
 package tyarai.com.lom.views;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
@@ -19,8 +18,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import tyarai.com.lom.R;
-import tyarai.com.lom.model.Author;
-import tyarai.com.lom.utils.csv.RenameF;
+import tyarai.com.lom.views.utils.RenameFromDb;
 
 /**
  * Created by saimon on 23/10/17.
@@ -62,7 +60,7 @@ public class AuthorDetailActivity extends AppCompatActivity {
 
     @AfterViews
     void initData() {
-        final int resourceImage = getResources().getIdentifier(RenameF.renameFNoExtension(authImagePath), "drawable", getPackageName());
+        final int resourceImage = getResources().getIdentifier(RenameFromDb.renameFNoExtension(authImagePath), "drawable", getPackageName());
         if (resourceImage != 0) {
 //            int orientation = this.getResources().getConfiguration().orientation;
 //            if (orientation == Configuration.ORIENTATION_PORTRAIT) {

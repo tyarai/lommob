@@ -17,7 +17,7 @@ import java.util.List;
 
 import tyarai.com.lom.R;
 import tyarai.com.lom.model.Author;
-import tyarai.com.lom.utils.csv.RenameF;
+import tyarai.com.lom.views.utils.RenameFromDb;
 import tyarai.com.lom.views.AuthorDetailActivity;
 import tyarai.com.lom.views.AuthorDetailActivity_;
 
@@ -50,7 +50,7 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.ViewHold
         viewHolder.name.setText(authors.get(i).getName());
         viewHolder.description.setText(authors.get(i).getDetail());
 
-        String fname = RenameF.renameFNoExtension(authors.get(i).getPhoto());
+        String fname = RenameFromDb.renameFNoExtension(authors.get(i).getPhoto());
         Log.d(TAG, "fname : " + fname);
         int resourceImage = context.getResources().getIdentifier(fname, "drawable", context.getPackageName());
         if (resourceImage != 0) {

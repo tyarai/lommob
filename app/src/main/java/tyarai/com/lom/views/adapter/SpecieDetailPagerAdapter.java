@@ -8,16 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.Arrays;
-
 import tyarai.com.lom.R;
-import tyarai.com.lom.utils.csv.RenameF;
+import tyarai.com.lom.views.utils.RenameFromDb;
 import tyarai.com.lom.views.FullScreenImageActivity;
 
 
@@ -55,15 +52,17 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
         if (position == 0) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_translate, container, false);
             TextView txtEnglish = itemView.findViewById(R.id.specie_english);
+            TextView txtOtherEnglish = itemView.findViewById(R.id.specie_other_english);
             TextView txtMalagasy = itemView.findViewById(R.id.specie_malagasy);
             TextView txtFrench = itemView.findViewById(R.id.specie_french);
             TextView txtGerman = itemView.findViewById(R.id.specie_german);
             try {
                 String[] langs = mResources[0].split("##");
                 txtEnglish.setText(langs[0]);
-                txtMalagasy.setText(langs[1]);
-                txtFrench.setText(langs[2]);
-                txtGerman.setText(langs[3]);
+                txtOtherEnglish.setText(langs[1]);
+                txtMalagasy.setText(langs[2]);
+                txtFrench.setText(langs[3]);
+                txtGerman.setText(langs[4]);
                 container.addView(itemView);
             }
             catch (Exception e) {
@@ -103,7 +102,7 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
         else if (position == 6) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_map, container, false);
             ImageView imageView = itemView.findViewById(R.id.specie_image);
-            final String fname = RenameF.renameFNoExtension(mResources[6]);
+            final String fname = RenameFromDb.renameFNoExtension(mResources[6]);
             Log.d(TAG, "map fname : " + fname);
             final int resourceImage = mContext.getResources().getIdentifier(fname, "drawable", mContext.getPackageName());
             if (resourceImage != 0) {

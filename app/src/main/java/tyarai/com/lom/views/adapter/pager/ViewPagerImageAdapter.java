@@ -13,7 +13,7 @@ import android.widget.LinearLayout;
 import com.squareup.picasso.Picasso;
 
 import tyarai.com.lom.R;
-import tyarai.com.lom.utils.csv.RenameF;
+import tyarai.com.lom.views.utils.RenameFromDb;
 import tyarai.com.lom.views.FullScreenImageActivity;
 
 
@@ -47,7 +47,7 @@ public class ViewPagerImageAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = LayoutInflater.from(mContext).inflate(R.layout.pager_image_item, container, false);
 
-        final String fname = RenameF.renameFNoExtension(mResources[position]);
+        final String fname = RenameFromDb.renameFNoExtension(mResources[position]);
         Log.d(TAG, "fname : " + fname);
         final ImageView imageView = itemView.findViewById(R.id.img_pager_item);
         final int resourceImage = mContext.getResources().getIdentifier(fname, "drawable", mContext.getPackageName());

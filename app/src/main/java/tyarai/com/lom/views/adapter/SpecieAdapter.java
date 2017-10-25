@@ -20,7 +20,7 @@ import java.util.List;
 
 import tyarai.com.lom.R;
 import tyarai.com.lom.model.Specie;
-import tyarai.com.lom.utils.csv.RenameF;
+import tyarai.com.lom.views.utils.RenameFromDb;
 import tyarai.com.lom.views.SpecieDetailActivity;
 import tyarai.com.lom.views.SpecieDetailActivity_;
 
@@ -52,8 +52,8 @@ public class SpecieAdapter extends RecyclerView.Adapter<SpecieAdapter.ViewHolder
         Specie listItem = filterList.get(i);
         viewHolder.name.setText(listItem.getTitle());
         if (listItem != null) {
-            String fname = RenameF.renameFNoExtension(listItem.getProfilePhotograph().getPhoto());
-            Log.d(TAG, "fname : " + fname);
+            String fname = RenameFromDb.renameFNoExtension(listItem.getProfilePhotograph().getPhoto());
+            Log.d(TAG, "specie fname : " + fname);
             int resourceImage = context.getResources().getIdentifier(fname, "drawable", context.getPackageName());
             if (resourceImage != 0) {
                 Picasso.with(context)
@@ -103,22 +103,6 @@ public class SpecieAdapter extends RecyclerView.Adapter<SpecieAdapter.ViewHolder
             });
         }
     }
-
-    /* Within the RecyclerView.Adapter class */
-    // Clean all elements of the recycler
-//    public void clear() {
-//        species.clear();
-//        notifyDataSetChanged();
-//    }
-
-    //RecyclerView mRecycler;
-    // Add a list of ites
-//    public void addAll(int position, List<Specie> spe) {
-//        species.addAll(0, spe);
-//        notifyItemInserted(0);
-//        //mRecycler.smoothScrollToPosition(0);
-//        notifyDataSetChanged();
-//    }
 
 
     // Do Search...

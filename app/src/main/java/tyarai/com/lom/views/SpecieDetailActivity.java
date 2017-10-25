@@ -94,7 +94,8 @@ public class SpecieDetailActivity extends AppCompatActivity {
                 }
             }
             lemurDetails = new String[7];
-            lemurDetails[0] = ViewUtils.getNonEmptyString(specie.getOtherEnglish()) + "##"  +
+            lemurDetails[0] = ViewUtils.getNonEmptyString(specie.getEnglish()) + "##"  +
+                                ViewUtils.getNonEmptyString(specie.getOtherEnglish()) + "##"  +
                                 ViewUtils.getNonEmptyString(specie.getMalagasy()) + "##"  +
                                 ViewUtils.getNonEmptyString(specie.getFrench())  + "##"  +
                                 ViewUtils.getNonEmptyString(specie.getGerman());
@@ -167,7 +168,7 @@ public class SpecieDetailActivity extends AppCompatActivity {
             swipers[0].setImageDrawable(ContextCompat.getDrawable(this, drawablesOn[0]));
         }
 
-        pager_detail.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        pager_detail.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -199,7 +200,7 @@ public class SpecieDetailActivity extends AppCompatActivity {
         imageAdapter.setTitle(specie.getEnglish());
         intro_images.setAdapter(imageAdapter);
         intro_images.setCurrentItem(0);
-        intro_images.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        intro_images.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 

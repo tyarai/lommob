@@ -8,6 +8,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by saimon on 19/10/17.
@@ -31,6 +32,11 @@ public class Family extends CommonModel{
 
     @DatabaseField(columnName = ILLUSTRATION_NIDS, dataType = DataType.SERIALIZABLE)
     private ArrayList<Long> illustrationNids = new ArrayList<>();
+
+    /**
+     * Not mapped
+     */
+    private List<Illustration> illustrations = new ArrayList<>();
 
 
     public String getFamily() {
@@ -66,5 +72,13 @@ public class Family extends CommonModel{
                 " | description=" + description +
                 " | illustrationNids=" + illustrationNids == null ? "" : Arrays.toString(illustrationNids.toArray()) +
                 '}';
+    }
+
+    public List<Illustration> getIllustrations() {
+        return illustrations;
+    }
+
+    public void setIllustrations(List<Illustration> illustrations) {
+        this.illustrations = illustrations;
     }
 }

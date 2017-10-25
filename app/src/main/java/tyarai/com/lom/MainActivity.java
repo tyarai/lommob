@@ -28,6 +28,8 @@ import tyarai.com.lom.views.AuthorsFragment;
 import tyarai.com.lom.views.AuthorsFragment_;
 import tyarai.com.lom.views.BaseFrag;
 import tyarai.com.lom.views.ExtinctFragment_;
+import tyarai.com.lom.views.FamiliesFragment;
+import tyarai.com.lom.views.FamiliesFragment_;
 import tyarai.com.lom.views.IntroductionActivity_;
 import tyarai.com.lom.views.OriginActivity_;
 import tyarai.com.lom.views.SpeciesFragment_;
@@ -136,7 +138,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     private void selectItemFromDrawer(int position) {
         switch (position) {
             case MENU_INTRO:
@@ -153,6 +154,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case MENU_SPECIES:
                 startFragment(new SpeciesFragment_(), null);
+                break;
+            case MENU_FAMILIES :
+                startFragment(new FamiliesFragment_(), null);
                 break;
             default:
                 break;

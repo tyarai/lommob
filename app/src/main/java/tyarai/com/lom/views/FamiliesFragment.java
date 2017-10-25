@@ -19,27 +19,30 @@ import tyarai.com.lom.R;
 import tyarai.com.lom.manager.CommonManager;
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.model.CommonModel;
+import tyarai.com.lom.model.Family;
+import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.views.adapter.AuthorsAdapter;
+import tyarai.com.lom.views.adapter.FamiliesAdapter;
 
 /**
- * Created by saimon on 21/10/17.
+ * Created by saimon on 25/10/17.
  */
-@EFragment(R.layout.author_main)
-public class AuthorsFragment extends BaseFrag {
+@EFragment(R.layout.families_main)
+public class FamiliesFragment extends BaseFrag {
 
-    private static final String TAG = AuthorsFragment.class.getSimpleName();
+    private static final String TAG = FamiliesFragment.class.getSimpleName();
 
     @Bean(CommonManager.class)
     CommonManager commonManager;
 
-    @ViewById(R.id.authors_recyclerView)
+    @ViewById(R.id.families_recyclerView)
     RecyclerView recyclerView;
-    List<Author> authorsList;
+    List<Family> familiesList;
 
-    @ViewById(R.id.no_authors)
-    TextView txtNoAuthors;
+    @ViewById(R.id.no_families)
+    TextView txtNoFamily;
 
-    @ViewById(R.id.swipeContainer)
+    @ViewById(R.id.families_swipeContainer)
     SwipeRefreshLayout swipeContainer;
 
     ProgressBar progressBar;
@@ -47,9 +50,7 @@ public class AuthorsFragment extends BaseFrag {
     @AfterViews
     void initData(){
 
-        // Configure the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_orange_dark);
-
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -68,15 +69,25 @@ public class AuthorsFragment extends BaseFrag {
 
         try {
 
-            authorsList = commonManager.getAuthorDao().queryForEq(CommonModel.ACTIVE_COL, true);
-            recyclerView.setAdapter(new AuthorsAdapter(getActivity(), authorsList));
+            familiesList = commonManager.getFamilyDao().queryForEq(CommonModel.ACTIVE_COL, true);
+            if (familiesList != null) {
+                for (Family family : familiesList) {
+                    if (family.getIllustrationNids() != null && !family.getIllustrationNids().isEmpty()) {
+                        family.setIllustrations(commonManager.getIllustrationDao()
+                                .queryBuilder()
+                                .where().in(CommonModel.NID_COL, family.getIllustrationNids())
+                                .query()
+                        );
+                    }
+                }
+            }
+            recyclerView.setAdapter(new FamiliesAdapter(getActivity(), familiesList));
             recyclerView.smoothScrollToPosition(0);
-            //Toast.makeText(MainActivity.this, speciesList.toString(), Toast.LENGTH_SHORT).show();
             swipeContainer.setRefreshing(false);
             progressBar.setVisibility(View.INVISIBLE);
 
-            if (authorsList.isEmpty()) {
-                txtNoAuthors.setVisibility(View.VISIBLE);
+            if (familiesList.isEmpty()) {
+                txtNoFamily.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
             }
 

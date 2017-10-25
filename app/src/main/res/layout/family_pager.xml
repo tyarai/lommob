@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        tools:context=".views.FamilyDetailActivity">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/family_pager_images"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/specie_image_height"
+            android:fitsSystemWindows="true"
+            tools:listitem="@layout/pager_item" />
+
+        <RelativeLayout
+            android:id="@+id/family_pageImageIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_below="@id/family_pager_images"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:paddingTop="5dp">
+
+            <LinearLayout
+                android:id="@+id/family_viewPagerCountDots"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:orientation="horizontal" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/family_description"
+                android:padding="@dimen/activity_horizontal_margin"/>
+
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

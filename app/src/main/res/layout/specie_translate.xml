@@ -37,6 +37,24 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
+                android:src="@drawable/united_kingdom" />
+
+            <TextView
+                android:id="@+id/specie_other_english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/activity_vertical_margin" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:src="@drawable/madagascar" />
 
             <TextView
