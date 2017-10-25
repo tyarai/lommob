@@ -26,4 +26,6 @@
     <string name="action_search">Search</string>
     <string name="search_name">Search name...</string>
     <string name="specie">Lemur</string>
+    <string name="no_description">No description for this picture</string>
+    <string name="dismiss">dismiss</string>
 </resources>

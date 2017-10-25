@@ -99,8 +99,9 @@ public class OriginActivity extends MainActivity implements ViewPager.OnPageChan
 
             pager_indicator.addView(dots[i], params);
         }
-
-        dots[0].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selecteditem_dot));
+        if (dots != null && dots.length > 0) {
+            dots[0].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selecteditem_dot));
+        }
     }
 
 
@@ -128,8 +129,9 @@ public class OriginActivity extends MainActivity implements ViewPager.OnPageChan
         for (int i = 0; i < dotsCount; i++) {
             dots[i].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.nonselecteditem_dot));
         }
-
-        dots[position].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selecteditem_dot));
+        if (dots != null && dots.length > 0) {
+            dots[position].setImageDrawable(ContextCompat.getDrawable(this, R.drawable.selecteditem_dot));
+        }
 
 //        if (position + 1 == dotsCount) {
 //            btnNext.setVisibility(View.GONE);

@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,6 +55,7 @@ public class FamilyDetailActivity extends AppCompatActivity {
     long familyId;
     Family family;
     String[] familyIllustrations = {};
+    String[] familyIllustrationsDesc = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -76,9 +78,11 @@ public class FamilyDetailActivity extends AppCompatActivity {
                         where().in(CommonModel.NID_COL, illustrationNids).query();
                 if (illustrations != null) {
                     familyIllustrations = new String[illustrations.size()];
+                    familyIllustrationsDesc = new String[illustrations.size()];
                     int i =0;
                     for (Illustration illustration : illustrations) {
-                        familyIllustrations[i++] = illustration.getTitle();
+                        familyIllustrations[i] = illustration.getTitle();
+                        familyIllustrationsDesc[i++] = TextUtils.isEmpty(illustration.getDescription()) ? "" : illustration.getDescription();
                     }
                 }
             }
@@ -101,7 +105,8 @@ public class FamilyDetailActivity extends AppCompatActivity {
 
     private void setupImageList() {
 
-        imageAdapter = new ViewPagerImageAdapter(FamilyDetailActivity.this, familyIllustrations);
+        imageAdapter = new ViewPagerImageAdapter(FamilyDetailActivity.this, familyIllustrations,
+                familyIllustrationsDesc, true, true);
         imageAdapter.setTitle(family.getFamily());
         family_images.setAdapter(imageAdapter);
         family_images.setCurrentItem(0);

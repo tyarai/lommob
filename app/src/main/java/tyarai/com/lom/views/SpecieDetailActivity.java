@@ -65,6 +65,7 @@ public class SpecieDetailActivity extends AppCompatActivity {
     Specie specie;
     String[] lemurPhotographs = {};
     String[] lemurDetails = {};
+    String[] lemurPhotoDescs = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -87,9 +88,11 @@ public class SpecieDetailActivity extends AppCompatActivity {
                         where().in(CommonModel.NID_COL, photographNids).query();
                 if (photographs != null) {
                     lemurPhotographs = new String[photographs.size()];
+                    lemurPhotoDescs = new String[photographs.size()];
                     int i =0;
                     for (Photograph photograph : photographs) {
-                        lemurPhotographs[i++] = photograph.getPhoto();
+                        lemurPhotographs[i] = photograph.getPhoto();
+                        lemurPhotoDescs [i++] = "";
                     }
                 }
             }
@@ -196,7 +199,8 @@ public class SpecieDetailActivity extends AppCompatActivity {
 
     private void setupImageList() {
 
-        imageAdapter = new ViewPagerImageAdapter(SpecieDetailActivity.this, lemurPhotographs);
+        imageAdapter = new ViewPagerImageAdapter(SpecieDetailActivity.this, lemurPhotographs,
+                lemurPhotoDescs, false, true);
         imageAdapter.setTitle(specie.getEnglish());
         intro_images.setAdapter(imageAdapter);
         intro_images.setCurrentItem(0);

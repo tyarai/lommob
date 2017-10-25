@@ -41,6 +41,8 @@
         <activity android:name=".views.FamilyDetailActivity_" />
 
         <activity android:name=".views.FullScreenImageActivity" />
+
+        <activity android:name=".views.FullScreenImagesActivity_" />
     </application>
 
 </manifest>
