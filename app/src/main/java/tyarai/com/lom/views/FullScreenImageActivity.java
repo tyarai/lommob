@@ -4,11 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import tyarai.com.lom.R;
 
@@ -40,7 +39,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
         }
         ImageView imageView = (ImageView) findViewById(R.id.fs_image);
         if (imageDrawableId != -1) {
-            Picasso.with(this)
+            Glide.with(this)
                     .load(imageDrawableId)
                     .into(imageView);
         }

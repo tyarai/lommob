@@ -11,6 +11,6 @@
     <dimen name="author_image_height">300dp</dimen>
     <dimen name="specie_image_height">200dp</dimen>
     <dimen name="family_cover_width">100dp</dimen>
-    <dimen name="family_cover_height">120dp</dimen>
+    <dimen name="family_cover_height">125dp</dimen>
     <dimen name="name_size">16sp</dimen>
 </resources>

@@ -71,7 +71,6 @@ public class AuthorsFragment extends BaseFrag {
             authorsList = commonManager.getAuthorDao().queryForEq(CommonModel.ACTIVE_COL, true);
             recyclerView.setAdapter(new AuthorsAdapter(getActivity(), authorsList));
             recyclerView.smoothScrollToPosition(0);
-            //Toast.makeText(MainActivity.this, speciesList.toString(), Toast.LENGTH_SHORT).show();
             swipeContainer.setRefreshing(false);
             progressBar.setVisibility(View.INVISIBLE);
 

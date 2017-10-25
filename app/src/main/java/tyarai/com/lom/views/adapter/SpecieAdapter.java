@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,18 +57,10 @@ public class SpecieAdapter extends RecyclerView.Adapter<SpecieAdapter.ViewHolder
             Log.d(TAG, "specie fname : " + fname);
             int resourceImage = context.getResources().getIdentifier(fname, "drawable", context.getPackageName());
             if (resourceImage != 0) {
-                Picasso.with(context)
+                Glide.with(context)
                         .load(resourceImage)
-                        .fit().centerCrop()
-                        .placeholder(R.drawable.ic_more_horiz_black_48dp)
                         .into(viewHolder.imageView);
             }
-            else {
-                viewHolder.imageView.setImageResource(R.drawable.ic_more_horiz_black_48dp);
-            }
-        }
-        else {
-            viewHolder.imageView.setImageResource(R.drawable.ic_more_horiz_black_48dp);
         }
     }
 
@@ -82,8 +75,8 @@ public class SpecieAdapter extends RecyclerView.Adapter<SpecieAdapter.ViewHolder
 
         public ViewHolder(View view) {
             super(view);
-            name = view.findViewById(R.id.species_text);
-            imageView = view.findViewById(R.id.species_image);
+            name = (TextView) view.findViewById(R.id.species_text);
+            imageView = (ImageView) view.findViewById(R.id.species_image);
 
             // on item click
             itemView.setOnClickListener(new View.OnClickListener() {

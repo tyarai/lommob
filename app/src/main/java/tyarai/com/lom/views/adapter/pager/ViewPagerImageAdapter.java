@@ -2,26 +2,20 @@ package tyarai.com.lom.views.adapter.pager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import tyarai.com.lom.R;
 import tyarai.com.lom.views.FullScreenImagesActivity;
 import tyarai.com.lom.views.FullScreenImagesActivity_;
 import tyarai.com.lom.views.utils.RenameFromDb;
-import tyarai.com.lom.views.FullScreenImageActivity;
 
 
 /**
@@ -67,19 +61,19 @@ public class ViewPagerImageAdapter extends PagerAdapter {
 
         final String fname = RenameFromDb.renameFNoExtension(mResources[position]);
         Log.d(TAG, "fname : " + fname);
-        final ImageView imageView = itemView.findViewById(R.id.img_pager_item);
+        final ImageView imageView = (ImageView) itemView.findViewById(R.id.img_pager_item);
         final int resourceImage = mContext.getResources().getIdentifier(fname, "drawable", mContext.getPackageName());
-        imageView.setTag(resourceImage);
+//        imageView.setTag(resourceImage);
         if (resourceImage != 0) {
-            Picasso.with(mContext)
+            Glide.with(mContext)
                     .load(resourceImage)
 //                    .fit()
-                    .placeholder(R.drawable.ic_more_horiz_black_48dp)
+//                    .placeholder(R.drawable.ic_more_horiz_black_48dp)
                     .into(imageView);
         }
-        else {
-            imageView.setImageResource(R.drawable.ic_more_horiz_black_48dp);
-        }
+//        else {
+//            imageView.setImageResource(R.drawable.ic_more_horiz_black_48dp);
+//        }
 
         if (canZoom) {
 //            if (multipleImage) {

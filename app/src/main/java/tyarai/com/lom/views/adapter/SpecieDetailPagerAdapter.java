@@ -11,7 +11,8 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+
+import com.bumptech.glide.Glide;
 
 import tyarai.com.lom.R;
 import tyarai.com.lom.views.utils.RenameFromDb;
@@ -51,11 +52,11 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
 
         if (position == 0) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_translate, container, false);
-            TextView txtEnglish = itemView.findViewById(R.id.specie_english);
-            TextView txtOtherEnglish = itemView.findViewById(R.id.specie_other_english);
-            TextView txtMalagasy = itemView.findViewById(R.id.specie_malagasy);
-            TextView txtFrench = itemView.findViewById(R.id.specie_french);
-            TextView txtGerman = itemView.findViewById(R.id.specie_german);
+            TextView txtEnglish = (TextView) itemView.findViewById(R.id.specie_english);
+            TextView txtOtherEnglish = (TextView) itemView.findViewById(R.id.specie_other_english);
+            TextView txtMalagasy = (TextView) itemView.findViewById(R.id.specie_malagasy);
+            TextView txtFrench = (TextView) itemView.findViewById(R.id.specie_french);
+            TextView txtGerman = (TextView) itemView.findViewById(R.id.specie_german);
             try {
                 String[] langs = mResources[0].split("##");
                 txtEnglish.setText(langs[0]);
@@ -71,45 +72,45 @@ public class SpecieDetailPagerAdapter extends PagerAdapter {
         }
         else if (position == 1) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_text, container, false);
-            TextView txtIdentification = itemView.findViewById(R.id.specie_prop_text);
+            TextView txtIdentification = (TextView) itemView.findViewById(R.id.specie_prop_text);
             txtIdentification.setText(mResources[1]);
             container.addView(itemView);
         }
         else if (position == 2) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_text, container, false);
-            TextView txtNaturalHistory = itemView.findViewById(R.id.specie_prop_text);
+            TextView txtNaturalHistory = (TextView) itemView.findViewById(R.id.specie_prop_text);
             txtNaturalHistory.setText(mResources[2]);
             container.addView(itemView);
         }
         else if (position == 3) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_text, container, false);
-            TextView txtConservationStatus = itemView.findViewById(R.id.specie_prop_text);
+            TextView txtConservationStatus = (TextView) itemView.findViewById(R.id.specie_prop_text);
             txtConservationStatus.setText(mResources[3]);
             container.addView(itemView);
         }
         else if (position == 4) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_text, container, false);
-            TextView txtWhereToSeeIt = itemView.findViewById(R.id.specie_prop_text);
+            TextView txtWhereToSeeIt = (TextView) itemView.findViewById(R.id.specie_prop_text);
             txtWhereToSeeIt.setText(mResources[4]);
             container.addView(itemView);
         }
         else if (position == 5) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_text, container, false);
-            TextView txtGeographicRange = itemView.findViewById(R.id.specie_prop_text);
+            TextView txtGeographicRange = (TextView) itemView.findViewById(R.id.specie_prop_text);
             txtGeographicRange.setText(mResources[5]);
             container.addView(itemView);
         }
         else if (position == 6) {
             itemView = LayoutInflater.from(mContext).inflate(R.layout.specie_map, container, false);
-            ImageView imageView = itemView.findViewById(R.id.specie_image);
+            ImageView imageView = (ImageView) itemView.findViewById(R.id.specie_image);
             final String fname = RenameFromDb.renameFNoExtension(mResources[6]);
             Log.d(TAG, "map fname : " + fname);
             final int resourceImage = mContext.getResources().getIdentifier(fname, "drawable", mContext.getPackageName());
             if (resourceImage != 0) {
-                Picasso.with(mContext)
+                Glide.with(mContext)
                         .load(resourceImage)
-                        .fit()
-                        .centerInside()
+//                        .fit()
+//                        .centerInside()
                         .into(imageView);
             }
             imageView.setOnClickListener(new View.OnClickListener() {

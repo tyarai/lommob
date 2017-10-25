@@ -10,7 +10,7 @@
     <dimen name="design_navigation_icon_size" tools:override="true">30dp</dimen>
     <dimen name="author_image_height">150dp</dimen>
     <dimen name="specie_image_height">100dp</dimen>
-    <dimen name="family_cover_width">146dp</dimen>
-    <dimen name="family_cover_height">160dp</dimen>
+    <dimen name="family_cover_width">100dp</dimen>
+    <dimen name="family_cover_height">125dp</dimen>
     <dimen name="name_size">16sp</dimen>
 </resources>

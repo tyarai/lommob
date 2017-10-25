@@ -24,6 +24,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="4dp"
             android:scaleType="fitXY"
+            android:src="@drawable/ic_more_horiz_black_48dp"
             />
         <TextView
             android:id="@+id/author_name"

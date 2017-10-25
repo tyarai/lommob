@@ -11,7 +11,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+
+import com.bumptech.glide.Glide;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -62,13 +63,9 @@ public class AuthorDetailActivity extends AppCompatActivity {
     void initData() {
         final int resourceImage = getResources().getIdentifier(RenameFromDb.renameFNoExtension(authImagePath), "drawable", getPackageName());
         if (resourceImage != 0) {
-//            int orientation = this.getResources().getConfiguration().orientation;
-//            if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-                Picasso.with(this)
+                Glide.with(this)
                         .load(resourceImage)
-                        .placeholder(R.drawable.if_more_2628486)
                         .into(imageView);
-//            }
         }
         descriptionView.setText(authDesc);
 
