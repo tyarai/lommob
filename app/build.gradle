@@ -2,15 +2,17 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    //buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "tyarai.com.lom"
         minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
+        setProperty("archivesBaseName", "lom-$versionName")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    
     buildTypes {
         release {
             minifyEnabled false
