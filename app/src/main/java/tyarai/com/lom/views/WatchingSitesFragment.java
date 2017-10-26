@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,29 +33,31 @@ import tyarai.com.lom.R;
 import tyarai.com.lom.manager.CommonManager;
 import tyarai.com.lom.model.CommonModel;
 import tyarai.com.lom.model.Specie;
+import tyarai.com.lom.model.WatchingSite;
 import tyarai.com.lom.views.adapter.SpecieAdapter;
+import tyarai.com.lom.views.adapter.WatchingSiteAdapter;
 
 /**
  * Created by saimon on 23/10/17.
  */
 @EFragment(R.layout.simple_list_main)
-public class SpeciesFragment extends BaseFrag
+public class WatchingSitesFragment extends BaseFrag
         implements SearchView.OnQueryTextListener
 {
 
-    private static final String TAG = SpeciesFragment.class.getSimpleName();
+    private static final String TAG = WatchingSitesFragment.class.getSimpleName();
 
     @Bean(CommonManager.class)
     CommonManager commonManager;
 
     @ViewById(R.id.items_recycler_view)
     RecyclerView recyclerView;
-    List<Specie> speciesList = new ArrayList<>();
+    List<WatchingSite> watchingSitesList = new ArrayList<>();
 
     @ViewById(R.id.no_items)
-    TextView txtNoSpecies;
+    TextView txtNowatchingSites;
 
-    SpecieAdapter adapter;
+    WatchingSiteAdapter adapter;
 
     ProgressBar progressBar;
 
@@ -70,9 +73,12 @@ public class SpeciesFragment extends BaseFrag
     void initData(){
 
         progressBar = new ProgressBar(getActivity(), null, android.R.attr.progressBarStyleSmall);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), calculateNoOfColumns(getActivity()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
+
         new LoadSpecieTask().execute();
     }
 
@@ -81,7 +87,7 @@ public class SpeciesFragment extends BaseFrag
         inflater.inflate(R.menu.search_menu, menu);
         final MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setOnQueryTextListener(SpeciesFragment.this);
+        searchView.setOnQueryTextListener(WatchingSitesFragment.this);
     }
 
     @Override
@@ -95,20 +101,13 @@ public class SpeciesFragment extends BaseFrag
         return false;
     }
 
-    private int calculateNoOfColumns(Context context) {
-        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int noOfColumns = (int) (dpWidth / 180);
-        return noOfColumns;
-    }
-
-
-    private class LoadSpecieTask extends AsyncTask<Void, Void, List<Specie>> {
+    private class LoadSpecieTask extends AsyncTask<Void, Void, List<WatchingSite>> {
 
         @Override
-        protected List<Specie> doInBackground(Void... voids) {
+        protected List<WatchingSite> doInBackground(Void... voids) {
             try {
-                return commonManager.getSpecieDao().queryForEq(CommonModel.ACTIVE_COL, true);
+                return commonManager.getWatchingsiteDao().queryForEq(CommonModel.ACTIVE_COL, true)
+                        ;
             }
             catch (Exception e) {
                 Log.d(TAG, e.getMessage());
@@ -117,18 +116,25 @@ public class SpeciesFragment extends BaseFrag
         }
 
         @Override
-        protected void onPostExecute(List<Specie> species) {
-            Log.d(TAG, "species size : " + species.size());
-            speciesList.addAll(species);
-            adapter = new SpecieAdapter(getActivity(), speciesList);
-            recyclerView.setAdapter(adapter);
-            recyclerView.smoothScrollToPosition(0);
-            progressBar.setVisibility(View.INVISIBLE);
-
-            if (speciesList.isEmpty()) {
-                txtNoSpecies.setVisibility(View.VISIBLE);
+        protected void onPostExecute(List<WatchingSite> watchingSites) {
+            Log.d(TAG, "watchingSites size : " + watchingSites.size());
+            if (watchingSites != null && !watchingSites.isEmpty()) {
+//                for (WatchingSite ws :  watchingSites) {
+//                    ws.setMapFilename(ws.getMap() != null ? ws.getMap().getName() : "");
+//                    watchingSitesList.add(ws);
+//                }
+                watchingSitesList.addAll(watchingSites);
+                adapter = new WatchingSiteAdapter(getActivity(), watchingSitesList);
+                recyclerView.setAdapter(adapter);
+                recyclerView.smoothScrollToPosition(0);
+                progressBar.setVisibility(View.INVISIBLE);
             }
-            super.onPostExecute(species);
+            else {
+                txtNowatchingSites.setVisibility(View.VISIBLE);
+            }
+
+
+            super.onPostExecute(watchingSites);
         }
     }
 

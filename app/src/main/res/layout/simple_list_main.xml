@@ -6,13 +6,13 @@
     android:fitsSystemWindows="true"
     >
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/species_recycler_view"
+        android:id="@+id/items_recycler_view"
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <TextView
-        android:id="@+id/no_species"
+        android:id="@+id/no_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/no_items"

@@ -29,6 +29,10 @@ public class WatchingSite extends CommonModel {
     @DatabaseField(columnName = MAP_COL, foreign = true, foreignAutoRefresh = true)
     private Maps map;
 
+    /**
+     * not mapped
+     */
+    private String mapFilename;
 
     public String getTitle() {
         return title;
@@ -59,7 +63,15 @@ public class WatchingSite extends CommonModel {
         return "WatchingSite{" +
                 " | title='" + title + '\'' +
                 " | body='" + body + '\'' +
-                " | map=" + (map == null ? "" : map.id) +
+                " | map=" + (map == null ? "" : map.getName()) +
                 '}';
+    }
+
+    public String getMapFilename() {
+        return mapFilename;
+    }
+
+    public void setMapFilename(String mapFilename) {
+        this.mapFilename = mapFilename;
     }
 }

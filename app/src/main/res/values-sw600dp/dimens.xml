@@ -13,4 +13,5 @@
     <dimen name="family_cover_width">130dp</dimen>
     <dimen name="family_cover_height">180dp</dimen>
     <dimen name="name_size">18sp</dimen>
+    <dimen name="map_image_width">300dp</dimen>
 </resources>

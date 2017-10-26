@@ -43,6 +43,8 @@
         <activity android:name=".views.FullScreenImageActivity" />
 
         <activity android:name=".views.FullScreenImagesActivity_" />
+
+        <activity android:name=".views.SiteDetailActivity_" />
     </application>
 
 </manifest>

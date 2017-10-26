@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import tyarai.com.lom.views.AboutFragment;
+import tyarai.com.lom.views.AboutFragment_;
 import tyarai.com.lom.views.AuthorsFragment;
 import tyarai.com.lom.views.AuthorsFragment_;
 import tyarai.com.lom.views.BaseFrag;
@@ -33,6 +35,8 @@ import tyarai.com.lom.views.FamiliesFragment_;
 import tyarai.com.lom.views.IntroductionActivity_;
 import tyarai.com.lom.views.OriginActivity_;
 import tyarai.com.lom.views.SpeciesFragment_;
+import tyarai.com.lom.views.WatchingSitesFragment;
+import tyarai.com.lom.views.WatchingSitesFragment_;
 import tyarai.com.lom.views.adapter.navigation.DrawerListAdapter;
 import tyarai.com.lom.views.adapter.navigation.NavItem;
 
@@ -59,7 +63,7 @@ public class MainActivity extends AppCompatActivity
     static final int MENU_SITES = 6;
     static final int MENU_LEMUR_LIST = 7;
     static final int MENU_POSTS = 8;
-    static final int ABOUT = 9;
+    static final int MENU_ABOUT = 9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +161,12 @@ public class MainActivity extends AppCompatActivity
                 break;
             case MENU_FAMILIES :
                 startFragment(new FamiliesFragment_(), null);
+                break;
+            case MENU_SITES:
+                startFragment(new WatchingSitesFragment_(), null);
+                break;
+            case MENU_ABOUT:
+                startFragment(new AboutFragment_(), null);
                 break;
             default:
                 break;
