@@ -51,11 +51,14 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-annotations:2.6.5'
     compile 'com.j256.ormlite:ormlite-jdbc:5.0'
     compile 'com.j256.ormlite:ormlite-android:5.0'
+    compile 'com.j256.ormlite:ormlite-core:5.0'
     compile 'com.google.code.gson:gson:2.5'
     compile 'joda-time:joda-time:2.9.4'
     annotationProcessor 'org.androidannotations:androidannotations:4.3.0', 'com.github.bumptech.glide:compiler:4.2.0' //annotationProcessor apt,
     compile 'org.androidannotations:androidannotations-api:4.3.0'
     compile 'org.jsoup:jsoup:1.10.3'
     compile 'com.github.bumptech.glide:glide:4.2.0'
+    compile 'com.j256.ormlite.cipher:ormlite-sqlcipher:1.1@aar'
+    compile 'net.zetetic:android-database-sqlcipher:3.5.3@aar'
 
 }
