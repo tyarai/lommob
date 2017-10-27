@@ -2,12 +2,16 @@ package tyarai.com.lom.model.ormlite.config;
 
 
 import android.content.Context;
-import net.sqlcipher.SQLException;
-import net.sqlcipher.Cursor;
-import net.sqlcipher.database.SQLiteDatabase;
+//import net.sqlcipher.SQLException;
+//import net.sqlcipher.Cursor;
+//import net.sqlcipher.database.SQLiteDatabase;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.j256.ormlite.cipher.android.apptools.OrmLiteSqliteOpenHelper;
+//import com.j256.ormlite.cipher.android.apptools.OrmLiteSqliteOpenHelper;
+import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -56,9 +60,13 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
         return sInstance;
     }
     
-    public int getDbVersion() {
-    	return getReadableDatabase(getPassword()).getVersion();
-    }
+//    public int getDbVersion() {
+//    	return getReadableDatabase(getPassword()).getVersion();
+//    }
+
+	public int getDbVersion() {
+		return getReadableDatabase().getVersion();
+	}
 
     private DataBaseHelper(Context context, boolean isInMemory) {    	
         
@@ -108,10 +116,10 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 		
 	}
 
-	@Override
-	protected String getPassword() {
-		return "tgiploj88.+";
-	}
+//	@Override
+//	protected String getPassword() {
+//		return "tgiploj88.+";
+//	}
 
 
 	private void dropColumn(SQLiteDatabase db, final String tableName, final String columnName, final RuntimeExceptionDao<Menus, Long> queryDao)

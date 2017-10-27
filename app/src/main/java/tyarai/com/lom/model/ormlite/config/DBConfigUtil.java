@@ -1,7 +1,9 @@
 package tyarai.com.lom.model.ormlite.config;
 
 
-import com.j256.ormlite.cipher.android.apptools.OrmLiteConfigUtil;
+//import com.j256.ormlite.cipher.android.apptools.OrmLiteConfigUtil;
+
+import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
 
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.model.Family;

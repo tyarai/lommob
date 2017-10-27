@@ -1,7 +1,7 @@
 package tyarai.com.lom.manager;
 
 import tyarai.com.lom.model.ormlite.config.DataBaseHelper;
-import net.sqlcipher.database.SQLiteDatabase;
+//import net.sqlcipher.database.SQLiteDatabase;
 
 import android.content.Context;
 
@@ -16,7 +16,7 @@ public class DatabaseManager {
 
 	static public void init(Context ctx, boolean isInMemory) {
 		if (null==instance) {
-			SQLiteDatabase.loadLibs(ctx);
+//			SQLiteDatabase.loadLibs(ctx);
 			instance = new DatabaseManager(ctx, isInMemory);
 		}
 	}

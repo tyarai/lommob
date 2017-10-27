@@ -45,7 +45,7 @@
             android:layout_marginRight="6dp"
             android:layout_below="@id/author_name"
             android:ellipsize="end"
-            android:maxLines="5"
+            android:maxLines="4"
             android:layout_toLeftOf="@+id/author_arrow"
             android:textSize="@dimen/text_size"/>
 
