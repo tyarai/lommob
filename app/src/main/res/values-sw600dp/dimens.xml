@@ -15,6 +15,6 @@
     <dimen name="name_size">18sp</dimen>
     <dimen name="map_image_width">300dp</dimen>
     <dimen name="author_card_height">165dp</dimen>
-    <dimen name="text_size">18sp</dimen>
-    <dimen name="author_size">135dp</dimen>
+    <dimen name="text_size">17sp</dimen>
+    <dimen name="author_size">125dp</dimen>
 </resources>
