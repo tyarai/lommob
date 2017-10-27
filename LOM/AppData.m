@@ -407,6 +407,14 @@ static AppData* _instance;
     }
 }
 
+-(void) unlockSighintg:(Sightings*)sighting{
+    if(sighting){
+        sighting._locked = NO;
+        [sighting save];
+    }
+}
+
+
 /**
  --- Sync Sighting with server
  */
@@ -428,8 +436,8 @@ static AppData* _instance;
             
             //--- Update Oct 24 2017 // Verouiller-na ilay row any anaty table mba hisorohana hoe process
             //  (pull to refresh) samihafa miara- mampiakatra azy
-            sighting._locked = YES;
-            [sighting save];
+            //sighting._locked = YES;
+            //[sighting save];
             //-------------------------------------------------------------
             
             if(sighting._deleted == NO){
@@ -465,6 +473,10 @@ static AppData* _instance;
                                 BaseViewController *viewController = (BaseViewController*)vc;
                                 [Tools showError:err onViewController:viewController];
                                 NSLog(@"Error : %@", err.description);
+                                
+                                //[self unlockSighintg:sighting];
+                                
+                                
                             }else{
                                 
                                 NSError* error;
@@ -492,8 +504,7 @@ static AppData* _instance;
                                             
                                             NSLog(@"Error parse : %@", error.debugDescription);
                                             
-                                            //sighting._locked   = NO; // Unlock the row
-                                            //[sighting save];
+                                            //[self unlockSighintg:sighting];
 
                                         }
                                         else{
@@ -502,7 +513,7 @@ static AppData* _instance;
                                             sighting._nid = newNID;
                                             sighting._isSynced = YES;
                                             sighting._isLocal  = NO;
-                                            sighting._locked   = NO; // Unlock the row
+                                            //sighting._locked   = NO; // Unlock the row
                                             [sighting save];
                                            
                                             
@@ -525,7 +536,13 @@ static AppData* _instance;
                         completeBlock:^(id json, JSONModelError *err) {
                             
                             if(err){
+                                
+                                BaseViewController *viewController = (BaseViewController*)vc;
+                                [Tools showError:err onViewController:viewController];
                                 NSLog(@"Error : %@", err.description);
+                                
+                                //[self unlockSighintg:sighting];
+
                             }else{
                                 NSError* error;
                                 NSDictionary* tmpDict = (NSDictionary*) json;
@@ -551,25 +568,18 @@ static AppData* _instance;
                                                   completeBlock:^(id json, JSONModelError *error) {
                                         
                                                       if (error){
-                                                          NSLog(@"Error parse : %@", error.debugDescription);
                                                           
-                                                         //---- Update Oct 24 2017 ---//
-                                                         /* 
                                                           BaseViewController *viewController = (BaseViewController*)vc;
                                                           [Tools showError:err onViewController:viewController];
-                                                          NSLog(@"Error parse : %@", error.debugDescription);
-
+                                                          NSLog(@"Error : %@", err.description);
                                                           
-                                                          sighting._locked   = NO; // Unlock the row
-                                                          [sighting save];
-                                                          */
-                                                          //----------------------------------//
+                                                          //[self unlockSighintg:sighting];
 
                                                       }
                                                       else{
                                                           
                                                           sighting._isSynced = YES;
-                                                          sighting._locked   = NO; // Unlock the row
+                                                          //sighting._locked   = NO; // Unlock the row
                                                           [sighting save];
                                                          
                                                       
@@ -649,6 +659,9 @@ static AppData* _instance;
     
     if(imagebase64){
   
+        
+        //fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+        
         //-- Jerena sao efa URL ilay fileName ---
         NSURL * tempURL = [NSURL URLWithString:fileName];
         
@@ -660,6 +673,8 @@ static AppData* _instance;
             NSString *serverImagePath = [SERVER stringByAppendingString:SERVER_IMAGE_PATH];
             
              fileName = [fileName stringByReplacingOccurrencesOfString:serverImagePath withString:@""];
+            
+            
         }
         
         
