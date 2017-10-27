@@ -13,7 +13,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/display_me"/>
+            android:id="@+id/display_me"
+            android:textSize="@dimen/text_size"/>
 
     </LinearLayout>
 

@@ -18,6 +18,8 @@
         android:visibility="gone"
         />-->
 
+
+
     <ImageView
         android:id="@+id/img_pager_item"
         android:layout_width="wrap_content"
@@ -28,6 +30,16 @@
         android:layout_centerInParent="true"
         tools:src="@drawable/ic_more_horiz_black_48dp"
         />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_dialog_info"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/img_pager_desc"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:visibility="gone"/>
 
 </RelativeLayout>
 

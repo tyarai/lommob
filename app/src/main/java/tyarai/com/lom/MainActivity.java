@@ -168,6 +168,12 @@ public class MainActivity extends AppCompatActivity
             case MENU_ABOUT:
                 startFragment(new AboutFragment_(), null);
                 break;
+            case MENU_LEMUR_LIST:
+                Toast.makeText(this, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show();
+                break;
+            case MENU_POSTS:
+                Toast.makeText(this, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show();
+                break;
             default:
                 break;
         }

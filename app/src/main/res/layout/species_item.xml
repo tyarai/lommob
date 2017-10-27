@@ -6,7 +6,7 @@
     android:layout_height="200dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="20dp"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
     android:clickable="true"
     android:elevation="60dp"
     android:focusable="true"
@@ -24,7 +24,7 @@
             android:id="@+id/species_image"
             android:layout_width="match_parent"
             android:layout_height="155dp"
-            android:src="@drawable/ic_more_horiz_black_48dp"/>
+            android:src="@drawable/ico_default_specy"/>
 
         <!--<View
             android:id="@+id/specie_sep"
@@ -44,7 +44,8 @@
             android:layout_below="@id/species_image"
             android:layout_alignParentBottom="true"
             android:ellipsize="end"
-            android:maxLines="2"/>
+            android:maxLines="2"
+            />
     </RelativeLayout>
 </android.support.v7.widget.CardView>
 

@@ -3,10 +3,12 @@ package tyarai.com.lom.views.adapter.pager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -33,6 +35,19 @@ public class ViewPagerImageAdapter extends PagerAdapter {
     private boolean displayInfo;
     private boolean canZoom;
     private boolean multipleImage;
+
+    public interface InfoDisplayListener {
+        void setInfo(String text);
+    }
+    InfoDisplayListener infoDisplayListener;
+
+    public InfoDisplayListener getInfoDisplayListener() {
+        return infoDisplayListener;
+    }
+
+    public void setInfoDisplayListener(InfoDisplayListener infoDisplayListener) {
+        this.infoDisplayListener = infoDisplayListener;
+    }
 
     public ViewPagerImageAdapter(Context mContext, String[] resources,
                                  String[] descriptions, boolean displayInfo,
@@ -63,20 +78,13 @@ public class ViewPagerImageAdapter extends PagerAdapter {
         Log.d(TAG, "fname : " + fname);
         final ImageView imageView = (ImageView) itemView.findViewById(R.id.img_pager_item);
         final int resourceImage = mContext.getResources().getIdentifier(fname, "drawable", mContext.getPackageName());
-//        imageView.setTag(resourceImage);
         if (resourceImage != 0) {
             Glide.with(mContext)
                     .load(resourceImage)
-//                    .fit()
-//                    .placeholder(R.drawable.ic_more_horiz_black_48dp)
                     .into(imageView);
         }
-//        else {
-//            imageView.setImageResource(R.drawable.ic_more_horiz_black_48dp);
-//        }
 
         if (canZoom) {
-//            if (multipleImage) {
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -86,24 +94,9 @@ public class ViewPagerImageAdapter extends PagerAdapter {
                         mContext.startActivity(intent);
                     }
                 });
-//            }
-//            else {
-//                imageView.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(mContext, FullScreenImageActivity.class);
-//                        intent.putExtra(FullScreenImageActivity.NAME, getTitle());
-//                        intent.putExtra(FullScreenImageActivity.IMAGE_URL, (Integer) imageView.getTag());
-//                        mContext.startActivity(intent);
-//                    }
-//                });
-//            }
-
         }
 
-
-
-//        final ImageButton infoBtn = itemView.findViewById(R.id.img_pager_desc);
+//        final ImageView infoBtn = (ImageView) itemView.findViewById(R.id.img_pager_desc);
 //        if (displayInfo) {
 //            infoBtn.setVisibility(View.VISIBLE);
 //            infoBtn.setOnClickListener(new View.OnClickListener() {
@@ -113,17 +106,20 @@ public class ViewPagerImageAdapter extends PagerAdapter {
 //                    if (TextUtils.isEmpty(text)) {
 //                        text = mContext.getString(R.string.no_description);
 //                    }
+//                    if (infoDisplayListener != null) {
+//                        infoDisplayListener.setInfo(text);
+//                    }
 //
-//                    Snackbar snackbar = Snackbar.make(infoBtn, text, Snackbar.LENGTH_INDEFINITE)
-//                            .setAction(mContext.getString(R.string.dismiss), new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                }
-//                            });
-//                    View snackbarView = snackbar.getView();
-//                    TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-//                    textView.setMaxLines(11);
-//                    snackbar.show();
+////                    Snackbar snackbar = Snackbar.make(infoBtn, text, Snackbar.LENGTH_INDEFINITE)
+////                            .setAction(mContext.getString(R.string.dismiss), new View.OnClickListener() {
+////                                @Override
+////                                public void onClick(View v) {
+////                                }
+////                            });
+////                    View snackbarView = snackbar.getView();
+////                    TextView textView = snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+////                    textView.setMaxLines(11);
+////                    snackbar.show();
 //                }
 //            });
 //        }

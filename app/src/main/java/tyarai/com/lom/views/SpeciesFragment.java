@@ -56,6 +56,7 @@ public class SpeciesFragment extends BaseFrag
 
     SpecieAdapter adapter;
 
+    @ViewById(R.id.pb_vertical)
     ProgressBar progressBar;
 
 
@@ -69,7 +70,8 @@ public class SpeciesFragment extends BaseFrag
     @AfterViews
     void initData(){
 
-        progressBar = new ProgressBar(getActivity(), null, android.R.attr.progressBarStyleSmall);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), calculateNoOfColumns(getActivity()));
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
@@ -123,7 +125,7 @@ public class SpeciesFragment extends BaseFrag
             adapter = new SpecieAdapter(getActivity(), speciesList);
             recyclerView.setAdapter(adapter);
             recyclerView.smoothScrollToPosition(0);
-            progressBar.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.GONE);
 
             if (speciesList.isEmpty()) {
                 txtNoSpecies.setVisibility(View.VISIBLE);

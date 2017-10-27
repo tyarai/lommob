@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp">
 
     <ImageView
         android:id="@+id/icon"
@@ -12,8 +12,8 @@
         android:src="@drawable/ico_eye"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         />
 
     <TextView

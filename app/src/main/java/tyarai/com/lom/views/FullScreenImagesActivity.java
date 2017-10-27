@@ -3,13 +3,18 @@ package tyarai.com.lom.views;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -23,7 +28,7 @@ import tyarai.com.lom.views.adapter.pager.ViewPagerImageAdapter;
  * Created by saimon on 25/10/17.
  */
 @EActivity(R.layout.activity_view_pager_demo)
-public class FullScreenImagesActivity extends AppCompatActivity  {
+public class FullScreenImagesActivity extends AppCompatActivity implements ViewPagerImageAdapter.InfoDisplayListener {
 
     public static String EXTRA_IMAGE_URLS = "image_urls";
     public static String EXTRA_IMAGE_DESCS = "image_descs";
@@ -35,6 +40,12 @@ public class FullScreenImagesActivity extends AppCompatActivity  {
 
     @ViewById(R.id.viewPagerCountDots)
     LinearLayout image_indicator;
+
+    @ViewById(R.id.horizontal_info_layout)
+    HorizontalScrollView infoLayout;
+
+    @ViewById(R.id.image_info)
+    TextView txtInfoImage;
 
 
     private int dotsCount;
@@ -60,6 +71,10 @@ public class FullScreenImagesActivity extends AppCompatActivity  {
                 descs = new String[illustrations.length];
             }
         }
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 
@@ -67,6 +82,7 @@ public class FullScreenImagesActivity extends AppCompatActivity  {
     void initData() {
         imageAdapter = new ViewPagerImageAdapter(FullScreenImagesActivity.this, illustrations,
                 descs, false, false);
+        imageAdapter.setInfoDisplayListener(this);
         images.setAdapter(imageAdapter);
         images.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -81,6 +97,9 @@ public class FullScreenImagesActivity extends AppCompatActivity  {
                 }
                 if (dots != null && dots.length > 0) {
                     dots[position].setImageDrawable(ContextCompat.getDrawable(FullScreenImagesActivity.this, R.drawable.selecteditem_dot));
+                }
+                if (infoDisplayed && descs != null && position < descs.length) {
+                    setInfo(descs[position]);
                 }
             }
 
@@ -126,5 +145,14 @@ public class FullScreenImagesActivity extends AppCompatActivity  {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    boolean infoDisplayed = false;
+    @Override
+    public void setInfo(String text) {
+        infoDisplayed = true;
+        infoLayout.setVisibility(View.VISIBLE);
+        txtInfoImage.setText(text);
+    }
+
 
 }

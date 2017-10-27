@@ -14,8 +14,8 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 
 import tyarai.com.lom.manager.DatabaseManager;
-import tyarai.com.lom.manager.ParceCsvDataInterface;
-import tyarai.com.lom.manager.ParseCsvDataManager;
+import tyarai.com.lom.manager.ParceDataInterface;
+import tyarai.com.lom.manager.ParseDataManager;
 import tyarai.com.lom.views.IntroductionActivity_;
 
 /**
@@ -26,8 +26,8 @@ public class SplashActivity extends AppCompatActivity {
 
     private static final String TAG = SplashActivity.class.getSimpleName();
 
-    @Bean(ParseCsvDataManager.class)
-    ParceCsvDataInterface parseCsv;
+    @Bean(ParseDataManager.class)
+    ParceDataInterface parseCsv;
 
 
     @Override

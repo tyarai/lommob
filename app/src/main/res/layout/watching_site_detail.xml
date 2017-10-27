@@ -34,6 +34,7 @@
             android:layout_below="@+id/site_image_section"
             android:padding="@dimen/activity_horizontal_margin"
             android:text="Description"
+            android:textSize="@dimen/text_size"
              />
 
 

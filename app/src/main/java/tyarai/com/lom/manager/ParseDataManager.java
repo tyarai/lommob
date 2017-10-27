@@ -12,6 +12,7 @@ import org.androidannotations.annotations.EBean;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +33,15 @@ import tyarai.com.lom.model.WatchingSite;
  * Used razorsql to generate json data (in src/main/res/raw folder) from lom.sqlite
  */
 @EBean
-public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInterface {
+public class ParseDataManager extends DaoManager implements ParceDataInterface {
 
-    private static final String TAG = ParseCsvDataManager.class.getSimpleName();
+    private static final String TAG = ParseDataManager.class.getSimpleName();
 
+    public class DbException extends RuntimeException {
+        public DbException(Throwable cause) {
+            super(cause);
+        }
+    }
 
     public void parseData(final Context context) {
         new Parser(context).startParsing();
@@ -203,25 +209,28 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
             this.context = context;
         }
 
-        void startParsing() {
-            parseAuthors();
-            parseIllustrations();
-            parseFamilies();
-            parseMenus();
-            parseMaps();
-            parseLinks();
-            parsePhotographs();
-            parseSpecies();
-            parseWatchingSite();
+        void startParsing() throws DbException {
+            try {
+                parseAuthors();
+                parseIllustrations();
+                parseFamilies();
+                parseMenus();
+                parseMaps();
+                parseLinks();
+                parsePhotographs();
+                parseSpecies();
+                parseWatchingSite();
+            }
+            catch (Exception e) {
+                throw new DbException(e);
+            }
         }
 
-        void parseWatchingSite()
-        {
-            try {
+        void parseWatchingSite() throws Exception {
                 getWatchingsiteDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseWatchinSites()....");
                 List<WatchingSitesDto> sites = parseJson(context, R.raw.watchingsites,
-                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$WatchingSitesDto"));
+                        Class.forName("tyarai.com.lom.manager.ParseDataManager$WatchingSitesDto"));
                 if (sites != null && !sites.isEmpty()) {
                     for (WatchingSitesDto siteItem : sites) {
                         try {
@@ -249,18 +258,14 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
 
                 Log.d(TAG, "countWatchingSite : " + getWatchingsiteDao().countOf());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
 
-        void parseSpecies()
+        void parseSpecies()  throws Exception
         {
-            try {
                 getSpecieDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseSpecies....");
                 List<SpecieDto> specieDtos = parseJson(context, R.raw.species,
-                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$SpecieDto"));
+                        Class.forName("tyarai.com.lom.manager.ParseDataManager$SpecieDto"));
                 if (specieDtos != null && !specieDtos.isEmpty()) {
                     for (SpecieDto specieItem : specieDtos) {
 //                        Log.d(TAG, "specieItem : " + specieItem);
@@ -311,18 +316,16 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
 
                 Log.d(TAG, "countSpecies: " + getSpecieDao().countOf());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
 
-        void parseLinks()
+        void parseLinks() throws Exception
         {
-            try {
+
                 getLinksDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parsePhotographs()....");
                 List<LinksDto> linksDtos = parseJson(context, R.raw.links,
-                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$LinksDto"));
+                        Class.forName("tyarai.com.lom.manager.ParseDataManager$LinksDto"));
                 if (linksDtos != null && !linksDtos.isEmpty()) {
                     for (LinksDto photoItem : linksDtos) {
                         try {
@@ -349,18 +352,16 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
 
                 Log.d(TAG, "countLinks : " + getLinksDao().countOf());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
 
-        void parsePhotographs()
+        void parsePhotographs() throws Exception
         {
-            try {
+
                 getPhotographDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parsePhotographs()....");
                 List<PhotographDto> photographDtos = parseJson(context, R.raw.photographs,
-                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$PhotographDto"));
+                        Class.forName("tyarai.com.lom.manager.ParseDataManager$PhotographDto"));
                 if (photographDtos != null && !photographDtos.isEmpty()) {
                     for (PhotographDto photoItem : photographDtos) {
                         try {
@@ -386,18 +387,16 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
 
                 Log.d(TAG, "countPhoto : " + getPhotographDao().countOf());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
 
-        void parseMaps()
+        void parseMaps() throws Exception
         {
-            try {
+
                 getMapsDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseMaps()....");
                 List<MapDto> maps = parseJson(context, R.raw.maps,
-                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$MapDto"));
+                        Class.forName("tyarai.com.lom.manager.ParseDataManager$MapDto"));
                 if (maps != null && !maps.isEmpty()) {
                     for (MapDto mapItem : maps) {
                         try {
@@ -422,18 +421,16 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
 
                 Log.d(TAG, "countMap : " + getMapsDao().countOf());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
 
-        void parseMenus()
+        void parseMenus() throws Exception
         {
-            try {
+
                 getMenusDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseMenus()....");
                 List<MenuDto> menus = parseJson(context, R.raw.menus,
-                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$MenuDto"));
+                        Class.forName("tyarai.com.lom.manager.ParseDataManager$MenuDto"));
                 if (menus != null && !menus.isEmpty()) {
                     for (MenuDto menuItem : menus) {
                         try {
@@ -459,17 +456,15 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
 
                 Log.d(TAG, "countMenu : " + getMenusDao().countOf());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
 
-        void parseFamilies()
+        void parseFamilies() throws Exception
         {
-            try {
+
                 getFamilyDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 List<FamilyDto> families = parseJson(context, R.raw.families,
-                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$FamilyDto"));
+                        Class.forName("tyarai.com.lom.manager.ParseDataManager$FamilyDto"));
                 if (families != null && !families.isEmpty()) {
                     for (FamilyDto familyItem : families) {
                         try {
@@ -504,18 +499,16 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
 
                 Log.d(TAG, "countFamily : " + getFamilyDao().countOf());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
 
-        void parseIllustrations()
+        void parseIllustrations() throws Exception
         {
-            try {
+
                 getIllustrationDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseIllustrations()....");
                 List<IllustrationDto> illustrations = parseJson(context, R.raw.illustrations,
-                        Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$IllustrationDto"));
+                        Class.forName("tyarai.com.lom.manager.ParseDataManager$IllustrationDto"));
                 if (illustrations != null && !illustrations.isEmpty()) {
                     for (IllustrationDto illustrationItem : illustrations) {
                         try {
@@ -541,17 +534,15 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
 
                 Log.d(TAG, "countIllustration : " + getIllustrationDao().countOf());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+
         }
 
-        void parseAuthors()
+        void parseAuthors() throws Exception
         {
-            try {
+
                 getAuthorDao().updateBuilder().updateColumnValue(CommonModel.ACTIVE_COL, false).update();
                 Log.d(TAG, "parseAuthors()....");
-                List<AuthorDto> authors = parseJson(context, R.raw.authors, Class.forName("tyarai.com.lom.manager.ParseCsvDataManager$AuthorDto"));
+                List<AuthorDto> authors = parseJson(context, R.raw.authors, Class.forName("tyarai.com.lom.manager.ParseDataManager$AuthorDto"));
                 if (authors != null && !authors.isEmpty()) {
                     for (AuthorDto authorItem : authors) {
                         try {
@@ -577,10 +568,6 @@ public class ParseCsvDataManager extends DaoManager implements ParceCsvDataInter
                 }
 
                 Log.d(TAG, "countAuthor : " + getAuthorDao().countOf());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
 
         }

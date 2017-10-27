@@ -36,8 +36,8 @@
             android:layout_marginLeft="12dp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
-            android:textSize="@dimen/name_size"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size"/>
         <TextView
             android:id="@+id/family_description"
             android:layout_width="wrap_content"
@@ -50,7 +50,8 @@
             android:layout_below="@id/family_name"
             android:ellipsize="end"
             android:maxLines="5"
-            android:layout_toLeftOf="@+id/family_arrow"/>
+            android:layout_toLeftOf="@+id/family_arrow"
+            android:textSize="@dimen/text_size"/>
 
         <ImageView
             android:id="@+id/family_arrow"

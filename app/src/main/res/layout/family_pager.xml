@@ -43,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/family_description"
-                android:padding="@dimen/activity_horizontal_margin"/>
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textSize="@dimen/text_size"/>
 
     </LinearLayout>
 

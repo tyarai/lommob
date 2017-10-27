@@ -59,6 +59,7 @@ public class WatchingSitesFragment extends BaseFrag
 
     WatchingSiteAdapter adapter;
 
+    @ViewById(R.id.pb_vertical)
     ProgressBar progressBar;
 
 
@@ -72,7 +73,8 @@ public class WatchingSitesFragment extends BaseFrag
     @AfterViews
     void initData(){
 
-        progressBar = new ProgressBar(getActivity(), null, android.R.attr.progressBarStyleSmall);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.VISIBLE);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
@@ -119,21 +121,15 @@ public class WatchingSitesFragment extends BaseFrag
         protected void onPostExecute(List<WatchingSite> watchingSites) {
             Log.d(TAG, "watchingSites size : " + watchingSites.size());
             if (watchingSites != null && !watchingSites.isEmpty()) {
-//                for (WatchingSite ws :  watchingSites) {
-//                    ws.setMapFilename(ws.getMap() != null ? ws.getMap().getName() : "");
-//                    watchingSitesList.add(ws);
-//                }
                 watchingSitesList.addAll(watchingSites);
                 adapter = new WatchingSiteAdapter(getActivity(), watchingSitesList);
                 recyclerView.setAdapter(adapter);
                 recyclerView.smoothScrollToPosition(0);
-                progressBar.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
             else {
                 txtNowatchingSites.setVisibility(View.VISIBLE);
             }
-
-
             super.onPostExecute(watchingSites);
         }
     }

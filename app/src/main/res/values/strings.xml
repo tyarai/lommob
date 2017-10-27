@@ -20,7 +20,7 @@
     <string name="appquit_message">Press again to exit</string>
     <string name="data_not_found">Loading data error</string>
     <string name="txt_image_slider">Slide</string>
-    <string name="data_loading">Loading initial data, it may takes few time.</string>
+    <string name="data_loading">Loading initial data, please wait.</string>
     <string name="no_items">No items detected</string>
     <string name="view">View</string>
     <string name="author">Author</string>
@@ -29,4 +29,5 @@
     <string name="specie">Lemur</string>
     <string name="no_description">No description for this picture</string>
     <string name="dismiss">dismiss</string>
+    <string name="coming_soon">Coming soon !</string>
 </resources>
