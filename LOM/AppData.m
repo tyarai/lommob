@@ -436,8 +436,8 @@ static AppData* _instance;
             
             //--- Update Oct 24 2017 // Verouiller-na ilay row any anaty table mba hisorohana hoe process
             //  (pull to refresh) samihafa miara- mampiakatra azy
-            //sighting._locked = YES;
-            //[sighting save];
+            sighting._locked = YES;
+            [sighting save];
             //-------------------------------------------------------------
             
             if(sighting._deleted == NO){
@@ -474,7 +474,7 @@ static AppData* _instance;
                                 [Tools showError:err onViewController:viewController];
                                 NSLog(@"Error : %@", err.description);
                                 
-                                //[self unlockSighintg:sighting];
+                                [self unlockSighintg:sighting];
                                 
                                 
                             }else{
@@ -504,7 +504,7 @@ static AppData* _instance;
                                             
                                             NSLog(@"Error parse : %@", error.debugDescription);
                                             
-                                            //[self unlockSighintg:sighting];
+                                            [self unlockSighintg:sighting];
 
                                         }
                                         else{
@@ -513,7 +513,7 @@ static AppData* _instance;
                                             sighting._nid = newNID;
                                             sighting._isSynced = YES;
                                             sighting._isLocal  = NO;
-                                            //sighting._locked   = NO; // Unlock the row
+                                            sighting._locked   = NO; // Unlock the row
                                             [sighting save];
                                            
                                             
@@ -541,7 +541,7 @@ static AppData* _instance;
                                 [Tools showError:err onViewController:viewController];
                                 NSLog(@"Error : %@", err.description);
                                 
-                                //[self unlockSighintg:sighting];
+                                [self unlockSighintg:sighting];
 
                             }else{
                                 NSError* error;
@@ -573,13 +573,13 @@ static AppData* _instance;
                                                           [Tools showError:err onViewController:viewController];
                                                           NSLog(@"Error : %@", err.description);
                                                           
-                                                          //[self unlockSighintg:sighting];
+                                                          [self unlockSighintg:sighting];
 
                                                       }
                                                       else{
                                                           
                                                           sighting._isSynced = YES;
-                                                          //sighting._locked   = NO; // Unlock the row
+                                                          sighting._locked   = NO; // Unlock the row
                                                           [sighting save];
                                                          
                                                       

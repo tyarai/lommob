@@ -109,8 +109,6 @@
         [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
             BOOL stillConnected = YES;
             
-            
-            
             UserConnectedResult* sessionCheckResult = nil;
             if (err)
             {
