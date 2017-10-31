@@ -419,7 +419,6 @@ static AppData* _instance;
  --- Sync Sighting with server
  */
 
-
 -(void) syncWithServer:(NSArray<Sightings *>*)sightings
                   view:(id)vc
            sessionName:(NSString*)sessionName
@@ -486,23 +485,19 @@ static AppData* _instance;
                                 if (error){
                                     BaseViewController *viewController = (BaseViewController*)vc;
                                     [Tools showError:err onViewController:viewController];
-                                    NSLog(@"Error parse : %@", error.debugDescription);
+                                    NSLog(@"Error when parsing : %@", error.debugDescription);
                                 }
                                 else{
                                     NSInteger fid  = fileResult.fid;
                                   
                                     [self saveSighting:sighting fileID:fid sessionName:sessionName sessionId:sessionID completeBlock:^(id RETjson, JSONModelError *err) {
                                         
-                                        NSError* error;
-                                        
                                         NSDictionary * retDict = (NSDictionary*)RETjson;
                                         
                                         
-                                        if (error){
+                                        if (err){
                                             BaseViewController *viewController = (BaseViewController*)vc;
                                             [Tools showError:err onViewController:viewController];
-                                            
-                                            NSLog(@"Error parse : %@", error.debugDescription);
                                             
                                             [self unlockSighintg:sighting];
 
@@ -563,6 +558,7 @@ static AppData* _instance;
                                                    placeNameNID:sighting._place_name_reference_nid
                                                        latitude:sighting._placeLatitude
                                                       longitude:sighting._placeLongitude
+                                                       altitude:sighting._placeAltitude
                                                     sessionName:sessionName
                                                       sessionId:sessionID
                                                   completeBlock:^(id json, JSONModelError *error) {
@@ -627,6 +623,14 @@ static AppData* _instance;
         }
     }
     
+    /*AppDelegate * appDelegate = [Tools getAppDelegate];
+    
+    dispatch_async(appDelegate.serialSyncQueue,^{
+        
+        if(appDelegate.isSyncing){
+            appDelegate.isSyncing = NO;
+        }
+    });*/
     
 
     
@@ -728,6 +732,70 @@ static AppData* _instance;
 /*
     Sync - Create Sighting on server
  */
+/*
+-(void) saveSighting:(Sightings*)sighting
+              fileID:(NSInteger)fid
+         sessionName:(NSString*)sessionName
+          sessionId :(NSString*)sessionId
+
+       completeBlock:(JSONObjectBlock) completeBlock{
+    
+    if(sighting && sessionName && sessionId && fid != 0){
+        
+        [self buildPOSTHeader];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionId];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        NSString * uuid                     = sighting._uuid;
+        NSString * sightingTitle            = sighting._title;
+        NSInteger speciesNID                = sighting._speciesNid;
+        NSString * placeName                = sighting._placeName;
+        float latitude                      = sighting._placeLatitude;
+        float longitude                     = sighting._placeLongitude;
+        NSInteger  count                    = sighting._speciesCount;
+        NSInteger  isLocal                  = NO;//sighting._isLocal;
+        NSInteger  isSynced                 = (int)YES;
+        NSInteger  place_name_reference_nid = sighting._place_name_reference_nid;
+        double dateTimeStamp                = sighting._date;
+        NSTimeInterval _interval            = dateTimeStamp;
+        NSDate *vDate                       = [NSDate dateWithTimeIntervalSince1970:_interval];
+        NSDateFormatter *_formatter         =[[NSDateFormatter alloc]init];
+        [_formatter setDateFormat:@"y-M-d"];
+        NSString * strDate                  = [_formatter stringFromDate:vDate];
+        
+        NSDictionary *params                    = [[NSDictionary alloc] init];
+        
+        AppDelegate * appDelegate           = [Tools getAppDelegate];
+        NSInteger       uid                 = appDelegate._uid;
+    
+        [params setValue:sightingTitle forKey:@"title"];
+        [params setValue:uuid forKey:@"uuid"];
+        [params setValue:uid forKey:@"uid"];
+        [params setValue:1 forKey:@"status"];
+        [params setValue:uuid forKey:@"field_uuid"];
+        [params setValue:sightingTitle  @"&body=%@",];
+        [params setValue:placeName @"&field_place_name=%@",];
+        [params setValue:strDate @"&field_date=%@",];
+        [params setValue:speciesNID @"&field_associated_species=%lu",];
+        [params setValue:latitude @"&field_lat=%5.9f",];
+        [params setValue:longitude @"&field_long=%5.9f",];
+        
+        [params setValue:isLocal @"&field_is_local=%lu",];
+        [params setValue:isSynced @"&field_is_synced=%lu",];
+        [params setValue:count @"&field_count=%lu",];
+        [params setValue:fid @"&field_photo=%lu",];
+        [params setValue:place_name_reference_nid @"&field_place_name_reference=%lu",];
+        
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NEW_SIGHTING,];
+        [JSONHTTPClient postJSONFromURLWithString:url
+                                           params:params
+                                       completion:completeBlock];
+        
+    }
+}
+*/
+
+
 -(void) saveSighting:(Sightings*)sighting
               fileID:(NSInteger)fid
          sessionName:(NSString*)sessionName
@@ -747,6 +815,7 @@ static AppData* _instance;
         NSString * placeName                = sighting._placeName;
         float latitude                      = sighting._placeLatitude;
         float longitude                     = sighting._placeLongitude;
+        float altitude                      = sighting._placeAltitude;
         NSInteger  count                    = sighting._speciesCount;
         NSInteger  isLocal                  = NO;//sighting._isLocal;
         NSInteger  isSynced                 = (int)YES;
@@ -761,19 +830,21 @@ static AppData* _instance;
         NSString *body                      = [NSString stringWithFormat:@"type=publication&language=und"];
         
         body = [body stringByAppendingFormat:@"&title=%@",sightingTitle];
+        body = [body stringByAppendingFormat:@"&uuid=%@",uuid];
         body = [body stringByAppendingFormat:@"&field_uuid[und][0][value]=%@",uuid];
         body = [body stringByAppendingFormat:@"&body[und][0][value]=%@",sightingTitle];
         body = [body stringByAppendingFormat:@"&field_place_name[und][0][value]=%@",placeName];
         body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
-        body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%lu",speciesNID];
+        body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%li",(long)speciesNID];
         body = [body stringByAppendingFormat:@"&field_lat[und][0][value]=%5.8f",latitude];
         body = [body stringByAppendingFormat:@"&field_long[und][0][value]=%5.8f",longitude];
+         body = [body stringByAppendingFormat:@"&field_altitude[und][0][value]=%4.0f",altitude];
         
-        body = [body stringByAppendingFormat:@"&field_is_local[und][value]=%lu",isLocal];
-        body = [body stringByAppendingFormat:@"&field_is_synced[und][value]=%lu",isSynced];
-        body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
-        body = [body stringByAppendingFormat:@"&field_photo[und][0][fid]=%lu",fid];
-        body = [body stringByAppendingFormat:@"&field_place_name_reference[und][nid]=%lu",place_name_reference_nid];
+        body = [body stringByAppendingFormat:@"&field_is_local[und][value]=%lu",(long)isLocal];
+        body = [body stringByAppendingFormat:@"&field_is_synced[und][value]=%lu",(long)isSynced];
+        body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",(long)count];
+        body = [body stringByAppendingFormat:@"&field_photo[und][0][fid]=%lu",(long)fid];
+        body = [body stringByAppendingFormat:@"&field_place_name_reference[und][nid]=%lu",(long)place_name_reference_nid];
         
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NODE_ENDPOINT];
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
@@ -795,6 +866,7 @@ static AppData* _instance;
                    placeNameNID:(NSInteger)placeNID
                        latitude:(float)latitude
                       longitude:(float)longitude
+                       altitude:(float)altitude
                     sessionName:(NSString*)sessionName
                      sessionId :(NSString*)sessionId
                   completeBlock:(JSONObjectBlock) completeBlock{
@@ -822,6 +894,7 @@ static AppData* _instance;
         body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
         body = [body stringByAppendingFormat:@"&field_lat[und][0][value]=%5.8f",latitude];
         body = [body stringByAppendingFormat:@"&field_long[und][0][value]=%5.8f",longitude];
+        body = [body stringByAppendingFormat:@"&field_altitude[und][0][value]=%4.0f",altitude];
         body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
         body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%li",(long)species._species_id];
         body = [body stringByAppendingFormat:@"&field_place_name_reference[und][nid]=%li",(long)placeNID];

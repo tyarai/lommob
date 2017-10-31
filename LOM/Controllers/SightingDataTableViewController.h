@@ -27,7 +27,8 @@
                  comments:(NSString*) comments
             photoFileName:(NSString*) photoFileName
              placeLatitude:(float)latitude
-           placeLongitude:(float)longitude;
+           placeLongitude:(float)longitude
+            placeAltitude:(float)altitude;
 
 
 
@@ -44,6 +45,7 @@
     BOOL didSelectNewNumber;
     float placelongitude;
     float placelatitude;
+    float placealtitude;
     
 }
 
@@ -78,6 +80,7 @@
 - (IBAction)numberChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *longitude;
 @property (weak, nonatomic) IBOutlet UILabel *latitude;
+@property (weak, nonatomic) IBOutlet UILabel *altitude;
 
 @property (nonatomic,strong) CLLocationManager * locationManager;
 @property (nonatomic,strong) CLLocation * startLocation;

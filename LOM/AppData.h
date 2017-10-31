@@ -1,7 +1,7 @@
 // AppData.h
 // LOM
 // Created by Andrianavonison Ranto Tiaray on 02/01/2016.
-// Copyright © 2016 Kerty KAMARY. All rights reserved. http://192.168.2.242/sites/default/files/styles/lom_species_profile_photo_small/public/Daubentonia-madagascariensis.jpg?itok=vBMSbSd4
+// Copyright © 2016 Kerty KAMARY. All rights reserved. 
 
 
 #import <Foundation/Foundation.h>
@@ -13,9 +13,9 @@
 
 
 #ifdef DEBUG
-    //#define SERVER @"http://192.168.2.242"
+    #define SERVER @"http://192.168.2.242"
     //#define SERVER @"http://172.20.10.4"
-    #define SERVER @"https://www.lemursofmadagascar.com/html"
+    //#define SERVER @"https://www.lemursofmadagascar.com/html"
 #else
     #define SERVER @"https://www.lemursofmadagascar.com/html"
 #endif
@@ -42,6 +42,8 @@
 
 
 #define RESET_SYNCED @"/lom_endpoint/api/v1/services/lom_sighting_services/reset_synced" //Parameters : 'uid' (mandatory) and 'synced_value' (optional)
+
+#define NEW_SIGHTING @"/lom_endpoint/api/v1/services/lom_sighting_services/new_sighting" 
 
 
 

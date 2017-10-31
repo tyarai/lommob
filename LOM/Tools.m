@@ -415,6 +415,8 @@ static float appScale = 1.0;
                 int64_t  _nid                   = sighting.nid;
                 //---- Tadiavina raha efa ao anaty local DB ---/
                 Sightings* instance             = [Sightings getSightingsByNID : _nid];
+                //Sightings* instance             = [Sightings getSightingsByUUID:_uuid];
+                
                 NSString * _title               = sighting.title;
                 _title                          = [_title stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
                 NSString * _species             = sighting.species;
@@ -619,7 +621,7 @@ static float appScale = 1.0;
             
             
         default:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:@"There was an error!"];
+            UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:@"There was an unknown error!"];
             [view presentViewController:alert animated:YES completion:nil];
             break;
         }

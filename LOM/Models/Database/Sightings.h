@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSString* _placeName;
 @property (nonatomic) double _placeLatitude;
 @property (nonatomic) double _placeLongitude;
+@property (nonatomic) double _placeAltitude;
 @property (nonatomic, strong) NSString* _photoFileNames;
 @property (nonatomic, strong) NSString* _title;
 @property (nonatomic) double _createdTime;

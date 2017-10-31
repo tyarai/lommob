@@ -18,10 +18,12 @@
     NSArray* _sightingsList;
     BOOL isSearchShown;
     BOOL isAdding;
+    
    
     MWPhotoBrowser *browser;
     WYPopoverController* popoverController;
     PopupLoginViewController * loginPopup;
+    //dispatch_queue_t serialQueue;
     
 }
 @property (weak, nonatomic) IBOutlet UIView *searchView;
@@ -36,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 @property NSMutableArray * currentPhotos;   
 - (IBAction)addButtonTapped:(id)sender;
+
 
 
 @property NSInteger currentPage;

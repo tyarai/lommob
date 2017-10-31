@@ -46,6 +46,7 @@
     
     placelongitude = 0.0f;
     placelatitude  = 0.0f;
+    placealtitude  = 0.0f;
     
     self.titleLabel.text = self.title;
     
@@ -114,11 +115,13 @@
         
         self.comments.text          = publication.title;
         
-        self.longitude.text         = [NSString stringWithFormat:@"%f",publication.longitude];
-        self.latitude.text          = [NSString stringWithFormat:@"%f",publication.latitude];
+        self.longitude.text         = [NSString stringWithFormat:@"%.9f",publication.longitude];
+        self.latitude.text          = [NSString stringWithFormat:@"%.9f",publication.latitude];
+        self.altitude.text          = [NSString stringWithFormat:@"%4.0f m",publication.altitude];
         
         placelongitude              = publication.longitude;
         placelatitude               = publication.latitude;
+        placealtitude               = publication.altitude;
         
         
         self.scientificName.text    = currentSpecies._title;
@@ -169,8 +172,9 @@
         self.scientificName.text = currentSpecies._title;
         self.malagasyName.text   = currentSpecies._malagasy;
         
-        self.longitude.text         = [NSString stringWithFormat:@"%f",0.0];
-        self.latitude.text          = [NSString stringWithFormat:@"%f",0.0];
+        self.longitude.text      = [NSString stringWithFormat:@"%f",0.0];
+        self.latitude.text       = [NSString stringWithFormat:@"%f",0.0];
+        self.altitude.text       = [NSString stringWithFormat:@"%f",0.0];
         
         
         if([self.takenPhotoFileName length] != 0){
@@ -295,7 +299,8 @@
                                comments:comments
                           photoFileName:self.takenPhotoFileName
                           placeLatitude:placelatitude
-                         placeLongitude:placelongitude];
+                         placeLongitude:placelongitude
+                          placeAltitude:placealtitude];
     }else{
         UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"sightings_title",@"") messsage:error];
         [self presentViewController:alert animated:YES completion:nil];
@@ -701,19 +706,24 @@
     CLLocation * latestLocation = locations[locations.count - 1];
     NSString * longitude = [NSString stringWithFormat:@"%.9f", latestLocation.coordinate.longitude];
     NSString * latitude  = [NSString stringWithFormat:@"%.9f",latestLocation.coordinate.latitude];
-    self.latitude.text = latitude;
-    self.longitude.text = longitude;
+    NSString * altitude  = [NSString stringWithFormat:@"%.0f m",latestLocation.altitude];
+    self.latitude.text   = latitude;
+    self.longitude.text  = longitude;
+    self.altitude.text   = altitude;
     
     placelatitude   = latestLocation.coordinate.latitude;
     placelongitude  = latestLocation.coordinate.longitude;
+    if(latestLocation.verticalAccuracy > 0){
+        placealtitude   = latestLocation.altitude;
+    }
     
-    NSLog(@"Longitude %@ Latitude %@", longitude,latitude);
+    NSLog(@"Longitude %@ Latitude %@ Altitude %@", longitude,latitude,altitude);
     
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     [Tools showSimpleAlertWithTitle:NSLocalizedString(@"location_service_title", @"")
-                         andMessage:NSLocalizedString(@"location_error_getting_info", @"")];
+                         andMessage:NSLocalizedString(error.localizedDescription, @"")];
     NSLog(@"%@",[error description]);
 }
 

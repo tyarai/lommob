@@ -37,8 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pullToRefresh = NO;
-    isSearchShown = NO;
-    
+    isSearchShown      = NO;
     
     
     self.refreshControl                 = [[UIRefreshControl alloc]init];
@@ -68,6 +67,8 @@
     //---- Array of photo to be shown on the next Window ----
     self.currentPhotos = [[NSMutableArray alloc] init];
     
+    //serialQueue = dispatch_queue_create("lom_sync_with_server", DISPATCH_QUEUE_SERIAL);
+    
     
 }
 
@@ -86,6 +87,20 @@
         self.pullToRefresh = YES;
         appDelegate.showActivity = NO;
         [self syncWithServer];
+        
+        //---- Update 30 Oct 2017 ---//
+        /*dispatch_async(appDelegate.serialSyncQueue,^{
+            
+           if(! appDelegate.isSyncing){
+                self.pullToRefresh = YES;
+                appDelegate.showActivity = NO;
+                appDelegate.isSyncing = YES;
+                [self syncWithServer];
+            }else{
+                [self.refreshControl endRefreshing];
+                //appDelegate.showActivity = NO;
+            }
+       });*/
         
     }
     
@@ -106,6 +121,7 @@
         NSString * sessionID   = [appDelegate _sessid];
         
         self.initialLoad = TRUE;
+        
         [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
             BOOL stillConnected = YES;
             
@@ -238,6 +254,7 @@
                 node.count          = row._speciesCount;
                 node.latitude       = row._placeLatitude;
                 node.longitude      = row._placeLongitude;
+                node.altitude       = row._placeAltitude;
                
                 //--- Updated May 20 2017 ---//
                 //node.deleted        = row._deleted;
@@ -1007,7 +1024,8 @@
                comments:(NSString *)comments
           photoFileName:(NSString*)takenPhotoFileName
           placeLatitude:(float)latitude
-         placeLongitude:(float)longitude{
+         placeLongitude:(float)longitude
+        placeAltitude:(float)altitude{
     
     NSString * sessionName = [appDelegate _sessionName];
     NSString * sessionID   = [appDelegate _sessid];
@@ -1042,15 +1060,18 @@
                 double _date            = [date timeIntervalSince1970];
                 double  _modified       = [[NSDate date] timeIntervalSince1970];
                 NSString * query        = nil;
-                
+            
+            
+                //---- Rehefa manao SAVE sighting (na update na creation) dia mila averina locked=0 ilay sighting satria manjary sao efa nanaovana syncrhonization tany aloha dia tsy vita hatramin'ny farany dia lasa nijanona locked teo foana ilay izy
+            
                 if(_nid > 0 ){
                     
                     //******** Update by _nid : Raha efa synced sady nahazo _nid ilay sighting - //
                     
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%.9f' , _placeLongitude = '%.9f' , _locked = '0' WHERE _nid = '%li' ", _placeName,_title,(long)_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,(long)_nid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0' , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%.9f' , _placeLongitude = '%.9f' , _placeAltitude = '%.1f' , _locked = '0' WHERE _nid = '%li' ", _placeName,_title,(long)_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,altitude,(long)_nid];
                 }else{
                     //*** Update by _uuid : tsy mbola synced sady tsy nahazo _nid avy any @ server
-                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%.9f' , _placeLongitude = '%.9f' , _locked = '0'  WHERE _uuid = '%@' ", _placeName,_title,(long)_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,_uuid];
+                    query = [NSString stringWithFormat:@"UPDATE $T SET  _placeName = '%@' , _title = '%@' , _speciesCount = '%li' ,_modifiedTime = '%f' ,_date = '%f' ,_isSynced = '0'  , _speciesName = '%@' , _speciesNid ='%li', _photoFileNames = '%@', _place_name_reference_nid = '%li' , _placeLatitude = '%.9f' , _placeLongitude = '%.9f' , _placeAltitude = '%.1f' , _locked = '0'  WHERE _uuid = '%@' ", _placeName,_title,(long)_count,_modified,_date,_speciesName,(long)_speciesNID,takenPhotoFileName,(long)_place_name_reference_nid,latitude,longitude,altitude,_uuid];
                     
                 }
                 
@@ -1087,6 +1108,7 @@
                 newSightings._placeName     = _placeName;
                 newSightings._placeLatitude = latitude;
                 newSightings._placeLongitude= longitude;
+                newSightings._placeAltitude = altitude;
                 newSightings._photoFileNames= _photoName;
                 newSightings._title         = _title;
                 newSightings._date          = _date;

@@ -133,7 +133,8 @@
             // Dia mila unescape 
             NSString * unescapedFileName = [publication.field_photo.src stringByReplacingOccurrencesOfString:@"''" withString:@"'"];
         
-        
+            //--- Manao error ilay NSTempUrl any @ PostCellViewController raha vao misy 'space' ilay url dia tsy maintsy solona '%20' ny space eto
+            unescapedFileName = [unescapedFileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
             NSURL * tempURL = [NSURL URLWithString:unescapedFileName];
             //--- Jerena sao dia efa URL ilay fileName ---//
         

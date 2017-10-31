@@ -15,6 +15,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+@property  BOOL isSyncing;
+@property  dispatch_queue_t serialSyncQueue;
+
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) NSString *_currentToken;

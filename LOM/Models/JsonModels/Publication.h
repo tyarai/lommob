@@ -31,6 +31,7 @@
 @property (nonatomic, strong) NSString<Optional>* place_name;
 @property (nonatomic) float  latitude;
 @property (nonatomic) float longitude;
+@property (nonatomic) float altitude;
 @property (nonatomic) NSInteger count; // Species count
 @property (nonatomic) int64_t isLocal;
 @property (nonatomic) int64_t isSynced;
