@@ -28,7 +28,8 @@
             photoFileName:(NSString*) photoFileName
              placeLatitude:(float)latitude
            placeLongitude:(float)longitude
-            placeAltitude:(float)altitude;
+            placeAltitude:(float)altitude
+             photoChanged:(BOOL)photoChanged;
 
 
 
@@ -43,6 +44,7 @@
     BOOL didSelectNewDate;
     BOOL didSelectNewTitle;
     BOOL didSelectNewNumber;
+    BOOL didPhotoChanged;
     float placelongitude;
     float placelatitude;
     float placealtitude;

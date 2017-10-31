@@ -140,12 +140,22 @@
         
         
             if(tempURL && tempURL.scheme && tempURL.host){
-                [self.imgPhoto setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                /*[self.imgPhoto setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     if (error != nil) {
                         [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
                     }
                     
-                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];*/
+                //UIImage * _placeHolder = [UIImage imageNamed:@"ico_default_specy"];
+                
+                [self.imgPhoto setImageWithURL:tempURL
+                              placeholderImage:nil
+                                       options:SDWebImageRetryFailed
+                   usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                
+                
+           
+                 
             }else{
             
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);

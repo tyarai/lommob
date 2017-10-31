@@ -66,10 +66,11 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = ROWHEIGHT;
     
-    didSelectNewSite = NO;
-    didSelectNewDate = NO;
-    didSelectNewTitle = NO;
-    didSelectNewNumber = NO;
+    didSelectNewSite    = NO;
+    didSelectNewDate    = NO;
+    didSelectNewTitle   = NO;
+    didSelectNewNumber  = NO;
+    didPhotoChanged     = NO;
     
     allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
     self.species.delegate = self; // UIPickerView Delegate
@@ -86,6 +87,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    
     
     AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     Publication * publication = appDelagate.appDelegateCurrentPublication ;
@@ -278,6 +281,7 @@
     // miaraka amin'ilay publication
     if([Tools isNullOrEmptyString:self.takenPhotoFileName] || self.speciesImage.image == nil){
         self.takenPhotoFileName = [self setDefaultSpeciesImage:currentSpecies];
+        didPhotoChanged = YES;
         //[self saveCamera:self.takenPhotoFileName
         //     publication:currentPublication
         //         species:currentSpecies];
@@ -300,7 +304,9 @@
                           photoFileName:self.takenPhotoFileName
                           placeLatitude:placelatitude
                          placeLongitude:placelongitude
-                          placeAltitude:placealtitude];
+                          placeAltitude:placealtitude
+                           photoChanged:didPhotoChanged];
+        
     }else{
         UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"sightings_title",@"") messsage:error];
         [self presentViewController:alert animated:YES completion:nil];
@@ -356,6 +362,7 @@
             [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
             NSString * date = [dateFormatter stringFromDate:[NSDate date]];
             newfileName = [newfileName stringByAppendingString:date];
+            newfileName = [newfileName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
             newfileName = [newfileName stringByAppendingString:FILE_EXT];
 
             
@@ -532,6 +539,7 @@
         publication.field_photo.src = photoFileName;
         //** Niova ny sarin'ity publication ity. Tokony averina notSynced izy izany : Feb-27-2017
         publication.isSynced = NO;
+        didPhotoChanged      = YES;
     
     }
     [self dismissViewControllerAnimated:YES completion:nil];

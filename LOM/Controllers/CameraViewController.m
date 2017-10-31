@@ -142,14 +142,14 @@
             //title = [title stringByReplacingOccurrencesOfString:@" " withString:@"_"];
             //NSString * fileName = [NSString stringWithFormat: @"%ld_%li",(long) appDelegate._uid, (long)speciesNid];
             
-            NSString * fileName = [NSString stringWithFormat: @"%ld",(long) appDelegate._uid];
+            NSString * fileName = [NSString stringWithFormat: @"%ld_%li",(long) appDelegate._uid,(long)currentSpecies._species_id];
             
             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"_yyyy-MM-dd_HH_mm_ss"];
             NSString * date = [dateFormatter stringFromDate:[NSDate date]];
-            fileName = [fileName stringByAppendingString:date];
-            fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-            fileName = [fileName stringByAppendingString:FILE_EXT];
+            fileName    = [fileName stringByAppendingString:date];
+            fileName    = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"_"];
+            fileName    = [fileName stringByAppendingString:FILE_EXT];
             NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:fileName];
             
            [UIImageJPEGRepresentation(resizedImage, IMAGE_COMPRESSION_QUALITY)writeToFile:filePath atomically:YES];

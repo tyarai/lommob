@@ -525,67 +525,115 @@ static AppData* _instance;
                 //--- Update Sighting On Server --//
                 if(!sighting._isLocal && !sighting._isSynced){
                     
-                    [self uploadImage:_base64Image
-                             fileName:fileName
-                             fileSize:(NSUInteger)fileSize
-                        completeBlock:^(id json, JSONModelError *err) {
-                            
-                            if(err){
+                    if(sighting._hasPhotoChanged){
+                        //--- Update October 31 2017 ---
+                        // Raha niova ny sarin'ilay sighting ---//
+                    
+                        [self uploadImage:_base64Image
+                                 fileName:fileName
+                                 fileSize:(NSUInteger)fileSize
+                            completeBlock:^(id json, JSONModelError *err) {
                                 
-                                BaseViewController *viewController = (BaseViewController*)vc;
-                                [Tools showError:err onViewController:viewController];
-                                NSLog(@"Error : %@", err.description);
-                                
-                                [self unlockSighintg:sighting];
-
-                            }else{
-                                NSError* error;
-                                NSDictionary* tmpDict = (NSDictionary*) json;
-                                FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
-                                
-                                if (error == nil){
-                                
-                                    NSInteger fid  = fileResult.fid;
+                                if(err){
                                     
-                                    Species * species = [Species getSpeciesBySpeciesNID:sighting._speciesNid];
-                                    [self updateSightingWithNID:sighting._nid
-                                                          Title:sighting._title
-                                                      placeName:sighting._placeName
-                                                           date:sighting._date
-                                                          count:sighting._speciesCount
-                                                        species:species
-                                                         fileID:fid
-                                                   placeNameNID:sighting._place_name_reference_nid
-                                                       latitude:sighting._placeLatitude
-                                                      longitude:sighting._placeLongitude
-                                                       altitude:sighting._placeAltitude
-                                                    sessionName:sessionName
-                                                      sessionId:sessionID
-                                                  completeBlock:^(id json, JSONModelError *error) {
+                                    BaseViewController *viewController = (BaseViewController*)vc;
+                                    [Tools showError:err onViewController:viewController];
+                                    NSLog(@"Error : %@", err.description);
+                                    
+                                    [self unlockSighintg:sighting];
+
+                                }else{
+                                    NSError* error;
+                                    NSDictionary* tmpDict = (NSDictionary*) json;
+                                    FileResult* fileResult = [[FileResult alloc] initWithDictionary:tmpDict error:&error];
+                                    
+                                    if (error == nil){
+                                    
+                                        NSInteger fid  = fileResult.fid;
                                         
-                                                      if (error){
-                                                          
-                                                          BaseViewController *viewController = (BaseViewController*)vc;
-                                                          [Tools showError:err onViewController:viewController];
-                                                          NSLog(@"Error : %@", err.description);
-                                                          
-                                                          [self unlockSighintg:sighting];
+                                        Species * species = [Species getSpeciesBySpeciesNID:sighting._speciesNid];
+                                        
+                                        [self updateSightingWithNID:sighting._nid
+                                                              Title:sighting._title
+                                                          placeName:sighting._placeName
+                                                               date:sighting._date
+                                                              count:sighting._speciesCount
+                                                            species:species
+                                                             fileID:fid
+                                                       placeNameNID:sighting._place_name_reference_nid
+                                                           latitude:sighting._placeLatitude
+                                                          longitude:sighting._placeLongitude
+                                                           altitude:sighting._placeAltitude
+                                                        sessionName:sessionName
+                                                          sessionId:sessionID
+                                                      completeBlock:^(id json, JSONModelError *jsonerror) {
+                                            
+                                                          if (jsonerror){
+                                                              
+                                                              BaseViewController *viewController = (BaseViewController*)vc;
+                                                              [Tools showError:jsonerror onViewController:viewController];
+                                                              NSLog(@"Error : %@", jsonerror.description);
+                                                              
+                                                              [self unlockSighintg:sighting];
 
-                                                      }
-                                                      else{
+                                                          }
+                                                          else{
+                                                              
+                                                              sighting._isSynced = YES;
+                                                              sighting._locked   = NO; // Unlock the row
+                                                              sighting._hasPhotoChanged = NO;
+                                                              [sighting save];
+                                                             
                                                           
-                                                          sighting._isSynced = YES;
-                                                          sighting._locked   = NO; // Unlock the row
-                                                          [sighting save];
-                                                         
-                                                      
-                                                      }
-                                    }];
-                                    
-                                }
-                          }
+                                                          }
+                                        }];
+                                        
+                                    }
+                              }
+                                
+                        }];
                             
-                    }];
+                    }else{
+                        
+                        //---- Raha tsy niova ilay sary dia ny info fotsiny sisa no apekarina
+                        Species * species = [Species getSpeciesBySpeciesNID:sighting._speciesNid];
+                        [self updateSightingWithNID:sighting._nid
+                                              Title:sighting._title
+                                          placeName:sighting._placeName
+                                               date:sighting._date
+                                              count:sighting._speciesCount
+                                            species:species
+                                             fileID:0 // Tsy nisy sary niova
+                                       placeNameNID:sighting._place_name_reference_nid
+                                           latitude:sighting._placeLatitude
+                                          longitude:sighting._placeLongitude
+                                           altitude:sighting._placeAltitude
+                                        sessionName:sessionName
+                                          sessionId:sessionID
+                                      completeBlock:^(id json, JSONModelError *jsonerror) {
+                                          
+                                          if (jsonerror){
+                                              
+                                              BaseViewController *viewController = (BaseViewController*)vc;
+                                              [Tools showError:jsonerror onViewController:viewController];
+                                              NSLog(@"Error : %@", jsonerror.description);
+                                              
+                                              [self unlockSighintg:sighting];
+                                              
+                                          }
+                                          else{
+                                              
+                                              sighting._isSynced = YES;
+                                              sighting._locked   = NO; // Unlock the row
+                                              [sighting save];
+                                              
+                                              
+                                          }
+                                      }];
+                        
+                        
+                        
+                    }
                     
                 }//--Updating
             
@@ -854,7 +902,7 @@ static AppData* _instance;
 
 
 /*
- Sync-Update Sighting to server
+ Sync-Update Sighting to server miaraka amin'ny fid (izany hoe nisy sary niova izany tafiakatra any @ server)
  */
 -(void)   updateSightingWithNID:(NSInteger)nid
                           Title:(NSString*)title
@@ -872,7 +920,7 @@ static AppData* _instance;
                   completeBlock:(JSONObjectBlock) completeBlock{
     
     if(![Tools isNullOrEmptyString:sessionName] && ![Tools isNullOrEmptyString:sessionId] && nid > 0 &&
-       ![Tools isNullOrEmptyString:title] && ![Tools isNullOrEmptyString:placeName] && date != 0 && count > 0 && species != nil && fid >0 ){
+       ![Tools isNullOrEmptyString:title] && ![Tools isNullOrEmptyString:placeName] && date != 0 && count > 0 && species != nil ){  //&& fid >0 ){
         
         [self buildPOSTHeader];
        
@@ -899,7 +947,9 @@ static AppData* _instance;
         body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%li",(long)species._species_id];
         body = [body stringByAppendingFormat:@"&field_place_name_reference[und][nid]=%li",(long)placeNID];
         
-        body = [body stringByAppendingFormat:@"&field_photo[und][0][fid]=%lu",fid];
+        if(fid != 0){
+            body = [body stringByAppendingFormat:@"&field_photo[und][0][fid]=%lu",fid];
+        }
         
         NSString* url = [NSString stringWithFormat:@"%@%@%li", SERVER, NODE_UPDATE_ENDPOINT,(long)nid];
         [JSONHTTPClient putJSONFromURLWithString:url bodyString:body completion:completeBlock];
