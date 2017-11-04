@@ -134,7 +134,9 @@
         self.takenPhotoFileName     = [photoName stringByReplacingOccurrencesOfString:@"''" withString:@"'"];
         
         //--- Jerena sao dia efa URL ilay fileName ---//
-        NSURL * tempURL = [NSURL URLWithString:publication.field_photo.src];
+        NSString *publicationPhotoName = publication.field_photo.src;
+        publicationPhotoName           = [publicationPhotoName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        NSURL * tempURL = [NSURL URLWithString:publicationPhotoName];
         
         if(tempURL && tempURL.scheme && tempURL.host){
             [self.speciesImage setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

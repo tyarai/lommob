@@ -34,8 +34,8 @@
     return [self instancesWhere:@" _deleted = '0'"];
 }
 
-+ (NSArray*) getNotSyncedSightings{
-    return [Sightings instancesWhere:[NSString stringWithFormat:@" (_isSynced ='0' OR _deleted ='1' ) AND _locked = '0' "]];
++ (NSArray*) getNotSyncedSightings:(NSInteger)uid{
+    return [Sightings instancesWhere:[NSString stringWithFormat:@" (_isSynced ='0' OR _deleted ='1' ) AND _locked = '0' AND _uid  =  '%lu' ORDER BY _modifiedTime ASC ",(long)uid]];
 
 }
 
@@ -106,6 +106,19 @@
         return [Sightings instancesWhere:queryArgument];
     }
     return nil;
+}
+
+/*
+    1- Nisy sync nampiakatra na nampidina 
+    2- Nisy sihgting natao locked=YES
+    3- Dia avy eo mety nisy call na SMS na error na lasa inactive ilay app
+    4- Dia mila averin locked = NO indray ny sighting
+ */
++(void) unlockSightings:(NSInteger)uid{
+    if(uid){
+         NSString *query = [NSString stringWithFormat:@" UPDATE $T SET _locked = '0' WHERE _uid = '%li' ",(long)uid];
+        [self executeUpdateQuery:query];
+    }
 }
 
 

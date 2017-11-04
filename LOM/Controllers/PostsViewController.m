@@ -119,6 +119,7 @@
         
         NSString * sessionName = [appDelegate _sessionName];
         NSString * sessionID   = [appDelegate _sessid];
+        NSInteger   uid        = [appDelegate _uid];
         
         self.initialLoad = TRUE;
         
@@ -152,7 +153,7 @@
             }
             //--- Only do this when stillConnected = YES ---//
             if(stillConnected){
-                NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
+                NSArray * notSyncedSightings = [Sightings getNotSyncedSightings:uid];
                 
                 //--- Rehefa vita tanteraka mitsy ny syncWithServer zay vao mampidina ny avy any @ server ---
                 postsViewControllerFunctionCallback callback = ^(void){
@@ -220,10 +221,10 @@
         //[self showActivityScreen];
     }
     
-    NSInteger _uid = appDelegate._uid;
+    NSInteger _uid                 = appDelegate._uid;
     NSArray *  currentUserSighting = [Sightings getSightingsByUID:_uid];
-    NSMutableArray * nodeLists = nil;
-    _sightingsList = nil;
+    NSMutableArray * nodeLists     = nil;
+    _sightingsList                 = nil;
     
     if([currentUserSighting count] > 0 ){
         nodeLists = [NSMutableArray new];
@@ -413,7 +414,10 @@
         NSString * imageBundleName = [sighting.node getSightingImageFullPathName];
         
         //--- Jerena sao dia efa URL ilay fileName ---//
-        NSURL * tempURL = [NSURL URLWithString:sighting.node.field_photo.src];
+        NSString * fileName = sighting.node.field_photo.src;
+        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        
+        NSURL * tempURL = [NSURL URLWithString:fileName];
         
         if(tempURL && tempURL.scheme && tempURL.host){
             
@@ -429,29 +433,30 @@
             
             
         
+    //-- Commented-out on 1 Nov 2017 --> }
+    
+        MWPhoto* photo = [MWPhoto photoWithImage:image];
+        [self.currentPhotos addObject:photo];
+        browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        
+        //browser.navigtionBar.navigationItem.tintColor = ORANGE_COLOR;
+        
+        // Set options
+        browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+        browser.displayNavArrows = YES; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+        browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
+        browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+        browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+        browser.enableGrid = YES; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+        browser.startOnGrid = YES; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+        browser.autoPlayOnAppear = NO; // Auto-play first video
+        
+        [browser setCurrentPhotoIndex:0];
+        
+        
+        [self.navigationController pushViewController:browser animated:YES];
+    
     }
-    
-    MWPhoto* photo = [MWPhoto photoWithImage:image];
-    [self.currentPhotos addObject:photo];
-    browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    
-    //browser.navigtionBar.navigationItem.tintColor = ORANGE_COLOR;
-    
-    // Set options
-    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
-    browser.displayNavArrows = YES; // Whether to display left and right nav arrows on toolbar (defaults to NO)
-    browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
-    browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
-    browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
-    browser.enableGrid = NO; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
-    browser.startOnGrid = NO; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
-    browser.autoPlayOnAppear = NO; // Auto-play first video
-    
-    [browser setCurrentPhotoIndex:0];
-    
-    
-    [self.navigationController pushViewController:browser animated:YES];
-  
 }
 
 #pragma mark MWPhotoBrowserDelegate
@@ -518,19 +523,19 @@
                     && loginResult.user != nil) {
                     
                     
-                    if (rememberMe) {
+                    //if (rememberMe) {
                         [self saveSessId:loginResult.sessid
                              sessionName:loginResult.session_name
                                 andToken:loginResult.token
                                      uid:loginResult.user.uid
                                 userName:userName];
-                    }
+                    //}
                     
-                    appDelegate._currentToken = loginResult.token;
-                    appDelegate._curentUser = loginResult.user;
-                    appDelegate._sessid = loginResult.sessid;
-                    appDelegate._sessionName = loginResult.session_name;
-                    appDelegate._uid    = loginResult.user.uid;
+                    appDelegate._currentToken   = loginResult.token;
+                    appDelegate._curentUser     = loginResult.user;
+                    appDelegate._sessid         = loginResult.sessid;
+                    appDelegate._sessionName    = loginResult.session_name;
+                    appDelegate._uid            = loginResult.user.uid;
 
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self refreshListFromOnlineData];

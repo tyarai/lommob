@@ -333,7 +333,7 @@
         
         NSString * sessionName = [appDelegate _sessionName];
         NSString * sessionID   = [appDelegate _sessid];
-        
+        NSInteger   uid        = [appDelegate _uid];
         
         [appData CheckSession:sessionName sessionID:sessionID viewController:self completeBlock:^(id json, JSONModelError *err) {
             BOOL stillConnected = YES;
@@ -364,7 +364,7 @@
             }
             //--- Only do this when stillConnected = YES ---//
             if(stillConnected){
-                NSArray * notSyncedSightings = [Sightings getNotSyncedSightings];
+                NSArray * notSyncedSightings = [Sightings getNotSyncedSightings:uid];
                 [appData syncWithServer:notSyncedSightings
                                    view:self
                             sessionName:sessionName

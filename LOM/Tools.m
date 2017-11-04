@@ -576,55 +576,61 @@ static float appScale = 1.0;
 
 +(void) showError:(JSONModelError*) err onViewController:(BaseViewController*) view{
     
-    switch (err.code){
-            
-            
-        case -1009:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"not_connected_to_the_internet",@"")];
-            
-            [view presentViewController:alert animated:YES completion:nil];
-            break;
-        }
-        case -1005:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"network_connection_was_lost",@"")];
-            
-            [view presentViewController:alert animated:YES completion:nil];
-            break;
+    if(err){
+    
+        switch (err.code){
+                
+                
+            case -1009:{
+                UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"not_connected_to_the_internet",@"")];
+                
+                [view presentViewController:alert animated:YES completion:nil];
+                break;
+            }
+            case -1005:{
+                UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"network_connection_was_lost",@"")];
+                
+                [view presentViewController:alert animated:YES completion:nil];
+                break;
+            }
+        
+            case -1001:{
+                UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"timed_out",@"")];
+                [view presentViewController:alert animated:YES completion:nil];
+                break;
+            }
+            case -1003:{
+                UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"server_not_found",@"")];
+                [view presentViewController:alert animated:YES completion:nil];
+                break;
+            }
+            case -1004:{
+                UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"could_not_connect_to_server",@"")];
+                [view presentViewController:alert animated:YES completion:nil];
+                break;
+            }
+            case -1012:{
+                UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"authentication_issue",@"") messsage:NSLocalizedString(@"wrong_password_username",@"")];
+                [view presentViewController:alert animated:YES completion:nil];
+                break;
+            }
+            case 2:{
+                UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"signupTitle",@"") messsage:NSLocalizedString(@"signupExistingNameOrMail",@"")];
+                
+                [view presentViewController:alert animated:YES completion:nil];
+                break;
+            }
+                
+                
+            default:{
+                UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:@"There was an unknown error!"];
+                NSString *error = [NSString stringWithFormat:@" [Tools ShowError()] Unknown error :%@",err.description];
+                NSLog(@"%@", error);
+                [view presentViewController:alert animated:YES completion:nil];
+                break;
+            }
         }
     
-        case -1001:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"timed_out",@"")];
-            [view presentViewController:alert animated:YES completion:nil];
-            break;
-        }
-        case -1003:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"server_not_found",@"")];
-            [view presentViewController:alert animated:YES completion:nil];
-            break;
-        }
-        case -1004:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"network_issue",@"") messsage:NSLocalizedString(@"could_not_connect_to_server",@"")];
-            [view presentViewController:alert animated:YES completion:nil];
-            break;
-        }
-        case -1012:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"authentication_issue",@"") messsage:NSLocalizedString(@"wrong_password_username",@"")];
-            [view presentViewController:alert animated:YES completion:nil];
-            break;
-        }
-        case 2:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:NSLocalizedString(@"signupTitle",@"") messsage:NSLocalizedString(@"signupExistingNameOrMail",@"")];
-            
-            [view presentViewController:alert animated:YES completion:nil];
-            break;
-        }
-            
-            
-        default:{
-            UIAlertController* alert = [Tools createAlertViewWithTitle:@"Lemurs of Madagascar" messsage:@"There was an unknown error!"];
-            [view presentViewController:alert animated:YES completion:nil];
-            break;
-        }
     }
     
     if (view.refreshControl){

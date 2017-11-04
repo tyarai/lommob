@@ -46,9 +46,9 @@
 
 + (NSArray*) getSightingsLike:(NSString*) strValue withUID:(NSInteger) uid;
 + (NSArray*) getAllSightings;
-+ (NSArray*) getNotSyncedSightings;
++ (NSArray*) getNotSyncedSightings:(NSInteger)uid;
 + (void) emptySightingsTable;
 + (long) observationSumBySpeciesNID:(NSInteger) speciesNID;
 + (NSArray*) getSightingsByUID:(NSInteger) uid;
-
++(void) unlockSightings:(NSInteger)uid;
 @end

@@ -13,6 +13,7 @@
 #import "FileResult.h"
 #import "Constants.h"
 #import "Species.h"
+#import "AppDelegate.h"
 
 @implementation AppData
 
@@ -441,9 +442,15 @@ static AppData* _instance;
             
             if(sighting._deleted == NO){
             
-                NSURL * url         = nil;
-                NSString* fileName  = sighting._photoFileNames;
-                //-- Jerena sao efa URL ilay fileName ---
+                NSURL * url             = nil;
+                NSString* fileName      = sighting._photoFileNames;
+                NSData *data            = nil;
+                NSUInteger fileSize     = 0;
+                UIImage *img            = nil;
+                NSString * _base64Image = nil;
+                
+                //----------- Jerena sao efa URL ilay fileName --------
+                fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
                 NSURL * tempURL     = [NSURL URLWithString:fileName];
                 
                 if(tempURL && tempURL.scheme && tempURL.host){
@@ -453,14 +460,15 @@ static AppData* _instance;
                     url = [NSURL fileURLWithPath: fullPath];
                 }
                 
-                NSData *data = [NSData dataWithContentsOfURL:url];
-                NSUInteger fileSize  = [data length];
-                UIImage *img = [[UIImage alloc] initWithData:data];
-                NSString * _base64Image = [Tools base64:img];
-
                 
                 //---- Create sighting on the server --//
                 if(sighting._isLocal && !sighting._isSynced){
+                    
+                        data = [NSData dataWithContentsOfURL:url];
+                        fileSize  = [data length];
+                        img = [[UIImage alloc] initWithData:data];
+                        _base64Image = [Tools base64:img];
+                    
                    
                         [self uploadImage:_base64Image
                                  fileName:fileName
@@ -505,11 +513,14 @@ static AppData* _instance;
                                         else{
                                             //-- Azo ny NID an'ity sighting vaovao ity ----
                                             NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
-                                            sighting._nid = newNID;
-                                            sighting._isSynced = YES;
-                                            sighting._isLocal  = NO;
-                                            sighting._locked   = NO; // Unlock the row
-                                            [sighting save];
+                                            
+                                            if(newNID > 0){
+                                                sighting._nid = newNID;
+                                                sighting._isSynced = YES;
+                                                sighting._isLocal  = NO;
+                                                sighting._locked   = NO; // Unlock the row
+                                                [sighting save];
+                                            }
                                            
                                             
                                         }
@@ -528,7 +539,12 @@ static AppData* _instance;
                     if(sighting._hasPhotoChanged){
                         //--- Update October 31 2017 ---
                         // Raha niova ny sarin'ilay sighting ---//
-                    
+                        
+                        data            = [NSData dataWithContentsOfURL:url];
+                        fileSize        = [data length];
+                        img             = [[UIImage alloc] initWithData:data];
+                        _base64Image    = [Tools base64:img];
+                        
                         [self uploadImage:_base64Image
                                  fileName:fileName
                                  fileSize:(NSUInteger)fileSize
@@ -780,14 +796,15 @@ static AppData* _instance;
 /*
     Sync - Create Sighting on server
  */
-/*
+
+
 -(void) saveSighting:(Sightings*)sighting
               fileID:(NSInteger)fid
          sessionName:(NSString*)sessionName
           sessionId :(NSString*)sessionId
 
        completeBlock:(JSONObjectBlock) completeBlock{
-    
+
     if(sighting && sessionName && sessionId && fid != 0){
         
         [self buildPOSTHeader];
@@ -800,6 +817,7 @@ static AppData* _instance;
         NSString * placeName                = sighting._placeName;
         float latitude                      = sighting._placeLatitude;
         float longitude                     = sighting._placeLongitude;
+        float altitude                      = sighting._placeAltitude;
         NSInteger  count                    = sighting._speciesCount;
         NSInteger  isLocal                  = NO;//sighting._isLocal;
         NSInteger  isSynced                 = (int)YES;
@@ -808,41 +826,43 @@ static AppData* _instance;
         NSTimeInterval _interval            = dateTimeStamp;
         NSDate *vDate                       = [NSDate dateWithTimeIntervalSince1970:_interval];
         NSDateFormatter *_formatter         =[[NSDateFormatter alloc]init];
-        [_formatter setDateFormat:@"y-M-d"];
+        [_formatter setDateFormat:@"yyyy-MM-dd"];
         NSString * strDate                  = [_formatter stringFromDate:vDate];
         
-        NSDictionary *params                    = [[NSDictionary alloc] init];
-        
+        //NSString *body                      = [NSString stringWithFormat:@"type=publication&language=und"];
+        NSString *body                      = [NSString stringWithFormat:@""];
         AppDelegate * appDelegate           = [Tools getAppDelegate];
-        NSInteger       uid                 = appDelegate._uid;
-    
-        [params setValue:sightingTitle forKey:@"title"];
-        [params setValue:uuid forKey:@"uuid"];
-        [params setValue:uid forKey:@"uid"];
-        [params setValue:1 forKey:@"status"];
-        [params setValue:uuid forKey:@"field_uuid"];
-        [params setValue:sightingTitle  @"&body=%@",];
-        [params setValue:placeName @"&field_place_name=%@",];
-        [params setValue:strDate @"&field_date=%@",];
-        [params setValue:speciesNID @"&field_associated_species=%lu",];
-        [params setValue:latitude @"&field_lat=%5.9f",];
-        [params setValue:longitude @"&field_long=%5.9f",];
+        long uid                            = (long)appDelegate._uid;
         
-        [params setValue:isLocal @"&field_is_local=%lu",];
-        [params setValue:isSynced @"&field_is_synced=%lu",];
-        [params setValue:count @"&field_count=%lu",];
-        [params setValue:fid @"&field_photo=%lu",];
-        [params setValue:place_name_reference_nid @"&field_place_name_reference=%lu",];
+        body = [body stringByAppendingFormat:@"title=%@",sightingTitle];
+        body = [body stringByAppendingFormat:@"&uuid=%@",uuid];
+        body = [body stringByAppendingFormat:@"&uid=%li",uid];
+        body = [body stringByAppendingFormat:@"&status=%i",1];
+        body = [body stringByAppendingFormat:@"&field_uuid=%@",uuid];
+        body = [body stringByAppendingFormat:@"&body=%@",sightingTitle];
+        body = [body stringByAppendingFormat:@"&field_place_name=%@",placeName];
+        body = [body stringByAppendingFormat:@"&field_date=%@",strDate];
+        body = [body stringByAppendingFormat:@"&field_associated_species=%li",(long)speciesNID];
+        body = [body stringByAppendingFormat:@"&field_lat=%5.8f",latitude];
+        body = [body stringByAppendingFormat:@"&field_long=%5.8f",longitude];
+        body = [body stringByAppendingFormat:@"&field_altitude=%4.0f",altitude];
         
-        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NEW_SIGHTING,];
-        [JSONHTTPClient postJSONFromURLWithString:url
-                                           params:params
-                                       completion:completeBlock];
+        body = [body stringByAppendingFormat:@"&field_is_local=%lu",(long)isLocal];
+        body = [body stringByAppendingFormat:@"&field_is_synced=%lu",(long)isSynced];
+        body = [body stringByAppendingFormat:@"&field_count=%lu",(long)count];
+        body = [body stringByAppendingFormat:@"&field_photo=%lu",(long)fid];
+        body = [body stringByAppendingFormat:@"&field_place_name_reference=%lu",(long)place_name_reference_nid];
+        
+        
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NEW_SIGHTING];
+        [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
         
     }
+    
 }
-*/
 
+
+/*
 
 -(void) saveSighting:(Sightings*)sighting
               fileID:(NSInteger)fid
@@ -897,9 +917,10 @@ static AppData* _instance;
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NODE_ENDPOINT];
         [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
         
+        
     }
 }
-
+*/
 
 /*
  Sync-Update Sighting to server miaraka amin'ny fid (izany hoe nisy sary niova izany tafiakatra any @ server)
