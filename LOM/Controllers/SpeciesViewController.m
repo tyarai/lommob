@@ -115,19 +115,22 @@
                     && loginResult.user != nil) {
                     
                     
-                    if (rememberMe) {
-                        [Tools saveSessId:loginResult.sessid
+                    [Tools     saveSessId:loginResult.sessid
                               sessionName:loginResult.session_name
                                  andToken:loginResult.token
                                       uid:loginResult.user.uid
-                                 userName:userName];
-                    }
+                                 userName:loginResult.user.name
+                                 userMail:loginResult.user.mail
+                     ];
+
                     
-                    appDelegate._currentToken = loginResult.token;
-                    appDelegate._curentUser = loginResult.user;
-                    appDelegate._sessid = loginResult.sessid;
-                    appDelegate._sessionName = loginResult.session_name;
-                    appDelegate._uid    = loginResult.user.uid;
+                    appDelegate._currentToken   = loginResult.token;
+                    appDelegate._curentUser     = loginResult.user;
+                    appDelegate._sessid         = loginResult.sessid;
+                    appDelegate._sessionName    = loginResult.session_name;
+                    appDelegate._uid            = loginResult.user.uid;
+                    appDelegate._userName       = loginResult.user.name;
+                    appDelegate._userMail       = loginResult.user.mail;
                     
                     [appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
                     

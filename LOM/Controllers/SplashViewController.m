@@ -86,13 +86,13 @@
                     && loginResult.user != nil) {
                     
                     
-                    if (rememberMe) {
-                        [Tools saveSessId:loginResult.sessid
+                    [Tools     saveSessId:loginResult.sessid
                               sessionName:loginResult.session_name
                                  andToken:loginResult.token
                                       uid:loginResult.user.uid
-                                 userName:userName];
-                    }
+                                 userName:loginResult.user.name
+                                 userMail:loginResult.user.mail
+                     ];
                     
                     appDelegate._currentToken = loginResult.token;
                     appDelegate._curentUser = loginResult.user;

@@ -670,7 +670,10 @@ static float appScale = 1.0;
         sessionName:(NSString*) session_name
            andToken:(NSString*) token
                 uid:(NSInteger) uid
-           userName:(NSString*) userName{
+           userName:(NSString*) userName
+           userMail:(NSString*) userMail
+
+{
     
     NSString * strUid = [NSString stringWithFormat:@"%ld",(long)uid];
     [Tools setUserPreferenceWithKey:KEY_SESSID andStringValue:sessid];
@@ -678,7 +681,9 @@ static float appScale = 1.0;
     [Tools setUserPreferenceWithKey:KEY_TOKEN andStringValue:token];
     [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
     [Tools setUserPreferenceWithKey:KEY_USERNAME andStringValue:userName];
+    [Tools setUserPreferenceWithKey:KEY_USERMAIL andStringValue:userMail];
 
+ 
 }
 
 

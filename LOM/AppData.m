@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import "Species.h"
 #import "AppDelegate.h"
+#import "Comment.h"
 
 @implementation AppData
 
@@ -424,7 +425,8 @@ static AppData* _instance;
                   view:(id)vc
            sessionName:(NSString*)sessionName
              sessionID:(NSString*) sessionID
-              callback:(postsViewControllerFunctionCallback)func{
+              //callback:(postsViewControllerFunctionCallback)func{
+             callbacks:(NSArray<postsViewControllerFunctionCallback>*) callbacks{
     
     if(sightings != nil &&  [sightings count] > 0){
         
@@ -520,6 +522,8 @@ static AppData* _instance;
                                                 sighting._isLocal  = NO;
                                                 sighting._locked   = NO; // Unlock the row
                                                 [sighting save];
+                                                
+                                                //[self syncSightingComments:sighting]; //Sync comments
                                             }
                                            
                                             
@@ -600,6 +604,8 @@ static AppData* _instance;
                                                               sighting._hasPhotoChanged = NO;
                                                               [sighting save];
                                                              
+                                                              //[self syncSightingComments:sighting]; //Sync comments
+
                                                           
                                                           }
                                         }];
@@ -682,8 +688,12 @@ static AppData* _instance;
         
     }else{
         //---- Raha tsy misy ny sightings ho alefa miakatra dia tonga dia asaina mi-load ny online avy hatrany --/
-        if(func != nil){
+        /*if(func != nil){
             func();
+        }*/
+        
+        for(int i = 0 ; i < [callbacks count]; i++){
+            callbacks[i]();
         }
     }
     
@@ -695,9 +705,90 @@ static AppData* _instance;
             appDelegate.isSyncing = NO;
         }
     });*/
-    
+}
 
+/*
+ Sync - Create Comment on server
+ */
+
+
+-(void)  saveComment:(Comment*)comment
+         sessionName:(NSString*)sessionName
+          sessionId :(NSString*)sessionId
+
+       completeBlock:(JSONObjectBlock) completeBlock{
     
+    if(comment && sessionName && sessionId){
+        
+        [self buildPOSTHeader];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionId];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        NSString * uuid                     = comment._uuid;
+        NSInteger uid                       = comment._uid;
+        int status                          = comment._status;
+        NSString* commentbody               = comment._commentBody;
+        NSInteger nid                       = comment._nid;
+        
+        
+        
+        NSString *body                      = [NSString stringWithFormat:@""];
+        NSString*subject                    = @"";
+        
+        
+        body = [body stringByAppendingFormat:@"body=%@",commentbody];
+        body = [body stringByAppendingFormat:@"&uuid=%@",uuid];
+        body = [body stringByAppendingFormat:@"&uid=%li",uid];
+        body = [body stringByAppendingFormat:@"&nid=%li",nid];
+        body = [body stringByAppendingFormat:@"&status=%i",status];
+        body = [body stringByAppendingFormat:@"&subject=%@",subject];
+        
+        
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NEW_COMMENT];
+        [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
+        
+    }
+    
+}
+
+
+
+-(void) syncComments:(NSArray*)notSyncedComments
+                view:(id)vc
+         sessionName:(NSString*)sessionName
+           sessionID:(NSString*) sessionID{
+    
+    if(notSyncedComments && [notSyncedComments count] > 0){
+        
+        
+        [self buildPOSTHeader];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        for (Comment * comment in notSyncedComments) {
+            
+            [self saveComment:comment
+                  sessionName:sessionName
+                    sessionId:sessionID completeBlock:^(id json, JSONModelError *err) {
+               
+                        if(err == nil && json != nil){
+                            
+                            NSDictionary * retDict = (NSDictionary*)json;
+                            NSInteger newCID       = [[retDict valueForKey:@"cid"] integerValue];
+                            
+                            if(newCID > 0){
+                                comment._locked = (int)NO;
+                                comment._synced = (int)YES;
+                                comment._local  = (int)NO;
+                                comment._cid    = newCID;
+                                [comment save];
+                            }
+                            
+                        }
+            }];
+            
+        }
+    }
 }
 
 -(NSString*) getImageFullPath:(NSString*)file{

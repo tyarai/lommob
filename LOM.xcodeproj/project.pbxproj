@@ -86,6 +86,10 @@
 		4C3BB16B1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */; };
 		4C3BB1711ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */; };
 		4C3C71231F8FF93300DB697D /* ExtinctLemursNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3C71221F8FF93300DB697D /* ExtinctLemursNewViewController.m */; };
+		4C4A163A1FB094EB00C3B3D2 /* CommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A16391FB094EB00C3B3D2 /* CommentTableViewController.m */; };
+		4C4A163D1FB0993C00C3B3D2 /* CommenEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A163C1FB0993C00C3B3D2 /* CommenEditViewController.m */; };
+		4C4A16401FB0A1E100C3B3D2 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A163F1FB0A1E100C3B3D2 /* Comment.m */; };
+		4C4A16431FB0B87200C3B3D2 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4A16421FB0B87200C3B3D2 /* CommentTableViewCell.m */; };
 		4C5177491C21EA5700BBD0B1 /* SpeciesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */; };
 		4C59AD911C15F57800EA74C5 /* SpeciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59AD901C15F57800EA74C5 /* SpeciesViewController.m */; };
 		4C59AD951C15F59A00EA74C5 /* FamiliesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C59AD941C15F59A00EA74C5 /* FamiliesViewController.m */; };
@@ -1108,6 +1112,14 @@
 		4C3BB1701ECB911800EFD96B /* WatchingSitesSelectorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesSelectorTableViewCell.m; path = Controllers/WatchingSitesSelectorTableViewCell.m; sourceTree = "<group>"; };
 		4C3C71211F8FF93300DB697D /* ExtinctLemursNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtinctLemursNewViewController.h; path = Controllers/ExtinctLemursNewViewController.h; sourceTree = "<group>"; };
 		4C3C71221F8FF93300DB697D /* ExtinctLemursNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtinctLemursNewViewController.m; path = Controllers/ExtinctLemursNewViewController.m; sourceTree = "<group>"; };
+		4C4A16381FB094EB00C3B3D2 /* CommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentTableViewController.h; path = Controllers/CommentTableViewController.h; sourceTree = "<group>"; };
+		4C4A16391FB094EB00C3B3D2 /* CommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentTableViewController.m; path = Controllers/CommentTableViewController.m; sourceTree = "<group>"; };
+		4C4A163B1FB0993C00C3B3D2 /* CommenEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommenEditViewController.h; path = Controllers/CommenEditViewController.h; sourceTree = "<group>"; };
+		4C4A163C1FB0993C00C3B3D2 /* CommenEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommenEditViewController.m; path = Controllers/CommenEditViewController.m; sourceTree = "<group>"; };
+		4C4A163E1FB0A1E100C3B3D2 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = Models/Database/Comment.h; sourceTree = "<group>"; };
+		4C4A163F1FB0A1E100C3B3D2 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = Models/Database/Comment.m; sourceTree = "<group>"; };
+		4C4A16411FB0B87200C3B3D2 /* CommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentTableViewCell.h; path = Controllers/CommentTableViewCell.h; sourceTree = "<group>"; };
+		4C4A16421FB0B87200C3B3D2 /* CommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentTableViewCell.m; path = Controllers/CommentTableViewCell.m; sourceTree = "<group>"; };
 		4C5177471C21EA5700BBD0B1 /* SpeciesDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeciesDetailsViewController.h; path = Controllers/SpeciesDetailsViewController.h; sourceTree = "<group>"; };
 		4C5177481C21EA5700BBD0B1 /* SpeciesDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeciesDetailsViewController.m; path = Controllers/SpeciesDetailsViewController.m; sourceTree = "<group>"; };
 		4C59AD8F1C15F57800EA74C5 /* SpeciesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeciesViewController.h; path = Controllers/SpeciesViewController.h; sourceTree = "<group>"; };
@@ -2430,6 +2442,8 @@
 				B4905CCD1D817BFD0059FA94 /* LemurLifeListTable.m */,
 				B4C495551D91274F00B829F5 /* Sightings.h */,
 				B4C495561D91274F00B829F5 /* Sightings.m */,
+				4C4A163E1FB0A1E100C3B3D2 /* Comment.h */,
+				4C4A163F1FB0A1E100C3B3D2 /* Comment.m */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -3280,6 +3294,7 @@
 		4C74F2841C06381A00543A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4CAC08C51FB06ADB003144C9 /* Comment */,
 				4C28169F1F9ED923003D9687 /* TermsOfUse */,
 				4CC1F3621F99F29400714460 /* Privacy Policy */,
 				4C3B541C1F7E9A3B0039EBCD /* App Instructions */,
@@ -3430,6 +3445,19 @@
 				B4D913591D8CB5FC00DDC295 /* LOM.sqlite */,
 			);
 			name = Database;
+			sourceTree = "<group>";
+		};
+		4CAC08C51FB06ADB003144C9 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				4C4A16381FB094EB00C3B3D2 /* CommentTableViewController.h */,
+				4C4A16391FB094EB00C3B3D2 /* CommentTableViewController.m */,
+				4C4A163B1FB0993C00C3B3D2 /* CommenEditViewController.h */,
+				4C4A163C1FB0993C00C3B3D2 /* CommenEditViewController.m */,
+				4C4A16411FB0B87200C3B3D2 /* CommentTableViewCell.h */,
+				4C4A16421FB0B87200C3B3D2 /* CommentTableViewCell.m */,
+			);
+			name = Comment;
 			sourceTree = "<group>";
 		};
 		4CBAEAE21BFA546B0011139C = {
@@ -4781,6 +4809,7 @@
 				B4C599AF1C70D6E100C4B99A /* IntroPageContentViewController.m in Sources */,
 				B46779311D46211700618410 /* LemurLifeListNode.m in Sources */,
 				B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */,
+				4C4A163D1FB0993C00C3B3D2 /* CommenEditViewController.m in Sources */,
 				4CBAEAF01BFA546B0011139C /* main.m in Sources */,
 				4C74F2991C0638B900543A7F /* URLConnect.m in Sources */,
 				4C74F2B21C0639E400543A7F /* Species.m in Sources */,
@@ -4800,10 +4829,12 @@
 				4C0BC9EB1C36F7C00062082B /* WatchingSiteDetailsViewController.m in Sources */,
 				4C74F28E1C06387A00543A7F /* NSString+Sha1.m in Sources */,
 				B475F1861DAA0401006A12EF /* SightingsInfoViewController.m in Sources */,
+				4C4A163A1FB094EB00C3B3D2 /* CommentTableViewController.m in Sources */,
 				B4C495571D91274F00B829F5 /* Sightings.m in Sources */,
 				4C59ADA51C15F64900EA74C5 /* AboutViewController.m in Sources */,
 				4CF3E18B1CF2B4B1003010A5 /* PostsTableViewCell.m in Sources */,
 				4C74F2A31C0638EA00543A7F /* FCModelDatabaseQueue.m in Sources */,
+				4C4A16431FB0B87200C3B3D2 /* CommentTableViewCell.m in Sources */,
 				B4B694121DCE3D800078F535 /* PostEditTableViewController.m in Sources */,
 				B4AF34241C9A801F0039DEBB /* ExtinctLemursMenu.m in Sources */,
 				4C74F2921C0638AE00543A7F /* AppUtilities.m in Sources */,
@@ -4824,6 +4855,7 @@
 				4C24A9A71ECC958500F475DA /* SettingsTableViewController.m in Sources */,
 				4C85FF761C380E7300D6C233 /* LemurLifeListTableViewCell.m in Sources */,
 				B4AF34211C9A71910039DEBB /* ExtinctLemurs.m in Sources */,
+				4C4A16401FB0A1E100C3B3D2 /* Comment.m in Sources */,
 				4C74F2A21C0638EA00543A7F /* FCModelCachedObject.m in Sources */,
 				B467792E1D46209800618410 /* LemurLifeList.m in Sources */,
 				4C74F28D1C06387A00543A7F /* Reachability.m in Sources */,

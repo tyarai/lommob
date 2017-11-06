@@ -24,6 +24,7 @@
 #import "SpeciesDetailsViewController.h"
 #import "SightingDataTableViewController.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import "Comment.h"
 
 
 
@@ -88,21 +89,7 @@
         appDelegate.showActivity = NO;
         [self syncWithServer];
         
-        //---- Update 30 Oct 2017 ---//
-        /*dispatch_async(appDelegate.serialSyncQueue,^{
-            
-           if(! appDelegate.isSyncing){
-                self.pullToRefresh = YES;
-                appDelegate.showActivity = NO;
-                appDelegate.isSyncing = YES;
-                [self syncWithServer];
-            }else{
-                [self.refreshControl endRefreshing];
-                //appDelegate.showActivity = NO;
-            }
-       });*/
-        
-    }
+   }
     
 }
      
@@ -153,18 +140,29 @@
             }
             //--- Only do this when stillConnected = YES ---//
             if(stillConnected){
+                
                 NSArray * notSyncedSightings = [Sightings getNotSyncedSightings:uid];
+                NSArray * notSyncedComments  = [Comment getNotSyncedComments:uid];
                 
                 //--- Rehefa vita tanteraka mitsy ny syncWithServer zay vao mampidina ny avy any @ server ---
-                postsViewControllerFunctionCallback callback = ^(void){
+                postsViewControllerFunctionCallback loadOnlineSightingscallback = ^(void){
                     [self loadOnlineSightings];
                 };
+                
+                postsViewControllerFunctionCallback syncComments = ^(void){
+                    [self syncComments:notSyncedComments
+                           sessionName:sessionName
+                             sessionID:sessionID];
+                };
+                
+                NSArray<postsViewControllerFunctionCallback> * callBacks =  @[syncComments,loadOnlineSightingscallback];
                 
                 [appData syncWithServer:notSyncedSightings
                                    view:self
                             sessionName:sessionName
                               sessionID:sessionID
-                               callback:callback
+                               //callback:loadOnlineSightingscallback
+                              callbacks:callBacks
                  ];
                 
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
@@ -178,9 +176,19 @@
         }];
         
     }
+    
+}
 
-    
-    
+#pragma mark -- Sync Comment
+
+-(void)syncComments:(NSArray*)notSyncedComments
+        sessionName:sessionName
+          sessionID:sessionID{
+ 
+    [appData syncComments:notSyncedComments
+                     view:self
+              sessionName:sessionName
+                sessionID:sessionID];
     
 }
 
@@ -301,24 +309,28 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    SightingDataTableViewController* dest = (SightingDataTableViewController*) [segue destinationViewController];
-    if(!isAdding){
-        dest.title =  NSLocalizedString(@"edit_sighting_title",@"");
-        //dest.publication = self.selectedPublication;
-        
-    }else{
-        //** Rehefa hanao new Sighting dia atao by default izay species voalohany no atao current
-        NSArray<Species*>* _allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
-        // local variable ao @ Class BaseViewController ny appDelegate --//
-        appDelegate.appDelegateCurrentSpecies = (Species*)_allSpecies[0];
-        
-        //** Atao nil ihany koa ny publication satri vao hanao vaovao **//
-        appDelegate.appDelegateCurrentPublication = nil;
-        
-        dest.title  = NSLocalizedString(@"new_sighting_title",@"");
+    
+    if([[segue identifier] isEqualToString:@"showPost"]){
+    
+        SightingDataTableViewController* dest = (SightingDataTableViewController*) [segue destinationViewController];
+        if(!isAdding){
+            dest.title =  NSLocalizedString(@"edit_sighting_title",@"");
+            //dest.publication = self.selectedPublication;
+            
+        }else{
+            //** Rehefa hanao new Sighting dia atao by default izay species voalohany no atao current
+            NSArray<Species*>* _allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
+            // local variable ao @ Class BaseViewController ny appDelegate --//
+            appDelegate.appDelegateCurrentSpecies = (Species*)_allSpecies[0];
+            
+            //** Atao nil ihany koa ny publication satri vao hanao vaovao **//
+            appDelegate.appDelegateCurrentPublication = nil;
+            
+            dest.title  = NSLocalizedString(@"new_sighting_title",@"");
+        }
+        dest.delegate = self;
+        dest.isAdding = isAdding;
     }
-    dest.delegate = self;
-    dest.isAdding = isAdding;
 }
 
 #pragma PostTableViewCellDelegate
@@ -523,19 +535,27 @@
                     && loginResult.user != nil) {
                     
                     
-                    //if (rememberMe) {
-                        [self saveSessId:loginResult.sessid
+                    /*[self     saveSessId:loginResult.sessid
                              sessionName:loginResult.session_name
                                 andToken:loginResult.token
                                      uid:loginResult.user.uid
-                                userName:userName];
-                    //}
+                                userName:userName];*/
+                    
+                    [Tools saveSessId:loginResult.sessid
+                          sessionName:loginResult.session_name
+                             andToken:loginResult.token
+                                  uid:loginResult.user.uid
+                             userName:loginResult.user.name
+                             userMail:loginResult.user.mail
+                     ];
                     
                     appDelegate._currentToken   = loginResult.token;
                     appDelegate._curentUser     = loginResult.user;
                     appDelegate._sessid         = loginResult.sessid;
                     appDelegate._sessionName    = loginResult.session_name;
                     appDelegate._uid            = loginResult.user.uid;
+                    appDelegate._userName       = loginResult.user.name;
+                    appDelegate._userMail       = loginResult.user.mail;
 
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self refreshListFromOnlineData];

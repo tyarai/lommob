@@ -16,6 +16,8 @@
 #import "UIImage+Resize.h"
 #import "PostEditTableViewController.h"
 #import "LemursWatchingSites.h"
+#import "PostsViewController.h"
+#import "Comment.h"
 
 @implementation PostsTableViewCell{
     WYPopoverController *popoverController;
@@ -76,132 +78,155 @@
 
 - (void) displaySighting:(Publication*) publication postsTableViewController:(id)tableView{
     
-    currentPublication = publication;
-    postsTableViewController = tableView;
+    if(publication){
     
-    NSString * syncedText = @"";
-    if (!publication.isSynced && publication.isLocal) {
-        syncedText = NSLocalizedString(@"not_synced_sighting",@"");;
-    }
-    self.syncInfo.text = syncedText;
-    
-    if (![Tools isNullOrEmptyString:publication.species]) {
-        self.lblSpecies.text = publication.species;
-    }
-    
-    if (![Tools isNullOrEmptyString:publication.title]) {
-        self.lblTitle.text = publication.title;
-    }
-    
-    if (![Tools isNullOrEmptyString:publication.date]) {
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-        NSDate *date = [dateFormat dateFromString:publication.date];
-        [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSString * strDate = [dateFormat stringFromDate:date];
-        self.lblDate.text = strDate;
-    }
-    
-    if(![Tools isNullOrEmptyString:publication.place_name]){
-        self.lblPlaceName.text = publication.place_name;
-    }
-    
-       
-    NSString * strCount = nil;
-    if(publication.count > 0){
-        strCount = [NSString stringWithFormat:@"Number observed: %ld",(long)publication.count];
+        currentPublication       = publication;
+        postsTableViewController = tableView;
         
-    }else{
-        strCount = [NSString stringWithFormat:@"%@",@""];
+        NSString * syncedText = @"";
+        if (!publication.isSynced && publication.isLocal) {
+            syncedText = NSLocalizedString(@"not_synced_sighting",@"");;
+        }
+        self.syncInfo.text = syncedText;
         
-    }
-    self.lblSumberObserved.text = strCount;
-    
-    NSInteger speciesNid = publication.speciesNid;
-    speciesNID = speciesNid;
-    
-    
-    if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]){
+        if (![Tools isNullOrEmptyString:publication.species]) {
+            self.lblSpecies.text = publication.species;
+        }
         
-       
-        //if(publication.isLocal || !publication.isSynced){
+        NSArray * sightingComments = [Comment getCommentsByNID:publication.nid];
+        NSInteger count            = [sightingComments count];
+        NSString * commentCount    = @"";
+        
+        if(count > 0){
+           commentCount = [NSString stringWithFormat:@"%lu %@",(long)count,NSLocalizedString(@"comment_title", @"")];
+        }
+        self.comment_count.text    = commentCount;
+
+        NSArray * newComments       = [Comment getCommentsByNID:publication.nid new:(int)YES];
+        count                       = [newComments count];
+        NSString * newCommentText   = @"" ;
+        
+        if(count > 0){
+            newCommentText = [NSString stringWithFormat:@"%lu",(long)count];
+        }
+        self.count_new_comment.text        = newCommentText;
+
+        
+        
+        if (![Tools isNullOrEmptyString:publication.title]) {
+            self.lblTitle.text = publication.title;
+        }
+        
+        if (![Tools isNullOrEmptyString:publication.date]) {
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+            NSDate *date = [dateFormat dateFromString:publication.date];
+            [dateFormat setTimeZone:[NSTimeZone systemTimeZone]];
+            [dateFormat setDateFormat:@"yyyy-MM-dd"];
+            NSString * strDate = [dateFormat stringFromDate:date];
+            self.lblDate.text = strDate;
+        }
+        
+        if(![Tools isNullOrEmptyString:publication.place_name]){
+            self.lblPlaceName.text = publication.place_name;
+        }
+        
+           
+        NSString * strCount = nil;
+        if(publication.count > 0){
+            strCount = [NSString stringWithFormat:@"Number observed: %ld",(long)publication.count];
             
-            NSFileManager * fileManager = [NSFileManager defaultManager];
+        }else{
+            strCount = [NSString stringWithFormat:@"%@",@""];
+            
+        }
+        self.lblSumberObserved.text = strCount;
         
-            //-- T@ nampiditra ilay fileName dia natao escape ny "'" character dia lasa "''"
-            // Dia mila unescape 
-            NSString * unescapedFileName = [publication.field_photo.src stringByReplacingOccurrencesOfString:@"''" withString:@"'"];
-        
-            //--- Manao error ilay NSTempUrl any @ PostCellViewController raha vao misy 'space' ilay url dia tsy maintsy solona '%20' ny space eto
-            unescapedFileName = [unescapedFileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-            NSURL * tempURL = [NSURL URLWithString:unescapedFileName];
-            //--- Jerena sao dia efa URL ilay fileName ---//
+        NSInteger speciesNid = publication.speciesNid;
+        speciesNID = speciesNid;
         
         
-            if(tempURL && tempURL.scheme && tempURL.host){
-                /*[self.imgPhoto setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (publication.field_photo != nil && ![Tools isNullOrEmptyString:publication.field_photo.src]){
+            
+           
+            //if(publication.isLocal || !publication.isSynced){
+                
+                NSFileManager * fileManager = [NSFileManager defaultManager];
+            
+                //-- T@ nampiditra ilay fileName dia natao escape ny "'" character dia lasa "''"
+                // Dia mila unescape 
+                NSString * unescapedFileName = [publication.field_photo.src stringByReplacingOccurrencesOfString:@"''" withString:@"'"];
+            
+                //--- Manao error ilay NSTempUrl any @ PostCellViewController raha vao misy 'space' ilay url dia tsy maintsy solona '%20' ny space eto
+                unescapedFileName = [unescapedFileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+                NSURL * tempURL = [NSURL URLWithString:unescapedFileName];
+                //--- Jerena sao dia efa URL ilay fileName ---//
+            
+            
+                if(tempURL && tempURL.scheme && tempURL.host){
+                    /*[self.imgPhoto setImageWithURL:tempURL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                        if (error != nil) {
+                            [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                        }
+                        
+                    } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];*/
+                    //UIImage * _placeHolder = [UIImage imageNamed:@"ico_default_specy"];
+                    
+                    [self.imgPhoto setImageWithURL:tempURL
+                                  placeholderImage:nil
+                                           options:SDWebImageRetryFailed
+                       usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                    
+                    
+               
+                     
+                }else{
+                
+                    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+                    NSString *documentsDirectory = [paths objectAtIndex:0];
+                    NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:publication.field_photo.src];
+                    
+                    UIImage *img = nil;
+                    
+                    if([fileManager fileExistsAtPath:ImagePath]){
+                        NSURL * fileUrl = [NSURL fileURLWithPath:ImagePath];
+                        NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+                        img = [UIImage imageWithData:data];
+                        [self.imgPhoto setImage:img];
+                    }else{
+                        
+                        @try {
+                            //--- Ilay profile photo no lasa photo satria tsy naka sary ilay olona --//
+                            [self.imgPhoto setImage:[UIImage imageNamed:publication.field_photo.src]];
+                        } @catch (NSException *exception) {
+                            NSLog(@"File does not exist");
+                            [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+                        } @finally {
+                            
+                        }
+                        
+                        
+                        
+                    }
+                }
+                
+                
+            /*}else{
+                
+                [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                     if (error != nil) {
                         [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
                     }
                     
-                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];*/
-                //UIImage * _placeHolder = [UIImage imageNamed:@"ico_default_specy"];
-                
-                [self.imgPhoto setImageWithURL:tempURL
-                              placeholderImage:nil
-                                       options:SDWebImageRetryFailed
-                   usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-                
-                
-           
-                 
-            }else{
-            
-                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
-                NSString *documentsDirectory = [paths objectAtIndex:0];
-                NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:publication.field_photo.src];
-                
-                UIImage *img = nil;
-                
-                if([fileManager fileExistsAtPath:ImagePath]){
-                    NSURL * fileUrl = [NSURL fileURLWithPath:ImagePath];
-                    NSData * data = [NSData dataWithContentsOfURL:fileUrl];
-                    img = [UIImage imageWithData:data];
-                    [self.imgPhoto setImage:img];
-                }else{
-                    
-                    @try {
-                        //--- Ilay profile photo no lasa photo satria tsy naka sary ilay olona --//
-                        [self.imgPhoto setImage:[UIImage imageNamed:publication.field_photo.src]];
-                    } @catch (NSException *exception) {
-                        NSLog(@"File does not exist");
-                        [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
-                    } @finally {
-                        
-                    }
-                    
-                    
-                    
-                }
-            }
-            
-            
-        /*}else{
-            
-            [self.imgPhoto setImageWithURL:[NSURL URLWithString: publication.field_photo.src] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (error != nil) {
-                    [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
-                }
-                
-            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 
-        }*/
+            }*/
+            
+        }else{
+            [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
+        }
         
-    }else{
-        [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];
     }
-    
     
 }
 
@@ -225,6 +250,32 @@
         [postViewController loadLocalSightings];
         //[postViewController synWithServer];
     }
+}
+- (IBAction)commentButtonTapped:(id)sender {
+    
+    AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if(appDelagate != nil){
+        
+        appDelagate.appDelegateCurrentPublication = currentPublication;
+        
+        if(currentPublication){
+            [postsTableViewController performSegueWithIdentifier:@"showComment" sender:postsTableViewController];
+        }
+    }
+    
+}
+- (IBAction)favoriteButtonTapped:(id)sender {
+    
+    /*AppDelegate * appDelagate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if(appDelagate != nil){
+        
+        if(currentPublication){
+            [postsTableViewController performSegueWithIdentifier:@"showComment" sender:postsTableViewController];
+        }
+    }*/
+
 }
 
 @end

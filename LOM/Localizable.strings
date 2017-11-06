@@ -64,3 +64,6 @@
 "location_service_global_disabled"="Location service is disabled! Please go to settings and enable it";
 "location_service_app_disabled"="Location service is disabled for this app! Please go to settings and enable location services for Lemurs Of Madagascar";
 "location_error_getting_info"="There was an error retrieving your location";
+"comment_title"="Comments";
+"add_comment_title"="Add new comment";
+"edit_comment_title"="Edit comment";

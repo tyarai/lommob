@@ -369,7 +369,7 @@
                                    view:self
                             sessionName:sessionName
                               sessionID:sessionID
-                               callback:nil];
+                               callbacks:nil];
                  
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
                 

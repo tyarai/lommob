@@ -13,9 +13,9 @@
 
 
 #ifdef DEBUG
-    //#define SERVER @"http://192.168.2.242"
+    #define SERVER @"http://192.168.2.242"
     //#define SERVER @"http://172.20.10.4"
-    #define SERVER @"https://www.lemursofmadagascar.com/html"
+    //#define SERVER @"https://www.lemursofmadagascar.com/html"
 #else
     #define SERVER @"https://www.lemursofmadagascar.com/html"
 #endif
@@ -44,6 +44,7 @@
 #define RESET_SYNCED @"/lom_endpoint/api/v1/services/lom_sighting_services/reset_synced" //Parameters : 'uid' (mandatory) and 'synced_value' (optional)
 
 #define NEW_SIGHTING @"/lom_endpoint/api/v1/services/lom_sighting_services/new_sighting" 
+#define NEW_COMMENT @"/lom_endpoint/api/v1/services/lom_sighting_services/new_comment"
 
 
 
@@ -110,7 +111,8 @@ typedef void (^postsViewControllerFunctionCallback) (void);
                   view:(id)vc
            sessionName:(NSString*)sessionName
              sessionID:(NSString*) sessionID
-              callback:(postsViewControllerFunctionCallback)func;
+              //callback:(postsViewControllerFunctionCallback)func;
+             callbacks:(NSArray<postsViewControllerFunctionCallback>*) callbacks;
 
 -(void)   updateSightingWithNID:(NSInteger)nid
                           Title:(NSString*)title
@@ -144,6 +146,10 @@ typedef void (^postsViewControllerFunctionCallback) (void);
                   andCompletion:(JSONObjectBlock)completeBlock;
 
 
+-(void) syncComments:(NSArray*)notSyncedComments
+                view:(id)vc
+         sessionName:(NSString*)sessionName
+           sessionID:(NSString*) sessionID;
 
 
 @end

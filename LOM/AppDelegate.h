@@ -24,6 +24,8 @@
 @property (strong, nonatomic) NSString *_sessionName;
 @property (strong, nonatomic) NSString *_sessid;
 @property                     NSInteger _uid;
+@property (strong, nonatomic) NSString *_userName;
+@property (strong, nonatomic) NSString *_userMail;
 @property (strong, nonatomic) NSString *_sightingNewTitle;
 @property (strong, nonatomic) NSDate *_sightingNewDate;
 @property  int _sightingNumber;

@@ -230,10 +230,6 @@
                                             style:UIAlertActionStyleDefault
                                             handler:^(UIAlertAction * action) {
                                                 
-                                            //[self dismissViewControllerAnimated:YES completion:nil];
-                                            //BaseViewController * delegate = (BaseViewController*)self.delegate;
-                                            //[delegate dismissViewControllerAnimated:YES completion:nil];
-                                                
                                             }];
 
                 alert.view.tintColor = [UIColor blackColor];

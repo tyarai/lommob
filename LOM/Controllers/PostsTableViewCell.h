@@ -37,7 +37,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPlaceName;
 @property (weak, nonatomic) IBOutlet UIImageView *speciesPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *lblSumberObserved;
+@property (weak, nonatomic) IBOutlet UILabel *comment_count;
 
+@property (weak, nonatomic) IBOutlet UILabel *count_new_comment;
 
 - (void) displaySighting:(Publication*) publication
 postsTableViewController:(id)tableView;

@@ -150,10 +150,14 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor blackColor]];
     
     
-    self._currentToken = [Tools getStringUserPreferenceWithKey:KEY_TOKEN];
-    self._sessionName = [Tools getStringUserPreferenceWithKey:KEY_SESSION_NAME];
-    self._sessid = [Tools getStringUserPreferenceWithKey:KEY_SESSID];
-    self._uid    = [[Tools getStringUserPreferenceWithKey:KEY_UID] integerValue];
+    self._currentToken  = [Tools getStringUserPreferenceWithKey:KEY_TOKEN];
+    self._sessionName   = [Tools getStringUserPreferenceWithKey:KEY_SESSION_NAME];
+    self._sessid        = [Tools getStringUserPreferenceWithKey:KEY_SESSID];
+    self._uid           = [[Tools getStringUserPreferenceWithKey:KEY_UID] integerValue];
+    self._userName      = [Tools getStringUserPreferenceWithKey:KEY_USERNAME];
+    self._userMail      = [Tools getStringUserPreferenceWithKey:KEY_USERMAIL];
+    
+    
     
     self.isSyncing       = NO;
     //self.serialSyncQueue = dispatch_queue_create("lom_sync_with_server", DISPATCH_QUEUE_SERIAL);
