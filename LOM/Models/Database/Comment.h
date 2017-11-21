@@ -24,6 +24,7 @@
 @property (nonatomic) double _modified;
 @property (nonatomic) int    _status;     // 1 = shown 0 = hidden
 @property (nonatomic, strong) NSString* _uuid;
+@property (nonatomic, strong) NSString* _sighting_uuid; // Raha sighting tsy mbola tafiakatra tsy nahazo nid dia ity aloha no apesaina
 @property (nonatomic, strong) NSString* _name;
 @property (nonatomic, strong) NSString* _mail;
 @property (nonatomic, strong) NSString* _language;
@@ -38,7 +39,8 @@
 + (void) resetNewValue:(NSInteger) _nid;
 
 + (NSArray*) getNotSyncedComments:(NSInteger)nid;
-
++ (NSArray*) getNotSyncedCommentsBySightingUUID:(NSString*)uuid;
++ (id) getCommentsByUUID:(NSString*) _sighting_uuid;
 
 
 @end

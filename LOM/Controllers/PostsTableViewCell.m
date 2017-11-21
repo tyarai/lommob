@@ -93,7 +93,13 @@
             self.lblSpecies.text = publication.species;
         }
         
-        NSArray * sightingComments = [Comment getCommentsByNID:publication.nid];
+        NSArray * sightingComments = nil;
+        
+        if(publication.nid != 0){
+            sightingComments = [Comment getCommentsByNID:publication.nid];
+        }else{
+            sightingComments = [Comment getCommentsByUUID:publication.uuid];
+        }
         NSInteger count            = [sightingComments count];
         NSString * commentCount    = @"";
         

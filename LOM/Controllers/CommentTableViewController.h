@@ -17,5 +17,6 @@
 @property (nonatomic,strong) NSArray<Comment*>* comments;
 
 @property BOOL newComment;
+@property Comment * selectedComment;
 
 @end

@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Comment.h"
 
 @protocol CommenEditViewControllerDelegate <NSObject>
 
 @optional
 
 - (void) cancel;
-- (void) saveComment:(NSString*) comment;
+- (void) saveComment:(Comment*)commentObject comment:(NSString*)comment;
 
 
 @end
@@ -28,5 +29,6 @@
 - (IBAction)saveTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextView *comment;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (nonatomic,strong) Comment * currentComment;
 
 @end

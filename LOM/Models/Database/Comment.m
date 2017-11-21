@@ -7,6 +7,7 @@
 //
 
 #import "Comment.h"
+#import "Tools.h"
 
 @implementation Comment
 
@@ -31,10 +32,25 @@
 }
 
 + (id) getCommentsByNID:(NSInteger) _nid{
-    NSString * queryArgument = [NSString new];
-    queryArgument = [NSString stringWithFormat:@" _nid = '%lu' AND _status = '1' ", (long)_nid];
-    return [Comment instancesWhere: queryArgument];
+    if(_nid != 0){
+        
+        NSString * queryArgument = [NSString new];
+        queryArgument = [NSString stringWithFormat:@" _nid = '%lu' AND _status = '1' ORDER BY _cid ASC", (long)_nid];
+        return [Comment instancesWhere: queryArgument];
+    }
+    return nil;
 }
+
+
++ (id) getCommentsByUUID:(NSString*) _sighting_uuid{
+    if(![Tools isNullOrEmptyString:_sighting_uuid]){
+        NSString * queryArgument = [NSString new];
+        queryArgument = [NSString stringWithFormat:@" _sighting_uuid = '%@' AND _status = '1' ORDER BY _cid ASC", _sighting_uuid];
+        return [Comment instancesWhere: queryArgument];
+    }
+    return nil;
+}
+
 
 /*
   Averina new=0 daholo ny sighting rehefa avy jerena indray mandeha
@@ -46,11 +62,23 @@
     }
 }
 /*
-    Alaina izay commnet tsy mbola synced ho an'ity sighting ity
+    Alaina izay comment tsy mbola synced an'ilay user
  */
 + (NSArray*) getNotSyncedComments:(NSInteger)uid{
     if(uid > 0){
         return [Comment instancesWhere:[NSString stringWithFormat:@" (_synced ='0' OR _deleted ='1' ) AND _locked = '0' AND _uid  =  '%lu' ",(long)uid]];
+    }
+    return nil;
+}
+
+/*
+ Alaina izay comment tsy mbola synced ho an'ity sighting ity an'ilay user
+ */
++ (NSArray*) getNotSyncedCommentsBySightingUUID:(NSString*)uuid{
+    
+    if(! [Tools isNullOrEmptyString:uuid]){
+        
+        return [Comment instancesWhere:[NSString stringWithFormat:@" (_synced ='0' OR _deleted ='1' ) AND _locked = '0' AND _sighting_uuid  =  '%@' ",uuid]];
     }
     return nil;
 }

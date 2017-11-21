@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.currentComment = nil;
     // Do any additional setup after loading the view.
 }
 
@@ -25,6 +26,9 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    if(self.currentComment){
+        self.comment.text = self.currentComment._commentBody;
+    }
     [self.comment becomeFirstResponder];
 }
 /*
@@ -44,6 +48,6 @@
 }
 
 - (IBAction)saveTapped:(id)sender {
-    [self.delegate saveComment:self.comment.text];
+    [self.delegate saveComment:self.currentComment comment:self.comment.text];
 }
 @end

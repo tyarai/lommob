@@ -27,15 +27,26 @@
     self.navigationItem.title = NSLocalizedString(@"comment_title",@"");
     
     self.newComment = YES;
+    self.selectedComment = nil;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    AppDelegate * appDelegate = [Tools getAppDelegate];
+    AppDelegate * appDelegate       = [Tools getAppDelegate];
     Publication * currenPublication = appDelegate.appDelegateCurrentPublication;
     if(currenPublication){
-        self.comments = [Comment getCommentsByNID:currenPublication.nid];
+        
+        if(currenPublication.nid != 0){
+            // Tsy mbola synced sady tsy mbol nahazo nid ilay sighting
+            self.comments = [Comment getCommentsByNID:currenPublication.nid];
+        }else{
+            self.comments = [Comment getCommentsByUUID:currenPublication.uuid];
+        }
+        
         [self.tableView reloadData];
     }
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,22 +82,22 @@
     cell.userName.text = comment._name;
     cell.comment.text  = comment._commentBody;
     
-    NSString * diff = [self dateDifference:comment._created];
+    NSString * diff = [self dateDifference:comment._modified];
     cell.date.text  = diff;
     
     return cell;
 }
 
--(NSString*) dateDifference:(NSTimeInterval)commentCreatedTimeStamp{
+-(NSString*) dateDifference:(NSTimeInterval)commentModifiedTimeStamp{
     
     
     NSString * diff = @"";
     
-    if(commentCreatedTimeStamp){
+    if(commentModifiedTimeStamp){
     
-        NSDate * created  = [NSDate dateWithTimeIntervalSince1970:commentCreatedTimeStamp];
-        NSDate * now      = [[NSDate alloc] init];
-        NSTimeInterval ti = [now timeIntervalSinceDate:created];
+        NSDate * modified  = [NSDate dateWithTimeIntervalSince1970:commentModifiedTimeStamp];
+        NSDate * now       = [[NSDate alloc] init];
+        NSTimeInterval ti  = [now timeIntervalSinceDate:modified];
         
         NSUInteger d, h, m, s;
         
@@ -153,12 +164,13 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ */
+
+    
+
+
 - (IBAction)addComment:(id)sender {
+    self.newComment = YES;
     [self performSegueWithIdentifier:@"editComment" sender:self];
 }
 
@@ -170,17 +182,27 @@
         
         if(self.newComment){
             vc.navigationItem.title = NSLocalizedString(@"add_comment_title", @"");
+            vc.currentComment       = nil;
         }else{
+            vc.currentComment       = self.selectedComment;
             vc.navigationItem.title = NSLocalizedString(@"edit_comment_title", @"");
         }
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.newComment = NO;
+    self.selectedComment = self.comments[indexPath.row];
+    [self performSegueWithIdentifier:@"editComment" sender:self];
+}
+
 -(void)cancel{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
--(void)saveComment:(NSString *)comment{
+/**
+ Save Comment to database
+ */
+- (void) saveComment:(Comment*)commentObject comment:(NSString*)comment{
     
     if(! [Tools isNullOrEmptyString:comment]){
         
@@ -190,7 +212,9 @@
             
             Publication*    _publication    = appDelegate.appDelegateCurrentPublication;
             
-            if(_publication){
+            if(_publication && commentObject == nil){
+                //---- Hi- creer comment vaovao mihitsy ho an'ity sighting ity ---//
+                
                 NSInteger       _uid            = appDelegate._uid;
                 NSInteger       _nid            = _publication.nid;
                 NSInteger       _cid            = 0;// New comment
@@ -203,24 +227,45 @@
                 NSString*       _usermail       = appDelegate._userMail;
                 NSString*       _language       = @"und";
                 NSString*       _commentBody    = comment;
+                NSString*       _sighting_uuid  = _publication.uuid;
                 
-                Comment * newComment = [Comment new];
-                newComment._uid      = _uid;
-                newComment._nid      = _nid;
-                newComment._cid      = _cid;
-                newComment._pid      = _pid;
-                newComment._status   = _status;
-                newComment._uuid     = [_uuid UUIDString] ;
-                newComment._created  = _created;
-                newComment._modified = _modified;
-                newComment._name     = _userName;
-                newComment._mail     = _usermail;
-                newComment._language = _language;
-                newComment._commentBody = _commentBody;
+                Comment * newComment      = [Comment new];
+                newComment._uid           = _uid;
+                newComment._nid           = _nid;
+                newComment._cid           = _cid;
+                newComment._pid           = _pid;
+                newComment._status        = _status;
+                newComment._uuid          = [_uuid UUIDString] ;
+                newComment._created       = _created;
+                newComment._modified      = _modified;
+                newComment._name          = _userName;
+                newComment._mail          = _usermail;
+                newComment._language      = _language;
+                newComment._commentBody   = _commentBody;
+                newComment._sighting_uuid = _sighting_uuid;
                 
                 [newComment save];
                
             }
+            
+            if(_publication && commentObject != nil){
+                //---- Hanova comment ho an'ity sighting ity ---//
+                
+                double  _modified               = [[NSDate date] timeIntervalSince1970];
+                NSString*       _commentBody    = comment;
+                
+                commentObject._modified      = _modified;
+                commentObject._commentBody   = _commentBody;
+                commentObject._synced        = (int)NO;
+                commentObject._locked        = (int)NO;
+                
+                [commentObject save];
+                
+                //------ Atao SAVE ilay sighting dia mba afaka ampiakarana
+                
+            }
+
+            
             
         }
         

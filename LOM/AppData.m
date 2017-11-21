@@ -15,6 +15,7 @@
 #import "Species.h"
 #import "AppDelegate.h"
 #import "Comment.h"
+#import "Sightings.h"
 
 @implementation AppData
 
@@ -197,6 +198,9 @@ static AppData* _instance;
     }
 }
 
+/*
+    Manisa izay Sighting an'ilay UID any @ server
+ */
 
 -(void) getSightingsCountForUID:(NSInteger)uid
                 changedFromDate:(NSString*)from_date
@@ -215,7 +219,17 @@ static AppData* _instance;
         
         if([Tools isNullOrEmptyString:from_date]){
         
-            url = [NSString stringWithFormat:@"%@%@?uid=%lu", SERVER,COUNT_SIGHTINGS,(unsigned long)uid];
+            //---- Raha tsy mbola misy sighting ato @ local (izany hoe vao avy no-resinstaller-na mihitsy ilay app izay vao alatsaka daholo ny sighting rehetra any @server.
+            //Raha efa misy en local dia zay SYNCED = FALSE any @ server ihany no halatsaka
+            
+            NSArray *localSightings = [Sightings getSightingsByUID:uid];
+            
+            if([localSightings count] == 0){
+                url = [NSString stringWithFormat:@"%@%@?uid=%lu", SERVER,COUNT_SIGHTINGS,(unsigned long)uid];
+            }else{
+                url = [NSString stringWithFormat:@"%@%@?uid=%lu&synced=0", SERVER,COUNT_SIGHTINGS,(unsigned long)uid];
+            }
+            
         }else{
             NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
             NSString *percentEncodedString    = [from_date stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
@@ -277,38 +291,19 @@ static AppData* _instance;
         if([Tools isNullOrEmptyString:lastSyncDate]){
             //--- Rehefa vao mi-sync voalohany dia mila atao synced=FALSE daholo aloha ny any @ server
             
-            
-    
             NSString* _url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=&start=%@&count=%@", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,start,count];
             
             [JSONHTTPClient postJSONFromURLWithString:_url
                                                params:NULL
                                            completion:completeBlock];
         
-        
-                       
-            
         }else{
-            /* *************************************************************
-            //--- Rehefa vita sync voalohany dia izay Sighting modified from LAST_SYNC_DATE ka isLocal = FALSE sisa no midina ---
             
-            url = [NSString stringWithFormat:@"%@%@", SERVER,MY_SIGHTINGS_MODIFIED_FROM];
-           
-            //----- ilay "changed" eto ambany ito dia anaran parameter drupal "Filter identifier" ao
-            //  @ ilay filter criteria hoe "Updated date" ao @ views "api/v1/list/my-sightings-modified-from"
-            
-            NSDictionary *JSONParam = @{@"changed":lastSyncDate};
-            
-            
-            [JSONHTTPClient getJSONFromURLWithString:url params:JSONParam completion:completeBlock];
-            ************************************************************* */
-           
             NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
             NSString *percentEncodedString    = [lastSyncDate stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
             
             
             url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@&start=%@&count=%@&synced=%d", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,percentEncodedString,start,count,0];
-            /*url = [NSString stringWithFormat:@"%@%@?uid=%lu&from_date=%@&start=%@&count=%@", SERVER,SERVICE_MY_SIGHTINGS,(unsigned long)uid,percentEncodedString,start,count];*/
             
             
             [JSONHTTPClient postJSONFromURLWithString:url
@@ -517,13 +512,16 @@ static AppData* _instance;
                                             NSInteger newNID = [[retDict valueForKey:@"nid"] integerValue];
                                             
                                             if(newNID > 0){
-                                                sighting._nid = newNID;
+                                                sighting._nid      = newNID;
                                                 sighting._isSynced = YES;
                                                 sighting._isLocal  = NO;
                                                 sighting._locked   = NO; // Unlock the row
                                                 [sighting save];
                                                 
-                                                //[self syncSightingComments:sighting]; //Sync comments
+                                                [self syncSightingComments:sighting
+                                                               sessionName:sessionName                                                          sessionId :sessionID
+                                                                      view:vc];
+
                                             }
                                            
                                             
@@ -604,9 +602,10 @@ static AppData* _instance;
                                                               sighting._hasPhotoChanged = NO;
                                                               [sighting save];
                                                              
-                                                              //[self syncSightingComments:sighting]; //Sync comments
-
-                                                          
+                                                              [self syncSightingComments:sighting
+                                                                     sessionName:sessionName                                                              sessionId :sessionID
+                                                                            view:vc];
+   
                                                           }
                                         }];
                                         
@@ -686,14 +685,33 @@ static AppData* _instance;
             
         }//for loop
         
+        //--- Sync Comments, Onlinesighting
+        /*AppDelegate * appDelegate = [Tools getAppDelegate];
+        
+        for(int i = 0 ; i < [callbacks count]; i++){
+            
+            dispatch_async(appDelegate.serialSyncQueue,^{
+                
+                callbacks[i]();
+                
+            });
+        }*/
+        
     }else{
         //---- Raha tsy misy ny sightings ho alefa miakatra dia tonga dia asaina mi-load ny online avy hatrany --/
         /*if(func != nil){
             func();
         }*/
         
+        AppDelegate * appDelegate = [Tools getAppDelegate];
+        
         for(int i = 0 ; i < [callbacks count]; i++){
-            callbacks[i]();
+        
+             dispatch_async(appDelegate.serialSyncQueue,^{
+             
+                 callbacks[i]();
+                 
+             });
         }
     }
     
@@ -708,30 +726,175 @@ static AppData* _instance;
 }
 
 /*
+    Apekarina ny comment rehetra an'ity 'sighting' ity
+ */
+-(void) syncSightingComments:(Sightings*)sighting
+                 sessionName:(NSString*)sessionName
+                  sessionId :(NSString*)sessionId
+                        view:(id)viewController{
+
+    if(sighting && ![Tools isNullOrEmptyString:sessionName] && ! [Tools isNullOrEmptyString:sessionId]){
+    
+        NSArray * sightingComments = [Comment getNotSyncedCommentsBySightingUUID:sighting._uuid];
+        
+        if(sightingComments != nil && [sightingComments count] != 0){
+            
+            for (Comment * comment in sightingComments) {
+                
+                if(sighting._nid > 0 && comment._nid == 0){
+                    comment._nid = sighting._nid;
+                    [comment save]; // Raha vao avy no-creer-na ilay sighting dia tonga dia efa avy nahazo nid avy tany @ server ilay sighting dia tonga dia associer-na eto ilay comment sy sighting (
+                }
+                
+                [self syncComment:comment
+                             view:viewController
+                      sessionName:sessionName
+                        sessionID:sessionId];
+             }
+            
+        }
+        
+    }
+}
+
+
+
+
+/*
+    Sync comment anakiray mankany @ server
+ */
+-(void) syncComment :(Comment*)comment
+                view:(id)vc
+         sessionName:(NSString*)sessionName
+           sessionID:(NSString*) sessionID{
+    
+    if(comment && ! [Tools isNullOrEmptyString:sessionName] && ! [Tools isNullOrEmptyString:sessionID]){
+        
+        [self buildPOSTHeader];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        //if(comment._cid == 0 && comment._local){
+        if(comment._local){
+            //-- Creer-na any @ server ity comment ity ---//
+            
+            [self createComment:comment
+                  sessionName:sessionName
+                    sessionId:sessionID completeBlock:^(id json, JSONModelError *err) {
+               
+                    if(err == nil && json != nil){
+                        
+                        NSDictionary * retDict = (NSDictionary*)json;
+                        NSInteger newCID       = [[retDict valueForKey:@"cid"] integerValue];
+                        
+                        if(newCID > 0){
+                            comment._locked = (int)NO;
+                            comment._synced = (int)YES;
+                            comment._local  = (int)NO;
+                            comment._cid    = newCID;
+                            [comment save];
+                        }else{
+                            BaseViewController *viewController = (BaseViewController*)vc;
+                            [Tools showError:err onViewController:viewController];
+                            NSLog(@"Comment syncing error: %@",err.description);
+                            
+                            comment._locked = (int)NO;
+                            [comment save];
+                        }
+                        
+                    }
+            }];
+            
+        }else{
+            
+            //--- Atao update any @ server ilay comment ---//
+            
+            [self updateComment:comment
+                    sessionName:sessionName
+                      sessionId:sessionID completeBlock:^(id json, JSONModelError *err) {
+                          
+                  if(err == nil ){
+                      
+                      comment._locked = (int)NO;
+                      comment._synced = (int)YES;
+                      comment._local  = (int)NO;
+                      [comment save];
+
+                      
+                  }else{
+                      
+                      BaseViewController *viewController = (BaseViewController*)vc;
+                      [Tools showError:err onViewController:viewController];
+                      NSLog(@"Comment syncing error: %@",err.description);
+                      
+                      comment._locked = (int)NO;
+                      [comment save];
+                      
+                  }
+            }];
+            
+        }
+        
+        
+    }
+}
+
+/*
+    Sync down - Get comments from server
+ 
+    --> Alaina daholo izay comment niova na vaovao any @ serveur ka mifandray @ sighting an'ity UID ity
+*/
+-(void) getCommentsWithSessionName:(NSString*) sessionName
+                         sessionID:(NSString*) sessionId
+                           userUID:(NSInteger)uid
+                     completeBlock:(JSONObjectBlock) completeBlock{
+
+    if(uid != 0 && ! [Tools isNullOrEmptyString:sessionName] && ! [Tools isNullOrEmptyString:sessionId]){
+        
+        
+        [self buildPOSTHeader];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionId];
+        [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
+        
+        NSString *body           = [NSString stringWithFormat:@""];
+        
+        NSString * lastSyncDate  = nil;
+        //NSInteger synced         = 0;
+        
+        //lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        lastSyncDate             = [Tools getStringUserPreferenceWithKey:LAST_SERVER_SYNC_DATE];
+        
+        body = [body stringByAppendingFormat:@"uid=%li",(long)uid];
+        //body = [body stringByAppendingFormat:@"&synced=%i",(int)synced];
+        body = [body stringByAppendingFormat:@"&fromDate=%@",lastSyncDate];
+        
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, CHANGED_COMMENTS];
+        [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
+        
+    }
+}
+
+
+/*
  Sync - Create Comment on server
  */
-
-
--(void)  saveComment:(Comment*)comment
+-(void)  createComment:(Comment*)comment
          sessionName:(NSString*)sessionName
           sessionId :(NSString*)sessionId
-
        completeBlock:(JSONObjectBlock) completeBlock{
     
-    if(comment && sessionName && sessionId){
+    if(comment && ![Tools isNullOrEmptyString: sessionName] &&  ! [Tools isNullOrEmptyString: sessionId]){
         
         [self buildPOSTHeader];
         NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionId];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
         
         NSString * uuid                     = comment._uuid;
+        NSString * sighting_uuid            = comment._sighting_uuid;
         NSInteger uid                       = comment._uid;
         int status                          = comment._status;
         NSString* commentbody               = comment._commentBody;
         NSInteger nid                       = comment._nid;
-        
-        
-        
         NSString *body                      = [NSString stringWithFormat:@""];
         NSString*subject                    = @"";
         
@@ -739,9 +902,12 @@ static AppData* _instance;
         body = [body stringByAppendingFormat:@"body=%@",commentbody];
         body = [body stringByAppendingFormat:@"&uuid=%@",uuid];
         body = [body stringByAppendingFormat:@"&uid=%li",uid];
+        body = [body stringByAppendingFormat:@"&sighting_uuid=%@",sighting_uuid];
         body = [body stringByAppendingFormat:@"&nid=%li",nid];
         body = [body stringByAppendingFormat:@"&status=%i",status];
         body = [body stringByAppendingFormat:@"&subject=%@",subject];
+        body = [body stringByAppendingFormat:@"&synced=%i",1];
+        
         
         
         NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, NEW_COMMENT];
@@ -752,44 +918,42 @@ static AppData* _instance;
 }
 
 
-
--(void) syncComments:(NSArray*)notSyncedComments
-                view:(id)vc
-         sessionName:(NSString*)sessionName
-           sessionID:(NSString*) sessionID{
+/*
+ Sync - Update Comment on server
+ */
+-(void)  updateComment:(Comment*)comment
+           sessionName:(NSString*)sessionName
+            sessionId :(NSString*)sessionId
+         completeBlock:(JSONObjectBlock) completeBlock{
     
-    if(notSyncedComments && [notSyncedComments count] > 0){
-        
+    if(comment && ![Tools isNullOrEmptyString: sessionName] &&  ! [Tools isNullOrEmptyString: sessionId]){
         
         [self buildPOSTHeader];
-        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionID];
+        NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,sessionId];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
         
-        for (Comment * comment in notSyncedComments) {
-            
-            [self saveComment:comment
-                  sessionName:sessionName
-                    sessionId:sessionID completeBlock:^(id json, JSONModelError *err) {
-               
-                        if(err == nil && json != nil){
-                            
-                            NSDictionary * retDict = (NSDictionary*)json;
-                            NSInteger newCID       = [[retDict valueForKey:@"cid"] integerValue];
-                            
-                            if(newCID > 0){
-                                comment._locked = (int)NO;
-                                comment._synced = (int)YES;
-                                comment._local  = (int)NO;
-                                comment._cid    = newCID;
-                                [comment save];
-                            }
-                            
-                        }
-            }];
-            
-        }
+        int status                          = comment._status;
+        int deleted                         = comment._deleted;
+        NSString* commentbody               = comment._commentBody;
+        NSString *body                      = [NSString stringWithFormat:@""];
+        NSString* uuid                      = comment._uuid;
+        
+       
+        body = [body stringByAppendingFormat:@"body=%@",commentbody];
+        body = [body stringByAppendingFormat:@"&uuid=%@",uuid];
+        body = [body stringByAppendingFormat:@"&status=%i",status];
+        body = [body stringByAppendingFormat:@"&deleted=%i",deleted];
+        
+        
+        NSString* url = [NSString stringWithFormat:@"%@%@", SERVER, EDIT_COMMENT];
+        [JSONHTTPClient postJSONFromURLWithString:url bodyString:body completion:completeBlock];
+        
     }
+    
 }
+
+
+
 
 -(NSString*) getImageFullPath:(NSString*)file{
     if(file){
@@ -904,6 +1068,8 @@ static AppData* _instance;
         
         NSString * uuid                     = sighting._uuid;
         NSString * sightingTitle            = sighting._title;
+        NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];
+        NSString * encodedTitle             = [sightingTitle stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
         NSInteger speciesNID                = sighting._speciesNid;
         NSString * placeName                = sighting._placeName;
         float latitude                      = sighting._placeLatitude;
@@ -925,7 +1091,7 @@ static AppData* _instance;
         AppDelegate * appDelegate           = [Tools getAppDelegate];
         long uid                            = (long)appDelegate._uid;
         
-        body = [body stringByAppendingFormat:@"title=%@",sightingTitle];
+        body = [body stringByAppendingFormat:@"title=%@",encodedTitle];
         body = [body stringByAppendingFormat:@"&uuid=%@",uuid];
         body = [body stringByAppendingFormat:@"&uid=%li",uid];
         body = [body stringByAppendingFormat:@"&status=%i",1];
@@ -1048,14 +1214,19 @@ static AppData* _instance;
         
         NSString *body = [NSString stringWithFormat:@""];
         
-        body = [body stringByAppendingFormat:@"title=%@",title];
-        body = [body stringByAppendingFormat:@"&body[und][0][value]=%@",title];
+        
+        NSCharacterSet *allowedCharacters   = [NSCharacterSet URLFragmentAllowedCharacterSet];
+        NSString * encodedTitle             = [title  stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+        
+        body = [body stringByAppendingFormat:@"title=%@",encodedTitle];
+        body = [body stringByAppendingFormat:@"&body[und][0][value]=%@",encodedTitle];
         body = [body stringByAppendingFormat:@"&field_place_name[und][0][value]=%@",placeName];
         body = [body stringByAppendingFormat:@"&field_date[und][0][value][date]=%@",strDate];
         body = [body stringByAppendingFormat:@"&field_lat[und][0][value]=%5.8f",latitude];
         body = [body stringByAppendingFormat:@"&field_long[und][0][value]=%5.8f",longitude];
         body = [body stringByAppendingFormat:@"&field_altitude[und][0][value]=%4.0f",altitude];
         body = [body stringByAppendingFormat:@"&field_count[und][0][value]=%lu",count];
+        body = [body stringByAppendingFormat:@"&field_is_synced[und][0][value]=%i",1];//Update Nov 21 2017
         body = [body stringByAppendingFormat:@"&field_associated_species[und][nid]=%li",(long)species._species_id];
         body = [body stringByAppendingFormat:@"&field_place_name_reference[und][nid]=%li",(long)placeNID];
         

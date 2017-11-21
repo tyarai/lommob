@@ -58,6 +58,7 @@
 +(void) updateLocalSightingsUserUIDDWith:(NSUInteger) uid;
 +(NSString*) base64:(UIImage*)image;
 +(void) saveSyncDate;
++(void) saveServerSyncDate:(long) serverLastSyncDateTime;
 
 +(void) saveSessId:(NSString*)sessid
        sessionName:(NSString*)
@@ -73,6 +74,6 @@ session_name andToken:(NSString*) token
 +(void) updateLocalSites:(NSArray*) sitesDico;
 +(void) updateLocalLemurFamilies:(NSArray*) familiesDico;
 +(void) updateLocalAuthors:(NSArray*) authorDico;
-
++(void) updateLocalCommentsWith:(NSArray*) comments;
 +(void) downloadImageAsynchronously:(NSString*)image_url;
 @end

@@ -61,7 +61,7 @@
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
     self.tableViewLifeList.rowHeight = UITableViewAutomaticDimension;
-    self.tableViewLifeList.estimatedRowHeight = 365;
+    self.tableViewLifeList.estimatedRowHeight = 200;
     self.tableViewLifeList.backgroundColor = nil;
     self.tableViewLifeList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -99,8 +99,6 @@
         
         [self showLoginPopup ];
         [self.tableViewLifeList setHidden:YES];
-        //[Tools emptySightingTable];
-        //[Tools emptyLemurLifeListTable];
         
     }else{
         
@@ -142,20 +140,25 @@
             if(stillConnected){
                 
                 NSArray * notSyncedSightings = [Sightings getNotSyncedSightings:uid];
-                NSArray * notSyncedComments  = [Comment getNotSyncedComments:uid];
+                //NSArray * notSyncedComments  = [Comment getNotSyncedComments:uid];
                 
                 //--- Rehefa vita tanteraka mitsy ny syncWithServer zay vao mampidina ny avy any @ server ---
                 postsViewControllerFunctionCallback loadOnlineSightingscallback = ^(void){
                     [self loadOnlineSightings];
                 };
                 
-                postsViewControllerFunctionCallback syncComments = ^(void){
-                    [self syncComments:notSyncedComments
-                           sessionName:sessionName
-                             sessionID:sessionID];
+                postsViewControllerFunctionCallback loadOnlineCommentscallback = ^(void){
+                    [self loadOnlineComments];
                 };
                 
-                NSArray<postsViewControllerFunctionCallback> * callBacks =  @[syncComments,loadOnlineSightingscallback];
+                postsViewControllerFunctionCallback syncCommentsUP = ^(void){
+                    [self syncCommentsWithUser:uid
+                                   sessionName:sessionName
+                                     sessionID:sessionID];
+                };
+                
+                NSArray<postsViewControllerFunctionCallback> * callBacks =  @[syncCommentsUP,loadOnlineSightingscallback,loadOnlineCommentscallback];
+                
                 
                 [appData syncWithServer:notSyncedSightings
                                    view:self
@@ -163,6 +166,7 @@
                               sessionID:sessionID
                                //callback:loadOnlineSightingscallback
                               callbacks:callBacks
+                 
                  ];
                 
                 [self performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
@@ -179,17 +183,25 @@
     
 }
 
-#pragma mark -- Sync Comment
+#pragma mark -- Sync Comment to server
 
--(void)syncComments:(NSArray*)notSyncedComments
-        sessionName:sessionName
-          sessionID:sessionID{
+-(void)syncCommentsWithUser:(NSInteger)uid
+                sessionName:(NSString*)sessionName
+                  sessionID:(NSString*)sessionID{
  
-    [appData syncComments:notSyncedComments
-                     view:self
-              sessionName:sessionName
-                sessionID:sessionID];
+    NSArray * notSyncedComments  = [Comment getNotSyncedComments:uid];
     
+    if(notSyncedComments != nil && ! [Tools isNullOrEmptyString:sessionName] && ! [Tools isNullOrEmptyString:sessionID]){
+        
+        for(Comment * comment in notSyncedComments){
+        
+            [appData  syncComment:comment
+                             view:self
+                      sessionName:sessionName
+                        sessionID:sessionID];
+            
+        }
+    }
 }
 
 #pragma CameraViewControllerDelegate
@@ -534,14 +546,7 @@
                     &&![Tools isNullOrEmptyString:loginResult.token]
                     && loginResult.user != nil) {
                     
-                    
-                    /*[self     saveSessId:loginResult.sessid
-                             sessionName:loginResult.session_name
-                                andToken:loginResult.token
-                                     uid:loginResult.user.uid
-                                userName:userName];*/
-                    
-                    [Tools saveSessId:loginResult.sessid
+                     [Tools saveSessId:loginResult.sessid
                           sessionName:loginResult.session_name
                              andToken:loginResult.token
                                   uid:loginResult.user.uid
@@ -576,6 +581,35 @@
 -(void) loadOnlineSightings{
     self.initialLoad = TRUE;
     [self getPostsCount]; //Alaina ny isan'ny niova rehetra any @ server --//
+}
+
+
+-(void) loadOnlineComments{
+    self.initialLoad = TRUE;
+    NSString * sessionName = [appDelegate _sessionName];
+    NSString * sessionID   = [appDelegate _sessid];
+    NSInteger   uid        = [appDelegate _uid];
+    
+    [appData getCommentsWithSessionName:sessionName
+                              sessionID:sessionID
+                                userUID:uid
+                          completeBlock:^(id json, JSONModelError *err) {
+                    
+          if(err == nil){
+          
+              NSArray  * tmpDict             = (NSArray*) json;
+              NSArray  * comments            = [tmpDict valueForKey:@"comments"];
+              long       serverLastSyncDate  = [[tmpDict valueForKey:@"serverLastSyncDate"] longValue];
+              
+              if([comments count] >0){
+                  [Tools updateLocalCommentsWith:comments];
+                  //[Tools saveSyncDate]; // Akisaka ny lastSyncDate
+                  [Tools saveServerSyncDate:serverLastSyncDate];
+                  [self.tableViewLifeList reloadData];
+              }
+          }
+                              
+    }];
 }
 
 
@@ -1250,7 +1284,8 @@
     
     if(lastChangedRecordsCount > 0 ){
     
-        NSString * lastSyncDate  = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        //NSString * lastSyncDate  = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+        NSString * lastSyncDate  = [Tools getStringUserPreferenceWithKey:LAST_SERVER_SYNC_DATE];
         
         if(! [Tools isNullOrEmptyString:lastSyncDate]){
             _recordIndex = 0; //
@@ -1287,9 +1322,10 @@
 
                         
                         
-                        if([result.nodes count] == 0){
+                        if([result.nodes count] == 0 && result.serverLastSyncDate != 0){
                             //--Atao now ny lastSync Date fa tafidina daholo ny tany @ server
-                            [Tools saveSyncDate];
+                            //[Tools saveSyncDate];
+                            [Tools saveServerSyncDate:result.serverLastSyncDate];
                             [Tools setUserPreferenceWithKey:KEY_RECORD_INDEX andStringValue:@""];
                             [Tools setUserPreferenceWithKey:KEY_RECORD_COUNT andStringValue:@""];
                             
@@ -1303,7 +1339,8 @@
                                 _recordIndex += SIGHTING_OFFSET;
                             }else{
                                 _recordIndex = 0;//Tapitra, tsy hisy sighting ho ampidinina intsony
-                                [Tools saveSyncDate];
+                                //[Tools saveSyncDate];
+                                [Tools saveServerSyncDate:result.serverLastSyncDate];
                             }
                             
                             recordIndex = [NSString stringWithFormat:@"%li",(long)_recordIndex];
@@ -1334,7 +1371,8 @@
     //---- Alaina aloha ny count any @ server ----//
     
     NSUInteger uid                    = appDelegate._uid;
-    NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+    //NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
+    NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SERVER_SYNC_DATE];
     
     NSString * changedRecords         = [Tools getStringUserPreferenceWithKey:KEY_RECORD_COUNT];
     
@@ -1343,9 +1381,9 @@
     if(count <=0){
     
         [appData getSightingsCountForUID:uid
-                 changedFromDate:lastSyncDate
-                       sessionID:appDelegate._sessid
-                   andCompletion:^(id json, JSONModelError *err){
+                         changedFromDate:lastSyncDate
+                               sessionID:appDelegate._sessid
+                           andCompletion:^(id json, JSONModelError *err){
                        
                        if(err == nil){
                            

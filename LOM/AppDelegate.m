@@ -160,7 +160,7 @@
     
     
     self.isSyncing       = NO;
-    //self.serialSyncQueue = dispatch_queue_create("lom_sync_with_server", DISPATCH_QUEUE_SERIAL);
+    self.serialSyncQueue = dispatch_queue_create("lom_sync_with_server", DISPATCH_QUEUE_SERIAL);
     
     [self.window setTintColor:ORANGE_COLOR]; // TintColor for the whole app
     

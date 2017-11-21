@@ -457,6 +457,7 @@ static float appScale = 1.0;
                 int64_t _deleted                = sighting.deleted;
                 int64_t _synced                 = sighting.isSynced;
                 int64_t _local                  = sighting.isLocal;
+                NSArray * comments              = sighting.comments;
                 
                 NSAssert(_photo_name != nil, error);
                 
@@ -491,13 +492,9 @@ static float appScale = 1.0;
                         newSighting._modifiedTime   = _created;
                         newSighting._uuid           = _uuid;
                         newSighting._uid            = _uid;
-                        //newSighting._isLocal      = _local;
-                        //newSighting._isSynced     = _synced;
-                        //newSighting._deleted        = _deleted;
                         newSighting._isLocal        = 0; // Update Sept 19 2017
                         newSighting._isSynced       = 1; // Update Sept 19 2017
                         newSighting._deleted        = 0; // Update Sept 19 2017
-                        
                         newSighting._place_name_reference_nid = place_name_ref_nid;
                         
                         [newSighting save];
@@ -514,6 +511,11 @@ static float appScale = 1.0;
                         [Tools removeImageFileFromDocumentsDirectory:_photo_name];
                     }
                    
+                    //--- Creer-na na atao update eto ny comments miaraka @ ity sighting ity --//
+                    
+                    [self updateLocalCommentsWith:comments];
+                    
+                    
                 } @catch (NSException *exception) {
                     
                     NSLog(@"Insert/Update database error");
@@ -663,6 +665,15 @@ static float appScale = 1.0;
     NSDate *currDate    = [NSDate date];//Current time in UTC time
     int64_t  _now       = [currDate timeIntervalSince1970];
     [Tools setUserPreferenceWithKey:LAST_SYNC_DATE andStringValue:[NSString stringWithFormat:@"%lli", _now]];
+}
+/*
+ Isaky ny avy mi-creer na manao update node (sighting,comment,...) any @ server
+ dia mi-retourner datetime courant ny server mba ho tazomina en local @ zay tsy ny datetime
+ local no atao param miakatra mankany @ server rehefa haka zavatra any
+ */
++(void) saveServerSyncDate:(long) serverLastSyncDateTime{
+
+    [Tools setUserPreferenceWithKey:LAST_SERVER_SYNC_DATE andStringValue:[NSString stringWithFormat:@"%li", serverLastSyncDateTime]];
 }
 
 
@@ -953,6 +964,87 @@ static float appScale = 1.0;
 
 +(void) updateLocalAuthors:(NSArray*) authorDico{
     
+}
+
+
++(void) updateLocalCommentsWith:(NSArray*) comments{
+    
+    if(comments != nil){
+        
+        for (NSDictionary * comment in comments) {
+            
+            NSString * body                = [comment valueForKey:@"body"];
+            body                           = [body stringByReplacingOccurrencesOfString:@"'" withString:@"''"];//Escape ' character manjary manao error any @ SQLLite
+            NSInteger cid                  = [[comment valueForKey:@"cid"] integerValue];
+            NSInteger pid                  = [[comment valueForKey:@"pid"] integerValue];
+            NSInteger nid                  = [[comment valueForKey:@"nid"] integerValue];
+            NSInteger uid                  = [[comment valueForKey:@"uid"] integerValue];
+            NSInteger deleted              = [[comment valueForKey:@"deleted"] integerValue];
+            //NSString* subject              = [comment valueForKey:@"subject"];
+            //NSString* hostname             = [comment valueForKey:@"hostname"];
+            NSDate *currDate               = [NSDate date];//Current time in UTC time
+            //double created                 = [currDate timeIntervalSince1970];
+            double changed                 = [currDate timeIntervalSince1970];
+            double created                 = [[comment valueForKey:@"created"] doubleValue];
+            //double changed                 = [[comment valueForKey:@"changed"] doubleValue];
+            NSInteger status               = [[comment valueForKey:@"status"] integerValue];
+            NSString * mail                = [comment valueForKey:@"mail"];
+            NSString * name                = [comment valueForKey:@"name"];
+            NSString * language            = [comment valueForKey:@"language"];
+            NSString * uuid                = [comment valueForKey:@"uuid"];
+            NSString * sighting_uuid       = [comment valueForKey:@"sighting_uuid"];
+         
+            //---- Tadiavina aloha sao efa ao ilay Comment dia atao update . raha TSIA dia atao insert satria vaovao izany ---//
+            Comment * _comment              = [Comment getCommentByUUID:uuid];
+            
+            if(_comment != nil){
+                //---- Efa misy fa atao update ilay comment ---//
+                
+                NSString * query = [NSString    stringWithFormat:@"UPDATE $T SET  _cid = '%li' , _pid = '%li' , _uid = '%li' ,  _modified = '%f' , _status = '%i' , _name = '%@' , _language = '%@' , _commentBody = '%@' , _nid = '%li', _new = '1' , _synced = '1' , _local = '0' , _deleted = '%i' , _locked = '0' WHERE _uuid = '%@' ",
+                                    (long)cid,
+                                    (long)pid,
+                                    (long)uid,
+                                    changed,
+                                    (int)status,
+                                    name,
+                                    language,
+                                    body,
+                                    (long)nid,
+                                    (int)deleted,
+                                    uuid];
+                
+                [Comment executeUpdateQuery:query];
+                
+                
+            }else{
+                
+                //---- Tsy mbola misy dia creer-na vaovao mihitsy ilay comment ---//
+                Comment * newComment      = [Comment new];
+                newComment._uid           = uid;
+                newComment._nid           = nid;
+                newComment._cid           = cid;
+                newComment._pid           = pid;
+                newComment._status        = (int)status;
+                newComment._deleted       = 0;
+                newComment._locked        = 0;
+                newComment._synced        = 1;
+                newComment._local         = 0;
+                newComment._new           = 1;
+                newComment._uuid          = uuid ;
+                newComment._created       = created;
+                newComment._modified      = changed;
+                newComment._name          = name;
+                newComment._mail          = mail;
+                newComment._language      = language;
+                newComment._commentBody   = body;
+                newComment._sighting_uuid = sighting_uuid;
+                
+                [newComment save];
+            }
+            
+            
+        }
+    }
 }
 
 

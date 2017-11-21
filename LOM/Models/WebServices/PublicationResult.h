@@ -15,7 +15,9 @@
 @property  NSString<Optional>* item_per_page;
 @property  NSString<Optional>* total_records;
 @property  NSString<Optional>* total_page;
+@property  long                serverLastSyncDate;
 
 @property (nonatomic, strong) NSArray<PublicationNode>* nodes;
+
 
 @end

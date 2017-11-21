@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 #import "JSONHTTPClient.h"
 #import "Sightings.h"
+#import "Comment.h"
 #import "LemurLifeListTable.h"
 
 
@@ -45,12 +46,15 @@
 
 #define NEW_SIGHTING @"/lom_endpoint/api/v1/services/lom_sighting_services/new_sighting" 
 #define NEW_COMMENT @"/lom_endpoint/api/v1/services/lom_sighting_services/new_comment"
+#define EDIT_COMMENT @"/lom_endpoint/api/v1/services/lom_sighting_services/edit_comment"
+#define CHANGED_COMMENTS @"/lom_endpoint/api/v1/services/lom_sighting_services/changed_comments"
 
 
 
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
 #define LIFELIST_ENDPOINT_MODIFIED_FROM @"api/v1/list/my-lemur-life-list-modified-from"
 #define LAST_SYNC_DATE @"last_sync_date"
+#define LAST_SERVER_SYNC_DATE @"last_server_sync_date"
 #define UPDATE_TEXT @"update_text"
 #define UPDATE_SYNC_DATE @"update_sync_date"
 
@@ -146,10 +150,16 @@ typedef void (^postsViewControllerFunctionCallback) (void);
                   andCompletion:(JSONObjectBlock)completeBlock;
 
 
--(void) syncComments:(NSArray*)notSyncedComments
+-(void) syncComment:(Comment*)comment
                 view:(id)vc
          sessionName:(NSString*)sessionName
            sessionID:(NSString*) sessionID;
+
+
+-(void) getCommentsWithSessionName:(NSString*) sessionName
+                         sessionID:(NSString*) sessionId
+                           userUID:(NSInteger)uid
+                     completeBlock:(JSONObjectBlock) completeBlock;
 
 
 @end
