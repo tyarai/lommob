@@ -1319,8 +1319,6 @@
                         
                     }
                     else{
-
-                        
                         
                         if([result.nodes count] == 0 && result.serverLastSyncDate != 0){
                             //--Atao now ny lastSync Date fa tafidina daholo ny tany @ server
@@ -1369,8 +1367,7 @@
 -(void) getPostsCount{
     
     //---- Alaina aloha ny count any @ server ----//
-    
-    NSUInteger uid                    = appDelegate._uid;
+     NSUInteger uid                    = appDelegate._uid;
     //NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE];
     NSString * lastSyncDate           = [Tools getStringUserPreferenceWithKey:LAST_SERVER_SYNC_DATE];
     

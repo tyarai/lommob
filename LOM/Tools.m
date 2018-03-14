@@ -181,6 +181,9 @@ static float appScale = 1.0;
     [alertView show];
 }
 
+
+
+
 +(void) showSimpleAlertWithTitle:(NSString*) title
                       andMessage:(NSString*) message
                      parentView :(BaseViewController*)view{
