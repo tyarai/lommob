@@ -28,11 +28,6 @@
 
 
 
-
-
-
-
-
 @interface MainVC : AMSlideMenuMainViewController <PopupLoginViewControllerDelegate,WYPopoverControllerDelegate> {
 
     WYPopoverController* popoverController;

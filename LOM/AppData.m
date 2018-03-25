@@ -1283,7 +1283,7 @@ static AppData* _instance;
  - Alaina izay changed na created manomboka @ izay "lastSyncDate" ampiakarin'ity iPhone ity
  */
 
--(void) getChangedNodesForSessionId:(NSString*) session_id
+-(void) getChangedNodesForSessionId:(NSString*)session_id
                            fromDate:(NSString*)fromDate
                       andCompletion:(JSONObjectBlock)completeBlock
 {
@@ -1295,17 +1295,14 @@ static AppData* _instance;
         NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
         
-        
         NSString * url          = nil;
         
         NSString * lastSyncDate = fromDate;
         
-        //NSString * lastSyncDate = [NSString stringWithFormat:@"%@",[Tools getStringUserPreferenceWithKey:LAST_SYNC_DATE]];
-        
-        if([Tools isNullOrEmptyString:lastSyncDate]){
+        /*if([Tools isNullOrEmptyString:lastSyncDate]){
             //lastSyncDate = @"2017-01-01"; // Alaina izay changed/created (defau;t value)
             lastSyncDate   = [NSString stringWithFormat:@"%d",1400000000]; //Date tany aloha be tany fotsiny
-        }
+        }*/
        
         
         NSCharacterSet *allowedCharacters = [NSCharacterSet URLFragmentAllowedCharacterSet];

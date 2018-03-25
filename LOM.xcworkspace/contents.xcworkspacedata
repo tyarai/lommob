@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:LOM/Controllers/DataUpdateTableViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:LOM/Controllers/DataUpdateTableViewController.m">
+   </FileRef>
+   <FileRef
       location = "group:LOM.xcodeproj">
    </FileRef>
    <FileRef

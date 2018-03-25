@@ -160,6 +160,7 @@
                 NSArray<postsViewControllerFunctionCallback> * callBacks =  @[syncCommentsUP,loadOnlineSightingscallback,loadOnlineCommentscallback];
                 
                 
+                
                 [appData syncWithServer:notSyncedSightings
                                    view:self
                             sessionName:sessionName
@@ -604,7 +605,7 @@
               if([comments count] >0){
                   [Tools updateLocalCommentsWith:comments];
                   //[Tools saveSyncDate]; // Akisaka ny lastSyncDate
-                  [Tools saveServerSyncDate:serverLastSyncDate];
+                  //[Tools saveServerSyncDate:serverLastSyncDate]; //Commented out March-16-2018
                   [self.tableViewLifeList reloadData];
               }
           }
@@ -1256,8 +1257,6 @@
 {
     [self loadDataForVisibleRows];
 }
-
-
 
 -(void)loadDataForVisibleRows{
     

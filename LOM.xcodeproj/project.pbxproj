@@ -938,6 +938,7 @@
 		4C74F8D51F82C8DA0030AA12 /* sighting_info_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C74F8D01F82C8DA0030AA12 /* sighting_info_1.jpg */; };
 		4C74F8D61F82C8DA0030AA12 /* sighting_info_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C74F8D11F82C8DA0030AA12 /* sighting_info_2.jpg */; };
 		4C74F8D81F82D5420030AA12 /* add_sightins.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C74F8D71F82D5420030AA12 /* add_sightins.jpg */; };
+		4C7CECCB2065701F0019A485 /* DataUpdateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C7CECCA2065701F0019A485 /* DataUpdateTableViewController.m */; };
 		4C85FF5D1C37F27000D6C233 /* Publication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF5C1C37F27000D6C233 /* Publication.m */; };
 		4C85FF601C37F31600D6C233 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF5F1C37F31600D6C233 /* Photo.m */; };
 		4C85FF641C37F3B200D6C233 /* PublicationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF631C37F3B200D6C233 /* PublicationResult.m */; };
@@ -1995,6 +1996,8 @@
 		4C74F8D01F82C8DA0030AA12 /* sighting_info_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sighting_info_1.jpg; path = instructions/sightings/sighting_info_1.jpg; sourceTree = "<group>"; };
 		4C74F8D11F82C8DA0030AA12 /* sighting_info_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = sighting_info_2.jpg; path = instructions/sightings/sighting_info_2.jpg; sourceTree = "<group>"; };
 		4C74F8D71F82D5420030AA12 /* add_sightins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = add_sightins.jpg; path = instructions/sightings/add_sightins.jpg; sourceTree = "<group>"; };
+		4C7CECC92065701E0019A485 /* DataUpdateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataUpdateTableViewController.h; path = Controllers/DataUpdateTableViewController.h; sourceTree = "<group>"; };
+		4C7CECCA2065701F0019A485 /* DataUpdateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataUpdateTableViewController.m; path = Controllers/DataUpdateTableViewController.m; sourceTree = "<group>"; };
 		4C85FF5B1C37F27000D6C233 /* Publication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Publication.h; path = Models/JsonModels/Publication.h; sourceTree = "<group>"; };
 		4C85FF5C1C37F27000D6C233 /* Publication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Publication.m; path = Models/JsonModels/Publication.m; sourceTree = "<group>"; };
 		4C85FF5E1C37F31600D6C233 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Photo.h; path = Models/WebServices/Photo.h; sourceTree = "<group>"; };
@@ -3294,6 +3297,7 @@
 		4C74F2841C06381A00543A7F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4C7CECC8206564100019A485 /* DataUpdate */,
 				4CAC08C51FB06ADB003144C9 /* Comment */,
 				4C28169F1F9ED923003D9687 /* TermsOfUse */,
 				4CC1F3621F99F29400714460 /* Privacy Policy */,
@@ -3393,6 +3397,15 @@
 				4C74F8D11F82C8DA0030AA12 /* sighting_info_2.jpg */,
 			);
 			name = Instructions;
+			sourceTree = "<group>";
+		};
+		4C7CECC8206564100019A485 /* DataUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				4C7CECC92065701E0019A485 /* DataUpdateTableViewController.h */,
+				4C7CECCA2065701F0019A485 /* DataUpdateTableViewController.m */,
+			);
+			name = DataUpdate;
 			sourceTree = "<group>";
 		};
 		4C85FF611C37F39400D6C233 /* Result */ = {
@@ -4797,6 +4810,7 @@
 				B4BBF3BC1C978BB9005A5196 /* Authors.m in Sources */,
 				B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */,
 				4C59AD951C15F59A00EA74C5 /* FamiliesViewController.m in Sources */,
+				4C7CECCB2065701F0019A485 /* DataUpdateTableViewController.m in Sources */,
 				4CBAEAF31BFA546B0011139C /* AppDelegate.m in Sources */,
 				4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */,
 				4C74F2CC1C0641AB00543A7F /* MainVC.m in Sources */,

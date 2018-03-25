@@ -279,7 +279,7 @@
     LemursWatchingSites * currentSite = appDelagate.appDelegateCurrentSite;
     
     //-- Updated on May 17th 2017 -----//
-    // Rehefa manao save sighting ka tsy naka sary, dia izay saryin'ilay species no atao by default
+    // Rehefa manao save sighting ka tsy naka sary, dia izay sarin'ilay species no atao by default
     // miaraka amin'ilay publication
     if([Tools isNullOrEmptyString:self.takenPhotoFileName] || self.speciesImage.image == nil){
         self.takenPhotoFileName = [self setDefaultSpeciesImage:currentSpecies];
@@ -351,12 +351,9 @@
             
             //--- Compresser-na eto ity sary by default ity fa tsy eken'ny serveur online raha mihoatra ny 500KB -----//
             UIImage * resizedImage = [image resizedImageWithContentMode:                       IMAGE_RESIZE_MODE
-                                                                 bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
-                                                   interpolationQuality:IMAGE_INTERPOLATION_QUALITY];
-            
+                             bounds:CGSizeMake(IMAGE_RESIZED_WIDTH , IMAGE_RESIZED_HEIGHT)
+               interpolationQuality:IMAGE_INTERPOLATION_QUALITY];
 
-            
-            
             AppDelegate * appDelegate = [Tools getAppDelegate];
             
             NSString * newfileName = [NSString stringWithFormat: @"%ld_%li", (long)appDelegate._uid, (long)species._species_id];

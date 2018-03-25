@@ -559,8 +559,28 @@
     if (![Tools isNullOrEmptyString:map._file_name]) {
             
         NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", map._file_name];
+        
+        if ( [UIImage imageNamed:imageBundleName] != nil) {
+      
+            [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:imageBundleName]]];
+        }else {
             
-        [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:imageBundleName]]];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            
+            NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: map._file_name ];
+            
+            NSFileManager * fileManager = [NSFileManager defaultManager];
+            
+            if([fileManager fileExistsAtPath:filePath]){
+                
+                NSURL * fileUrl = [NSURL fileURLWithPath:filePath];
+                NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+                UIImage * img = [UIImage imageWithData:data];
+                [self.photos addObject:[MWPhoto photoWithImage:img]];
+                
+            }
+            
+        }
             
     }else {
             

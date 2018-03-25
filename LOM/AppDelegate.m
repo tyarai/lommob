@@ -134,11 +134,7 @@
             if (! [db executeUpdate:@"ALTER TABLE Sightings ADD COLUMN _hasPhotoChanged INTEGER NOT NULL DEFAULT '0'"]) failedAt(9);
             *schemaVersion = 10;
         }
-
-       
-
-        
-        
+      
     }];
     
     //Initialise cache image
@@ -165,13 +161,15 @@
     [self.window setTintColor:ORANGE_COLOR]; // TintColor for the whole app
     
     
-    [self syncSettings]; // mampidina ny avy any @ server
+    [self syncSettings]; // mampidina ny settings  avy any @ server
+    [self checkChangedNodesFromServer]; // mampidina data vaovao (species,family,map,photo,places)
     
     return YES;
 }
 
 /*
     mampidina ny avy any @ server
+        1- Mampidina settings
  */
 -(void) syncSettings{
     //--- Loading user settings --------//
@@ -190,7 +188,7 @@
                     
                 }
                 
-              //[self checkChangedNodesFromServer];
+             
       
             }else{
                 NSLog(@"%@", [err description]);
@@ -212,13 +210,15 @@
 
     updateSyncDate = [Tools isNullOrEmptyString:updateSyncDate] ? lastSyncDate : updateSyncDate;
     
+    
+    
     [appData getChangedNodesForSessionId:appDelegate._sessid
-                                fromDate:updateSyncDate
+                                fromDate: updateSyncDate
                            andCompletion:^(id json, JSONModelError *err) {
                
            if (err) {
                [Tools showError:err onViewController:nil];
-               
+               NSLog(@"%@",err.description);
            }else{
                
                NSError *error = nil;
@@ -231,6 +231,8 @@
                }
                else{
                    
+                   long newUpdateSyncDate = 0;
+                   
                    if(changedNodesJSONDictionary != nil){
                        
                        NSArray * speciesDictionary = [changedNodesJSONDictionary valueForKey:@"species"];
@@ -239,6 +241,8 @@
                        NSArray * placesDictionary  = [changedNodesJSONDictionary valueForKey:@"best_places"];
                        NSArray * familyDictionary  = [changedNodesJSONDictionary valueForKey:@"families"];
                        
+                       newUpdateSyncDate = [[changedNodesJSONDictionary valueForKey:@"serverLastSyncDate"] longValue];
+                       
                        NSInteger species = [speciesDictionary count];
                        NSInteger map     = [mapsDictionary count];
                        NSInteger photo   = [photoDictionary count];
@@ -246,14 +250,27 @@
                        NSInteger family  = [familyDictionary count];
                        //NSInteger authors = [authorsDictionary count];
                        
+                       [Tools setUserPreferenceWithKey:SPECIES_UPDATE_COUNT andStringValue:[NSString stringWithFormat:@"%li",species]];
+                       
+                       [Tools setUserPreferenceWithKey:MAP_UPDATE_COUNT andStringValue:[NSString stringWithFormat:@"%li",map]];
+                       
+                       [Tools setUserPreferenceWithKey:PHOTO_UPDATE_COUNT andStringValue:[NSString stringWithFormat:@"%li",photo]];
+                       
+                       [Tools setUserPreferenceWithKey:PLACE_UPDATE_COUNT andStringValue:[NSString stringWithFormat:@"%li",place]];
+                       
+                       [Tools setUserPreferenceWithKey:FAMILY_UPDATE_COUNT andStringValue:[NSString stringWithFormat:@"%li",family]];
+                       
                        if(species != 0 || map != 0 || photo != 0 || place !=0 || family != 0 ){
                        
-                           updateText = [NSString stringWithFormat:@"(%lu) species (%lu) families updates (%lu) maps (%lu) sites (%lu) photographs ",(long)species,family,map,place,photo];
+                           [appData updateLocalDatabaseWith:changedNodesJSONDictionary];
+                           
+                           //updateText = [NSString stringWithFormat:@"(%lu) species (%lu) families updates (%lu) maps (%lu) sites (%lu) photographs ",(long)species,family,map,place,photo];
+                           updateText = [NSString stringWithFormat:@"See last update"];
                        }
                    }
                    
                    [Tools setUserPreferenceWithKey:UPDATE_TEXT andStringValue:updateText];
-                   //[Tools setUserPreferenceWithKey:UPDATE_SYNC_DATE andStringValue:lastSyncDate];
+                   [Tools setUserPreferenceWithKey:UPDATE_SYNC_DATE andStringValue: [NSString stringWithFormat:@"%li", newUpdateSyncDate]];
                }
                
            }
@@ -278,7 +295,9 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    [self syncSettings]; // mampidina ny avy any @ server
+    
+    [self syncSettings]; // mampidina ny settings avy any @ server
+    [self checkChangedNodesFromServer]; // mampidina data vaovao (species,family,map,photo,places)
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

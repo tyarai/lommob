@@ -32,6 +32,7 @@
 
 
 
+
 @interface AMSlideMenuLeftTableViewController ()
 
 @end
@@ -45,6 +46,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    
 }
 
 - (void)openContentNavigationController:(UINavigationController *)nvc

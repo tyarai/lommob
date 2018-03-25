@@ -733,6 +733,7 @@ static float appScale = 1.0;
         for (NSDictionary * species in speciesDico) {
             NSString * title                = [species valueForKey:@"title"];
             NSInteger   profile_photograph  = [[species valueForKey:@"profile_photograph_id"] integerValue];
+            // ==== Tsy ampidinina makaty @ iPhone ny scientific  name sy & scientist name fa tonga dia ny title foana no miasa //
             //NSString *  scientific_name     = [species valueForKey:@"scientific_name"];
             //NSString *  scientist_name      = [species valueForKey:@"scientist_name"];
             NSString *  malagasy            = [species valueForKey:@"malagasy"];
@@ -794,7 +795,7 @@ static float appScale = 1.0;
     }
 }
 
-//----------------- Update local map in database with ones from server (mapsDico) ---------------
+//---------- Update local map in database with ones from server (mapsDico) ---------------
 
 +(void) updateLocalMaps:(NSArray*) mapsDico{
     
@@ -805,9 +806,6 @@ static float appScale = 1.0;
             NSInteger nid = [[maps valueForKey:@"nid"] integerValue];
             NSString * image_url = [maps valueForKey:@"image_url"];
             NSString *filename = [image_url lastPathComponent];
-            
-            
-            
             
             Maps * maps = [Maps getMapByNID:nid];
             
@@ -879,25 +877,36 @@ static float appScale = 1.0;
     
     if(![Tools isNullOrEmptyString:image_url]){
         
-        NSURL *url = [NSURL URLWithString:image_url];
-        SDWebImageManager *manager = [SDWebImageManager sharedManager];
-        [manager downloadImageWithURL:url
-                              options:0
-             progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-                 NSLog(@"%li / %li ",(long)receivedSize,(long)expectedSize);
-             }
-             completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                if (image) {
-                    NSLog(@"Downloaded");
-                }
-                else {
-                    [self downloadImageAsynchronously:image_url]; //try download once again
-                }
-        }];
+        SDWebImageDownloader *downloader = [SDWebImageDownloader sharedDownloader];
+        NSURL * url = [NSURL URLWithString:image_url];
+        [downloader downloadImageWithURL:url
+                                 options:0
+            progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                // progression tracking code
+            }
+            completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+               if (image && finished) {
+                   
+                   NSLog(@"Downloaded successfully: %@",image_url);
+                   NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                   
+                   NSArray * pathComponents = [url pathComponents];
+                   NSString * fileName      = pathComponents[ [pathComponents count] - 1] ;
+                   
+                   NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: fileName ];
+                   
+                   NSFileManager * fileManager = [NSFileManager defaultManager];
+                   
+                   if(! [fileManager fileExistsAtPath:filePath]){
+                       //-- Raha tsy misy ilay fichier vao re-creer-na eto --//
+                       [UIImageJPEGRepresentation(image, IMAGE_COMPRESSION_QUALITY)writeToFile:filePath atomically:YES];
+                   }
+               }
+           }];
     }
 }
 
-//----------------- Update local sites in database with ones from server (sitessDico) -----------
+//------- Update local sites in database with ones from server (sitessDico) -----------
 
 +(void) updateLocalSites:(NSArray*) sitesDico{
     

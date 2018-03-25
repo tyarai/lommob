@@ -27,7 +27,6 @@
 #import <UIKit/UIKit.h>
 
 
-
 @class AMSlideMenuMainViewController;
 
 @interface AMSlideMenuLeftTableViewController : UITableViewController
@@ -39,5 +38,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *speciesCount;
 @property (weak, nonatomic) IBOutlet UILabel *sightingsCount;
 @property (weak, nonatomic) IBOutlet UILabel *lemurLifeListCount;
+@property (weak, nonatomic) IBOutlet UILabel *updateText;
 
 @end

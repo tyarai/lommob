@@ -311,49 +311,6 @@
 }
 
 
-/*
-    Get changed species,families,maps,illustraiions,photograph
- */
-
--(void) getChangedNodesFromServer:(NSString*)fromDate{
-    
-    AppData * appData = [AppData getInstance];
-    AppDelegate * appDelegate =  [Tools getAppDelegate];
-    [self startSpinner];
-    
-    [appData getChangedNodesForSessionId:appDelegate._sessid
-                                fromDate:fromDate
-                            andCompletion:^(id json, JSONModelError *err) {
-            
-           [self stopSpinner];
-                                
-           if (err) {
-               [Tools showError:err onViewController:nil];
-               
-           }else{
-               
-               NSError *error = nil;
-               
-               NSDictionary *changedNodesJSONDictionary = (NSDictionary*)json;
-               
-               if (error){
-                   NSLog(@"Error parse : %@", error.debugDescription);
-               }
-               else{
-                   [appData updateLocalDatabaseWith:changedNodesJSONDictionary];
-                   [Tools setUserPreferenceWithKey:UPDATE_TEXT andStringValue:@""];
-                   NSDate *currDate    = [NSDate date];//Current time in UTC time
-                   int64_t  _now       = [currDate timeIntervalSince1970];
-                   [Tools setUserPreferenceWithKey:UPDATE_SYNC_DATE andStringValue:[NSString stringWithFormat:@"%lli",_now] ];
-                   [self resetUpdateControl];
-               }
-               
-           }
-           
-   }];
-    
-}
-
 -(void)resetUpdateControl{
     self.updateText.text      = NSLocalizedString(@"no_available_update",@"");
     self.updateButton.hidden  = YES;
@@ -365,7 +322,7 @@
     NSString* updateLastSync = [Tools getStringUserPreferenceWithKey:UPDATE_SYNC_DATE];
     
     if(![Tools isNullOrEmptyString:updateLastSync]){
-        [self getChangedNodesFromServer:updateLastSync];
+        //[self getChangedNodesFromServer:updateLastSync];
     }
 }
 @end

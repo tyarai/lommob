@@ -11,8 +11,6 @@
 #import "LemurLifeListTable.h"
 
 
-
-
 #ifdef DEBUG
     #define SERVER @"http://192.168.2.242"
     //#define SERVER @"http://172.20.10.4"
@@ -53,10 +51,19 @@
 
 #define LIFELIST_ENDPOINT @"/api/v1/list/my-lemur-life-list-json"
 #define LIFELIST_ENDPOINT_MODIFIED_FROM @"api/v1/list/my-lemur-life-list-modified-from"
+
 #define LAST_SYNC_DATE @"last_sync_date"
 #define LAST_SERVER_SYNC_DATE @"last_server_sync_date"
 #define UPDATE_TEXT @"update_text"
 #define UPDATE_SYNC_DATE @"update_sync_date"
+
+#define SPECIES_UPDATE_COUNT @"species_update_count"
+#define MAP_UPDATE_COUNT @"map_update_count"
+#define FAMILY_UPDATE_COUNT @"family_update_count"
+#define PHOTO_UPDATE_COUNT @"photo_update_count"
+#define PLACE_UPDATE_COUNT @"place_update_count"
+
+
 
 #define SERVER_IMAGE_PATH @"/sites/default/files/"
 

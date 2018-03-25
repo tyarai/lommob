@@ -94,9 +94,7 @@
             
         }
         
-        //dest.takenPhoto = img;
-
-
+      
     }
     
 }
