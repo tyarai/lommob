@@ -78,4 +78,7 @@ session_name andToken:(NSString*) token
     
 +(void) updateLocalCommentsWith:(NSArray*) comments;
 +(void) downloadImageAsynchronously:(NSString*)image_url;
+
++(UIImage*) loadImage:(NSString*) imageFileName;
+
 @end

@@ -118,31 +118,11 @@
             
             if (![Tools isNullOrEmptyString:photograph._photograph]) {
                 
-                NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
+                //NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
                 
-                UIImage *image = nil;
+                NSString* imageBundleName =  photograph._photograph;
                 
-                if ( [UIImage imageNamed:imageBundleName] != nil) {
-                    
-                    image = [UIImage imageNamed:imageBundleName];
-                    
-                }else {
-                    
-                    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                    
-                    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: photograph._photograph ];
-                    
-                    NSFileManager * fileManager = [NSFileManager defaultManager];
-                    
-                    if([fileManager fileExistsAtPath:filePath]){
-                        
-                        NSURL * fileUrl = [NSURL fileURLWithPath:filePath];
-                        NSData * data = [NSData dataWithContentsOfURL:fileUrl];
-                        image = [UIImage imageWithData:data];
-                        
-                    }
-                    
-                }
+                UIImage *image = [Tools loadImage:imageBundleName];
                 
                 CGSize newSize = CGSizeMake(width,height);
                 UIImage *scaledImage = [image scaledImageToSize:newSize];
@@ -544,29 +524,22 @@
             
             [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:imageBundleName]]];
              */
-            NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
+           
+            //NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
             
-            if ( [UIImage imageNamed:imageBundleName] != nil) {
-                
-                [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:imageBundleName]]];
-            }else {
-                
-                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                
-                NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: photograph._photograph ];
-                
-                NSFileManager * fileManager = [NSFileManager defaultManager];
-                
-                if([fileManager fileExistsAtPath:filePath]){
-                    
-                    NSURL * fileUrl = [NSURL fileURLWithPath:filePath];
-                    NSData * data = [NSData dataWithContentsOfURL:fileUrl];
-                    UIImage * img = [UIImage imageWithData:data];
-                    [self.photos addObject:[MWPhoto photoWithImage:img]];
-                    
-                }
-                
+            NSString* imageBundleName = photograph._photograph;
+            
+            
+            UIImage * image = [Tools loadImage:imageBundleName];
+            
+            if(image == nil) {
+                //TODO: Atao ilay sary default_specy no sary aseho
+                // image = default_specy
             }
+            
+            [self.photos addObject:[MWPhoto photoWithImage:image]];
+            
+            
             
         }else {
             
@@ -605,30 +578,19 @@
         
     if (![Tools isNullOrEmptyString:map._file_name]) {
             
-        NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", map._file_name];
+        //NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", map._file_name];
+        NSString* imageBundleName =  map._file_name;
         
-        if ( [UIImage imageNamed:imageBundleName] != nil) {
+        
+        UIImage *image = [Tools loadImage:imageBundleName];
       
-            [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:imageBundleName]]];
-        }else {
-            
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            
-            NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: map._file_name ];
-            
-            NSFileManager * fileManager = [NSFileManager defaultManager];
-            
-            if([fileManager fileExistsAtPath:filePath]){
-                
-                NSURL * fileUrl = [NSURL fileURLWithPath:filePath];
-                NSData * data = [NSData dataWithContentsOfURL:fileUrl];
-                UIImage * img = [UIImage imageWithData:data];
-                [self.photos addObject:[MWPhoto photoWithImage:img]];
-                
-            }
-            
+        if(image == nil) {
+            //TODO : Tokony ilay sary by default no aseho eto
+            // image = default_specy
         }
-            
+        
+        [self.photos addObject:[MWPhoto photoWithImage:image]];
+        
     }else {
             
         [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:@"ico_default_specy"]]];

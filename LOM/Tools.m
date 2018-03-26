@@ -807,7 +807,7 @@ static float appScale = 1.0;
             NSInteger nid = [[maps valueForKey:@"nid"] integerValue];
             NSString * image_url = [maps valueForKey:@"image_url"];
             NSString *filename = [image_url lastPathComponent];
-            
+            filename = [filename lowercaseString];
             Maps * maps = [Maps getMapByNID:nid];
             
             if(maps != nil){
@@ -842,6 +842,9 @@ static float appScale = 1.0;
             NSString * title     = [photo valueForKey:@"title"];
             NSString * image_url = [photo valueForKey:@"image_url"];
             NSString *filename   = [image_url lastPathComponent];
+            //--Esorina ny extension rehefa ampiditra azy any anaty table --
+            filename = [[filename lastPathComponent] stringByDeletingPathExtension];
+            filename = [filename lowercaseString];
             
             Photographs * _photo = [Photographs getPhotographByNID:nid];
             
@@ -889,8 +892,10 @@ static float appScale = 1.0;
                    
                    NSArray * pathComponents = [url pathComponents];
                    NSString * fileName      = pathComponents[ [pathComponents count] - 1] ;
+                   //- avadika lowercase fa manjary tsy voa-load raha vao tsy mitovy ny case
+                   fileName = [fileName lowercaseString];
                    
-                   NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: fileName ];
+                   NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: fileName];
                    
                    NSFileManager * fileManager = [NSFileManager defaultManager];
                    
@@ -1058,6 +1063,50 @@ static float appScale = 1.0;
     }
 }
 
+/*
+    Mi-load ilay image ato @ local ka raha tsy ao anaty BUNDLE dia ao anaty DOCUMENT
+    no alaina ilay image
+*/
+
++(UIImage*) loadImage:(NSString*) imageFileName {
+    
+    UIImage *img = nil ;
+    
+    if(![Tools isNullOrEmptyString:imageFileName]) {
+    
+        //img = [UIImage imageNamed:imageFileName];
+        NSArray * extensions = @[@".jpg",@".jpeg",@".png"];
+        
+        for (NSString * ext in extensions) {
+     
+            //--- tadiavina ao anaty bundle aloha sao efa ao ilay sary --
+            img = [UIImage imageNamed:[imageFileName stringByAppendingString:ext]];
+            
+            if(img != nil) {
+                break;//hita ilay sary dia mivoaka ny boucle
+                
+            }else{
+                //-- Tadiavina any anaty DOCUMENT folder ilay sary
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,     NSUserDomainMask, YES);
+                NSString *documentsDirectory = [paths objectAtIndex:0];
+                NSString *ImagePath = [documentsDirectory stringByAppendingPathComponent:imageFileName];
+                
+                NSString * newImagePath = [ImagePath stringByAppendingString:ext];
+                
+                NSFileManager * fileManager = [NSFileManager defaultManager];
+                if([fileManager fileExistsAtPath:newImagePath]){
+                    NSURL * fileUrl = [NSURL fileURLWithPath:newImagePath];
+                    NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+                    img = [UIImage imageWithData:data];
+                    break;
+                }
+            }
+        }
+    }
+    
+    return img;
+    
+}
 
 
 @end

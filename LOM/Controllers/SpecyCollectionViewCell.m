@@ -21,9 +21,11 @@
     
     Photographs* specyProfilPhotograph = [species getSpecieProfilePhotograph];
     
-    NSString* imageName = [NSString stringWithFormat:@"%@.jpg", specyProfilPhotograph._photograph];
+    //NSString* imageName = [NSString stringWithFormat:@"%@.jpg", specyProfilPhotograph._photograph];
+    NSString* imageName =  specyProfilPhotograph._photograph;
     
-    UIImage* image = [UIImage imageNamed:imageName];
+    //UIImage* image = [UIImage imageNamed:imageName];
+    UIImage * image = [Tools loadImage:imageName];
     
     self.imgSpecy.image = image;
     
