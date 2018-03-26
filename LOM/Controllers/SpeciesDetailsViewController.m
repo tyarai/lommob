@@ -119,8 +119,31 @@
             if (![Tools isNullOrEmptyString:photograph._photograph]) {
                 
                 NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
-                 //[imageView setImage:[UIImage imageNamed:imageBundleName]];
-                UIImage *image = [UIImage imageNamed:imageBundleName];
+                
+                UIImage *image = nil;
+                
+                if ( [UIImage imageNamed:imageBundleName] != nil) {
+                    
+                    image = [UIImage imageNamed:imageBundleName];
+                    
+                }else {
+                    
+                    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                    
+                    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: photograph._photograph ];
+                    
+                    NSFileManager * fileManager = [NSFileManager defaultManager];
+                    
+                    if([fileManager fileExistsAtPath:filePath]){
+                        
+                        NSURL * fileUrl = [NSURL fileURLWithPath:filePath];
+                        NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+                        image = [UIImage imageWithData:data];
+                        
+                    }
+                    
+                }
+                
                 CGSize newSize = CGSizeMake(width,height);
                 UIImage *scaledImage = [image scaledImageToSize:newSize];
                 [imageView setImage:scaledImage];
@@ -517,9 +540,33 @@
         
         if (![Tools isNullOrEmptyString:photograph._photograph]) {
             
-            NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
+            /*NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
             
             [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:imageBundleName]]];
+             */
+            NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", photograph._photograph];
+            
+            if ( [UIImage imageNamed:imageBundleName] != nil) {
+                
+                [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:imageBundleName]]];
+            }else {
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                
+                NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent: photograph._photograph ];
+                
+                NSFileManager * fileManager = [NSFileManager defaultManager];
+                
+                if([fileManager fileExistsAtPath:filePath]){
+                    
+                    NSURL * fileUrl = [NSURL fileURLWithPath:filePath];
+                    NSData * data = [NSData dataWithContentsOfURL:fileUrl];
+                    UIImage * img = [UIImage imageWithData:data];
+                    [self.photos addObject:[MWPhoto photoWithImage:img]];
+                    
+                }
+                
+            }
             
         }else {
             

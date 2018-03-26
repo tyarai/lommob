@@ -1336,6 +1336,9 @@ static AppData* _instance;
         if(speciesDictionary != nil){
             [Tools updateLocalSpeciesWith:speciesDictionary];
         }
+        if(photoDictionary != nil){
+            [Tools updateLocalPhotographsWith:photoDictionary];
+        }
         if(familyDictionary != nil){
             [Tools updateLocalLemurFamilies:familyDictionary];
         }

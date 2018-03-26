@@ -14,4 +14,6 @@
 @property (nonatomic, strong) NSString* _title;
 @property (nonatomic, strong) NSString* _photograph;
 
++ (id) getPhotographByNID:(NSInteger) _nid;
+
 @end

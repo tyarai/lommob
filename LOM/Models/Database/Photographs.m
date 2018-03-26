@@ -10,4 +10,10 @@
 
 @implementation Photographs
 
++ (id) getPhotographByNID:(NSInteger) _nid{
+    NSString * queryArgument = [NSString new];
+    queryArgument = [NSString stringWithFormat:@" _nid = '%lu' ", (long)_nid];
+    return [Photographs firstInstanceWhere: queryArgument];
+}
+
 @end

@@ -796,6 +796,7 @@ static float appScale = 1.0;
 }
 
 //---------- Update local map in database with ones from server (mapsDico) ---------------
+//TODO: Tokony asiana flag boolean any @ server manambara hoe niova ilay image dia izay vao manao download
 
 +(void) updateLocalMaps:(NSArray*) mapsDico{
     
@@ -824,51 +825,47 @@ static float appScale = 1.0;
             }
             
             [Tools downloadImageAsynchronously:image_url];
-            
-            
-            
-            //---- Raha tsy mbola misy en local ilay fichier dia alaina avy any @ server --//
-            
-            /*NSFileManager *fileManager = [[NSFileManager alloc] init];
-            UIImage * image = [UIImage imageNamed:filename];
-            
-            
-            SDWebImageCompletionWithFinishedBlock successBlock =
-            
-            ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                if(image != nil && error == nil && finished){
-                    if (image && finished) {
-                        // Cache image to disk or memory
-                        //[[SDImageCache sharedImageCache] storeImage:image
-                          //                                   forKey:filename
-                            //                                 toDisk:YES];
-                        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-                        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:filename];
-                        
-                        [UIImageJPEGRepresentation(image, 1.0)
-                                    writeToFile:filePath
-                                    atomically:YES];
-                    }
-                    NSLog(@"Download Successed");
-                }
-            };
-            
-            //if (![fileManager fileExistsAtPath:filename] ){
-                
-                if(image == nil){
-                    //--------- Download image here ------//
-                    NSURL * url = [NSURL URLWithString:image_url];
-                    SDWebImageManager *manager = [SDWebImageManager sharedManager];
-                    [manager downloadImageWithURL:url
-                                          options:SDWebImageRetryFailed | SDWebImageContinueInBackground
-                                         progress:nil
-                                        completed:successBlock];
-                }
-            //}
-             */
+          
         }
     }
 }
+
+//----------------------- Update local photographs  ---------------
+
++(void) updateLocalPhotographsWith:(NSArray*) photoDico{
+    
+    if(photoDico != nil){
+        
+        for (NSDictionary * photo in photoDico) {
+            
+            NSInteger nid        = [[photo valueForKey:@"nid"] integerValue];
+            NSString * title     = [photo valueForKey:@"title"];
+            NSString * image_url = [photo valueForKey:@"image_url"];
+            NSString *filename   = [image_url lastPathComponent];
+            
+            Photographs * _photo = [Photographs getPhotographByNID:nid];
+            
+            if(_photo != nil){
+                
+                NSString * query = [NSString stringWithFormat:@"UPDATE $T SET  _photograph = '%@' , _title = '%@' WHERE _nid = '%li' ",filename,title,(long)nid];
+                
+                [Photographs executeUpdateQuery:query];
+                
+            }else{
+                Photographs * newPhoto = [Photographs new];
+                newPhoto._photograph = filename;
+                newPhoto._title      = title;
+                newPhoto._nid        = nid;
+                [newPhoto save];
+                
+            }
+            //TODO: Tokony asiana flag boolean any @ server manambara hoe niova ilay image dia izay vao manao download
+            [Tools downloadImageAsynchronously:image_url];
+            
+        }
+    }
+}
+
 
 /*
   DownloadImage from Server (asynchronously)
@@ -901,6 +898,8 @@ static float appScale = 1.0;
                        //-- Raha tsy misy ilay fichier vao re-creer-na eto --//
                        [UIImageJPEGRepresentation(image, IMAGE_COMPRESSION_QUALITY)writeToFile:filePath atomically:YES];
                    }
+               }else {
+                   NSLog(@"Error when downloading image %@ asynchronously",image_url);
                }
            }];
     }

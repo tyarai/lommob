@@ -74,6 +74,8 @@ session_name andToken:(NSString*) token
 +(void) updateLocalSites:(NSArray*) sitesDico;
 +(void) updateLocalLemurFamilies:(NSArray*) familiesDico;
 +(void) updateLocalAuthors:(NSArray*) authorDico;
++(void) updateLocalPhotographsWith:(NSArray*) photoDico;
+    
 +(void) updateLocalCommentsWith:(NSArray*) comments;
 +(void) downloadImageAsynchronously:(NSString*)image_url;
 @end
