@@ -1253,7 +1253,6 @@ static AppData* _instance;
     NSString * cookie = [NSString stringWithFormat:@"%@=%@",sessionName,session_id];
     [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
     
-    
     NSString* url = [NSString stringWithFormat:@"%@%@?user_uid=%li", SERVER, SETTINGS_EXPORT_ENDPOINT,(long)user_uid];
     [JSONHTTPClient postJSONFromURLWithString:url bodyString:nil completion:completeBlock];
    
@@ -1287,7 +1286,8 @@ static AppData* _instance;
                            fromDate:(NSString*)fromDate
                       andCompletion:(JSONObjectBlock)completeBlock
 {
-    [self buildPOSTHeader];
+    //[self buildPOSTHeader];
+    [self buildPOSTHeaderWithContentType:@"application/json"];
     
     if (![Tools isNullOrEmptyString:session_id]) {
         

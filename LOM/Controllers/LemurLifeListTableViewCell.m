@@ -67,9 +67,13 @@
             Species * species = [Species getSpeciesBySpeciesNID:speciesNID];
             Photographs * profilePhotoname = [species getSpecieProfilePhotograph];
             NSString * fileName = profilePhotoname._photograph;
-            fileName = [fileName stringByAppendingString:@".jpg"];
+            
+            //fileName = [fileName stringByAppendingString:@".jpg"];
+            
             if(![Tools isNullOrEmptyString:fileName]){
-                UIImage * img = [UIImage imageNamed:fileName];
+                //UIImage * img = [UIImage imageNamed:fileName];
+                //[self.imgPhoto setImage:img];
+                UIImage * img = [Tools loadImage:fileName];
                 [self.imgPhoto setImage:img];
             }else{
                 [self.imgPhoto setImage:[UIImage imageNamed:@"ico_default_specy"]];

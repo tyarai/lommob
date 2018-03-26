@@ -581,6 +581,8 @@
         //NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", map._file_name];
         NSString* imageBundleName =  map._file_name;
         
+        //- Esorina ny extension ato satria ny an'ny MAP efa misy extension daholo ny sary --
+        imageBundleName = [imageBundleName stringByDeletingPathExtension];
         
         UIImage *image = [Tools loadImage:imageBundleName];
       

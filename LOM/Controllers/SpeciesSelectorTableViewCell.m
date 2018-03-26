@@ -7,7 +7,7 @@
 //
 
 #import "SpeciesSelectorTableViewCell.h"
-
+#import "Tools.h"
 
 @implementation SpeciesSelectorTableViewCell
 
@@ -36,9 +36,11 @@
         }
         Photographs* specyProfilPhotograph = [species getSpecieProfilePhotograph];
         
-        NSString* imageName = [NSString stringWithFormat:@"%@.jpg", specyProfilPhotograph._photograph];
+        //NSString* imageName = [NSString stringWithFormat:@"%@.jpg", specyProfilPhotograph._photograph];
+        // UIImage* image = [UIImage imageNamed:imageName];
         
-        UIImage* image = [UIImage imageNamed:imageName];
+        NSString* imageName =  specyProfilPhotograph._photograph;
+        UIImage* image = [Tools loadImage:imageName];
         
         self.speciesImage.image = image;
     }

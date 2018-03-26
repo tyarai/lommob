@@ -187,8 +187,6 @@
                     [Tools setUserPreferenceWithKey:title andStringValue:value];
                     
                 }
-                
-             
       
             }else{
                 NSLog(@"%@", [err description]);
