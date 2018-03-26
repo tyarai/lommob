@@ -208,7 +208,8 @@
 
     updateSyncDate = [Tools isNullOrEmptyString:updateSyncDate] ? lastSyncDate : updateSyncDate;
     
-    
+    //TODO: Mampidina ny NODES niova aorinan'ny app re-install
+    //Raha toa ka avy nanao re-install an'ilay app dia miverina database par defaut no ao anaty phone ka mila ampidinina daholo izay NODES niova (species,maps,photo,family,places) ka tsy tao anatin'ny data voalohany. Raha re-install ny cas izany dia samy NULL daholo ny 'lastSyncDate' sy ny 'updateSyncDate' dia tokony atao date-n'ny app launch izany ohatra ny eto
     
     [appData getChangedNodesForSessionId:appDelegate._sessid
                                 fromDate: updateSyncDate
