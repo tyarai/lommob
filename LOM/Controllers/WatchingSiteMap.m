@@ -34,7 +34,8 @@
         if(map){
             
             NSString *imageFileName = map._file_name;
-            UIImage * image        = [UIImage imageNamed:imageFileName];
+            //UIImage * image        = [UIImage imageNamed:imageFileName];
+            UIImage * image        = [Tools loadImage: [imageFileName stringByDeletingPathExtension]   ];
             if(image){
                 self.mapImageView.image = image;
             }

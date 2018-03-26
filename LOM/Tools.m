@@ -937,6 +937,7 @@ static float appScale = 1.0;
                 newSite._title = title;
                 newSite._body  = body;
                 newSite._map_id = map_id;
+                newSite._site_id = nid;
                 [newSite save];
             }
         }
