@@ -13,4 +13,11 @@
     <color name="base_lightgray">#bdbdbd</color>
 
     <color name="fragment_bg">#EEEEEE</color>
+
+    <color name="black">#000000</color>
+    <color name="black19">#191919</color>
+    <color name="black32">#323232</color>
+    <color name="black4c">#4c4c4c</color>
+    <color name="blackcc">#cccccc</color>
+
 </resources>

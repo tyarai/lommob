@@ -30,4 +30,14 @@
     <string name="no_description">No description for this picture</string>
     <string name="dismiss">dismiss</string>
     <string name="coming_soon">Coming soon !</string>
+    <string name="sighting_species_header">Species</string>
+    <string name="sighting_species_choose">Tap to choose species</string>
+    <string name="sighting_place_choose">Tap to choose place name</string>
+    <string name="sighting_sighting_header">Sighting</string>
+    <string name="sighting_number_observed">Number observed</string>
+    <string name="sighting_longitude">Longitude</string>
+    <string name="sighting_latitude">Latitude</string>
+    <string name="sighting_altitude">Altitude</string>
+    <string name="sighting_setlocation"><![CDATA[Tap to capture lon. & lat. & alt.]]></string>
+    <string name="sighting_date_observation_header">Observed on</string>
 </resources>
