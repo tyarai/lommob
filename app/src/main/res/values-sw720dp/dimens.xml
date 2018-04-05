@@ -19,5 +19,6 @@
     <dimen name="author_card_height">175dp</dimen>
     <dimen name="author_size">150dp</dimen>
     <dimen name="list_arrow_margin">16dp</dimen>
+    <dimen name="sighting_image_height">400dp</dimen>
 
 </resources>

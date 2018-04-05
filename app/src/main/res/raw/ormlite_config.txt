@@ -1,5 +1,5 @@
 #
-# generated on 2017/10/28 01:00:28
+# generated on 2018/04/05 11:17:45
 #
 # --table-start--
 dataClass=tyarai.com.lom.model.Author
@@ -448,6 +448,177 @@ dataPersister=LONG_STRING
 # --field-start--
 fieldName=map
 columnName=map_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=active
+columnName=active
+dataPersister=BOOLEAN
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Comment
+tableName=comment
+# --table-fields-start--
+# --field-start--
+fieldName=content
+columnName=content
+dataPersister=LONG_STRING
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=active
+columnName=active
+dataPersister=BOOLEAN
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.Sighting
+tableName=sighting
+# --table-fields-start--
+# --field-start--
+fieldName=title
+columnName=title
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=numberObserved
+columnName=number_observed
+dataPersister=INTEGER_OBJ
+# --field-end--
+# --field-start--
+fieldName=longitude
+columnName=longitude
+dataPersister=FLOAT_OBJ
+# --field-end--
+# --field-start--
+fieldName=latitude
+columnName=latitude
+dataPersister=FLOAT_OBJ
+# --field-end--
+# --field-start--
+fieldName=altitude
+columnName=altitude
+dataPersister=FLOAT_OBJ
+# --field-end--
+# --field-start--
+fieldName=specie
+columnName=specie_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=watchingSite
+columnName=watching_site_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=observationDate
+columnName=observation_date
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=photo
+columnName=photo
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=comments
+foreignCollection=true
+# --field-end--
+# --field-start--
+fieldName=id
+columnName=_id
+dataPersister=LONG
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nid
+columnName=nid
+dataPersister=LONG_OBJ
+# --field-end--
+# --field-start--
+fieldName=postingDate
+columnName=cdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=lastModifiedOnTablet
+columnName=mdate
+dataPersister=DATE_LONG
+# --field-end--
+# --field-start--
+fieldName=active
+columnName=active
+dataPersister=BOOLEAN
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=tyarai.com.lom.model.SightingComment
+tableName=sighting_comment
+# --table-fields-start--
+# --field-start--
+fieldName=sighting
+columnName=sighting_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=comment
+columnName=comment_id
 foreign=true
 foreignAutoRefresh=true
 maxForeignAutoRefreshLevel=2

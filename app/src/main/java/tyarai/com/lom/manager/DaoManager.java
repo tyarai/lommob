@@ -3,12 +3,15 @@ package tyarai.com.lom.manager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import tyarai.com.lom.model.Author;
+import tyarai.com.lom.model.Comment;
 import tyarai.com.lom.model.Family;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.model.Links;
 import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
 import tyarai.com.lom.model.Photograph;
+import tyarai.com.lom.model.Sighting;
+import tyarai.com.lom.model.SightingComment;
 import tyarai.com.lom.model.Specie;
 import tyarai.com.lom.model.WatchingSite;
 import tyarai.com.lom.model.ormlite.config.DataBaseHelper;
@@ -26,6 +29,10 @@ public abstract class DaoManager {
 	private static RuntimeExceptionDao<Photograph, Long> photographDao;
 	private static RuntimeExceptionDao<Specie, Long> specieDao;
 	private static RuntimeExceptionDao<WatchingSite, Long> watchingsiteDao;
+
+	private static RuntimeExceptionDao<Comment, Long> commentDao;
+	private static RuntimeExceptionDao<SightingComment, Long> sightingCommentDao;
+	private static RuntimeExceptionDao<Sighting, Long> sightingDao;
 
 	protected DataBaseHelper getHelper() {
 		if (helper == null) {
@@ -101,6 +108,25 @@ public abstract class DaoManager {
 		return watchingsiteDao;
 	}
 
+	public RuntimeExceptionDao<Comment, Long> getCommentDao() {
+		if (commentDao == null) {
+			commentDao = getHelper().getRuntimeExceptionDao(Comment.class);
+		}
+		return commentDao;
+	}
 
+	public RuntimeExceptionDao<SightingComment, Long> getSightingCommentDao() {
+		if (sightingCommentDao == null) {
+			sightingCommentDao = getHelper().getRuntimeExceptionDao(SightingComment.class);
+		}
+		return sightingCommentDao;
+	}
+
+	public RuntimeExceptionDao<Sighting, Long> getSightingDao() {
+		if (sightingDao == null) {
+			sightingDao = getHelper().getRuntimeExceptionDao(Sighting.class);
+		}
+		return sightingDao;
+	}
 }
 

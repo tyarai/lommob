@@ -6,12 +6,15 @@ package tyarai.com.lom.model.ormlite.config;
 import com.j256.ormlite.android.apptools.OrmLiteConfigUtil;
 
 import tyarai.com.lom.model.Author;
+import tyarai.com.lom.model.Comment;
 import tyarai.com.lom.model.Family;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.model.Links;
 import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
 import tyarai.com.lom.model.Photograph;
+import tyarai.com.lom.model.Sighting;
+import tyarai.com.lom.model.SightingComment;
 import tyarai.com.lom.model.Specie;
 import tyarai.com.lom.model.WatchingSite;
 
@@ -28,6 +31,9 @@ public class DBConfigUtil extends OrmLiteConfigUtil {
             Photograph.class,
             Specie.class,
             WatchingSite.class,
+            Comment.class,
+            Sighting.class,
+            SightingComment.class
     };
 
     /**

@@ -40,4 +40,5 @@
     <string name="sighting_altitude">Altitude</string>
     <string name="sighting_setlocation"><![CDATA[Tap to capture lon. & lat. & alt.]]></string>
     <string name="sighting_date_observation_header">Observed on</string>
+    <string name="no_sightings">Your list is empty ! Please pull to refresh</string>
 </resources>

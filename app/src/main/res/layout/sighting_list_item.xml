@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/blackcc"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:background="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sighting_item_header"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            >
+
+            <TextView
+                android:id="@+id/sighting_item_title"
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:layout_height="wrap_content"
+                android:text="This is my first sighting very long bite cute met ot deeo kiiii"
+                android:textSize="@dimen/text_size"
+                android:textColor="@color/black32"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"/>
+
+            <!--https://icons8.com/icon/1837/edit-property-->
+            <ImageView
+                android:id="@+id/sighting_item_editbtn"
+                android:src="@drawable/iconsedit_50"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/sighting_item_image"
+            android:layout_below="@id/sighting_item_header"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sighting_image_height"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:src="@drawable/z_2006_09_mad_078_clc_"/><!--z_2006_09_mad_078_clc_-->
+
+        <TextView
+            android:id="@+id/sighting_item_specie"
+            android:layout_below="@id/sighting_item_image"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Allocebus trichotis (Gunter, 1975)"
+            android:textSize="18sp"
+            android:textColor="@color/black4c"
+            android:layout_marginRight="10dp"
+            android:textStyle="bold"/>
+
+        <RelativeLayout
+            android:id="@+id/sighting_item_site"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sighting_item_specie"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            >
+
+            <!--https://icons8.com/icon/5663/location-->
+            <ImageView
+                android:id="@+id/sighting_item_location_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/icon_location_50"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/sighting_item_location_icon"
+                android:layout_marginLeft="10dp"
+                android:text="Anjozorobe-Angavo protected area *** I don't give a fuck"
+                android:textColor="@color/black4c"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/sighting_item_datation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sighting_item_site"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            >
+
+            <TextView
+                android:id="@+id/sighting_item_observation_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2012-23-09"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/sighting_item_number_observed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Number observed : 2"
+                android:textSize="14sp"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sighting_item_datation">
+
+            <ImageView
+                android:id="@+id/sighting_item_icon_comment"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/icons8_bubble_50"
+                android:layout_alignParentRight="true"/>
+
+            <ImageView
+                android:id="@+id/sighting_item_icon_star"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/icons8_star_50"
+                android:layout_toLeftOf="@id/sighting_item_icon_comment"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

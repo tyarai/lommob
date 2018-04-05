@@ -17,12 +17,15 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import tyarai.com.lom.model.Author;
+import tyarai.com.lom.model.Comment;
 import tyarai.com.lom.model.Family;
 import tyarai.com.lom.model.Illustration;
 import tyarai.com.lom.model.Links;
 import tyarai.com.lom.model.Maps;
 import tyarai.com.lom.model.Menus;
 import tyarai.com.lom.model.Photograph;
+import tyarai.com.lom.model.Sighting;
+import tyarai.com.lom.model.SightingComment;
 import tyarai.com.lom.model.Specie;
 import tyarai.com.lom.model.WatchingSite;
 
@@ -32,7 +35,7 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 	public static String TAG = DataBaseHelper.class.getSimpleName(); 
 
     // DB CONFIG
-    public static int DB_VERSION = 1;
+    public static int DB_VERSION = 2;
 
 
     public static String DB_NAME = "lom_db";
@@ -87,6 +90,11 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, Specie.class);
 			TableUtils.createTable(connectionSource, WatchingSite.class);
 
+			// add sighting feature
+			TableUtils.createTable(connectionSource, Comment.class);
+			TableUtils.createTable(connectionSource, Sighting.class);
+			TableUtils.createTable(connectionSource, SightingComment.class);
+
 		} catch (SQLException e) {
 			Log.e(DataBaseHelper.class.getName(), "Can't create database", e);
 			throw new RuntimeException(e);
@@ -99,20 +107,23 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 	public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
 			int oldVersion, int newVersion) {
 		
-//		try {
-//
-//
-//			RuntimeExceptionDao<Menus, Long> queryDao = getRDao(Menus.class);
-//
-//			if (oldVersion < 2) {
-//
-//			}
-//
-//
-//		} catch (java.sql.SQLException e) {
-//			Log.e(DataBaseHelper.class.getName(), "Can't handle databases updates", e);
-//			throw new RuntimeException(e); // TODO à tester et traiter cette connerie hein, don't put it there for the fun
-//		}
+		try {
+
+
+			RuntimeExceptionDao<Menus, Long> queryDao = getRDao(Menus.class);
+
+			if (oldVersion < 2) {
+				// add sighting feature
+				TableUtils.createTable(connectionSource, Comment.class);
+				TableUtils.createTable(connectionSource, Sighting.class);
+				TableUtils.createTable(connectionSource, SightingComment.class);
+			}
+
+
+		} catch (java.sql.SQLException e) {
+			Log.e(DataBaseHelper.class.getName(), "Can't handle databases updates", e);
+			throw new RuntimeException(e); // TODO à tester et traiter cette connerie hein, don't put it there for the fun
+		}
 		
 	}
 
