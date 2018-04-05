@@ -1,4 +1,4 @@
-  //
+//
 //  JSONModelHTTPClient.m
 //
 //  @version 1.0.2
@@ -19,8 +19,6 @@
 #pragma mark - constants
 NSString* const kHTTPMethodGET = @"GET";
 NSString* const kHTTPMethodPOST = @"POST";
-NSString* const kHTTPMethodPUT  = @"PUT";
-NSString* const kHTTPMethodDELETE  = @"DELETE"; // Updated By Ranto May 10, 2017
 
 NSString* const kContentTypeAutomatic    = @"jsonmodel/automatic";
 NSString* const kContentTypeJSON         = @"application/json";
@@ -335,9 +333,7 @@ static NSString* requestContentType = nil;
                    }];
 }
 
-+(void)getJSONFromURLWithString:(NSString*)urlString
-                         params:(NSDictionary*)params
-                     completion:(JSONObjectBlock)completeBlock
++(void)getJSONFromURLWithString:(NSString*)urlString params:(NSDictionary*)params completion:(JSONObjectBlock)completeBlock
 {
     [self JSONFromURLWithString:urlString method:kHTTPMethodGET
                          params:params
@@ -346,9 +342,7 @@ static NSString* requestContentType = nil;
                    }];
 }
 
-+(void)postJSONFromURLWithString:(NSString*)urlString
-                          params:(NSDictionary*)params
-                      completion:(JSONObjectBlock)completeBlock
++(void)postJSONFromURLWithString:(NSString*)urlString params:(NSDictionary*)params completion:(JSONObjectBlock)completeBlock
 {
     [self JSONFromURLWithString:urlString method:kHTTPMethodPOST
                          params:params
@@ -366,18 +360,6 @@ static NSString* requestContentType = nil;
                        if (completeBlock) completeBlock(json, e);
                    }];
 }
-/*
- Update RANTO November 09 2016
- */
-+(void)putJSONFromURLWithString:(NSString*)urlString bodyString:(NSString*)bodyString completion:(JSONObjectBlock)completeBlock
-{
-    [self JSONFromURLWithString:urlString method:kHTTPMethodPUT
-                         params:nil
-                   orBodyString:bodyString completion:^(id json, JSONModelError* e) {
-                       if (completeBlock) completeBlock(json, e);
-                   }];
-}
-
 
 +(void)postJSONFromURLWithString:(NSString*)urlString bodyData:(NSData*)bodyData completion:(JSONObjectBlock)completeBlock
 {
@@ -388,22 +370,5 @@ static NSString* requestContentType = nil;
                        if (completeBlock) completeBlock(json, e);
                    }];
 }
-
-/*
-    Update Ranto - May 10 2017
- */
-
-+(void)deleteJSONFromURLWithString:(NSString*)urlString
-                        completion:(JSONObjectBlock)completeBlock
-{
-    [self JSONFromURLWithString:urlString
-                         method:kHTTPMethodDELETE
-                         params:nil
-                   orBodyString:nil completion:^(id json, JSONModelError* e) {
-                       if (completeBlock) completeBlock(json, e);
-                   }];
-}
-
-
 
 @end

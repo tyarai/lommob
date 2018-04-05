@@ -71,4 +71,6 @@ SPEC CHECKSUMS:
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   WYPopoverController: dda54780e1bef186464ae5a10ab9b4998c279e89
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 5e0beb3dbe4891fb446111a80034c876d4b6bac8
+
+COCOAPODS: 1.4.0
