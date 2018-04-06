@@ -34,6 +34,7 @@ import tyarai.com.lom.views.FamiliesFragment;
 import tyarai.com.lom.views.FamiliesFragment_;
 import tyarai.com.lom.views.IntroductionActivity_;
 import tyarai.com.lom.views.OriginActivity_;
+import tyarai.com.lom.views.SightingListFragment_;
 import tyarai.com.lom.views.SpeciesFragment_;
 import tyarai.com.lom.views.WatchingSitesFragment;
 import tyarai.com.lom.views.WatchingSitesFragment_;
@@ -172,7 +173,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show();
                 break;
             case MENU_POSTS:
-                Toast.makeText(this, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show();
+                startFragment(new SightingListFragment_(), null);
                 break;
             default:
                 break;

@@ -14,7 +14,7 @@
     <string name="sites">Watching sites</string>
     <string name="site">Watching site</string>
     <string name="watching">Primate watching</string>
-    <string name="posts">Posts</string>
+    <string name="posts">Sightings</string>
     <string name="about">About this app</string>
     <string name="authors">About the authors</string>
     <string name="appquit_message">Press again to exit</string>
@@ -41,4 +41,7 @@
     <string name="sighting_setlocation"><![CDATA[Tap to capture lon. & lat. & alt.]]></string>
     <string name="sighting_date_observation_header">Observed on</string>
     <string name="no_sightings">Your list is empty ! Please pull to refresh</string>
+    <string name="sighting_add">New sighting</string>
+    <string name="select_species">Select species</string>
+    <string name="choose_species">Choose species</string>
 </resources>

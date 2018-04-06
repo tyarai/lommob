@@ -1,10 +1,14 @@
 package tyarai.com.lom.views;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -62,6 +66,8 @@ public class SpeciesListFragment extends BaseFrag
     @ViewById(R.id.pb_vertical)
     ProgressBar progressBar;
 
+    int selected = -1;
+
 
     @Nullable
     @Override
@@ -75,20 +81,22 @@ public class SpeciesListFragment extends BaseFrag
 
         progressBar.setIndeterminate(true);
         progressBar.setVisibility(View.VISIBLE);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                layoutManager.getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        // do whatever
+                        selectSpecie(position);
                     }
 
                     @Override
                     public void onLongItemClick(View view, int position) {
-                        // do whatever
+                        selectSpecie(position);
                     }
                 })
         );
@@ -96,6 +104,44 @@ public class SpeciesListFragment extends BaseFrag
         new LoadSpecieTask().execute();
     }
 
+    Snackbar snackbar;
+    public static String SPECIE_ID = "specie_id";
+    public static String SPECIE_TITLE = "specie_title";
+    public static String SPECIE_TRANS = "specie_trans";
+    public static int RESULT_BOO = -1;
+
+    private void selectSpecie(final int position) {
+        if (position == selected) {
+            adapter.setSelected(-1);
+            if (snackbar != null) {
+                snackbar.dismiss();
+            }
+        }
+        else {
+            adapter.setSelected(position);
+            selected = position;
+            snackbar = Snackbar.make(recyclerView, getString(R.string.select_species), Snackbar.LENGTH_INDEFINITE);
+            snackbar.setAction("DONE", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    snackbar.dismiss();
+                    Specie specie = adapter.getSelected();
+                    Intent resultIntent = new Intent();
+                    if (specie != null) {
+                        resultIntent.putExtra(SPECIE_ID, specie.getId() );
+                        resultIntent.putExtra(SPECIE_TITLE, specie.getTitle() );
+                        resultIntent.putExtra(SPECIE_TRANS, specie.getEnglish() );
+                        getActivity().setResult(Activity.RESULT_OK, resultIntent);
+                    }
+                    else {
+                        getActivity().setResult(RESULT_BOO, resultIntent);
+                    }
+                    getActivity().finish();
+                }
+            });
+            snackbar.show();
+        }
+    }
 
 
         @Override

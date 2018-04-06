@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/sightings_swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/sightings_recyclerView"
-        android:layout_height="match_parent"
+    <LinearLayout
         android:layout_width="match_parent"
-        tools:showIn="@layout/activity_main"
-        tools:context=".controller.MainActivity"
-        android:paddingBottom="@dimen/activity_vertical_margin"/>
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/no_sightings"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/no_sightings"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:padding="@dimen/activity_vertical_margin"
-        android:textSize="24dp"
-         />
+        <TextView
+            android:id="@+id/sightings_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:gravity="top|center_horizontal"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="You have 2 sightings"
+            android:textColor="@color/black19"
+            android:textSize="20dp"
+            android:visibility="gone" />
+
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/sightings_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            tools:context=".controller.MainActivity"
+            tools:showIn="@layout/activity_main" />
+
+        <TextView
+            android:id="@+id/no_sightings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/no_sightings"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
 
 </android.support.v4.widget.SwipeRefreshLayout>

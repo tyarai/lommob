@@ -18,7 +18,9 @@ public class RenameFromDb {
         if (!TextUtils.isEmpty(fname)) {
             // unescape html fname because db return escaped filenames
             String fx = Parser.unescapeEntities(fname, false);
-            String rebuilt = "z_" + fx.replaceAll("[^a-zA-Z0-9//]", "_").replace("_jpg", "").toLowerCase();
+            String rebuilt = "z_" + fx.replaceAll("[^a-zA-Z0-9//]", "_")
+                    .replace("_jpg", "")
+                    .toLowerCase();
             Log.d(TAG, "rebuild :" + rebuilt);
             return rebuilt;
         }

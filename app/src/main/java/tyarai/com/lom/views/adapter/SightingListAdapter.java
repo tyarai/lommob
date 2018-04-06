@@ -19,44 +19,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tyarai.com.lom.R;
-import tyarai.com.lom.model.Specie;
+import tyarai.com.lom.model.Sighting;
 import tyarai.com.lom.views.SpecieDetailActivity;
 import tyarai.com.lom.views.SpecieDetailActivity_;
 import tyarai.com.lom.views.utils.RenameFromDb;
+import tyarai.com.lom.views.utils.ViewUtils;
 
 /**
  * Created by saimon
  */
-public class SpecieListAdapter extends RecyclerView.Adapter<SpecieListAdapter.ViewHolder> {
+public class SightingListAdapter extends RecyclerView.Adapter<SightingListAdapter.ViewHolder> {
 
-    private static final String TAG = SpecieListAdapter.class.getSimpleName();
+    private static final String TAG = SightingListAdapter.class.getSimpleName();
 
-    private List<Specie> listItems, filterList;
+    private List<Sighting> listItems, filterList;
     private Context context;
-    private int selected = -1;
 
-    public SpecieListAdapter(Context applicationContext, List<Specie> specieArrayList) {
+    public SightingListAdapter(Context applicationContext, List<Sighting> specieArrayList) {
         this.context = applicationContext;
         this.listItems = new ArrayList<>(specieArrayList);
         this.filterList = new ArrayList<>();
         this.filterList.addAll(this.listItems);
-    }
-
-    public void setSelected(int position) {
-        this.selected = position;
-        notifyDataSetChanged();
-    }
-
-    public Specie getSelected() {
-        try {
-            if (selected >= 0 && filterList != null) {
-                return filterList.get(selected);
-            }
-        }
-        catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @Override
@@ -67,25 +50,35 @@ public class SpecieListAdapter extends RecyclerView.Adapter<SpecieListAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        Specie listItem = filterList.get(i);
-        viewHolder.name.setText(listItem.getTitle());
-        viewHolder.descriptionView.setText(listItem.getEnglish());
-        if (i == selected) {
-            viewHolder.selectImageView.setVisibility(View.VISIBLE);
+        Sighting listItem = filterList.get(i);
+        viewHolder.titleView.setText(listItem.getTitle());
+        viewHolder.numberObservedView.setText(listItem.getNumberObserved());
+        viewHolder.observationDateView.setText(ViewUtils.dateToStringSemiShort(listItem.getObservationDate()));
+        if (listItem.getSpecie() != null) {
+            viewHolder.specieNameView.setText(listItem.getSpecie().getEnglish());
         }
-        else {
-            viewHolder.selectImageView.setVisibility(View.GONE);
+        if (listItem.getWatchingSite() != null) {
+            viewHolder.watchingSiteNameView.setText(listItem.getWatchingSite().getTitle());
         }
-        if (listItem != null) {
-            String fname = RenameFromDb.renameFNoExtension(listItem.getProfilePhotograph().getPhoto());
-            Log.d(TAG, "specie fname : " + fname);
-            int resourceImage = context.getResources().getIdentifier(fname, "drawable", context.getPackageName());
-            if (resourceImage != 0) {
-                Glide.with(context)
-                        .load(resourceImage)
-                        .into(viewHolder.imageView);
-            }
-        }
+
+//        String base64Image = listItem.getPhoto();
+//        if (!TextUtils.isEmpty(base64Image)) {
+//            byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
+//            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+//            if (decodedByte != null) {
+//                viewHolder.imageView.setImageBitmap(decodedByte);
+//            }
+//        }
+
+//        String fname = RenameFromDb.renameFNoExtension(listItem.getProfilePhotograph().getPhoto());
+//        Log.d(TAG, "specie fname : " + fname);
+//        int resourceImage = context.getResources().getIdentifier(fname, "drawable", context.getPackageName());
+//        if (resourceImage != 0) {
+//            Glide.with(context)
+//                    .load(resourceImage)
+//                    .into(viewHolder.imageView);
+//        }
+
     }
 
     @Override
@@ -94,20 +87,23 @@ public class SpecieListAdapter extends RecyclerView.Adapter<SpecieListAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView name;
-        private TextView descriptionView;
+        private TextView titleView;
+        private TextView specieNameView;
+        private TextView watchingSiteNameView;
+        private TextView observationDateView;
+        private TextView numberObservedView;
         private ImageView imageView;
-        private ImageView selectImageView;
 
         public ViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.specie_name);
-            imageView = (ImageView) view.findViewById(R.id.specie_image);
-            descriptionView = (TextView) view.findViewById(R.id.specie_description);
-            selectImageView = (ImageView) view.findViewById(R.id.select_specie);
+            titleView = (TextView) view.findViewById(R.id.sighting_item_title);
+            imageView = (ImageView) view.findViewById(R.id.sighting_item_image);
+            specieNameView = (TextView) view.findViewById(R.id.sighting_item_specie);
+            watchingSiteNameView = (TextView) view.findViewById(R.id.sighting_item_site);
+            numberObservedView = (TextView) view.findViewById(R.id.sighting_item_number_observed);
+            observationDateView = (TextView) view.findViewById(R.id.sighting_item_observation_date);
         }
     }
-
 
 
     // Do Search...
@@ -127,9 +123,8 @@ public class SpecieListAdapter extends RecyclerView.Adapter<SpecieListAdapter.Vi
 
                 } else {
                     // Iterate in the original List and add it to filter list...
-                    for (Specie item : listItems) {
-                        if (item.getTitle().toLowerCase().contains(text.toLowerCase()) ||
-                                item.getEnglish().toLowerCase().contains(text.toLowerCase())) {
+                    for (Sighting item : listItems) {
+                        if (item.getTitle().toLowerCase().contains(text.toLowerCase())) {
                             // Adding Matched items
                             filterList.add(item);
                         }

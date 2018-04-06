@@ -25,7 +25,7 @@
                 android:layout_weight="8"
                 android:layout_height="wrap_content"
                 android:text="This is my first sighting very long bite cute met ot deeo kiiii"
-                android:textSize="@dimen/text_size"
+                android:textSize="@dimen/text1_size"
                 android:textColor="@color/black32"
                 android:layout_marginRight="10dp"
                 android:layout_gravity="center"/>
@@ -37,6 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:onClick="editSightingClickHandler"
                 />
 
         </LinearLayout>
@@ -56,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Allocebus trichotis (Gunter, 1975)"
-            android:textSize="18sp"
+            android:textSize="@dimen/text2_size"
             android:textColor="@color/black4c"
             android:layout_marginRight="10dp"
             android:textStyle="bold"/>
@@ -84,7 +85,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="Anjozorobe-Angavo protected area *** I don't give a fuck"
                 android:textColor="@color/black4c"
-                android:textSize="16sp"/>
+                android:textSize="@dimen/text3_size"/>
 
         </RelativeLayout>
 
@@ -101,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2012-23-09"
-                android:textSize="14sp"
+                android:textSize="@dimen/text4_size"
                 />
 
             <TextView
@@ -110,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="Number observed : 2"
-                android:textSize="14sp"
+                android:textSize="@dimen/text4_size"
                 android:layout_alignParentRight="true"
                 />
 
@@ -126,7 +127,8 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/icons8_bubble_50"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:onClick="rateSightingClickHandler"/>
 
             <ImageView
                 android:id="@+id/sighting_item_icon_star"
@@ -134,7 +136,8 @@
                 android:layout_height="32dp"
                 android:src="@drawable/icons8_star_50"
                 android:layout_toLeftOf="@id/sighting_item_icon_comment"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"/>
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:onClick="commentSightingClickHandler"/>
 
 
 

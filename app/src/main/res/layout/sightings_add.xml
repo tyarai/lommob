@@ -5,7 +5,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:focusableInTouchMode="true"
+        android:focusable="true">
 
         <LinearLayout
             android:id="@+id/sighting_top"
@@ -65,8 +67,9 @@
                 android:textSize="18dp"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:text="Daubentonia Madagascariensis (Gmelin, 1788)"
+                android:text=""
                 android:textColor="@color/black32"
+                android:visibility="gone"
                 />
             <!---->
 
@@ -78,7 +81,8 @@
                 android:textSize="18dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:text="Hay, Hay, tay katsaka tsaramaso boby a"
+                android:text=""
+                android:visibility="gone"
                 /> <!---->
 
             <Button

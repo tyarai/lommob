@@ -56,6 +56,12 @@
 
         <activity android:name=".views.SiteDetailActivity_"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.SightingAddActivity_"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".views.SpecieListActivity_" android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

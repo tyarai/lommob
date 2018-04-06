@@ -16,12 +16,29 @@ android {
 //            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
 //        }
     }
+
+    if(project.hasProperty("LOM.properties")
+            && new File(project.property("LOM.properties")).exists()) {
+
+        Properties props = new Properties()
+        props.load(new FileInputStream(file(project.property("LOM.properties"))))
+
+        signingConfigs {
+            release {
+                storeFile file(props['keystore'])
+                storePassword props['keystore.password']
+                keyAlias props['keyAlias']
+                keyPassword props['keyPassword']
+            }
+        }
+    }
     
     buildTypes {
         release {
             minifyEnabled false
             //shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
