@@ -917,6 +917,7 @@
 		4C6F1ACC1C134A0F00272A06 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F1AC21C134A0F00272A06 /* OpenSans-Semibold.ttf */; };
 		4C6F1ACD1C134A0F00272A06 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F1AC31C134A0F00272A06 /* OpenSans-SemiboldItalic.ttf */; };
 		4C74A42620780912008F3A5E /* LOMJSONHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74A42520780912008F3A5E /* LOMJSONHttpClient.m */; };
+		4C74A42A20781951008F3A5E /* background_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C74A42920781951008F3A5E /* background_2.jpg */; };
 		4C74F28D1C06387A00543A7F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F2881C06387A00543A7F /* Reachability.m */; };
 		4C74F28E1C06387A00543A7F /* NSString+Sha1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F28A1C06387A00543A7F /* NSString+Sha1.m */; };
 		4C74F28F1C06387A00543A7F /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F28C1C06387A00543A7F /* RNCachingURLProtocol.m */; };
@@ -1963,6 +1964,7 @@
 		4C6F1AC31C134A0F00272A06 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-SemiboldItalic.ttf"; path = "Fonts/OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
 		4C74A42520780912008F3A5E /* LOMJSONHttpClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LOMJSONHttpClient.m; path = Models/WebServices/LOMJSONHttpClient.m; sourceTree = "<group>"; };
 		4C74A42720780941008F3A5E /* LOMJSONHttpClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LOMJSONHttpClient.h; path = Models/WebServices/LOMJSONHttpClient.h; sourceTree = "<group>"; };
+		4C74A42920781951008F3A5E /* background_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background_2.jpg; sourceTree = "<group>"; };
 		4C74F2871C06387A00543A7F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4C74F2881C06387A00543A7F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4C74F2891C06387A00543A7F /* NSString+Sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sha1.h"; sourceTree = "<group>"; };
@@ -2460,6 +2462,7 @@
 		4C6F14721C1340CD00272A06 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				4C74A4282078193C008F3A5E /* background */,
 				4C33F3AC1F2F42C900958818 /* place_maps */,
 				B4AF342E1C9AD3630039DEBB /* CI logo (long format).jpg */,
 				B4AF342C1C9AD35B0039DEBB /* PSGlogoNEW.jpg */,
@@ -3298,6 +3301,14 @@
 				B46779351D4665AF00618410 /* Localizable.strings */,
 			);
 			name = Ressources;
+			sourceTree = "<group>";
+		};
+		4C74A4282078193C008F3A5E /* background */ = {
+			isa = PBXGroup;
+			children = (
+				4C74A42920781951008F3A5E /* background_2.jpg */,
+			);
+			name = background;
 			sourceTree = "<group>";
 		};
 		4C74F2841C06381A00543A7F /* Controllers */ = {
@@ -4703,6 +4714,7 @@
 				4C6F188A1C1342A000272A06 /* Daubentonia4madagascariensis.jpg in Resources */,
 				4C6F1AC81C134A0F00272A06 /* OpenSans-Italic.ttf in Resources */,
 				4C6F18DD1C1342A000272A06 /* EulemurB6macaco.jpg in Resources */,
+				4C74A42A20781951008F3A5E /* background_2.jpg in Resources */,
 				4C6F19EB1C1342A100272A06 /* Microcebus-macarthurii.jpg in Resources */,
 				4C6F1A181C1342A100272A06 /* MmurinusMandenaHAPKE(clc).jpg in Resources */,
 				4C6F1A051C1342A100272A06 /* MicrocebusB2rufus.jpg in Resources */,

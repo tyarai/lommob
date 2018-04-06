@@ -58,7 +58,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG1-Vg-TJF">
-                                <rect key="frame" x="49" y="578" width="86" height="30"/>
+                                <rect key="frame" x="49" y="578" width="92" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="terms of use">
                                     <color key="titleColor" red="0.98817652463912964" green="0.6891295313835144" blue="0.024154994636774063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -216,7 +217,8 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESE-0W-d07">
-                                <rect key="frame" x="237" y="578" width="95" height="30"/>
+                                <rect key="frame" x="230" y="578" width="102" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="privacy policy">
                                     <color key="titleColor" red="0.98817652463912964" green="0.6891295313835144" blue="0.024154994636774063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -3224,12 +3226,13 @@ Last Edited on 2017-10-20</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GZu-aj-jlG">
                                 <rect key="frame" x="0.0" y="370" width="375" height="271"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mr1-A1-W7y">
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.65000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mr1-A1-W7y">
                                         <rect key="frame" x="49" y="66" width="277" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="4AI-O0-Aij"/>
                                         </constraints>
-                                        <color key="textColor" red="1" green="0.97969192760000001" blue="0.93678246789999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
@@ -3247,12 +3250,13 @@ Last Edited on 2017-10-20</string>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6k0-ik-b9T">
+                                    <textField opaque="NO" clipsSubviews="YES" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6k0-ik-b9T">
                                         <rect key="frame" x="49" y="19" width="277" height="44"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="oM2-qq-Xjd"/>
                                         </constraints>
-                                        <color key="textColor" red="1" green="0.97969192760000001" blue="0.93678246789999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                         <userDefinedRuntimeAttributes>
@@ -3272,7 +3276,7 @@ Last Edited on 2017-10-20</string>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AKo-ih-QWq">
                                         <rect key="frame" x="49" y="124" width="277" height="50"/>
-                                        <color key="backgroundColor" red="0.98817652463912964" green="0.6891295313835144" blue="0.024154994636774063" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.91101253032684326" green="0.50897365808486938" blue="0.052045412361621857" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="iNz-fE-dCN"/>
                                         </constraints>
@@ -3292,7 +3296,7 @@ Last Edited on 2017-10-20</string>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="18"/>
                                         <state key="normal" title="CREATE AN ACCOUNT">
-                                            <color key="titleColor" red="1" green="0.74917774669833193" blue="0.26190077550122703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="createAccountTapped:" destination="ZY3-CV-khf" eventType="touchUpInside" id="oDW-LD-VTI"/>
@@ -3338,7 +3342,7 @@ Last Edited on 2017-10-20</string>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.24881300330162048" green="0.17828599913917553" blue="0.055685750913446269" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.49696850776672363" green="0.37585341930389404" blue="0.082575418055057526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cqZ-RC-FGq" firstAttribute="centerY" secondItem="EmH-8v-sOt" secondAttribute="centerY" id="4GA-xV-FdC"/>
                             <constraint firstItem="zkx-k2-8xq" firstAttribute="leading" secondItem="CO7-Wj-hMr" secondAttribute="leadingMargin" constant="33" id="4UA-Th-JAF"/>
