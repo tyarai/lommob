@@ -916,6 +916,7 @@
 		4C6F1ACB1C134A0F00272A06 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F1AC11C134A0F00272A06 /* OpenSans-Regular.ttf */; };
 		4C6F1ACC1C134A0F00272A06 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F1AC21C134A0F00272A06 /* OpenSans-Semibold.ttf */; };
 		4C6F1ACD1C134A0F00272A06 /* OpenSans-SemiboldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F1AC31C134A0F00272A06 /* OpenSans-SemiboldItalic.ttf */; };
+		4C74A42620780912008F3A5E /* LOMJSONHttpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74A42520780912008F3A5E /* LOMJSONHttpClient.m */; };
 		4C74F28D1C06387A00543A7F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F2881C06387A00543A7F /* Reachability.m */; };
 		4C74F28E1C06387A00543A7F /* NSString+Sha1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F28A1C06387A00543A7F /* NSString+Sha1.m */; };
 		4C74F28F1C06387A00543A7F /* RNCachingURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C74F28C1C06387A00543A7F /* RNCachingURLProtocol.m */; };
@@ -1960,6 +1961,8 @@
 		4C6F1AC11C134A0F00272A06 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "Fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		4C6F1AC21C134A0F00272A06 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Semibold.ttf"; path = "Fonts/OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
 		4C6F1AC31C134A0F00272A06 /* OpenSans-SemiboldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-SemiboldItalic.ttf"; path = "Fonts/OpenSans-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		4C74A42520780912008F3A5E /* LOMJSONHttpClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LOMJSONHttpClient.m; path = Models/WebServices/LOMJSONHttpClient.m; sourceTree = "<group>"; };
+		4C74A42720780941008F3A5E /* LOMJSONHttpClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LOMJSONHttpClient.h; path = Models/WebServices/LOMJSONHttpClient.h; sourceTree = "<group>"; };
 		4C74F2871C06387A00543A7F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4C74F2881C06387A00543A7F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		4C74F2891C06387A00543A7F /* NSString+Sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Sha1.h"; sourceTree = "<group>"; };
@@ -3433,6 +3436,8 @@
 			children = (
 				4C85FF6C1C37F6DC00D6C233 /* AppData.h */,
 				4C85FF6D1C37F6DC00D6C233 /* AppData.m */,
+				4C74A42520780912008F3A5E /* LOMJSONHttpClient.m */,
+				4C74A42720780941008F3A5E /* LOMJSONHttpClient.h */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -4978,6 +4983,7 @@
 				4C74F2921C0638AE00543A7F /* AppUtilities.m in Sources */,
 				B4AF342A1C9A83770039DEBB /* Links.m in Sources */,
 				4C2816A21F9ED93F003D9687 /* TermsOfUseViewController.m in Sources */,
+				4C74A42620780912008F3A5E /* LOMJSONHttpClient.m in Sources */,
 				4C59ADAC1C16119100EA74C5 /* SpecyCollectionViewCell.m in Sources */,
 				4C85FF641C37F3B200D6C233 /* PublicationResult.m in Sources */,
 				B46779341D46224400618410 /* LemurLifeListResult.m in Sources */,

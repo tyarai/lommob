@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "Comment.h"
 #import "Sightings.h"
+#import "LOMJSONHttpClient.h"
 
 @implementation AppData
 
@@ -1036,8 +1037,8 @@ static AppData* _instance;
         [[JSONHTTPClient requestHeaders] setValue:cookie forKey:@"Cookie"];
         
         NSString* url = [NSString stringWithFormat:@"%@%@%li", SERVER, NODE_UPDATE_ENDPOINT,(long)sighting._nid];
-        [JSONHTTPClient deleteJSONFromURLWithString:url
-                                       completion:completeBlock];
+        [LOMJSONHttpClient deleteJSONFromURLWithString:url
+                                            completion:completeBlock];
             
     }
     /*if(sighting != nil && sighting._nid == 0 && sighting._deleted == YES){
@@ -1235,7 +1236,9 @@ static AppData* _instance;
         }
         
         NSString* url = [NSString stringWithFormat:@"%@%@%li", SERVER, NODE_UPDATE_ENDPOINT,(long)nid];
-        [JSONHTTPClient putJSONFromURLWithString:url bodyString:body completion:completeBlock];
+        [LOMJSONHttpClient putJSONFromURLWithString:url
+                                         bodyString:body
+                                         completion:completeBlock];
         
     }
 }
