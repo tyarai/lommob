@@ -12,6 +12,7 @@
 		4C24A9A71ECC958500F475DA /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C24A9A61ECC958500F475DA /* SettingsTableViewController.m */; };
 		4C2816A21F9ED93F003D9687 /* TermsOfUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2816A11F9ED93F003D9687 /* TermsOfUseViewController.m */; };
 		4C316F431C113CB1004CCFE5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */; };
+		4C321DCD20792D6E00646B59 /* AuthorDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C321DCC20792D6E00646B59 /* AuthorDetailTableViewController.m */; };
 		4C33F3EF1F2F42F800958818 /* Ambanja.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AD1F2F42F800958818 /* Ambanja.jpg */; };
 		4C33F3F01F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */; };
 		4C33F3F11F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AF1F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg */; };
@@ -1038,6 +1039,8 @@
 		4C2816A01F9ED93F003D9687 /* TermsOfUseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TermsOfUseViewController.h; path = Controllers/TermsOfUseViewController.h; sourceTree = "<group>"; };
 		4C2816A11F9ED93F003D9687 /* TermsOfUseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermsOfUseViewController.m; path = Controllers/TermsOfUseViewController.m; sourceTree = "<group>"; };
 		4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		4C321DCB20792D6E00646B59 /* AuthorDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AuthorDetailTableViewController.h; path = Controllers/AuthorDetailTableViewController.h; sourceTree = "<group>"; };
+		4C321DCC20792D6E00646B59 /* AuthorDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AuthorDetailTableViewController.m; path = Controllers/AuthorDetailTableViewController.m; sourceTree = "<group>"; };
 		4C33F3AD1F2F42F800958818 /* Ambanja.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ambanja.jpg; sourceTree = "<group>"; };
 		4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ambatovaky-Special-Reserve.jpg"; sourceTree = "<group>"; };
 		4C33F3AF1F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ambohijanahary-Special-Reserve.jpg"; sourceTree = "<group>"; };
@@ -3717,6 +3720,8 @@
 				B4BBF3BF1C9790F3005A5196 /* AuthorsTableViewController.m */,
 				B48F146C1C995DB30067F19B /* AuthorDetailViewController.h */,
 				B48F146D1C995DB30067F19B /* AuthorDetailViewController.m */,
+				4C321DCB20792D6E00646B59 /* AuthorDetailTableViewController.h */,
+				4C321DCC20792D6E00646B59 /* AuthorDetailTableViewController.m */,
 			);
 			name = Authors;
 			sourceTree = "<group>";
@@ -5012,6 +5017,7 @@
 				4C85FF671C37F4E200D6C233 /* User.m in Sources */,
 				4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */,
 				B4C599B21C70D88000C4B99A /* IntroPageRootViewController.m in Sources */,
+				4C321DCD20792D6E00646B59 /* AuthorDetailTableViewController.m in Sources */,
 				4C59AD9D1C15F5FB00EA74C5 /* LemursLifeViewController.m in Sources */,
 				4CC1F3651F99F2BD00714460 /* PrivacyPolicyViewController.m in Sources */,
 				4C85FF5D1C37F27000D6C233 /* Publication.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Authors.h"
-@interface AuthorDetailViewController : UIViewController
+@interface AuthorDetailViewController : UIViewController 
 @property (weak, nonatomic) IBOutlet UIImageView *photo;
 @property (weak, nonatomic) IBOutlet UITextView *detail;
 @property Authors * selectedAuthor;

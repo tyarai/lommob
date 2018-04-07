@@ -1,23 +1,23 @@
 //
-//  AuthorsTableViewController.m
+//  AuthorDetailTableViewController.m
 //  LOM
 //
-//  Created by Ranto Andrianavonison on 15/03/2016.
-//  Copyright © 2016 Kerty KAMARY. All rights reserved.
+//  Created by Ranto Tiaray Andrianavonison on 07/04/2018.
+//  Copyright © 2018 Kerty KAMARY. All rights reserved.
 //
 
-#import "AuthorsTableViewController.h"
-#import "AuthorTableViewCell.h"
-#import "Constants.h"
-#import "Authors.h"
-#import "AuthorDetailViewController.h"
 #import "AuthorDetailTableViewController.h"
+#import "Constants.h"
 
-@interface AuthorsTableViewController ()
+#define ROWHEIGHT 48
+#define fixedPhotoCellHeight 325
+
+
+@interface AuthorDetailTableViewController ()
 
 @end
 
-@implementation AuthorsTableViewController
+@implementation AuthorDetailTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,11 +27,39 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.navigationItem.title = NSLocalizedString(@"authors_title",@"");
-    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
-    _allAuthors = [Authors allInstances];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = ROWHEIGHT;
+    
+    
+    
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:WHITE_COLOR }];
+    self.navigationItem.leftBarButtonItem.tintColor = ORANGE_COLOR;
+    self.navigationItem.leftBarButtonItem.title = @"";
+    self.navigationController.navigationBar.tintColor = ORANGE_COLOR;
+    if(self.selectedAuthor != nil){
+        self.navigationItem.title = self.selectedAuthor._name;
+        UIImage *image = [UIImage imageNamed:self.selectedAuthor._photo];
+        [self.photo setImage:image];
+        self.details.text  = self.selectedAuthor._details;
+        
+    }
 }
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath{
+    
+    if (indexPath.row == 1) {
+        return UITableViewAutomaticDimension;
+    }
+    return fixedPhotoCellHeight;
+}
+
+/*-(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    
+    return UITableViewAutomaticDimension;
+}*/
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -40,28 +68,25 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
+/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Incomplete implementation, return the number of sections
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.allAuthors count];
-}
+#warning Incomplete implementation, return the number of rows
+    return 0;
+}*/
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AuthorTableViewCell *cell = (AuthorTableViewCell*) [tableView dequeueReusableCellWithIdentifier:@"authorCell" forIndexPath:indexPath];
-    Authors *author = self.allAuthors[indexPath.row];;
-    cell.authorName.text = [author _name];
-    cell.authorDetails.text = [author _details];
-    NSString* photoFileName = [author _photo];
-    UIImage * photo = [UIImage imageNamed:photoFileName];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    [cell.photo setImage:photo];
+    // Configure the cell...
+    
     return cell;
 }
-
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -97,24 +122,14 @@
 }
 */
 
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    //AuthorDetailViewController* vc = (AuthorDetailViewController*)segue.destinationViewController;
-    //vc.selectedAuthor = self.selectedAuthor;
-    
-    AuthorDetailTableViewController* vc = (AuthorDetailTableViewController*)segue.destinationViewController;
-    vc.selectedAuthor = self.selectedAuthor;
+    // Pass the selected object to the new view controller.
 }
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.selectedAuthor = self.allAuthors[indexPath.row];
-    [self performSegueWithIdentifier:@"showDetails" sender:self];
-
-}
-
+*/
 
 @end
