@@ -13,6 +13,7 @@
 		4C2816A21F9ED93F003D9687 /* TermsOfUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2816A11F9ED93F003D9687 /* TermsOfUseViewController.m */; };
 		4C316F431C113CB1004CCFE5 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */; };
 		4C321DCD20792D6E00646B59 /* AuthorDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C321DCC20792D6E00646B59 /* AuthorDetailTableViewController.m */; };
+		4C321DD020794A6F00646B59 /* WatchingSitesDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C321DCF20794A6F00646B59 /* WatchingSitesDetailTableViewController.m */; };
 		4C33F3EF1F2F42F800958818 /* Ambanja.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AD1F2F42F800958818 /* Ambanja.jpg */; };
 		4C33F3F01F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */; };
 		4C33F3F11F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4C33F3AF1F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg */; };
@@ -1041,6 +1042,8 @@
 		4C316F421C113CB1004CCFE5 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		4C321DCB20792D6E00646B59 /* AuthorDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AuthorDetailTableViewController.h; path = Controllers/AuthorDetailTableViewController.h; sourceTree = "<group>"; };
 		4C321DCC20792D6E00646B59 /* AuthorDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AuthorDetailTableViewController.m; path = Controllers/AuthorDetailTableViewController.m; sourceTree = "<group>"; };
+		4C321DCE20794A6F00646B59 /* WatchingSitesDetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WatchingSitesDetailTableViewController.h; path = Controllers/WatchingSitesDetailTableViewController.h; sourceTree = "<group>"; };
+		4C321DCF20794A6F00646B59 /* WatchingSitesDetailTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WatchingSitesDetailTableViewController.m; path = Controllers/WatchingSitesDetailTableViewController.m; sourceTree = "<group>"; };
 		4C33F3AD1F2F42F800958818 /* Ambanja.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ambanja.jpg; sourceTree = "<group>"; };
 		4C33F3AE1F2F42F800958818 /* Ambatovaky-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ambatovaky-Special-Reserve.jpg"; sourceTree = "<group>"; };
 		4C33F3AF1F2F42F800958818 /* Ambohijanahary-Special-Reserve.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ambohijanahary-Special-Reserve.jpg"; sourceTree = "<group>"; };
@@ -2352,6 +2355,8 @@
 				4C3BB16A1ECB8C6400EFD96B /* WatchingSitesSelectorViewController.m */,
 				4C8BFC5B1F3CF8070080B871 /* WatchingSiteMap.h */,
 				4C8BFC5C1F3CF8070080B871 /* WatchingSiteMap.m */,
+				4C321DCE20794A6F00646B59 /* WatchingSitesDetailTableViewController.h */,
+				4C321DCF20794A6F00646B59 /* WatchingSitesDetailTableViewController.m */,
 			);
 			name = "Watching Sites";
 			sourceTree = "<group>";
@@ -4942,6 +4947,7 @@
 				4C74F2AC1C0639A600543A7F /* Maps.m in Sources */,
 				B47115201DCA741B00473D67 /* SignUpViewController.m in Sources */,
 				B4BBF3BC1C978BB9005A5196 /* Authors.m in Sources */,
+				4C321DD020794A6F00646B59 /* WatchingSitesDetailTableViewController.m in Sources */,
 				B48F146E1C995DB30067F19B /* AuthorDetailViewController.m in Sources */,
 				4C59AD951C15F59A00EA74C5 /* FamiliesViewController.m in Sources */,
 				4C7CECCB2065701F0019A485 /* DataUpdateTableViewController.m in Sources */,

@@ -11,7 +11,7 @@
 @implementation WatchingSiteTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -24,7 +24,7 @@
     
     self.lblWatchingSite.text = lemursWatchingSites._title;
     
-    self.lblWatchingSiteDescription.text = lemursWatchingSites._body;
+    //self.lblWatchingSiteDescription.text = lemursWatchingSites._body;
 	
 }
 

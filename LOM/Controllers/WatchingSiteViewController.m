@@ -10,6 +10,7 @@
 #import "WatchingSiteTableViewCell.h"
 #import "Tools.h"
 #import "WatchingSiteDetailsViewController.h"
+#import "WatchingSitesDetailTableViewController.h"
 
 @interface WatchingSiteViewController ()
 
@@ -31,6 +32,9 @@
     self.navigationItem.title = NSLocalizedString(@"watching_sites_title",@"");
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
     
+    self.tableviewWatchingSite.rowHeight = UITableViewAutomaticDimension;
+    self.tableviewWatchingSite.estimatedRowHeight = 44;
+    
     __lemursWatchingSitesArray = [LemursWatchingSites allInstances];
 }
 
@@ -49,9 +53,9 @@
     
     if ([segue.identifier isEqualToString:@"pushWatchingSites"]) {
         
-        WatchingSiteDetailsViewController* watchingSiteDetailsViewController = (WatchingSiteDetailsViewController*) [segue destinationViewController];
+        WatchingSitesDetailTableViewController* vc = (WatchingSitesDetailTableViewController*) [segue destinationViewController];
         
-        watchingSiteDetailsViewController.lemursWatchingSites = _selectedLemursWatchingSites;
+        vc.lemursWatchingSites = _selectedLemursWatchingSites;
     }
 }
 
@@ -125,7 +129,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80.0f;
+    return UITableViewAutomaticDimension;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
