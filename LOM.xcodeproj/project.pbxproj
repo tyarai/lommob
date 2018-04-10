@@ -966,6 +966,7 @@
 		4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */; };
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
 		4CF3E18B1CF2B4B1003010A5 /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */; };
+		4CFF671B207D40DB009EB1DB /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CFF671A207D40D9009EB1DB /* logo.png */; };
 		6CEE57050617152040DA95A2 /* libPods-LOM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67CB1340B3DA3BE1A9A3CE17 /* libPods-LOM.a */; };
 		8E9354A51D01C0FB0022A220 /* PublicationNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9354A41D01C0FB0022A220 /* PublicationNode.m */; };
 		B43DF4321DB8F21800319654 /* UITableViewCell+Stretch.m in Sources */ = {isa = PBXBuildFile; fileRef = B43DF4311DB8F21800319654 /* UITableViewCell+Stretch.m */; };
@@ -2061,6 +2062,7 @@
 		4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSiteTableViewCell.m; path = Controllers/WatchingSiteTableViewCell.m; sourceTree = "<group>"; };
 		4CF3E1891CF2B4B1003010A5 /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostsTableViewCell.h; path = Controllers/PostsTableViewCell.h; sourceTree = "<group>"; };
 		4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostsTableViewCell.m; path = Controllers/PostsTableViewCell.m; sourceTree = "<group>"; };
+		4CFF671A207D40D9009EB1DB /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../../WebDev/LOM/sharedfolder/logo.png; sourceTree = "<group>"; };
 		6462955E9DF0B860980BA290 /* Pods-LOM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOM.release.xcconfig"; path = "Pods/Target Support Files/Pods-LOM/Pods-LOM.release.xcconfig"; sourceTree = "<group>"; };
 		64857795A566B05525E740AC /* Pods-LOMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOMTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LOMTests/Pods-LOMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		67CB1340B3DA3BE1A9A3CE17 /* libPods-LOM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LOM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2468,6 +2470,7 @@
 		4C6F14721C1340CD00272A06 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
+				4CFF671A207D40D9009EB1DB /* logo.png */,
 				4C33F3AC1F2F42C900958818 /* place_maps */,
 				B4AF342E1C9AD3630039DEBB /* CI logo (long format).jpg */,
 				B4AF342C1C9AD35B0039DEBB /* PSGlogoNEW.jpg */,
@@ -4010,6 +4013,7 @@
 				4C6F17C41C1342A000272A06 /* 1984-RAM-Indri(clc).jpg in Resources */,
 				4C6F17B21C1342A000272A06 /* 252Cinereiceps(clc).jpg in Resources */,
 				4C6F17F01C1342A000272A06 /* 2007_07_Madagascar_046(clc).jpg in Resources */,
+				4CFF671B207D40DB009EB1DB /* logo.png in Resources */,
 				4C6F19BC1C1342A000272A06 /* MapMasterTemplate5CheiriogaleusB9a.jpg in Resources */,
 				4C6F1A621C1342A100272A06 /* Propithecus4deckenii.jpg in Resources */,
 				4C6F19AD1C1342A000272A06 /* MacaucoPrint1Scan.jpg in Resources */,
