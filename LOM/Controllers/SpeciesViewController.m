@@ -51,7 +51,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self checkUserSession];
+    //[self checkUserSession]; //<--- Nesorina androany April-11-2018
 }
 
 #pragma mark PopupLogin
@@ -64,9 +64,7 @@
 -(void) checkUserSession{
     if([Tools isNullOrEmptyString:appDelegate._currentToken] && !ongoingLogin){
         [self showLoginPopup];
-    }/*else{
-        [self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
-    }*/
+    }
 }
 
 -(void) showLoginPopup{
@@ -84,8 +82,6 @@
 
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
-    
-    //[popoverController dismissPopoverAnimated:YES];
     
     [self showActivityScreen];
     

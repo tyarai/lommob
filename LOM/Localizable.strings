@@ -67,3 +67,7 @@
 "comment_title"="Comments";
 "add_comment_title"="Add new comment";
 "edit_comment_title"="Edit comment";
+"log_in"="Log in";
+"log_out"="Log out";
+"logged_in_message"="Logged in as";
+"not_logged_in_message"="You are not logged in";

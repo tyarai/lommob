@@ -33,12 +33,13 @@ PODS:
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
+    - "SDWebImage (!= 3.7.2, ~> 3.7)"
   - SAMTextView (0.2.2)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SLExpandableTableView (1.3.1)
+  - SVProgressHUD (2.2.5)
   - UIActivityIndicator-for-SDWebImage (1.2):
     - SDWebImage (~> 3.7)
   - WYPopoverController (0.3.8)
@@ -53,8 +54,26 @@ DEPENDENCIES:
   - SAMTextView
   - SDWebImage
   - SLExpandableTableView
+  - SVProgressHUD
   - UIActivityIndicator-for-SDWebImage
   - WYPopoverController
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - AMSlideMenu
+    - DACircularProgress
+    - FMDB
+    - HCSStarRatingView
+    - JSONModel
+    - MBProgressHUD
+    - MWPhotoBrowser
+    - SAMTextView
+    - SDWebImage
+    - SLExpandableTableView
+    - SVProgressHUD
+    - UIActivityIndicator-for-SDWebImage
+    - WYPopoverController
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -68,9 +87,10 @@ SPEC CHECKSUMS:
   SAMTextView: 979c43bb1fa5859ddfbfeb35e9c296a2b0ec55fd
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SLExpandableTableView: ff63a4bb4b71c6c3ae2b7cb1cde6a36c1645f23c
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   UIActivityIndicator-for-SDWebImage: 7bf7ebbf0ed1747dedc0d6e949c4603a6d0f9e0c
   WYPopoverController: dda54780e1bef186464ae5a10ab9b4998c279e89
 
-PODFILE CHECKSUM: 5e0beb3dbe4891fb446111a80034c876d4b6bac8
+PODFILE CHECKSUM: 154a39b88446ede69a09e3de0d664474684dff5d
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0

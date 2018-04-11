@@ -15,6 +15,7 @@ pod 'UIActivityIndicator-for-SDWebImage'
 pod 'SLExpandableTableView'
 pod 'HCSStarRatingView'
 pod 'FMDB'
+pod 'SVProgressHUD'
 end
 
 target 'LOMTests' do

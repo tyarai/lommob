@@ -3765,7 +3765,6 @@
 				4CBAEAE71BFA546B0011139C /* Sources */,
 				4CBAEAE81BFA546B0011139C /* Frameworks */,
 				4CBAEAE91BFA546B0011139C /* Resources */,
-				CC36D52DFACD67BCF5DA088E /* [CP] Embed Pods Frameworks */,
 				726DCCF2501F16F9AE15AD93 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -3785,8 +3784,6 @@
 				4CBAEB001BFA546B0011139C /* Sources */,
 				4CBAEB011BFA546B0011139C /* Frameworks */,
 				4CBAEB021BFA546B0011139C /* Resources */,
-				08ECC21B27A530F47655E747 /* [CP] Embed Pods Frameworks */,
-				8A84FD8FE38078DD32C68272 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3806,8 +3803,6 @@
 				4CBAEB0B1BFA546B0011139C /* Sources */,
 				4CBAEB0C1BFA546B0011139C /* Frameworks */,
 				4CBAEB0D1BFA546B0011139C /* Resources */,
-				FAD45951D365056B1EED8E3A /* [CP] Embed Pods Frameworks */,
-				B6B59BE7272812A9CE283995 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4781,21 +4776,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08ECC21B27A530F47655E747 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LOMTests/Pods-LOMTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		14D32FCB2E42DB5743693E96 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4858,74 +4838,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LOM/Pods-LOM-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LOM/Pods-LOM-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8A84FD8FE38078DD32C68272 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LOMTests/Pods-LOMTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B6B59BE7272812A9CE283995 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LOMUITests/Pods-LOMUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CC36D52DFACD67BCF5DA088E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LOM/Pods-LOM-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FAD45951D365056B1EED8E3A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LOMUITests/Pods-LOMUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

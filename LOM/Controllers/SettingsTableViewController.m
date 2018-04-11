@@ -14,9 +14,13 @@
 #import "Constants.h"
 #import "Tools.h"
 #import "Constants.h"
+#import "AppDelegate.h"
+#import "LoginResult.h"
+#import "SVProgressHUD.h"
+
 
 @interface SettingsTableViewController ()
-
+@property AppDelegate * appDelegate;
 @end
 
 @implementation SettingsTableViewController
@@ -29,12 +33,117 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 50;
-    //self.updateButton.enabled = NO;
+    
+     self.appDelegate = [Tools getAppDelegate];
     
     self.navigationItem.title=  NSLocalizedString(@"settings_title", @"");
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
 }
 
+-(void) checkUserSession{
+    if([Tools isNullOrEmptyString:self.appDelegate._currentToken]){
+        [self showLoginPopup];
+    }
+}
+
+// Setup login message and button text
+-(void) setupLoginInfo{
+    
+    if([Tools isNullOrEmptyString:self.appDelegate._currentToken] ){
+        [self.btnLogOUt setTitle:NSLocalizedString(@"log_in", @"") forState:UIControlStateNormal];
+        self.logginMessageLabel.text =NSLocalizedString(@"not_logged_in_message", @"");
+        self.logginMessageLabel.textColor = [UIColor redColor];
+        
+    }else{
+        [self.btnLogOUt setTitle:NSLocalizedString(@"log_out", @"") forState:UIControlStateNormal];
+        self.logginMessageLabel.text =NSLocalizedString(@"logged_in_message", @"");
+        self.logginMessageLabel.textColor = [UIColor blackColor];
+    }
+}
+
+// PopupLoginDelegate
+
+- (void) cancel{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
+{
+    AppData * appData = [[AppData alloc] init];
+    
+    BaseViewController* viewController = (BaseViewController*)self;
+    
+    [SVProgressHUD show];
+    
+    
+    [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
+        
+        [SVProgressHUD dismiss];
+        
+        if (err)
+        {
+            
+            [Tools showError:err onViewController:viewController];
+        }
+        else
+        {
+            NSError* error;
+            NSDictionary* tmpDict = (NSDictionary*) json;
+            LoginResult* loginResult = [[LoginResult alloc] initWithDictionary:tmpDict error:&error];
+            
+            if (error)
+            {
+                NSLog(@"Error parse : %@", error.debugDescription);
+            }
+            else
+            {
+                if (![Tools isNullOrEmptyString:loginResult.sessid]
+                    &&![Tools isNullOrEmptyString:loginResult.session_name]
+                    &&![Tools isNullOrEmptyString:loginResult.token]
+                    && loginResult.user != nil) {
+                    
+                    
+                    [Tools     saveSessId:loginResult.sessid
+                              sessionName:loginResult.session_name
+                                 andToken:loginResult.token
+                                      uid:loginResult.user.uid
+                                 userName:loginResult.user.name
+                                 userMail:loginResult.user.mail
+                     ];
+                    
+                    
+                    self.appDelegate._currentToken   = loginResult.token;
+                    self.appDelegate._curentUser     = loginResult.user;
+                    self.appDelegate._sessid         = loginResult.sessid;
+                    self.appDelegate._sessionName    = loginResult.session_name;
+                    self.appDelegate._uid            = loginResult.user.uid;
+                    self.appDelegate._userName       = loginResult.user.name;
+                    self.appDelegate._userMail       = loginResult.user.mail;
+                    
+                    [self.appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
+                    
+                    [self dismissViewControllerAnimated:NO completion:nil];
+                    
+                    
+                }
+            }
+        }
+        
+    }];
+    
+}
+
+-(void) showLoginPopup{
+    
+    NSString* indentifier=@"PopupLoginViewController";
+   
+    
+    self.loginViewController = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    self.loginViewController.delegate = self;
+    
+    [self presentViewController:self.loginViewController animated:YES completion:nil];
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -43,15 +152,17 @@
     self.userName.text = @"";
     
     
+    [self setupLoginInfo];
+    
     NSString *updateTExt =[Tools getStringUserPreferenceWithKey:UPDATE_TEXT] ;
     
     if( ![Tools isNullOrEmptyString:currentUserName]){
         self.userName.text = currentUserName;
-        self.btnLogOUt.hidden = NO;
+        //self.btnLogOUt.hidden = NO;
         [self setControlsHidden:NO];
         
     }else{
-        self.btnLogOUt.hidden = YES;
+        //self.btnLogOUt.hidden = YES;
         [self setControlsHidden:YES];
     }
     
@@ -65,14 +176,16 @@
 
     }
     
+    [self setupLoginInfo];
     
-    
-    [self updateOptions]; // Manao update ny options rehetra rehefa mipoitra ity view ity na koa rehefa mahazo front ilay app
+    // -- Commented out April 11 2018 - Ranto
+    //[self updateOptions]; // Manao update ny options rehetra rehefa mipoitra ity view ity na koa rehefa mahazo front ilay app
     
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [self updateOptions]; // Manao update ny options rehetra rehefa mipoitra
+    
 }
 
 /*
@@ -122,18 +235,32 @@
     
     AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
+    if ([Tools isNullOrEmptyString:appDelegate._currentToken]) {
+        [self showLoginPopup];
+    }else {
+        [self logOut:appDelegate];
+    }
+    
+}
+
+-(void) logOut:(AppDelegate*)appDelegate {
+   
+    //AppDelegate * appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     NSString * sessionName = [appDelegate _sessionName];
     NSString * sessionID   = [appDelegate _sessid];
     AppData * appData      = [[AppData alloc] init];
     //[self showActivityScreen];
     
-     [self startSpinner];
-
+    //[self startSpinner];
+    
+    [SVProgressHUD show];
     
     [appData CheckSession:sessionName sessionID:sessionID completeBlock:^(id json, JSONModelError *err){
         BOOL stillConnected = YES;
         
-        [self stopSpinner];
+        [SVProgressHUD dismiss];
+        //[self stopSpinner];
         
         //[self removeActivityScreen];
         UserConnectedResult* sessionCheckResult = nil;
@@ -182,20 +309,23 @@
                     
                     self.userName.text = @"";
                     [self setControlsHidden:YES];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self setupLoginInfo];
+                    });
+                    
+                    
                 }
             }];
         }
         
     }];
 
-    
-    
-    
 }
 
 -(void) setControlsHidden:(BOOL) value{
     
-    self.btnLogOUt.hidden = value;
+    //self.btnLogOUt.hidden = value;
     self.lifeListContentView.hidden = value;
     self.lifeListDescriptionView.hidden = value;
 

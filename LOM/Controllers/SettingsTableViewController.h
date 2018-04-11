@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PopupLoginViewController.h"
 
-@interface SettingsTableViewController : UITableViewController{
+@interface SettingsTableViewController : UITableViewController <PopupLoginViewControllerDelegate>{
     UIActivityIndicatorView *spinner ;
     UIView * overlayView;
                                         
@@ -18,10 +19,14 @@
 @property (weak, nonatomic) IBOutlet UISwitch *switchBtn;
 @property (weak, nonatomic) IBOutlet UIView *lifeListContentView;
 @property (weak, nonatomic) IBOutlet UIView *lifeListDescriptionView;
+@property (weak, nonatomic) IBOutlet UILabel *logginMessageLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *updateText;
 
 @property (weak, nonatomic) IBOutlet UIButton *updateButton;
+@property (weak, nonatomic)  PopupLoginViewController* loginViewController;
+
+
 
 - (IBAction)tappedUpdateButton:(id)sender;
 
