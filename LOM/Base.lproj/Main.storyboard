@@ -268,14 +268,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rDd-hp-pg1">
-                                <rect key="frame" x="22" y="44" width="331" height="606"/>
+                                <rect key="frame" x="22" y="65" width="331" height="538"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="538" id="4bX-RZ-AyO"/>
+                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">This privacy policy has been compiled to better serve those who are concerned with how their 'Personally Identifiable Information' (PII) is being used online. PII, as described in US privacy law and information security, is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context. Please read our privacy policy carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our website.
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -297,7 +300,7 @@ We may use the information we collect from you when you register, sign up for ou
 
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -309,7 +312,7 @@ We may use the information we collect from you when you register, sign up for ou
 •	To administer a contest, survey or other site feature.
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" firstLineHeadIndent="18" headIndent="36" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -320,7 +323,7 @@ We may use the information we collect from you when you register, sign up for ou
 Cg
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" firstLineHeadIndent="36" headIndent="36" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -354,7 +357,7 @@ Our Privacy Policy link includes the word 'Privacy' and can easily be found on t
  You will be notified of any Privacy Policy changes:
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -364,7 +367,7 @@ Our Privacy Policy link includes the word 'Privacy' and can easily be found on t
                                         <string key="content">•	On our Privacy Policy Page
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" firstLineHeadIndent="18" headIndent="36" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -374,7 +377,7 @@ Our Privacy Policy link includes the word 'Privacy' and can easily be found on t
                                         <string key="content">You can change your personal information:
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -384,7 +387,7 @@ Our Privacy Policy link includes the word 'Privacy' and can easily be found on t
                                         <string key="content">•	By logging in to your account
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" firstLineHeadIndent="18" headIndent="36" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -406,7 +409,7 @@ The CAN-SPAM Act is a law that sets the rules for commercial email, establishes 
 We collect your email address in order to:
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -416,7 +419,7 @@ We collect your email address in order to:
                                         <string key="content">•	Send information, respond to inquiries, and/or other requests or questions
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" firstLineHeadIndent="18" headIndent="36" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -428,7 +431,7 @@ We collect your email address in order to:
 and we will promptly remove you from ALL correspondence.
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -439,7 +442,7 @@ and we will promptly remove you from ALL correspondence.
 10- Contacting Us
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -450,7 +453,7 @@ and we will promptly remove you from ALL correspondence.
 Cg
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -460,7 +463,7 @@ Cg
                                         <string key="content">If there are any questions regarding this privacy policy, you may contact us using the information below.
 </string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" paragraphSpacing="14.15" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -468,7 +471,7 @@ Cg
                                     </fragment>
                                     <fragment content="http://www.lemursofmadagascar.com/html/Contact">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <url key="NSLink" string="http://www.lemursofmadagascar.com/html/Contact"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
@@ -480,10 +483,18 @@ Cg
                                     <fragment>
                                         <string key="content">Us
 
-Last Edited on 2017-10-20</string>
+</string>
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
+                                                <tabStops/>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Last Edited on 2017-10-20">
+                                        <attributes>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
                                         </attributes>
@@ -492,32 +503,46 @@ Last Edited on 2017-10-20</string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UBn-la-f6J">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UBn-la-f6J">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Title" id="GDG-Y9-Yac">
-                                        <barButtonItem key="leftBarButtonItem" title="I have read" id="9Tg-eh-Yip">
-                                            <color key="tintColor" red="1" green="0.74917774670000004" blue="0.26190077550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="closeButtonTapped:" destination="w40-II-bDT" id="oJ9-a4-dYP"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Title" id="GDG-Y9-Yac"/>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ih2-rL-MKn">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="V9O-Io-9x8"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="I have read" id="op1-TQ-LDd">
+                                        <color key="tintColor" red="0.98817652460000005" green="0.68912953139999999" blue="0.02415499464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="closeButtonTapped:" destination="w40-II-bDT" id="HDa-HT-RL3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rDd-hp-pg1" firstAttribute="top" secondItem="EzU-qz-vgr" secondAttribute="bottom" constant="24" id="2Dw-Z4-PT3"/>
-                            <constraint firstItem="rDd-hp-pg1" firstAttribute="centerX" secondItem="ZZy-aT-eK1" secondAttribute="centerX" id="Rqj-Tl-nyE"/>
-                            <constraint firstItem="3wB-D7-Kki" firstAttribute="top" secondItem="rDd-hp-pg1" secondAttribute="bottom" constant="17" id="esD-06-Qi7"/>
-                            <constraint firstItem="rDd-hp-pg1" firstAttribute="leading" secondItem="ZZy-aT-eK1" secondAttribute="leadingMargin" constant="6" id="gqj-Bf-A44"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rDd-hp-pg1" secondAttribute="trailing" constant="6" id="ofp-RR-E1w"/>
+                            <constraint firstAttribute="trailing" secondItem="ih2-rL-MKn" secondAttribute="trailing" id="3v2-1q-iCL"/>
+                            <constraint firstItem="rDd-hp-pg1" firstAttribute="leading" secondItem="ZZy-aT-eK1" secondAttribute="leadingMargin" constant="6" id="9oR-yy-pjt"/>
+                            <constraint firstItem="rDd-hp-pg1" firstAttribute="centerX" secondItem="ih2-rL-MKn" secondAttribute="centerX" id="CP4-Qd-JRJ"/>
+                            <constraint firstItem="rDd-hp-pg1" firstAttribute="centerX" secondItem="UBn-la-f6J" secondAttribute="centerX" id="CdJ-cY-mI5"/>
+                            <constraint firstItem="ih2-rL-MKn" firstAttribute="leading" secondItem="ZZy-aT-eK1" secondAttribute="leading" id="LOX-XM-NZA"/>
+                            <constraint firstItem="rDd-hp-pg1" firstAttribute="top" secondItem="UBn-la-f6J" secondAttribute="bottom" constant="21" id="Z9V-cH-P0j"/>
+                            <constraint firstItem="rDd-hp-pg1" firstAttribute="centerX" secondItem="ZZy-aT-eK1" secondAttribute="centerX" id="ljQ-B4-IiH"/>
+                            <constraint firstItem="ih2-rL-MKn" firstAttribute="top" secondItem="rDd-hp-pg1" secondAttribute="bottom" constant="20" id="p9P-jO-eC9"/>
+                            <constraint firstItem="UBn-la-f6J" firstAttribute="leading" secondItem="ih2-rL-MKn" secondAttribute="leading" id="vKe-eK-zZJ"/>
+                            <constraint firstItem="rDd-hp-pg1" firstAttribute="top" secondItem="ZZy-aT-eK1" secondAttribute="top" constant="65" id="xJC-DX-HcX"/>
+                            <constraint firstItem="3wB-D7-Kki" firstAttribute="top" secondItem="ih2-rL-MKn" secondAttribute="bottom" id="ygV-pN-GNp"/>
+                            <constraint firstItem="UBn-la-f6J" firstAttribute="leading" secondItem="ZZy-aT-eK1" secondAttribute="leading" id="z5i-Rh-BJA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="e5v-Bp-7Sk">
@@ -532,7 +557,7 @@ Last Edited on 2017-10-20</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9S-c5-v8X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2210" y="1495"/>
+            <point key="canvasLocation" x="-2210.4000000000001" y="1494.6026986506747"/>
         </scene>
         <!--Terms Of Use View Controller-->
         <scene sceneID="CDO-dr-2vV">
@@ -547,14 +572,17 @@ Last Edited on 2017-10-20</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EPZ-TK-n5A">
-                                <rect key="frame" x="22" y="44" width="331" height="603"/>
+                                <rect key="frame" x="22" y="57" width="331" height="546"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="546" id="JZt-CB-w7e"/>
+                                </constraints>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">This End User License Agreement (“Agreement”) is between you and Lemurs Of Madagascar and governs use of this app made available through the Apple App Store. By installing the Lemurs Of Madagascar App, you agree to be bound by this Agreement and understand that there is no tolerance for objectionable content. If you do not agree with the terms and conditions of this Agreement, you are not entitled to use the Lemurs Of Madagascar App.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -562,7 +590,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content="  ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -572,7 +600,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">In order to ensure Lemurs Of Madagascar provides the best experience possible for everyone, we strongly enforce a no tolerance policy for objectionable content. If you see inappropriate content, please use the "Report as offensive" feature found under each post.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -580,7 +608,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -590,7 +618,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">1. Parties This Agreement is between you and Lemurs Of Madagascar only, and not Apple, Inc. (“Apple”). Notwithstanding the foregoing, you acknowledge that Apple and its subsidiaries are third party beneficiaries of this Agreement and Apple has the right to enforce this Agreement against you. Lemurs Of Madagascar, not Apple, is solely responsible for the Lemurs Of Madagascar App and its content.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -598,7 +626,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -608,7 +636,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">2. Privacy Lemurs Of Madagascar may collect and use information about your usage of the Lemurs Of Madagascar App, including certain types of information from and about your device. Lemurs Of Madagascar may use this information, as long as it is in a form that does not personally identify you, to measure the use and performance of the Lemurs Of Madagascar App.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -616,7 +644,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -626,7 +654,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">3. Limited License Lemurs Of Madagascar grants you a limited, non-exclusive, non-transferable, revocable license to use the Lemurs Of Madagascar App for your personal, non-commercial purposes. You may only use theLemurs Of Madagascar App on Apple devices that you own or control and as permitted by the App Store Terms of Service.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -634,7 +662,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -644,7 +672,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">4. Age Restrictions By using the Lemurs Of Madagascar App, you represent and warrant that (a) you are 17 years of age or older and you agree to be bound by this Agreement; (b) if you are under 17 years of age, you have obtained verifiable consent from a parent or legal guardian; and (c) your use of the Lemurs Of Madagascar App does not violate any applicable law or regulation. Your access to the Lemurs Of Madagascar App may be terminated without warning if Lemurs Of Madagascar believes, in its sole discretion, that you are under the age of 17 years and have not obtained verifiable consent from a parent or legal guardian. If you are a parent or legal guardian and you provide your consent to your child's use of the Lemurs Of Madagascar App, you agree to be bound by this Agreement in respect to your child's use of the Lemurs Of Madagascar App.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -652,7 +680,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -662,7 +690,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">5. Objectionable Content Policy Content may not be submitted to Lemurs Of Madagascar, who will moderate all content and ultimately decide whether or not to post a submission to the extent such content includes, is in conjunction with, or alongside any, Objectionable Content. Objectionable Content includes, but is not limited to: (i) sexually explicit materials; (ii) obscene, defamatory, libelous, slanderous, violent and/or unlawful content or profanity; (iii) content that infringes upon the rights of any third party, including copyright, trademark, privacy, publicity or other personal or proprietary right, or that is deceptive or fraudulent; (iv) content that promotes the use or sale of illegal or regulated substances, tobacco products, ammunition and/or firearms; and (v) gambling, including without limitation, any online casino, sports books, bingo or poker.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -670,7 +698,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -680,7 +708,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">6. Warranty Lemurs Of Madagascar disclaims all warranties about the Lemurs Of Madagascar App to the fullest extent permitted by law. To the extent any warranty exists under law that cannot be disclaimed, Lemurs Of Madagascar, not Apple, shall be solely responsible for such warranty.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -688,7 +716,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -698,7 +726,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">7. Maintenance and Support Lemurs Of Madagascar does provide minimal maintenance or support for it but not to the extent that any maintenance or support is required by applicable law, Lemurs Of Madagascar, not Apple, shall be obligated to furnish any such maintenance or support.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -706,7 +734,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -716,7 +744,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">8. Product Claims Lemurs Of Madagascar, not Apple, is responsible for addressing any claims by you relating to the Lemurs Of Madagascar App or use of it, including, but not limited to: (i) any product liability claim; (ii) any claim that the Lemurs Of Madagascar App fails to conform to any applicable legal or regulatory requirement; and (iii) any claim arising under consumer protection or similar legislation. Nothing in this Agreement shall be deemed an admission that you may have such claims.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -724,7 +752,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -734,7 +762,7 @@ Last Edited on 2017-10-20</string>
                                         <string key="content">9. Third Party Intellectual Property Claims Lemurs Of Madagascar shall not be obligated to indemnify or defend you with respect to any third party claim arising out or relating to the Lemurs Of Madagascar App. To the extent Lemurs Of Madagascar is required to provide indemnification by applicable law, Lemurs Of Madagascar, not Apple, shall be solely responsible for the investigation, defense, settlement and discharge of any claim that the Lemurs Of Madagascar App or your use of it infringes any third party intellectual property right.</string>
                                         <attributes>
                                             <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -742,7 +770,7 @@ Last Edited on 2017-10-20</string>
                                     </fragment>
                                     <fragment content=" ">
                                         <attributes>
-                                            <font key="NSFont" size="18" name="Helvetica"/>
+                                            <font key="NSFont" size="22" name="Helvetica"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tailIndent="481.89999999999998" defaultTabInterval="35.450000000000003" tighteningFactorForTruncation="0.0">
                                                 <tabStops/>
                                             </paragraphStyle>
@@ -752,35 +780,50 @@ Last Edited on 2017-10-20</string>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rR5-JO-AOC">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rR5-JO-AOC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
-                                    <navigationItem title="Title" id="Pg4-6X-8BB">
-                                        <barButtonItem key="leftBarButtonItem" title="I agree" id="ujU-3z-iYB">
-                                            <color key="tintColor" red="1" green="0.74917774670000004" blue="0.26190077550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="acceptTapped:" destination="LkG-Jb-1wv" id="vt0-hH-gcx"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="I decline" id="gqK-DH-LzP">
-                                            <color key="tintColor" red="1" green="0.74917774670000004" blue="0.26190077550000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="declineTapped:" destination="LkG-Jb-1wv" id="k80-iu-mF4"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
+                                    <navigationItem title="Title" id="Pg4-6X-8BB"/>
                                 </items>
                             </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGe-y3-hqz">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="QcJ-Ci-Bme"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="I agree" id="Wlx-DA-cgT">
+                                        <color key="tintColor" red="0.98817652460000005" green="0.68912953139999999" blue="0.02415499464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="acceptTapped:" destination="LkG-Jb-1wv" id="671-le-ESe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="MPX-ni-V47"/>
+                                    <barButtonItem title="I decline" id="DWd-qW-Vsu">
+                                        <color key="tintColor" red="0.98817652460000005" green="0.68912953139999999" blue="0.02415499464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="declineTapped:" destination="LkG-Jb-1wv" id="cuU-kA-E8j"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="BGe-y3-hqz" firstAttribute="top" secondItem="EPZ-TK-n5A" secondAttribute="bottom" constant="20" id="4bh-Ue-h0C"/>
+                            <constraint firstItem="rR5-JO-AOC" firstAttribute="leading" secondItem="wX0-ut-3MW" secondAttribute="leading" id="4dw-5h-C6b"/>
                             <constraint firstItem="EPZ-TK-n5A" firstAttribute="leading" secondItem="wX0-ut-3MW" secondAttribute="leadingMargin" constant="6" id="6pc-CZ-eli"/>
-                            <constraint firstAttribute="bottom" secondItem="EPZ-TK-n5A" secondAttribute="bottom" constant="20" symbolic="YES" id="8a1-3r-wP6"/>
-                            <constraint firstItem="EPZ-TK-n5A" firstAttribute="top" secondItem="cgi-RV-QyI" secondAttribute="bottom" constant="24" id="NV8-HN-KyR"/>
+                            <constraint firstAttribute="trailing" secondItem="BGe-y3-hqz" secondAttribute="trailing" id="9ns-HD-imh"/>
+                            <constraint firstItem="EPZ-TK-n5A" firstAttribute="centerX" secondItem="BGe-y3-hqz" secondAttribute="centerX" id="B4M-kh-Ywt"/>
+                            <constraint firstItem="BGe-y3-hqz" firstAttribute="leading" secondItem="wX0-ut-3MW" secondAttribute="leading" id="ECS-6a-sJ8"/>
+                            <constraint firstItem="EPZ-TK-n5A" firstAttribute="top" secondItem="rR5-JO-AOC" secondAttribute="bottom" constant="13" id="R3c-8z-qDd"/>
+                            <constraint firstItem="rR5-JO-AOC" firstAttribute="leading" secondItem="BGe-y3-hqz" secondAttribute="leading" id="au8-et-Wm5"/>
+                            <constraint firstItem="EPZ-TK-n5A" firstAttribute="top" secondItem="wX0-ut-3MW" secondAttribute="top" constant="57" id="es5-HX-Zqb"/>
                             <constraint firstItem="EPZ-TK-n5A" firstAttribute="centerX" secondItem="wX0-ut-3MW" secondAttribute="centerX" id="hg3-d3-dMZ"/>
+                            <constraint firstItem="EPZ-TK-n5A" firstAttribute="centerX" secondItem="rR5-JO-AOC" secondAttribute="centerX" id="hvU-tq-4nR"/>
+                            <constraint firstItem="Vnt-OY-fpp" firstAttribute="top" secondItem="BGe-y3-hqz" secondAttribute="bottom" id="yWo-qg-SEK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kC5-Hw-uJx">
@@ -888,7 +931,7 @@ Last Edited on 2017-10-20</string>
                         <sections>
                             <tableViewSection id="kVf-Qr-l9k">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="6N6-vp-RI4" userLabel="Cell Head">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="6N6-vp-RI4" userLabel="Cell Head">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6N6-vp-RI4" id="JkC-Y9-Dyv">
@@ -5511,13 +5554,13 @@ Last Edited on 2017-10-20</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR9-Ic-532">
-                                                    <rect key="frame" x="16" y="14" width="199" height="23.5"/>
+                                                    <rect key="frame" x="16" y="15" width="199" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family update" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTm-Pn-LGI">
-                                                    <rect key="frame" x="221" y="14" width="138" height="23.5"/>
+                                                    <rect key="frame" x="221" y="15" width="138" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="138" id="6oc-UM-NaK"/>
                                                     </constraints>
@@ -5543,13 +5586,13 @@ Last Edited on 2017-10-20</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photographs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEN-f7-Ywa">
-                                                    <rect key="frame" x="16" y="14" width="105" height="23.5"/>
+                                                    <rect key="frame" x="16" y="15" width="105" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pa-Fc-ntP">
-                                                    <rect key="frame" x="286" y="14" width="73" height="23.5"/>
+                                                    <rect key="frame" x="286" y="15" width="73" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="mVM-KD-zbd"/>
                                                     </constraints>
@@ -5574,13 +5617,13 @@ Last Edited on 2017-10-20</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLQ-XQ-qA4">
-                                                    <rect key="frame" x="16" y="14" width="191" height="23.5"/>
+                                                    <rect key="frame" x="16" y="15" width="191" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4U5-xT-jov">
-                                                    <rect key="frame" x="286" y="14" width="73" height="23.5"/>
+                                                    <rect key="frame" x="286" y="15" width="73" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="xsq-DE-bWj"/>
                                                     </constraints>
