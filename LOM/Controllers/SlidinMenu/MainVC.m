@@ -28,12 +28,15 @@ static MainVC *sharedMainVC = nil;
     }
     sharedMainVC = self;
     
+    
+    
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = NO;
+    self.rightPanDisabled = YES;
     // Do any additional setup after loading the view.
 }
 
