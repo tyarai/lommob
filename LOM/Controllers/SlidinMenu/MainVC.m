@@ -51,9 +51,6 @@ static MainVC *sharedMainVC = nil;
                 [self showLoginPopup];
             }
     }
-
-    
-    // Do any additional setup after loading the view.
 }
 
 -(void)viewDidAppear:(BOOL)animated{
