@@ -49,16 +49,56 @@
 // Setup login message and button text
 -(void) setupLoginInfo{
     
+    NSString *updateTExt =[Tools getStringUserPreferenceWithKey:UPDATE_TEXT] ;
+    NSString * currentUserName = [Tools getStringUserPreferenceWithKey:KEY_USERNAME] ;
+    self.userName.text = @"";
+    
     if([Tools isNullOrEmptyString:self.appDelegate._currentToken] ){
         [self.btnLogOUt setTitle:NSLocalizedString(@"log_in", @"") forState:UIControlStateNormal];
         self.logginMessageLabel.text =NSLocalizedString(@"not_logged_in_message", @"");
         self.logginMessageLabel.textColor = [UIColor redColor];
         
     }else{
+        
+        [self setControlsHidden:NO];
+        self.userName.text = currentUserName;
         [self.btnLogOUt setTitle:NSLocalizedString(@"log_out", @"") forState:UIControlStateNormal];
         self.logginMessageLabel.text =NSLocalizedString(@"logged_in_message", @"");
         self.logginMessageLabel.textColor = [UIColor blackColor];
     }
+    
+    if( ![Tools isNullOrEmptyString:updateTExt]){
+        self.updateText.text      = updateTExt;
+        self.updateButton.hidden  = NO;
+        
+    }else{
+        [self resetUpdateControl];
+        
+    }
+    
+    
+    /*
+    if( ![Tools isNullOrEmptyString:currentUserName]){
+        //self.userName.text = currentUserName;
+        //self.btnLogOUt.hidden = NO;
+        [self setControlsHidden:NO];
+        
+    }else{
+        //self.btnLogOUt.hidden = YES;
+        [self setControlsHidden:YES];
+    }
+    
+    
+    if( ![Tools isNullOrEmptyString:updateTExt]){
+        self.updateText.text      = updateTExt;
+        self.updateButton.hidden  = NO;
+        
+    }else{
+        [self resetUpdateControl];
+        
+    }*/
+    
+    
 }
 
 // PopupLoginDelegate
@@ -71,20 +111,18 @@
 {
     AppData * appData = [[AppData alloc] init];
     
-    BaseViewController* viewController = (BaseViewController*)self;
-    
+    [SVProgressHUD setBackgroundColor:[UIColor darkGrayColor]];
     [SVProgressHUD show];
-    
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
         [SVProgressHUD dismiss];
         
-        if (err)
-        {
+        if (err != nil){
             
-            [Tools showError:err onViewController:viewController];
-        }
+            UIAlertController * alert = [Tools handleError:err];
+            [self.loginViewController presentViewController:alert animated:YES completion:nil];
+       }
         else
         {
             NSError* error;
@@ -124,6 +162,10 @@
                     
                     [self dismissViewControllerAnimated:NO completion:nil];
                     
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self setupLoginInfo];
+                    });
+                    
                     
                 }
             }
@@ -137,7 +179,6 @@
     
     NSString* indentifier=@"PopupLoginViewController";
    
-    
     self.loginViewController = (PopupLoginViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
     self.loginViewController.delegate = self;
     
@@ -148,33 +189,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
  
-    NSString * currentUserName = [Tools getStringUserPreferenceWithKey:KEY_USERNAME] ;
-    self.userName.text = @"";
     
-    
-    [self setupLoginInfo];
-    
-    NSString *updateTExt =[Tools getStringUserPreferenceWithKey:UPDATE_TEXT] ;
-    
-    if( ![Tools isNullOrEmptyString:currentUserName]){
-        self.userName.text = currentUserName;
-        //self.btnLogOUt.hidden = NO;
-        [self setControlsHidden:NO];
-        
-    }else{
-        //self.btnLogOUt.hidden = YES;
-        [self setControlsHidden:YES];
-    }
-    
-    
-    if( ![Tools isNullOrEmptyString:updateTExt]){
-        self.updateText.text      = updateTExt;
-        self.updateButton.hidden  = NO;
-        
-    }else{
-        [self resetUpdateControl];
-
-    }
     
     [self setupLoginInfo];
     
@@ -185,7 +200,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [self updateOptions]; // Manao update ny options rehetra rehefa mipoitra
-    
+    //[self setupLoginInfo];
 }
 
 /*

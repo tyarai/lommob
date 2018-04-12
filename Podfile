@@ -16,6 +16,7 @@ pod 'SLExpandableTableView'
 pod 'HCSStarRatingView'
 pod 'FMDB'
 pod 'SVProgressHUD'
+#pod 'CFAlertViewController'
 end
 
 target 'LOMTests' do

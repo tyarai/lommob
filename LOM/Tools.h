@@ -80,5 +80,8 @@ session_name andToken:(NSString*) token
 +(void) downloadImageAsynchronously:(NSString*)image_url;
 
 +(UIImage*) loadImage:(NSString*) imageFileName;
++(UIAlertController*) handleError:(JSONModelError*) err ;
++(UIAlertController*) handleErrorWithErrorMessage:(NSString*) err title:(NSString*)title;
+
 
 @end

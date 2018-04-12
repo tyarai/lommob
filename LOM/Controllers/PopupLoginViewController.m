@@ -9,6 +9,7 @@
 #import "PopupLoginViewController.h"
 #import "SignUpViewController.h"
 #import "Tools.h"
+#import "SVProgressHUD.h"
 
 @interface PopupLoginViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *txtuserName;
@@ -102,9 +103,6 @@
          
     } ];
     
-    
-    
-    
 }
 
 
@@ -145,14 +143,10 @@
     
         [self.delegate validWithUserName:self.txtuserName.text password:self.txtPassword.text andRememberMe:[self.switchRemeberMe isOn]];
     }
-    
 }
 
 
 #pragma UITextFieldDelegate
-
-
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     
@@ -170,10 +164,10 @@
 - (IBAction)createAccountTapped:(id)sender{
     
     NSString* indentifier=@"signUpVC";
-    signUpViewController = (SignUpViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
-    signUpViewController.delegate = self;
+    self.signUpViewController = (SignUpViewController*) [Tools getViewControllerFromStoryBoardWithIdentifier:indentifier];
+    self.signUpViewController.delegate = self;
     
-    [self presentViewController:signUpViewController animated:YES completion:nil];
+    [self presentViewController:self.signUpViewController animated:YES completion:nil];
 }
 
 
@@ -186,14 +180,15 @@
 - (void) signUpWithUserName:(NSString*) userName email:(NSString*)email password:(NSString*) password{
     if(![Tools isNullOrEmptyString:userName] && ![Tools isNullOrEmptyString:password] && ![Tools isNullOrEmptyString:email]){
         
-        [self showActivityScreen];
+        [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+        [SVProgressHUD show];
+        
         [appData registerUserName:userName password:password mail:email forCompletion:^(id json, JSONModelError *err) {
             
-            [self removeActivityScreen];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [SVProgressHUD dismiss];
+            //[self dismissViewControllerAnimated:YES completion:nil];
             
             if(err != nil){
-                //[Tools showError:err onViewController:signUpViewController];
                 NSDictionary * jsonError = (NSDictionary*)json;
                 NSDictionary * errorMess = (NSDictionary*) [jsonError valueForKey:@"form_errors"];
                 __block NSMutableString * mess = [[NSMutableString alloc]init];
@@ -202,13 +197,15 @@
                     mess = (NSMutableString*)[mess stringByAppendingString:(NSString*)obj];
                 }];
                 if([mess length]>0){
-                    [Tools showSimpleAlertWithTitle:NSLocalizedString(@"signupTitle",@"") andMessage:mess parentView:self];
+                    //[Tools showSimpleAlertWithTitle:NSLocalizedString(@"signupTitle",@"") andMessage:mess parentView:self];
+                    UIAlertController * alert = [Tools handleErrorWithErrorMessage:mess title:NSLocalizedString(@"signupTitle",@"")];
+                    [self.signUpViewController presentViewController:alert animated:YES completion:nil];
                 }else{
                     [Tools showError:err onViewController:self];
                 }
               
             }else{
-                
+                [self dismissViewControllerAnimated:YES completion:nil];
                 UIAlertController * alert = [UIAlertController
                                              alertControllerWithTitle:NSLocalizedString(@"signupTitle", @"")
                                              message:NSLocalizedString(@"signUpSuccessfull", @"")

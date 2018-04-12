@@ -1,0 +1,6 @@
+module Pods_LOM [system] {
+  umbrella header "Pods-LOM-umbrella.h"
+
+  export *
+  module * { export * }
+}
