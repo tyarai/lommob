@@ -1116,26 +1116,22 @@ Cg
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_specy" translatesAutoresizingMaskIntoConstraints="NO" id="gbr-OR-3se">
                                                     <rect key="frame" x="24" y="13" width="26" height="33"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PiS-FY-o90">
-                                                    <rect key="frame" x="80" y="49" width="0.0" height="0.0"/>
-                                                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Species" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4w1-Nh-jd1">
-                                                    <rect key="frame" x="80" y="21" width="61" height="23.5"/>
+                                                    <rect key="frame" x="80" y="21" width="262" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="262" id="Ae6-ft-85g"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="4w1-Nh-jd1" firstAttribute="top" secondItem="07I-du-3Pc" secondAttribute="topMargin" constant="10" id="0Oq-YW-acv"/>
-                                                <constraint firstItem="4w1-Nh-jd1" firstAttribute="leading" secondItem="gbr-OR-3se" secondAttribute="trailing" constant="30" id="J5r-Ce-Va3"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="4w1-Nh-jd1" secondAttribute="bottom" constant="4" id="Cfl-lM-w70"/>
+                                                <constraint firstItem="4w1-Nh-jd1" firstAttribute="top" secondItem="07I-du-3Pc" secondAttribute="topMargin" constant="10" id="NTx-Fk-mwt"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="gbr-OR-3se" secondAttribute="leading" constant="-8" id="R0b-T2-JPa"/>
                                                 <constraint firstItem="gbr-OR-3se" firstAttribute="centerY" secondItem="07I-du-3Pc" secondAttribute="centerY" id="e1l-0n-CRS"/>
-                                                <constraint firstItem="PiS-FY-o90" firstAttribute="leading" secondItem="4w1-Nh-jd1" secondAttribute="leading" id="efc-6o-gpQ"/>
-                                                <constraint firstItem="PiS-FY-o90" firstAttribute="bottom" secondItem="07I-du-3Pc" secondAttribute="bottomMargin" id="uHE-lP-EoH"/>
+                                                <constraint firstItem="4w1-Nh-jd1" firstAttribute="leading" secondItem="gbr-OR-3se" secondAttribute="trailing" constant="30" id="yhD-ud-HWD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1224,12 +1220,6 @@ Cg
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_posts" translatesAutoresizingMaskIntoConstraints="NO" id="BeU-Fu-Zpm">
                                                     <rect key="frame" x="24" y="17" width="28" height="26"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAS-Ag-mSO">
-                                                    <rect key="frame" x="68" y="30" width="128" height="20"/>
-                                                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sightings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ass-Df-eAG">
                                                     <rect key="frame" x="76" y="20" width="74.5" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
@@ -1240,9 +1230,7 @@ Cg
                                             <constraints>
                                                 <constraint firstItem="ass-Df-eAG" firstAttribute="leading" secondItem="BeU-Fu-Zpm" secondAttribute="trailing" constant="24" id="Byt-EB-MKl"/>
                                                 <constraint firstItem="BeU-Fu-Zpm" firstAttribute="centerY" secondItem="8XH-aD-UvJ" secondAttribute="centerY" id="YDI-8Y-wdI"/>
-                                                <constraint firstItem="uAS-Ag-mSO" firstAttribute="leading" secondItem="BeU-Fu-Zpm" secondAttribute="trailing" constant="24" id="fuI-mB-YW8"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="BeU-Fu-Zpm" secondAttribute="leading" constant="-8" id="kdi-li-gFg"/>
-                                                <constraint firstItem="uAS-Ag-mSO" firstAttribute="top" secondItem="8XH-aD-UvJ" secondAttribute="topMargin" constant="22" id="nHO-uc-wHn"/>
                                                 <constraint firstItem="ass-Df-eAG" firstAttribute="top" secondItem="8XH-aD-UvJ" secondAttribute="topMargin" constant="9" id="oFq-uj-EAb"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1408,9 +1396,6 @@ Cg
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="lemurLifeListCount" destination="sPd-UT-Uoc" id="1Fw-da-o8P"/>
-                        <outlet property="sightingsCount" destination="uAS-Ag-mSO" id="mYU-FM-ccH"/>
-                        <outlet property="speciesCount" destination="PiS-FY-o90" id="RP8-LC-9iZ"/>
                         <segue destination="JjW-ae-GrF" kind="custom" identifier="fifthSegue" customClass="AMSlideMenuContentSegue" id="mWb-um-tXd"/>
                         <segue destination="OeS-CT-Cgh" kind="custom" identifier="sixthSegue" customClass="AMSlideMenuContentSegue" id="vPI-wC-kml"/>
                         <segue destination="FHg-vw-HMz" kind="custom" identifier="seventhSegue" customClass="AMSlideMenuContentSegue" id="5fH-u8-srp"/>
@@ -1427,7 +1412,7 @@ Cg
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bb0-dW-cji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="856.82158920539734"/>
+            <point key="canvasLocation" x="787.5" y="856.5"/>
         </scene>
         <!--Families View Controller-->
         <scene sceneID="7Va-CN-kcl">
