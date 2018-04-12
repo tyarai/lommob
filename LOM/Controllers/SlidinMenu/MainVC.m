@@ -27,9 +27,7 @@ static MainVC *sharedMainVC = nil;
         // Custom initialization
     }
     sharedMainVC = self;
-    
-    
-    
+  
     return self;
 }
 
@@ -37,7 +35,7 @@ static MainVC *sharedMainVC = nil;
     
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = NO;
-    self.rightPanDisabled = YES;
+    //self.rightPanDisabled = YES;
     
     AppDelegate * appDelegate = [Tools getAppDelegate];
     
@@ -61,6 +59,10 @@ static MainVC *sharedMainVC = nil;
     //[self checkUserSession];
 }
 
+- (AMPrimaryMenu)primaryMenu
+{
+    return AMPrimaryMenuLeft;
+}
 
 
 -(void) checkUserSession{
@@ -192,10 +194,19 @@ static MainVC *sharedMainVC = nil;
     return (([Tools getScreenWidth] * 2) / 3) + 25;
 }
 
+- (CGFloat) rightMenuWidth{
+    return (([Tools getScreenWidth] * 2) / 3) + 25;
+}
+
 
 - (BOOL)deepnessForLeftMenu{
     return NO;
 }
+
+- (BOOL)deepnessForRightMenu{
+    return NO;
+}
+
 
 
 - (NSIndexPath *)initialIndexPathForLeftMenu
