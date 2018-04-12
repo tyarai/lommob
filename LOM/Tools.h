@@ -82,6 +82,6 @@ session_name andToken:(NSString*) token
 +(UIImage*) loadImage:(NSString*) imageFileName;
 +(UIAlertController*) handleError:(JSONModelError*) err ;
 +(UIAlertController*) handleErrorWithErrorMessage:(NSString*) err title:(NSString*)title;
-
++(BOOL) doesUserPereferenceKeyExist:(NSString*)key ;
 
 @end

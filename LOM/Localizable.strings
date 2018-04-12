@@ -16,6 +16,8 @@
 "title_lemur_life_list" = "Lemur life list";
 "wrong_password_username" = "Wrong username or password! Please check and try again";
 "authentication_issue" = "Authentication error";
+"authentication_title" = "Authentication";
+"user_must_be_authenticated" = "You must login or create a new account!";
 "session_expired" = "Your session has expired! You need to login";
 "network_connection_was_lost" = "The network connection was lost! Please try again";
 "server_not_found" = "The lemurs of madagascar's server is not accessible! Please check your internet connection or your DNS service";
@@ -71,3 +73,5 @@
 "log_out"="Log out";
 "logged_in_message"="Logged in as";
 "not_logged_in_message"="You are not logged in";
+"stay_offline"="Stay offline";
+"login_or_register"="Login or register";

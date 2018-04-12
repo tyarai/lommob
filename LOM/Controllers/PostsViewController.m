@@ -25,6 +25,7 @@
 #import "SightingDataTableViewController.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import "Comment.h"
+#import "SVProgressHUD.h"
 
 
 
@@ -233,14 +234,32 @@
     [super viewWillAppear:animated];
     [self loadLocalSightings];
     
+    /*AppDelegate * appDelegate = [Tools getAppDelegate];
+    
+    if(appDelegate) {
+        
+        if ( ![Tools isNullOrEmptyString:appDelegate._currentToken] &&
+            appDelegate._uid != 0 &&
+            ![Tools isNullOrEmptyString:appDelegate._userName]
+            ){
+            
+            isAdding = NO;
+            [super viewWillAppear:animated];
+            [self loadLocalSightings];
+            
+        }else{
+            [self showLoginPopup];
+        }
+    }*/
+    
     
 }
 
 
 - (void) loadLocalSightings{
-    if(!self.pullToRefresh && !appDelegate.showActivity){
+    //if(!self.pullToRefresh && !appDelegate.showActivity){
         //[self showActivityScreen];
-    }
+    //}
     
     NSInteger _uid                 = appDelegate._uid;
     NSArray *  currentUserSighting = [Sightings getSightingsByUID:_uid];
@@ -324,8 +343,44 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([[segue identifier] isEqualToString:@"showPost"]){
-    
-        SightingDataTableViewController* dest = (SightingDataTableViewController*) [segue destinationViewController];
+        
+        AppDelegate * appDelegate = [Tools getAppDelegate];
+        
+        if(appDelegate) {
+            
+            if ( ![Tools isNullOrEmptyString:appDelegate._currentToken] &&
+                appDelegate._uid != 0 &&
+                ![Tools isNullOrEmptyString:appDelegate._userName]
+                ){
+                
+                    // Tsy maintsy efa logged_in zay vao manampy posts
+                
+                    SightingDataTableViewController* dest = (SightingDataTableViewController*) [segue destinationViewController];
+                    if(!isAdding){
+                        dest.title =  NSLocalizedString(@"edit_sighting_title",@"");
+                        //dest.publication = self.selectedPublication;
+                        
+                    }else{
+                        //** Rehefa hanao new Sighting dia atao by default izay species voalohany no atao current
+                        NSArray<Species*>* _allSpecies = [Species allSpeciesOrderedByTitle:@"ASC"];
+                        // local variable ao @ Class BaseViewController ny appDelegate --//
+                        appDelegate.appDelegateCurrentSpecies = (Species*)_allSpecies[0];
+                        
+                        // Atao nil ihany koa ny publication satri vao hanao vaovao
+                        appDelegate.appDelegateCurrentPublication = nil;
+                        
+                        dest.title  = NSLocalizedString(@"new_sighting_title",@"");
+                    }
+                    dest.delegate = self;
+                    dest.isAdding = isAdding;
+                
+                
+            }else{
+                [self showLoginPopup];
+            }
+        }
+        
+        /*SightingDataTableViewController* dest = (SightingDataTableViewController*) [segue destinationViewController];
         if(!isAdding){
             dest.title =  NSLocalizedString(@"edit_sighting_title",@"");
             //dest.publication = self.selectedPublication;
@@ -336,13 +391,14 @@
             // local variable ao @ Class BaseViewController ny appDelegate --//
             appDelegate.appDelegateCurrentSpecies = (Species*)_allSpecies[0];
             
-            //** Atao nil ihany koa ny publication satri vao hanao vaovao **//
+            // Atao nil ihany koa ny publication satri vao hanao vaovao
             appDelegate.appDelegateCurrentPublication = nil;
             
             dest.title  = NSLocalizedString(@"new_sighting_title",@"");
         }
         dest.delegate = self;
         dest.isAdding = isAdding;
+         */
     }
 }
 
@@ -513,21 +569,50 @@
 #pragma mark LoginPopoverDelegate
 
 - (void) cancel{
-    [popoverController dismissPopoverAnimated:YES];
+    
+    NSString* title = NSLocalizedString(@"authentication_title", @"");
+    NSString*message = NSLocalizedString(@"user_must_be_authenticated", @"");
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:title
+                                 message:message
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:NSLocalizedString(@"login_or_register", @"")
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    //Handle your yes please button action here
+                                }];
+    UIAlertAction* noButton = [UIAlertAction
+                                actionWithTitle:NSLocalizedString(@"stay_offline",nil)
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    [self dismissViewControllerAnimated:YES completion:nil];
+                                }];
+    
+    [alert addAction:yesButton];
+    [alert addAction:noButton];
+    
+    [loginPopup presentViewController:alert animated:YES completion:nil];
+
 }
 
 
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
     
-    [self showActivityScreen];
+    //[self showActivityScreen];
+    [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+    [SVProgressHUD show];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
+        [SVProgressHUD dismiss];
         
         if (err)
         {
-            [self removeActivityScreen];
+            //[self removeActivityScreen];
             [Tools showError:err onViewController:loginPopup];
         }
         else
@@ -566,7 +651,6 @@
                     [self dismissViewControllerAnimated:YES completion:nil];
                     [self refreshListFromOnlineData];
                     [appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
-
                     
                 }
             }
@@ -1188,8 +1272,7 @@
                 
             [self.tableViewLifeList reloadData];
             
-        
-        
+    
         
     }else{
         

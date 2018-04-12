@@ -160,6 +160,15 @@ static float appScale = 1.0;
         NSLog(@"Could not save to disk");
     }
 }
+// -- Ilaina ity function ity hijerena hoe avy ni-installer-na ilay app sa tsia
+//    Raha tsy misy ilay KEY dia vao avy n-installer-na ilay app
++(BOOL) doesUserPereferenceKeyExist:(NSString*)key {
+    NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
+    if ([preferences objectForKey:key] == nil){
+        return YES;
+    }
+    return NO;
+}
 
 +(NSString*) getStringUserPreferenceWithKey:(NSString*) key{
     NSUserDefaults *preferences = [NSUserDefaults standardUserDefaults];
@@ -339,6 +348,8 @@ static float appScale = 1.0;
     return alert;
   
 }
+
+
 
 //********************************************************************
 // Update Ranto Sept 8 2016
@@ -707,8 +718,13 @@ static float appScale = 1.0;
     [Tools setUserPreferenceWithKey:KEY_UID andStringValue:strUid  ];
     [Tools setUserPreferenceWithKey:KEY_USERNAME andStringValue:userName];
     [Tools setUserPreferenceWithKey:KEY_USERMAIL andStringValue:userMail];
-
- 
+    
+    //--- Hijerena raha vao installé ilay app na tsia ---//
+    NSDate *currDate    = [NSDate date];//Current time in UTC time
+    int64_t  _now       = [currDate timeIntervalSince1970];
+    [Tools setUserPreferenceWithKey:LAST_LOGIN_DATE andStringValue:[NSString stringWithFormat:@"%lli", _now]];
+    
+   
 }
 
 

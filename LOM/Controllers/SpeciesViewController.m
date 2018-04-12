@@ -13,6 +13,8 @@
 #import "SpeciesDetailsViewController.h"
 #import "Constants.h"
 #import "LoginResult.h"
+#import "Tools.h"
+#import "SVProgressHUD.h"
 
 
 @interface SpeciesViewController ()
@@ -30,20 +32,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    NSString * title = NSLocalizedString(@"species_title",@"");
-    
-    NSArray * allSpecies = [Species allSpeciesOrderedByTitle:@""];
-    
-    NSString * _title = [NSString stringWithFormat:@"%lu %@ %@",(unsigned long)[allSpecies count],title,@" and counting"];
-    
-    self.navigationItem.title = _title;
-    self.navigationItem.titleView = nil;
-    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
-    
-    ongoingLogin = NO;
     
     [self showData];
+    
+    /*AppDelegate * appDelegate = [Tools getAppDelegate];
+    
+    if(appDelegate) {
+        
+        if ( ![Tools isNullOrEmptyString:appDelegate._currentToken] &&
+             appDelegate._uid != 0 &&
+            ![Tools isNullOrEmptyString:appDelegate._userName]
+            ){
+            
+                ongoingLogin = NO;
+                [self showData];
+            
+        }else{
+            
+            if(![Tools doesUserPereferenceKeyExist:LAST_SYNC_DATE]) {
+                // Vao avy ni-installer-na ilay app dia tsy maintsy averina mi-login ilay user
+                [self showLoginPopup];
+            }else{
+                ongoingLogin = NO;
+                [self showData];
+            }
+        }
+        
+    }
+    */
     
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -57,7 +73,13 @@
 #pragma mark PopupLogin
 
 - (void) cancel{
-    [popoverController dismissPopoverAnimated:YES];
+    
+    NSString* title = NSLocalizedString(@"authentication_title", @"");
+    NSString*message = NSLocalizedString(@"user_must_be_authenticated", @"");
+    UIAlertController * alert = [Tools createAlertViewWithTitle:title messsage:message];
+    
+    [loginViewController presentViewController:alert animated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES  completion:nil];
 }
 
 
@@ -80,14 +102,19 @@
     
 }
 
+#pragma mark PopupLoginDelegate
+
 - (void) validWithUserName:(NSString*) userName password:(NSString*) password andRememberMe:(BOOL) rememberMe
 {
     
-    [self showActivityScreen];
+    //[self showActivityScreen];
+    [SVProgressHUD setBackgroundColor:[UIColor darkGrayColor]];
+    [SVProgressHUD show];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        [self removeActivityScreen];
+        //[self removeActivityScreen];
+        [SVProgressHUD dismiss];
         
         if (err)
         {
@@ -134,7 +161,11 @@
                     
                     ongoingLogin = NO; // VIta ny login
                     
-                    //[self performSelectorOnMainThread:@selector(presentMain) withObject:nil waitUntilDone:NO];
+                    //dispatch_async(dispatch_get_main_queue(), ^{
+                        //[self showData];
+                    //});
+                    
+                    [self performSelectorOnMainThread:@selector(showData) withObject:nil waitUntilDone:NO];
                     
                 }
             }
@@ -151,16 +182,23 @@
 
 - (void) showData{
     
+    // Do any additional setup after loading the view.
+    NSString * title = NSLocalizedString(@"species_title",@"");
+    
+    NSArray * allSpecies = [Species allSpeciesOrderedByTitle:@""];
+    
+    NSString * _title = [NSString stringWithFormat:@"%lu %@ %@",(unsigned long)[allSpecies count],title,@" and counting"];
+    
+    self.navigationItem.title = _title;
+    self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
+    
     __speciesArray = [Species allInstances];
     
     self.collectionSpecies.delegate = self;
     self.collectionSpecies.dataSource = self;
     
 }
-
-
-
-
 
 
 #pragma mark - Navigation

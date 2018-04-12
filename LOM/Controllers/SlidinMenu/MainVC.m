@@ -10,7 +10,7 @@
 #import "Tools.h"
 #import "LoginResult.h"
 #import "Tools.h"
-
+#import "SVProgressHUD.h"
 
 @interface MainVC ()
 
@@ -34,9 +34,25 @@ static MainVC *sharedMainVC = nil;
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.navigationController.navigationBar.hidden = NO;
     self.rightPanDisabled = YES;
+    
+    AppDelegate * appDelegate = [Tools getAppDelegate];
+    
+    if(appDelegate) {
+        
+        NSString * lastLoginDate = [Tools getStringUserPreferenceWithKey:LAST_LOGIN_DATE];
+        
+        if ( [Tools isNullOrEmptyString:appDelegate._currentToken] &&
+            [Tools isNullOrEmptyString:lastLoginDate]
+            ){
+                [self showLoginPopup];
+            }
+    }
+
+    
     // Do any additional setup after loading the view.
 }
 
@@ -71,10 +87,12 @@ static MainVC *sharedMainVC = nil;
 {
     
     AppData * appData = [AppData getInstance];
+    [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+    [SVProgressHUD show];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        //[self removeActivityScreen];
+        [SVProgressHUD dismiss];
         
         AppDelegate * appDelegate = [Tools getAppDelegate];
         
@@ -143,7 +161,13 @@ static MainVC *sharedMainVC = nil;
 #pragma mark LoginPopoverDelegate
 
 - (void) cancel{
-    [popoverController dismissPopoverAnimated:YES];
+    
+    NSString* title = NSLocalizedString(@"authentication_title", @"");
+    NSString*message = NSLocalizedString(@"user_must_be_authenticated", @"");
+    UIAlertController * alert = [Tools createAlertViewWithTitle:title messsage:message];
+    
+    [loginViewController presentViewController:alert animated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES  completion:nil];
 }
 
 - (void) presentMain{
