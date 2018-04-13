@@ -914,7 +914,6 @@ Cg
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <segue destination="nxV-La-DmM" kind="custom" identifier="leftMenu" customClass="AMSlideMenuLeftMenuSegue" id="BOl-W7-HlN"/>
-                        <segue destination="E2G-mV-pX7" kind="custom" identifier="rightMenu" customClass="AMSlideMenuRightMenuSegue" id="2uh-bh-5v3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P6r-bn-hd0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1412,7 +1411,7 @@ Cg
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bb0-dW-cji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="787.5" y="856.5"/>
+            <point key="canvasLocation" x="857" y="857"/>
         </scene>
         <!--Families View Controller-->
         <scene sceneID="7Va-CN-kcl">
@@ -2155,7 +2154,7 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2G-ET-HhG">
-                                                    <rect key="frame" x="16" y="9.5" width="343" height="26"/>
+                                                    <rect key="frame" x="16" y="9" width="343" height="26"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2521,13 +2520,27 @@ Cg
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3v9-5h-cDC">
+                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="y1y-1h-jJA"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="search" id="m1g-F5-nC4">
+                                        <color key="tintColor" red="0.98817652460000005" green="0.68912953139999999" blue="0.02415499464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="BDa-hA-AO4" firstAttribute="centerX" secondItem="Jhr-oe-P4N" secondAttribute="centerX" id="2cA-Rl-qgi"/>
                             <constraint firstItem="BDa-hA-AO4" firstAttribute="top" secondItem="2Ek-Jr-CSa" secondAttribute="bottom" constant="-43" id="C2G-ct-6In"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BDa-hA-AO4" secondAttribute="trailing" id="N2q-Gy-WtF"/>
+                            <constraint firstItem="3v9-5h-cDC" firstAttribute="leading" secondItem="Jhr-oe-P4N" secondAttribute="leading" id="Nw3-KX-esK"/>
                             <constraint firstItem="0RG-gl-Pci" firstAttribute="top" secondItem="BDa-hA-AO4" secondAttribute="bottom" constant="5" id="Pde-tB-CFb"/>
+                            <constraint firstAttribute="trailing" secondItem="3v9-5h-cDC" secondAttribute="trailing" id="TP0-8o-en9"/>
+                            <constraint firstItem="Huk-QI-bi4" firstAttribute="top" secondItem="3v9-5h-cDC" secondAttribute="bottom" id="W4P-PV-dSH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0RG-gl-Pci" secondAttribute="trailing" constant="-10" id="e2F-rm-JR3"/>
                             <constraint firstItem="0RG-gl-Pci" firstAttribute="centerX" secondItem="Jhr-oe-P4N" secondAttribute="centerX" id="oGz-PY-7q8"/>
                             <constraint firstAttribute="leadingMargin" secondItem="BDa-hA-AO4" secondAttribute="leading" id="on2-mO-Yyu"/>
@@ -2537,7 +2550,7 @@ Cg
                     </view>
                     <navigationItem key="navigationItem" id="avW-S5-3r5">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="HvL-B3-fl8">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="HvL-B3-fl8">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tRQ-G9-3tO">
                                 <rect key="frame" x="329" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2856,7 +2869,7 @@ Cg
                     <navigationItem key="navigationItem" id="BvB-fZ-gTr">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="vko-33-CFB">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dev-lQ-EkA">
-                                <rect key="frame" x="16" y="41" width="20" height="22"/>
+                                <rect key="frame" x="16" y="11" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="ico_back"/>
                                 <connections>
@@ -2865,7 +2878,7 @@ Cg
                             </button>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" ambiguous="YES" id="eBh-wo-INQ">
-                            <rect key="frame" x="54" y="36" width="267" height="33"/>
+                            <rect key="frame" x="54" y="5.5" width="267" height="33"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YjK-C2-Olt">
@@ -3092,6 +3105,7 @@ Cg
                                 <rect key="frame" x="10" y="341" width="355" height="254"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="355" id="dBL-6s-cmI"/>
                                     <constraint firstAttribute="height" constant="254" id="qZb-0l-SIX"/>
                                 </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -5553,13 +5567,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR9-Ic-532">
-                                                    <rect key="frame" x="16" y="15" width="199" height="23.5"/>
+                                                    <rect key="frame" x="16" y="14.5" width="199" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family update" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTm-Pn-LGI">
-                                                    <rect key="frame" x="221" y="15" width="138" height="23.5"/>
+                                                    <rect key="frame" x="221" y="14.5" width="138" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="138" id="6oc-UM-NaK"/>
                                                     </constraints>
@@ -5585,13 +5599,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photographs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEN-f7-Ywa">
-                                                    <rect key="frame" x="16" y="15" width="105" height="23.5"/>
+                                                    <rect key="frame" x="16" y="14.5" width="105" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pa-Fc-ntP">
-                                                    <rect key="frame" x="286" y="15" width="73" height="23.5"/>
+                                                    <rect key="frame" x="286" y="14.5" width="73" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="mVM-KD-zbd"/>
                                                     </constraints>
@@ -5616,13 +5630,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLQ-XQ-qA4">
-                                                    <rect key="frame" x="16" y="15" width="191" height="23.5"/>
+                                                    <rect key="frame" x="16" y="14.5" width="191" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4U5-xT-jov">
-                                                    <rect key="frame" x="286" y="15" width="73" height="23.5"/>
+                                                    <rect key="frame" x="286" y="14.5" width="73" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="xsq-DE-bWj"/>
                                                     </constraints>
@@ -5786,6 +5800,6 @@ Cg
     <inferredMetricsTieBreakers>
         <segue reference="buO-yF-mTq"/>
         <segue reference="cJm-Jk-98a"/>
-        <segue reference="Rjc-fq-xQe"/>
+        <segue reference="ePp-eL-fVW"/>
     </inferredMetricsTieBreakers>
 </document>

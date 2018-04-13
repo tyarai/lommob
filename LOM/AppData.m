@@ -51,9 +51,6 @@ static AppData* _instance;
     }
 }
 
-
-
-
 - (void) buildPOSTHeader{
     
     [[JSONHTTPClient requestHeaders] setValue:@"application/json" forKey:@"Accept"];

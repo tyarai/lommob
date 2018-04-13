@@ -182,6 +182,10 @@ static MainVC *sharedMainVC = nil;
     return sharedMainVC;
 }
 
+- (void)configureRightMenuButton:(UIButton *)button{
+    button.frame = CGRectMake(0, 0, 32, 32);
+    [button setImage:[UIImage imageNamed:@"ico_menu"] forState:UIControlStateNormal];
+}
 
 
 - (void)configureLeftMenuButton:(UIButton *)button{
