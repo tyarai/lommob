@@ -4085,7 +4085,7 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nr1-EQ-1Lq">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="0y8-JM-LDp"/>
                                     <constraint firstAttribute="height" constant="44" id="L0f-G6-suf"/>
@@ -4106,7 +4106,7 @@ Cg
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gYj-z1-ymr">
-                                <rect key="frame" x="0.0" y="44" width="375" height="310"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="310"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="310" id="plf-kZ-7wT"/>
@@ -4115,17 +4115,17 @@ Cg
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="fA5-7U-zDA" firstAttribute="top" secondItem="gYj-z1-ymr" secondAttribute="bottom" constant="313" id="05C-mv-ZUE"/>
+                            <constraint firstItem="fA5-7U-zDA" firstAttribute="top" secondItem="gYj-z1-ymr" secondAttribute="bottom" constant="269" id="05C-mv-ZUE"/>
                             <constraint firstAttribute="trailing" secondItem="gYj-z1-ymr" secondAttribute="trailing" id="2EZ-t7-iZN"/>
-                            <constraint firstItem="fA5-7U-zDA" firstAttribute="top" secondItem="gYj-z1-ymr" secondAttribute="bottom" constant="313" id="3uc-aw-LKZ"/>
+                            <constraint firstItem="fA5-7U-zDA" firstAttribute="top" secondItem="gYj-z1-ymr" secondAttribute="bottom" constant="269" id="3uc-aw-LKZ"/>
                             <constraint firstItem="gYj-z1-ymr" firstAttribute="trailing" secondItem="Nr1-EQ-1Lq" secondAttribute="trailing" id="401-6q-Gtt"/>
                             <constraint firstItem="Nr1-EQ-1Lq" firstAttribute="leading" secondItem="KCi-1d-TlA" secondAttribute="leading" id="CHC-wu-bp0"/>
                             <constraint firstAttribute="trailing" secondItem="Nr1-EQ-1Lq" secondAttribute="trailing" id="UTL-kR-XGJ"/>
                             <constraint firstItem="gYj-z1-ymr" firstAttribute="top" secondItem="Nr1-EQ-1Lq" secondAttribute="bottom" id="Xew-G0-h0T"/>
                             <constraint firstItem="gYj-z1-ymr" firstAttribute="leading" secondItem="Nr1-EQ-1Lq" secondAttribute="leading" id="YCh-UA-HvP"/>
-                            <constraint firstItem="Nr1-EQ-1Lq" firstAttribute="top" secondItem="KCi-1d-TlA" secondAttribute="top" id="diO-oS-VRw"/>
+                            <constraint firstItem="Nr1-EQ-1Lq" firstAttribute="top" secondItem="KCi-1d-TlA" secondAttribute="top" constant="44" id="diO-oS-VRw"/>
                             <constraint firstItem="gYj-z1-ymr" firstAttribute="top" secondItem="Nr1-EQ-1Lq" secondAttribute="bottom" id="hCw-Zb-f0X"/>
                             <constraint firstItem="gYj-z1-ymr" firstAttribute="leading" secondItem="KCi-1d-TlA" secondAttribute="leading" id="mLe-93-zXQ"/>
                             <constraint firstItem="gYj-z1-ymr" firstAttribute="top" secondItem="Nr1-EQ-1Lq" secondAttribute="bottom" id="nr3-w1-3cT"/>
@@ -4133,7 +4133,6 @@ Cg
                             <constraint firstItem="gYj-z1-ymr" firstAttribute="leading" secondItem="KCi-1d-TlA" secondAttribute="leading" id="ujJ-hT-yvm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="S1F-Dd-0kJ"/>
                     <connections>
                         <outlet property="comment" destination="gYj-z1-ymr" id="79F-EN-hDx"/>
                         <outlet property="navigationBar" destination="Nr1-EQ-1Lq" id="Duc-M9-4VS"/>
