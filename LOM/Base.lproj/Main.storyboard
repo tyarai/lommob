@@ -5844,7 +5844,7 @@ Cg
     <resources>
         <image name="CI logo (long format).jpg" width="2339" height="748"/>
         <image name="PSGlogoNEW.jpg" width="1500" height="2539"/>
-        <image name="app_logo" width="175" height="70"/>
+        <image name="app_logo" width="191" height="100"/>
         <image name="bg_splash" width="250" height="445"/>
         <image name="btn_english_on" width="40" height="40"/>
         <image name="btn_flag_off" width="75" height="105"/>
@@ -5878,7 +5878,7 @@ Cg
         <image name="ico_settings" width="30" height="30"/>
         <image name="ico_specy" width="26" height="33"/>
         <image name="ico_tyarai" width="150" height="101"/>
-        <image name="logo.png" width="350" height="140"/>
+        <image name="logo.png" width="382" height="200"/>
         <image name="logo_lom" width="174" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
