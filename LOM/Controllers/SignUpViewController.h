@@ -32,5 +32,6 @@
 @property (weak, nonatomic) IBOutlet UIView *controlView;
 @property (weak, nonatomic) IBOutlet UILabel *viewTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
+@property BOOL keyboardShown;
 
 @end
