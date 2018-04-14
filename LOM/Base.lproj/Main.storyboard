@@ -2150,7 +2150,7 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2G-ET-HhG">
-                                                    <rect key="frame" x="16" y="9" width="343" height="26"/>
+                                                    <rect key="frame" x="16" y="9.5" width="343" height="26"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2859,15 +2859,14 @@ Cg
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <view key="titleView" contentMode="scaleToFill" ambiguous="YES" id="eBh-wo-INQ">
+                        <view key="titleView" contentMode="scaleToFill" id="eBh-wo-INQ">
                             <rect key="frame" x="54" y="5.5" width="267" height="33"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YjK-C2-Olt">
-                                    <rect key="frame" x="4" y="-0.5" width="258" height="34"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="YjK-C2-Olt">
+                                    <rect key="frame" x="4" y="-1" width="258" height="34"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="K0x-A5-X3s"/>
-                                        <constraint firstAttribute="width" constant="258" id="xms-gu-ukl"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="rsx-sk-FSH"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2876,10 +2875,10 @@ Cg
                             </subviews>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="YjK-C2-Olt" secondAttribute="trailing" constant="4" id="R3X-em-9IM"/>
-                                <constraint firstItem="YjK-C2-Olt" firstAttribute="leading" secondItem="eBh-wo-INQ" secondAttribute="leading" constant="4" id="bEC-cw-8uD"/>
-                                <constraint firstItem="YjK-C2-Olt" firstAttribute="centerX" secondItem="eBh-wo-INQ" secondAttribute="centerX" id="rDJ-I8-ypD"/>
-                                <constraint firstItem="YjK-C2-Olt" firstAttribute="centerY" secondItem="eBh-wo-INQ" secondAttribute="centerY" id="xcJ-Wz-zZ0"/>
+                                <constraint firstItem="YjK-C2-Olt" firstAttribute="leading" secondItem="eBh-wo-INQ" secondAttribute="leading" constant="4" id="WZC-tl-zn8"/>
+                                <constraint firstItem="YjK-C2-Olt" firstAttribute="centerY" secondItem="eBh-wo-INQ" secondAttribute="centerY" id="dcs-5O-aJz"/>
+                                <constraint firstAttribute="bottom" secondItem="YjK-C2-Olt" secondAttribute="bottom" id="hpO-zA-1Os"/>
+                                <constraint firstItem="YjK-C2-Olt" firstAttribute="centerX" secondItem="eBh-wo-INQ" secondAttribute="centerX" id="v0Q-2z-rfW"/>
                             </constraints>
                         </view>
                     </navigationItem>
@@ -3051,7 +3050,7 @@ Cg
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6S-hq-9Gh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2002" y="-855"/>
+            <point key="canvasLocation" x="2041" y="-855"/>
         </scene>
         <!--Families Details View Controller-->
         <scene sceneID="GpO-WO-UVl">
