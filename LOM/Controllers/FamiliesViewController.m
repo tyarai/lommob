@@ -11,6 +11,7 @@
 #import "Tools.h"
 #import "Families.h"
 #import "FamiliesDetailsViewController.h"
+#import "FamilyDetailsTableViewController.h"
 
 @interface FamiliesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableViewFamilies;
@@ -46,7 +47,7 @@
     
     if ([segue.identifier isEqualToString:@"pushDetailFamily"]) {
         
-        FamiliesDetailsViewController* familiesDetailsViewController = (FamiliesDetailsViewController*) [segue destinationViewController];
+        FamilyDetailsTableViewController* familiesDetailsViewController = (FamilyDetailsTableViewController*) [segue destinationViewController];
         
         familiesDetailsViewController.families = _selectedFamily;
     }

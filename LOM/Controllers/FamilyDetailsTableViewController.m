@@ -1,47 +1,53 @@
 //
-//  FamiliesDetailsViewController.m
+//  FamilyDetailsTableViewController.m
 //  LOM
 //
-//  Created by Andrianavonison Ranto Tiaray on 01/01/2016.
-//  Copyright © 2016 Kerty KAMARY. All rights reserved.
+//  Created by Ranto Tiaray Andrianavonison on 13/04/2018.
+//  Copyright © 2018 Kerty KAMARY. All rights reserved.
 //
 
-#import "FamiliesDetailsViewController.h"
+#import "FamilyDetailsTableViewController.h"
 #import "Tools.h"
 #import "Illustrations.h"
 
-@interface FamiliesDetailsViewController ()
+#define _ROWHEIGHT 48
+#define _fixedPhotoCellHeight 359
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollImage;
-@property (weak, nonatomic) IBOutlet UILabel *lblTitle;
-@property (weak, nonatomic) IBOutlet UITextView *txtText;
-@property (weak, nonatomic) IBOutlet UIPageControl *sliderImageControl;
+@interface FamilyDetailsTableViewController ()
 
 @end
 
-@implementation FamiliesDetailsViewController
+@implementation FamilyDetailsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self prepareImageScroll];
     
-    self.txtText.text = self.families._family_description;
+    self.lblText.text = self.families._family_description;
     
     self.lblTitle.text = self.families._family;
+    
+    self.scrollImage.delegate = self;
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = _ROWHEIGHT;
+    
     
     self.navigationItem.titleView = nil;
     self.navigationItem.title = self.families._family;
     [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath{
+    
+    if (indexPath.row == 1) {
+        return UITableViewAutomaticDimension;
+    }
+    return _fixedPhotoCellHeight;
 }
 
-- (void) viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     [self initTimer];
@@ -50,9 +56,12 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.txtText scrollRangeToVisible:NSMakeRange(0, 0)];
     });
-
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 - (void) viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -144,21 +153,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-- (IBAction)btnBack_Touch:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma UIScrollViewdelegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
@@ -206,6 +208,76 @@
     
     self.sliderImageControl.currentPage = _imagePosition;
 }
+
+#pragma mark - Table view data source
+/*
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Incomplete implementation, return the number of sections
+    return 0;
+}*/
+
+/*
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete implementation, return the number of rows
+    return 0;
+}
+ */
+
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
+}
+*/
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
+/*
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
+*/
+
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+}
+*/
+
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+*/
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+#pragma UIScrollViewdelegate
 
 
 
@@ -270,5 +342,6 @@
     }
     return nil;
 }
+
 
 @end

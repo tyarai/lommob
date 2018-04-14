@@ -961,6 +961,7 @@
 		4CBAEB141BFA546B0011139C /* LOMUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEB131BFA546B0011139C /* LOMUITests.m */; };
 		4CBBAC391DEF5305005CBCBA /* SpeciesSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBBAC381DEF5305005CBCBA /* SpeciesSelectorViewController.m */; };
 		4CBBAC3C1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBBAC3B1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m */; };
+		4CBEA4F720812713001A919D /* FamilyDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBEA4F620812713001A919D /* FamilyDetailsTableViewController.m */; };
 		4CC1F3651F99F2BD00714460 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */; };
 		4CEC77771C36CB6400C9706A /* FamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77761C36CB6400C9706A /* FamilyTableViewCell.m */; };
 		4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */; };
@@ -2052,6 +2053,8 @@
 		4CBBAC381DEF5305005CBCBA /* SpeciesSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeciesSelectorViewController.m; path = Controllers/SpeciesSelectorViewController.m; sourceTree = "<group>"; };
 		4CBBAC3A1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpeciesSelectorTableViewCell.h; path = Controllers/SpeciesSelectorTableViewCell.h; sourceTree = "<group>"; };
 		4CBBAC3B1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpeciesSelectorTableViewCell.m; path = Controllers/SpeciesSelectorTableViewCell.m; sourceTree = "<group>"; };
+		4CBEA4F520812713001A919D /* FamilyDetailsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FamilyDetailsTableViewController.h; path = Controllers/FamilyDetailsTableViewController.h; sourceTree = "<group>"; };
+		4CBEA4F620812713001A919D /* FamilyDetailsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FamilyDetailsTableViewController.m; path = Controllers/FamilyDetailsTableViewController.m; sourceTree = "<group>"; };
 		4CC1F3631F99F2BD00714460 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyPolicyViewController.h; path = Controllers/PrivacyPolicyViewController.h; sourceTree = "<group>"; };
 		4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		4CEC77751C36CB6400C9706A /* FamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamilyTableViewCell.h; path = Controllers/FamilyTableViewCell.h; sourceTree = "<group>"; };
@@ -2341,6 +2344,8 @@
 				4C59AD941C15F59A00EA74C5 /* FamiliesViewController.m */,
 				4CEC77781C36D41900C9706A /* FamiliesDetailsViewController.h */,
 				4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */,
+				4CBEA4F520812713001A919D /* FamilyDetailsTableViewController.h */,
+				4CBEA4F620812713001A919D /* FamilyDetailsTableViewController.m */,
 			);
 			name = Families;
 			sourceTree = "<group>";
@@ -4889,6 +4894,7 @@
 				B4C599AF1C70D6E100C4B99A /* IntroPageContentViewController.m in Sources */,
 				B46779311D46211700618410 /* LemurLifeListNode.m in Sources */,
 				B48667A61C81A2AA00F2B05D /* ExtinctLemursViewController.m in Sources */,
+				4CBEA4F720812713001A919D /* FamilyDetailsTableViewController.m in Sources */,
 				4C4A163D1FB0993C00C3B3D2 /* CommenEditViewController.m in Sources */,
 				4CBAEAF01BFA546B0011139C /* main.m in Sources */,
 				4C74F2991C0638B900543A7F /* URLConnect.m in Sources */,
