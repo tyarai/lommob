@@ -966,15 +966,15 @@ Cg
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="114.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="a9y-Ke-qob">
-                                                    <rect key="frame" x="10" y="23" width="173" height="69"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_logo" translatesAutoresizingMaskIntoConstraints="NO" id="a9y-Ke-qob">
+                                                    <rect key="frame" x="10" y="23" width="214" height="85"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="173" id="3Xj-oc-BzO"/>
+                                                        <constraint firstAttribute="width" constant="214" id="3Xj-oc-BzO"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="a9y-Ke-qob" firstAttribute="centerY" secondItem="JkC-Y9-Dyv" secondAttribute="centerY" id="Sab-ya-fSM"/>
+                                                <constraint firstItem="a9y-Ke-qob" firstAttribute="centerY" secondItem="JkC-Y9-Dyv" secondAttribute="centerY" constant="8.25" id="Sab-ya-fSM"/>
                                                 <constraint firstItem="a9y-Ke-qob" firstAttribute="leading" secondItem="JkC-Y9-Dyv" secondAttribute="leadingMargin" constant="-6" id="vRg-lY-JO2"/>
                                                 <constraint firstItem="a9y-Ke-qob" firstAttribute="top" secondItem="JkC-Y9-Dyv" secondAttribute="topMargin" constant="12" id="x72-0b-gO0"/>
                                             </constraints>
@@ -1411,7 +1411,7 @@ Cg
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bb0-dW-cji" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="857" y="857"/>
+            <point key="canvasLocation" x="856.79999999999995" y="856.82158920539734"/>
         </scene>
         <!--Families View Controller-->
         <scene sceneID="7Va-CN-kcl">
@@ -5844,6 +5844,7 @@ Cg
     <resources>
         <image name="CI logo (long format).jpg" width="2339" height="748"/>
         <image name="PSGlogoNEW.jpg" width="1500" height="2539"/>
+        <image name="app_logo" width="175" height="70"/>
         <image name="bg_splash" width="250" height="445"/>
         <image name="btn_english_on" width="40" height="40"/>
         <image name="btn_flag_off" width="75" height="105"/>
