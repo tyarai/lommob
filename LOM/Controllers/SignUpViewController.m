@@ -23,6 +23,7 @@
     [super viewDidLoad];
     acceptTermsOfUse   = NO;
     readPrivacyPolicy  = NO;
+    self.keyboardShown = NO;
     
 }
 
@@ -238,14 +239,16 @@
 
 -(void)keyboardWasShown:(NSNotification *)notification {
     
-    NSDictionary* info = [notification userInfo];
     
+    
+    NSDictionary* info = [notification userInfo];
+        
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
     CGFloat height = keyboardSize.height ;
     
     CGFloat titleHeight = self.viewTitle.frame.size.height;
-    CGFloat newConstraint = constraint + height - (titleHeight*2);//titleHeight;
+    CGFloat newConstraint = !self.keyboardShown ? constraint + height - (titleHeight*2) : self.bottomConstraint.constant ;//titleHeight;
     self.bottomConstraint.constant = newConstraint;
     [self.controlView setNeedsUpdateConstraints];
     
@@ -256,17 +259,18 @@
                          
                          [self.view layoutIfNeeded];
                          self.logo.alpha   = 0;
+                         self.keyboardShown = YES;
                          
                      } ];
-    
-    
-    
+        
+  
     
 }
 
 
 - (void)keyboardWillBeHidden:(NSNotification *)notification {
     
+    self.keyboardShown = NO;
     self.bottomConstraint.constant = constraint;
     [self.controlView setNeedsUpdateConstraints];
     [UIView animateWithDuration:0.5
