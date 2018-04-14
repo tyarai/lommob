@@ -3,55 +3,55 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "ap_icon_40pt.png",
+      "filename" : "app_icon_40pt.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "ap_icon_60pt.png",
+      "filename" : "app_icon_60pt.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "ap_icon_58pt.png",
+      "filename" : "app_icon_58pt.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "ap_icon_87pt.png",
+      "filename" : "app_icon_87pt.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "ap_icon_80pt.png",
+      "filename" : "app_icon_80pt.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "ap_icon_120pt.png",
+      "filename" : "app_icon_120pt.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "ap_icon_120pt-1.png",
+      "filename" : "app_icon_120pt-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "ap_icon_180pt.png",
+      "filename" : "app_icon_180pt.png",
       "scale" : "3x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "app-store-1024.png",
+      "filename" : "appstore-launch.png",
       "scale" : "1x"
     }
   ],

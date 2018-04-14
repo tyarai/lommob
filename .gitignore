@@ -13,4 +13,4 @@
 *.tar
 #*.sqlite
 *.plist
-*.pbxproj
+#*.pbxproj
