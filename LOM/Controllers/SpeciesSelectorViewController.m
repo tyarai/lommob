@@ -138,7 +138,7 @@
 
 - (void) showSearch{
     
-    self.constraintTopSpaceSearch.constant = 20;
+    self.constraintTopSpaceSearch.constant = 40;
     
     
     [UIView animateWithDuration:0.5
@@ -163,7 +163,7 @@
 
 - (void) hideSearch{
     
-    self.constraintTopSpaceSearch.constant = -33;
+    self.constraintTopSpaceSearch.constant = 0;
     
     [UIView animateWithDuration:0.5
                      animations:^{

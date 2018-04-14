@@ -132,7 +132,7 @@
 
 - (void) showSearch{
     
-    self.layoutCOnstraints.constant = 20;
+    self.layoutCOnstraints.constant = 40;
     
     
     [UIView animateWithDuration:0.5
@@ -157,7 +157,7 @@
 
 - (void) hideSearch{
     
-    self.layoutCOnstraints.constant = -33;
+    self.layoutCOnstraints.constant = 0;
     
     [UIView animateWithDuration:0.5
                      animations:^{
