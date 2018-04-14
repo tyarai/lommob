@@ -963,7 +963,7 @@
 		4CBBAC3C1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBBAC3B1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m */; };
 		4CBEA4F720812713001A919D /* FamilyDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBEA4F620812713001A919D /* FamilyDetailsTableViewController.m */; };
 		4CC1F3651F99F2BD00714460 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */; };
-		4CE0195420822A58009436B1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE0195320822A0F009436B1 /* logo.png */; };
+		4CE0195820822E9B009436B1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CE0195720822E98009436B1 /* logo.png */; };
 		4CEC77771C36CB6400C9706A /* FamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77761C36CB6400C9706A /* FamilyTableViewCell.m */; };
 		4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */; };
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
@@ -2057,7 +2057,7 @@
 		4CBEA4F620812713001A919D /* FamilyDetailsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FamilyDetailsTableViewController.m; path = Controllers/FamilyDetailsTableViewController.m; sourceTree = "<group>"; };
 		4CC1F3631F99F2BD00714460 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyPolicyViewController.h; path = Controllers/PrivacyPolicyViewController.h; sourceTree = "<group>"; };
 		4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
-		4CE0195320822A0F009436B1 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../LOM_PSD_ICONS/front_page_sketch/app_icons_varecia/logo.png; sourceTree = "<group>"; };
+		4CE0195720822E98009436B1 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../LOM_PSD_ICONS/front_page_sketch/app_icons_varecia/logo.png; sourceTree = "<group>"; };
 		4CEC77751C36CB6400C9706A /* FamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamilyTableViewCell.h; path = Controllers/FamilyTableViewCell.h; sourceTree = "<group>"; };
 		4CEC77761C36CB6400C9706A /* FamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FamilyTableViewCell.m; path = Controllers/FamilyTableViewCell.m; sourceTree = "<group>"; };
 		4CEC77781C36D41900C9706A /* FamiliesDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamiliesDetailsViewController.h; path = Controllers/FamiliesDetailsViewController.h; sourceTree = "<group>"; };
@@ -2475,7 +2475,7 @@
 		4C6F14721C1340CD00272A06 /* Photos */ = {
 			isa = PBXGroup;
 			children = (
-				4CE0195320822A0F009436B1 /* logo.png */,
+				4CE0195720822E98009436B1 /* logo.png */,
 				4C33F3AC1F2F42C900958818 /* place_maps */,
 				B4AF342E1C9AD3630039DEBB /* CI logo (long format).jpg */,
 				B4AF342C1C9AD35B0039DEBB /* PSGlogoNEW.jpg */,
@@ -4013,7 +4013,7 @@
 				4C6F17C41C1342A000272A06 /* 1984-RAM-Indri(clc).jpg in Resources */,
 				4C6F17B21C1342A000272A06 /* 252Cinereiceps(clc).jpg in Resources */,
 				4C6F17F01C1342A000272A06 /* 2007_07_Madagascar_046(clc).jpg in Resources */,
-				4CE0195420822A58009436B1 /* logo.png in Resources */,
+				4CE0195820822E9B009436B1 /* logo.png in Resources */,
 				4C6F19BC1C1342A000272A06 /* MapMasterTemplate5CheiriogaleusB9a.jpg in Resources */,
 				4C6F1A621C1342A100272A06 /* Propithecus4deckenii.jpg in Resources */,
 				4C6F19AD1C1342A000272A06 /* MacaucoPrint1Scan.jpg in Resources */,
