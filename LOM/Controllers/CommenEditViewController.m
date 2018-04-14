@@ -16,8 +16,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.currentComment = nil;
-    // Do any additional setup after loading the view.
+    
+    if (self.currentComment == nil){
+        self.vcTitle.text =  NSLocalizedString(@"add_comment_title",@"");
+    }else {
+         self.vcTitle.text =  NSLocalizedString(@"edit_comment_title",@"");
+    }
+    //self.navigationItem.titleView = nil;
+    [self.navigationController.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:[UIColor whiteColor] }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

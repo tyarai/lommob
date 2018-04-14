@@ -24,6 +24,7 @@
 @interface CommenEditViewController : UIViewController
 
 @property (nonatomic, retain) id<CommenEditViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *vcTitle;
 
 - (IBAction)cancelTapped:(id)sender;
 - (IBAction)saveTapped:(id)sender;
