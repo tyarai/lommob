@@ -4049,7 +4049,7 @@ Cg
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICp-2Q-503">
-                                <rect key="frame" x="76" y="30" width="223" height="24"/>
+                                <rect key="frame" x="76" y="30" width="223" height="23.5"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -4877,24 +4877,10 @@ Cg
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="weN-og-1hY">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="117" width="375" height="550"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7G-IB-28n">
-                                <rect key="frame" x="260" y="599" width="99" height="48"/>
-                                <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="0fc-ZJ-Abr"/>
-                                    <constraint firstAttribute="width" constant="99" id="g4x-6Z-mVW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="close"/>
-                                <connections>
-                                    <action selector="closeTapped:" destination="wH9-Uj-fAD" eventType="touchUpInside" id="Iom-mQ-OeI"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7K-1p-037">
-                                <rect key="frame" x="19" y="41" width="340" height="33"/>
+                                <rect key="frame" x="17" y="27" width="340" height="33"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="qwR-eq-wG0"/>
@@ -4904,19 +4890,33 @@ Cg
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7G-IB-28n">
+                                <rect key="frame" x="257" y="599" width="100" height="48"/>
+                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="OBQ-re-oVE"/>
+                                    <constraint firstAttribute="height" constant="48" id="jSB-BT-ZjB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="19"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="close"/>
+                                <connections>
+                                    <action selector="closeTapped:" destination="wH9-Uj-fAD" eventType="touchUpInside" id="Iom-mQ-OeI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="weN-og-1hY" firstAttribute="trailing" secondItem="1BR-70-bwc" secondAttribute="trailing" id="5kA-RB-Nmf"/>
-                            <constraint firstItem="U7K-1p-037" firstAttribute="centerX" secondItem="1BR-70-bwc" secondAttribute="centerX" constant="1.5" id="9Gs-fg-Skn"/>
-                            <constraint firstItem="weN-og-1hY" firstAttribute="bottom" secondItem="1BR-70-bwc" secondAttribute="bottom" id="9k1-Ui-CEK"/>
-                            <constraint firstItem="weN-og-1hY" firstAttribute="top" secondItem="1BR-70-bwc" secondAttribute="top" id="CNP-dU-mhA"/>
-                            <constraint firstItem="E7G-IB-28n" firstAttribute="leading" secondItem="1BR-70-bwc" secondAttribute="trailing" constant="-115" id="OWw-Ip-g9m"/>
-                            <constraint firstItem="U7K-1p-037" firstAttribute="top" secondItem="1BR-70-bwc" secondAttribute="top" constant="21" id="ZBf-A1-fjh"/>
-                            <constraint firstItem="weN-og-1hY" firstAttribute="leading" secondItem="1BR-70-bwc" secondAttribute="leading" id="aQy-ge-GPH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="U7K-1p-037" secondAttribute="trailing" id="bGs-GM-ZZV"/>
-                            <constraint firstItem="U7K-1p-037" firstAttribute="leading" secondItem="Ean-Yi-MFr" secondAttribute="leadingMargin" constant="3" id="tRw-v4-yk5"/>
-                            <constraint firstItem="E7G-IB-28n" firstAttribute="top" secondItem="1BR-70-bwc" secondAttribute="bottom" constant="-68" id="yJu-oZ-MDn"/>
+                            <constraint firstItem="weN-og-1hY" firstAttribute="bottom" secondItem="1BR-70-bwc" secondAttribute="bottom" id="6yy-oz-I7S"/>
+                            <constraint firstItem="U7K-1p-037" firstAttribute="centerX" secondItem="1BR-70-bwc" secondAttribute="centerX" constant="-0.5" id="9Gs-fg-Skn"/>
+                            <constraint firstItem="weN-og-1hY" firstAttribute="top" secondItem="1BR-70-bwc" secondAttribute="bottom" constant="-550" id="Fxu-AB-GCN"/>
+                            <constraint firstItem="weN-og-1hY" firstAttribute="trailing" secondItem="1BR-70-bwc" secondAttribute="trailing" id="PPo-1S-20c"/>
+                            <constraint firstItem="E7G-IB-28n" firstAttribute="top" secondItem="weN-og-1hY" secondAttribute="bottom" constant="-68" id="PrI-vC-JRk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="U7K-1p-037" secondAttribute="trailing" constant="2" id="bGs-GM-ZZV"/>
+                            <constraint firstItem="U7K-1p-037" firstAttribute="top" secondItem="1BR-70-bwc" secondAttribute="top" constant="7" id="dfL-Ef-8oB"/>
+                            <constraint firstItem="E7G-IB-28n" firstAttribute="leading" secondItem="weN-og-1hY" secondAttribute="trailing" constant="-118" id="ma0-TE-XW3"/>
+                            <constraint firstItem="weN-og-1hY" firstAttribute="leading" secondItem="1BR-70-bwc" secondAttribute="leading" id="sN5-SP-EYw"/>
+                            <constraint firstItem="U7K-1p-037" firstAttribute="leading" secondItem="Ean-Yi-MFr" secondAttribute="leadingMargin" constant="1" id="tRw-v4-yk5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1BR-70-bwc"/>
                     </view>
