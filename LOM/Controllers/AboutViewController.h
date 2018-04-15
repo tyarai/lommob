@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface AboutViewController : BaseViewController
-- (IBAction)logoutTapped:(id)sender;
+@interface AboutViewController : UITableViewController
+//- (IBAction)logoutTapped:(id)sender;
 
 @end

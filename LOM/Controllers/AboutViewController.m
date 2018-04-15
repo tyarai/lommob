@@ -41,7 +41,7 @@
 }
 */
 
-
+/*
 - (IBAction)logoutTapped:(id)sender {
     NSString * sessionName = [appDelegate _sessionName];
     NSString * sessionID   = [appDelegate _sessid];
@@ -99,7 +99,7 @@
     
 }
 
-
+*/
 
 
 @end
