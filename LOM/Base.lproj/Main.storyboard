@@ -48,7 +48,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mG1-Vg-TJF">
-                                <rect key="frame" x="49" y="577" width="89" height="31"/>
+                                <rect key="frame" x="49" y="574" width="100" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                                 <state key="normal" title="terms of use">
                                     <color key="titleColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -196,7 +196,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ESE-0W-d07">
-                                <rect key="frame" x="233" y="577" width="99" height="31"/>
+                                <rect key="frame" x="222" y="574" width="110" height="34"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="16"/>
                                 <state key="normal" title="privacy policy">
                                     <color key="titleColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2229,7 +2229,7 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2G-ET-HhG">
-                                                    <rect key="frame" x="16" y="11.5" width="343" height="22.5"/>
+                                                    <rect key="frame" x="16" y="9" width="343" height="26"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -5632,13 +5632,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR9-Ic-532">
-                                                    <rect key="frame" x="16" y="16.5" width="199" height="20"/>
+                                                    <rect key="frame" x="16" y="15" width="199" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family update" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTm-Pn-LGI">
-                                                    <rect key="frame" x="221" y="16.5" width="138" height="20"/>
+                                                    <rect key="frame" x="221" y="15" width="138" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="138" id="6oc-UM-NaK"/>
                                                     </constraints>
@@ -5664,13 +5664,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photographs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEN-f7-Ywa">
-                                                    <rect key="frame" x="16" y="16.5" width="98" height="20"/>
+                                                    <rect key="frame" x="16" y="15" width="105" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pa-Fc-ntP">
-                                                    <rect key="frame" x="286" y="16.5" width="73" height="20"/>
+                                                    <rect key="frame" x="286" y="15" width="73" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="mVM-KD-zbd"/>
                                                     </constraints>
@@ -5695,13 +5695,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLQ-XQ-qA4">
-                                                    <rect key="frame" x="16" y="16.5" width="191" height="20"/>
+                                                    <rect key="frame" x="16" y="15" width="191" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4U5-xT-jov">
-                                                    <rect key="frame" x="286" y="16.5" width="73" height="20"/>
+                                                    <rect key="frame" x="286" y="15" width="73" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="xsq-DE-bWj"/>
                                                     </constraints>
