@@ -20,8 +20,11 @@
     <dimen name="author_size">110dp</dimen>
     <dimen name="list_arrow_margin" >6dp</dimen>
     <dimen name="sighting_image_height">200dp</dimen>
-    <dimen name="text1_size">18sp</dimen>
-    <dimen name="text2_size">16sp</dimen>
-    <dimen name="text3_size">16sp</dimen>
-    <dimen name="text4_size">14sp</dimen>
+    <dimen name="text1_size">16sp</dimen>
+    <dimen name="text2_size">15sp</dimen>
+    <dimen name="text3_size">14sp</dimen>
+    <dimen name="text4_size">12sp</dimen>
+    <dimen name="sighting_image_container">150dp</dimen>
+    <dimen name="sighting_image_add_height">180dp</dimen>
+    <dimen name="sighting_edit_btn">25dp</dimen>
 </resources>

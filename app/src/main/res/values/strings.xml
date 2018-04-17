@@ -44,4 +44,24 @@
     <string name="sighting_add">New sighting</string>
     <string name="select_species">Select species</string>
     <string name="choose_species">Choose species</string>
+    <string name="choose_site">Choose place name</string>
+    <string name="select_site">Select site</string>
+    <string name="take_pict">Take a picture</string>
+    <string name="choose_pict">Choose existing picture</string>
+    <string name="yes">Yes</string>
+    <string name="load_image">Load image</string>
+    <string name="stop_location">Tap to stop location capture</string>
+    <string name="sighting_title_label">Description</string>
+    <string name="action_save">Save</string>
+    <string name="save_failed">Save failed, please retry</string>
+    <string name="sighting_saved">Your new sighting has been saved</string>
+    <string name="edit_sighting">Edit sighting</string>
+    <string name="confirm_quit_page">You will lose your unsaved data, leave ?</string>
+    <string name="cancelit">Cancel</string>
+    <string name="v_specie_req">Species required</string>
+    <string name="v_site_req">Place name required</string>
+    <string name="invalidData">Fix data</string>
+    <string name="closeit">Close</string>
+    <string name="v_desc_req">Description is required</string>
+    <string name="v_photo_req">Picture required</string>
 </resources>

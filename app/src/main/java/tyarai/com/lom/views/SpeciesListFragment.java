@@ -113,6 +113,7 @@ public class SpeciesListFragment extends BaseFrag
     private void selectSpecie(final int position) {
         if (position == selected) {
             adapter.setSelected(-1);
+            selected = -1;
             if (snackbar != null) {
                 snackbar.dismiss();
             }
@@ -155,6 +156,9 @@ public class SpeciesListFragment extends BaseFrag
     @Override
     public boolean onQueryTextChange(String query) {
         adapter.filter(query);
+        if (snackbar != null) {
+            snackbar.dismiss();
+        }
         return false;
     }
 

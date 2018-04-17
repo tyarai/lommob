@@ -1,5 +1,6 @@
 package tyarai.com.lom.views;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,23 +18,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 import tyarai.com.lom.BuildConfig;
 import tyarai.com.lom.R;
+import tyarai.com.lom.data.SightingDto;
+import tyarai.com.lom.factory.SightingDtoFactory;
+import tyarai.com.lom.factory.SightingDtoFactoryImpl;
 import tyarai.com.lom.manager.CommonManager;
+import tyarai.com.lom.manager.SightingManager;
+import tyarai.com.lom.manager.SightingManagerImpl;
 import tyarai.com.lom.model.CommonModel;
-import tyarai.com.lom.model.Family;
 import tyarai.com.lom.model.Sighting;
-import tyarai.com.lom.views.adapter.FamiliesAdapter;
 import tyarai.com.lom.views.adapter.SightingListAdapter;
 
 /**
@@ -50,9 +52,13 @@ public class SightingListFragment extends BaseFrag implements SearchView.OnQuery
     @Bean(CommonManager.class)
     CommonManager commonManager;
 
+    @Bean(SightingManagerImpl.class)
+    SightingManager sightingManager;
+
+
     @ViewById(R.id.sightings_recyclerView)
     RecyclerView recyclerView;
-    List<Sighting> sightingsList;
+    List<SightingDto> sightingsList;
 
     @ViewById(R.id.no_sightings)
     TextView txtNoSightings;
@@ -66,6 +72,9 @@ public class SightingListFragment extends BaseFrag implements SearchView.OnQuery
     ProgressBar progressBar;
 
     SightingListAdapter adapter;
+
+    public static final int CREATE_SIGHTING = 12;
+    public static final int EDIT_SIGHTING = 13;
 
     @Nullable
     @Override
@@ -103,12 +112,27 @@ public class SightingListFragment extends BaseFrag implements SearchView.OnQuery
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = new Intent(getActivity(), SightingAddActivity_.class);
-//                intent.putExtra(SpecieDetailActivity.EXTRA_SPECIE_ID, clickedDataItem.getId());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                startActivityForResult(intent, CREATE_SIGHTING);
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case CREATE_SIGHTING :
+                    loadData();
+                    break;
+                case EDIT_SIGHTING :
+                    loadData();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     @Override
@@ -125,10 +149,9 @@ public class SightingListFragment extends BaseFrag implements SearchView.OnQuery
 
 
     private void loadData() {
-
         try {
 
-            sightingsList = commonManager.getSightingDao().queryForEq(CommonModel.ACTIVE_COL, true);
+            sightingsList = sightingManager.listSightings();
 //            if (sightingsList != null) {
 //                for (Sighting sighting : sightingsList) {
 //                    if (family.getIllustrationNids() != null && !family.getIllustrationNids().isEmpty()) {
@@ -152,14 +175,22 @@ public class SightingListFragment extends BaseFrag implements SearchView.OnQuery
             }
             else {
                 txtSightingCount.setVisibility(View.VISIBLE);
-                txtSightingCount.setText("You have " + sightingsList.size() + " sightings");
+                txtSightingCount.setText("You have " + sightingsList.size() + (sightingsList.size() ==  1 ? " sighting" : " sightings"));
                 recyclerView.setVisibility(View.VISIBLE);
                 txtNoSightings.setVisibility(View.GONE);
             }
 
         } catch (Exception e) {
-            Log.d(TAG, e.getMessage());
+//            Log.d(TAG, e.getMessage());
+            e.printStackTrace();
             showLoadingError();
         }
+    }
+
+    public void editSightingClickHandler(View v) {
+        SightingDto clickedDataItem = (SightingDto) v.getTag();
+        Intent intent = new Intent(getActivity(), SightingAddActivity_.class);
+        intent.putExtra(SightingAddActivity.EXTRA_SIGHTING, clickedDataItem);
+        startActivityForResult(intent, SightingListFragment.EDIT_SIGHTING);
     }
 }

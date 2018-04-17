@@ -6,21 +6,19 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by saimon on 05/04/18.
  */
 
 @DatabaseTable(tableName = Sighting.TABLE_NAME)
-public class Sighting extends CommonModel{
+public class Sighting extends CommonModel {
 
     public static final String TABLE_NAME           = "sighting";
 
     public static final String TITLE_COL            = "title";
+    public static final String UUID_COL             = "uuid";
     public static final String NUMBER_COL           = "number_observed";
     public static final String PHOTO_COL            = "photo";
     public static final String OBSERVATION_DATE_COL = "observation_date";
@@ -29,6 +27,10 @@ public class Sighting extends CommonModel{
     public static final String ALTITUDE_COL         = "altitude";
     public static final String SPECIE_COL           = "specie_id";
     public static final String WATCHING_SITE_COL    = "watching_site_id";
+
+
+    @DatabaseField(columnName = UUID_COL, dataType = DataType.STRING)
+    private String uuid;
 
 
     @DatabaseField(columnName = TITLE_COL, dataType = DataType.STRING)
@@ -56,7 +58,7 @@ public class Sighting extends CommonModel{
     @DatabaseField(columnName = OBSERVATION_DATE_COL, dataType = DataType.DATE_LONG)
     private Date observationDate;
 
-    @DatabaseField(columnName = PHOTO_COL, dataType = DataType.STRING)
+    @DatabaseField(columnName = PHOTO_COL, dataType = DataType.SERIALIZABLE)
     private String photo;
 
 
@@ -148,5 +150,13 @@ public class Sighting extends CommonModel{
 
     public void setComments(ForeignCollection<SightingComment> comments) {
         this.comments = comments;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

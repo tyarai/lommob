@@ -34,6 +34,7 @@ import tyarai.com.lom.views.FamiliesFragment;
 import tyarai.com.lom.views.FamiliesFragment_;
 import tyarai.com.lom.views.IntroductionActivity_;
 import tyarai.com.lom.views.OriginActivity_;
+import tyarai.com.lom.views.SightingListFragment;
 import tyarai.com.lom.views.SightingListFragment_;
 import tyarai.com.lom.views.SpeciesFragment_;
 import tyarai.com.lom.views.WatchingSitesFragment;
@@ -191,6 +192,7 @@ public class MainActivity extends AppCompatActivity
         finish();
     }
 
+    BaseFrag currentFrag;
     protected void startFragment(BaseFrag fragment, Bundle args) {
         if (args != null) {
             fragment.setArguments(args);
@@ -202,10 +204,13 @@ public class MainActivity extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.main_layout, fragment)
                 .commit();
-//        FragmentTransaction fragmentTransaction =   fragmentManager.beginTransaction();
-        //        fragmentTransaction.addToBackStack(null);
-//        fragmentTransaction.replace(R.id.main_layout, fragment);
-//        fragmentTransaction.commit();
+        currentFrag = fragment;
+    }
+
+    public void editSightingClickHandler(View v) {
+        if (currentFrag != null) {
+            ((SightingListFragment)currentFrag).editSightingClickHandler(v);
+        }
     }
 
     @Override

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tyarai.com.lom.R;
+import tyarai.com.lom.exceptions.DbException;
 import tyarai.com.lom.model.Author;
 import tyarai.com.lom.model.CommonModel;
 import tyarai.com.lom.model.Family;
@@ -37,13 +38,8 @@ public class ParseDataManager extends DaoManager implements ParceDataInterface {
 
     private static final String TAG = ParseDataManager.class.getSimpleName();
 
-    public class DbException extends RuntimeException {
-        public DbException(Throwable cause) {
-            super(cause);
-        }
-    }
 
-    public void parseData(final Context context) {
+    public void parseData(final Context context) throws DbException {
         new Parser(context).startParsing();
     }
 

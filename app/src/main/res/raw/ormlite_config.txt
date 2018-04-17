@@ -1,5 +1,5 @@
 #
-# generated on 2018/04/05 11:17:45
+# generated on 2018/04/17 09:18:10
 #
 # --table-start--
 dataClass=tyarai.com.lom.model.Author
@@ -524,6 +524,11 @@ dataClass=tyarai.com.lom.model.Sighting
 tableName=sighting
 # --table-fields-start--
 # --field-start--
+fieldName=uuid
+columnName=uuid
+dataPersister=STRING
+# --field-end--
+# --field-start--
 fieldName=title
 columnName=title
 dataPersister=STRING
@@ -570,7 +575,7 @@ dataPersister=DATE_LONG
 # --field-start--
 fieldName=photo
 columnName=photo
-dataPersister=STRING
+dataPersister=SERIALIZABLE
 # --field-end--
 # --field-start--
 fieldName=comments
