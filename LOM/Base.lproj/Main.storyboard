@@ -3210,7 +3210,6 @@ Cg
                                                 <constraint firstAttribute="trailing" secondItem="6V4-ag-5N8" secondAttribute="trailing" constant="16" id="gfC-OB-6MD"/>
                                                 <constraint firstItem="fcb-Zf-B9v" firstAttribute="top" secondItem="BuP-ho-yth" secondAttribute="top" constant="10" id="gr3-9X-2P7"/>
                                                 <constraint firstAttribute="bottom" secondItem="6V4-ag-5N8" secondAttribute="bottom" constant="16.5" id="qMj-Y6-Eop"/>
-                                                <constraint firstAttribute="bottom" secondItem="fcb-Zf-B9v" secondAttribute="bottom" constant="9.5" id="qWi-Yp-fzE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -3245,7 +3244,6 @@ Cg
                                                 <constraint firstAttribute="bottomMargin" secondItem="kXe-ey-ntT" secondAttribute="bottom" constant="6" id="LgP-yn-MhK"/>
                                                 <constraint firstItem="kXe-ey-ntT" firstAttribute="top" secondItem="IyM-sF-8Ld" secondAttribute="topMargin" constant="6" id="Ltw-7w-qYd"/>
                                                 <constraint firstItem="SME-Zv-Fap" firstAttribute="top" secondItem="IyM-sF-8Ld" secondAttribute="topMargin" constant="-2" id="P1J-Oe-VPx"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="SME-Zv-Fap" secondAttribute="bottom" id="cks-UU-fwZ"/>
                                                 <constraint firstItem="kXe-ey-ntT" firstAttribute="leading" secondItem="SME-Zv-Fap" secondAttribute="trailing" constant="16" id="zLY-JO-xXi"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -3282,7 +3280,6 @@ Cg
                                                 <constraint firstAttribute="bottomMargin" secondItem="nTq-kh-inU" secondAttribute="bottom" constant="6" id="ld5-tS-ay5"/>
                                                 <constraint firstItem="nTq-kh-inU" firstAttribute="leading" secondItem="pBl-uo-Sv0" secondAttribute="trailing" constant="16" id="mdE-RK-0jj"/>
                                                 <constraint firstItem="pBl-uo-Sv0" firstAttribute="top" secondItem="hAg-BG-90p" secondAttribute="topMargin" constant="-1" id="o2A-lp-4Z4"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="pBl-uo-Sv0" secondAttribute="bottom" constant="-1" id="xyF-H9-Q73"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -3316,7 +3313,6 @@ Cg
                                                 <constraint firstItem="C83-ef-JMQ" firstAttribute="top" secondItem="FQU-tj-gxP" secondAttribute="topMargin" constant="-2" id="cpy-tN-gbc"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="6is-5n-BVC" secondAttribute="bottom" constant="6" id="ctv-1a-bUA"/>
                                                 <constraint firstItem="6is-5n-BVC" firstAttribute="leading" secondItem="C83-ef-JMQ" secondAttribute="trailing" constant="16" id="d1e-Gq-7eS"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="C83-ef-JMQ" secondAttribute="bottom" id="f71-Sf-7Gn"/>
                                                 <constraint firstItem="6is-5n-BVC" firstAttribute="top" secondItem="FQU-tj-gxP" secondAttribute="topMargin" constant="6" id="mfw-xa-k53"/>
                                                 <constraint firstItem="C83-ef-JMQ" firstAttribute="leading" secondItem="FQU-tj-gxP" secondAttribute="leadingMargin" id="tPc-dM-ccd"/>
                                             </constraints>
@@ -3351,7 +3347,6 @@ Cg
                                                 <constraint firstItem="5xV-H0-877" firstAttribute="top" secondItem="M3S-IX-Dxc" secondAttribute="topMargin" constant="-2" id="7xi-oo-9fr"/>
                                                 <constraint firstItem="5xV-H0-877" firstAttribute="leading" secondItem="M3S-IX-Dxc" secondAttribute="leadingMargin" id="H4z-8g-5Cy"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fyF-X7-sRJ" secondAttribute="bottom" constant="6" id="OKG-qU-8Ej"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="5xV-H0-877" secondAttribute="bottom" id="qOs-cB-lYm"/>
                                                 <constraint firstItem="fyF-X7-sRJ" firstAttribute="top" secondItem="M3S-IX-Dxc" secondAttribute="topMargin" constant="6" id="uBN-fM-mPk"/>
                                                 <constraint firstItem="fyF-X7-sRJ" firstAttribute="leading" secondItem="5xV-H0-877" secondAttribute="trailing" constant="16" id="v3b-Zp-Ric"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="fyF-X7-sRJ" secondAttribute="trailing" constant="1" id="whZ-NC-uAR"/>
@@ -3378,21 +3373,18 @@ Cg
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_geographic_off" translatesAutoresizingMaskIntoConstraints="NO" id="zBU-AW-swG">
                                                     <rect key="frame" x="17" y="10" width="35" height="35"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="5T1-vw-oos"/>
-                                                        <constraint firstAttribute="width" constant="35" id="GsG-Y3-HiA"/>
+                                                        <constraint firstAttribute="height" constant="35" id="cCP-dQ-6uP"/>
+                                                        <constraint firstAttribute="width" constant="35" id="juv-ST-yLz"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="zBU-AW-swG" secondAttribute="bottom" constant="1.5" id="4Ag-39-VY2"/>
+                                                <constraint firstItem="zBU-AW-swG" firstAttribute="leading" secondItem="a7J-M7-2yW" secondAttribute="leading" constant="17" id="08e-eX-fsC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="zVr-RL-R0r" secondAttribute="trailing" id="4dN-VS-N41"/>
-                                                <constraint firstItem="zBU-AW-swG" firstAttribute="leading" secondItem="a7J-M7-2yW" secondAttribute="leadingMargin" constant="9" id="8u0-A4-Mfs"/>
-                                                <constraint firstItem="zBU-AW-swG" firstAttribute="top" secondItem="a7J-M7-2yW" secondAttribute="topMargin" constant="2" id="DhD-dH-0t6"/>
+                                                <constraint firstItem="zBU-AW-swG" firstAttribute="top" secondItem="a7J-M7-2yW" secondAttribute="top" constant="10" id="93x-eF-2eV"/>
                                                 <constraint firstItem="zVr-RL-R0r" firstAttribute="top" secondItem="a7J-M7-2yW" secondAttribute="topMargin" constant="3" id="dq8-J1-MZc"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="zVr-RL-R0r" secondAttribute="bottom" constant="3" id="iRD-TW-lMA"/>
-                                                <constraint firstItem="zVr-RL-R0r" firstAttribute="leading" secondItem="zBU-AW-swG" secondAttribute="trailing" constant="15" id="pHB-N3-j0r"/>
-                                                <constraint firstItem="zVr-RL-R0r" firstAttribute="leading" secondItem="zBU-AW-swG" secondAttribute="trailing" constant="15" id="rLL-xm-Fb6"/>
-                                                <constraint firstItem="zBU-AW-swG" firstAttribute="top" secondItem="a7J-M7-2yW" secondAttribute="topMargin" constant="2" id="tQX-uF-vMk"/>
+                                                <constraint firstItem="zVr-RL-R0r" firstAttribute="leading" secondItem="zBU-AW-swG" secondAttribute="trailing" constant="15" id="juA-Gt-a0y"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -3404,14 +3396,14 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_map_off" translatesAutoresizingMaskIntoConstraints="NO" id="rF6-r7-Y6T">
-                                                    <rect key="frame" x="16" y="11" width="35" height="35"/>
+                                                    <rect key="frame" x="16" y="11" width="35" height="32"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="35" id="ItL-Ja-Xgj"/>
-                                                        <constraint firstAttribute="height" constant="35" id="NLk-if-3AF"/>
+                                                        <constraint firstAttribute="height" constant="32" id="fgC-Xv-Uab"/>
+                                                        <constraint firstAttribute="width" constant="35" id="q4l-vx-yAh"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLQ-Xu-YrK">
-                                                    <rect key="frame" x="66" y="14" width="298" height="26"/>
+                                                    <rect key="frame" x="68" y="14" width="298" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="298" id="BaZ-GU-bEI"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="LtQ-Cc-Jwa"/>
@@ -3422,12 +3414,11 @@ Cg
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="rF6-r7-Y6T" firstAttribute="top" secondItem="Fdq-eL-1dR" secondAttribute="topMargin" constant="3" id="5er-Pm-9wo"/>
+                                                <constraint firstItem="rF6-r7-Y6T" firstAttribute="top" secondItem="Fdq-eL-1dR" secondAttribute="top" constant="11" id="3A6-Tn-pLk"/>
+                                                <constraint firstItem="qLQ-Xu-YrK" firstAttribute="leading" secondItem="rF6-r7-Y6T" secondAttribute="trailing" constant="17" id="4h0-aQ-6Tu"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="qLQ-Xu-YrK" secondAttribute="bottom" constant="6" id="CMg-uL-z0S"/>
-                                                <constraint firstItem="qLQ-Xu-YrK" firstAttribute="leading" secondItem="rF6-r7-Y6T" secondAttribute="trailing" constant="15" id="Ckj-cv-dzH"/>
-                                                <constraint firstItem="rF6-r7-Y6T" firstAttribute="leading" secondItem="Fdq-eL-1dR" secondAttribute="leadingMargin" constant="8" id="E7N-7R-0ge"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qLQ-Xu-YrK" secondAttribute="trailing" constant="1" id="FGL-y2-Ehk"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="rF6-r7-Y6T" secondAttribute="bottom" constant="0.5" id="dig-4y-nPY"/>
+                                                <constraint firstItem="rF6-r7-Y6T" firstAttribute="leading" secondItem="Fdq-eL-1dR" secondAttribute="leading" constant="16" id="MOS-l8-VWf"/>
                                                 <constraint firstItem="qLQ-Xu-YrK" firstAttribute="top" secondItem="Fdq-eL-1dR" secondAttribute="topMargin" constant="6" id="pMs-fE-CnO"/>
                                             </constraints>
                                         </tableViewCellContentView>
