@@ -952,6 +952,7 @@
 		4C8BFC5D1F3CF8070080B871 /* WatchingSiteMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BFC5C1F3CF8070080B871 /* WatchingSiteMap.m */; };
 		4C95D4441C0A24AC0038B9FC /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D4431C0A24AC0038B9FC /* Tools.m */; };
 		4CA4BD19208751BD00CEF08D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4BD18208751BD00CEF08D /* Images.xcassets */; };
+		4CA4BD1C208782E300CEF08D /* SpeciesDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4BD1B208782E300CEF08D /* SpeciesDetailsTableViewController.m */; };
 		4CB0157F1ED069DA0021F2A0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0157E1ED069DA0021F2A0 /* Settings.m */; };
 		4CBAEAF01BFA546B0011139C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEAEF1BFA546B0011139C /* main.m */; };
 		4CBAEAF31BFA546B0011139C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEAF21BFA546B0011139C /* AppDelegate.m */; };
@@ -2035,6 +2036,8 @@
 		4C95D4431C0A24AC0038B9FC /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		4C95D4451C0A25130038B9FC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		4CA4BD18208751BD00CEF08D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4CA4BD1A208782E300CEF08D /* SpeciesDetailsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpeciesDetailsTableViewController.h; path = Controllers/SpeciesDetailsTableViewController.h; sourceTree = "<group>"; };
+		4CA4BD1B208782E300CEF08D /* SpeciesDetailsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SpeciesDetailsTableViewController.m; path = Controllers/SpeciesDetailsTableViewController.m; sourceTree = "<group>"; };
 		4CB0157D1ED069DA0021F2A0 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = Tools/Settings.h; sourceTree = "<group>"; };
 		4CB0157E1ED069DA0021F2A0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = Tools/Settings.m; sourceTree = "<group>"; };
 		4CBAEAEB1BFA546B0011139C /* LOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2335,6 +2338,8 @@
 				B4D88E701C9A00670096B067 /* ScientificName.m */,
 				4CBBAC371DEF5305005CBCBA /* SpeciesSelectorViewController.h */,
 				4CBBAC381DEF5305005CBCBA /* SpeciesSelectorViewController.m */,
+				4CA4BD1A208782E300CEF08D /* SpeciesDetailsTableViewController.h */,
+				4CA4BD1B208782E300CEF08D /* SpeciesDetailsTableViewController.m */,
 			);
 			name = Species;
 			sourceTree = "<group>";
@@ -4874,6 +4879,7 @@
 				4C74F2C81C06404000543A7F /* BaseViewController.m in Sources */,
 				4C59AD911C15F57800EA74C5 /* SpeciesViewController.m in Sources */,
 				4C74F2AF1C0639C400543A7F /* Photographs.m in Sources */,
+				4CA4BD1C208782E300CEF08D /* SpeciesDetailsTableViewController.m in Sources */,
 				B4D88E711C9A00670096B067 /* ScientificName.m in Sources */,
 				B4889C0E1DAB376F0096F908 /* SightingDataTableViewController.m in Sources */,
 				4CBBAC3C1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m in Sources */,
