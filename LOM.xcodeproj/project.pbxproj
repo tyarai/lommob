@@ -951,6 +951,7 @@
 		4C85FF761C380E7300D6C233 /* LemurLifeListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF751C380E7300D6C233 /* LemurLifeListTableViewCell.m */; };
 		4C8BFC5D1F3CF8070080B871 /* WatchingSiteMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BFC5C1F3CF8070080B871 /* WatchingSiteMap.m */; };
 		4C95D4441C0A24AC0038B9FC /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D4431C0A24AC0038B9FC /* Tools.m */; };
+		4CA4BD19208751BD00CEF08D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4BD18208751BD00CEF08D /* Images.xcassets */; };
 		4CB0157F1ED069DA0021F2A0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0157E1ED069DA0021F2A0 /* Settings.m */; };
 		4CBAEAF01BFA546B0011139C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEAEF1BFA546B0011139C /* main.m */; };
 		4CBAEAF31BFA546B0011139C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEAF21BFA546B0011139C /* AppDelegate.m */; };
@@ -2033,6 +2034,7 @@
 		4C95D4421C0A24AC0038B9FC /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		4C95D4431C0A24AC0038B9FC /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		4C95D4451C0A25130038B9FC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4CA4BD18208751BD00CEF08D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4CB0157D1ED069DA0021F2A0 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = Tools/Settings.h; sourceTree = "<group>"; };
 		4CB0157E1ED069DA0021F2A0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = Tools/Settings.m; sourceTree = "<group>"; };
 		4CBAEAEB1BFA546B0011139C /* LOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3534,6 +3536,7 @@
 				4CBAEAF71BFA546B0011139C /* Main.storyboard */,
 				4CBAEAFA1BFA546B0011139C /* Assets.xcassets */,
 				4CBAEAFC1BFA546B0011139C /* LaunchScreen.storyboard */,
+				4CA4BD18208751BD00CEF08D /* Images.xcassets */,
 				4CBAEAEE1BFA546B0011139C /* Supporting Files */,
 			);
 			path = LOM;
@@ -3942,6 +3945,7 @@
 				4C6F19921C1342A000272A06 /* LFG3HapalemurPlate2.jpg in Resources */,
 				4C6F18931C1342A000272A06 /* DSC_0024(clc).jpg in Resources */,
 				4C6F19831C1342A000272A06 /* LFG3CheirogaleusPlate1.jpg in Resources */,
+				4CA4BD19208751BD00CEF08D /* Images.xcassets in Resources */,
 				4C6F18791C1342A000272A06 /* Cheirominisculus1(THUMB).jpg in Resources */,
 				4C6F17E01C1342A000272A06 /* 2006_09_CAM_MAD_589(clc2).jpg in Resources */,
 				4C6F1A221C1342A100272A06 /* NEW-fig.9.29-pg.353_Prolemur_simus.jpg in Resources */,
@@ -5104,6 +5108,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -5151,6 +5156,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
