@@ -967,6 +967,11 @@
 		4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */; };
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
 		4CF3E18B1CF2B4B1003010A5 /* PostsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */; };
+		4CFDFB062085ED9800CD2523 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFDFB052085ED9800CD2523 /* Messages.framework */; };
+		4CFDFB092085ED9800CD2523 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFDFB082085ED9800CD2523 /* MessagesViewController.swift */; };
+		4CFDFB0C2085ED9800CD2523 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CFDFB0A2085ED9800CD2523 /* MainInterface.storyboard */; };
+		4CFDFB0E2085ED9C00CD2523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFDFB0D2085ED9C00CD2523 /* Assets.xcassets */; };
+		4CFDFB122085ED9C00CD2523 /* Lemurs Of Madagascar iMessage Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4CFDFB042085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6CEE57050617152040DA95A2 /* libPods-LOM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67CB1340B3DA3BE1A9A3CE17 /* libPods-LOM.a */; };
 		8E9354A51D01C0FB0022A220 /* PublicationNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E9354A41D01C0FB0022A220 /* PublicationNode.m */; };
 		B43DF4321DB8F21800319654 /* UITableViewCell+Stretch.m in Sources */ = {isa = PBXBuildFile; fileRef = B43DF4311DB8F21800319654 /* UITableViewCell+Stretch.m */; };
@@ -1026,7 +1031,28 @@
 			remoteGlobalIDString = 4CBAEAEA1BFA546B0011139C;
 			remoteInfo = LOM;
 		};
+		4CFDFB102085ED9C00CD2523 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CBAEAE31BFA546B0011139C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CFDFB032085ED9800CD2523;
+			remoteInfo = "Lemurs Of Madagascar iMessage Extension";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4CFDFB162085ED9C00CD2523 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4CFDFB122085ED9C00CD2523 /* Lemurs Of Madagascar iMessage Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		207819CDF00F21C044D45D22 /* Pods-LOMUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOMUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LOMUITests/Pods-LOMUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2065,6 +2091,12 @@
 		4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WatchingSiteTableViewCell.m; path = Controllers/WatchingSiteTableViewCell.m; sourceTree = "<group>"; };
 		4CF3E1891CF2B4B1003010A5 /* PostsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostsTableViewCell.h; path = Controllers/PostsTableViewCell.h; sourceTree = "<group>"; };
 		4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostsTableViewCell.m; path = Controllers/PostsTableViewCell.m; sourceTree = "<group>"; };
+		4CFDFB042085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lemurs Of Madagascar iMessage Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CFDFB052085ED9800CD2523 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		4CFDFB082085ED9800CD2523 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		4CFDFB0B2085ED9800CD2523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		4CFDFB0D2085ED9C00CD2523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4CFDFB0F2085ED9C00CD2523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6462955E9DF0B860980BA290 /* Pods-LOM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOM.release.xcconfig"; path = "Pods/Target Support Files/Pods-LOM/Pods-LOM.release.xcconfig"; sourceTree = "<group>"; };
 		64857795A566B05525E740AC /* Pods-LOMTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOMTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LOMTests/Pods-LOMTests.debug.xcconfig"; sourceTree = "<group>"; };
 		67CB1340B3DA3BE1A9A3CE17 /* libPods-LOM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LOM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2179,6 +2211,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CFDFB012085ED9800CD2523 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CFDFB062085ED9800CD2523 /* Messages.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -2195,6 +2235,7 @@
 				67CB1340B3DA3BE1A9A3CE17 /* libPods-LOM.a */,
 				2E96B0D74BBF1375E08CB121 /* libPods-LOMTests.a */,
 				EC685DFE830C1571FD6A02AC /* libPods-LOMUITests.a */,
+				4CFDFB052085ED9800CD2523 /* Messages.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3505,6 +3546,7 @@
 				4CBAEAED1BFA546B0011139C /* LOM */,
 				4CBAEB071BFA546B0011139C /* LOMTests */,
 				4CBAEB121BFA546B0011139C /* LOMUITests */,
+				4CFDFB072085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension */,
 				4CBAEAEC1BFA546B0011139C /* Products */,
 				396C6A76842021FE762DAEC7 /* Frameworks */,
 				B388C08752FBDBF45CE5F6D3 /* Pods */,
@@ -3517,6 +3559,7 @@
 				4CBAEAEB1BFA546B0011139C /* LOM.app */,
 				4CBAEB041BFA546B0011139C /* LOMTests.xctest */,
 				4CBAEB0F1BFA546B0011139C /* LOMUITests.xctest */,
+				4CFDFB042085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3610,6 +3653,17 @@
 				4CF3E18A1CF2B4B1003010A5 /* PostsTableViewCell.m */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		4CFDFB072085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4CFDFB082085ED9800CD2523 /* MessagesViewController.swift */,
+				4CFDFB0A2085ED9800CD2523 /* MainInterface.storyboard */,
+				4CFDFB0D2085ED9C00CD2523 /* Assets.xcassets */,
+				4CFDFB0F2085ED9C00CD2523 /* Info.plist */,
+			);
+			path = "Lemurs Of Madagascar iMessage Extension";
 			sourceTree = "<group>";
 		};
 		B388C08752FBDBF45CE5F6D3 /* Pods */ = {
@@ -3773,10 +3827,12 @@
 				4CBAEAE81BFA546B0011139C /* Frameworks */,
 				4CBAEAE91BFA546B0011139C /* Resources */,
 				726DCCF2501F16F9AE15AD93 /* [CP] Copy Pods Resources */,
+				4CFDFB162085ED9C00CD2523 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4CFDFB112085ED9C00CD2523 /* PBXTargetDependency */,
 			);
 			name = LOM;
 			productName = LOM;
@@ -3821,12 +3877,30 @@
 			productReference = 4CBAEB0F1BFA546B0011139C /* LOMUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		4CFDFB032085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4CFDFB152085ED9C00CD2523 /* Build configuration list for PBXNativeTarget "Lemurs Of Madagascar iMessage Extension" */;
+			buildPhases = (
+				4CFDFB002085ED9800CD2523 /* Sources */,
+				4CFDFB012085ED9800CD2523 /* Frameworks */,
+				4CFDFB022085ED9800CD2523 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Lemurs Of Madagascar iMessage Extension";
+			productName = "Lemurs Of Madagascar iMessage Extension";
+			productReference = 4CFDFB042085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension.appex */;
+			productType = "com.apple.product-type.app-extension.messages";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4CBAEAE31BFA546B0011139C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Kerty KAMARY";
 				TargetAttributes = {
@@ -3842,6 +3916,11 @@
 					4CBAEB0E1BFA546B0011139C = {
 						CreatedOnToolsVersion = 7.1;
 						TestTargetID = 4CBAEAEA1BFA546B0011139C;
+					};
+					4CFDFB032085ED9800CD2523 = {
+						CreatedOnToolsVersion = 9.3;
+						DevelopmentTeam = 73ZGWN5766;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -3861,6 +3940,7 @@
 				4CBAEAEA1BFA546B0011139C /* LOM */,
 				4CBAEB031BFA546B0011139C /* LOMTests */,
 				4CBAEB0E1BFA546B0011139C /* LOMUITests */,
+				4CFDFB032085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -4779,6 +4859,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CFDFB022085ED9800CD2523 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CFDFB0E2085ED9C00CD2523 /* Assets.xcassets in Resources */,
+				4CFDFB0C2085ED9800CD2523 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -4981,6 +5070,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4CFDFB002085ED9800CD2523 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CFDFB092085ED9800CD2523 /* MessagesViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -4993,6 +5090,11 @@
 			isa = PBXTargetDependency;
 			target = 4CBAEAEA1BFA546B0011139C /* LOM */;
 			targetProxy = 4CBAEB101BFA546B0011139C /* PBXContainerItemProxy */;
+		};
+		4CFDFB112085ED9C00CD2523 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CFDFB032085ED9800CD2523 /* Lemurs Of Madagascar iMessage Extension */;
+			targetProxy = 4CFDFB102085ED9C00CD2523 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -5011,6 +5113,14 @@
 				4CBAEAFD1BFA546B0011139C /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4CFDFB0A2085ED9800CD2523 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4CFDFB0B2085ED9800CD2523 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -5102,6 +5212,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF2A0CB2C5E3D5C0EA70D7C1 /* Pods-LOM.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -5149,6 +5260,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6462955E9DF0B860980BA290 /* Pods-LOM.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -5244,6 +5356,81 @@
 			};
 			name = Release;
 		};
+		4CFDFB132085ED9C00CD2523 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73ZGWN5766;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Lemurs Of Madagascar iMessage Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.conservation.lemursofmadagascar.Lemurs-Of-Madagascar-iMessage-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4CFDFB142085ED9C00CD2523 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 73ZGWN5766;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Lemurs Of Madagascar iMessage Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.conservation.lemursofmadagascar.Lemurs-Of-Madagascar-iMessage-Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -5279,6 +5466,15 @@
 			buildConfigurations = (
 				4CBAEB1F1BFA546B0011139C /* Debug */,
 				4CBAEB201BFA546B0011139C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4CFDFB152085ED9C00CD2523 /* Build configuration list for PBXNativeTarget "Lemurs Of Madagascar iMessage Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CFDFB132085ED9C00CD2523 /* Debug */,
+				4CFDFB142085ED9C00CD2523 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

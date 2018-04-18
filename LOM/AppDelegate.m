@@ -162,7 +162,7 @@
     
     
     [self syncSettings]; // mampidina ny settings  avy any @ server
-    [self checkChangedNodesFromServer]; // mampidina data vaovao (species,family,map,photo,places)
+    [self checkChangedNodesFromServer]; // mampidina data vaovao (species,family,map,photo,places,authors)
     
     return YES;
 }
