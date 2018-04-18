@@ -20,6 +20,7 @@
     NSTimer* _timerScrollImage;
     MWPhotoBrowser *browser;
     WYPopoverController* popoverController;
+    NSInteger selectedMenu;
 }
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

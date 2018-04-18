@@ -77,3 +77,8 @@
 "login_or_register"="Login or register";
 "add_comment_title"="Add comment";
 "edit_comment_title"="Edit comment";
+"species_identification_menu"="Identification";
+"species_naturalhistory_menu"="Natural history";
+"species_conservationstatus_menu"="Conservation status";
+"species_wheretoseeit_menu"="Where to see it";
+"species_geographicrange_menu"="Geographic range";

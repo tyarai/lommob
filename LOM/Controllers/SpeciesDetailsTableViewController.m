@@ -13,7 +13,7 @@
 #import "Maps.h"
 #import "UIImage+Resize.h"
 #import "ScientificName.h"
-
+#import "SpeciesDetailInfoTableViewController.h"
 
 #define _ROWHEIGHT 48
 #define _fixedPhotoCellHeight 311
@@ -31,10 +31,12 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = _ROWHEIGHT;
     
+    selectedMenu = -1;
     
     if(self.specy){
         [self prepareImageScroll];
         self.scientificName.text = self.specy._title;
+        
     }
 }
 
@@ -69,6 +71,9 @@
     [self.sliderImageControl addTarget:self action:@selector(changeLemurPhoto) forControlEvents:UIControlEventValueChanged];
     self.sliderImageControl.hidesForSinglePage = YES;
     
+}
+- (IBAction)showSlideShow:(id)sender {
+    [self showPhotoBrowser];
 }
 
 - (void) changeLemurPhoto{
@@ -335,14 +340,108 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    SpeciesDetailInfoTableViewController* vc = (SpeciesDetailInfoTableViewController*)[segue destinationViewController];
+    NSString * details = nil;
+    NSString * menuTitle   = nil;
+    
+    switch (selectedMenu) {
+        case 3:
+            details     = self.specy._identification;
+            menuTitle   = NSLocalizedString(@"species_identification_menu", nil);
+            break;
+        case 4:
+            details = self.specy._natural_history;
+            menuTitle   = NSLocalizedString(@"species_naturalhistory_menu", nil);
+            break;
+        case 5:
+            details = self.specy._conservation_status;
+            menuTitle   = NSLocalizedString(@"species_conservationstatus_menu", nil);
+            break;
+        case 6:
+            details = self.specy._where_to_see_it;
+            menuTitle   = NSLocalizedString(@"species_wheretoseeit_menu", nil);
+            break;
+        case 7:
+            details = self.specy._geographic_range;
+            menuTitle   = NSLocalizedString(@"species_geographicrange_menu", nil);
+            break;
+      
+        default:
+            break;
+    }
+    
+    vc.specy = self.specy;
+    vc.stringDetails = details;
+    vc.menuTitle = menuTitle;
 }
-*/
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    if(indexPath.row != 8){
+        selectedMenu = indexPath.row;
+        [self performSegueWithIdentifier:@"showDetails" sender:self];
+    }else{
+         [self showMap];
+    }
+    
+}
+
+- (void) showMap{
+    
+    self.photos = [NSMutableArray array];
+    
+    Maps* map = [self.specy getSpecieMap];
+    
+    if (![Tools isNullOrEmptyString:map._file_name]) {
+        
+        //NSString* imageBundleName = [NSString stringWithFormat:@"%@.jpg", map._file_name];
+        NSString* imageBundleName =  map._file_name;
+        
+        //- Esorina ny extension ato satria ny an'ny MAP efa misy extension daholo ny sary --
+        imageBundleName = [imageBundleName stringByDeletingPathExtension];
+        
+        UIImage *image = [Tools loadImage:imageBundleName];
+        
+        if(image == nil) {
+            //TODO : Tokony ilay sary by default no aseho eto
+            // image = default_specy
+        }
+        
+        [self.photos addObject:[MWPhoto photoWithImage:image]];
+        
+    }else {
+        
+        [self.photos addObject:[MWPhoto photoWithImage:[UIImage imageNamed:@"ico_default_specy"]]];
+        
+    }
+    
+    
+    
+    browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    
+    // Set options
+    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+    browser.displayNavArrows = YES; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+    browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
+    browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+    browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+    browser.enableGrid = NO; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+    browser.startOnGrid = NO; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+    browser.autoPlayOnAppear = NO; // Auto-play first video
+    
+    [browser setCurrentPhotoIndex:_imagePosition];
+    
+    
+    
+    // Present
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+
 
 @end
