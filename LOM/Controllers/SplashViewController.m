@@ -9,6 +9,7 @@
 #import "SplashViewController.h"
 #import "Tools.h"
 #import "LoginResult.h"
+#import "SVProgressHUD.h"
 
 @interface SplashViewController ()
 
@@ -58,14 +59,16 @@
     
     //[popoverController dismissPopoverAnimated:YES];
     
-    [self showActivityScreen];
+    //[self showActivityScreen];
+    [SVProgressHUD  setBackgroundColor:[UIColor lightGrayColor]];
+    [SVProgressHUD  show];
     
     [appData loginWithUserName:userName andPassword:password forCompletion:^(id json, JSONModelError *err) {
         
-        [self removeActivityScreen];
+        //[self removeActivityScreen];
+        [SVProgressHUD  dismiss];
         
-        if (err)
-        {
+        if (err){
             [Tools showError:err onViewController:loginViewController];
         }
         else
@@ -94,15 +97,16 @@
                                  userMail:loginResult.user.mail
                      ];
                     
-                    appDelegate._currentToken = loginResult.token;
-                    appDelegate._curentUser = loginResult.user;
-                    appDelegate._sessid = loginResult.sessid;
-                    appDelegate._sessionName = loginResult.session_name;
-                    appDelegate._uid    = loginResult.user.uid;
+                    appDelegate._currentToken   = loginResult.token;
+                    appDelegate._curentUser     = loginResult.user;
+                    appDelegate._sessid         = loginResult.sessid;
+                    appDelegate._sessionName    = loginResult.session_name;
+                    appDelegate._uid            = loginResult.user.uid;
+                    appDelegate._userName       = loginResult.user.name;
+                    appDelegate._userMail       = loginResult.user.mail;
                     
                     [appDelegate syncSettings]; // Asaina mi-load settings avy any @ serveur avy hatrany eto
                     
-                    //[self performSelector:@selector(presentMain) withObject:nil afterDelay:3.0f];
                     [self dismissViewControllerAnimated:NO completion:nil];
                     [self performSelectorOnMainThread:@selector(presentMain) withObject:nil waitUntilDone:NO];
                     
