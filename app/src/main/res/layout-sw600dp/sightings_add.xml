@@ -275,7 +275,6 @@
                     android:text="@string/sighting_title_label"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:gravity="center_vertical"
-                    android:layout_marginTop="2dp"
                     android:textColor="@color/black4c"/>
 
                 <EditText

@@ -23,8 +23,10 @@ public interface UserService {
 
     final static String BASE_URL = "https://www.lemursofmadagascar.com/html/lom_endpoint/api/v1/services/";
     final static String LOGIN_URL = "user/login.json";
+    final static String REGISTER_URL = "user/register.json";
 
     WsResult login(String username, String password);
 
 
+    WsResult register(String username, String email, String password);
 }

@@ -86,4 +86,13 @@
     <string name="bad_credentials">Wrong login or password</string>
     <string name="server_unreachable">Server is unreachable</string>
     <string name="error_occured">An error occured, please retry</string>
+    <string name="username_required">Fill username</string>
+    <string name="email_required">Fill email</string>
+    <string name="password1_required">Type your password</string>
+    <string name="password2_required">Confirm your password</string>
+    <string name="password_mismatch">Paswords don\'t match</string>
+    <string name="user_registered">User registered successfully ! Please log in to continue..</string>
+    <string name="registration">Registration</string>
+    <string name="ok">OK</string>
+    <string name="register_failed">Register failed, please correct errors</string>
 </resources>
