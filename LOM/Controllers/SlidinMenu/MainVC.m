@@ -11,6 +11,7 @@
 #import "LoginResult.h"
 #import "Tools.h"
 #import "SVProgressHUD.h"
+#define leftMenuSize 55
 
 @interface MainVC ()
 
@@ -195,11 +196,11 @@ static MainVC *sharedMainVC = nil;
 
 
 - (CGFloat) leftMenuWidth{
-    return (([Tools getScreenWidth] * 2) / 3) + 25;
+    return (([Tools getScreenWidth] * 2) / 3) + leftMenuSize;
 }
 
 - (CGFloat) rightMenuWidth{
-    return (([Tools getScreenWidth] * 2) / 3) + 25;
+    return (([Tools getScreenWidth] * 2) / 3) + leftMenuSize;
 }
 
 

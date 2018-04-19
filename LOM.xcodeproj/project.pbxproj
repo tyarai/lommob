@@ -951,6 +951,8 @@
 		4C85FF761C380E7300D6C233 /* LemurLifeListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C85FF751C380E7300D6C233 /* LemurLifeListTableViewCell.m */; };
 		4C8BFC5D1F3CF8070080B871 /* WatchingSiteMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BFC5C1F3CF8070080B871 /* WatchingSiteMap.m */; };
 		4C95D4441C0A24AC0038B9FC /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C95D4431C0A24AC0038B9FC /* Tools.m */; };
+		4CA4BD19208751BD00CEF08D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4BD18208751BD00CEF08D /* Images.xcassets */; };
+		4CA4BD1C208782E300CEF08D /* SpeciesDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4BD1B208782E300CEF08D /* SpeciesDetailsTableViewController.m */; };
 		4CB0157F1ED069DA0021F2A0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CB0157E1ED069DA0021F2A0 /* Settings.m */; };
 		4CBAEAF01BFA546B0011139C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEAEF1BFA546B0011139C /* main.m */; };
 		4CBAEAF31BFA546B0011139C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBAEAF21BFA546B0011139C /* AppDelegate.m */; };
@@ -963,6 +965,7 @@
 		4CBBAC3C1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBBAC3B1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m */; };
 		4CBEA4F720812713001A919D /* FamilyDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CBEA4F620812713001A919D /* FamilyDetailsTableViewController.m */; };
 		4CC1F3651F99F2BD00714460 /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */; };
+		4CC94ADE2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC94ADD2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.m */; };
 		4CEC77771C36CB6400C9706A /* FamilyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77761C36CB6400C9706A /* FamilyTableViewCell.m */; };
 		4CEC777A1C36D41900C9706A /* FamiliesDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC77791C36D41900C9706A /* FamiliesDetailsViewController.m */; };
 		4CEC777E1C36E1ED00C9706A /* WatchingSiteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CEC777D1C36E1ED00C9706A /* WatchingSiteTableViewCell.m */; };
@@ -2033,6 +2036,9 @@
 		4C95D4421C0A24AC0038B9FC /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		4C95D4431C0A24AC0038B9FC /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		4C95D4451C0A25130038B9FC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		4CA4BD18208751BD00CEF08D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4CA4BD1A208782E300CEF08D /* SpeciesDetailsTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpeciesDetailsTableViewController.h; path = Controllers/SpeciesDetailsTableViewController.h; sourceTree = "<group>"; };
+		4CA4BD1B208782E300CEF08D /* SpeciesDetailsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SpeciesDetailsTableViewController.m; path = Controllers/SpeciesDetailsTableViewController.m; sourceTree = "<group>"; };
 		4CB0157D1ED069DA0021F2A0 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = Tools/Settings.h; sourceTree = "<group>"; };
 		4CB0157E1ED069DA0021F2A0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Settings.m; path = Tools/Settings.m; sourceTree = "<group>"; };
 		4CBAEAEB1BFA546B0011139C /* LOM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LOM.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2057,6 +2063,8 @@
 		4CBEA4F620812713001A919D /* FamilyDetailsTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FamilyDetailsTableViewController.m; path = Controllers/FamilyDetailsTableViewController.m; sourceTree = "<group>"; };
 		4CC1F3631F99F2BD00714460 /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivacyPolicyViewController.h; path = Controllers/PrivacyPolicyViewController.h; sourceTree = "<group>"; };
 		4CC1F3641F99F2BD00714460 /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivacyPolicyViewController.m; path = Controllers/PrivacyPolicyViewController.m; sourceTree = "<group>"; };
+		4CC94ADC2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpeciesDetailInfoTableViewController.h; path = Controllers/SpeciesDetailInfoTableViewController.h; sourceTree = "<group>"; };
+		4CC94ADD2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SpeciesDetailInfoTableViewController.m; path = Controllers/SpeciesDetailInfoTableViewController.m; sourceTree = "<group>"; };
 		4CEC77751C36CB6400C9706A /* FamilyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamilyTableViewCell.h; path = Controllers/FamilyTableViewCell.h; sourceTree = "<group>"; };
 		4CEC77761C36CB6400C9706A /* FamilyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FamilyTableViewCell.m; path = Controllers/FamilyTableViewCell.m; sourceTree = "<group>"; };
 		4CEC77781C36D41900C9706A /* FamiliesDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamiliesDetailsViewController.h; path = Controllers/FamiliesDetailsViewController.h; sourceTree = "<group>"; };
@@ -2333,6 +2341,10 @@
 				B4D88E701C9A00670096B067 /* ScientificName.m */,
 				4CBBAC371DEF5305005CBCBA /* SpeciesSelectorViewController.h */,
 				4CBBAC381DEF5305005CBCBA /* SpeciesSelectorViewController.m */,
+				4CA4BD1A208782E300CEF08D /* SpeciesDetailsTableViewController.h */,
+				4CA4BD1B208782E300CEF08D /* SpeciesDetailsTableViewController.m */,
+				4CC94ADC2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.h */,
+				4CC94ADD2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.m */,
 			);
 			name = Species;
 			sourceTree = "<group>";
@@ -3534,6 +3546,7 @@
 				4CBAEAF71BFA546B0011139C /* Main.storyboard */,
 				4CBAEAFA1BFA546B0011139C /* Assets.xcassets */,
 				4CBAEAFC1BFA546B0011139C /* LaunchScreen.storyboard */,
+				4CA4BD18208751BD00CEF08D /* Images.xcassets */,
 				4CBAEAEE1BFA546B0011139C /* Supporting Files */,
 			);
 			path = LOM;
@@ -3942,6 +3955,7 @@
 				4C6F19921C1342A000272A06 /* LFG3HapalemurPlate2.jpg in Resources */,
 				4C6F18931C1342A000272A06 /* DSC_0024(clc).jpg in Resources */,
 				4C6F19831C1342A000272A06 /* LFG3CheirogaleusPlate1.jpg in Resources */,
+				4CA4BD19208751BD00CEF08D /* Images.xcassets in Resources */,
 				4C6F18791C1342A000272A06 /* Cheirominisculus1(THUMB).jpg in Resources */,
 				4C6F17E01C1342A000272A06 /* 2006_09_CAM_MAD_589(clc2).jpg in Resources */,
 				4C6F1A221C1342A100272A06 /* NEW-fig.9.29-pg.353_Prolemur_simus.jpg in Resources */,
@@ -4870,6 +4884,7 @@
 				4C74F2C81C06404000543A7F /* BaseViewController.m in Sources */,
 				4C59AD911C15F57800EA74C5 /* SpeciesViewController.m in Sources */,
 				4C74F2AF1C0639C400543A7F /* Photographs.m in Sources */,
+				4CA4BD1C208782E300CEF08D /* SpeciesDetailsTableViewController.m in Sources */,
 				B4D88E711C9A00670096B067 /* ScientificName.m in Sources */,
 				B4889C0E1DAB376F0096F908 /* SightingDataTableViewController.m in Sources */,
 				4CBBAC3C1DEF58B3005CBCBA /* SpeciesSelectorTableViewCell.m in Sources */,
@@ -4919,6 +4934,7 @@
 				B475F1861DAA0401006A12EF /* SightingsInfoViewController.m in Sources */,
 				4C4A163A1FB094EB00C3B3D2 /* CommentTableViewController.m in Sources */,
 				B4C495571D91274F00B829F5 /* Sightings.m in Sources */,
+				4CC94ADE2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.m in Sources */,
 				4C59ADA51C15F64900EA74C5 /* AboutViewController.m in Sources */,
 				4CF3E18B1CF2B4B1003010A5 /* PostsTableViewCell.m in Sources */,
 				4C74F2A31C0638EA00543A7F /* FCModelDatabaseQueue.m in Sources */,
@@ -5104,6 +5120,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -5151,6 +5168,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

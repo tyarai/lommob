@@ -15,6 +15,7 @@
 #import "LoginResult.h"
 #import "Tools.h"
 #import "SVProgressHUD.h"
+#import "SpeciesDetailsTableViewController.h"
 
 
 @interface SpeciesViewController ()
@@ -205,14 +206,13 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    if ([segue.identifier isEqualToString:@"pushDetailSpecies"]) {
+
+    //if ([segue.identifier isEqualToString:@"pushDetailSpecies"])
+    if([segue.identifier isEqualToString:@"showSpeciesDetails"]) {
         
-        SpeciesDetailsViewController* speciesDetailsViewController = (SpeciesDetailsViewController*) [segue destinationViewController];
-        
+        SpeciesDetailsTableViewController * speciesDetailsViewController = (SpeciesDetailsTableViewController*) [segue destinationViewController];
         speciesDetailsViewController.specy = _selectedSpecy;
     }
-    
 }
 
 
@@ -307,7 +307,9 @@
     
     _selectedSpecy = [__speciesArray objectAtIndex:indexPath.row];
     
-    [self performSegueWithIdentifier:@"pushDetailSpecies" sender:self];
+    //[self performSegueWithIdentifier:@"pushDetailSpecies" sender:self];
+    
+    [self performSegueWithIdentifier:@"showSpeciesDetails" sender:self];
     
 }
 
