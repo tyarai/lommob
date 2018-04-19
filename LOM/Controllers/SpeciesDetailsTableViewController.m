@@ -39,7 +39,48 @@
         
     }
 }
+- (IBAction)frTapped:(id)sender {
+    NSString * message = self.specy._french;
+    UIAlertController * alert = [self getBoxWithSender:sender message:message];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+- (IBAction)deTapped:(id)sender {
+    NSString * message = self.specy._german;
+    UIAlertController * alert = [self getBoxWithSender:sender message:message];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+- (IBAction)enTapped:(id)sender {
+    NSString * message = self.specy._english;
+    UIAlertController * alert = [self getBoxWithSender:sender message:message];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
+- (IBAction)mgTapped:(id)sender {
+    NSString * message = self.specy._malagasy;
+    UIAlertController * alert = [self getBoxWithSender:sender message:message];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(UIAlertController*) getBoxWithSender:(id)sender message:(NSString*)message{
+    
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:NSLocalizedString(@"", @"")
+                                 message:message
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action) {
+                                         
+                                     }];
+    
+    alert.view.tintColor = [UIColor blackColor];
+    [alert addAction:ok];
+    
+    return alert;
+    
+}
 
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -221,7 +262,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath{
     if (indexPath.row == 0) {
         return UITableViewAutomaticDimension;
-    }else if (indexPath.row == 2){
+    }else if (indexPath.row == 1){
         return _fixedPhotoCellHeight;
     }
     return _fixedMenuCellHeight;
