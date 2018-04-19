@@ -2,7 +2,7 @@
 //  SpeciesDetailsTableViewController.h
 //  LOM
 //
-//  Created by Ranto Tiaray Andrianavonison on 18/04/2018.
+//  Created by Ranto Tia ray Andrianavonison on 18/04/2018.
 //  Copyright © 2018 Kerty KAMARY. All rights reserved.
 //
 
@@ -12,7 +12,7 @@
 #import "CameraViewController.h"
 #import "PopupLoginViewController.h"
 
-@interface SpeciesDetailsTableViewController : UITableViewController <UIScrollViewDelegate, MWPhotoBrowserDelegate,CameraViewControllerDelegate>
+@interface SpeciesDetailsTableViewController : UITableViewController <UIScrollViewDelegate, MWPhotoBrowserDelegate>//CameraViewControllerDelegate
 {
     NSInteger _imagePosition;
     CGFloat _lastContentOffset;

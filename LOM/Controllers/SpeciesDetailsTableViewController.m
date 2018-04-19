@@ -14,6 +14,7 @@
 #import "UIImage+Resize.h"
 #import "ScientificName.h"
 #import "SpeciesDetailInfoTableViewController.h"
+#import "SpeciesNameTableViewController.h"
 
 #define _ROWHEIGHT 48
 #define _fixedPhotoCellHeight 311
@@ -38,27 +39,6 @@
         self.scientificName.text = self.specy._title;
         
     }
-}
-- (IBAction)frTapped:(id)sender {
-    NSString * message = self.specy._french;
-    UIAlertController * alert = [self getBoxWithSender:sender message:message];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-- (IBAction)deTapped:(id)sender {
-    NSString * message = self.specy._german;
-    UIAlertController * alert = [self getBoxWithSender:sender message:message];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-- (IBAction)enTapped:(id)sender {
-    NSString * message = self.specy._english;
-    UIAlertController * alert = [self getBoxWithSender:sender message:message];
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (IBAction)mgTapped:(id)sender {
-    NSString * message = self.specy._malagasy;
-    UIAlertController * alert = [self getBoxWithSender:sender message:message];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 -(UIAlertController*) getBoxWithSender:(id)sender message:(NSString*)message{
@@ -387,48 +367,69 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    SpeciesDetailInfoTableViewController* vc = (SpeciesDetailInfoTableViewController*)[segue destinationViewController];
-    NSString * details = nil;
-    NSString * menuTitle   = nil;
+    if ([segue.identifier isEqualToString:@"showDetails"]){
     
-    switch (selectedMenu) {
-        case 3:
-            details     = self.specy._identification;
-            menuTitle   = NSLocalizedString(@"species_identification_menu", nil);
-            break;
-        case 4:
-            details = self.specy._natural_history;
-            menuTitle   = NSLocalizedString(@"species_naturalhistory_menu", nil);
-            break;
-        case 5:
-            details = self.specy._conservation_status;
-            menuTitle   = NSLocalizedString(@"species_conservationstatus_menu", nil);
-            break;
-        case 6:
-            details = self.specy._where_to_see_it;
-            menuTitle   = NSLocalizedString(@"species_wheretoseeit_menu", nil);
-            break;
-        case 7:
-            details = self.specy._geographic_range;
-            menuTitle   = NSLocalizedString(@"species_geographicrange_menu", nil);
-            break;
-      
-        default:
-            break;
+        SpeciesDetailInfoTableViewController* vc = (SpeciesDetailInfoTableViewController*)[segue destinationViewController];
+        NSString * details = nil;
+        NSString * menuTitle   = nil;
+        
+        switch (selectedMenu) {
+            case 3:
+                details     = self.specy._identification;
+                menuTitle   = NSLocalizedString(@"species_identification_menu", nil);
+                break;
+            case 4:
+                details = self.specy._natural_history;
+                menuTitle   = NSLocalizedString(@"species_naturalhistory_menu", nil);
+                break;
+            case 5:
+                details = self.specy._conservation_status;
+                menuTitle   = NSLocalizedString(@"species_conservationstatus_menu", nil);
+                break;
+            case 6:
+                details = self.specy._where_to_see_it;
+                menuTitle   = NSLocalizedString(@"species_wheretoseeit_menu", nil);
+                break;
+            case 7:
+                details = self.specy._geographic_range;
+                menuTitle   = NSLocalizedString(@"species_geographicrange_menu", nil);
+                break;
+          
+            default:
+                break;
+        }
+        
+        vc.specy = self.specy;
+        vc.stringDetails = details;
+        vc.menuTitle = menuTitle;
     }
     
-    vc.specy = self.specy;
-    vc.stringDetails = details;
-    vc.menuTitle = menuTitle;
+    if ([segue.identifier isEqualToString:@"showNames"]){
+        
+        SpeciesNameTableViewController* vc = (SpeciesNameTableViewController*)[segue destinationViewController];
+        vc.specy = self.specy;
+        
+    }
+    
+    
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    if(indexPath.row != 8){
-        selectedMenu = indexPath.row;
-        [self performSegueWithIdentifier:@"showDetails" sender:self];
-    }else{
-         [self showMap];
+    selectedMenu = indexPath.row;
+    switch (indexPath.row) {
+        case 2:
+            [self performSegueWithIdentifier:@"showNames" sender:self];
+            break;
+        case 8:
+            [self showMap];
+            break;
+            
+        default:
+            [self performSegueWithIdentifier:@"showDetails" sender:self];
+            break;
     }
+    
     
 }
 
@@ -448,12 +449,11 @@
         
         UIImage *image = [Tools loadImage:imageBundleName];
         
-        if(image == nil) {
-            //TODO : Tokony ilay sary by default no aseho eto
-            // image = default_specy
+        if(image != nil) {
+            [self.photos addObject:[MWPhoto photoWithImage:image]];
         }
         
-        [self.photos addObject:[MWPhoto photoWithImage:image]];
+        
         
     }else {
         

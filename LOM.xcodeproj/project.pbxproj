@@ -1012,6 +1012,8 @@
 		BF1F00939650383E8A07E944 /* libPods-LOMUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC685DFE830C1571FD6A02AC /* libPods-LOMUITests.a */; };
 		DF46911A5B12CE941094D7C8 /* libPods-LOMTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E96B0D74BBF1375E08CB121 /* libPods-LOMTests.a */; };
 		E7A6C0F52083FBC900F7CEC1 /* AboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7A6C0F42083FBC900F7CEC1 /* AboutTableViewController.m */; };
+		E7E5DD6C2088E9E300B96A46 /* SpeciesNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E5DD6B2088E9E300B96A46 /* SpeciesNameTableViewCell.m */; };
+		E7E5DD6F2088EA1000B96A46 /* SpeciesNameTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E5DD6E2088EA1000B96A46 /* SpeciesNameTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2151,6 +2153,10 @@
 		B4D913591D8CB5FC00DDC295 /* LOM.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LOM.sqlite; sourceTree = "<group>"; };
 		E7A6C0F32083FBC900F7CEC1 /* AboutTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AboutTableViewController.h; path = Controllers/AboutTableViewController.h; sourceTree = "<group>"; };
 		E7A6C0F42083FBC900F7CEC1 /* AboutTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AboutTableViewController.m; path = Controllers/AboutTableViewController.m; sourceTree = "<group>"; };
+		E7E5DD6A2088E9E300B96A46 /* SpeciesNameTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpeciesNameTableViewCell.h; path = Controllers/SpeciesNameTableViewCell.h; sourceTree = "<group>"; };
+		E7E5DD6B2088E9E300B96A46 /* SpeciesNameTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SpeciesNameTableViewCell.m; path = Controllers/SpeciesNameTableViewCell.m; sourceTree = "<group>"; };
+		E7E5DD6D2088EA1000B96A46 /* SpeciesNameTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpeciesNameTableViewController.h; path = Controllers/SpeciesNameTableViewController.h; sourceTree = "<group>"; };
+		E7E5DD6E2088EA1000B96A46 /* SpeciesNameTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SpeciesNameTableViewController.m; path = Controllers/SpeciesNameTableViewController.m; sourceTree = "<group>"; };
 		E7EBD2492FB9DE3099734133 /* Pods-LOMTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOMTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LOMTests/Pods-LOMTests.release.xcconfig"; sourceTree = "<group>"; };
 		EC685DFE830C1571FD6A02AC /* libPods-LOMUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LOMUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF2A0CB2C5E3D5C0EA70D7C1 /* Pods-LOM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LOM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LOM/Pods-LOM.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2345,6 +2351,10 @@
 				4CA4BD1B208782E300CEF08D /* SpeciesDetailsTableViewController.m */,
 				4CC94ADC2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.h */,
 				4CC94ADD2087D5FE004A2823 /* SpeciesDetailInfoTableViewController.m */,
+				E7E5DD6A2088E9E300B96A46 /* SpeciesNameTableViewCell.h */,
+				E7E5DD6B2088E9E300B96A46 /* SpeciesNameTableViewCell.m */,
+				E7E5DD6D2088EA1000B96A46 /* SpeciesNameTableViewController.h */,
+				E7E5DD6E2088EA1000B96A46 /* SpeciesNameTableViewController.m */,
 			);
 			name = Species;
 			sourceTree = "<group>";
@@ -4958,6 +4968,7 @@
 				B4B7BE841C7EA37D00D32A48 /* OriginOfLemursPageContentViewController.m in Sources */,
 				4C59ADA81C1606BF00EA74C5 /* UIView+Corner.m in Sources */,
 				4C24A9A71ECC958500F475DA /* SettingsTableViewController.m in Sources */,
+				E7E5DD6F2088EA1000B96A46 /* SpeciesNameTableViewController.m in Sources */,
 				4C85FF761C380E7300D6C233 /* LemurLifeListTableViewCell.m in Sources */,
 				B4AF34211C9A71910039DEBB /* ExtinctLemurs.m in Sources */,
 				4C4A16401FB0A1E100C3B3D2 /* Comment.m in Sources */,
@@ -4978,6 +4989,7 @@
 				4CC1F3651F99F2BD00714460 /* PrivacyPolicyViewController.m in Sources */,
 				4C85FF5D1C37F27000D6C233 /* Publication.m in Sources */,
 				4C85FF6E1C37F6DC00D6C233 /* AppData.m in Sources */,
+				E7E5DD6C2088E9E300B96A46 /* SpeciesNameTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
