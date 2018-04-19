@@ -41,8 +41,8 @@
             android:gravity="center"
             android:padding="@dimen/activity_vertical_margin"
             android:text="@string/no_sightings"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textSize="18dp"
+             />
 
 
     </LinearLayout>

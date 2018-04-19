@@ -683,16 +683,16 @@ public class SightingAddActivity extends AppCompatActivity {
         }
 
         List<String> validationMessages = new ArrayList<>();
-        if (sightingDto.getSpecieId() == null || sightingDto.getSpecieId() <=0) {
+        if (data.getSpecieId() == null || data.getSpecieId() <=0) {
             validationMessages.add(getString(R.string.v_specie_req));
         }
-        if (sightingDto.getWatchingSiteId() == null || sightingDto.getWatchingSiteId() <=0) {
+        if (data.getWatchingSiteId() == null || data.getWatchingSiteId() <=0) {
             validationMessages.add(getString(R.string.v_site_req));
         }
-        if (TextUtils.isEmpty(sightingDto.getTitle())) {
+        if (TextUtils.isEmpty(data.getTitle())) {
             validationMessages.add(getString(R.string.v_desc_req));
         }
-        if (sightingDto.getPhoto() == null || TextUtils.isEmpty(sightingDto.getPhoto().getImageRaw())) {
+        if (data.getPhoto() == null || TextUtils.isEmpty(data.getPhoto().getImageRaw())) {
             validationMessages.add(getString(R.string.v_photo_req));
         }
 

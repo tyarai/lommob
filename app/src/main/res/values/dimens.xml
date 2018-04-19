@@ -27,4 +27,8 @@
     <dimen name="sighting_image_container">150dp</dimen>
     <dimen name="sighting_image_add_height">180dp</dimen>
     <dimen name="sighting_edit_btn">25dp</dimen>
+    <dimen name="md_size">16sp</dimen>
+    <dimen name="of_size">16sp</dimen>
+    <dimen name="lem_size">30sp</dimen>
+    <dimen name="log_size">24sp</dimen>
 </resources>

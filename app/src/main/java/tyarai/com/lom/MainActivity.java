@@ -23,7 +23,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 
+import tyarai.com.lom.data.Constants;
 import tyarai.com.lom.views.AboutFragment;
 import tyarai.com.lom.views.AboutFragment_;
 import tyarai.com.lom.views.AuthorsFragment;
@@ -33,6 +35,7 @@ import tyarai.com.lom.views.ExtinctFragment_;
 import tyarai.com.lom.views.FamiliesFragment;
 import tyarai.com.lom.views.FamiliesFragment_;
 import tyarai.com.lom.views.IntroductionActivity_;
+import tyarai.com.lom.views.LoginFragment_;
 import tyarai.com.lom.views.OriginActivity_;
 import tyarai.com.lom.views.SightingListFragment;
 import tyarai.com.lom.views.SightingListFragment_;
@@ -41,6 +44,7 @@ import tyarai.com.lom.views.WatchingSitesFragment;
 import tyarai.com.lom.views.WatchingSitesFragment_;
 import tyarai.com.lom.views.adapter.navigation.DrawerListAdapter;
 import tyarai.com.lom.views.adapter.navigation.NavItem;
+import tyarai.com.lom.views.utils.SharedUtils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -174,7 +178,16 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, getString(R.string.coming_soon), Toast.LENGTH_SHORT).show();
                 break;
             case MENU_POSTS:
-                startFragment(new SightingListFragment_(), null);
+                boolean loggedIn = SharedUtils.getBooleanPref(this, Constants.SIGHTING_LOGGED_IN);
+                long lastLoggedIn = SharedUtils.getLongPref(this, Constants.SIGHTING_LOGGED_IN_TIME);
+                Date now = new Date();
+                Log.d(TAG, "diff log : " + (now.getTime() - lastLoggedIn));
+                if (!loggedIn || (now.getTime() - lastLoggedIn >= 2 * 60 * 1000)) {
+                    startFragment(new LoginFragment_(), null);
+                }
+                else {
+                    startFragment(new SightingListFragment_(), null);
+                }
                 break;
             default:
                 break;
@@ -193,7 +206,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     BaseFrag currentFrag;
-    protected void startFragment(BaseFrag fragment, Bundle args) {
+    public void startFragment(BaseFrag fragment, Bundle args) {
         if (args != null) {
             fragment.setArguments(args);
         }

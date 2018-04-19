@@ -64,4 +64,26 @@
     <string name="closeit">Close</string>
     <string name="v_desc_req">Description is required</string>
     <string name="v_photo_req">Picture required</string>
+    <string name="login_title">Login</string>
+    <string name="login_lemurs">Lemurs</string>
+    <string name="create_account">Create an account</string>
+    <string name="sign_up">Sign up</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm your password</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="terms_of_use">terms of use</string>
+    <string name="privacy_policy">privacy policy</string>
+    <string name="accept">I agree</string>
+    <string name="decline">I decline</string>
+    <string name="terms_of_use_title">Terms of use</string>
+    <string name="privacy_policy_title">Privacy policy</string>
+    <string name="read">I have read</string>
+    <string name="read_terms_of_use">Please read and accept terms of use</string>
+    <string name="read_policy">Please read privacy policy</string>
+    <string name="fill_login">Please fill username</string>
+    <string name="fill_password">Please fill password</string>
+    <string name="bad_credentials">Wrong login or password</string>
+    <string name="server_unreachable">Server is unreachable</string>
+    <string name="error_occured">An error occured, please retry</string>
 </resources>
