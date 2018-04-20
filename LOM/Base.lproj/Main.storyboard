@@ -3117,9 +3117,9 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scientific name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e0J-Sf-wXd">
-                                                    <rect key="frame" x="16" y="17" width="342" height="21"/>
+                                                    <rect key="frame" x="16" y="17" width="329" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="342" id="Brc-ee-0po"/>
+                                                        <constraint firstAttribute="width" constant="329" id="Brc-ee-0po"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="C4n-da-wZG"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="22"/>
@@ -3128,7 +3128,7 @@ Cg
                                             </subviews>
                                             <color key="backgroundColor" red="0.98817652460000005" green="0.68912953139999999" blue="0.02415499464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="e0J-Sf-wXd" secondAttribute="trailing" constant="1" id="0ld-nR-vGj"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="e0J-Sf-wXd" secondAttribute="trailing" constant="14" id="0ld-nR-vGj"/>
                                                 <constraint firstItem="e0J-Sf-wXd" firstAttribute="leading" secondItem="FYq-OR-3ot" secondAttribute="leadingMargin" id="3nw-GP-Pn3"/>
                                                 <constraint firstItem="e0J-Sf-wXd" firstAttribute="top" secondItem="FYq-OR-3ot" secondAttribute="topMargin" constant="6" id="6KU-fM-R6i"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="e0J-Sf-wXd" secondAttribute="bottom" constant="6" id="gEu-zH-BeO"/>
