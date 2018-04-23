@@ -1910,7 +1910,7 @@ Cg
                         <outlet property="searchTopSpace" destination="Dil-3n-Vgt" id="IJJ-Yh-tly"/>
                         <outlet property="searchView" destination="LFO-sv-LiB" id="6fS-EM-ZBV"/>
                         <outlet property="tableViewLifeList" destination="bEm-lf-tpH" id="TbY-Sz-T9N"/>
-                        <segue destination="t8t-4l-bzP" kind="show" identifier="showSpecies" id="b6z-Tb-i7y"/>
+                        <segue destination="aoh-DF-Z9w" kind="show" identifier="showSpecies" id="hvU-0p-Kfb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88s-6F-WDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2960,7 +2960,7 @@ Cg
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Cy-kx-IV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3693.5999999999999" y="-855.02248875562225"/>
+            <point key="canvasLocation" x="3641" y="-1321"/>
         </scene>
         <!--Species-->
         <scene sceneID="vot-lK-IZ5">
@@ -3096,7 +3096,7 @@ Cg
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t6S-hq-9Gh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2041" y="-855"/>
+            <point key="canvasLocation" x="2017" y="-1522"/>
         </scene>
         <!--Species Details Table View Controller-->
         <scene sceneID="wIV-Za-xyd">
@@ -6384,8 +6384,9 @@ Cg
         <image name="ico_tyarai" width="150" height="101"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UG1-r7-Fmg"/>
+        <segue reference="buO-yF-mTq"/>
         <segue reference="cJm-Jk-98a"/>
+        <segue reference="hvU-0p-Kfb"/>
         <segue reference="Rjc-fq-xQe"/>
     </inferredMetricsTieBreakers>
 </document>
