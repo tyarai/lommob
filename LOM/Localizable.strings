@@ -75,7 +75,7 @@
 "not_logged_in_message"="You are not logged in";
 "stay_offline"="Stay offline";
 "login_or_register"="Login or register";
-"add_comment_title"="Add comment";
+"add_comment_title"="Add comment";  
 "edit_comment_title"="Edit comment";
 "species_identification_menu"="Identification";
 "species_scientificname_menu"="Scientific name";

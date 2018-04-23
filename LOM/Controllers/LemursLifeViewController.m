@@ -25,6 +25,7 @@
 #import "PostsViewController.h"
 #import "Constants.h"
 #import "SpeciesDetailsViewController.h"
+#import "SpeciesDetailsTableViewController.h"
 
 #define ROWHEIGHT 121
 
@@ -657,7 +658,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"showSpecies"]){
-        SpeciesDetailsViewController * speciesVC = (SpeciesDetailsViewController*)[segue destinationViewController];
+        SpeciesDetailsTableViewController * speciesVC = (SpeciesDetailsTableViewController*)[segue destinationViewController];
         if(speciesVC){
             
             if(self.currentSpecies){
