@@ -3144,38 +3144,33 @@ Cg
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jmm-5d-2RH">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="311"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVO-mG-kSu">
-                                                            <rect key="frame" x="4" y="-8" width="367" height="308"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="367" id="Dul-e7-lKb"/>
-                                                                <constraint firstAttribute="height" constant="308" id="eg3-vT-Vln"/>
-                                                            </constraints>
-                                                            <connections>
-                                                                <action selector="showSlideShow:" destination="aoh-DF-Z9w" eventType="touchUpInside" id="Hu4-vF-IMw"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstItem="kVO-mG-kSu" firstAttribute="top" secondItem="Jmm-5d-2RH" secondAttribute="top" constant="-8" id="CtN-XX-M41"/>
-                                                        <constraint firstItem="kVO-mG-kSu" firstAttribute="leading" secondItem="Jmm-5d-2RH" secondAttribute="leading" constant="4" id="OCY-zv-G9h"/>
-                                                        <constraint firstAttribute="bottom" secondItem="kVO-mG-kSu" secondAttribute="bottom" constant="11" id="WTD-Nc-uDH"/>
-                                                        <constraint firstAttribute="trailing" secondItem="kVO-mG-kSu" secondAttribute="trailing" constant="4" id="vxe-SK-yIN"/>
-                                                    </constraints>
                                                 </scrollView>
-                                                <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1Od-CN-5wZ">
-                                                    <rect key="frame" x="168" y="263" width="39" height="37"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVO-mG-kSu">
+                                                    <rect key="frame" x="4" y="1" width="367" height="310"/>
+                                                    <connections>
+                                                        <action selector="showSlideShow:" destination="aoh-DF-Z9w" eventType="touchUpInside" id="Hu4-vF-IMw"/>
+                                                    </connections>
+                                                </button>
+                                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1Od-CN-5wZ">
+                                                    <rect key="frame" x="168" y="258" width="39" height="37"/>
+                                                    <color key="pageIndicatorTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="currentPageIndicatorTintColor" red="0.98817652460000005" green="0.68912953139999999" blue="0.02415499464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </pageControl>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Jmm-5d-2RH" firstAttribute="top" secondItem="6qT-zv-VMH" secondAttribute="top" id="0yh-FE-CL0"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="1Od-CN-5wZ" secondAttribute="trailing" constant="152" id="4iz-vP-AWF"/>
+                                                <constraint firstItem="kVO-mG-kSu" firstAttribute="leading" secondItem="6qT-zv-VMH" secondAttribute="leading" constant="4" id="F1N-xn-9MO"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jmm-5d-2RH" secondAttribute="trailing" id="GBV-re-3fz"/>
+                                                <constraint firstItem="kVO-mG-kSu" firstAttribute="top" secondItem="6qT-zv-VMH" secondAttribute="top" constant="1" id="HvJ-rm-B1A"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="1Od-CN-5wZ" secondAttribute="bottom" constant="5" id="PbP-Fx-uAq"/>
                                                 <constraint firstItem="Jmm-5d-2RH" firstAttribute="leading" secondItem="6qT-zv-VMH" secondAttribute="leading" id="PvJ-Cr-4OD"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jmm-5d-2RH" secondAttribute="bottom" constant="-0.5" id="Vg8-cf-n51"/>
+                                                <constraint firstItem="1Od-CN-5wZ" firstAttribute="leading" secondItem="6qT-zv-VMH" secondAttribute="leadingMargin" constant="152" id="g6M-9I-tDq"/>
+                                                <constraint firstAttribute="trailing" secondItem="kVO-mG-kSu" secondAttribute="trailing" constant="4" id="s8D-TA-3ji"/>
+                                                <constraint firstAttribute="bottom" secondItem="kVO-mG-kSu" secondAttribute="bottom" constant="-0.5" id="wdx-5m-4Y6"/>
+                                                <constraint firstItem="1Od-CN-5wZ" firstAttribute="centerX" secondItem="6qT-zv-VMH" secondAttribute="centerX" id="yJF-SW-c8u"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
