@@ -2229,7 +2229,7 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2G-ET-HhG">
-                                                    <rect key="frame" x="16" y="9" width="343" height="26"/>
+                                                    <rect key="frame" x="16" y="9.5" width="343" height="26"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="19"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -4098,8 +4098,8 @@ Cg
                                                     <color key="textColor" red="0.84435081481933594" green="0.11844227463006973" blue="0.068080082535743713" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJE-BD-tAv">
-                                                    <rect key="frame" x="21" y="367" width="113" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJE-BD-tAv">
+                                                    <rect key="frame" x="21" y="368" width="113" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="o6z-Pa-k7H"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="tuM-lB-FVz"/>
@@ -6135,13 +6135,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RR9-Ic-532">
-                                                    <rect key="frame" x="16" y="14.5" width="199" height="23.5"/>
+                                                    <rect key="frame" x="16" y="15" width="199" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family update" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTm-Pn-LGI">
-                                                    <rect key="frame" x="221" y="14.5" width="138" height="23.5"/>
+                                                    <rect key="frame" x="221" y="15" width="138" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="138" id="6oc-UM-NaK"/>
                                                     </constraints>
@@ -6167,13 +6167,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photographs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MEN-f7-Ywa">
-                                                    <rect key="frame" x="16" y="14.5" width="105" height="23.5"/>
+                                                    <rect key="frame" x="16" y="15" width="105" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pa-Fc-ntP">
-                                                    <rect key="frame" x="286" y="14.5" width="73" height="23.5"/>
+                                                    <rect key="frame" x="286" y="15" width="73" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="mVM-KD-zbd"/>
                                                     </constraints>
@@ -6198,13 +6198,13 @@ Cg
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLQ-XQ-qA4">
-                                                    <rect key="frame" x="16" y="14.5" width="191" height="23.5"/>
+                                                    <rect key="frame" x="16" y="15" width="191" height="23.5"/>
                                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4U5-xT-jov">
-                                                    <rect key="frame" x="286" y="14.5" width="73" height="23.5"/>
+                                                    <rect key="frame" x="286" y="15" width="73" height="23.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="73" id="xsq-DE-bWj"/>
                                                     </constraints>
