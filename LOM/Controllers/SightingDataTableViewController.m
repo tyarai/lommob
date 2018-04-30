@@ -144,7 +144,7 @@
                     [self.speciesImage setImage:[UIImage imageNamed:@"ico_default_specy"]];
                 }
                 
-            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         }else{
             
             NSString *getImagePath = [publication getSightingImageFullPathName];
@@ -193,7 +193,7 @@
                         [self.speciesImage setImage:[UIImage imageNamed:@"ico_default_specy"]];
                     }
                     
-                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                } usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
             }else{
                 
                 
