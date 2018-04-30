@@ -5101,16 +5101,6 @@ Cg
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sighting date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccX-bi-soC">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="32"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="ELz-l9-Wyv"/>
-                                                        <constraint firstAttribute="width" constant="345" id="wNh-fY-HVs"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="00W-Df-Vb0">
                                                     <rect key="frame" x="15" y="28" width="345" height="54"/>
                                                     <constraints>
@@ -5129,14 +5119,24 @@ Cg
                                                         <action selector="selectedDate:" destination="je3-gZ-LEh" eventType="valueChanged" id="ZZN-PX-Fx3"/>
                                                     </connections>
                                                 </datePicker>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sighting date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccX-bi-soC">
+                                                    <rect key="frame" x="8" y="0.0" width="345" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="ELz-l9-Wyv"/>
+                                                        <constraint firstAttribute="width" constant="345" id="wNh-fY-HVs"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="ccX-bi-soC" secondAttribute="trailing" constant="15" id="5US-6f-fbl"/>
+                                                <constraint firstAttribute="trailing" secondItem="ccX-bi-soC" secondAttribute="trailing" constant="22" id="5US-6f-fbl"/>
                                                 <constraint firstItem="ccX-bi-soC" firstAttribute="top" secondItem="lTx-oL-UYc" secondAttribute="top" id="BAe-Io-Qub"/>
                                                 <constraint firstItem="00W-Df-Vb0" firstAttribute="top" secondItem="ccX-bi-soC" secondAttribute="bottom" constant="-4" id="Lll-qd-nUs"/>
                                                 <constraint firstAttribute="bottom" secondItem="00W-Df-Vb0" secondAttribute="bottom" constant="7.5" id="NuY-gG-SV0"/>
                                                 <constraint firstAttribute="trailing" secondItem="00W-Df-Vb0" secondAttribute="trailing" constant="15" id="dGn-eQ-u7R"/>
-                                                <constraint firstItem="ccX-bi-soC" firstAttribute="leading" secondItem="lTx-oL-UYc" secondAttribute="leading" constant="15" id="et3-ce-mVW"/>
+                                                <constraint firstItem="ccX-bi-soC" firstAttribute="leading" secondItem="lTx-oL-UYc" secondAttribute="leading" constant="8" id="et3-ce-mVW"/>
                                                 <constraint firstItem="00W-Df-Vb0" firstAttribute="leading" secondItem="lTx-oL-UYc" secondAttribute="leading" constant="15" id="hj7-Ii-afS"/>
                                             </constraints>
                                         </tableViewCellContentView>
