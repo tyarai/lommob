@@ -181,7 +181,7 @@
                     [self.imgPhoto setImageWithURL:tempURL
                                   placeholderImage:nil
                                            options:SDWebImageRetryFailed
-                       usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                       usingActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
                     
                     
                
