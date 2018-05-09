@@ -24,6 +24,8 @@ public class SightingDto extends CommonDto implements Parcelable {
 
     private Long specieId;
 
+    private Long specieNid;
+
     private String specieName;
 
     private String specieTrans;
@@ -35,6 +37,14 @@ public class SightingDto extends CommonDto implements Parcelable {
     private Date observationDate;
 
     private InfoImageDto photo;
+
+    private String photoFid;
+
+    private boolean active;
+
+    private boolean synced;
+
+
 
     public SightingDto() {
         super();
@@ -50,12 +60,16 @@ public class SightingDto extends CommonDto implements Parcelable {
         latitude = (Float) in.readValue(null);
         altitude = (Float) in.readValue(null);
         specieId = (Long) in.readValue(null);
+        specieNid = (Long) in.readValue(null);
         specieName = in.readString();
         specieTrans = in.readString();
         watchingSiteId = (Long) in.readValue(null);
         watchingSiteTitle = in.readString();
         long nextLong = in.readLong();
         observationDate = nextLong == -1 ? null : new Date(nextLong);
+        active = (Boolean) in.readValue(null);
+        synced = (Boolean) in.readValue(null);
+        photoFid = in.readString();
         photo = in.readParcelable(InfoImageDto.class.getClassLoader());
     }
 
@@ -70,11 +84,15 @@ public class SightingDto extends CommonDto implements Parcelable {
         dest.writeValue(latitude);
         dest.writeValue(altitude);
         dest.writeValue(specieId);
+        dest.writeValue(specieNid);
         dest.writeString(specieName);
         dest.writeString(specieTrans);
         dest.writeValue(watchingSiteId);
         dest.writeString(watchingSiteTitle);
         dest.writeLong(observationDate == null ? -1 : observationDate.getTime());
+        dest.writeValue(active);
+        dest.writeValue(synced);
+        dest.writeString(photoFid);
         dest.writeParcelable(photo, flags);
     }
 
@@ -198,5 +216,39 @@ public class SightingDto extends CommonDto implements Parcelable {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    @Override
+    public boolean isActive() {
+        return active;
+    }
+
+    @Override
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Long getSpecieNid() {
+        return specieNid;
+    }
+
+    public void setSpecieNid(Long specieNid) {
+        this.specieNid = specieNid;
+    }
+
+    public boolean isSynced() {
+        return synced;
+    }
+
+    public void setSynced(boolean synced) {
+        this.synced = synced;
+    }
+
+    public String getPhotoFid() {
+        return photoFid;
+    }
+
+    public void setPhotoFid(String photoFid) {
+        this.photoFid = photoFid;
     }
 }

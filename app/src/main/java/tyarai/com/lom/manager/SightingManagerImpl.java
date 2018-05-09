@@ -1,5 +1,9 @@
 package tyarai.com.lom.manager;
 
+import android.provider.BaseColumns;
+
+import com.j256.ormlite.stmt.UpdateBuilder;
+
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 
@@ -79,8 +83,11 @@ public class SightingManagerImpl extends DaoManager implements SightingManager {
             sighting.setLongitude(data.getLongitude());
             sighting.setLatitude(data.getLatitude());
             sighting.setNumberObserved(data.getNumberObserved());
-            if (data.getPhoto() != null) {
+            if (data.getPhoto() != null && data.getPhoto().isPhotoChanged()) {
                 sighting.setPhoto(data.getPhoto().getImageRaw());
+                sighting.setPhotoFileName(data.getPhoto().getFilename());
+                sighting.setPhotoFilePath(data.getPhoto().getPhotoFilePath());
+                sighting.setPhotoFileSize(data.getPhoto().getPhotoFileSize());
             }
             sighting.setTitle(data.getTitle());
             sighting.setObservationDate(data.getObservationDate());
@@ -100,4 +107,19 @@ public class SightingManagerImpl extends DaoManager implements SightingManager {
             throw new DbException(e);
         }
     }
+
+    @Override
+    public void disableSighting(long id)  throws DbException {
+        try {
+            Sighting sighting = getSightingDao().queryForId(id);
+            sighting.setActive(false);
+            getSightingDao().update(sighting);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            throw new DbException(e);
+        }
+    }
+
+
 }

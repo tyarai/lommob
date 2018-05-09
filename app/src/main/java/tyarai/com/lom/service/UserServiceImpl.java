@@ -1,19 +1,14 @@
 package tyarai.com.lom.service;
 
-import android.util.Log;
-
 import org.androidannotations.annotations.EBean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.nio.charset.Charset;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,16 +27,8 @@ public class UserServiceImpl implements UserService {
     {
         WsResult res = new WsResult();
         try {
-            RestTemplate restTemplate = new RestTemplate();
-            SimpleClientHttpRequestFactory reqFactory = (SimpleClientHttpRequestFactory) restTemplate.getRequestFactory();
-            reqFactory.setConnectTimeout(1000 * 60 * 1); // 1mn
-            reqFactory.setReadTimeout(1000 * 60 * 21);   // 1mn
-
-            restTemplate.getMessageConverters().add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
-
-            String url = UserService.BASE_URL + UserService.LOGIN_URL;
-            Log.d(TAG, "ws login url : " + url);
-
+            String url =  ServiceUrls.getUrl(ServiceUrls.LOGIN);
+            RestTemplate restTemplate = ServiceUrls.getDefaultTemplate(url);
             HttpHeaders requestHeaders = new HttpHeaders();
             requestHeaders.setAccept(Collections.singletonList(new MediaType("application", "json")));
 
@@ -66,16 +53,8 @@ public class UserServiceImpl implements UserService {
     {
         WsResult res = new WsResult();
         try {
-            RestTemplate restTemplate = new RestTemplate();
-            SimpleClientHttpRequestFactory reqFactory = (SimpleClientHttpRequestFactory) restTemplate.getRequestFactory();
-            reqFactory.setConnectTimeout(1000 * 60 * 1); // 1mn
-            reqFactory.setReadTimeout(1000 * 60 * 21);   // 1mn
-
-            restTemplate.getMessageConverters().add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
-
-            String url = UserService.BASE_URL + UserService.REGISTER_URL;
-            Log.d(TAG, "ws register url : " + url);
-
+            String url =  ServiceUrls.getUrl(ServiceUrls.REGISTER);
+            RestTemplate restTemplate = ServiceUrls.getDefaultTemplate(url);
             HttpHeaders requestHeaders = new HttpHeaders();
             requestHeaders.setAccept(Collections.singletonList(new MediaType("application", "json")));
 

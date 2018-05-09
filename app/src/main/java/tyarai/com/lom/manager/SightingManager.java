@@ -16,4 +16,6 @@ public interface SightingManager {
     long createSighting(SightingDto data) throws DbException;
 
     void updateSighting(SightingDto data) throws DbException;
+
+    void disableSighting(long id)  throws DbException;
 }

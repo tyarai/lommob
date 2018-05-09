@@ -21,12 +21,17 @@ public class Sighting extends CommonModel {
     public static final String UUID_COL             = "uuid";
     public static final String NUMBER_COL           = "number_observed";
     public static final String PHOTO_COL            = "photo";
+    public static final String PHOTO_FID_COL         = "photo_fid";
     public static final String OBSERVATION_DATE_COL = "observation_date";
     public static final String LONGITUDE_COL        = "longitude";
     public static final String LATITUDE_COL         = "latitude";
     public static final String ALTITUDE_COL         = "altitude";
     public static final String SPECIE_COL           = "specie_id";
     public static final String WATCHING_SITE_COL    = "watching_site_id";
+    public static final String SYNCED_COL           = "synced";
+    public static final String PHOTO_PATH_COL       = "photo_path";
+    public static final String PHOTO_NAME_COL       = "photo_name";
+    public static final String PHOTO_SIZE_COL       = "photo_size";
 
 
     @DatabaseField(columnName = UUID_COL, dataType = DataType.STRING)
@@ -58,9 +63,23 @@ public class Sighting extends CommonModel {
     @DatabaseField(columnName = OBSERVATION_DATE_COL, dataType = DataType.DATE_LONG)
     private Date observationDate;
 
-    @DatabaseField(columnName = PHOTO_COL, dataType = DataType.SERIALIZABLE)
+    @DatabaseField(columnName = PHOTO_COL, dataType = DataType.SERIALIZABLE, canBeNull = true)
     private String photo;
 
+    @DatabaseField(columnName = PHOTO_FID_COL, dataType = DataType.STRING, canBeNull = true)
+    private String photoFid;
+
+    @DatabaseField(columnName = PHOTO_PATH_COL, dataType = DataType.STRING, canBeNull = true)
+    private String photoFilePath;
+
+    @DatabaseField(columnName = PHOTO_NAME_COL, dataType = DataType.STRING, canBeNull = true)
+    private String photoFileName;
+
+    @DatabaseField(columnName = PHOTO_SIZE_COL, dataType = DataType.INTEGER)
+    private int photoFileSize;
+
+    @DatabaseField(columnName = SYNCED_COL, dataType = DataType.BOOLEAN)
+    private boolean synced;
 
     @ForeignCollectionField(eager = false)
     private ForeignCollection<SightingComment> comments;
@@ -158,5 +177,46 @@ public class Sighting extends CommonModel {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+
+    public boolean isSynced() {
+        return synced;
+    }
+
+    public void setSynced(boolean synced) {
+        this.synced = synced;
+    }
+
+    public String getPhotoFid() {
+        return photoFid;
+    }
+
+    public void setPhotoFid(String photoFid) {
+        this.photoFid = photoFid;
+    }
+
+    public String getPhotoFilePath() {
+        return photoFilePath;
+    }
+
+    public void setPhotoFilePath(String photoFilePath) {
+        this.photoFilePath = photoFilePath;
+    }
+
+    public String getPhotoFileName() {
+        return photoFileName;
+    }
+
+    public void setPhotoFileName(String photoFileName) {
+        this.photoFileName = photoFileName;
+    }
+
+    public int getPhotoFileSize() {
+        return photoFileSize;
+    }
+
+    public void setPhotoFileSize(int photoFileSize) {
+        this.photoFileSize = photoFileSize;
     }
 }

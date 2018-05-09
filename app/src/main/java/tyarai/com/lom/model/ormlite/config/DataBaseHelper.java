@@ -35,7 +35,7 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 	public static String TAG = DataBaseHelper.class.getSimpleName(); 
 
     // DB CONFIG
-    public static int DB_VERSION = 2;
+    public static int DB_VERSION = 3;
 
 
     public static String DB_NAME = "lom_db";
@@ -119,6 +119,13 @@ public class DataBaseHelper extends OrmLiteSqliteOpenHelper {
 				TableUtils.createTable(connectionSource, SightingComment.class);
 			}
 
+			if (oldVersion < 3) {
+				this.addColumn(db, Sighting.TABLE_NAME, Sighting.SYNCED_COL, BOOLEAN_TYPE, queryDao);
+				this.addColumn(db, Sighting.TABLE_NAME, Sighting.PHOTO_FID_COL, STRING_TYPE, queryDao);
+				this.addColumn(db, Sighting.TABLE_NAME, Sighting.PHOTO_PATH_COL, STRING_TYPE, queryDao);
+				this.addColumn(db, Sighting.TABLE_NAME, Sighting.PHOTO_NAME_COL, STRING_TYPE, queryDao);
+				this.addColumn(db, Sighting.TABLE_NAME, Sighting.PHOTO_SIZE_COL, STRING_TYPE, queryDao);
+			}
 
 		} catch (java.sql.SQLException e) {
 			Log.e(DataBaseHelper.class.getName(), "Can't handle databases updates", e);

@@ -19,6 +19,7 @@ public abstract class CommonModel {
     public static final String ACTIVE_COL = "active";
 
 
+
     @DatabaseField(columnName = BaseColumns._ID, generatedId = true, dataType = DataType.LONG)
     protected long id;
 

@@ -193,7 +193,6 @@ public class RegisterFragment extends BaseFrag {
                             .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    // add save data in fucking je sais pas quoi
                                     getActivity().getFragmentManager().popBackStackImmediate();
                                 }
                             })

@@ -1,5 +1,5 @@
 #
-# generated on 2018/04/17 09:18:10
+# generated on 2018/05/06 08:24:29
 #
 # --table-start--
 dataClass=tyarai.com.lom.model.Author
@@ -576,6 +576,31 @@ dataPersister=DATE_LONG
 fieldName=photo
 columnName=photo
 dataPersister=SERIALIZABLE
+# --field-end--
+# --field-start--
+fieldName=photoFid
+columnName=photo_fid
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=photoFilePath
+columnName=photo_path
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=photoFileName
+columnName=photo_name
+dataPersister=STRING
+# --field-end--
+# --field-start--
+fieldName=photoFileSize
+columnName=photo_size
+dataPersister=INTEGER
+# --field-end--
+# --field-start--
+fieldName=synced
+columnName=synced
+dataPersister=BOOLEAN
 # --field-end--
 # --field-start--
 fieldName=comments

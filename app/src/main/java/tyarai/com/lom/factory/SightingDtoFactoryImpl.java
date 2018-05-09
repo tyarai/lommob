@@ -17,10 +17,12 @@ public class SightingDtoFactoryImpl implements SightingDtoFactory {
     public SightingDto sightingToDto(Sighting sighting) {
         if (sighting != null) {
             SightingDto res = new SightingDto();
+            res.setActive(sighting.isActive());
             res.setLastModifiedOnTablet(sighting.getLastModifiedOnTablet());
             res.setId(sighting.getId());
             res.setUuid(sighting.getUuid());
             res.setTitle(sighting.getTitle());
+            res.setSynced(sighting.isSynced());
             res.setPostingDate(sighting.getPostingDate());
             if (sighting.getWatchingSite() != null) {
                 res.setWatchingSiteTitle(sighting.getWatchingSite().getTitle());
@@ -30,6 +32,7 @@ public class SightingDtoFactoryImpl implements SightingDtoFactory {
                 res.setSpecieTrans(sighting.getSpecie().getEnglish());
                 res.setSpecieName(sighting.getSpecie().getTitle());
                 res.setSpecieId(sighting.getSpecie().getId());
+                res.setSpecieNid(sighting.getSpecie().getNid());
             }
             res.setNumberObserved(sighting.getNumberObserved());
             res.setNid(sighting.getNid());
@@ -41,8 +44,11 @@ public class SightingDtoFactoryImpl implements SightingDtoFactory {
             if (sighting.getPhoto() != null) {
                 InfoImageDto photo = new InfoImageDto();
                 photo.setImageRaw(sighting.getPhoto());
+                photo.setPhotoFilePath(sighting.getPhotoFilePath());
+                photo.setPhotoFileSize(sighting.getPhotoFileSize());
                 res.setPhoto(photo);
             }
+            res.setPhotoFid(sighting.getPhotoFid());
             return res;
         }
         return null;
